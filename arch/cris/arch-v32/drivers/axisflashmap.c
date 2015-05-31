@@ -404,8 +404,12 @@ static int __init init_axis_flash(void)
 		 */
 		int blockstat;
 		do {
+<<<<<<< HEAD
+			blockstat = mtd_block_isbad(main_mtd, ptable_sector);
+=======
 			blockstat = main_mtd->block_isbad(main_mtd,
 				ptable_sector);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (blockstat < 0)
 				ptable_sector = 0; /* read error */
 			else if (blockstat)
@@ -413,8 +417,13 @@ static int __init init_axis_flash(void)
 		} while (blockstat && ptable_sector);
 #endif
 		if (ptable_sector) {
+<<<<<<< HEAD
+			mtd_read(main_mtd, ptable_sector, PAGESIZE, &len,
+				 page);
+=======
 			main_mtd->read(main_mtd, ptable_sector, PAGESIZE,
 				&len, page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			ptable_head = &((struct partitiontable *) page)->head;
 		}
 

@@ -46,7 +46,10 @@
 #include <asm/uaccess.h>
 #include <asm/io.h>
 #include <asm/hwrpb.h>
+<<<<<<< HEAD
+=======
 #include <asm/8253pit.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/rtc.h>
 
 #include <linux/mc146818rtc.h>

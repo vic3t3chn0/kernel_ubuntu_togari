@@ -31,7 +31,11 @@ static char lboxre2_irq_tab[] __initdata = {
 	IRQ_ETH0, IRQ_ETH1, IRQ_INTA, IRQ_INTD,
 };
 
+<<<<<<< HEAD
+int __init pcibios_map_platform_irq(const struct pci_dev *pdev, u8 slot, u8 pin)
+=======
 int __init pcibios_map_platform_irq(struct pci_dev *pdev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	if (mach_is_lboxre2())
 		return lboxre2_irq_tab[slot];

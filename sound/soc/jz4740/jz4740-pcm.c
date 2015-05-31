@@ -299,9 +299,16 @@ static void jz4740_pcm_free(struct snd_pcm *pcm)
 
 static u64 jz4740_pcm_dmamask = DMA_BIT_MASK(32);
 
+<<<<<<< HEAD
+static int jz4740_pcm_new(struct snd_soc_pcm_runtime *rtd)
+{
+	struct snd_card *card = rtd->card->snd_card;
+	struct snd_pcm *pcm = rtd->pcm;
+=======
 int jz4740_pcm_new(struct snd_card *card, struct snd_soc_dai *dai,
 	struct snd_pcm *pcm)
 {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = 0;
 
 	if (!card->dev->dma_mask)
@@ -310,14 +317,22 @@ int jz4740_pcm_new(struct snd_card *card, struct snd_soc_dai *dai,
 	if (!card->dev->coherent_dma_mask)
 		card->dev->coherent_dma_mask = DMA_BIT_MASK(32);
 
+<<<<<<< HEAD
+	if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream) {
+=======
 	if (dai->driver->playback.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = jz4740_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_PLAYBACK);
 		if (ret)
 			goto err;
 	}
 
+<<<<<<< HEAD
+	if (pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream) {
+=======
 	if (dai->driver->capture.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = jz4740_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_CAPTURE);
 		if (ret)
@@ -354,6 +369,9 @@ static struct platform_driver jz4740_pcm_driver = {
 	},
 };
 
+<<<<<<< HEAD
+module_platform_driver(jz4740_pcm_driver);
+=======
 static int __init jz4740_soc_platform_init(void)
 {
 	return platform_driver_register(&jz4740_pcm_driver);
@@ -365,6 +383,7 @@ static void __exit jz4740_soc_platform_exit(void)
 	return platform_driver_unregister(&jz4740_pcm_driver);
 }
 module_exit(jz4740_soc_platform_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_AUTHOR("Lars-Peter Clausen <lars@metafoo.de>");
 MODULE_DESCRIPTION("Ingenic SoC JZ4740 PCM driver");

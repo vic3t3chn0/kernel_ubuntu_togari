@@ -16,5 +16,10 @@ const char *const x86_power_flags[32] = {
 	"100mhzsteps",
 	"hwpstate",
 	"",	/* tsc invariant mapped to constant_tsc */
+<<<<<<< HEAD
+	"cpb",  /* core performance boost */
+	"eff_freq_ro", /* Readonly aperf/mperf */
+=======
 		/* nothing */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };

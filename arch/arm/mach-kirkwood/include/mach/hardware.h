@@ -11,6 +11,8 @@
 
 #include "kirkwood.h"
 
+<<<<<<< HEAD
+=======
 #define pcibios_assign_all_busses()	1
 
 #define PCIBIOS_MIN_IO			0x00001000
@@ -18,4 +20,5 @@
 #define PCIMEM_BASE			KIRKWOOD_PCIE_MEM_PHYS_BASE /* mem base for VGA */
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

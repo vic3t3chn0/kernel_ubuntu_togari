@@ -16,8 +16,18 @@
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
+extern bool hest_disable;
+extern int erst_disable;
+#ifdef CONFIG_ACPI_APEI_GHES
+extern bool ghes_disable;
+#else
+#define ghes_disable 1
+#endif
+=======
 extern int hest_disable;
 extern int erst_disable;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_ACPI_APEI
 void __init acpi_hest_init(void);

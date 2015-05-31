@@ -49,7 +49,11 @@ void __init gtwx5715_pci_preinit(void)
 }
 
 
+<<<<<<< HEAD
+static int __init gtwx5715_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
 static int __init gtwx5715_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int rc = -1;
 

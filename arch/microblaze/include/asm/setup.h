@@ -20,6 +20,16 @@ extern unsigned int boot_cpuid; /* move to smp.h */
 
 extern char cmd_line[COMMAND_LINE_SIZE];
 
+<<<<<<< HEAD
+extern char *klimit;
+
+void early_printk(const char *fmt, ...);
+
+int setup_early_printk(char *opt);
+void remap_early_printk(void);
+void disable_early_printk(void);
+
+=======
 void early_printk(const char *fmt, ...);
 
 int setup_early_printk(char *opt);
@@ -31,6 +41,7 @@ void disable_early_printk(void);
 #define eprintk printk
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void heartbeat(void);
 void setup_heartbeat(void);
 
@@ -44,13 +55,25 @@ extern void of_platform_reset_gpio_probe(void);
 void time_init(void);
 void init_IRQ(void);
 void machine_early_init(const char *cmdline, unsigned int ram,
+<<<<<<< HEAD
+		unsigned int fdt, unsigned int msr, unsigned int tlb0,
+		unsigned int tlb1);
+=======
 			unsigned int fdt, unsigned int msr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void machine_restart(char *cmd);
 void machine_shutdown(void);
 void machine_halt(void);
 void machine_power_off(void);
 
+<<<<<<< HEAD
+void free_init_pages(char *what, unsigned long begin, unsigned long end);
+extern void *alloc_maybe_bootmem(size_t size, gfp_t mask);
+extern void *zalloc_maybe_bootmem(size_t size, gfp_t mask);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #  endif/* __KERNEL__ */
 # endif /* __ASSEMBLY__ */
 #endif /* _ASM_MICROBLAZE_SETUP_H */

@@ -16,7 +16,10 @@
 #include <linux/module.h>
 #include <linux/exportfs.h>
 
+<<<<<<< HEAD
+=======
 #include <linux/nfsd/syscall.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/ipv6.h>
 
 #include "nfsd.h"
@@ -88,7 +91,11 @@ static int expkey_parse(struct cache_detail *cd, char *mesg, int mlen)
 	struct svc_expkey key;
 	struct svc_expkey *ek = NULL;
 
+<<<<<<< HEAD
+	if (mesg[mlen - 1] != '\n')
+=======
 	if (mlen < 1 || mesg[mlen-1] != '\n')
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EINVAL;
 	mesg[mlen-1] = 0;
 
@@ -318,7 +325,10 @@ static void svc_export_put(struct kref *ref)
 	struct svc_export *exp = container_of(ref, struct svc_export, h.ref);
 	path_put(&exp->ex_path);
 	auth_domain_put(exp->ex_client);
+<<<<<<< HEAD
+=======
 	kfree(exp->ex_pathname);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	nfsd4_fslocs_free(&exp->ex_fslocs);
 	kfree(exp);
 }
@@ -403,7 +413,11 @@ fsloc_parse(char **mesg, char *buf, struct nfsd4_fs_locations *fsloc)
 	int migrated, i, err;
 
 	/* listsize */
+<<<<<<< HEAD
+	err = get_int(mesg, &fsloc->locations_count);
+=======
 	err = get_uint(mesg, &fsloc->locations_count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err)
 		return err;
 	if (fsloc->locations_count > MAX_FS_LOCATIONS)
@@ -461,7 +475,11 @@ static int secinfo_parse(char **mesg, char *buf, struct svc_export *exp)
 		return -EINVAL;
 
 	for (f = exp->ex_flavors; f < exp->ex_flavors + listsize; f++) {
+<<<<<<< HEAD
+		err = get_int(mesg, &f->pseudoflavor);
+=======
 		err = get_uint(mesg, &f->pseudoflavor);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 		/*
@@ -470,7 +488,11 @@ static int secinfo_parse(char **mesg, char *buf, struct svc_export *exp)
 		 * problem at export time instead of when a client fails
 		 * to authenticate.
 		 */
+<<<<<<< HEAD
+		err = get_int(mesg, &f->flags);
+=======
 		err = get_uint(mesg, &f->flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 		/* Only some flags are allowed to differ between flavors: */
@@ -528,11 +550,14 @@ static int svc_export_parse(struct cache_detail *cd, char *mesg, int mlen)
 
 	exp.ex_client = dom;
 
+<<<<<<< HEAD
+=======
 	err = -ENOMEM;
 	exp.ex_pathname = kstrdup(buf, GFP_KERNEL);
 	if (!exp.ex_pathname)
 		goto out2;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* expiry */
 	err = -EINVAL;
 	exp.h.expiry_time = get_expiry(&mesg);
@@ -613,8 +638,11 @@ out4:
 	nfsd4_fslocs_free(&exp.ex_fslocs);
 	kfree(exp.ex_uuid);
 out3:
+<<<<<<< HEAD
+=======
 	kfree(exp.ex_pathname);
 out2:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	path_put(&exp.ex_path);
 out1:
 	auth_domain_put(dom);
@@ -678,7 +706,10 @@ static void svc_export_init(struct cache_head *cnew, struct cache_head *citem)
 	new->ex_client = item->ex_client;
 	new->ex_path.dentry = dget(item->ex_path.dentry);
 	new->ex_path.mnt = mntget(item->ex_path.mnt);
+<<<<<<< HEAD
+=======
 	new->ex_pathname = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	new->ex_fslocs.locations = NULL;
 	new->ex_fslocs.locations_count = 0;
 	new->ex_fslocs.migrated = 0;
@@ -696,8 +727,11 @@ static void export_update(struct cache_head *cnew, struct cache_head *citem)
 	new->ex_fsid = item->ex_fsid;
 	new->ex_uuid = item->ex_uuid;
 	item->ex_uuid = NULL;
+<<<<<<< HEAD
+=======
 	new->ex_pathname = item->ex_pathname;
 	item->ex_pathname = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	new->ex_fslocs.locations = item->ex_fslocs.locations;
 	item->ex_fslocs.locations = NULL;
 	new->ex_fslocs.locations_count = item->ex_fslocs.locations_count;
@@ -797,6 +831,8 @@ exp_find_key(svc_client *clp, int fsid_type, u32 *fsidv, struct cache_req *reqp)
 	return ek;
 }
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_NFSD_DEPRECATED
 static int exp_set_key(svc_client *clp, int fsid_type, u32 *fsidv,
 		       struct svc_export *exp)
@@ -849,6 +885,7 @@ exp_get_fsid_key(svc_client *clp, int fsid)
 	return exp_find_key(clp, FSID_NUM, fsidv, NULL);
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static svc_export *exp_get_by_name(svc_client *clp, const struct path *path,
 				     struct cache_req *reqp)
@@ -890,6 +927,9 @@ static struct svc_export *exp_parent(svc_client *clp, struct path *path)
 	return exp;
 }
 
+<<<<<<< HEAD
+
+=======
 #ifdef CONFIG_NFSD_DEPRECATED
 /*
  * Hashtable locking. Write locks are placed only by user processes
@@ -1159,6 +1199,7 @@ out_unlock:
 	return err;
 }
 #endif /* CONFIG_NFSD_DEPRECATED */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Obtain the root fh on behalf of a client.
@@ -1330,7 +1371,11 @@ rqst_exp_parent(struct svc_rqst *rqstp, struct path *path)
 	return exp;
 }
 
+<<<<<<< HEAD
+struct svc_export *rqst_find_fsidzero_export(struct svc_rqst *rqstp)
+=======
 static struct svc_export *find_fsidzero_export(struct svc_rqst *rqstp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	u32 fsidv[2];
 
@@ -1350,7 +1395,11 @@ exp_pseudoroot(struct svc_rqst *rqstp, struct svc_fh *fhp)
 	struct svc_export *exp;
 	__be32 rv;
 
+<<<<<<< HEAD
+	exp = rqst_find_fsidzero_export(rqstp);
+=======
 	exp = find_fsidzero_export(rqstp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (IS_ERR(exp))
 		return nfserrno(PTR_ERR(exp));
 	rv = fh_compose(fhp, exp, exp->ex_path.dentry, NULL);
@@ -1367,7 +1416,10 @@ static void *e_start(struct seq_file *m, loff_t *pos)
 	unsigned hash, export;
 	struct cache_head *ch;
 	
+<<<<<<< HEAD
+=======
 	exp_readlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	read_lock(&svc_export_cache.hash_lock);
 	if (!n--)
 		return SEQ_START_TOKEN;
@@ -1418,7 +1470,10 @@ static void e_stop(struct seq_file *m, void *p)
 	__releases(svc_export_cache.hash_lock)
 {
 	read_unlock(&svc_export_cache.hash_lock);
+<<<<<<< HEAD
+=======
 	exp_readunlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static struct flags {
@@ -1550,6 +1605,8 @@ const struct seq_operations nfs_exports_op = {
 	.show	= e_show,
 };
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_NFSD_DEPRECATED
 /*
  * Add or modify a client.
@@ -1641,6 +1698,7 @@ exp_verify_string(char *cp, int max)
 	return 0;
 }
 #endif /* CONFIG_NFSD_DEPRECATED */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Initialize the exports module.
@@ -1651,12 +1709,21 @@ nfsd_export_init(void)
 	int rv;
 	dprintk("nfsd: initializing export module.\n");
 
+<<<<<<< HEAD
+	rv = cache_register_net(&svc_export_cache, &init_net);
+	if (rv)
+		return rv;
+	rv = cache_register_net(&svc_expkey_cache, &init_net);
+	if (rv)
+		cache_unregister_net(&svc_export_cache, &init_net);
+=======
 	rv = cache_register(&svc_export_cache);
 	if (rv)
 		return rv;
 	rv = cache_register(&svc_expkey_cache);
 	if (rv)
 		cache_unregister(&svc_export_cache);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return rv;
 
 }
@@ -1667,10 +1734,15 @@ nfsd_export_init(void)
 void
 nfsd_export_flush(void)
 {
+<<<<<<< HEAD
+	cache_purge(&svc_expkey_cache);
+	cache_purge(&svc_export_cache);
+=======
 	exp_writelock();
 	cache_purge(&svc_expkey_cache);
 	cache_purge(&svc_export_cache);
 	exp_writeunlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -1682,6 +1754,12 @@ nfsd_export_shutdown(void)
 
 	dprintk("nfsd: shutting down export module.\n");
 
+<<<<<<< HEAD
+	cache_unregister_net(&svc_expkey_cache, &init_net);
+	cache_unregister_net(&svc_export_cache, &init_net);
+	svcauth_unix_purge();
+
+=======
 	exp_writelock();
 
 	cache_unregister(&svc_expkey_cache);
@@ -1689,5 +1767,6 @@ nfsd_export_shutdown(void)
 	svcauth_unix_purge();
 
 	exp_writeunlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dprintk("nfsd: export shutdown complete.\n");
 }

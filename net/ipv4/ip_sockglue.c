@@ -33,10 +33,18 @@
 #include <linux/netfilter.h>
 #include <linux/route.h>
 #include <linux/mroute.h>
+<<<<<<< HEAD
+#include <net/inet_ecn.h>
+#include <net/route.h>
+#include <net/xfrm.h>
+#include <net/compat.h>
+#if IS_ENABLED(CONFIG_IPV6)
+=======
 #include <net/route.h>
 #include <net/xfrm.h>
 #include <net/compat.h>
 #if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/transp_v6.h>
 #endif
 
@@ -54,6 +62,15 @@
 /*
  *	SOL_IP control messages.
  */
+<<<<<<< HEAD
+#define PKTINFO_SKB_CB(__skb) ((struct in_pktinfo *)((__skb)->cb))
+
+static void ip_cmsg_recv_pktinfo(struct msghdr *msg, struct sk_buff *skb)
+{
+	struct in_pktinfo info = *PKTINFO_SKB_CB(skb);
+
+	info.ipi_addr.s_addr = ip_hdr(skb)->daddr;
+=======
 
 static void ip_cmsg_recv_pktinfo(struct msghdr *msg, struct sk_buff *skb)
 {
@@ -68,6 +85,7 @@ static void ip_cmsg_recv_pktinfo(struct msghdr *msg, struct sk_buff *skb)
 		info.ipi_ifindex = 0;
 		info.ipi_spec_dst.s_addr = 0;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	put_cmsg(msg, SOL_IP, IP_PKTINFO, sizeof(info), &info);
 }
@@ -451,11 +469,14 @@ out:
 }
 
 
+<<<<<<< HEAD
+=======
 static void opt_kfree_rcu(struct rcu_head *head)
 {
 	kfree(container_of(head, struct ip_options_rcu, rcu));
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  *	Socket option code for IP. This is the end of the line after any
  *	TCP,UDP etc options on an IP socket.
@@ -467,6 +488,21 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 	struct inet_sock *inet = inet_sk(sk);
 	int val = 0, err;
 
+<<<<<<< HEAD
+	if (((1<<optname) & ((1<<IP_PKTINFO) | (1<<IP_RECVTTL) |
+			     (1<<IP_RECVOPTS) | (1<<IP_RECVTOS) |
+			     (1<<IP_RETOPTS) | (1<<IP_TOS) |
+			     (1<<IP_TTL) | (1<<IP_HDRINCL) |
+			     (1<<IP_MTU_DISCOVER) | (1<<IP_RECVERR) |
+			     (1<<IP_ROUTER_ALERT) | (1<<IP_FREEBIND) |
+			     (1<<IP_PASSSEC) | (1<<IP_TRANSPARENT) |
+			     (1<<IP_MINTTL) | (1<<IP_NODEFRAG))) ||
+	    optname == IP_UNICAST_IF ||
+	    optname == IP_MULTICAST_TTL ||
+	    optname == IP_MULTICAST_ALL ||
+	    optname == IP_MULTICAST_LOOP ||
+	    optname == IP_RECVORIGDSTADDR) {
+=======
 	switch (optname) {
 	case IP_PKTINFO:
 	case IP_RECVTTL:
@@ -488,6 +524,7 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 	case IP_MULTICAST_ALL:
 	case IP_MULTICAST_LOOP:
 	case IP_RECVORIGDSTADDR:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (optlen >= sizeof(int)) {
 			if (get_user(val, (int __user *) optval))
 				return -EFAULT;
@@ -523,7 +560,11 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 						sock_owned_by_user(sk));
 		if (inet->is_icsk) {
 			struct inet_connection_sock *icsk = inet_csk(sk);
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
 #if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (sk->sk_family == PF_INET ||
 			    (!((1 << sk->sk_state) &
 			       (TCPF_LISTEN | TCPF_CLOSE)) &&
@@ -534,13 +575,21 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 				if (opt)
 					icsk->icsk_ext_hdr_len += opt->opt.optlen;
 				icsk->icsk_sync_mss(sk, icsk->icsk_pmtu_cookie);
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IPV6)
+=======
 #if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			}
 #endif
 		}
 		rcu_assign_pointer(inet->inet_opt, opt);
 		if (old)
+<<<<<<< HEAD
+			kfree_rcu(old, rcu);
+=======
 			call_rcu(&old->rcu, opt_kfree_rcu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	}
 	case IP_PKTINFO:
@@ -587,8 +636,13 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 		break;
 	case IP_TOS:	/* This sets both TOS and Precedence */
 		if (sk->sk_type == SOCK_STREAM) {
+<<<<<<< HEAD
+			val &= ~INET_ECN_MASK;
+			val |= inet->tos & INET_ECN_MASK;
+=======
 			val &= ~3;
 			val |= inet->tos & 3;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		if (inet->tos != val) {
 			inet->tos = val;
@@ -599,7 +653,11 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 	case IP_TTL:
 		if (optlen < 1)
 			goto e_inval;
+<<<<<<< HEAD
+		if (val != -1 && (val < 0 || val > 255))
+=======
 		if (val != -1 && (val < 1 || val > 255))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			goto e_inval;
 		inet->uc_ttl = val;
 		break;
@@ -643,6 +701,38 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 			goto e_inval;
 		inet->mc_loop = !!val;
 		break;
+<<<<<<< HEAD
+	case IP_UNICAST_IF:
+	{
+		struct net_device *dev = NULL;
+		int ifindex;
+
+		if (optlen != sizeof(int))
+			goto e_inval;
+
+		ifindex = (__force int)ntohl((__force __be32)val);
+		if (ifindex == 0) {
+			inet->uc_index = 0;
+			err = 0;
+			break;
+		}
+
+		dev = dev_get_by_index(sock_net(sk), ifindex);
+		err = -EADDRNOTAVAIL;
+		if (!dev)
+			break;
+		dev_put(dev);
+
+		err = -EINVAL;
+		if (sk->sk_bound_dev_if)
+			break;
+
+		inet->uc_index = ifindex;
+		err = 0;
+		break;
+	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case IP_MULTICAST_IF:
 	{
 		struct ip_mreqn mreq;
@@ -970,7 +1060,11 @@ mc_msf_out:
 		break;
 
 	case IP_TRANSPARENT:
+<<<<<<< HEAD
+		if (!!val && !capable(CAP_NET_RAW) && !capable(CAP_NET_ADMIN)) {
+=======
 		if (!capable(CAP_NET_ADMIN)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			err = -EPERM;
 			break;
 		}
@@ -1000,6 +1094,30 @@ e_inval:
 }
 
 /**
+<<<<<<< HEAD
+ * ipv4_pktinfo_prepare - transfert some info from rtable to skb
+ * @sk: socket
+ * @skb: buffer
+ *
+ * To support IP_CMSG_PKTINFO option, we store rt_iif and rt_spec_dst
+ * in skb->cb[] before dst drop.
+ * This way, receiver doesnt make cache line misses to read rtable.
+ */
+void ipv4_pktinfo_prepare(struct sk_buff *skb)
+{
+	struct in_pktinfo *pktinfo = PKTINFO_SKB_CB(skb);
+	const struct rtable *rt = skb_rtable(skb);
+
+	if (rt) {
+		pktinfo->ipi_ifindex = rt->rt_iif;
+		pktinfo->ipi_spec_dst.s_addr = rt->rt_spec_dst;
+	} else {
+		pktinfo->ipi_ifindex = 0;
+		pktinfo->ipi_spec_dst.s_addr = 0;
+	}
+	skb_dst_drop(skb);
+}
+=======
  * ip_queue_rcv_skb - Queue an skb into sock receive queue
  * @sk: socket
  * @skb: buffer
@@ -1014,6 +1132,7 @@ int ip_queue_rcv_skb(struct sock *sk, struct sk_buff *skb)
 	return sock_queue_rcv_skb(sk, skb);
 }
 EXPORT_SYMBOL(ip_queue_rcv_skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int ip_setsockopt(struct sock *sk, int level,
 		int optname, char __user *optval, unsigned int optlen)
@@ -1076,7 +1195,11 @@ EXPORT_SYMBOL(compat_ip_setsockopt);
  */
 
 static int do_ip_getsockopt(struct sock *sk, int level, int optname,
+<<<<<<< HEAD
+			    char __user *optval, int __user *optlen, unsigned flags)
+=======
 			    char __user *optval, int __user *optlen)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inet_sock *inet = inet_sk(sk);
 	int val;
@@ -1185,6 +1308,12 @@ static int do_ip_getsockopt(struct sock *sk, int level, int optname,
 	case IP_MULTICAST_LOOP:
 		val = inet->mc_loop;
 		break;
+<<<<<<< HEAD
+	case IP_UNICAST_IF:
+		val = (__force int)htonl((__u32) inet->uc_index);
+		break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case IP_MULTICAST_IF:
 	{
 		struct in_addr addr;
@@ -1249,7 +1378,11 @@ static int do_ip_getsockopt(struct sock *sk, int level, int optname,
 
 		msg.msg_control = optval;
 		msg.msg_controllen = len;
+<<<<<<< HEAD
+		msg.msg_flags = flags;
+=======
 		msg.msg_flags = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		if (inet->cmsg_flags & IP_CMSG_PKTINFO) {
 			struct in_pktinfo info;
@@ -1263,6 +1396,13 @@ static int do_ip_getsockopt(struct sock *sk, int level, int optname,
 			int hlim = inet->mc_ttl;
 			put_cmsg(&msg, SOL_IP, IP_TTL, sizeof(hlim), &hlim);
 		}
+<<<<<<< HEAD
+		if (inet->cmsg_flags & IP_CMSG_TOS) {
+			int tos = inet->rcv_tos;
+			put_cmsg(&msg, SOL_IP, IP_TOS, sizeof(tos), &tos);
+		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len -= msg.msg_controllen;
 		return put_user(len, optlen);
 	}
@@ -1303,7 +1443,11 @@ int ip_getsockopt(struct sock *sk, int level,
 {
 	int err;
 
+<<<<<<< HEAD
+	err = do_ip_getsockopt(sk, level, optname, optval, optlen, 0);
+=======
 	err = do_ip_getsockopt(sk, level, optname, optval, optlen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_NETFILTER
 	/* we need to exclude all possible ENOPROTOOPTs except default case */
 	if (err == -ENOPROTOOPT && optname != IP_PKTOPTIONS &&
@@ -1336,7 +1480,12 @@ int compat_ip_getsockopt(struct sock *sk, int level, int optname,
 		return compat_mc_getsockopt(sk, level, optname, optval, optlen,
 			ip_getsockopt);
 
+<<<<<<< HEAD
+	err = do_ip_getsockopt(sk, level, optname, optval, optlen,
+		MSG_CMSG_COMPAT);
+=======
 	err = do_ip_getsockopt(sk, level, optname, optval, optlen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_NETFILTER
 	/* we need to exclude all possible ENOPROTOOPTs except default case */

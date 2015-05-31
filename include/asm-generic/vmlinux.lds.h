@@ -167,6 +167,10 @@
 	CPU_KEEP(exit.data)						\
 	MEM_KEEP(init.data)						\
 	MEM_KEEP(exit.data)						\
+<<<<<<< HEAD
+	*(.data.unlikely)						\
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	STRUCT_ALIGN();							\
 	*(__tracepoints)						\
 	/* implement dynamic printk debug */				\
@@ -222,7 +226,10 @@
 		VMLINUX_SYMBOL(__start___tracepoints_ptrs) = .;		\
 		*(__tracepoints_ptrs)	/* Tracepoints: pointer array */\
 		VMLINUX_SYMBOL(__stop___tracepoints_ptrs) = .;		\
+<<<<<<< HEAD
+=======
 		*(__markers_strings)	/* Markers: strings */		\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		*(__tracepoints_strings)/* Tracepoints: strings */	\
 	}								\
 									\
@@ -616,6 +623,25 @@
 		*(.init.setup)						\
 		VMLINUX_SYMBOL(__setup_end) = .;
 
+<<<<<<< HEAD
+#define INIT_CALLS_LEVEL(level)						\
+		VMLINUX_SYMBOL(__initcall##level##_start) = .;		\
+		*(.initcall##level##.init)				\
+		*(.initcall##level##s.init)				\
+
+#define INIT_CALLS							\
+		VMLINUX_SYMBOL(__initcall_start) = .;			\
+		*(.initcallearly.init)					\
+		INIT_CALLS_LEVEL(0)					\
+		INIT_CALLS_LEVEL(1)					\
+		INIT_CALLS_LEVEL(2)					\
+		INIT_CALLS_LEVEL(3)					\
+		INIT_CALLS_LEVEL(4)					\
+		INIT_CALLS_LEVEL(5)					\
+		INIT_CALLS_LEVEL(rootfs)				\
+		INIT_CALLS_LEVEL(6)					\
+		INIT_CALLS_LEVEL(7)					\
+=======
 #define INITCALLS							\
 	*(.initcallearly.init)						\
 	VMLINUX_SYMBOL(__early_initcall_end) = .;			\
@@ -642,6 +668,7 @@
 #define INIT_CALLS							\
 		VMLINUX_SYMBOL(__initcall_start) = .;			\
 		INITCALLS						\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		VMLINUX_SYMBOL(__initcall_end) = .;
 
 #define CON_INITCALL							\
@@ -654,6 +681,14 @@
 		*(.security_initcall.init)				\
 		VMLINUX_SYMBOL(__security_initcall_end) = .;
 
+<<<<<<< HEAD
+#define COMPAT_EXPORTS							\
+		VMLINUX_SYMBOL(__compat_exports_start) = .;		\
+		*(.exportcompat.init)					\
+		VMLINUX_SYMBOL(__compat_exports_end) = .;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_BLK_DEV_INITRD
 #define INIT_RAM_FS							\
 	. = ALIGN(4);							\

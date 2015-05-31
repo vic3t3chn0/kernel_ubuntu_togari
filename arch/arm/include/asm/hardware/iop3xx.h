@@ -231,9 +231,19 @@ extern int iop3xx_get_init_atu(void);
 
 
 #ifndef __ASSEMBLY__
+<<<<<<< HEAD
+
+#include <linux/types.h>
+
 void iop3xx_map_io(void);
 void iop_init_cp6_handler(void);
 void iop_init_time(unsigned long tickrate);
+void iop3xx_restart(char, const char *);
+=======
+void iop3xx_map_io(void);
+void iop_init_cp6_handler(void);
+void iop_init_time(unsigned long tickrate);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline u32 read_tmr0(void)
 {

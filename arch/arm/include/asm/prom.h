@@ -13,6 +13,8 @@
 
 #ifdef CONFIG_OF
 
+<<<<<<< HEAD
+=======
 #include <asm/setup.h>
 #include <asm/irq.h>
 
@@ -21,6 +23,7 @@ static inline void irq_dispose_mapping(unsigned int virq)
 	return;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct machine_desc *setup_machine_fdt(unsigned int dt_phys);
 extern void arm_dt_memblock_reserve(void);
 

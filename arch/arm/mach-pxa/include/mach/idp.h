@@ -131,6 +131,16 @@
 #define PCC_VS2		(1 << 1)
 #define PCC_VS1		(1 << 0)
 
+<<<<<<< HEAD
+/* A listing of interrupts used by external hardware devices */
+
+#define TOUCH_PANEL_IRQ			PXA_GPIO_TO_IRQ(5)
+#define IDE_IRQ				PXA_GPIO_TO_IRQ(21)
+
+#define TOUCH_PANEL_IRQ_EDGE		IRQ_TYPE_EDGE_FALLING
+
+#define ETHERNET_IRQ			PXA_GPIO_TO_IRQ(4)
+=======
 #define PCC_DETECT(x)	(GPLR(7 + (x)) & GPIO_bit(7 + (x)))
 
 /* A listing of interrupts used by external hardware devices */
@@ -141,10 +151,21 @@
 #define TOUCH_PANEL_IRQ_EDGE		IRQ_TYPE_EDGE_FALLING
 
 #define ETHERNET_IRQ			IRQ_GPIO(4)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ETHERNET_IRQ_EDGE		IRQ_TYPE_EDGE_RISING
 
 #define IDE_IRQ_EDGE			IRQ_TYPE_EDGE_RISING
 
+<<<<<<< HEAD
+#define PCMCIA_S0_CD_VALID		PXA_GPIO_TO_IRQ(7)
+#define PCMCIA_S0_CD_VALID_EDGE		IRQ_TYPE_EDGE_BOTH
+
+#define PCMCIA_S1_CD_VALID		PXA_GPIO_TO_IRQ(8)
+#define PCMCIA_S1_CD_VALID_EDGE		IRQ_TYPE_EDGE_BOTH
+
+#define PCMCIA_S0_RDYINT		PXA_GPIO_TO_IRQ(19)
+#define PCMCIA_S1_RDYINT		PXA_GPIO_TO_IRQ(22)
+=======
 #define PCMCIA_S0_CD_VALID		IRQ_GPIO(7)
 #define PCMCIA_S0_CD_VALID_EDGE		IRQ_TYPE_EDGE_BOTH
 
@@ -153,6 +174,7 @@
 
 #define PCMCIA_S0_RDYINT		IRQ_GPIO(19)
 #define PCMCIA_S1_RDYINT		IRQ_GPIO(22)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /*

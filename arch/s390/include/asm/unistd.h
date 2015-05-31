@@ -277,7 +277,13 @@
 #define __NR_clock_adjtime	337
 #define __NR_syncfs		338
 #define __NR_setns		339
+<<<<<<< HEAD
+#define __NR_process_vm_readv	340
+#define __NR_process_vm_writev	341
+#define NR_syscalls 342
+=======
 #define NR_syscalls 340
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* 
  * There are some system calls that are not present on 64 bit, some
@@ -396,6 +402,10 @@
 #define __ARCH_WANT_SYS_SIGNAL
 #define __ARCH_WANT_SYS_UTIME
 #define __ARCH_WANT_SYS_SOCKETCALL
+<<<<<<< HEAD
+#define __ARCH_WANT_SYS_IPC
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define __ARCH_WANT_SYS_FADVISE64
 #define __ARCH_WANT_SYS_GETPGRP
 #define __ARCH_WANT_SYS_LLSEEK

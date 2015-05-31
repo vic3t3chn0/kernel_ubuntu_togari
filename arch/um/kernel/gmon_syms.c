@@ -7,6 +7,8 @@
 
 extern void __bb_init_func(void *)  __attribute__((weak));
 EXPORT_SYMBOL(__bb_init_func);
+<<<<<<< HEAD
+=======
 
 /*
  * This is defined (and referred to in profiling stub code) only by some GCC
@@ -22,3 +24,4 @@ EXPORT_SYMBOL(__gcov_init);
 
 extern void __gcov_merge_add(void *) __attribute__((weak));
 EXPORT_SYMBOL(__gcov_merge_add);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -22,7 +22,11 @@
 
 #include <net/netfilter/ipv4/nf_defrag_ipv4.h>
 
+<<<<<<< HEAD
+#if IS_ENABLED(CONFIG_IP6_NF_IPTABLES)
+=======
 #if defined(CONFIG_IP6_NF_IPTABLES) || defined(CONFIG_IP6_NF_IPTABLES_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define XT_TPROXY_HAVE_IPV6 1
 #include <net/if_inet6.h>
 #include <net/addrconf.h>

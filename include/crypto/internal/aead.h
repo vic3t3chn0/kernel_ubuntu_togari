@@ -31,6 +31,11 @@ static inline void crypto_set_aead_spawn(
 	crypto_set_spawn(&spawn->base, inst);
 }
 
+<<<<<<< HEAD
+struct crypto_alg *crypto_lookup_aead(const char *name, u32 type, u32 mask);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int crypto_grab_aead(struct crypto_aead_spawn *spawn, const char *name,
 		     u32 type, u32 mask);
 

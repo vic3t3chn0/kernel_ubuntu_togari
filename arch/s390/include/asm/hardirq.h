@@ -18,6 +18,10 @@
 
 #define __ARCH_IRQ_STAT
 #define __ARCH_HAS_DO_SOFTIRQ
+<<<<<<< HEAD
+#define __ARCH_IRQ_EXIT_IRQS_DISABLED
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define HARDIRQ_BITS	8
 

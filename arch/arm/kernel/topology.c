@@ -18,6 +18,8 @@
 #include <linux/node.h>
 #include <linux/nodemask.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+=======
 #include <linux/cpumask.h>
 #include <linux/cpuset.h>
 #include <linux/notifier.h>
@@ -26,12 +28,16 @@
 #include <linux/debugfs.h>
 #include <linux/uaccess.h>	/* for copy_from_user */
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/cputype.h>
 #include <asm/topology.h>
 
+<<<<<<< HEAD
+=======
 #define ARM_FAMILY_MASK 0xFF0FFFF0
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define MPIDR_SMP_BITMASK (0x3 << 30)
 #define MPIDR_SMP_VALUE (0x2 << 30)
 
@@ -53,6 +59,8 @@
 
 struct cputopo_arm cpu_topology[NR_CPUS];
 
+<<<<<<< HEAD
+=======
 /*
  * cpu power scale management
  * a per cpu data structure should be better because each cpu is mainly
@@ -112,12 +120,15 @@ int arch_sd_sibling_asym_packing(void)
 /*
  * default topology function
  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 const struct cpumask *cpu_coregroup_mask(int cpu)
 {
 	return &cpu_topology[cpu].core_sibling;
 }
 
 /*
+<<<<<<< HEAD
+=======
  * clear cpu topology masks
  */
 static void clear_cpu_topology_mask(void)
@@ -249,6 +260,7 @@ static int update_cpu_topology_mask(void)
 }
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * store_cpu_topology is called at boot when only one cpu is running
  * and with the mutex cpu_hotplug.lock locked, when several cpus have booted,
  * which prevents simultaneous write access to cpu_topology array
@@ -257,6 +269,10 @@ void store_cpu_topology(unsigned int cpuid)
 {
 	struct cputopo_arm *cpuid_topo = &cpu_topology[cpuid];
 	unsigned int mpidr;
+<<<<<<< HEAD
+	unsigned int cpu;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* If the cpu topology has been already set, just return */
 	if (cpuid_topo->core_id != -1)
@@ -287,9 +303,12 @@ void store_cpu_topology(unsigned int cpuid)
 			cpuid_topo->socket_id = (mpidr >> MPIDR_LEVEL1_SHIFT)
 				& MPIDR_LEVEL1_MASK;
 		}
+<<<<<<< HEAD
+=======
 
 		cpuid_topo->id = read_cpuid_id() & ARM_FAMILY_MASK;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else {
 		/*
 		 * This is an uniprocessor system
@@ -301,12 +320,35 @@ void store_cpu_topology(unsigned int cpuid)
 		cpuid_topo->socket_id = -1;
 	}
 
+<<<<<<< HEAD
+	/* update core and thread sibling masks */
+	for_each_possible_cpu(cpu) {
+		struct cputopo_arm *cpu_topo = &cpu_topology[cpu];
+
+		if (cpuid_topo->socket_id == cpu_topo->socket_id) {
+			cpumask_set_cpu(cpuid, &cpu_topo->core_sibling);
+			if (cpu != cpuid)
+				cpumask_set_cpu(cpu,
+					&cpuid_topo->core_sibling);
+
+			if (cpuid_topo->core_id == cpu_topo->core_id) {
+				cpumask_set_cpu(cpuid,
+					&cpu_topo->thread_sibling);
+				if (cpu != cpuid)
+					cpumask_set_cpu(cpu,
+						&cpuid_topo->thread_sibling);
+			}
+		}
+	}
+	smp_wmb();
+=======
 	/*
 	 * The core and thread sibling masks can also be updated during the
 	 * call of arch_update_cpu_topology
 	 */
 	default_cpu_topology_mask(cpuid);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	printk(KERN_INFO "CPU%u: thread %d, cpu %d, socket %d, mpidr %x\n",
 		cpuid, cpu_topology[cpuid].thread_id,
@@ -315,6 +357,8 @@ void store_cpu_topology(unsigned int cpuid)
 }
 
 /*
+<<<<<<< HEAD
+=======
  * arch_update_cpu_topology is called by the scheduler before building
  * a new sched_domain hierarchy.
  */
@@ -337,6 +381,7 @@ int arch_update_cpu_topology(void)
 }
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * init_cpu_topology is called at boot when only one cpu is running
  * which prevent simultaneous write access to cpu_topology array
  */
@@ -348,12 +393,20 @@ void init_cpu_topology(void)
 	for_each_possible_cpu(cpu) {
 		struct cputopo_arm *cpu_topo = &(cpu_topology[cpu]);
 
+<<<<<<< HEAD
+=======
 		cpu_topo->id = -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		cpu_topo->thread_id = -1;
 		cpu_topo->core_id =  -1;
 		cpu_topo->socket_id = -1;
 		cpumask_clear(&cpu_topo->core_sibling);
 		cpumask_clear(&cpu_topo->thread_sibling);
+<<<<<<< HEAD
+	}
+	smp_wmb();
+}
+=======
 
 		per_cpu(cpu_scale, cpu) = SCHED_POWER_SCALE;
 	}
@@ -450,3 +503,4 @@ err_out:
 
 late_initcall(topo_debugfs_init);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

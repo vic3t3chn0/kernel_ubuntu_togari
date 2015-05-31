@@ -6,17 +6,34 @@
 #include <linux/init.h>
 #include <linux/pm.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
+#include <linux/freezer.h>
+#include <asm/errno.h>
+
+#ifdef CONFIG_VT
+extern void pm_set_vt_switch(int);
+=======
 #include <asm/errno.h>
 
 #if defined(CONFIG_PM_SLEEP) && defined(CONFIG_VT) && defined(CONFIG_VT_CONSOLE)
 extern void pm_set_vt_switch(int);
 extern int pm_prepare_console(void);
 extern void pm_restore_console(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 static inline void pm_set_vt_switch(int do_switch)
 {
 }
+<<<<<<< HEAD
+#endif
 
+#ifdef CONFIG_VT_CONSOLE_SLEEP
+extern int pm_prepare_console(void);
+extern void pm_restore_console(void);
+#else
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline int pm_prepare_console(void)
 {
 	return 0;
@@ -34,6 +51,65 @@ typedef int __bitwise suspend_state_t;
 #define PM_SUSPEND_MEM		((__force suspend_state_t) 3)
 #define PM_SUSPEND_MAX		((__force suspend_state_t) 4)
 
+<<<<<<< HEAD
+enum suspend_stat_step {
+	SUSPEND_FREEZE = 1,
+	SUSPEND_PREPARE,
+	SUSPEND_SUSPEND,
+	SUSPEND_SUSPEND_LATE,
+	SUSPEND_SUSPEND_NOIRQ,
+	SUSPEND_RESUME_NOIRQ,
+	SUSPEND_RESUME_EARLY,
+	SUSPEND_RESUME
+};
+
+struct suspend_stats {
+	int	success;
+	int	fail;
+	int	failed_freeze;
+	int	failed_prepare;
+	int	failed_suspend;
+	int	failed_suspend_late;
+	int	failed_suspend_noirq;
+	int	failed_resume;
+	int	failed_resume_early;
+	int	failed_resume_noirq;
+#define	REC_FAILED_NUM	2
+	int	last_failed_dev;
+	char	failed_devs[REC_FAILED_NUM][40];
+	int	last_failed_errno;
+	int	errno[REC_FAILED_NUM];
+	int	last_failed_step;
+	enum suspend_stat_step	failed_steps[REC_FAILED_NUM];
+};
+
+extern struct suspend_stats suspend_stats;
+
+static inline void dpm_save_failed_dev(const char *name)
+{
+	strlcpy(suspend_stats.failed_devs[suspend_stats.last_failed_dev],
+		name,
+		sizeof(suspend_stats.failed_devs[0]));
+	suspend_stats.last_failed_dev++;
+	suspend_stats.last_failed_dev %= REC_FAILED_NUM;
+}
+
+static inline void dpm_save_failed_errno(int err)
+{
+	suspend_stats.errno[suspend_stats.last_failed_errno] = err;
+	suspend_stats.last_failed_errno++;
+	suspend_stats.last_failed_errno %= REC_FAILED_NUM;
+}
+
+static inline void dpm_save_failed_step(enum suspend_stat_step step)
+{
+	suspend_stats.failed_steps[suspend_stats.last_failed_step] = step;
+	suspend_stats.last_failed_step++;
+	suspend_stats.last_failed_step %= REC_FAILED_NUM;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * struct platform_suspend_ops - Callbacks for managing platform dependent
  *	system sleep states.
@@ -268,6 +344,19 @@ static inline int hibernate(void) { return -ENOSYS; }
 static inline bool system_entering_hibernation(void) { return false; }
 #endif /* CONFIG_HIBERNATION */
 
+<<<<<<< HEAD
+/* Hibernation and suspend events */
+#define PM_HIBERNATION_PREPARE	0x0001 /* Going to hibernate */
+#define PM_POST_HIBERNATION	0x0002 /* Hibernation finished */
+#define PM_SUSPEND_PREPARE	0x0003 /* Going to suspend the system */
+#define PM_POST_SUSPEND		0x0004 /* Suspend finished */
+#define PM_RESTORE_PREPARE	0x0005 /* Going to restore a saved image */
+#define PM_POST_RESTORE		0x0006 /* Restore failed */
+
+extern struct mutex pm_mutex;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_PM_SLEEP
 void save_processor_state(void);
 void restore_processor_state(void);
@@ -286,8 +375,42 @@ extern int unregister_pm_notifier(struct notifier_block *nb);
 extern bool events_check_enabled;
 
 extern bool pm_wakeup_pending(void);
+<<<<<<< HEAD
+extern bool pm_get_wakeup_count(unsigned int *count, bool block);
+extern bool pm_save_wakeup_count(unsigned int count);
+extern void pm_wakep_autosleep_enabled(bool set);
+
+static inline void lock_system_sleep(void)
+{
+	current->flags |= PF_FREEZER_SKIP;
+	mutex_lock(&pm_mutex);
+}
+
+static inline void unlock_system_sleep(void)
+{
+	/*
+	 * Don't use freezer_count() because we don't want the call to
+	 * try_to_freeze() here.
+	 *
+	 * Reason:
+	 * Fundamentally, we just don't need it, because freezing condition
+	 * doesn't come into effect until we release the pm_mutex lock,
+	 * since the freezer always works with pm_mutex held.
+	 *
+	 * More importantly, in the case of hibernation,
+	 * unlock_system_sleep() gets called in snapshot_read() and
+	 * snapshot_write() when the freezing condition is still in effect.
+	 * Which means, if we use try_to_freeze() here, it would make them
+	 * enter the refrigerator, thus causing hibernation to lockup.
+	 */
+	current->flags &= ~PF_FREEZER_SKIP;
+	mutex_unlock(&pm_mutex);
+}
+
+=======
 extern bool pm_get_wakeup_count(unsigned int *count);
 extern bool pm_save_wakeup_count(unsigned int count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else /* !CONFIG_PM_SLEEP */
 
 static inline int register_pm_notifier(struct notifier_block *nb)
@@ -303,6 +426,58 @@ static inline int unregister_pm_notifier(struct notifier_block *nb)
 #define pm_notifier(fn, pri)	do { (void)(fn); } while (0)
 
 static inline bool pm_wakeup_pending(void) { return false; }
+<<<<<<< HEAD
+
+static inline void lock_system_sleep(void) {}
+static inline void unlock_system_sleep(void) {}
+
+#endif /* !CONFIG_PM_SLEEP */
+
+#ifdef CONFIG_PM_AUTOSLEEP
+
+/* kernel/power/autosleep.c */
+void queue_up_suspend_work(void);
+
+#else /* !CONFIG_PM_AUTOSLEEP */
+
+static inline void queue_up_suspend_work(void) {}
+
+#endif /* !CONFIG_PM_AUTOSLEEP */
+
+#ifdef CONFIG_ARCH_SAVE_PAGE_KEYS
+/*
+ * The ARCH_SAVE_PAGE_KEYS functions can be used by an architecture
+ * to save/restore additional information to/from the array of page
+ * frame numbers in the hibernation image. For s390 this is used to
+ * save and restore the storage key for each page that is included
+ * in the hibernation image.
+ */
+unsigned long page_key_additional_pages(unsigned long pages);
+int page_key_alloc(unsigned long pages);
+void page_key_free(void);
+void page_key_read(unsigned long *pfn);
+void page_key_memorize(unsigned long *pfn);
+void page_key_write(void *address);
+
+#else /* !CONFIG_ARCH_SAVE_PAGE_KEYS */
+
+static inline unsigned long page_key_additional_pages(unsigned long pages)
+{
+	return 0;
+}
+
+static inline int  page_key_alloc(unsigned long pages)
+{
+	return 0;
+}
+
+static inline void page_key_free(void) {}
+static inline void page_key_read(unsigned long *pfn) {}
+static inline void page_key_memorize(unsigned long *pfn) {}
+static inline void page_key_write(void *address) {}
+
+#endif /* !CONFIG_ARCH_SAVE_PAGE_KEYS */
+=======
 #endif /* !CONFIG_PM_SLEEP */
 
 extern struct mutex pm_mutex;
@@ -325,5 +500,6 @@ static inline void unlock_system_sleep(void)
 	mutex_unlock(&pm_mutex);
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* _LINUX_SUSPEND_H */

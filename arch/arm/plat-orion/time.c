@@ -12,7 +12,10 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
 #include <linux/sched.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/timer.h>
 #include <linux/clockchips.h>
 #include <linux/interrupt.h>
@@ -60,6 +63,12 @@ static u32 ticks_per_jiffy;
  * Orion's sched_clock implementation. It has a resolution of
  * at least 7.5ns (133MHz TCLK).
  */
+<<<<<<< HEAD
+
+static u32 notrace orion_read_sched_clock(void)
+{
+	return ~readl(timer_base + TIMER0_VAL_OFF);
+=======
 static DEFINE_CLOCK_DATA(cd);
 
 unsigned long long notrace sched_clock(void)
@@ -78,6 +87,7 @@ static void notrace orion_update_sched_clock(void)
 static void __init setup_sched_clock(unsigned long tclk)
 {
 	init_sched_clock(&cd, orion_update_sched_clock, 32, tclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -217,7 +227,11 @@ orion_time_init(u32 _bridge_base, u32 _bridge_timer1_clr_mask,
 	/*
 	 * Set scale and timer for sched_clock.
 	 */
+<<<<<<< HEAD
+	setup_sched_clock(orion_read_sched_clock, 32, tclk);
+=======
 	setup_sched_clock(tclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Setup free-running clocksource timer (interrupts

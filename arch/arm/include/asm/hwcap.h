@@ -18,15 +18,25 @@
 #define HWCAP_THUMBEE	(1 << 11)
 #define HWCAP_NEON	(1 << 12)
 #define HWCAP_VFPv3	(1 << 13)
+<<<<<<< HEAD
+#define HWCAP_VFPv3D16	(1 << 14)
+#define HWCAP_TLS	(1 << 15)
+=======
 #define HWCAP_VFPv3D16	(1 << 14)	/* also set for VFPv4-D16 */
 #define HWCAP_TLS	(1 << 15)
 #define HWCAP_VFPD32	(1 << 19)	/* set if VFP has 32 regs (not 16) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define HWCAP_VFPv4	(1 << 16)
 #define HWCAP_IDIVA	(1 << 17)
 #define HWCAP_IDIVT	(1 << 18)
 #define HWCAP_IDIV	(HWCAP_IDIVA | HWCAP_IDIVT)
 
+<<<<<<< HEAD
+#if defined(__KERNEL__)
+#if !defined(__ASSEMBLY__)
+=======
 #if defined(__KERNEL__) && !defined(__ASSEMBLY__)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * This yields a mask that user programs can use to figure out what
  * instruction set this cpu supports.
@@ -34,5 +44,9 @@
 #define ELF_HWCAP	(elf_hwcap)
 extern unsigned int elf_hwcap;
 #endif
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

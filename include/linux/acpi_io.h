@@ -12,4 +12,10 @@ static inline void __iomem *acpi_os_ioremap(acpi_physical_address phys,
 
 void __iomem *acpi_os_get_iomem(acpi_physical_address phys, unsigned int size);
 
+<<<<<<< HEAD
+int acpi_os_map_generic_address(struct acpi_generic_address *addr);
+void acpi_os_unmap_generic_address(struct acpi_generic_address *addr);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

@@ -14,13 +14,22 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+#include <linux/dma-mapping.h>
+=======
 #include <linux/omapfb.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <plat/common.h>
 #include <plat/board.h>
 #include <plat/vram.h>
 #include <plat/dsp.h>
 
+<<<<<<< HEAD
+#include <plat/omap-secure.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define NO_LENGTH_CHECK 0xffffffff
 
@@ -62,7 +71,21 @@ const void *__init omap_get_var_config(u16 tag, size_t *len)
 
 void __init omap_reserve(void)
 {
+<<<<<<< HEAD
+	omap_vram_reserve_sdram_memblock();
+	omap_dsp_reserve_sdram_memblock();
+	omap_secure_ram_reserve_memblock();
+	omap_barrier_reserve_memblock();
+}
+
+void __init omap_init_consistent_dma_size(void)
+{
+#ifdef CONFIG_FB_OMAP_CONSISTENT_DMA_SIZE
+	init_consistent_dma_size(CONFIG_FB_OMAP_CONSISTENT_DMA_SIZE << 20);
+#endif
+=======
 	omapfb_reserve_sdram_memblock();
 	omap_vram_reserve_sdram_memblock();
 	omap_dsp_reserve_sdram_memblock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

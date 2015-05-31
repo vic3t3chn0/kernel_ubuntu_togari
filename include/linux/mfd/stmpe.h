@@ -8,7 +8,13 @@
 #ifndef __LINUX_MFD_STMPE_H
 #define __LINUX_MFD_STMPE_H
 
+<<<<<<< HEAD
+#include <linux/mutex.h>
+
+struct device;
+=======
 #include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 enum stmpe_block {
 	STMPE_BLOCK_GPIO	= 1 << 0,
@@ -20,10 +26,19 @@ enum stmpe_block {
 };
 
 enum stmpe_partnum {
+<<<<<<< HEAD
+	STMPE610,
+	STMPE801,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	STMPE811,
 	STMPE1601,
 	STMPE2401,
 	STMPE2403,
+<<<<<<< HEAD
+	STMPE_NBR_PARTS
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /*
@@ -50,16 +65,30 @@ enum {
 
 
 struct stmpe_variant_info;
+<<<<<<< HEAD
+struct stmpe_client_info;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * struct stmpe - STMPE MFD structure
  * @lock: lock protecting I/O operations
  * @irq_lock: IRQ bus lock
  * @dev: device, mostly for dev_dbg()
+<<<<<<< HEAD
+ * @client: client - i2c or spi
+ * @ci: client specific information
+ * @partnum: part number
+ * @variant: the detected STMPE model number
+ * @regs: list of addresses of registers which are at different addresses on
+ *	  different variants.  Indexed by one of STMPE_IDX_*.
+ * @irq: irq number for stmpe
+=======
  * @i2c: i2c client
  * @variant: the detected STMPE model number
  * @regs: list of addresses of registers which are at different addresses on
  *	  different variants.  Indexed by one of STMPE_IDX_*.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @irq_base: starting IRQ number for internal IRQs
  * @num_gpios: number of gpios, differs for variants
  * @ier: cache of IER registers for bus_lock
@@ -70,11 +99,20 @@ struct stmpe {
 	struct mutex lock;
 	struct mutex irq_lock;
 	struct device *dev;
+<<<<<<< HEAD
+	void *client;
+	struct stmpe_client_info *ci;
+=======
 	struct i2c_client *i2c;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	enum stmpe_partnum partnum;
 	struct stmpe_variant_info *variant;
 	const u8 *regs;
 
+<<<<<<< HEAD
+	int irq;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int irq_base;
 	int num_gpios;
 	u8 ier[2];
@@ -121,6 +159,11 @@ struct stmpe_keypad_platform_data {
  * @norequest_mask: bitmask specifying which GPIOs should _not_ be
  *		    requestable due to different usage (e.g. touch, keypad)
  *		    STMPE_GPIO_NOREQ_* macros can be used here.
+<<<<<<< HEAD
+ * @setup: board specific setup callback.
+ * @remove: board specific remove callback
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 struct stmpe_gpio_platform_data {
 	int gpio_base;
@@ -180,6 +223,12 @@ struct stmpe_ts_platform_data {
  * @autosleep_timeout: inactivity timeout in milliseconds for autosleep
  * @irq_base: base IRQ number.  %STMPE_NR_IRQS irqs will be used, or
  *	      %STMPE_NR_INTERNAL_IRQS if the GPIO driver is not used.
+<<<<<<< HEAD
+ * @irq_over_gpio: true if gpio is used to get irq
+ * @irq_gpio: gpio number over which irq will be requested (significant only if
+ *	      irq_over_gpio is true)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @gpio: GPIO-specific platform data
  * @keypad: keypad-specific platform data
  * @ts: touchscreen-specific platform data
@@ -191,6 +240,11 @@ struct stmpe_platform_data {
 	unsigned int irq_trigger;
 	bool irq_invert_polarity;
 	bool autosleep;
+<<<<<<< HEAD
+	bool irq_over_gpio;
+	int irq_gpio;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int autosleep_timeout;
 
 	struct stmpe_gpio_platform_data *gpio;

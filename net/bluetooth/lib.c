@@ -59,7 +59,11 @@ char *batostr(bdaddr_t *ba)
 EXPORT_SYMBOL(batostr);
 
 /* Bluetooth error codes to Unix errno mapping */
+<<<<<<< HEAD
+int bt_err(__u16 code)
+=======
 int bt_to_errno(__u16 code)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	switch (code) {
 	case 0:
@@ -149,6 +153,9 @@ int bt_to_errno(__u16 code)
 		return ENOSYS;
 	}
 }
+<<<<<<< HEAD
+EXPORT_SYMBOL(bt_err);
+=======
 EXPORT_SYMBOL(bt_to_errno);
 
 int bt_printk(const char *level, const char *format, ...)
@@ -169,3 +176,4 @@ int bt_printk(const char *level, const char *format, ...)
 	return r;
 }
 EXPORT_SYMBOL(bt_printk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

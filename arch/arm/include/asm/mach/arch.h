@@ -13,16 +13,50 @@
 struct tag;
 struct meminfo;
 struct sys_timer;
+<<<<<<< HEAD
+struct pt_regs;
+struct smp_operations;
+#ifdef CONFIG_SMP
+#define smp_ops(ops) (&(ops))
+#else
+#define smp_ops(ops) (struct smp_operations *)NULL
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct machine_desc {
 	unsigned int		nr;		/* architecture number	*/
 	const char		*name;		/* architecture name	*/
+<<<<<<< HEAD
+	unsigned long		atag_offset;	/* tagged list (relative) */
+	const char *const 	*dt_compat;	/* array of device tree
+=======
 	unsigned long		boot_params;	/* tagged list		*/
 	const char		**dt_compat;	/* array of device tree
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 						 * 'compatible' strings	*/
 
 	unsigned int		nr_irqs;	/* number of IRQs */
 
+<<<<<<< HEAD
+#ifdef CONFIG_ZONE_DMA
+	unsigned long		dma_zone_size;	/* size of DMA-able area */
+#endif
+
+	unsigned int		video_start;	/* start of video RAM	*/
+	unsigned int		video_end;	/* end of video RAM	*/
+
+	unsigned char		reserve_lp0 :1;	/* never has lp0	*/
+	unsigned char		reserve_lp1 :1;	/* never has lp1	*/
+	unsigned char		reserve_lp2 :1;	/* never has lp2	*/
+	char			restart_mode;	/* default restart mode	*/
+	struct smp_operations  *smp;    /* SMP operations  */
+	void			(*fixup)(struct tag *, char **,
+					 struct meminfo *);
+	void			(*reserve)(void);/* reserve mem blocks	*/
+	void			(*map_io)(void);/* IO mapping function	*/
+	void			(*init_very_early)(void);
+=======
 	unsigned int		video_start;	/* start of video RAM	*/
 	unsigned int		video_end;	/* end of video RAM	*/
 
@@ -35,6 +69,7 @@ struct machine_desc {
 					 struct meminfo *);
 	void			(*reserve)(void);/* reserve mem blocks	*/
 	void			(*map_io)(void);/* IO mapping function	*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void			(*init_early)(void);
 	void			(*init_irq)(void);
 	struct sys_timer	*timer;		/* system tick timer	*/
@@ -42,6 +77,10 @@ struct machine_desc {
 #ifdef CONFIG_MULTI_IRQ_HANDLER
 	void			(*handle_irq)(struct pt_regs *);
 #endif
+<<<<<<< HEAD
+	void			(*restart)(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /*
@@ -70,4 +109,14 @@ static const struct machine_desc __mach_desc_##_type	\
 #define MACHINE_END				\
 };
 
+<<<<<<< HEAD
+#define DT_MACHINE_START(_name, _namestr)		\
+static const struct machine_desc __mach_desc_##_name	\
+ __used							\
+ __attribute__((__section__(".arch.info.init"))) = {	\
+	.nr		= ~0,				\
+	.name		= _namestr,
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

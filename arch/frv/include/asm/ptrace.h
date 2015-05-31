@@ -78,7 +78,10 @@ register struct pt_regs *__frame asm("gr28");
 #define user_stack_pointer(regs)	((regs)->sp)
 
 extern unsigned long user_stack(const struct pt_regs *);
+<<<<<<< HEAD
+=======
 extern void show_regs(struct pt_regs *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define profile_pc(regs) ((regs)->pc)
 
 #define task_pt_regs(task) ((task)->thread.frame0)

@@ -23,6 +23,11 @@
  *
  */
 
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/module.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
@@ -85,6 +90,17 @@ static int get_cache_mode(char *s)
 
 	if (!strcmp(s, "loose")) {
 		version = CACHE_LOOSE;
+<<<<<<< HEAD
+		p9_debug(P9_DEBUG_9P, "Cache mode: loose\n");
+	} else if (!strcmp(s, "fscache")) {
+		version = CACHE_FSCACHE;
+		p9_debug(P9_DEBUG_9P, "Cache mode: fscache\n");
+	} else if (!strcmp(s, "none")) {
+		version = CACHE_NONE;
+		p9_debug(P9_DEBUG_9P, "Cache mode: none\n");
+	} else
+		pr_info("Unknown Cache mode %s\n", s);
+=======
 		P9_DPRINTK(P9_DEBUG_9P, "Cache mode: loose\n");
 	} else if (!strcmp(s, "fscache")) {
 		version = CACHE_FSCACHE;
@@ -94,6 +110,7 @@ static int get_cache_mode(char *s)
 		P9_DPRINTK(P9_DEBUG_9P, "Cache mode: none\n");
 	} else
 		printk(KERN_INFO "9p: Unknown Cache mode %s.\n", s);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return version;
 }
 
@@ -132,6 +149,21 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 	options = tmp_options;
 
 	while ((p = strsep(&options, ",")) != NULL) {
+<<<<<<< HEAD
+		int token, r;
+		if (!*p)
+			continue;
+		token = match_token(p, tokens, args);
+		switch (token) {
+		case Opt_debug:
+			r = match_int(&args[0], &option);
+			if (r < 0) {
+				p9_debug(P9_DEBUG_ERROR,
+					 "integer field, but no integer?\n");
+				ret = r;
+				continue;
+			}
+=======
 		int token;
 		if (!*p)
 			continue;
@@ -147,6 +179,7 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 		}
 		switch (token) {
 		case Opt_debug:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			v9ses->debug = option;
 #ifdef CONFIG_NET_9P_DEBUG
 			p9_debug_level = option;
@@ -154,12 +187,42 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 			break;
 
 		case Opt_dfltuid:
+<<<<<<< HEAD
+			r = match_int(&args[0], &option);
+			if (r < 0) {
+				p9_debug(P9_DEBUG_ERROR,
+					 "integer field, but no integer?\n");
+				ret = r;
+				continue;
+			}
+			v9ses->dfltuid = option;
+			break;
+		case Opt_dfltgid:
+			r = match_int(&args[0], &option);
+			if (r < 0) {
+				p9_debug(P9_DEBUG_ERROR,
+					 "integer field, but no integer?\n");
+				ret = r;
+				continue;
+			}
+			v9ses->dfltgid = option;
+			break;
+		case Opt_afid:
+			r = match_int(&args[0], &option);
+			if (r < 0) {
+				p9_debug(P9_DEBUG_ERROR,
+					 "integer field, but no integer?\n");
+				ret = r;
+				continue;
+			}
+=======
 			v9ses->dfltuid = option;
 			break;
 		case Opt_dfltgid:
 			v9ses->dfltgid = option;
 			break;
 		case Opt_afid:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			v9ses->afid = option;
 			break;
 		case Opt_uname:
@@ -186,8 +249,13 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 			s = match_strdup(&args[0]);
 			if (!s) {
 				ret = -ENOMEM;
+<<<<<<< HEAD
+				p9_debug(P9_DEBUG_ERROR,
+					 "problem allocating copy of cache arg\n");
+=======
 				P9_DPRINTK(P9_DEBUG_ERROR,
 				  "problem allocating copy of cache arg\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				goto free_and_return;
 			}
 			ret = get_cache_mode(s);
@@ -204,8 +272,13 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 			s = match_strdup(&args[0]);
 			if (!s) {
 				ret = -ENOMEM;
+<<<<<<< HEAD
+				p9_debug(P9_DEBUG_ERROR,
+					 "problem allocating copy of access arg\n");
+=======
 				P9_DPRINTK(P9_DEBUG_ERROR,
 				  "problem allocating copy of access arg\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				goto free_and_return;
 			}
 
@@ -221,8 +294,13 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 				v9ses->uid = simple_strtoul(s, &e, 10);
 				if (*e != '\0') {
 					ret = -EINVAL;
+<<<<<<< HEAD
+					pr_info("Unknown access argument %s\n",
+						s);
+=======
 					printk(KERN_INFO "9p: Unknown access "
 							"argument %s.\n", s);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					kfree(s);
 					goto free_and_return;
 				}
@@ -235,9 +313,14 @@ static int v9fs_parse_options(struct v9fs_session_info *v9ses, char *opts)
 #ifdef CONFIG_9P_FS_POSIX_ACL
 			v9ses->flags |= V9FS_POSIX_ACL;
 #else
+<<<<<<< HEAD
+			p9_debug(P9_DEBUG_ERROR,
+				 "Not defined CONFIG_9P_FS_POSIX_ACL. Ignoring posixacl option\n");
+=======
 			P9_DPRINTK(P9_DEBUG_ERROR,
 					"Not defined CONFIG_9P_FS_POSIX_ACL. "
 					"Ignoring posixacl option\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 			break;
 
@@ -299,7 +382,11 @@ struct p9_fid *v9fs_session_init(struct v9fs_session_info *v9ses,
 	if (IS_ERR(v9ses->clnt)) {
 		retval = PTR_ERR(v9ses->clnt);
 		v9ses->clnt = NULL;
+<<<<<<< HEAD
+		p9_debug(P9_DEBUG_ERROR, "problem initializing 9p client\n");
+=======
 		P9_DPRINTK(P9_DEBUG_ERROR, "problem initializing 9p client\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto error;
 	}
 
@@ -352,7 +439,11 @@ struct p9_fid *v9fs_session_init(struct v9fs_session_info *v9ses,
 	if (IS_ERR(fid)) {
 		retval = PTR_ERR(fid);
 		fid = NULL;
+<<<<<<< HEAD
+		p9_debug(P9_DEBUG_ERROR, "cannot attach\n");
+=======
 		P9_DPRINTK(P9_DEBUG_ERROR, "cannot attach\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto error;
 	}
 
@@ -410,7 +501,11 @@ void v9fs_session_close(struct v9fs_session_info *v9ses)
  */
 
 void v9fs_session_cancel(struct v9fs_session_info *v9ses) {
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "cancel session %p\n", v9ses);
+=======
 	P9_DPRINTK(P9_DEBUG_ERROR, "cancel session %p\n", v9ses);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	p9_client_disconnect(v9ses->clnt);
 }
 
@@ -423,7 +518,11 @@ void v9fs_session_cancel(struct v9fs_session_info *v9ses) {
 
 void v9fs_session_begin_cancel(struct v9fs_session_info *v9ses)
 {
+<<<<<<< HEAD
+	p9_debug(P9_DEBUG_ERROR, "begin cancel session %p\n", v9ses);
+=======
 	P9_DPRINTK(P9_DEBUG_ERROR, "begin cancel session %p\n", v9ses);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	p9_client_begin_disconnect(v9ses->clnt);
 }
 
@@ -572,6 +671,25 @@ static void v9fs_cache_unregister(void)
 static int __init init_v9fs(void)
 {
 	int err;
+<<<<<<< HEAD
+	pr_info("Installing v9fs 9p2000 file system support\n");
+	/* TODO: Setup list of registered trasnport modules */
+
+	err = v9fs_cache_register();
+	if (err < 0) {
+		pr_err("Failed to register v9fs for caching\n");
+		return err;
+	}
+
+	err = v9fs_sysfs_init();
+	if (err < 0) {
+		pr_err("Failed to register with sysfs\n");
+		goto out_cache;
+	}
+	err = register_filesystem(&v9fs_fs_type);
+	if (err < 0) {
+		pr_err("Failed to register filesystem\n");
+=======
 	printk(KERN_INFO "Installing v9fs 9p2000 file system support\n");
 	/* TODO: Setup list of registered trasnport modules */
 	err = register_filesystem(&v9fs_fs_type);
@@ -589,6 +707,7 @@ static int __init init_v9fs(void)
 	err = v9fs_sysfs_init();
 	if (err < 0) {
 		printk(KERN_ERR "Failed to register with sysfs\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_sysfs_cleanup;
 	}
 
@@ -597,8 +716,13 @@ static int __init init_v9fs(void)
 out_sysfs_cleanup:
 	v9fs_sysfs_cleanup();
 
+<<<<<<< HEAD
+out_cache:
+	v9fs_cache_unregister();
+=======
 out_fs_unreg:
 	unregister_filesystem(&v9fs_fs_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return err;
 }

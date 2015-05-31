@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+#include <linux/export.h>
+#include <linux/spinlock.h>
+#include <linux/atomic.h>
+=======
 #include <linux/module.h>
 #include <linux/spinlock.h>
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * This is an implementation of the notion of "decrement a

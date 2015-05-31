@@ -43,7 +43,11 @@
 #include <asm/mman.h>
 #include <asm/types.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/vgtod.h>
 #include <asm/sys_ia32.h>
 
@@ -287,6 +291,8 @@ asmlinkage long sys32_sigaction(int sig, struct old_sigaction32 __user *act,
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
 asmlinkage long sys32_rt_sigprocmask(int how, compat_sigset_t __user *set,
 				     compat_sigset_t __user *oset,
 				     unsigned int sigsetsize)
@@ -327,6 +333,7 @@ asmlinkage long sys32_rt_sigprocmask(int how, compat_sigset_t __user *set,
 	return 0;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 asmlinkage long sys32_alarm(unsigned int seconds)
 {
 	return alarm_setitimer(seconds);

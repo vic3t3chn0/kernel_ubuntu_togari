@@ -11,11 +11,20 @@ config PLAT_S5P
 	default y
 	select ARM_VIC if !ARCH_EXYNOS
 	select ARM_GIC if ARCH_EXYNOS
+<<<<<<< HEAD
+	select GIC_NON_BANKED if ARCH_EXYNOS4
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select NO_IOPORT
 	select ARCH_REQUIRE_GPIOLIB
 	select S3C_GPIO_TRACK
 	select S5P_GPIO_DRVSTR
 	select SAMSUNG_GPIOLIB_4BIT
+<<<<<<< HEAD
+	select PLAT_SAMSUNG
+	select SAMSUNG_CLKSRC
+	select SAMSUNG_IRQ_VIC_TIMER
+=======
 	select S3C_GPIO_CFG_S3C64XX
 	select S3C_GPIO_PULL_UPDOWN
 	select S3C_GPIO_CFG_S3C24XX
@@ -23,6 +32,7 @@ config PLAT_S5P
 	select SAMSUNG_CLKSRC
 	select SAMSUNG_IRQ_VIC_TIMER
 	select SAMSUNG_IRQ_UART
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Base platform code for Samsung's S5P series SoC.
 
@@ -43,6 +53,34 @@ config S5P_HRT
 	help
 	  Use the High Resolution timer support
 
+<<<<<<< HEAD
+config S5P_DEV_UART
+	def_bool y
+	depends on (ARCH_S5P64X0 || ARCH_S5PC100 || ARCH_S5PV210)
+
+config S5P_PM
+	bool
+	help
+	  Common code for power management support on S5P and newer SoCs
+	  Note: Do not select this for S5P6440 and S5P6450.
+
+comment "System MMU"
+
+config S5P_SYSTEM_MMU
+	bool "S5P SYSTEM MMU"
+	depends on ARCH_EXYNOS4
+	help
+	  Say Y here if you want to enable System MMU
+
+config S5P_SLEEP
+	bool
+	help
+	  Internal config node to apply common S5P sleep management code.
+	  Can be selected by S5P and newer SoCs with similar sleep procedure.
+
+config S5P_DEV_FIMC0
+	bool
+=======
 config S5P_SYSTEM_MMU
 	bool "System MMU for Exynos families"
 	depends on ARCH_EXYNOS4
@@ -92,25 +130,46 @@ config S5P_DEV_FIMC0
 	bool
 	depends on VIDEO_SAMSUNG_S5P_FIMC
 	default y
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Compile in platform device definitions for FIMC controller 0
 
 config S5P_DEV_FIMC1
 	bool
+<<<<<<< HEAD
+=======
 	depends on VIDEO_SAMSUNG_S5P_FIMC
 	default y
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Compile in platform device definitions for FIMC controller 1
 
 config S5P_DEV_FIMC2
 	bool
+<<<<<<< HEAD
+=======
 	depends on VIDEO_SAMSUNG_S5P_FIMC
 	default y
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Compile in platform device definitions for FIMC controller 2
 
 config S5P_DEV_FIMC3
 	bool
+<<<<<<< HEAD
+	help
+	  Compile in platform device definitions for FIMC controller 3
+
+config S5P_DEV_JPEG
+	bool
+	help
+	  Compile in platform device definitions for JPEG codec
+
+config S5P_DEV_G2D
+	bool
+	help
+	  Compile in platform device definitions for G2D device
+=======
 	depends on VIDEO_SAMSUNG_S5P_FIMC
 	default y
 	help
@@ -130,12 +189,24 @@ config S5P_DEV_MFC
 	bool
 	help
 	  Compile in platform device definitions for MFC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config S5P_DEV_FIMD0
 	bool
 	help
 	  Compile in platform device definitions for FIMD controller 0
 
+<<<<<<< HEAD
+config S5P_DEV_I2C_HDMIPHY
+	bool
+	help
+	  Compile in platform device definitions for I2C HDMIPHY controller
+
+config S5P_DEV_MFC
+	bool
+	help
+	  Compile in platform device definitions for MFC
+=======
 config S5P_DEV_FIMD1
 	bool
 	help
@@ -162,12 +233,17 @@ config S5P_DEV_ROTATOR
 	bool
 	help
 	  Compile in platform device definitions for ROTATOR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config S5P_DEV_ONENAND
 	bool
 	help
 	  Compile in platform device definition for OneNAND controller
 
+<<<<<<< HEAD
+config S5P_DEV_CSIS0
+	bool
+=======
 config S5P_DEV_CSIS
 	bool
 	depends on VIDEO_FIMC_MIPI
@@ -179,11 +255,21 @@ config S5P_DEV_CSIS0
 	bool
 	depends on (VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS_MIPI_CSIS)
 	default y
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Compile in platform device definitions for MIPI-CSIS channel 0
 
 config S5P_DEV_CSIS1
 	bool
+<<<<<<< HEAD
+	help
+	  Compile in platform device definitions for MIPI-CSIS channel 1
+
+config S5P_DEV_TV
+	bool
+	help
+	  Compile in platform device definition for TV interface
+=======
 	depends on (VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS_MIPI_CSIS)
 	default y
 	help
@@ -195,12 +281,19 @@ config S5P_DEV_JPEG
 	default y
 	help
 	  Compile in platform device definitions for JPEG
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config S5P_DEV_USB_EHCI
 	bool
 	help
 	  Compile in platform device definition for USB EHCI
 
+<<<<<<< HEAD
+config S5P_SETUP_MIPIPHY
+	bool
+	help
+	  Compile in common setup code for MIPI-CSIS and MIPI-DSIM devices
+=======
 config S5P_DEV_FIMD_S5P
 	bool
 	help
@@ -275,3 +368,4 @@ config S3C_DEV_TSI
         default n
 	---help---
 	  Compile in platform device definitions for S3C_DEV_TSI controller
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -23,6 +23,11 @@
 
 #include <linux/types.h>
 
+<<<<<<< HEAD
+extern int omap_vram_add_region(unsigned long paddr, size_t size);
+extern int omap_vram_free(unsigned long paddr, size_t size);
+extern int omap_vram_alloc(size_t size, unsigned long *paddr);
+=======
 #define OMAP_VRAM_MEMTYPE_SDRAM		0
 #define OMAP_VRAM_MEMTYPE_SRAM		1
 #define OMAP_VRAM_MEMTYPE_MAX		1
@@ -30,12 +35,21 @@
 extern int omap_vram_add_region(unsigned long paddr, size_t size);
 extern int omap_vram_free(unsigned long paddr, size_t size);
 extern int omap_vram_alloc(int mtype, size_t size, unsigned long *paddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int omap_vram_reserve(unsigned long paddr, size_t size);
 extern void omap_vram_get_info(unsigned long *vram, unsigned long *free_vram,
 		unsigned long *largest_free_block);
 
 #ifdef CONFIG_OMAP2_VRAM
 extern void omap_vram_set_sdram_vram(u32 size, u32 start);
+<<<<<<< HEAD
+
+extern void omap_vram_reserve_sdram_memblock(void);
+#else
+static inline void omap_vram_set_sdram_vram(u32 size, u32 start) { }
+
+static inline void omap_vram_reserve_sdram_memblock(void) { }
+=======
 extern void omap_vram_set_sram_vram(u32 size, u32 start);
 
 extern void omap_vram_reserve_sdram_memblock(void);
@@ -57,6 +71,7 @@ static inline unsigned long omap_vram_reserve_sram(unsigned long sram_pstart,
 {
 	return 0;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif

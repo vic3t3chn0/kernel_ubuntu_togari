@@ -46,7 +46,10 @@ ENTRY(fa_flush_user_tlb_range)
 	add	r0, r0, #PAGE_SZ
 	cmp	r0, r1
 	blo	1b
+<<<<<<< HEAD
+=======
 	mcr	p15, 0, r3, c7, c5, 6		@ invalidate BTB
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mcr	p15, 0, r3, c7, c10, 4		@ data write barrier
 	mov	pc, lr
 
@@ -60,9 +63,14 @@ ENTRY(fa_flush_kern_tlb_range)
 	add	r0, r0, #PAGE_SZ
 	cmp	r0, r1
 	blo	1b
+<<<<<<< HEAD
+	mcr	p15, 0, r3, c7, c10, 4		@ data write barrier
+	mcr	p15, 0, r3, c7, c5, 4		@ prefetch flush (isb)
+=======
 	mcr	p15, 0, r3, c7, c5, 6		@ invalidate BTB
 	mcr	p15, 0, r3, c7, c10, 4		@ data write barrier
 	mcr	p15, 0, r3, c7, c5, 4		@ prefetch flush
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mov	pc, lr
 
 	__INITDATA

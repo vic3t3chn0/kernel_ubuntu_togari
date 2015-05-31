@@ -46,6 +46,11 @@ static struct linux_binfmt loader_format = {
 
 static int __init init_loader_binfmt(void)
 {
+<<<<<<< HEAD
+	insert_binfmt(&loader_format);
+	return 0;
+=======
 	return insert_binfmt(&loader_format);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 arch_initcall(init_loader_binfmt);

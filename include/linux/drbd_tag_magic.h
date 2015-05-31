@@ -28,7 +28,11 @@ enum packet_types {
 #define NL_STRING(pn, pr, member, len)	\
 	unsigned char member[len]; int member ## _len; \
 	int tag_and_len ## member;
+<<<<<<< HEAD
+#include <linux/drbd_nl.h>
+=======
 #include "linux/drbd_nl.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* declare tag-list-sizes */
 static const int tag_list_sizes[] = {

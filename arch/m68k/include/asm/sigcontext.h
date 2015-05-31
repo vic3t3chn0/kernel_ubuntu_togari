@@ -15,11 +15,15 @@ struct sigcontext {
 	unsigned long  sc_pc;
 	unsigned short sc_formatvec;
 #ifndef __uClinux__
+<<<<<<< HEAD
+	unsigned long  sc_fpregs[2*3];  /* room for two fp registers */
+=======
 # ifdef __mcoldfire__
 	unsigned long  sc_fpregs[2][2];	/* room for two fp registers */
 # else
 	unsigned long  sc_fpregs[2*3];  /* room for two fp registers */
 # endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long  sc_fpcntl[3];
 	unsigned char  sc_fpstate[216];
 #endif

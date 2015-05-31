@@ -61,6 +61,18 @@ static int autofs4_mount_busy(struct vfsmount *mnt, struct dentry *dentry)
 		/* This is an autofs submount, we can't expire it */
 		if (autofs_type_indirect(sbi->type))
 			goto done;
+<<<<<<< HEAD
+
+		/*
+		 * Otherwise it's an offset mount and we need to check
+		 * if we can umount its mount, if there is one.
+		 */
+		if (!d_mountpoint(path.dentry)) {
+			status = 0;
+			goto done;
+		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	/* Update the expiry counter if fs is busy */
@@ -115,6 +127,10 @@ start:
 	/* Negative dentry - try next */
 	if (!simple_positive(q)) {
 		spin_unlock(&p->d_lock);
+<<<<<<< HEAD
+		lock_set_subclass(&q->d_lock.dep_map, 0, _RET_IP_);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		p = q;
 		goto again;
 	}
@@ -177,6 +193,10 @@ again:
 	/* Negative dentry - try next */
 	if (!simple_positive(ret)) {
 		spin_unlock(&p->d_lock);
+<<<<<<< HEAD
+		lock_set_subclass(&ret->d_lock.dep_map, 0, _RET_IP_);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		p = ret;
 		goto again;
 	}

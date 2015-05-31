@@ -23,7 +23,11 @@
  *
  * configfs Copyright (C) 2005 Oracle.  All rights reserved.
  *
+<<<<<<< HEAD
+ * Please see the file Documentation/filesystems/configfs/configfs.txt for
+=======
  * Please see the file Documentation/filesystems/configfs.txt for
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * critical information about using the config_item interface.
  */
 

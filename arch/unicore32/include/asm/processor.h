@@ -53,7 +53,10 @@ struct thread_struct {
 #define start_thread(regs, pc, sp)					\
 ({									\
 	unsigned long *stack = (unsigned long *)sp;			\
+<<<<<<< HEAD
+=======
 	set_fs(USER_DS);						\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	memset(regs->uregs, 0, sizeof(regs->uregs));			\
 	regs->UCreg_asr = USER_MODE;					\
 	regs->UCreg_pc = pc & ~1;	/* pc */                        \

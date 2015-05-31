@@ -92,6 +92,10 @@ typedef __s32 sctp_assoc_t;
 #define SCTP_LOCAL_AUTH_CHUNKS	27	/* Read only */
 #define SCTP_GET_ASSOC_NUMBER	28	/* Read only */
 #define SCTP_GET_ASSOC_ID_LIST	29	/* Read only */
+<<<<<<< HEAD
+#define SCTP_AUTO_ASCONF       30
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Internal Socket Options. Some of the sctp library functions are
  * implemented using these socket options.

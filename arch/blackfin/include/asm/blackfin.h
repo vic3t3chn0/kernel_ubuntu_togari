@@ -1,9 +1,15 @@
 /*
  * Common header file for Blackfin family of processors.
  *
+<<<<<<< HEAD
+ * Copyright 2004-2009 Analog Devices Inc.
+ *
+ * Licensed under the GPL-2 or later.
+=======
  * Copyright 2004-2009 Analog Devices Inc.
  *
  * Licensed under the GPL-2 or later.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef _BLACKFIN_H_
@@ -17,15 +23,25 @@
 static inline void SSYNC(void)
 {
 	int _tmp;
+<<<<<<< HEAD
+	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
 	if (ANOMALY_05000312)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__asm__ __volatile__(
 			"cli %0;"
 			"nop;"
 			"nop;"
+<<<<<<< HEAD
+			"nop;"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			"ssync;"
 			"sti %0;"
 			: "=d" (_tmp)
 		);
+<<<<<<< HEAD
+=======
 	else if (ANOMALY_05000244)
 		__asm__ __volatile__(
 			"nop;"
@@ -33,6 +49,7 @@ static inline void SSYNC(void)
 			"nop;"
 			"ssync;"
 		);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		__asm__ __volatile__("ssync;");
 }
@@ -41,15 +58,25 @@ static inline void SSYNC(void)
 static inline void CSYNC(void)
 {
 	int _tmp;
+<<<<<<< HEAD
+	if (ANOMALY_05000312 || ANOMALY_05000244)
+=======
 	if (ANOMALY_05000312)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__asm__ __volatile__(
 			"cli %0;"
 			"nop;"
 			"nop;"
+<<<<<<< HEAD
+			"nop;"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			"csync;"
 			"sti %0;"
 			: "=d" (_tmp)
 		);
+<<<<<<< HEAD
+=======
 	else if (ANOMALY_05000244)
 		__asm__ __volatile__(
 			"nop;"
@@ -57,6 +84,7 @@ static inline void CSYNC(void)
 			"nop;"
 			"csync;"
 		);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		__asm__ __volatile__("csync;");
 }
@@ -73,6 +101,24 @@ static inline void CSYNC(void)
 #define ssync(x) SSYNC(x)
 #define csync(x) CSYNC(x)
 
+<<<<<<< HEAD
+#if ANOMALY_05000312 || ANOMALY_05000244
+#define SSYNC(scratch)	\
+do {			\
+	cli scratch;	\
+	nop; nop; nop;	\
+	SSYNC;		\
+	sti scratch;	\
+} while (0)
+
+#define CSYNC(scratch)	\
+do {			\
+	cli scratch;	\
+	nop; nop; nop;	\
+	CSYNC;		\
+	sti scratch;	\
+} while (0)
+=======
 #if ANOMALY_05000312
 #define SSYNC(scratch) cli scratch; nop; nop; SSYNC; sti scratch;
 #define CSYNC(scratch) cli scratch; nop; nop; CSYNC; sti scratch;
@@ -80,11 +126,15 @@ static inline void CSYNC(void)
 #elif ANOMALY_05000244
 #define SSYNC(scratch) nop; nop; nop; SSYNC;
 #define CSYNC(scratch) nop; nop; nop; CSYNC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else
 #define SSYNC(scratch) SSYNC;
 #define CSYNC(scratch) CSYNC;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* ANOMALY_05000312 & ANOMALY_05000244 handling */
 
 #endif /* __ASSEMBLY__ */

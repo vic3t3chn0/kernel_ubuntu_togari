@@ -24,6 +24,8 @@
 
 #define NF_CT_TUPLE_L3SIZE	ARRAY_SIZE(((union nf_inet_addr *)NULL)->all)
 
+<<<<<<< HEAD
+=======
 /* The protocol-specific manipulable parts of the tuple: always in
    network order! */
 union nf_conntrack_man_proto {
@@ -50,6 +52,7 @@ union nf_conntrack_man_proto {
 	} gre;
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* The manipulable part of the tuple. */
 struct nf_conntrack_man {
 	union nf_inet_addr u3;

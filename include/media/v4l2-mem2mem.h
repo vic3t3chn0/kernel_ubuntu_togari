@@ -88,9 +88,12 @@ struct v4l2_m2m_buffer {
 
 void *v4l2_m2m_get_curr_priv(struct v4l2_m2m_dev *m2m_dev);
 
+<<<<<<< HEAD
+=======
 void v4l2_m2m_get_next_job(struct v4l2_m2m_dev *m2m_dev,
 			   struct v4l2_m2m_ctx *m2m_ctx);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct vb2_queue *v4l2_m2m_get_vq(struct v4l2_m2m_ctx *m2m_ctx,
 				       enum v4l2_buf_type type);
 

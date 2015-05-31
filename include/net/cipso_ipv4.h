@@ -8,7 +8,11 @@
  * have chosen to adopt the protocol and over the years it has become a
  * de-facto standard for labeled networking.
  *
+<<<<<<< HEAD
+ * Author: Paul Moore <paul@paul-moore.com>
+=======
  * Author: Paul Moore <paul.moore@hp.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  */
 
@@ -41,8 +45,12 @@
 #include <linux/skbuff.h>
 #include <net/netlabel.h>
 #include <net/request_sock.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
 #include <asm/unaligned.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* known doi values */
 #define CIPSO_V4_DOI_UNKNOWN          0x00000000
@@ -286,6 +294,9 @@ static inline int cipso_v4_skbuff_getattr(const struct sk_buff *skb,
 static inline int cipso_v4_validate(const struct sk_buff *skb,
 				    unsigned char **option)
 {
+<<<<<<< HEAD
+	return -ENOSYS;
+=======
 	unsigned char *opt = *option;
 	unsigned char err_offset = 0;
 	u8 opt_len = opt[1];
@@ -313,6 +324,7 @@ out:
 	*option = opt + err_offset;
 	return err_offset;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 #endif /* CONFIG_NETLABEL */
 

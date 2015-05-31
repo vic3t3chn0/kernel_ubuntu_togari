@@ -2,13 +2,20 @@
  *
  * Written by David Howells (dhowells@redhat.com).
  * Derived from arch/i386/kernel/semaphore.c
+<<<<<<< HEAD
+=======
  *
  * Steal writing sem. Alex Shi <alex.shi@intel.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 #include <linux/rwsem.h>
 #include <linux/sched.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Initialize an rwsem:
@@ -24,7 +31,11 @@ void __init_rwsem(struct rw_semaphore *sem, const char *name,
 	lockdep_init_map(&sem->dep_map, name, key, 0);
 #endif
 	sem->count = RWSEM_UNLOCKED_VALUE;
+<<<<<<< HEAD
+	raw_spin_lock_init(&sem->wait_lock);
+=======
 	spin_lock_init(&sem->wait_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	INIT_LIST_HEAD(&sem->wait_list);
 }
 
@@ -62,7 +73,11 @@ __rwsem_do_wake(struct rw_semaphore *sem, int wake_type)
 	struct rwsem_waiter *waiter;
 	struct task_struct *tsk;
 	struct list_head *next;
+<<<<<<< HEAD
+	signed long oldcount, woken, loop, adjustment;
+=======
 	signed long woken, loop, adjustment;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	waiter = list_entry(sem->wait_list.next, struct rwsem_waiter, list);
 	if (!(waiter->flags & RWSEM_WAITING_FOR_WRITE))
@@ -74,8 +89,35 @@ __rwsem_do_wake(struct rw_semaphore *sem, int wake_type)
 		 */
 		goto out;
 
+<<<<<<< HEAD
+	/* There's a writer at the front of the queue - try to grant it the
+	 * write lock.  However, we only wake this writer if we can transition
+	 * the active part of the count from 0 -> 1
+	 */
+	adjustment = RWSEM_ACTIVE_WRITE_BIAS;
+	if (waiter->list.next == &sem->wait_list)
+		adjustment -= RWSEM_WAITING_BIAS;
+
+ try_again_write:
+	oldcount = rwsem_atomic_update(adjustment, sem) - adjustment;
+	if (oldcount & RWSEM_ACTIVE_MASK)
+		/* Someone grabbed the sem already */
+		goto undo_write;
+
+	/* We must be careful not to touch 'waiter' after we set ->task = NULL.
+	 * It is an allocated on the waiter's stack and may become invalid at
+	 * any time after that point (due to a wakeup from another source).
+	 */
+	list_del(&waiter->list);
+	tsk = waiter->task;
+	smp_mb();
+	waiter->task = NULL;
+	wake_up_process(tsk);
+	put_task_struct(tsk);
+=======
 	/* wake up the writing waiter and let the task grap sem */
 	wake_up_process(waiter->task);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	goto out;
 
  readers_only:
@@ -137,6 +179,14 @@ __rwsem_do_wake(struct rw_semaphore *sem, int wake_type)
 
  out:
 	return sem;
+<<<<<<< HEAD
+
+	/* undo the change to the active count, but check for a transition
+	 * 1->0 */
+ undo_write:
+	if (rwsem_atomic_update(-adjustment, sem) & RWSEM_ACTIVE_MASK)
+		goto out;
+=======
 }
 
 /* try to get write sem,  caller hold sem->wait_lock */
@@ -171,6 +221,7 @@ try_again_write:
 	/* some one grabbed the sem already */
 	if (rwsem_atomic_update(-adjustment, sem) & RWSEM_ACTIVE_MASK)
 		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	goto try_again_write;
 }
 
@@ -188,7 +239,11 @@ rwsem_down_failed_common(struct rw_semaphore *sem,
 	set_task_state(tsk, TASK_UNINTERRUPTIBLE);
 
 	/* set up my own style of waitqueue */
+<<<<<<< HEAD
+	raw_spin_lock_irq(&sem->wait_lock);
+=======
 	spin_lock_irq(&sem->wait_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	waiter.task = tsk;
 	waiter.flags = flags;
 	get_task_struct(tsk);
@@ -212,12 +267,18 @@ rwsem_down_failed_common(struct rw_semaphore *sem,
 		 adjustment == -RWSEM_ACTIVE_WRITE_BIAS)
 		sem = __rwsem_do_wake(sem, RWSEM_WAKE_READ_OWNED);
 
+<<<<<<< HEAD
+	raw_spin_unlock_irq(&sem->wait_lock);
+=======
 	spin_unlock_irq(&sem->wait_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* wait to be given the lock */
 	for (;;) {
 		if (!waiter.task)
 			break;
+<<<<<<< HEAD
+=======
 
 		spin_lock_irq(&sem->wait_lock);
 		/* try to get the writer sem, may steal from the head writer */
@@ -227,6 +288,7 @@ rwsem_down_failed_common(struct rw_semaphore *sem,
 				return sem;
 			}
 		spin_unlock_irq(&sem->wait_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		schedule();
 		set_task_state(tsk, TASK_UNINTERRUPTIBLE);
 	}
@@ -262,13 +324,21 @@ struct rw_semaphore *rwsem_wake(struct rw_semaphore *sem)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
+	raw_spin_lock_irqsave(&sem->wait_lock, flags);
+=======
 	spin_lock_irqsave(&sem->wait_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* do nothing if list empty */
 	if (!list_empty(&sem->wait_list))
 		sem = __rwsem_do_wake(sem, RWSEM_WAKE_ANY);
 
+<<<<<<< HEAD
+	raw_spin_unlock_irqrestore(&sem->wait_lock, flags);
+=======
 	spin_unlock_irqrestore(&sem->wait_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return sem;
 }
@@ -282,13 +352,21 @@ struct rw_semaphore *rwsem_downgrade_wake(struct rw_semaphore *sem)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
+	raw_spin_lock_irqsave(&sem->wait_lock, flags);
+=======
 	spin_lock_irqsave(&sem->wait_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* do nothing if list empty */
 	if (!list_empty(&sem->wait_list))
 		sem = __rwsem_do_wake(sem, RWSEM_WAKE_READ_OWNED);
 
+<<<<<<< HEAD
+	raw_spin_unlock_irqrestore(&sem->wait_lock, flags);
+=======
 	spin_unlock_irqrestore(&sem->wait_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return sem;
 }

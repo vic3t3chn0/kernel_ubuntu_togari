@@ -19,7 +19,10 @@
 
 #include <linux/platform_device.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+=======
 #include <linux/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/spi/spi.h>
 
 #include <asm/mach-types.h>
@@ -91,6 +94,10 @@ static void __init stmp378x_dvb_init(void)
 
 	mx23_add_duart();
 	mx23_add_auart0();
+<<<<<<< HEAD
+	mx23_add_rtc_stmp3xxx();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* power on mmc slot */
 	ret = gpio_request_one(STMP378X_DEVB_MMC0_SLOT_POWER,
@@ -115,6 +122,12 @@ static struct sys_timer stmp378x_dvb_timer = {
 MACHINE_START(STMP378X, "STMP378X")
 	.map_io		= mx23_map_io,
 	.init_irq	= mx23_init_irq,
+<<<<<<< HEAD
+	.timer		= &stmp378x_dvb_timer,
+	.init_machine	= stmp378x_dvb_init,
+	.restart	= mxs_restart,
+=======
 	.init_machine	= stmp378x_dvb_init,
 	.timer		= &stmp378x_dvb_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

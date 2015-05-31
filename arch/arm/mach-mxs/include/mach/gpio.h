@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty */
+=======
 /*
  * Copyright 2007 Freescale Semiconductor, Inc. All Rights Reserved.
  * Copyright 2008 Juergen Beisert, kernel@pengutronix.de
@@ -33,3 +36,4 @@
 #define irq_to_gpio(irq)	((irq) - MXS_GPIO_IRQ_START)
 
 #endif /* __MACH_MXS_GPIO_H__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

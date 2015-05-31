@@ -23,6 +23,10 @@
  * information.
  */
 
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/plist.h>
 #include <linux/spinlock.h>
 

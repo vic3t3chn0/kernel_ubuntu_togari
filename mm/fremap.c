@@ -13,7 +13,10 @@
 #include <linux/pagemap.h>
 #include <linux/swapops.h>
 #include <linux/rmap.h>
+<<<<<<< HEAD
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/syscalls.h>
 #include <linux/mmu_notifier.h>
 
@@ -40,11 +43,15 @@ static void zap_pte(struct mm_struct *mm, struct vm_area_struct *vma,
 			page_remove_rmap(page);
 			page_cache_release(page);
 			update_hiwater_rss(mm);
+<<<<<<< HEAD
+			dec_mm_counter(mm, MM_FILEPAGES);
+=======
 		#ifdef CONFIG_LOWMEM_CHECK
 			dec_mm_counter(mm, MM_FILEPAGES, page);
 		#else
 			dec_mm_counter(mm, MM_FILEPAGES);
 		#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	} else {
 		if (!pte_file(pte))

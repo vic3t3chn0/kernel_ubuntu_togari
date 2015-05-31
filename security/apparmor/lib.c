@@ -12,11 +12,19 @@
  * License.
  */
 
+<<<<<<< HEAD
+#include <linux/mm.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <linux/string.h>
 #include <linux/vmalloc.h>
 
 #include "include/audit.h"
+<<<<<<< HEAD
+#include "include/apparmor.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /**
@@ -63,8 +71,15 @@ void aa_info_message(const char *str)
 {
 	if (audit_enabled) {
 		struct common_audit_data sa;
+<<<<<<< HEAD
+		struct apparmor_audit_data aad = {0,};
+		COMMON_AUDIT_DATA_INIT(&sa, NONE);
+		sa.aad = &aad;
+		aad.info = str;
+=======
 		COMMON_AUDIT_DATA_INIT(&sa, NONE);
 		sa.aad.info = str;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		aa_audit_msg(AUDIT_APPARMOR_STATUS, &sa, NULL);
 	}
 	printk(KERN_INFO "AppArmor: %s\n", str);

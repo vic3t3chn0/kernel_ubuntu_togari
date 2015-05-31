@@ -19,6 +19,17 @@
 	.section .altinstr_replacement, "ax", @progbits
 .Lmemset_c:
 	movq %rdi,%r9
+<<<<<<< HEAD
+	movq %rdx,%rcx
+	andl $7,%edx
+	shrq $3,%rcx
+	/* expand byte value  */
+	movzbl %sil,%esi
+	movabs $0x0101010101010101,%rax
+	imulq %rsi,%rax
+	rep stosq
+	movl %edx,%ecx
+=======
 	movl %edx,%r8d
 	andl $7,%r8d
 	movl %edx,%ecx
@@ -29,6 +40,7 @@
 	mulq %rsi		/* with rax, clobbers rdx */
 	rep stosq
 	movl %r8d,%ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rep stosb
 	movq %r9,%rax
 	ret
@@ -50,7 +62,11 @@
 .Lmemset_c_e:
 	movq %rdi,%r9
 	movb %sil,%al
+<<<<<<< HEAD
+	movq %rdx,%rcx
+=======
 	movl %edx,%ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rep stosb
 	movq %r9,%rax
 	ret
@@ -61,12 +77,19 @@ ENTRY(memset)
 ENTRY(__memset)
 	CFI_STARTPROC
 	movq %rdi,%r10
+<<<<<<< HEAD
+=======
 	movq %rdx,%r11
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* expand byte value  */
 	movzbl %sil,%ecx
 	movabs $0x0101010101010101,%rax
+<<<<<<< HEAD
+	imulq  %rcx,%rax
+=======
 	mul    %rcx		/* with rax, clobbers rdx */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* align dst */
 	movl  %edi,%r9d
@@ -75,13 +98,22 @@ ENTRY(__memset)
 	CFI_REMEMBER_STATE
 .Lafter_bad_alignment:
 
+<<<<<<< HEAD
+	movq  %rdx,%rcx
+	shrq  $6,%rcx
+=======
 	movl %r11d,%ecx
 	shrl $6,%ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	jz	 .Lhandle_tail
 
 	.p2align 4
 .Lloop_64:
+<<<<<<< HEAD
+	decq  %rcx
+=======
 	decl   %ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	movq  %rax,(%rdi)
 	movq  %rax,8(%rdi)
 	movq  %rax,16(%rdi)
@@ -97,7 +129,11 @@ ENTRY(__memset)
 	   to predict jump tables. */
 	.p2align 4
 .Lhandle_tail:
+<<<<<<< HEAD
+	movl	%edx,%ecx
+=======
 	movl	%r11d,%ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	andl    $63&(~7),%ecx
 	jz 		.Lhandle_7
 	shrl	$3,%ecx
@@ -109,12 +145,20 @@ ENTRY(__memset)
 	jnz    .Lloop_8
 
 .Lhandle_7:
+<<<<<<< HEAD
+	andl	$7,%edx
+	jz      .Lende
+	.p2align 4
+.Lloop_1:
+	decl    %edx
+=======
 	movl	%r11d,%ecx
 	andl	$7,%ecx
 	jz      .Lende
 	.p2align 4
 .Lloop_1:
 	decl    %ecx
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	movb 	%al,(%rdi)
 	leaq	1(%rdi),%rdi
 	jnz     .Lloop_1
@@ -125,13 +169,21 @@ ENTRY(__memset)
 
 	CFI_RESTORE_STATE
 .Lbad_alignment:
+<<<<<<< HEAD
+	cmpq $7,%rdx
+=======
 	cmpq $7,%r11
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	jbe	.Lhandle_7
 	movq %rax,(%rdi)	/* unaligned store */
 	movq $8,%r8
 	subq %r9,%r8
 	addq %r8,%rdi
+<<<<<<< HEAD
+	subq %r8,%rdx
+=======
 	subq %r8,%r11
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	jmp .Lafter_bad_alignment
 .Lfinal:
 	CFI_ENDPROC

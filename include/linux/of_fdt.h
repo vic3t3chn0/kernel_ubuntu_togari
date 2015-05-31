@@ -71,7 +71,11 @@ extern int of_fdt_is_compatible(struct boot_param_header *blob,
 				unsigned long node,
 				const char *compat);
 extern int of_fdt_match(struct boot_param_header *blob, unsigned long node,
+<<<<<<< HEAD
+			const char *const *compat);
+=======
 			const char **compat);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void of_fdt_unflatten_tree(unsigned long *blob,
 			       struct device_node **mynodes);
 
@@ -88,7 +92,11 @@ extern int of_scan_flat_dt(int (*it)(unsigned long node, const char *uname,
 extern void *of_get_flat_dt_prop(unsigned long node, const char *name,
 				 unsigned long *size);
 extern int of_flat_dt_is_compatible(unsigned long node, const char *name);
+<<<<<<< HEAD
+extern int of_flat_dt_match(unsigned long node, const char *const *matches);
+=======
 extern int of_flat_dt_match(unsigned long node, const char **matches);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern unsigned long of_get_flat_dt_root(void);
 
 extern int early_init_dt_scan_chosen(unsigned long node, const char *uname,
@@ -119,6 +127,14 @@ extern void unflatten_device_tree(void);
 extern void early_init_devtree(void *);
 #else /* CONFIG_OF_FLATTREE */
 static inline void unflatten_device_tree(void) {}
+<<<<<<< HEAD
+static inline void *of_get_flat_dt_prop(unsigned long node, const char *name,
+				 unsigned long *size) { return NULL; }
+
+static inline int of_flat_dt_is_compatible(unsigned long node,
+				const char *name) { return 0; }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* CONFIG_OF_FLATTREE */
 
 #endif /* __ASSEMBLY__ */

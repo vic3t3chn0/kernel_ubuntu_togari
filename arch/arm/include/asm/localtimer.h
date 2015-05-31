@@ -10,6 +10,11 @@
 #ifndef __ASM_ARM_LOCALTIMER_H
 #define __ASM_ARM_LOCALTIMER_H
 
+<<<<<<< HEAD
+#include <linux/errno.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct clock_event_device;
 
 /*
@@ -17,6 +22,20 @@ struct clock_event_device;
  */
 void percpu_timer_setup(void);
 
+<<<<<<< HEAD
+struct local_timer_ops {
+	int  (*setup)(struct clock_event_device *);
+	void (*stop)(struct clock_event_device *);
+};
+
+#ifdef CONFIG_LOCAL_TIMERS
+/*
+ * Register a local timer driver
+ */
+int local_timer_register(struct local_timer_ops *);
+#else
+static inline int local_timer_register(struct local_timer_ops *ops)
+=======
 /*
  * Called from assembly, this is the local timer IRQ handler
  */
@@ -49,6 +68,7 @@ int local_timer_setup(struct clock_event_device *);
 #else
 
 static inline int local_timer_setup(struct clock_event_device *evt)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return -ENXIO;
 }

@@ -5,10 +5,24 @@
  *
  */
 
+<<<<<<< HEAD
+#include <linux/linkage.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/asm-offsets.h>
 
 	.section .kprobes.text, "ax"
 
+<<<<<<< HEAD
+ENTRY(ftrace_stub)
+	br	%r14
+
+ENTRY(_mcount)
+#ifdef CONFIG_DYNAMIC_FTRACE
+	br	%r14
+
+ENTRY(ftrace_caller)
+=======
 	.globl ftrace_stub
 ftrace_stub:
 	br	%r14
@@ -20,6 +34,7 @@ _mcount:
 
 	.globl ftrace_caller
 ftrace_caller:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	stm	%r2,%r5,16(%r15)
 	bras	%r1,2f
@@ -41,8 +56,12 @@ ftrace_caller:
 #ifdef CONFIG_FUNCTION_GRAPH_TRACER
 	l	%r2,100(%r15)
 	l	%r3,152(%r15)
+<<<<<<< HEAD
+ENTRY(ftrace_graph_caller)
+=======
 	.globl	ftrace_graph_caller
 ftrace_graph_caller:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # The bras instruction gets runtime patched to call prepare_ftrace_return.
 # See ftrace_enable_ftrace_graph_caller. The patched instruction is:
 #	bras	%r14,prepare_ftrace_return
@@ -56,8 +75,12 @@ ftrace_graph_caller:
 
 #ifdef CONFIG_FUNCTION_GRAPH_TRACER
 
+<<<<<<< HEAD
+ENTRY(return_to_handler)
+=======
 	.globl	return_to_handler
 return_to_handler:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	stm	%r2,%r5,16(%r15)
 	st	%r14,56(%r15)
 	lr	%r0,%r15

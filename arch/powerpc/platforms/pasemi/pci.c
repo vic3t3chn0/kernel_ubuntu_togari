@@ -229,9 +229,12 @@ void __init pas_pci_init(void)
 
 	/* Setup the linkage between OF nodes and PHBs */
 	pci_devs_phb_init();
+<<<<<<< HEAD
+=======
 
 	/* Use the common resource allocation mechanism */
 	pci_probe_only = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void __iomem *pasemi_pci_getcfgaddr(struct pci_dev *dev, int offset)

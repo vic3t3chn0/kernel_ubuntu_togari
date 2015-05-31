@@ -1,8 +1,13 @@
 #ifndef __ALPHA_LCA__H__
 #define __ALPHA_LCA__H__
 
+<<<<<<< HEAD
+#include <asm/compiler.h>
+#include <asm/mce.h>
+=======
 #include <asm/system.h>
 #include <asm/compiler.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Low Cost Alpha (LCA) definitions (these apply to 21066 and 21068,

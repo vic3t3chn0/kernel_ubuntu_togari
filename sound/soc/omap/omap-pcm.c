@@ -3,7 +3,11 @@
  *
  * Copyright (C) 2008 Nokia Corporation
  *
+<<<<<<< HEAD
+ * Contact: Jarkko Nikula <jarkko.nikula@bitmer.com>
+=======
  * Contact: Jarkko Nikula <jhnikula@gmail.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *          Peter Ujfalusi <peter.ujfalusi@ti.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -24,6 +28,10 @@
 
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
@@ -198,6 +206,17 @@ static int omap_pcm_prepare(struct snd_pcm_substream *substream)
 			      OMAP_DMA_LAST_IRQ | OMAP_DMA_BLOCK_IRQ);
 	else if (!substream->runtime->no_period_wakeup)
 		omap_enable_dma_irq(prtd->dma_ch, OMAP_DMA_FRAME_IRQ);
+<<<<<<< HEAD
+	else {
+		/*
+		 * No period wakeup:
+		 * we need to disable BLOCK_IRQ, which is enabled by the omap
+		 * dma core at request dma time.
+		 */
+		omap_disable_dma_irq(prtd->dma_ch, OMAP_DMA_BLOCK_IRQ);
+	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!(cpu_class_is_omap1())) {
 		omap_set_dma_src_burst_mode(prtd->dma_ch,
@@ -366,9 +385,16 @@ static void omap_pcm_free_dma_buffers(struct snd_pcm *pcm)
 	}
 }
 
+<<<<<<< HEAD
+static int omap_pcm_new(struct snd_soc_pcm_runtime *rtd)
+{
+	struct snd_card *card = rtd->card->snd_card;
+	struct snd_pcm *pcm = rtd->pcm;
+=======
 static int omap_pcm_new(struct snd_card *card, struct snd_soc_dai *dai,
 		 struct snd_pcm *pcm)
 {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = 0;
 
 	if (!card->dev->dma_mask)
@@ -376,14 +402,22 @@ static int omap_pcm_new(struct snd_card *card, struct snd_soc_dai *dai,
 	if (!card->dev->coherent_dma_mask)
 		card->dev->coherent_dma_mask = DMA_BIT_MASK(64);
 
+<<<<<<< HEAD
+	if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream) {
+=======
 	if (dai->driver->playback.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = omap_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_PLAYBACK);
 		if (ret)
 			goto out;
 	}
 
+<<<<<<< HEAD
+	if (pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream) {
+=======
 	if (dai->driver->capture.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = omap_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_CAPTURE);
 		if (ret)
@@ -391,6 +425,13 @@ static int omap_pcm_new(struct snd_card *card, struct snd_soc_dai *dai,
 	}
 
 out:
+<<<<<<< HEAD
+	/* free preallocated buffers in case of error */
+	if (ret)
+		omap_pcm_free_dma_buffers(pcm);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 
@@ -422,6 +463,11 @@ static struct platform_driver omap_pcm_driver = {
 	.remove = __devexit_p(omap_pcm_remove),
 };
 
+<<<<<<< HEAD
+module_platform_driver(omap_pcm_driver);
+
+MODULE_AUTHOR("Jarkko Nikula <jarkko.nikula@bitmer.com>");
+=======
 static int __init snd_omap_pcm_init(void)
 {
 	return platform_driver_register(&omap_pcm_driver);
@@ -435,5 +481,6 @@ static void __exit snd_omap_pcm_exit(void)
 module_exit(snd_omap_pcm_exit);
 
 MODULE_AUTHOR("Jarkko Nikula <jhnikula@gmail.com>");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MODULE_DESCRIPTION("OMAP PCM DMA module");
 MODULE_LICENSE("GPL");

@@ -21,7 +21,10 @@
 
 #ifndef _LINUX_EXYNOS4_TMU_H
 #define _LINUX_EXYNOS4_TMU_H
+<<<<<<< HEAD
+=======
 #include <linux/cpu_cooling.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 enum calibration_type {
 	TYPE_ONE_POINT_TRIMMING,
@@ -29,11 +32,14 @@ enum calibration_type {
 	TYPE_NONE,
 };
 
+<<<<<<< HEAD
+=======
 enum tmu_type {
 	TYPE_EXYNOS4210,
 	TYPE_EXYNOS4X12,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * struct exynos4_tmu_platform_data
  * @threshold: basic temperature for generating interrupt
@@ -70,9 +76,12 @@ enum tmu_type {
  *	in the positive-TC generator block
  *	0 <= reference_voltage <= 31
  * @cal_type: calibration type for temperature
+<<<<<<< HEAD
+=======
  * @freq_pctg_table: Table representing frequency reduction percentage.
  * @freq_tab_count: Count of the above table as frequency reduction may
  *	applicable to only some of the trigger levels.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This structure is required for configuration of exynos4_tmu driver.
  */
@@ -88,8 +97,11 @@ struct exynos4_tmu_platform_data {
 	u8 reference_voltage;
 
 	enum calibration_type cal_type;
+<<<<<<< HEAD
+=======
 
 	struct freq_pctg_table freq_tab[4];
 	unsigned int freq_tab_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 #endif /* _LINUX_EXYNOS4_TMU_H */

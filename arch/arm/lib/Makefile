@@ -6,14 +6,23 @@
 
 lib-y		:= backtrace.o changebit.o csumipv6.o csumpartial.o   \
 		   csumpartialcopy.o csumpartialcopyuser.o clearbit.o \
+<<<<<<< HEAD
+		   delay.o delay-loop.o findbit.o memchr.o memcpy.o   \
+=======
 		   delay.o findbit.o memchr.o memcpy.o		      \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		   memmove.o memset.o memzero.o setbit.o              \
 		   strncpy_from_user.o strnlen_user.o                 \
 		   strchr.o strrchr.o                                 \
 		   testchangebit.o testclearbit.o testsetbit.o        \
 		   ashldi3.o ashrdi3.o lshrdi3.o muldi3.o             \
 		   ucmpdi2.o lib1funcs.o div64.o                      \
+<<<<<<< HEAD
+		   io-readsb.o io-writesb.o io-readsl.o io-writesl.o  \
+		   call_with_stack.o
+=======
 		   io-readsb.o io-writesb.o io-readsl.o io-writesl.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 mmu-y	:= clear_user.o copy_page.o getuser.o putuser.o
 

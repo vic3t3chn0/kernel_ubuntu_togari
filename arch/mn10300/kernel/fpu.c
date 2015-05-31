@@ -12,7 +12,10 @@
 #include <asm/fpu.h>
 #include <asm/elf.h>
 #include <asm/exceptions.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_LAZY_SAVE_FPU
 struct task_struct *fpu_state_owner;

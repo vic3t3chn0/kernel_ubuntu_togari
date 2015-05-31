@@ -21,6 +21,14 @@
 #include <linux/signal.h>
 #include <linux/perf_event.h>
 #include <linux/hw_breakpoint.h>
+<<<<<<< HEAD
+
+#include <asm/uaccess.h>
+#include <asm/pgtable.h>
+#include <asm/processor.h>
+#include <asm/i387.h>
+#include <asm/fpu-internal.h>
+=======
 #include <linux/module.h>
 
 #include <asm/uaccess.h>
@@ -28,12 +36,17 @@
 #include <asm/system.h>
 #include <asm/processor.h>
 #include <asm/i387.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/debugreg.h>
 #include <asm/ldt.h>
 #include <asm/desc.h>
 #include <asm/prctl.h>
 #include <asm/proto.h>
 #include <asm/hw_breakpoint.h>
+<<<<<<< HEAD
+#include <asm/traps.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "tls.h"
 
@@ -165,6 +178,8 @@ static inline bool invalid_selector(u16 value)
 
 #define FLAG_MASK		FLAG_MASK_32
 
+<<<<<<< HEAD
+=======
 /*
  * X86_32 CPUs don't save ss and esp if the CPU is already in kernel mode
  * when it traps.  The previous stack will be directly underneath the saved
@@ -194,6 +209,7 @@ unsigned long kernel_stack_pointer(struct pt_regs *regs)
 }
 EXPORT_SYMBOL_GPL(kernel_stack_pointer);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static unsigned long *pt_regs_access(struct pt_regs *regs, unsigned long regno)
 {
 	BUILD_BUG_ON(offsetof(struct pt_regs, bx) != 0);
@@ -558,7 +574,11 @@ static int genregs_set(struct task_struct *target,
 	return ret;
 }
 
+<<<<<<< HEAD
+static void ptrace_triggered(struct perf_event *bp,
+=======
 static void ptrace_triggered(struct perf_event *bp, int nmi,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			     struct perf_sample_data *data,
 			     struct pt_regs *regs)
 {
@@ -745,7 +765,12 @@ static int ptrace_set_breakpoint_addr(struct task_struct *tsk, int nr,
 		attr.bp_type = HW_BREAKPOINT_W;
 		attr.disabled = 1;
 
+<<<<<<< HEAD
+		bp = register_user_hw_breakpoint(&attr, ptrace_triggered,
+						 NULL, tsk);
+=======
 		bp = register_user_hw_breakpoint(&attr, ptrace_triggered, tsk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/*
 		 * CHECKME: the previous code returned -EIO if the addr wasn't
@@ -778,7 +803,12 @@ put:
 /*
  * Handle PTRACE_POKEUSR calls for the debug register area.
  */
+<<<<<<< HEAD
+static int ptrace_set_debugreg(struct task_struct *tsk, int n,
+			       unsigned long val)
+=======
 int ptrace_set_debugreg(struct task_struct *tsk, int n, unsigned long val)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct thread_struct *thread = &(tsk->thread);
 	int rc = 0;
@@ -1158,6 +1188,103 @@ static int genregs32_set(struct task_struct *target,
 	return ret;
 }
 
+<<<<<<< HEAD
+#ifdef CONFIG_X86_X32_ABI
+static long x32_arch_ptrace(struct task_struct *child,
+			    compat_long_t request, compat_ulong_t caddr,
+			    compat_ulong_t cdata)
+{
+	unsigned long addr = caddr;
+	unsigned long data = cdata;
+	void __user *datap = compat_ptr(data);
+	int ret;
+
+	switch (request) {
+	/* Read 32bits at location addr in the USER area.  Only allow
+	   to return the lower 32bits of segment and debug registers.  */
+	case PTRACE_PEEKUSR: {
+		u32 tmp;
+
+		ret = -EIO;
+		if ((addr & (sizeof(data) - 1)) || addr >= sizeof(struct user) ||
+		    addr < offsetof(struct user_regs_struct, cs))
+			break;
+
+		tmp = 0;  /* Default return condition */
+		if (addr < sizeof(struct user_regs_struct))
+			tmp = getreg(child, addr);
+		else if (addr >= offsetof(struct user, u_debugreg[0]) &&
+			 addr <= offsetof(struct user, u_debugreg[7])) {
+			addr -= offsetof(struct user, u_debugreg[0]);
+			tmp = ptrace_get_debugreg(child, addr / sizeof(data));
+		}
+		ret = put_user(tmp, (__u32 __user *)datap);
+		break;
+	}
+
+	/* Write the word at location addr in the USER area.  Only allow
+	   to update segment and debug registers with the upper 32bits
+	   zero-extended. */
+	case PTRACE_POKEUSR:
+		ret = -EIO;
+		if ((addr & (sizeof(data) - 1)) || addr >= sizeof(struct user) ||
+		    addr < offsetof(struct user_regs_struct, cs))
+			break;
+
+		if (addr < sizeof(struct user_regs_struct))
+			ret = putreg(child, addr, data);
+		else if (addr >= offsetof(struct user, u_debugreg[0]) &&
+			 addr <= offsetof(struct user, u_debugreg[7])) {
+			addr -= offsetof(struct user, u_debugreg[0]);
+			ret = ptrace_set_debugreg(child,
+						  addr / sizeof(data), data);
+		}
+		break;
+
+	case PTRACE_GETREGS:	/* Get all gp regs from the child. */
+		return copy_regset_to_user(child,
+					   task_user_regset_view(current),
+					   REGSET_GENERAL,
+					   0, sizeof(struct user_regs_struct),
+					   datap);
+
+	case PTRACE_SETREGS:	/* Set all gp regs in the child. */
+		return copy_regset_from_user(child,
+					     task_user_regset_view(current),
+					     REGSET_GENERAL,
+					     0, sizeof(struct user_regs_struct),
+					     datap);
+
+	case PTRACE_GETFPREGS:	/* Get the child FPU state. */
+		return copy_regset_to_user(child,
+					   task_user_regset_view(current),
+					   REGSET_FP,
+					   0, sizeof(struct user_i387_struct),
+					   datap);
+
+	case PTRACE_SETFPREGS:	/* Set the child FPU state. */
+		return copy_regset_from_user(child,
+					     task_user_regset_view(current),
+					     REGSET_FP,
+					     0, sizeof(struct user_i387_struct),
+					     datap);
+
+		/* normal 64bit interface to access TLS data.
+		   Works just like arch_prctl, except that the arguments
+		   are reversed. */
+	case PTRACE_ARCH_PRCTL:
+		return do_arch_prctl(child, data, addr);
+
+	default:
+		return compat_ptrace_request(child, request, addr, data);
+	}
+
+	return ret;
+}
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 long compat_arch_ptrace(struct task_struct *child, compat_long_t request,
 			compat_ulong_t caddr, compat_ulong_t cdata)
 {
@@ -1167,6 +1294,14 @@ long compat_arch_ptrace(struct task_struct *child, compat_long_t request,
 	int ret;
 	__u32 val;
 
+<<<<<<< HEAD
+#ifdef CONFIG_X86_X32_ABI
+	if (!is_ia32_task())
+		return x32_arch_ptrace(child, request, caddr, cdata);
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	switch (request) {
 	case PTRACE_PEEKUSR:
 		ret = getreg32(child, addr, &val);
@@ -1354,7 +1489,11 @@ static void fill_sigtrap_info(struct task_struct *tsk,
 				int error_code, int si_code,
 				struct siginfo *info)
 {
+<<<<<<< HEAD
+	tsk->thread.trap_nr = X86_TRAP_DB;
+=======
 	tsk->thread.trap_no = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tsk->thread.error_code = error_code;
 
 	memset(info, 0, sizeof(*info));
@@ -1420,6 +1559,20 @@ long syscall_trace_enter(struct pt_regs *regs)
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_enter(regs, regs->orig_ax);
 
+<<<<<<< HEAD
+	if (IS_IA32)
+		audit_syscall_entry(AUDIT_ARCH_I386,
+				    regs->orig_ax,
+				    regs->bx, regs->cx,
+				    regs->dx, regs->si);
+#ifdef CONFIG_X86_64
+	else
+		audit_syscall_entry(AUDIT_ARCH_X86_64,
+				    regs->orig_ax,
+				    regs->di, regs->si,
+				    regs->dx, regs->r10);
+#endif
+=======
 	if (unlikely(current->audit_context)) {
 		if (IS_IA32)
 			audit_syscall_entry(AUDIT_ARCH_I386,
@@ -1434,6 +1587,7 @@ long syscall_trace_enter(struct pt_regs *regs)
 					    regs->dx, regs->r10);
 #endif
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return ret ?: regs->orig_ax;
 }
@@ -1442,8 +1596,12 @@ void syscall_trace_leave(struct pt_regs *regs)
 {
 	bool step;
 
+<<<<<<< HEAD
+	audit_syscall_exit(regs);
+=======
 	if (unlikely(current->audit_context))
 		audit_syscall_exit(AUDITSC_RESULT(regs->ax), regs->ax);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_exit(regs, regs->ax);

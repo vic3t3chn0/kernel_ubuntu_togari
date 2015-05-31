@@ -1,7 +1,14 @@
 /*
+<<<<<<< HEAD
+ * sound/soc/samsung/idma.h
+ *
+ * Copyright (c) 2011 Samsung Electronics Co., Ltd
+ *		http://www.samsung.com
+=======
  * idma.h  --  I2S0's Internal Dma driver
  *
  * Copyright (c) 2010 Samsung Electronics Co. Ltd
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  *  This program is free software; you can redistribute  it and/or modify it
  *  under  the terms of  the GNU General  Public License as published by the
@@ -10,6 +17,21 @@
  *
  */
 
+<<<<<<< HEAD
+#ifndef __SND_SOC_SAMSUNG_IDMA_H_
+#define __SND_SOC_SAMSUNG_IDMA_H_
+
+extern void idma_reg_addr_init(void __iomem *regs, dma_addr_t addr);
+
+/* dma_state */
+#define LPAM_DMA_STOP	0
+#define LPAM_DMA_START	1
+
+#define MAX_IDMA_PERIOD (128 * 1024)
+#define MAX_IDMA_BUFFER (160 * 1024)
+
+#endif /* __SND_SOC_SAMSUNG_IDMA_H_ */
+=======
 #ifndef __S3C_IDMA_H_
 #define __S3C_IDMA_H_
 
@@ -82,3 +104,4 @@ extern void idma_init(void *regs);
 extern int idma_irq_callback(void);
 extern void idma_stop(void);
 #endif /* __S3C_IDMA_H_ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

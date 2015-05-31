@@ -246,7 +246,22 @@ static inline unsigned long user_stack_pointer(struct pt_regs *regs)
 	return regs->ar_bspstore;
 }
 
+<<<<<<< HEAD
+static inline int is_syscall_success(struct pt_regs *regs)
+{
+	return regs->r10 != -1;
+}
+
+static inline long regs_return_value(struct pt_regs *regs)
+{
+	if (is_syscall_success(regs))
+		return regs->r8;
+	else
+		return -regs->r8;
+}
+=======
 #define regs_return_value(regs) ((regs)->r8)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Conserve space in histogram by encoding slot bits in address
  * bits 2 and 3 rather than bits 0 and 1.
@@ -286,7 +301,10 @@ static inline unsigned long user_stack_pointer(struct pt_regs *regs)
   struct task_struct;			/* forward decl */
   struct unw_frame_info;		/* forward decl */
 
+<<<<<<< HEAD
+=======
   extern void show_regs (struct pt_regs *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
   extern void ia64_do_show_stack (struct unw_frame_info *, void *);
   extern unsigned long ia64_get_user_rbs_end (struct task_struct *, struct pt_regs *,
 					      unsigned long *);

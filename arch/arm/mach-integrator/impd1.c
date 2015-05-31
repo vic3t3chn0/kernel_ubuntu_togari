@@ -401,24 +401,38 @@ static int impd1_probe(struct lm_device *dev)
 
 		pc_base = dev->resource.start + idev->offset;
 
+<<<<<<< HEAD
+		d = amba_device_alloc(NULL, pc_base, SZ_4K);
+=======
 		d = kzalloc(sizeof(struct amba_device), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!d)
 			continue;
 
 		dev_set_name(&d->dev, "lm%x:%5.5lx", dev->id, idev->offset >> 12);
 		d->dev.parent	= &dev->dev;
+<<<<<<< HEAD
+=======
 		d->res.start	= dev->resource.start + idev->offset;
 		d->res.end	= d->res.start + SZ_4K - 1;
 		d->res.flags	= IORESOURCE_MEM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		d->irq[0]	= dev->irq;
 		d->irq[1]	= dev->irq;
 		d->periphid	= idev->id;
 		d->dev.platform_data = idev->platform_data;
 
+<<<<<<< HEAD
+		ret = amba_device_add(d, &dev->resource);
+		if (ret) {
+			dev_err(&d->dev, "unable to register device: %d\n", ret);
+			amba_device_put(d);
+=======
 		ret = amba_device_register(d, &dev->resource);
 		if (ret) {
 			dev_err(&d->dev, "unable to register device: %d\n", ret);
 			kfree(d);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	}
 

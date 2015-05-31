@@ -47,7 +47,10 @@ enum {
  * @ns_flags: flags
  * @ns_bdev: block device
  * @ns_sem: semaphore for shared states
+<<<<<<< HEAD
+=======
  * @ns_snapshot_mount_mutex: mutex to protect snapshot mounts
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @ns_sbh: buffer heads of on-disk super blocks
  * @ns_sbp: pointers to super block data
  * @ns_sbwtime: previous write time of super block
@@ -100,7 +103,10 @@ struct the_nilfs {
 
 	struct block_device    *ns_bdev;
 	struct rw_semaphore	ns_sem;
+<<<<<<< HEAD
+=======
 	struct mutex		ns_snapshot_mount_mutex;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * used for

@@ -7,7 +7,11 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/stddef.h>
 #include <linux/ioport.h>
@@ -21,7 +25,10 @@
 #include <linux/init.h>
 #include <linux/kexec.h>
 #include <linux/of_fdt.h>
+<<<<<<< HEAD
+=======
 #include <linux/crash_dump.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/root_dev.h>
 #include <linux/cpu.h>
 #include <linux/interrupt.h>
@@ -29,8 +36,17 @@
 #include <linux/fs.h>
 #include <linux/proc_fs.h>
 #include <linux/memblock.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+#include <linux/compiler.h>
+#include <linux/sort.h>
 
 #include <asm/unified.h>
+#include <asm/cp15.h>
+=======
+
+#include <asm/unified.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/cpu.h>
 #include <asm/cputype.h>
 #include <asm/elf.h>
@@ -47,11 +63,19 @@
 #include <asm/mach/arch.h>
 #include <asm/mach/irq.h>
 #include <asm/mach/time.h>
+<<<<<<< HEAD
+#include <asm/system_info.h>
+#include <asm/system_misc.h>
+#include <asm/traps.h>
+#include <asm/unwind.h>
+#include <asm/memblock.h>
+=======
 #include <asm/traps.h>
 #include <asm/unwind.h>
 #ifdef CONFIG_MIDAS_COMMON
 #include <plat/cpu.h>
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_DEPRECATED_PARAM_STRUCT)
 #include "compat.h"
@@ -78,9 +102,13 @@ __setup("fpe=", fpe_setup);
 extern void paging_init(struct machine_desc *desc);
 extern void sanity_check_meminfo(void);
 extern void reboot_setup(char *str);
+<<<<<<< HEAD
+extern void setup_dma_zone(struct machine_desc *desc);
+=======
 #ifdef CONFIG_DMA_CMA
 extern void setup_dma_zone(struct machine_desc *desc);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 unsigned int processor_id;
 EXPORT_SYMBOL(processor_id);
@@ -103,6 +131,14 @@ EXPORT_SYMBOL(system_serial_high);
 unsigned int elf_hwcap __read_mostly;
 EXPORT_SYMBOL(elf_hwcap);
 
+<<<<<<< HEAD
+unsigned int boot_reason;
+EXPORT_SYMBOL(boot_reason);
+
+unsigned int cold_boot;
+EXPORT_SYMBOL(cold_boot);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef MULTI_CPU
 struct processor processor __read_mostly;
@@ -121,6 +157,16 @@ struct outer_cache_fns outer_cache __read_mostly;
 EXPORT_SYMBOL(outer_cache);
 #endif
 
+<<<<<<< HEAD
+/*
+ * Cached cpu_architecture() result for use by assembler code.
+ * C code should use the cpu_architecture() function instead of accessing this
+ * variable directly.
+ */
+int __cpu_architecture __read_mostly = CPU_ARCH_UNKNOWN;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct stack {
 	u32 irq[3];
 	u32 abt[3];
@@ -154,7 +200,11 @@ static struct resource mem_res[] = {
 		.flags = IORESOURCE_MEM
 	},
 	{
+<<<<<<< HEAD
+		.name = "Kernel code",
+=======
 		.name = "Kernel text",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.start = 0,
 		.end = 0,
 		.flags = IORESOURCE_MEM
@@ -216,7 +266,11 @@ static const char *proc_arch[] = {
 	"?(17)",
 };
 
+<<<<<<< HEAD
+static int __get_cpu_architecture(void)
+=======
 int cpu_architecture(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int cpu_arch;
 
@@ -249,11 +303,28 @@ int cpu_architecture(void)
 	return cpu_arch;
 }
 
+<<<<<<< HEAD
+int __pure cpu_architecture(void)
+{
+	BUG_ON(__cpu_architecture == CPU_ARCH_UNKNOWN);
+
+	return __cpu_architecture;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int cpu_has_aliasing_icache(unsigned int arch)
 {
 	int aliasing_icache;
 	unsigned int id_reg, num_sets, line_size;
 
+<<<<<<< HEAD
+	/* PIPT caches never alias. */
+	if (icache_is_pipt())
+		return 0;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* arch specifies the register format */
 	switch (arch) {
 	case CPU_ARCH_ARMv7:
@@ -286,6 +357,27 @@ static void __init cacheid_init(void)
 	if (arch >= CPU_ARCH_ARMv6) {
 		if ((cachetype & (7 << 29)) == 4 << 29) {
 			/* ARMv7 register format */
+<<<<<<< HEAD
+			arch = CPU_ARCH_ARMv7;
+			cacheid = CACHEID_VIPT_NONALIASING;
+			switch (cachetype & (3 << 14)) {
+			case (1 << 14):
+				cacheid |= CACHEID_ASID_TAGGED;
+				break;
+			case (3 << 14):
+				cacheid |= CACHEID_PIPT;
+				break;
+			}
+		} else {
+			arch = CPU_ARCH_ARMv6;
+			if (cachetype & (1 << 23))
+				cacheid = CACHEID_VIPT_ALIASING;
+			else
+				cacheid = CACHEID_VIPT_NONALIASING;
+		}
+		if (cpu_has_aliasing_icache(arch))
+			cacheid |= CACHEID_VIPT_I_ALIASING;
+=======
 			cacheid = CACHEID_VIPT_NONALIASING;
 			if ((cachetype & (3 << 14)) == 1 << 14)
 				cacheid |= CACHEID_ASID_TAGGED;
@@ -298,6 +390,7 @@ static void __init cacheid_init(void)
 			if (cpu_has_aliasing_icache(CPU_ARCH_ARMv6))
 				cacheid |= CACHEID_VIPT_I_ALIASING;
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else {
 		cacheid = CACHEID_VIVT;
 	}
@@ -305,10 +398,18 @@ static void __init cacheid_init(void)
 	printk("CPU: %s data cache, %s instruction cache\n",
 		cache_is_vivt() ? "VIVT" :
 		cache_is_vipt_aliasing() ? "VIPT aliasing" :
+<<<<<<< HEAD
+		cache_is_vipt_nonaliasing() ? "PIPT / VIPT nonaliasing" : "unknown",
+		cache_is_vivt() ? "VIVT" :
+		icache_is_vivt_asid_tagged() ? "VIVT ASID tagged" :
+		icache_is_vipt_aliasing() ? "VIPT aliasing" :
+		icache_is_pipt() ? "PIPT" :
+=======
 		cache_is_vipt_nonaliasing() ? "VIPT nonaliasing" : "unknown",
 		cache_is_vivt() ? "VIVT" :
 		icache_is_vivt_asid_tagged() ? "VIVT ASID tagged" :
 		icache_is_vipt_aliasing() ? "VIPT aliasing" :
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		cache_is_vipt_nonaliasing() ? "VIPT nonaliasing" : "unknown");
 }
 
@@ -349,6 +450,8 @@ static void __init feat_v6_fixup(void)
 		elf_hwcap &= ~HWCAP_TLS;
 }
 
+<<<<<<< HEAD
+=======
 static void __init setup_processor(void)
 {
 	struct proc_info_list *list;
@@ -397,6 +500,7 @@ static void __init setup_processor(void)
 	cpu_proc_init();
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * cpu_init - initialise one CPU.
  *
@@ -412,6 +516,11 @@ void cpu_init(void)
 		BUG();
 	}
 
+<<<<<<< HEAD
+	cpu_proc_init();
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Define the placement constraint for the inline asm directive below.
 	 * In Thumb-2, msr with an immediate value is not allowed.
@@ -448,6 +557,74 @@ void cpu_init(void)
 	    : "r14");
 }
 
+<<<<<<< HEAD
+int __cpu_logical_map[NR_CPUS];
+
+void __init smp_setup_processor_id(void)
+{
+	int i;
+	u32 cpu = is_smp() ? read_cpuid_mpidr() & 0xff : 0;
+
+	cpu_logical_map(0) = cpu;
+	for (i = 1; i < NR_CPUS; ++i)
+		cpu_logical_map(i) = i == cpu ? 0 : i;
+
+	printk(KERN_INFO "Booting Linux on physical CPU %d\n", cpu);
+}
+
+static void __init setup_processor(void)
+{
+	struct proc_info_list *list;
+
+	/*
+	 * locate processor in the list of supported processor
+	 * types.  The linker builds this table for us from the
+	 * entries in arch/arm/mm/proc-*.S
+	 */
+	list = lookup_processor_type(read_cpuid_id());
+	if (!list) {
+		printk("CPU configuration botched (ID %08x), unable "
+		       "to continue.\n", read_cpuid_id());
+		while (1);
+	}
+
+	cpu_name = list->cpu_name;
+	__cpu_architecture = __get_cpu_architecture();
+
+#ifdef MULTI_CPU
+	processor = *list->proc;
+#endif
+#ifdef MULTI_TLB
+	cpu_tlb = *list->tlb;
+#endif
+#ifdef MULTI_USER
+	cpu_user = *list->user;
+#endif
+#ifdef MULTI_CACHE
+	cpu_cache = *list->cache;
+#endif
+
+	printk("CPU: %s [%08x] revision %d (ARMv%s), cr=%08lx\n",
+	       cpu_name, read_cpuid_id(), read_cpuid_id() & 15,
+	       proc_arch[cpu_architecture()], cr_alignment);
+
+	snprintf(init_utsname()->machine, __NEW_UTS_LEN + 1, "%s%c",
+		 list->arch_name, ENDIANNESS);
+	snprintf(elf_platform, ELF_PLATFORM_SIZE, "%s%c",
+		 list->elf_name, ENDIANNESS);
+	elf_hwcap = list->elf_hwcap;
+#ifndef CONFIG_ARM_THUMB
+	elf_hwcap &= ~HWCAP_THUMB;
+#endif
+
+	feat_v6_fixup();
+
+	cacheid_init();
+	cpu_init();
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init dump_machine_table(void)
 {
 	struct machine_desc *p;
@@ -462,7 +639,11 @@ void __init dump_machine_table(void)
 		/* can't use cpu_relax() here as it may require MMU setup */;
 }
 
+<<<<<<< HEAD
+int __init arm_add_memory(phys_addr_t start, phys_addr_t size)
+=======
 int __init arm_add_memory(phys_addr_t start, unsigned long size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct membank *bank = &meminfo.bank[meminfo.nr_banks];
 
@@ -478,7 +659,25 @@ int __init arm_add_memory(phys_addr_t start, unsigned long size)
 	 */
 	size -= start & ~PAGE_MASK;
 	bank->start = PAGE_ALIGN(start);
+<<<<<<< HEAD
+
+#ifndef CONFIG_LPAE
+	if (bank->start + size < bank->start) {
+		printk(KERN_CRIT "Truncating memory at 0x%08llx to fit in "
+			"32-bit physical address space\n", (long long)start);
+		/*
+		 * To ensure bank->start + bank->size is representable in
+		 * 32 bits, we use ULONG_MAX as the upper limit rather than 4GB.
+		 * This means we lose a page after masking.
+		 */
+		size = ULONG_MAX - bank->start;
+	}
+#endif
+
+	bank->size = size & ~(phys_addr_t)(PAGE_SIZE - 1);
+=======
 	bank->size  = size & PAGE_MASK;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Check whether this memory region has non-zero size or
@@ -498,7 +697,11 @@ int __init arm_add_memory(phys_addr_t start, unsigned long size)
 static int __init early_mem(char *p)
 {
 	static int usermem __initdata = 0;
+<<<<<<< HEAD
+	phys_addr_t size;
+=======
 	unsigned long size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	phys_addr_t start;
 	char *endp;
 
@@ -823,6 +1026,10 @@ static struct machine_desc * __init setup_machine_tags(unsigned int nr)
 
 	if (__atags_pointer)
 		tags = phys_to_virt(__atags_pointer);
+<<<<<<< HEAD
+	else if (mdesc->atag_offset)
+		tags = (void *)(PAGE_OFFSET + mdesc->atag_offset);
+=======
 	else if (mdesc->boot_params) {
 #ifdef CONFIG_MMU
 		/*
@@ -842,6 +1049,7 @@ static struct machine_desc * __init setup_machine_tags(unsigned int nr)
 			tags = phys_to_virt(mdesc->boot_params);
 		}
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_DEPRECATED_PARAM_STRUCT)
 	/*
@@ -864,7 +1072,11 @@ static struct machine_desc * __init setup_machine_tags(unsigned int nr)
 	}
 
 	if (mdesc->fixup)
+<<<<<<< HEAD
+		mdesc->fixup(tags, &from, &meminfo);
+=======
 		mdesc->fixup(mdesc, tags, &from, &meminfo);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (tags->hdr.tag == ATAG_CORE) {
 		if (meminfo.nr_banks != 0)
@@ -879,13 +1091,25 @@ static struct machine_desc * __init setup_machine_tags(unsigned int nr)
 	return mdesc;
 }
 
+<<<<<<< HEAD
+static int __init meminfo_cmp(const void *_a, const void *_b)
+{
+	const struct membank *a = _a, *b = _b;
+	long cmp = bank_pfn_start(a) - bank_pfn_start(b);
+	return cmp < 0 ? -1 : cmp > 0 ? 1 : 0;
+}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void __init setup_arch(char **cmdline_p)
 {
 	struct machine_desc *mdesc;
 
+<<<<<<< HEAD
+=======
 	unwind_init();
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	setup_processor();
 	mdesc = setup_machine_fdt(__atags_pointer);
 	if (!mdesc)
@@ -893,11 +1117,18 @@ void __init setup_arch(char **cmdline_p)
 	machine_desc = mdesc;
 	machine_name = mdesc->name;
 
+<<<<<<< HEAD
+	setup_dma_zone(mdesc);
+
+	if (mdesc->restart_mode)
+		reboot_setup(&mdesc->restart_mode);
+=======
 #ifdef CONFIG_DMA_CMA
 	setup_dma_zone(mdesc);
 #endif
 	if (mdesc->soft_reboot)
 		reboot_setup("s");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	init_mm.start_code = (unsigned long) _text;
 	init_mm.end_code   = (unsigned long) _etext;
@@ -910,12 +1141,34 @@ void __init setup_arch(char **cmdline_p)
 
 	parse_early_param();
 
+<<<<<<< HEAD
+	if (mdesc->init_very_early)
+		mdesc->init_very_early();
+
+	sort(&meminfo.bank, meminfo.nr_banks, sizeof(meminfo.bank[0]), meminfo_cmp, NULL);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sanity_check_meminfo();
 	arm_memblock_init(&meminfo, mdesc);
 
 	paging_init(mdesc);
 	request_standard_resources(mdesc);
 
+<<<<<<< HEAD
+	if (mdesc->restart)
+		arm_pm_restart = mdesc->restart;
+
+	unflatten_device_tree();
+
+#ifdef CONFIG_SMP
+	if (is_smp()) {
+		smp_set_ops(mdesc->smp);
+		smp_init_cpus();
+	}
+#endif
+	reserve_crashkernel();
+
+=======
 	unflatten_device_tree();
 
 #ifdef CONFIG_SMP
@@ -925,6 +1178,7 @@ void __init setup_arch(char **cmdline_p)
 	reserve_crashkernel();
 
 	cpu_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tcm_init();
 
 #ifdef CONFIG_MULTI_IRQ_HANDLER
@@ -938,7 +1192,10 @@ void __init setup_arch(char **cmdline_p)
 	conswitchp = &dummy_con;
 #endif
 #endif
+<<<<<<< HEAD
+=======
 	early_trap_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (mdesc->init_early)
 		mdesc->init_early();
@@ -1003,7 +1260,11 @@ static int c_show(struct seq_file *m, void *v)
 		   cpu_name, read_cpuid_id() & 15, elf_platform);
 
 #if defined(CONFIG_SMP)
+<<<<<<< HEAD
+	for_each_present_cpu(i) {
+=======
 	for_each_online_cpu(i) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		/*
 		 * glibc reads /proc/cpuinfo to determine the number of
 		 * online processors, looking for lines beginning with
@@ -1050,10 +1311,13 @@ static int c_show(struct seq_file *m, void *v)
 
 	seq_puts(m, "\n");
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_MIDAS_COMMON
 	if (soc_is_exynos4412())
 		seq_printf(m, "Chip revision\t: %04x\n", samsung_rev());
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	seq_printf(m, "Hardware\t: %s\n", machine_name);
 	seq_printf(m, "Revision\t: %04x\n", system_rev);
 	seq_printf(m, "Serial\t\t: %08x%08x\n",

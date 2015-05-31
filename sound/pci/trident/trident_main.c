@@ -35,6 +35,10 @@
 #include <linux/vmalloc.h>
 #include <linux/gameport.h>
 #include <linux/dma-mapping.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <sound/core.h>
 #include <sound/info.h>
@@ -3598,7 +3602,11 @@ int __devinit snd_trident_create(struct snd_card *card,
 	trident->port = pci_resource_start(pci, 0);
 
 	if (request_irq(pci->irq, snd_trident_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
+			KBUILD_MODNAME, trident)) {
+=======
 			"Trident Audio", trident)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		snd_printk(KERN_ERR "unable to grab IRQ %d\n", pci->irq);
 		snd_trident_free(trident);
 		return -EBUSY;

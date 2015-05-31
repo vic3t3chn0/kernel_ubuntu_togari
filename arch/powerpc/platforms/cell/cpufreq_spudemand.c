@@ -22,9 +22,16 @@
 
 #include <linux/cpufreq.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+#include <linux/timer.h>
+#include <linux/workqueue.h>
+#include <linux/atomic.h>
+=======
 #include <linux/timer.h>
 #include <linux/workqueue.h>
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/machdep.h>
 #include <asm/spu.h>
 

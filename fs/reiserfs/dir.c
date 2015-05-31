@@ -5,7 +5,11 @@
 #include <linux/string.h>
 #include <linux/errno.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
 #include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/stat.h>
 #include <linux/buffer_head.h>
 #include <linux/slab.h>
@@ -14,7 +18,12 @@
 extern const struct reiserfs_key MIN_KEY;
 
 static int reiserfs_readdir(struct file *, void *, filldir_t);
+<<<<<<< HEAD
+static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
+			      int datasync);
+=======
 static int reiserfs_dir_fsync(struct file *filp, int datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 const struct file_operations reiserfs_dir_operations = {
 	.llseek = generic_file_llseek,
@@ -27,6 +36,23 @@ const struct file_operations reiserfs_dir_operations = {
 #endif
 };
 
+<<<<<<< HEAD
+static int reiserfs_dir_fsync(struct file *filp, loff_t start, loff_t end,
+			      int datasync)
+{
+	struct inode *inode = filp->f_mapping->host;
+	int err;
+
+	err = filemap_write_and_wait_range(inode->i_mapping, start, end);
+	if (err)
+		return err;
+
+	mutex_lock(&inode->i_mutex);
+	reiserfs_write_lock(inode->i_sb);
+	err = reiserfs_commit_for_inode(inode);
+	reiserfs_write_unlock(inode->i_sb);
+	mutex_unlock(&inode->i_mutex);
+=======
 static int reiserfs_dir_fsync(struct file *filp, int datasync)
 {
 	struct inode *inode = filp->f_mapping->host;
@@ -34,6 +60,7 @@ static int reiserfs_dir_fsync(struct file *filp, int datasync)
 	reiserfs_write_lock(inode->i_sb);
 	err = reiserfs_commit_for_inode(inode);
 	reiserfs_write_unlock(inode->i_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err < 0)
 		return err;
 	return 0;

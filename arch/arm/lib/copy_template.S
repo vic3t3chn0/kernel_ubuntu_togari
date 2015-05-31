@@ -66,7 +66,10 @@
  *	than one 32bit instruction in Thumb-2)
  */
 
+<<<<<<< HEAD
+=======
 #define PLDSIZE	(CONFIG_ARM_PLD_SIZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		enter	r4, lr
 
@@ -91,6 +94,21 @@
 	CALGN(	add	pc, r4, ip		)
 
 	PLD(	pld	[r1, #0]		)
+<<<<<<< HEAD
+2:	PLD(	subs	r2, r2, #96		)
+	PLD(	pld	[r1, #28]		)
+	PLD(	blt	4f			)
+	PLD(	pld	[r1, #60]		)
+	PLD(	pld	[r1, #92]		)
+
+3:	PLD(	pld	[r1, #124]		)
+4:		ldr8w	r1, r3, r4, r5, r6, r7, r8, ip, lr, abort=20f
+		subs	r2, r2, #32
+		str8w	r0, r3, r4, r5, r6, r7, r8, ip, lr, abort=20f
+		bge	3b
+	PLD(	cmn	r2, #96			)
+	PLD(	bge	4b			)
+=======
 
 #if (PLDSIZE == 64)
 2:	PLD(	cmp	r2, #32)
@@ -131,6 +149,7 @@
 	PLD(	cmn	r2, #(PLDSIZE*3)			)
 	PLD(	bge	4b			)
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 5:		ands	ip, r2, #28
 		rsb	ip, ip, #32

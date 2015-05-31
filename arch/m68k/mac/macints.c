@@ -26,10 +26,13 @@
  *		  - slot 6: timer 1 (not on IIci)
  *		  - slot 7: status of IRQ; signals 'any enabled int.'
  *
+<<<<<<< HEAD
+=======
  *	2	- OSS (IIfx only?)
  *		  - slot 0: SCSI interrupt
  *		  - slot 1: Sound interrupt
  *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Levels 3-6 vary by machine type. For VIA or RBV Macintoshes:
  *
  *	3	- unused (?)
@@ -42,6 +45,32 @@
  *
  *	6	- off switch (?)
  *
+<<<<<<< HEAD
+ * Machines with Quadra-like VIA hardware, except PSC and PMU machines, support
+ * an alternate interrupt mapping, as used by A/UX. It spreads ethernet and
+ * sound out to their own autovector IRQs and gives VIA1 a higher priority:
+ *
+ *	1	- unused (?)
+ *
+ *	3	- on-board SONIC
+ *
+ *	5	- Apple Sound Chip (ASC)
+ *
+ *	6	- VIA1
+ *
+ * For OSS Macintoshes (IIfx only), we apply an interrupt mapping similar to
+ * the Quadra (A/UX) mapping:
+ *
+ *	1	- ISM IOP (ADB)
+ *
+ *	2	- SCSI
+ *
+ *	3	- NuBus
+ *
+ *	4	- SCC IOP
+ *
+ *	6	- VIA1
+=======
  * For OSS Macintoshes (IIfx only at this point):
  *
  *	3	- Nubus interrupt
@@ -57,6 +86,7 @@
  *	5	- ISM IOP (ADB?)
  *
  *	6	- unused
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * For PSC Macintoshes (660AV, 840AV):
  *
@@ -100,6 +130,27 @@
  *   case. They're hidden behind the Nubus slot $C interrupt thus adding a
  *   third layer of indirection. Why oh why did the Apple engineers do that?
  *
+<<<<<<< HEAD
+ */
+
+#include <linux/types.h>
+#include <linux/kernel.h>
+#include <linux/sched.h>
+#include <linux/interrupt.h>
+#include <linux/irq.h>
+#include <linux/delay.h>
+
+#include <asm/irq.h>
+#include <asm/macintosh.h>
+#include <asm/macints.h>
+#include <asm/mac_via.h>
+#include <asm/mac_psc.h>
+#include <asm/mac_oss.h>
+#include <asm/mac_iop.h>
+#include <asm/mac_baboon.h>
+#include <asm/hwtest.h>
+#include <asm/irq_regs.h>
+=======
  * - We support "fast" and "slow" handlers, just like the Amiga port. The
  *   fast handlers are called first and with all interrupts disabled. They
  *   are expected to execute quickly (hence the name). The slow handlers are
@@ -131,10 +182,13 @@
 #include <asm/macints.h>
 #include <asm/irq_regs.h>
 #include <asm/mac_oss.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define SHUTUP_SONIC
 
 /*
+<<<<<<< HEAD
+=======
  * VIA/RBV hooks
  */
 
@@ -182,6 +236,7 @@ extern void baboon_irq_disable(int);
 extern void baboon_irq_clear(int);
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * console_loglevel determines NMI handler function
  */
 
@@ -190,6 +245,17 @@ irqreturn_t mac_debug_handler(int, void *);
 
 /* #define DEBUG_MACINTS */
 
+<<<<<<< HEAD
+static unsigned int mac_irq_startup(struct irq_data *);
+static void mac_irq_shutdown(struct irq_data *);
+
+static struct irq_chip mac_irq_chip = {
+	.name		= "mac",
+	.irq_enable	= mac_irq_enable,
+	.irq_disable	= mac_irq_disable,
+	.irq_startup	= mac_irq_startup,
+	.irq_shutdown	= mac_irq_shutdown,
+=======
 void mac_enable_irq(unsigned int irq);
 void mac_disable_irq(unsigned int irq);
 
@@ -198,6 +264,7 @@ static struct irq_controller mac_irq_controller = {
 	.lock		= __SPIN_LOCK_UNLOCKED(mac_irq_controller.lock),
 	.enable		= mac_enable_irq,
 	.disable	= mac_disable_irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 void __init mac_init_IRQ(void)
@@ -205,7 +272,11 @@ void __init mac_init_IRQ(void)
 #ifdef DEBUG_MACINTS
 	printk("mac_init_IRQ(): Setting things up...\n");
 #endif
+<<<<<<< HEAD
+	m68k_setup_irq_controller(&mac_irq_chip, handle_simple_irq, IRQ_USER,
+=======
 	m68k_setup_irq_controller(&mac_irq_controller, IRQ_USER,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				  NUM_MAC_SOURCES - IRQ_USER);
 	/* Make sure the SONIC interrupt is cleared or things get ugly */
 #ifdef SHUTUP_SONIC
@@ -241,22 +312,36 @@ void __init mac_init_IRQ(void)
 }
 
 /*
+<<<<<<< HEAD
+ *  mac_irq_enable - enable an interrupt source
+ * mac_irq_disable - disable an interrupt source
+=======
  *  mac_enable_irq - enable an interrupt source
  * mac_disable_irq - disable an interrupt source
  *   mac_clear_irq - clears a pending interrupt
  * mac_pending_irq - Returns the pending status of an IRQ (nonzero = pending)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * These routines are just dispatchers to the VIA/OSS/PSC routines.
  */
 
+<<<<<<< HEAD
+void mac_irq_enable(struct irq_data *data)
+{
+	int irq = data->irq;
+=======
 void mac_enable_irq(unsigned int irq)
 {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int irq_src = IRQ_SRC(irq);
 
 	switch(irq_src) {
 	case 1:
+<<<<<<< HEAD
+=======
 		via_irq_enable(irq);
 		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 2:
 	case 7:
 		if (oss_present)
@@ -265,6 +350,10 @@ void mac_enable_irq(unsigned int irq)
 			via_irq_enable(irq);
 		break;
 	case 3:
+<<<<<<< HEAD
+	case 4:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 5:
 	case 6:
 		if (psc_present)
@@ -272,10 +361,13 @@ void mac_enable_irq(unsigned int irq)
 		else if (oss_present)
 			oss_irq_enable(irq);
 		break;
+<<<<<<< HEAD
+=======
 	case 4:
 		if (psc_present)
 			psc_irq_enable(irq);
 		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 8:
 		if (baboon_present)
 			baboon_irq_enable(irq);
@@ -283,14 +375,23 @@ void mac_enable_irq(unsigned int irq)
 	}
 }
 
+<<<<<<< HEAD
+void mac_irq_disable(struct irq_data *data)
+{
+	int irq = data->irq;
+=======
 void mac_disable_irq(unsigned int irq)
 {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int irq_src = IRQ_SRC(irq);
 
 	switch(irq_src) {
 	case 1:
+<<<<<<< HEAD
+=======
 		via_irq_disable(irq);
 		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 2:
 	case 7:
 		if (oss_present)
@@ -299,6 +400,10 @@ void mac_disable_irq(unsigned int irq)
 			via_irq_disable(irq);
 		break;
 	case 3:
+<<<<<<< HEAD
+	case 4:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 5:
 	case 6:
 		if (psc_present)
@@ -306,10 +411,13 @@ void mac_disable_irq(unsigned int irq)
 		else if (oss_present)
 			oss_irq_disable(irq);
 		break;
+<<<<<<< HEAD
+=======
 	case 4:
 		if (psc_present)
 			psc_irq_disable(irq);
 		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 8:
 		if (baboon_present)
 			baboon_irq_disable(irq);
@@ -317,6 +425,29 @@ void mac_disable_irq(unsigned int irq)
 	}
 }
 
+<<<<<<< HEAD
+static unsigned int mac_irq_startup(struct irq_data *data)
+{
+	int irq = data->irq;
+
+	if (IRQ_SRC(irq) == 7 && !oss_present)
+		via_nubus_irq_startup(irq);
+	else
+		mac_irq_enable(data);
+
+	return 0;
+}
+
+static void mac_irq_shutdown(struct irq_data *data)
+{
+	int irq = data->irq;
+
+	if (IRQ_SRC(irq) == 7 && !oss_present)
+		via_nubus_irq_shutdown(irq);
+	else
+		mac_irq_disable(data);
+}
+=======
 void mac_clear_irq(unsigned int irq)
 {
 	switch(IRQ_SRC(irq)) {
@@ -376,6 +507,7 @@ int mac_irq_pending(unsigned int irq)
 	return 0;
 }
 EXPORT_SYMBOL(mac_irq_pending);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static int num_debug[8];
 

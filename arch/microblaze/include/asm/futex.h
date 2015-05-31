@@ -24,7 +24,11 @@
 			.word	1b,4b,2b,4b;				\
 			.previous;"					\
 	: "=&r" (oldval), "=&r" (ret)					\
+<<<<<<< HEAD
+	: "r" (uaddr), "i" (-EFAULT), "r" (oparg)			\
+=======
 	: "b" (uaddr), "i" (-EFAULT), "r" (oparg)			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	);								\
 })
 

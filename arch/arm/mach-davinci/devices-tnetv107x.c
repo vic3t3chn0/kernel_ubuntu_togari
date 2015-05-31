@@ -80,6 +80,10 @@ static struct edma_soc_info edma_cc0_info = {
 	.n_cc			= 1,
 	.queue_tc_mapping	= edma_tc_mapping,
 	.queue_priority_mapping	= edma_priority_mapping,
+<<<<<<< HEAD
+	.default_queue		= EVENTQ_1,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct edma_soc_info *tnetv107x_edma_info[EDMA_MAX_CC] = {

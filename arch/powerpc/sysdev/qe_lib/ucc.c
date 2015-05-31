@@ -18,7 +18,11 @@
 #include <linux/errno.h>
 #include <linux/stddef.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/irq.h>
 #include <asm/io.h>

@@ -14,7 +14,11 @@
 #include <linux/platform_device.h>
 #include <linux/dma-mapping.h>
 #include <linux/string.h>
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
 #include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/amba/bus.h>
 #include <linux/amba/kmi.h>
 #include <linux/amba/clcd.h>
@@ -26,7 +30,10 @@
 
 #include <mach/hardware.h>
 #include <mach/platform.h>
+<<<<<<< HEAD
+=======
 #include <asm/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/setup.h>
 #include <asm/mach-types.h>
 #include <asm/hardware/arm_timer.h>
@@ -34,6 +41,10 @@
 
 #include <mach/cm.h>
 #include <mach/lm.h>
+<<<<<<< HEAD
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/mach/arch.h>
 #include <asm/mach/irq.h>
@@ -347,6 +358,16 @@ static struct mmci_platform_data mmc_data = {
 	.gpio_cd	= -1,
 };
 
+<<<<<<< HEAD
+#define INTEGRATOR_CP_MMC_IRQS	{ IRQ_CP_MMCIINT0, IRQ_CP_MMCIINT1 }
+#define INTEGRATOR_CP_AACI_IRQS	{ IRQ_CP_AACIINT }
+
+static AMBA_APB_DEVICE(mmc, "mb:1c", 0, INTEGRATOR_CP_MMC_BASE,
+	INTEGRATOR_CP_MMC_IRQS, &mmc_data);
+
+static AMBA_APB_DEVICE(aaci, "mb:1d", 0, INTEGRATOR_CP_AACI_BASE,
+	INTEGRATOR_CP_AACI_IRQS, NULL);
+=======
 static struct amba_device mmc_device = {
 	.dev		= {
 		.init_name = "mb:1c",
@@ -373,6 +394,7 @@ static struct amba_device aaci_device = {
 	.irq		= { IRQ_CP_AACIINT, NO_IRQ },
 	.periphid	= 0,
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /*
@@ -425,6 +447,10 @@ static struct clcd_board clcd_data = {
 	.remove		= versatile_clcd_remove_dma,
 };
 
+<<<<<<< HEAD
+static AMBA_AHB_DEVICE(clcd, "mb:c0", 0, INTCP_PA_CLCD_BASE,
+	{ IRQ_CP_CLCDCINT }, &clcd_data);
+=======
 static struct amba_device clcd_device = {
 	.dev		= {
 		.init_name = "mb:c0",
@@ -440,6 +466,7 @@ static struct amba_device clcd_device = {
 	.irq		= { IRQ_CP_CLCDCINT, NO_IRQ },
 	.periphid	= 0,
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct amba_device *amba_devs[] __initdata = {
 	&mmc_device,
@@ -492,11 +519,22 @@ static struct sys_timer cp_timer = {
 
 MACHINE_START(CINTEGRATOR, "ARM-IntegratorCP")
 	/* Maintainer: ARM Ltd/Deep Blue Solutions Ltd */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.reserve	= integrator_reserve,
+	.map_io		= intcp_map_io,
+	.nr_irqs	= NR_IRQS_INTEGRATOR_CP,
+=======
 	.boot_params	= 0x00000100,
 	.reserve	= integrator_reserve,
 	.map_io		= intcp_map_io,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_early	= intcp_init_early,
 	.init_irq	= intcp_init_irq,
 	.timer		= &cp_timer,
 	.init_machine	= intcp_init,
+<<<<<<< HEAD
+	.restart	= integrator_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

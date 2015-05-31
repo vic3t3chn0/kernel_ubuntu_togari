@@ -50,14 +50,23 @@ static struct page **pcpu_get_pages_and_bitmap(struct pcpu_chunk *chunk,
 
 	if (!pages || !bitmap) {
 		if (may_alloc && !pages)
+<<<<<<< HEAD
+			pages = pcpu_mem_zalloc(pages_size);
+		if (may_alloc && !bitmap)
+			bitmap = pcpu_mem_zalloc(bitmap_size);
+=======
 			pages = pcpu_mem_alloc(pages_size);
 		if (may_alloc && !bitmap)
 			bitmap = pcpu_mem_alloc(bitmap_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!pages || !bitmap)
 			return NULL;
 	}
 
+<<<<<<< HEAD
+=======
 	memset(pages, 0, pages_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	bitmap_copy(bitmap, chunk->populated, pcpu_unit_pages);
 
 	*bitmapp = bitmap;
@@ -185,8 +194,12 @@ static void pcpu_unmap_pages(struct pcpu_chunk *chunk,
 				   page_end - page_start);
 	}
 
+<<<<<<< HEAD
+	bitmap_clear(populated, page_start, page_end - page_start);
+=======
 	for (i = page_start; i < page_end; i++)
 		__clear_bit(i, populated);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**

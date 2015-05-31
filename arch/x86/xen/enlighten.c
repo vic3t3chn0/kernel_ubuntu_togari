@@ -62,8 +62,22 @@
 #include <asm/reboot.h>
 #include <asm/stackprotector.h>
 #include <asm/hypervisor.h>
+<<<<<<< HEAD
+#include <asm/mwait.h>
 #include <asm/pci_x86.h>
 
+#ifdef CONFIG_ACPI
+#include <linux/acpi.h>
+#include <asm/acpi.h>
+#include <acpi/pdc_intel.h>
+#include <acpi/processor.h>
+#include <xen/interface/platform.h>
+#endif
+
+=======
+#include <asm/pci_x86.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "xen-ops.h"
 #include "mmu.h"
 #include "multicalls.h"
@@ -129,6 +143,8 @@ static void xen_vcpu_setup(int cpu)
 
 	BUG_ON(HYPERVISOR_shared_info == &xen_dummy_shared_info);
 
+<<<<<<< HEAD
+=======
 	/*
 	 * This path is called twice on PVHVM - first during bootup via
 	 * smp_init -> xen_hvm_cpu_notify, and then if the VCPU is being
@@ -144,6 +160,7 @@ static void xen_vcpu_setup(int cpu)
 		if (per_cpu(xen_vcpu, cpu) == &per_cpu(xen_vcpu_info, cpu))
 			return;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (cpu < MAX_VIRT_CPUS)
 		per_cpu(xen_vcpu,cpu) = &HYPERVISOR_shared_info->vcpu_info[cpu];
 
@@ -213,19 +230,33 @@ static void __init xen_banner(void)
 	       xen_feature(XENFEAT_mmu_pt_update_preserve_ad) ? " (preserve-AD)" : "");
 }
 
+<<<<<<< HEAD
+static __read_mostly unsigned int cpuid_leaf1_edx_mask = ~0;
+static __read_mostly unsigned int cpuid_leaf1_ecx_mask = ~0;
+
+static __read_mostly unsigned int cpuid_leaf1_ecx_set_mask;
+static __read_mostly unsigned int cpuid_leaf5_ecx_val;
+static __read_mostly unsigned int cpuid_leaf5_edx_val;
+
+=======
 #define CPUID_THERM_POWER_LEAF 6
 #define APERFMPERF_PRESENT 0
 
 static __read_mostly unsigned int cpuid_leaf1_edx_mask = ~0;
 static __read_mostly unsigned int cpuid_leaf1_ecx_mask = ~0;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void xen_cpuid(unsigned int *ax, unsigned int *bx,
 		      unsigned int *cx, unsigned int *dx)
 {
 	unsigned maskebx = ~0;
 	unsigned maskecx = ~0;
 	unsigned maskedx = ~0;
+<<<<<<< HEAD
+	unsigned setecx = 0;
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Mask out inconvenient features, to try and disable as many
 	 * unsupported kernel subsystems as possible.
@@ -233,6 +264,19 @@ static void xen_cpuid(unsigned int *ax, unsigned int *bx,
 	switch (*ax) {
 	case 1:
 		maskecx = cpuid_leaf1_ecx_mask;
+<<<<<<< HEAD
+		setecx = cpuid_leaf1_ecx_set_mask;
+		maskedx = cpuid_leaf1_edx_mask;
+		break;
+
+	case CPUID_MWAIT_LEAF:
+		/* Synthesize the values.. */
+		*ax = 0;
+		*bx = 0;
+		*cx = cpuid_leaf5_ecx_val;
+		*dx = cpuid_leaf5_edx_val;
+		return;
+=======
 		maskedx = cpuid_leaf1_edx_mask;
 		break;
 
@@ -240,6 +284,7 @@ static void xen_cpuid(unsigned int *ax, unsigned int *bx,
 		/* Disabling APERFMPERF for kernel usage */
 		maskecx = ~(1 << APERFMPERF_PRESENT);
 		break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	case 0xb:
 		/* Suppress extended topology stuff */
@@ -256,9 +301,82 @@ static void xen_cpuid(unsigned int *ax, unsigned int *bx,
 
 	*bx &= maskebx;
 	*cx &= maskecx;
+<<<<<<< HEAD
+	*cx |= setecx;
+	*dx &= maskedx;
+
+}
+
+static bool __init xen_check_mwait(void)
+{
+#if defined(CONFIG_ACPI) && !defined(CONFIG_ACPI_PROCESSOR_AGGREGATOR) && \
+	!defined(CONFIG_ACPI_PROCESSOR_AGGREGATOR_MODULE)
+	struct xen_platform_op op = {
+		.cmd			= XENPF_set_processor_pminfo,
+		.u.set_pminfo.id	= -1,
+		.u.set_pminfo.type	= XEN_PM_PDC,
+	};
+	uint32_t buf[3];
+	unsigned int ax, bx, cx, dx;
+	unsigned int mwait_mask;
+
+	/* We need to determine whether it is OK to expose the MWAIT
+	 * capability to the kernel to harvest deeper than C3 states from ACPI
+	 * _CST using the processor_harvest_xen.c module. For this to work, we
+	 * need to gather the MWAIT_LEAF values (which the cstate.c code
+	 * checks against). The hypervisor won't expose the MWAIT flag because
+	 * it would break backwards compatibility; so we will find out directly
+	 * from the hardware and hypercall.
+	 */
+	if (!xen_initial_domain())
+		return false;
+
+	ax = 1;
+	cx = 0;
+
+	native_cpuid(&ax, &bx, &cx, &dx);
+
+	mwait_mask = (1 << (X86_FEATURE_EST % 32)) |
+		     (1 << (X86_FEATURE_MWAIT % 32));
+
+	if ((cx & mwait_mask) != mwait_mask)
+		return false;
+
+	/* We need to emulate the MWAIT_LEAF and for that we need both
+	 * ecx and edx. The hypercall provides only partial information.
+	 */
+
+	ax = CPUID_MWAIT_LEAF;
+	bx = 0;
+	cx = 0;
+	dx = 0;
+
+	native_cpuid(&ax, &bx, &cx, &dx);
+
+	/* Ask the Hypervisor whether to clear ACPI_PDC_C_C2C3_FFH. If so,
+	 * don't expose MWAIT_LEAF and let ACPI pick the IOPORT version of C3.
+	 */
+	buf[0] = ACPI_PDC_REVISION_ID;
+	buf[1] = 1;
+	buf[2] = (ACPI_PDC_C_CAPABILITY_SMP | ACPI_PDC_EST_CAPABILITY_SWSMP);
+
+	set_xen_guest_handle(op.u.set_pminfo.pdc, buf);
+
+	if ((HYPERVISOR_dom0_op(&op) == 0) &&
+	    (buf[2] & (ACPI_PDC_C_C1_FFH | ACPI_PDC_C_C2C3_FFH))) {
+		cpuid_leaf5_ecx_val = cx;
+		cpuid_leaf5_edx_val = dx;
+	}
+	return true;
+#else
+	return false;
+#endif
+}
+=======
 	*dx &= maskedx;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __init xen_init_cpuid_mask(void)
 {
 	unsigned int ax, bx, cx, dx;
@@ -275,6 +393,10 @@ static void __init xen_init_cpuid_mask(void)
 			~((1 << X86_FEATURE_APIC) |  /* disable local APIC */
 			  (1 << X86_FEATURE_ACPI));  /* disable ACPI */
 	ax = 1;
+<<<<<<< HEAD
+	cx = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	xen_cpuid(&ax, &bx, &cx, &dx);
 
 	xsave_mask =
@@ -284,6 +406,11 @@ static void __init xen_init_cpuid_mask(void)
 	/* Xen will set CR4.OSXSAVE if supported and not disabled by force */
 	if ((cx & xsave_mask) != xsave_mask)
 		cpuid_leaf1_ecx_mask &= ~xsave_mask; /* disable XSAVE & OSXSAVE */
+<<<<<<< HEAD
+	if (xen_check_mwait())
+		cpuid_leaf1_ecx_set_mask = (1 << (X86_FEATURE_MWAIT % 32));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void xen_set_debugreg(int reg, unsigned long val)
@@ -365,6 +492,11 @@ static void xen_set_ldt(const void *addr, unsigned entries)
 	struct mmuext_op *op;
 	struct multicall_space mcs = xen_mc_entry(sizeof(*op));
 
+<<<<<<< HEAD
+	trace_xen_cpu_set_ldt(addr, entries);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	op = mcs.args;
 	op->cmd = MMUEXT_SET_LDT;
 	op->arg1.linear_addr = (unsigned long)addr;
@@ -520,6 +652,11 @@ static void xen_write_ldt_entry(struct desc_struct *dt, int entrynum,
 	xmaddr_t mach_lp = arbitrary_virt_to_machine(&dt[entrynum]);
 	u64 entry = *(u64 *)ptr;
 
+<<<<<<< HEAD
+	trace_xen_cpu_write_ldt_entry(dt, entrynum, entry);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	preempt_disable();
 
 	xen_mc_flush();
@@ -589,6 +726,11 @@ static void xen_write_idt_entry(gate_desc *dt, int entrynum, const gate_desc *g)
 	unsigned long p = (unsigned long)&dt[entrynum];
 	unsigned long start, end;
 
+<<<<<<< HEAD
+	trace_xen_cpu_write_idt_entry(dt, entrynum, g);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	preempt_disable();
 
 	start = __this_cpu_read(idt_desc.address);
@@ -643,6 +785,11 @@ static void xen_load_idt(const struct desc_ptr *desc)
 	static DEFINE_SPINLOCK(lock);
 	static struct trap_info traps[257];
 
+<<<<<<< HEAD
+	trace_xen_cpu_load_idt(desc);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spin_lock(&lock);
 
 	__get_cpu_var(idt_desc) = *desc;
@@ -661,6 +808,11 @@ static void xen_load_idt(const struct desc_ptr *desc)
 static void xen_write_gdt_entry(struct desc_struct *dt, int entry,
 				const void *desc, int type)
 {
+<<<<<<< HEAD
+	trace_xen_cpu_write_gdt_entry(dt, entry, desc, type);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	preempt_disable();
 
 	switch (type) {
@@ -689,6 +841,11 @@ static void xen_write_gdt_entry(struct desc_struct *dt, int entry,
 static void __init xen_write_gdt_entry_boot(struct desc_struct *dt, int entry,
 					    const void *desc, int type)
 {
+<<<<<<< HEAD
+	trace_xen_cpu_write_gdt_entry(dt, entry, desc, type);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	switch (type) {
 	case DESC_LDT:
 	case DESC_TSS:
@@ -708,7 +865,13 @@ static void __init xen_write_gdt_entry_boot(struct desc_struct *dt, int entry,
 static void xen_load_sp0(struct tss_struct *tss,
 			 struct thread_struct *thread)
 {
+<<<<<<< HEAD
+	struct multicall_space mcs;
+
+	mcs = xen_mc_entry(0);
+=======
 	struct multicall_space mcs = xen_mc_entry(0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	MULTI_stack_switch(mcs.mc, __KERNEL_DS, thread->sp0);
 	xen_mc_issue(PARAVIRT_LAZY_CPU);
 }
@@ -727,9 +890,46 @@ static void xen_io_delay(void)
 }
 
 #ifdef CONFIG_X86_LOCAL_APIC
+<<<<<<< HEAD
+static unsigned long xen_set_apic_id(unsigned int x)
+{
+	WARN_ON(1);
+	return x;
+}
+static unsigned int xen_get_apic_id(unsigned long x)
+{
+	return ((x)>>24) & 0xFFu;
+}
+static u32 xen_apic_read(u32 reg)
+{
+	struct xen_platform_op op = {
+		.cmd = XENPF_get_cpuinfo,
+		.interface_version = XENPF_INTERFACE_VERSION,
+		.u.pcpu_info.xen_cpuid = 0,
+	};
+	int ret = 0;
+
+	/* Shouldn't need this as APIC is turned off for PV, and we only
+	 * get called on the bootup processor. But just in case. */
+	if (!xen_initial_domain() || smp_processor_id())
+		return 0;
+
+	if (reg == APIC_LVR)
+		return 0x10;
+
+	if (reg != APIC_ID)
+		return 0;
+
+	ret = HYPERVISOR_dom0_op(&op);
+	if (ret)
+		return 0;
+
+	return op.u.pcpu_info.apic_id << 24;
+=======
 static u32 xen_apic_read(u32 reg)
 {
 	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void xen_apic_write(u32 reg, u32 val)
@@ -767,6 +967,11 @@ static void set_xen_basic_apic_ops(void)
 	apic->icr_write = xen_apic_icr_write;
 	apic->wait_icr_idle = xen_apic_wait_icr_idle;
 	apic->safe_wait_icr_idle = xen_safe_apic_wait_icr_idle;
+<<<<<<< HEAD
+	apic->set_apic_id = xen_set_apic_id;
+	apic->get_apic_id = xen_get_apic_id;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #endif
@@ -786,11 +991,19 @@ static DEFINE_PER_CPU(unsigned long, xen_cr0_value);
 
 static unsigned long xen_read_cr0(void)
 {
+<<<<<<< HEAD
+	unsigned long cr0 = this_cpu_read(xen_cr0_value);
+
+	if (unlikely(cr0 == 0)) {
+		cr0 = native_read_cr0();
+		this_cpu_write(xen_cr0_value, cr0);
+=======
 	unsigned long cr0 = percpu_read(xen_cr0_value);
 
 	if (unlikely(cr0 == 0)) {
 		cr0 = native_read_cr0();
 		percpu_write(xen_cr0_value, cr0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	return cr0;
@@ -800,7 +1013,11 @@ static void xen_write_cr0(unsigned long cr0)
 {
 	struct multicall_space mcs;
 
+<<<<<<< HEAD
+	this_cpu_write(xen_cr0_value, cr0);
+=======
 	percpu_write(xen_cr0_value, cr0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Only pay attention to cr0.TS; everything else is
 	   ignored. */
@@ -818,6 +1035,9 @@ static void xen_write_cr4(unsigned long cr4)
 
 	native_write_cr4(cr4);
 }
+<<<<<<< HEAD
+
+=======
 #ifdef CONFIG_X86_64
 static inline unsigned long xen_read_cr8(void)
 {
@@ -828,6 +1048,7 @@ static inline void xen_write_cr8(unsigned long val)
 	BUG_ON(val);
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int xen_write_msr_safe(unsigned int msr, unsigned low, unsigned high)
 {
 	int ret;
@@ -894,7 +1115,11 @@ void xen_setup_shared_info(void)
 	xen_setup_mfn_list_list();
 }
 
+<<<<<<< HEAD
+/* This is called once we have the cpu_possible_mask */
+=======
 /* This is called once we have the cpu_possible_map */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void xen_setup_vcpu_info_placement(void)
 {
 	int cpu;
@@ -970,6 +1195,13 @@ static const struct pv_info xen_info __initconst = {
 	.paravirt_enabled = 1,
 	.shared_kernel_pmd = 0,
 
+<<<<<<< HEAD
+#ifdef CONFIG_X86_64
+	.extra_user_64bit_cs = FLAT_USER_CS64,
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name = "Xen",
 };
 
@@ -992,11 +1224,14 @@ static const struct pv_cpu_ops xen_cpu_ops __initconst = {
 	.read_cr4_safe = native_read_cr4_safe,
 	.write_cr4 = xen_write_cr4,
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_X86_64
 	.read_cr8 = xen_read_cr8,
 	.write_cr8 = xen_write_cr8,
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.wbinvd = native_wbinvd,
 
 	.read_msr = native_read_msr_safe,
@@ -1004,8 +1239,11 @@ static const struct pv_cpu_ops xen_cpu_ops __initconst = {
 	.read_tsc = native_read_tsc,
 	.read_pmc = native_read_pmc,
 
+<<<<<<< HEAD
+=======
 	.read_tscp = native_read_tscp,
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.iret = xen_iret,
 	.irq_enable_sysexit = xen_sysexit,
 #ifdef CONFIG_X86_64
@@ -1162,7 +1400,13 @@ asmlinkage void __init xen_start_kernel(void)
 
 	/* Prevent unwanted bits from being set in PTEs. */
 	__supported_pte_mask &= ~_PAGE_GLOBAL;
+<<<<<<< HEAD
+#if 0
 	if (!xen_initial_domain())
+#endif
+=======
+	if (!xen_initial_domain())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__supported_pte_mask &= ~(_PAGE_PWT | _PAGE_PCD);
 
 	__supported_pte_mask |= _PAGE_IOMAP;
@@ -1225,10 +1469,13 @@ asmlinkage void __init xen_start_kernel(void)
 
 	pgd = (pgd_t *)xen_start_info->pt_base;
 
+<<<<<<< HEAD
+=======
 	if (!xen_initial_domain())
 		__supported_pte_mask &= ~(_PAGE_PWT | _PAGE_PCD);
 
 	__supported_pte_mask |= _PAGE_IOMAP;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Don't do the full vcpu_info placement stuff until we have a
 	   possible map and a non-dummy shared_info. */
 	per_cpu(xen_vcpu, 0) = &HYPERVISOR_shared_info->vcpu_info[0];
@@ -1236,8 +1483,11 @@ asmlinkage void __init xen_start_kernel(void)
 	local_irq_disable();
 	early_boot_irqs_disabled = true;
 
+<<<<<<< HEAD
+=======
 	memblock_init();
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	xen_raw_console_write("mapping kernel into physical memory\n");
 	pgd = xen_setup_kernel_pagetable(pgd, xen_start_info->nr_pages);
 	xen_ident_map_ISA();
@@ -1380,11 +1630,16 @@ static int __cpuinit xen_hvm_cpu_notify(struct notifier_block *self,
 	switch (action) {
 	case CPU_UP_PREPARE:
 		xen_vcpu_setup(cpu);
+<<<<<<< HEAD
+		if (xen_have_vector_callback)
+			xen_init_lock_cpu(cpu);
+=======
 		if (xen_have_vector_callback) {
 			xen_init_lock_cpu(cpu);
 			if (xen_feature(XENFEAT_hvm_safe_pvclock))
 				xen_setup_timer(cpu);
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	default:
 		break;

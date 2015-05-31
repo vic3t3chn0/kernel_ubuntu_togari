@@ -17,6 +17,14 @@
  */
 
 #include <linux/module.h>
+<<<<<<< HEAD
+#include <linux/blkdev.h>
+#include <linux/parser.h>
+#include <linux/exportfs.h>
+#include <linux/statfs.h>
+#include <linux/random.h>
+#include <linux/mount.h>
+=======
 #include <linux/string.h>
 #include <linux/fs.h>
 #include <linux/time.h>
@@ -33,6 +41,7 @@
 #include <linux/random.h>
 #include <linux/mount.h>
 #include <linux/namei.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/quotaops.h>
 #include <linux/seq_file.h>
 #include <linux/log2.h>
@@ -40,6 +49,12 @@
 
 #include <asm/uaccess.h>
 
+<<<<<<< HEAD
+#define CREATE_TRACE_POINTS
+
+#include "ext3.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "xattr.h"
 #include "acl.h"
 #include "namei.h"
@@ -371,7 +386,11 @@ static struct block_device *ext3_blkdev_get(dev_t dev, struct super_block *sb)
 	return bdev;
 
 fail:
+<<<<<<< HEAD
+	ext3_msg(sb, "error: failed to open journal device %s: %ld",
+=======
 	ext3_msg(sb, KERN_ERR, "error: failed to open journal device %s: %ld",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__bdevname(dev, b), PTR_ERR(bdev));
 
 	return NULL;
@@ -497,10 +516,24 @@ static struct inode *ext3_alloc_inode(struct super_block *sb)
 	return &ei->vfs_inode;
 }
 
+<<<<<<< HEAD
+static int ext3_drop_inode(struct inode *inode)
+{
+	int drop = generic_drop_inode(inode);
+
+	trace_ext3_drop_inode(inode, drop);
+	return drop;
+}
+
+static void ext3_i_callback(struct rcu_head *head)
+{
+	struct inode *inode = container_of(head, struct inode, i_rcu);
+=======
 static void ext3_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
 	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kmem_cache_free(ext3_inode_cachep, EXT3_I(inode));
 }
 
@@ -600,9 +633,15 @@ static char *data_mode_string(unsigned long mode)
  *  - it's set to a non-default value OR
  *  - if the per-sb default is different from the global default
  */
+<<<<<<< HEAD
+static int ext3_show_options(struct seq_file *seq, struct dentry *root)
+{
+	struct super_block *sb = root->d_sb;
+=======
 static int ext3_show_options(struct seq_file *seq, struct vfsmount *vfs)
 {
 	struct super_block *sb = vfs->mnt_sb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct ext3_sb_info *sbi = EXT3_SB(sb);
 	struct ext3_super_block *es = sbi->s_es;
 	unsigned long def_mount_opts;
@@ -641,8 +680,11 @@ static int ext3_show_options(struct seq_file *seq, struct vfsmount *vfs)
 		seq_puts(seq, ",nouid32");
 	if (test_opt(sb, DEBUG))
 		seq_puts(seq, ",debug");
+<<<<<<< HEAD
+=======
 	if (test_opt(sb, OLDALLOC))
 		seq_puts(seq, ",oldalloc");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_EXT3_FS_XATTR
 	if (test_opt(sb, XATTR_USER))
 		seq_puts(seq, ",user_xattr");
@@ -788,6 +830,10 @@ static const struct super_operations ext3_sops = {
 	.destroy_inode	= ext3_destroy_inode,
 	.write_inode	= ext3_write_inode,
 	.dirty_inode	= ext3_dirty_inode,
+<<<<<<< HEAD
+	.drop_inode	= ext3_drop_inode,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.evict_inode	= ext3_evict_inode,
 	.put_super	= ext3_put_super,
 	.sync_fs	= ext3_sync_fs,
@@ -892,7 +938,11 @@ static ext3_fsblk_t get_sb_block(void **data, struct super_block *sb)
 	/*todo: use simple_strtoll with >32bit ext3 */
 	sb_block = simple_strtoul(options, &options, 0);
 	if (*options && *options != ',') {
+<<<<<<< HEAD
+		ext3_msg(sb, "error: invalid sb specification: %s",
+=======
 		ext3_msg(sb, KERN_ERR, "error: invalid sb specification: %s",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       (char *) *data);
 		return 1;
 	}
@@ -1037,10 +1087,19 @@ static int parse_options (char *options, struct super_block *sb,
 			set_opt (sbi->s_mount_opt, DEBUG);
 			break;
 		case Opt_oldalloc:
+<<<<<<< HEAD
+			ext3_msg(sb, KERN_WARNING,
+				"Ignoring deprecated oldalloc option");
+			break;
+		case Opt_orlov:
+			ext3_msg(sb, KERN_WARNING,
+				"Ignoring deprecated orlov option");
+=======
 			set_opt (sbi->s_mount_opt, OLDALLOC);
 			break;
 		case Opt_orlov:
 			clear_opt (sbi->s_mount_opt, OLDALLOC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 #ifdef CONFIG_EXT3_FS_XATTR
 		case Opt_user_xattr:
@@ -1718,6 +1777,11 @@ static int ext3_fill_super (struct super_block *sb, void *data, int silent)
 	sbi->s_resuid = le16_to_cpu(es->s_def_resuid);
 	sbi->s_resgid = le16_to_cpu(es->s_def_resgid);
 
+<<<<<<< HEAD
+	/* enable barriers by default */
+	set_opt(sbi->s_mount_opt, BARRIER);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	set_opt(sbi->s_mount_opt, RESERVATION);
 
 	if (!parse_options ((char *) data, sb, &journal_inum, &journal_devnum,
@@ -2033,10 +2097,16 @@ static int ext3_fill_super (struct super_block *sb, void *data, int silent)
 		ext3_msg(sb, KERN_ERR, "error: corrupt root inode, run e2fsck");
 		goto failed_mount3;
 	}
+<<<<<<< HEAD
+	sb->s_root = d_make_root(root);
+	if (!sb->s_root) {
+		ext3_msg(sb, KERN_ERR, "error: get root dentry failed");
+=======
 	sb->s_root = d_alloc_root(root);
 	if (!sb->s_root) {
 		ext3_msg(sb, KERN_ERR, "error: get root dentry failed");
 		iput(root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = -ENOMEM;
 		goto failed_mount3;
 	}
@@ -2046,9 +2116,16 @@ static int ext3_fill_super (struct super_block *sb, void *data, int silent)
 	EXT3_SB(sb)->s_mount_state |= EXT3_ORPHAN_FS;
 	ext3_orphan_cleanup(sb, es);
 	EXT3_SB(sb)->s_mount_state &= ~EXT3_ORPHAN_FS;
+<<<<<<< HEAD
+	if (needs_recovery) {
+		ext3_mark_recovery_complete(sb, es);
+		ext3_msg(sb, KERN_INFO, "recovery complete");
+	}
+=======
 	if (needs_recovery)
 		ext3_msg(sb, KERN_INFO, "recovery complete");
 	ext3_mark_recovery_complete(sb, es);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ext3_msg(sb, KERN_INFO, "mounted filesystem with %s data mode",
 		test_opt(sb,DATA_FLAGS) == EXT3_MOUNT_JOURNAL_DATA ? "journal":
 		test_opt(sb,DATA_FLAGS) == EXT3_MOUNT_ORDERED_DATA ? "ordered":
@@ -2216,11 +2293,19 @@ static journal_t *ext3_get_dev_journal(struct super_block *sb,
 		goto out_bdev;
 	}
 	journal->j_private = sb;
+<<<<<<< HEAD
+	if (!bh_uptodate_or_lock(journal->j_sb_buffer)) {
+		if (bh_submit_read(journal->j_sb_buffer)) {
+			ext3_msg(sb, KERN_ERR, "I/O error on journal device");
+			goto out_journal;
+		}
+=======
 	ll_rw_block(READ, 1, &journal->j_sb_buffer);
 	wait_on_buffer(journal->j_sb_buffer);
 	if (!buffer_uptodate(journal->j_sb_buffer)) {
 		ext3_msg(sb, KERN_ERR, "I/O error on journal device");
 		goto out_journal;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	if (be32_to_cpu(journal->j_superblock->s_nr_users) != 1) {
 		ext3_msg(sb, KERN_ERR,
@@ -2507,6 +2592,10 @@ static int ext3_sync_fs(struct super_block *sb, int wait)
 {
 	tid_t target;
 
+<<<<<<< HEAD
+	trace_ext3_sync_fs(sb, wait);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (journal_start_commit(EXT3_SB(sb)->s_journal, &target)) {
 		if (wait)
 			log_wait_commit(EXT3_SB(sb)->s_journal, target);
@@ -2654,13 +2743,21 @@ static int ext3_remount (struct super_block * sb, int * flags, char * data)
 			/*
 			 * If we have an unprocessed orphan list hanging
 			 * around from a previously readonly bdev mount,
+<<<<<<< HEAD
+			 * require a full umount & mount for now.
+=======
 			 * require a full umount/remount for now.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			 */
 			if (es->s_last_orphan) {
 				ext3_msg(sb, KERN_WARNING, "warning: couldn't "
 				       "remount RDWR because of unprocessed "
 				       "orphan inode list.  Please "
+<<<<<<< HEAD
+				       "umount & mount instead.");
+=======
 				       "umount/remount instead.");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				err = -EINVAL;
 				goto restore_opts;
 			}
@@ -2895,7 +2992,11 @@ static int ext3_quota_on(struct super_block *sb, int type, int format_id,
 		return -EINVAL;
 
 	/* Quotafile not on the same filesystem? */
+<<<<<<< HEAD
+	if (path->dentry->d_sb != sb)
+=======
 	if (path->mnt->mnt_sb != sb)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EXDEV;
 	/* Journaling quota? */
 	if (EXT3_SB(sb)->s_qf_names[type]) {

@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty */
+=======
 /*
  * arch/arm/mach-ep93xx/include/mach/gpio.h
  */
@@ -118,3 +121,4 @@
 #define irq_to_gpio(irq)	((irq) - gpio_to_irq(0))
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

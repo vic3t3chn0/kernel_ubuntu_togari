@@ -24,6 +24,16 @@ struct clk_lookup {
 	struct clk		*clk;
 };
 
+<<<<<<< HEAD
+#define CLKDEV_INIT(d, n, c)	\
+	{			\
+		.dev_id = d,	\
+		.con_id = n,	\
+		.clk = c,	\
+	}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct clk_lookup *clkdev_alloc(struct clk *clk, const char *con_id,
 	const char *dev_fmt, ...);
 

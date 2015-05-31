@@ -11,6 +11,16 @@ if ARCH_S5PV210
 
 config CPU_S5PV210
 	bool
+<<<<<<< HEAD
+	select SAMSUNG_DMADEV
+	select S5P_EXT_INT
+	select S5P_HRT
+	select S5P_PM if PM
+	select S5P_SLEEP if PM
+	help
+	  Enable S5PV210 CPU support
+
+=======
 	select S3C_PL330_DMA
 	select S5P_EXT_INT
 	select S5P_HRT
@@ -23,6 +33,7 @@ config CPU_S5PC110
 	help
 	  S5PC110(MCP) is one of package option of S5PV210.
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config S5PV210_SETUP_I2C1
 	bool
 	help
@@ -64,6 +75,19 @@ config S5PV210_SETUP_FIMC
 	help
 	  Common setup code for the camera interfaces.
 
+<<<<<<< HEAD
+config S5PV210_SETUP_SPI
+	bool
+	help
+	  Common setup code for SPI GPIO configurations.
+
+config S5PV210_SETUP_USB_PHY
+	bool
+	help
+	  Common setup code for USB PHY controller
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 menu "S5PC110 Machines"
 
 config MACH_AQUILA
@@ -95,14 +119,27 @@ config MACH_GONI
 	select S3C_DEV_HSMMC2
 	select S3C_DEV_I2C1
 	select S3C_DEV_I2C2
+<<<<<<< HEAD
+	select S5P_DEV_MFC
 	select S3C_DEV_USB_HSOTG
 	select S5P_DEV_ONENAND
 	select SAMSUNG_DEV_KEYPAD
+	select S5P_DEV_TV
+=======
+	select S3C_DEV_USB_HSOTG
+	select S5P_DEV_ONENAND
+	select SAMSUNG_DEV_KEYPAD
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select S5PV210_SETUP_FB_24BPP
 	select S5PV210_SETUP_I2C1
 	select S5PV210_SETUP_I2C2
 	select S5PV210_SETUP_KEYPAD
 	select S5PV210_SETUP_SDHCI
+<<<<<<< HEAD
+	select S5PV210_SETUP_FIMC
+	select S5PV210_SETUP_USB_PHY
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Machine support for Samsung GONI board
 	  S5PC110(MCP) is one of package option of S5PV210
@@ -110,16 +147,29 @@ config MACH_GONI
 config MACH_SMDKC110
 	bool "SMDKC110"
 	select CPU_S5PV210
+<<<<<<< HEAD
+=======
 	select CPU_S5PC110
 	select S3C_DEV_FB
 	select S3C_DEV_HSMMC
 	select S3C_DEV_HSMMC1
 	select S3C_DEV_HSMMC2
 	select S3C_DEV_HSMMC3
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select S3C_DEV_I2C1
 	select S3C_DEV_I2C2
 	select S3C_DEV_RTC
 	select S3C_DEV_WDT
+<<<<<<< HEAD
+	select S5P_DEV_FIMC0
+	select S5P_DEV_FIMC1
+	select S5P_DEV_FIMC2
+	select S5P_DEV_MFC
+	select SAMSUNG_DEV_IDE
+	select S5PV210_SETUP_I2C1
+	select S5PV210_SETUP_I2C2
+	select S5PV210_SETUP_IDE
+=======
 	select SAMSUNG_DEV_ADC
 	select SAMSUNG_DEV_BACKLIGHT
 	select SAMSUNG_DEV_IDE
@@ -133,6 +183,7 @@ config MACH_SMDKC110
 	select S5PV210_SETUP_KEYPAD
 	select S5PV210_SETUP_SDHCI
 	select HAVE_PWM
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Machine support for Samsung SMDKC110
 	  S5PC110(MCP) is one of package option of S5PV210
@@ -153,6 +204,14 @@ config MACH_SMDKV210
 	select S3C_DEV_I2C2
 	select S3C_DEV_RTC
 	select S3C_DEV_WDT
+<<<<<<< HEAD
+	select S5P_DEV_FIMC0
+	select S5P_DEV_FIMC1
+	select S5P_DEV_FIMC2
+	select S5P_DEV_JPEG
+	select S5P_DEV_MFC
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SAMSUNG_DEV_ADC
 	select SAMSUNG_DEV_BACKLIGHT
 	select SAMSUNG_DEV_IDE
@@ -165,7 +224,10 @@ config MACH_SMDKV210
 	select S5PV210_SETUP_IDE
 	select S5PV210_SETUP_KEYPAD
 	select S5PV210_SETUP_SDHCI
+<<<<<<< HEAD
+=======
 	select HAVE_PWM
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Machine support for Samsung SMDKV210
 
@@ -189,9 +251,12 @@ config MACH_TORBRECK
 
 endmenu
 
+<<<<<<< HEAD
+=======
 config S5PV210_PM
 	bool
 	help
 	  Power Management code common to S5PV210
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 endif

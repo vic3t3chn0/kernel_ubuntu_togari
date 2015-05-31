@@ -11,14 +11,22 @@ static int uptime_proc_show(struct seq_file *m, void *v)
 {
 	struct timespec uptime;
 	struct timespec idle;
+<<<<<<< HEAD
+	u64 idletime;
+=======
 	cputime64_t idletime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u64 nsec;
 	u32 rem;
 	int i;
 
 	idletime = 0;
 	for_each_possible_cpu(i)
+<<<<<<< HEAD
+		idletime += (__force u64) kcpustat_cpu(i).cpustat[CPUTIME_IDLE];
+=======
 		idletime = cputime64_add(idletime, kstat_cpu(i).cpustat.idle);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	do_posix_clock_monotonic_gettime(&uptime);
 	monotonic_to_bootbased(&uptime);

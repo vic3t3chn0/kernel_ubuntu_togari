@@ -13,8 +13,14 @@
  */
 
 #include <linux/errno.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+#include <linux/spinlock.h>
+#include <linux/export.h>
+=======
 #include <linux/spinlock.h>
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/processor.h>
 #include <asm/cputable.h>

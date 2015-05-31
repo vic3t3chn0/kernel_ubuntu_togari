@@ -116,6 +116,13 @@ findFile () {
 		ext=".bz2"
 		name="bzip2"
 		uncomp="bunzip2 -dc"
+<<<<<<< HEAD
+  elif [ -r ${filebase}.xz ]; then
+                ext=".xz"
+                name="xz"
+                uncomp="xz -dc"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
   elif [ -r ${filebase}.zip ]; then
 		ext=".zip"
 		name="zip"

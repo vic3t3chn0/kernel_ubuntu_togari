@@ -7,7 +7,11 @@
 #include <linux/uio.h>
 #include <linux/rcupdate.h>
 
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define AIO_MAXSEGS		4
 #define AIO_KIOGRP_NR_ATOMIC	8
@@ -117,6 +121,10 @@ struct kiocb {
 
 	struct list_head	ki_list;	/* the aio core uses this
 						 * for cancellation */
+<<<<<<< HEAD
+	struct list_head	ki_batch;	/* batch allocation */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * If the aio_resfd field of the userspace iocb is not zero,

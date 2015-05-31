@@ -222,6 +222,13 @@ struct omapfb_display_info {
 
 #include <plat/board.h>
 
+<<<<<<< HEAD
+struct omapfb_platform_data {
+	struct omap_lcd_config		lcd;
+};
+
+void __init omapfb_set_lcd_config(const struct omap_lcd_config *config);
+=======
 #ifdef CONFIG_ARCH_OMAP1
 #define OMAPFB_PLANE_NUM		1
 #else
@@ -257,6 +264,7 @@ struct omapfb_platform_data {
 extern void omapfb_set_platform_data(struct omapfb_platform_data *data);
 extern void omapfb_set_ctrl_platform_data(void *pdata);
 extern void omapfb_reserve_sdram_memblock(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif
 

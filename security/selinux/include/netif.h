@@ -8,7 +8,11 @@
  *
  * Copyright (C) 2003 Red Hat, Inc., James Morris <jmorris@redhat.com>
  * Copyright (C) 2007 Hewlett-Packard Development Company, L.P.
+<<<<<<< HEAD
+ *                    Paul Moore <paul@paul-moore.com>
+=======
  *                    Paul Moore, <paul.moore@hp.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2,

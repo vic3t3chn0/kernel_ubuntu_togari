@@ -16,6 +16,10 @@
 struct cpuinfo_arm {
 	struct cpu	cpu;
 #ifdef CONFIG_SMP
+<<<<<<< HEAD
+	struct task_struct *idle;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int	loops_per_jiffy;
 #endif
 };

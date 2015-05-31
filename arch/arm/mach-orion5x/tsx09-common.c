@@ -15,6 +15,10 @@
 #include <linux/mv643xx_eth.h>
 #include <linux/timex.h>
 #include <linux/serial_reg.h>
+<<<<<<< HEAD
+#include <mach/orion5x.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "tsx09-common.h"
 #include "common.h"
 

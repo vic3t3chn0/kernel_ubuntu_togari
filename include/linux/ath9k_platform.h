@@ -30,6 +30,11 @@ struct ath9k_platform_data {
 	u32 gpio_val;
 
 	bool is_clk_25mhz;
+<<<<<<< HEAD
+	int (*get_mac_revision)(void);
+	int (*external_reset)(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #endif /* _LINUX_ATH9K_PLATFORM_H */

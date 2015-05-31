@@ -17,7 +17,11 @@ struct dst_ops {
 	int			(*gc)(struct dst_ops *ops);
 	struct dst_entry *	(*check)(struct dst_entry *, __u32 cookie);
 	unsigned int		(*default_advmss)(const struct dst_entry *);
+<<<<<<< HEAD
+	unsigned int		(*mtu)(const struct dst_entry *);
+=======
 	unsigned int		(*default_mtu)(const struct dst_entry *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u32 *			(*cow_metrics)(struct dst_entry *, unsigned long);
 	void			(*destroy)(struct dst_entry *);
 	void			(*ifdown)(struct dst_entry *,
@@ -26,6 +30,10 @@ struct dst_ops {
 	void			(*link_failure)(struct sk_buff *);
 	void			(*update_pmtu)(struct dst_entry *dst, u32 mtu);
 	int			(*local_out)(struct sk_buff *skb);
+<<<<<<< HEAD
+	struct neighbour *	(*neigh_lookup)(const struct dst_entry *dst, const void *daddr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	struct kmem_cache	*kmem_cachep;
 

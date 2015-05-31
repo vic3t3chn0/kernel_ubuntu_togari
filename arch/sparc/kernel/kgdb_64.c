@@ -7,6 +7,10 @@
 #include <linux/kdebug.h>
 #include <linux/ftrace.h>
 
+<<<<<<< HEAD
+#include <asm/cacheflush.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/kdebug.h>
 #include <asm/ptrace.h>
 #include <asm/irq.h>

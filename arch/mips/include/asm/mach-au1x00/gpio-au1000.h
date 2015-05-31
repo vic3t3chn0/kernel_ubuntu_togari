@@ -347,6 +347,8 @@ static inline int alchemy_gpio2_to_irq(int gpio)
 
 /**********************************************************************/
 
+<<<<<<< HEAD
+=======
 /* On Au1000, Au1500 and Au1100 GPIOs won't work as inputs before
  * SYS_PININPUTEN is written to at least once.  On Au1550/Au1200 this
  * register enables use of GPIOs as wake source.
@@ -358,6 +360,7 @@ static inline void alchemy_gpio1_input_enable(void)
 	wmb();
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* GPIO2 shared interrupts and control */
 
 static inline void __alchemy_gpio2_mod_int(int gpio2, int en)
@@ -561,6 +564,10 @@ static inline int alchemy_irq_to_gpio(int irq)
 
 #ifndef CONFIG_GPIOLIB
 
+<<<<<<< HEAD
+#ifdef CONFIG_ALCHEMY_GPIOINT_AU1000
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef CONFIG_ALCHEMY_GPIO_INDIRECT	/* case (4) */
 
@@ -665,6 +672,9 @@ static inline void gpio_unexport(unsigned gpio)
 
 #endif	/* !CONFIG_ALCHEMY_GPIO_INDIRECT */
 
+<<<<<<< HEAD
+#endif	/* CONFIG_ALCHEMY_GPIOINT_AU1000 */
+=======
 
 #else	/* CONFIG GPIOLIB */
 
@@ -683,6 +693,7 @@ static inline void gpio_unexport(unsigned gpio)
 
 #endif	/* !CONFIG_ALCHEMY_GPIO_INDIRECT */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif	/* !CONFIG_GPIOLIB */
 

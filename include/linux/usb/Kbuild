@@ -1,9 +1,20 @@
 header-y += audio.h
+<<<<<<< HEAD
+header-y += ccid_bridge.h
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 header-y += cdc.h
 header-y += ch9.h
 header-y += ch11.h
 header-y += functionfs.h
 header-y += gadgetfs.h
 header-y += midi.h
+<<<<<<< HEAD
+header-y += msm_ext_chg.h
 header-y += g_printer.h
 header-y += tmc.h
+header-y += video.h
+=======
+header-y += g_printer.h
+header-y += tmc.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

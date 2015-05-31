@@ -18,7 +18,11 @@ MODULE_LICENSE("GPL");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;
+<<<<<<< HEAD
+static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE;
+=======
 static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static long port[SNDRV_CARDS] = SNDRV_DEFAULT_PORT;
 
 module_param_array(index, int, NULL, 0444);

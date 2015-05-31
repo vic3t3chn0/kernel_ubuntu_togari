@@ -73,4 +73,15 @@
 
 #define TLV_DB_GAIN_MUTE	-9999999
 
+<<<<<<< HEAD
+/*
+ * channel-mapping TLV items
+ *  TLV length must match with num_channels
+ */
+#define SNDRV_CTL_TLVT_CHMAP_FIXED	0x101	/* fixed channel position */
+#define SNDRV_CTL_TLVT_CHMAP_VAR	0x102	/* channels freely swappable */
+#define SNDRV_CTL_TLVT_CHMAP_PAIRED	0x103	/* pair-wise swappable */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __SOUND_TLV_H */

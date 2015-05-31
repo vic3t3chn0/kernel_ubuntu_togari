@@ -34,6 +34,13 @@
 #include <asm/mach/map.h>
 
 #include <plat/board.h>
+<<<<<<< HEAD
+
+#if defined(CONFIG_FB_OMAP) || defined(CONFIG_FB_OMAP_MODULE)
+
+static bool omapfb_lcd_configured;
+static struct omapfb_platform_data omapfb_config;
+=======
 #include <plat/sram.h>
 
 #include "fb.h"
@@ -43,6 +50,7 @@
 static struct omapfb_platform_data omapfb_config;
 static int config_invalid;
 static int configured_regions;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static u64 omap_fb_dma_mask = ~(u32)0;
 
@@ -57,6 +65,23 @@ static struct platform_device omap_fb_device = {
 	.num_resources = 0,
 };
 
+<<<<<<< HEAD
+void __init omapfb_set_lcd_config(const struct omap_lcd_config *config)
+{
+	omapfb_config.lcd = *config;
+	omapfb_lcd_configured = true;
+}
+
+static int __init omap_init_fb(void)
+{
+	/*
+	 * If the board file has not set the lcd config with
+	 * omapfb_set_lcd_config(), don't bother registering the omapfb device
+	 */
+	if (!omapfb_lcd_configured)
+		return 0;
+
+=======
 void omapfb_set_platform_data(struct omapfb_platform_data *data)
 {
 }
@@ -353,6 +378,7 @@ static int __init omap_init_fb(void)
 	}
 	omapfb_config.lcd = *conf;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return platform_device_register(&omap_fb_device);
 }
 
@@ -374,11 +400,14 @@ static struct platform_device omap_fb_device = {
 	.num_resources = 0,
 };
 
+<<<<<<< HEAD
+=======
 void omapfb_set_platform_data(struct omapfb_platform_data *data)
 {
 	omapfb_config = *data;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int __init omap_init_fb(void)
 {
 	return platform_device_register(&omap_fb_device);
@@ -386,6 +415,12 @@ static int __init omap_init_fb(void)
 
 arch_initcall(omap_init_fb);
 
+<<<<<<< HEAD
+#else
+
+void __init omapfb_set_lcd_config(const struct omap_lcd_config *config)
+{
+=======
 void omapfb_reserve_sdram_memblock(void)
 {
 }
@@ -416,6 +451,7 @@ unsigned long __init omapfb_reserve_sram(unsigned long sram_pstart,
 				  unsigned long size_avail)
 {
 	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #endif

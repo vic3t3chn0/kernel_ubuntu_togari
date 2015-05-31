@@ -232,7 +232,11 @@ static int rxrpc_krb5_decode_principal(struct krb5_principal *princ,
 	if (toklen <= (n_parts + 1) * 4)
 		return -EINVAL;
 
+<<<<<<< HEAD
+	princ->name_parts = kcalloc(n_parts, sizeof(char *), GFP_KERNEL);
+=======
 	princ->name_parts = kcalloc(sizeof(char *), n_parts, GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!princ->name_parts)
 		return -ENOMEM;
 
@@ -306,10 +310,16 @@ static int rxrpc_krb5_decode_tagged_data(struct krb5_tagged_data *td,
 	td->data_len = len;
 
 	if (len > 0) {
+<<<<<<< HEAD
+		td->data = kmemdup(xdr, len, GFP_KERNEL);
+		if (!td->data)
+			return -ENOMEM;
+=======
 		td->data = kmalloc(len, GFP_KERNEL);
 		if (!td->data)
 			return -ENOMEM;
 		memcpy(td->data, xdr, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len = (len + 3) & ~3;
 		toklen -= len;
 		xdr += len >> 2;
@@ -356,7 +366,11 @@ static int rxrpc_krb5_decode_tagged_array(struct krb5_tagged_data **_td,
 
 		_debug("n_elem %d", n_elem);
 
+<<<<<<< HEAD
+		td = kcalloc(n_elem, sizeof(struct krb5_tagged_data),
+=======
 		td = kcalloc(sizeof(struct krb5_tagged_data), n_elem,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			     GFP_KERNEL);
 		if (!td)
 			return -ENOMEM;
@@ -401,10 +415,16 @@ static int rxrpc_krb5_decode_ticket(u8 **_ticket, u16 *_tktlen,
 	_debug("ticket len %u", len);
 
 	if (len > 0) {
+<<<<<<< HEAD
+		*_ticket = kmemdup(xdr, len, GFP_KERNEL);
+		if (!*_ticket)
+			return -ENOMEM;
+=======
 		*_ticket = kmalloc(len, GFP_KERNEL);
 		if (!*_ticket)
 			return -ENOMEM;
 		memcpy(*_ticket, xdr, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len = (len + 3) & ~3;
 		toklen -= len;
 		xdr += len >> 2;

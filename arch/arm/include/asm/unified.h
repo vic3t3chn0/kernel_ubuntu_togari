@@ -37,8 +37,13 @@
 #define THUMB(x...)	x
 #ifdef __ASSEMBLY__
 #define W(instr)	instr.w
+<<<<<<< HEAD
+#define BSYM(sym)	sym + 1
+#endif
+=======
 #endif
 #define BSYM(sym)	sym + 1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else	/* !CONFIG_THUMB2_KERNEL */
 
@@ -49,8 +54,13 @@
 #define THUMB(x...)
 #ifdef __ASSEMBLY__
 #define W(instr)	instr
+<<<<<<< HEAD
+#define BSYM(sym)	sym
+#endif
+=======
 #endif
 #define BSYM(sym)	sym
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif	/* CONFIG_THUMB2_KERNEL */
 

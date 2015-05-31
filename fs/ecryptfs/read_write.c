@@ -156,7 +156,11 @@ int ecryptfs_write(struct inode *ecryptfs_inode, char *data, loff_t offset,
 			       ecryptfs_page_idx, rc);
 			goto out;
 		}
+<<<<<<< HEAD
+		ecryptfs_page_virt = kmap_atomic(ecryptfs_page);
+=======
 		ecryptfs_page_virt = kmap_atomic(ecryptfs_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/*
 		 * pos: where we're now writing, offset: where the request was
@@ -179,7 +183,11 @@ int ecryptfs_write(struct inode *ecryptfs_inode, char *data, loff_t offset,
 			       (data + data_offset), num_bytes);
 			data_offset += num_bytes;
 		}
+<<<<<<< HEAD
+		kunmap_atomic(ecryptfs_page_virt);
+=======
 		kunmap_atomic(ecryptfs_page_virt, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		flush_dcache_page(ecryptfs_page);
 		SetPageUptodate(ecryptfs_page);
 		unlock_page(ecryptfs_page);
@@ -282,6 +290,8 @@ int ecryptfs_read_lower_page_segment(struct page *page_for_ecryptfs,
 	flush_dcache_page(page_for_ecryptfs);
 	return rc;
 }
+<<<<<<< HEAD
+=======
 
 #if 0
 /**
@@ -355,3 +365,4 @@ out:
 	return rc;
 }
 #endif  /*  0  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

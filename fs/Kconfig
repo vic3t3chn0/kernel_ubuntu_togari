@@ -4,6 +4,13 @@
 
 menu "File systems"
 
+<<<<<<< HEAD
+# Use unaligned word dcache accesses
+config DCACHE_WORD_ACCESS
+       bool
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 if BLOCK
 
 source "fs/ext2/Kconfig"
@@ -98,6 +105,10 @@ if BLOCK
 menu "DOS/FAT/NT Filesystems"
 
 source "fs/fat/Kconfig"
+<<<<<<< HEAD
+source "fs/exfat/Kconfig"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 source "fs/ntfs/Kconfig"
 
 endmenu
@@ -109,7 +120,11 @@ source "fs/proc/Kconfig"
 source "fs/sysfs/Kconfig"
 
 config TMPFS
+<<<<<<< HEAD
+	bool "Tmpfs virtual memory file system support (former shm fs)"
+=======
 	bool "Virtual memory file system support (former shm fs)"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	depends on SHMEM
 	help
 	  Tmpfs is a file system which keeps all files in virtual memory.
@@ -127,14 +142,31 @@ config TMPFS_POSIX_ACL
 	select TMPFS_XATTR
 	select GENERIC_ACL
 	help
+<<<<<<< HEAD
+	  POSIX Access Control Lists (ACLs) support additional access rights
+	  for users and groups beyond the standard owner/group/world scheme,
+	  and this option selects support for ACLs specifically for tmpfs
+	  filesystems.
+
+	  If you've selected TMPFS, it's possible that you'll also need
+	  this option as there are a number of Linux distros that require
+	  POSIX ACL support under /dev for certain features to work properly.
+	  For example, some distros need this feature for ALSA-related /dev
+	  files for sound to work properly.  In short, if you're not sure,
+	  say Y.
+=======
 	  POSIX Access Control Lists (ACLs) support permissions for users and
 	  groups beyond the owner/group/world scheme.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	  To learn more about Access Control Lists, visit the POSIX ACLs for
 	  Linux website <http://acl.bestbits.at/>.
 
+<<<<<<< HEAD
+=======
 	  If you don't know what Access Control Lists are, say N.
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config TMPFS_XATTR
 	bool "Tmpfs extended attributes"
 	depends on TMPFS
@@ -207,14 +239,27 @@ source "fs/minix/Kconfig"
 source "fs/omfs/Kconfig"
 source "fs/hpfs/Kconfig"
 source "fs/qnx4/Kconfig"
+<<<<<<< HEAD
+source "fs/qnx6/Kconfig"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 source "fs/romfs/Kconfig"
 source "fs/pstore/Kconfig"
 source "fs/sysv/Kconfig"
 source "fs/ufs/Kconfig"
 source "fs/exofs/Kconfig"
+<<<<<<< HEAD
+source "fs/f2fs/Kconfig"
 
 endif # MISC_FILESYSTEMS
 
+source "fs/exofs/Kconfig.ore"
+
+=======
+
+endif # MISC_FILESYSTEMS
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 menuconfig NETWORK_FILESYSTEMS
 	bool "Network File Systems"
 	default y
@@ -263,6 +308,11 @@ source "fs/9p/Kconfig"
 
 endif # NETWORK_FILESYSTEMS
 
+<<<<<<< HEAD
+source "fs/nls/Kconfig"
+source "fs/dlm/Kconfig"
+
+=======
 if BLOCK
 menu "Partition Types"
 
@@ -280,4 +330,5 @@ config DYNAMIC_FSYNC
 	help
 	  An experimental file sync control using Android's early suspend / late resume drivers
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 endmenu

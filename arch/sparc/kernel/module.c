@@ -16,6 +16,10 @@
 
 #include <asm/processor.h>
 #include <asm/spitfire.h>
+<<<<<<< HEAD
+#include <asm/cacheflush.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "entry.h"
 
@@ -70,12 +74,15 @@ void *module_alloc(unsigned long size)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
 /* Free memory returned from module_core_alloc/module_init_alloc */
 void module_free(struct module *mod, void *module_region)
 {
 	vfree(module_region);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Make generic code ignore STT_REGISTER dummy undefined symbols.  */
 int module_frob_arch_sections(Elf_Ehdr *hdr,
 			      Elf_Shdr *sechdrs,
@@ -109,6 +116,8 @@ int module_frob_arch_sections(Elf_Ehdr *hdr,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
 int apply_relocate(Elf_Shdr *sechdrs,
 		   const char *strtab,
 		   unsigned int symindex,
@@ -120,6 +129,7 @@ int apply_relocate(Elf_Shdr *sechdrs,
 	return -ENOEXEC;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int apply_relocate_add(Elf_Shdr *sechdrs,
 		       const char *strtab,
 		       unsigned int symindex,
@@ -266,6 +276,9 @@ int module_finalize(const Elf_Ehdr *hdr,
 
 	return 0;
 }
+<<<<<<< HEAD
+#endif /* CONFIG_SPARC64 */
+=======
 #else
 int module_finalize(const Elf_Ehdr *hdr,
                     const Elf_Shdr *sechdrs,
@@ -278,3 +291,4 @@ int module_finalize(const Elf_Ehdr *hdr,
 void module_arch_cleanup(struct module *mod)
 {
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

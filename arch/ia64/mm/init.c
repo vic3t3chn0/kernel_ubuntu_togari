@@ -10,6 +10,10 @@
 #include <linux/bootmem.h>
 #include <linux/efi.h>
 #include <linux/elf.h>
+<<<<<<< HEAD
+#include <linux/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/mm.h>
 #include <linux/mmzone.h>
 #include <linux/module.h>
@@ -29,7 +33,10 @@
 #include <asm/pgalloc.h>
 #include <asm/sal.h>
 #include <asm/sections.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/tlb.h>
 #include <asm/uaccess.h>
 #include <asm/unistd.h>
@@ -557,8 +564,12 @@ int __init register_active_ranges(u64 start, u64 len, int nid)
 #endif
 
 	if (start < end)
+<<<<<<< HEAD
+		memblock_add_node(__pa(start), end - start, nid);
+=======
 		add_active_range(nid, __pa(start) >> PAGE_SHIFT,
 			__pa(end) >> PAGE_SHIFT);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 

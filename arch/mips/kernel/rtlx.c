@@ -19,7 +19,10 @@
 
 #include <linux/device.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/fs.h>
 #include <linux/init.h>
 #include <asm/uaccess.h>
@@ -36,10 +39,16 @@
 #include <asm/mipsmtregs.h>
 #include <asm/mips_mt.h>
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <asm/cpu.h>
+#include <asm/processor.h>
+=======
 #include <asm/atomic.h>
 #include <asm/cpu.h>
 #include <asm/processor.h>
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/vpe.h>
 #include <asm/rtlx.h>
 
@@ -474,7 +483,10 @@ static const struct file_operations rtlx_fops = {
 
 static struct irqaction rtlx_irq = {
 	.handler	= rtlx_interrupt,
+<<<<<<< HEAD
+=======
 	.flags		= IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name		= "RTLX",
 };
 

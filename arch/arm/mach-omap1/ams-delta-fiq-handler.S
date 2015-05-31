@@ -14,12 +14,22 @@
  */
 
 #include <linux/linkage.h>
+<<<<<<< HEAD
+#include <asm/assembler.h>
+
+=======
 
 #include <plat/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/board-ams-delta.h>
 
 #include <mach/ams-delta-fiq.h>
 
+<<<<<<< HEAD
+#include "iomap.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * GPIO related definitions, copied from arch/arm/plat-omap/gpio.c.
  * Unfortunately, those were not placed in a separate header file.

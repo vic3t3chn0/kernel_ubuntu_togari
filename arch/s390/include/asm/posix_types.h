@@ -3,7 +3,10 @@
  *
  *  S390 version
  *
+<<<<<<< HEAD
+=======
  *  Derived from "include/asm-i386/posix_types.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef __ARCH_S390_POSIX_TYPES_H
@@ -15,6 +18,13 @@
  * assume GCC is being used.
  */
 
+<<<<<<< HEAD
+typedef unsigned long   __kernel_size_t;
+#define __kernel_size_t __kernel_size_t
+
+typedef unsigned short	__kernel_old_dev_t;
+#define __kernel_old_dev_t __kernel_old_dev_t
+=======
 typedef long            __kernel_off_t;
 typedef int             __kernel_pid_t;
 typedef unsigned long   __kernel_size_t;
@@ -31,6 +41,7 @@ typedef unsigned short	__kernel_gid16_t;
 #ifdef __GNUC__
 typedef long long       __kernel_loff_t;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef __s390x__
 
@@ -42,11 +53,14 @@ typedef unsigned short  __kernel_uid_t;
 typedef unsigned short  __kernel_gid_t;
 typedef int             __kernel_ssize_t;
 typedef int             __kernel_ptrdiff_t;
+<<<<<<< HEAD
+=======
 typedef unsigned int	__kernel_uid32_t;
 typedef unsigned int	__kernel_gid32_t;
 typedef unsigned short	__kernel_old_uid_t;
 typedef unsigned short	__kernel_old_gid_t;
 typedef unsigned short	__kernel_old_dev_t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else /* __s390x__ */
 
@@ -59,6 +73,19 @@ typedef unsigned int    __kernel_gid_t;
 typedef long            __kernel_ssize_t;
 typedef long            __kernel_ptrdiff_t;
 typedef unsigned long   __kernel_sigset_t;      /* at least 32 bits */
+<<<<<<< HEAD
+
+#endif /* __s390x__ */
+
+#define __kernel_ino_t  __kernel_ino_t
+#define __kernel_mode_t __kernel_mode_t
+#define __kernel_nlink_t __kernel_nlink_t
+#define __kernel_ipc_pid_t __kernel_ipc_pid_t
+#define __kernel_uid_t __kernel_uid_t
+#define __kernel_gid_t __kernel_gid_t
+
+#include <asm-generic/posix_types.h>
+=======
 typedef __kernel_uid_t __kernel_old_uid_t;
 typedef __kernel_gid_t __kernel_old_gid_t;
 typedef __kernel_uid_t __kernel_uid32_t;
@@ -103,5 +130,6 @@ static inline int __FD_ISSET(unsigned long fd, const __kernel_fd_set *fdsetp)
 	((void) memset ((void *) (fdsetp), 0, sizeof (__kernel_fd_set)))
 
 #endif     /* __KERNEL__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

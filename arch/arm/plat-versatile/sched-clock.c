@@ -18,12 +18,27 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+<<<<<<< HEAD
+#include <linux/kernel.h>
+#include <linux/io.h>
+=======
 #include <linux/io.h>
 #include <linux/sched.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/sched_clock.h>
 #include <plat/sched_clock.h>
 
+<<<<<<< HEAD
+static void __iomem *ctr;
+
+static u32 notrace versatile_read_sched_clock(void)
+{
+	if (ctr)
+		return readl(ctr);
+
+	return 0;
+=======
 static DEFINE_CLOCK_DATA(cd);
 static void __iomem *ctr;
 
@@ -48,11 +63,16 @@ static void notrace versatile_update_sched_clock(void)
 {
 	u32 cyc = readl(ctr);
 	update_sched_clock(&cd, cyc, (u32)~0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void __init versatile_sched_clock_init(void __iomem *reg, unsigned long rate)
 {
 	ctr = reg;
+<<<<<<< HEAD
+	setup_sched_clock(versatile_read_sched_clock, 32, rate);
+=======
 	init_fixed_sched_clock(&cd, versatile_update_sched_clock,
 			       32, rate, SC_MULT, SC_SHIFT);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

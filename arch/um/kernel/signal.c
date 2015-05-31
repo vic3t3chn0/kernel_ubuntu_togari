@@ -11,7 +11,10 @@
 #include <asm/unistd.h>
 #include "frame_kern.h"
 #include "kern_util.h"
+<<<<<<< HEAD
+=======
 #include <sysdep/sigcontext.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 EXPORT_SYMBOL(block_signals);
 EXPORT_SYMBOL(unblock_signals);
@@ -66,6 +69,12 @@ static int handle_signal(struct pt_regs *regs, unsigned long signr,
 #endif
 		err = setup_signal_stack_si(sp, signr, ka, regs, info, oldset);
 
+<<<<<<< HEAD
+	if (err)
+		force_sigsegv(signr, current);
+	else
+		block_sigmask(ka, signr);
+=======
 	if (err) {
 		spin_lock_irq(&current->sighand->siglock);
 		current->blocked = *oldset;
@@ -81,6 +90,7 @@ static int handle_signal(struct pt_regs *regs, unsigned long signr,
 		recalc_sigpending();
 		spin_unlock_irq(&current->sighand->siglock);
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return err;
 }
@@ -163,12 +173,20 @@ int do_signal(void)
  */
 long sys_sigsuspend(int history0, int history1, old_sigset_t mask)
 {
+<<<<<<< HEAD
+	sigset_t blocked;
+
+	mask &= _BLOCKABLE;
+	siginitset(&blocked, mask);
+	set_current_blocked(&blocked);
+=======
 	mask &= _BLOCKABLE;
 	spin_lock_irq(&current->sighand->siglock);
 	current->saved_sigmask = current->blocked;
 	siginitset(&current->blocked, mask);
 	recalc_sigpending();
 	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();

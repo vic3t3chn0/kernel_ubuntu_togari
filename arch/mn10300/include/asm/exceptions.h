@@ -110,7 +110,11 @@ extern asmlinkage void nmi_handler(void);
 extern asmlinkage void misalignment(struct pt_regs *, enum exception_code);
 
 extern void die(const char *, struct pt_regs *, enum exception_code)
+<<<<<<< HEAD
+	__noreturn;
+=======
 	ATTRIB_NORET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int die_if_no_fixup(const char *, struct pt_regs *, enum exception_code);
 

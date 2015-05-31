@@ -4,6 +4,8 @@
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file COPYING in the main directory of this archive
  * for more details.
+<<<<<<< HEAD
+=======
  *
  * 07/03/96: Timer initialization, and thus mach_sched_init(),
  *           removed from request_irq() and moved to init_time().
@@ -23,6 +25,7 @@
  *           If you want to replace a default handler you should know what
  *           you're doing, since it might handle different other irq sources
  *           which must be served                               /Roman Zippel
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #include <linux/module.h>
@@ -34,7 +37,10 @@
 #include <linux/init.h>
 
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/irq.h>
 #include <asm/traps.h>
 #include <asm/page.h>
@@ -47,6 +53,24 @@
 #endif
 
 extern u32 auto_irqhandler_fixup[];
+<<<<<<< HEAD
+extern u16 user_irqvec_fixup[];
+
+static int m68k_first_user_vec;
+
+static struct irq_chip auto_irq_chip = {
+	.name		= "auto",
+	.irq_startup	= m68k_irq_startup,
+	.irq_shutdown	= m68k_irq_shutdown,
+};
+
+static struct irq_chip user_irq_chip = {
+	.name		= "user",
+	.irq_startup	= m68k_irq_startup,
+	.irq_shutdown	= m68k_irq_shutdown,
+};
+
+=======
 extern u32 user_irqhandler_fixup[];
 extern u16 user_irqvec_fixup[];
 
@@ -74,6 +98,7 @@ static struct irq_controller user_irq_controller = {
 #define NUM_IRQ_NODES 100
 static irq_node_t nodes[NUM_IRQ_NODES];
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * void init_IRQ(void)
  *
@@ -96,7 +121,11 @@ void __init init_IRQ(void)
 	}
 
 	for (i = IRQ_AUTO_1; i <= IRQ_AUTO_7; i++)
+<<<<<<< HEAD
+		irq_set_chip_and_handler(i, &auto_irq_chip, handle_simple_irq);
+=======
 		irq_controller[i] = &auto_irq_controller;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	mach_init_IRQ();
 }
@@ -106,7 +135,11 @@ void __init init_IRQ(void)
  * @handler: called from auto vector interrupts
  *
  * setup the handler to be called from auto vector interrupts instead of the
+<<<<<<< HEAD
+ * standard do_IRQ(), it will be called with irq numbers in the range
+=======
  * standard __m68k_handle_int(), it will be called with irq numbers in the range
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * from IRQ_AUTO_1 - IRQ_AUTO_7.
  */
 void __init m68k_setup_auto_interrupt(void (*handler)(unsigned int, struct pt_regs *))
@@ -120,6 +153,14 @@ void __init m68k_setup_auto_interrupt(void (*handler)(unsigned int, struct pt_re
  * m68k_setup_user_interrupt
  * @vec: first user vector interrupt to handle
  * @cnt: number of active user vector interrupts
+<<<<<<< HEAD
+ *
+ * setup user vector interrupts, this includes activating the specified range
+ * of interrupts, only then these interrupts can be requested (note: this is
+ * different from auto vector interrupts).
+ */
+void __init m68k_setup_user_interrupt(unsigned int vec, unsigned int cnt)
+=======
  * @handler: called from user vector interrupts
  *
  * setup user vector interrupts, this includes activating the specified range
@@ -130,34 +171,79 @@ void __init m68k_setup_auto_interrupt(void (*handler)(unsigned int, struct pt_re
  */
 void __init m68k_setup_user_interrupt(unsigned int vec, unsigned int cnt,
 				      void (*handler)(unsigned int, struct pt_regs *))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int i;
 
 	BUG_ON(IRQ_USER + cnt > NR_IRQS);
 	m68k_first_user_vec = vec;
 	for (i = 0; i < cnt; i++)
+<<<<<<< HEAD
+		irq_set_chip(IRQ_USER + i, &user_irq_chip);
+	*user_irqvec_fixup = vec - IRQ_USER;
+=======
 		irq_controller[IRQ_USER + i] = &user_irq_controller;
 	*user_irqvec_fixup = vec - IRQ_USER;
 	if (handler)
 		*user_irqhandler_fixup = (u32)handler;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	flush_icache();
 }
 
 /**
  * m68k_setup_irq_controller
+<<<<<<< HEAD
+ * @chip: irq chip which controls specified irq
+ * @handle: flow handler which handles specified irq
+ * @irq: first irq to be managed by the controller
+ * @cnt: number of irqs to be managed by the controller
+=======
  * @contr: irq controller which controls specified irq
  * @irq: first irq to be managed by the controller
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Change the controller for the specified range of irq, which will be used to
  * manage these irq. auto/user irq already have a default controller, which can
  * be changed as well, but the controller probably should use m68k_irq_startup/
  * m68k_irq_shutdown.
  */
+<<<<<<< HEAD
+void m68k_setup_irq_controller(struct irq_chip *chip,
+			       irq_flow_handler_t handle, unsigned int irq,
+=======
 void m68k_setup_irq_controller(struct irq_controller *contr, unsigned int irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			       unsigned int cnt)
 {
 	int i;
 
+<<<<<<< HEAD
+	for (i = 0; i < cnt; i++) {
+		irq_set_chip(irq + i, chip);
+		if (handle)
+			irq_set_handler(irq + i, handle);
+	}
+}
+
+unsigned int m68k_irq_startup_irq(unsigned int irq)
+{
+	if (irq <= IRQ_AUTO_7)
+		vectors[VEC_SPUR + irq] = auto_inthandler;
+	else
+		vectors[m68k_first_user_vec + irq - IRQ_USER] = user_inthandler;
+	return 0;
+}
+
+unsigned int m68k_irq_startup(struct irq_data *data)
+{
+	return m68k_irq_startup_irq(data->irq);
+}
+
+void m68k_irq_shutdown(struct irq_data *data)
+{
+	unsigned int irq = data->irq;
+
+=======
 	for (i = 0; i < cnt; i++)
 		irq_controller[irq + i] = contr;
 }
@@ -341,6 +427,7 @@ int m68k_irq_startup(unsigned int irq)
 
 void m68k_irq_shutdown(unsigned int irq)
 {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (irq <= IRQ_AUTO_7)
 		vectors[VEC_SPUR + irq] = bad_inthandler;
 	else
@@ -348,6 +435,8 @@ void m68k_irq_shutdown(unsigned int irq)
 }
 
 
+<<<<<<< HEAD
+=======
 /*
  * Do we need these probe functions on the m68k?
  *
@@ -375,6 +464,7 @@ int probe_irq_off (unsigned long irqs)
 
 EXPORT_SYMBOL(probe_irq_off);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned int irq_canonicalize(unsigned int irq)
 {
 #ifdef CONFIG_Q40
@@ -386,6 +476,14 @@ unsigned int irq_canonicalize(unsigned int irq)
 
 EXPORT_SYMBOL(irq_canonicalize);
 
+<<<<<<< HEAD
+
+asmlinkage void handle_badint(struct pt_regs *regs)
+{
+	atomic_inc(&irq_err_count);
+	pr_warn("unexpected interrupt from %u\n", regs->vector);
+}
+=======
 asmlinkage void m68k_handle_int(unsigned int irq)
 {
 	struct irq_node *node;
@@ -435,3 +533,4 @@ void init_irq_proc(void)
 	/* Insert /proc/irq driver here */
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

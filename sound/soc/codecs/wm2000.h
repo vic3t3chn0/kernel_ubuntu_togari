@@ -9,6 +9,8 @@
 #ifndef _WM2000_H
 #define _WM2000_H
 
+<<<<<<< HEAD
+=======
 struct wm2000_setup_data {
 	unsigned short i2c_address;
 	int mclk_div;   /* Set to a non-zero value if MCLK_DIV_2 required */
@@ -16,6 +18,7 @@ struct wm2000_setup_data {
 
 extern int wm2000_add_controls(struct snd_soc_codec *codec);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define WM2000_REG_SYS_START	    0x8000
 #define WM2000_REG_SPEECH_CLARITY   0x8fef
 #define WM2000_REG_SYS_WATCHDOG     0x8ff6

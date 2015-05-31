@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+#include <asm-generic/ipcbuf.h>
+=======
 #ifndef _ALPHA_IPCBUF_H
 #define _ALPHA_IPCBUF_H
 
@@ -26,3 +29,4 @@ struct ipc64_perm
 };
 
 #endif /* _ALPHA_IPCBUF_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

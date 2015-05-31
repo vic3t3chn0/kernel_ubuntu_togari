@@ -31,14 +31,23 @@
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 
+<<<<<<< HEAD
+#include <mach/pxa25x.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/audio.h>
 #include <mach/palmtc.h>
 #include <mach/mmc.h>
 #include <mach/pxafb.h>
+<<<<<<< HEAD
+#include <mach/irda.h>
+#include <mach/udc.h>
+=======
 #include <mach/mfp-pxa25x.h>
 #include <mach/irda.h>
 #include <mach/udc.h>
 #include <mach/pxa2xx-regs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "generic.h"
 #include "devices.h"
@@ -538,9 +547,20 @@ static void __init palmtc_init(void)
 };
 
 MACHINE_START(PALMTC, "Palm Tungsten|C")
+<<<<<<< HEAD
+	.atag_offset 	= 0x100,
+	.map_io		= pxa25x_map_io,
+	.nr_irqs	= PXA_NR_IRQS,
+	.init_irq	= pxa25x_init_irq,
+	.handle_irq	= pxa25x_handle_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= palmtc_init,
+	.restart	= pxa_restart,
+=======
 	.boot_params 	= 0xa0000100,
 	.map_io		= pxa25x_map_io,
 	.init_irq	= pxa25x_init_irq,
 	.timer		= &pxa_timer,
 	.init_machine	= palmtc_init
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

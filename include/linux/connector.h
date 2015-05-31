@@ -1,7 +1,11 @@
 /*
  * 	connector.h
  * 
+<<<<<<< HEAD
+ * 2004-2005 Copyright (c) Evgeniy Polyakov <zbr@ioremap.net>
+=======
  * 2004-2005 Copyright (c) Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * All rights reserved.
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -43,6 +47,10 @@
 #define CN_IDX_DRBD			0x8
 #define CN_VAL_DRBD			0x1
 #define CN_KVP_IDX			0x9	/* HyperV KVP */
+<<<<<<< HEAD
+#define CN_KVP_VAL			0x1	/* queries from the kernel */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define CN_NETLINK_USERS		10	/* Highest index + 1 */
 
@@ -75,7 +83,11 @@ struct cn_msg {
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/list.h>
 #include <linux/workqueue.h>

@@ -6,6 +6,11 @@
  * Copyright (C) 1998 Paul Mackerras.
  */
 
+<<<<<<< HEAD
+#ifndef _LINUX_PMU_H
+#define _LINUX_PMU_H
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define PMU_DRIVER_VERSION	2
 
@@ -207,3 +212,8 @@ extern int pmu_sys_suspended;
 #endif
 
 #endif	/* __KERNEL__ */
+<<<<<<< HEAD
+
+#endif /* _LINUX_PMU_H */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

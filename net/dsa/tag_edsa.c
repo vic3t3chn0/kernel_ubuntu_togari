@@ -205,6 +205,12 @@ out:
 	return 0;
 }
 
+<<<<<<< HEAD
+struct packet_type edsa_packet_type __read_mostly = {
+	.type	= cpu_to_be16(ETH_P_EDSA),
+	.func	= edsa_rcv,
+};
+=======
 static struct packet_type edsa_packet_type __read_mostly = {
 	.type	= cpu_to_be16(ETH_P_EDSA),
 	.func	= edsa_rcv,
@@ -222,3 +228,4 @@ static void __exit edsa_cleanup_module(void)
 	dev_remove_pack(&edsa_packet_type);
 }
 module_exit(edsa_cleanup_module);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -22,9 +22,17 @@
 
 /* Some dma direct funcs must be visible for use in other dma_ops */
 extern void *dma_direct_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
+				       dma_addr_t *dma_handle, gfp_t flag,
+				       struct dma_attrs *attrs);
+extern void dma_direct_free_coherent(struct device *dev, size_t size,
+				     void *vaddr, dma_addr_t dma_handle,
+				     struct dma_attrs *attrs);
+=======
 				       dma_addr_t *dma_handle, gfp_t flag);
 extern void dma_direct_free_coherent(struct device *dev, size_t size,
 				     void *vaddr, dma_addr_t dma_handle);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 #ifdef CONFIG_NOT_COHERENT_CACHE
@@ -130,23 +138,43 @@ static inline int dma_supported(struct device *dev, u64 mask)
 
 extern int dma_set_mask(struct device *dev, u64 dma_mask);
 
+<<<<<<< HEAD
+#define dma_alloc_coherent(d,s,h,f)	dma_alloc_attrs(d,s,h,f,NULL)
+
+static inline void *dma_alloc_attrs(struct device *dev, size_t size,
+				    dma_addr_t *dma_handle, gfp_t flag,
+				    struct dma_attrs *attrs)
+=======
 static inline void *dma_alloc_coherent(struct device *dev, size_t size,
 				       dma_addr_t *dma_handle, gfp_t flag)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct dma_map_ops *dma_ops = get_dma_ops(dev);
 	void *cpu_addr;
 
 	BUG_ON(!dma_ops);
 
+<<<<<<< HEAD
+	cpu_addr = dma_ops->alloc(dev, size, dma_handle, flag, attrs);
+=======
 	cpu_addr = dma_ops->alloc_coherent(dev, size, dma_handle, flag);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	debug_dma_alloc_coherent(dev, size, *dma_handle, cpu_addr);
 
 	return cpu_addr;
 }
 
+<<<<<<< HEAD
+#define dma_free_coherent(d,s,c,h) dma_free_attrs(d,s,c,h,NULL)
+
+static inline void dma_free_attrs(struct device *dev, size_t size,
+				  void *cpu_addr, dma_addr_t dma_handle,
+				  struct dma_attrs *attrs)
+=======
 static inline void dma_free_coherent(struct device *dev, size_t size,
 				     void *cpu_addr, dma_addr_t dma_handle)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct dma_map_ops *dma_ops = get_dma_ops(dev);
 
@@ -154,7 +182,11 @@ static inline void dma_free_coherent(struct device *dev, size_t size,
 
 	debug_dma_free_coherent(dev, size, cpu_addr, dma_handle);
 
+<<<<<<< HEAD
+	dma_ops->free(dev, size, cpu_addr, dma_handle, attrs);
+=======
 	dma_ops->free_coherent(dev, size, cpu_addr, dma_handle);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline int dma_mapping_error(struct device *dev, dma_addr_t dma_addr)

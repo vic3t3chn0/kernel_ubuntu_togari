@@ -6,6 +6,23 @@
  *    Author(s): Holger Smolinski (Holger.Smolinski@de.ibm.com)
  */
 
+<<<<<<< HEAD
+#include <linux/linkage.h>
+#include <asm/asm-offsets.h>
+
+#
+# store_status: Empty implementation until kdump is supported on 31 bit
+#
+ENTRY(store_status)
+		br	%r14
+
+#
+# do_reipl_asm
+# Parameter: r2 = schid of reipl device
+#
+ENTRY(do_reipl_asm)
+		basr	%r13,0
+=======
 #include <asm/asm-offsets.h>
 
 #
@@ -14,6 +31,7 @@
 #
 		.globl	do_reipl_asm
 do_reipl_asm:	basr	%r13,0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 .Lpg0:		lpsw	.Lnewpsw-.Lpg0(%r13)
 .Lpg1:		# do store status of all registers
 

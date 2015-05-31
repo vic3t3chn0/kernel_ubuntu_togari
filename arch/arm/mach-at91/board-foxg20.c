@@ -60,7 +60,11 @@
 static void __init foxg20_init_early(void)
 {
 	/* Initialize processor: 18.432 MHz crystal */
+<<<<<<< HEAD
+	at91_initialize(18432000);
+=======
 	at91sam9260_initialize(18432000);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* DBGU on ttyS0. (Rx & Tx only) */
 	at91_register_uart(0, 0, 0);
@@ -101,17 +105,25 @@ static void __init foxg20_init_early(void)
 
 }
 
+<<<<<<< HEAD
+=======
 static void __init foxg20_init_irq(void)
 {
 	at91sam9260_init_interrupts(NULL);
 }
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * USB Host port
  */
 static struct at91_usbh_data __initdata foxg20_usbh_data = {
 	.ports		= 2,
+<<<<<<< HEAD
+	.vbus_pin	= {-EINVAL, -EINVAL},
+	.overcurrent_pin= {-EINVAL, -EINVAL},
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /*
@@ -119,7 +131,11 @@ static struct at91_usbh_data __initdata foxg20_usbh_data = {
  */
 static struct at91_udc_data __initdata foxg20_udc_data = {
 	.vbus_pin	= AT91_PIN_PC6,
+<<<<<<< HEAD
+	.pullup_pin	= -EINVAL,		/* pull-up driven by UDC */
+=======
 	.pullup_pin	= 0,		/* pull-up driven by UDC */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 
@@ -141,7 +157,11 @@ static struct spi_board_info foxg20_spi_devices[] = {
 /*
  * MACB Ethernet device
  */
+<<<<<<< HEAD
+static struct macb_platform_data __initdata foxg20_macb_data = {
+=======
 static struct at91_eth_data __initdata foxg20_macb_data = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.phy_irq_pin	= AT91_PIN_PA7,
 	.is_rmii	= 1,
 };
@@ -153,6 +173,12 @@ static struct at91_eth_data __initdata foxg20_macb_data = {
 static struct at91_mmc_data __initdata foxg20_mmc_data = {
 	.slot_b		= 1,
 	.wire4		= 1,
+<<<<<<< HEAD
+	.det_pin	= -EINVAL,
+	.wp_pin		= -EINVAL,
+	.vcc_pin	= -EINVAL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 
@@ -267,8 +293,14 @@ static void __init foxg20_board_init(void)
 MACHINE_START(ACMENETUSFOXG20, "Acme Systems srl FOX Board G20")
 	/* Maintainer: Sergio Tanzilli */
 	.timer		= &at91sam926x_timer,
+<<<<<<< HEAD
+	.map_io		= at91_map_io,
+	.init_early	= foxg20_init_early,
+	.init_irq	= at91_init_irq_default,
+=======
 	.map_io		= at91sam9260_map_io,
 	.init_early	= foxg20_init_early,
 	.init_irq	= foxg20_init_irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_machine	= foxg20_board_init,
 MACHINE_END

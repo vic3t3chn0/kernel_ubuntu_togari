@@ -18,7 +18,11 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
+<<<<<<< HEAD
+#include "util.h"
+=======
 #define _GNU_SOURCE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <dirent.h>
 #include <mntent.h>
 #include <stdio.h>
@@ -31,7 +35,10 @@
 #include <pthread.h>
 #include <fcntl.h>
 #include <unistd.h>
+<<<<<<< HEAD
+=======
 #include <ctype.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <errno.h>
 #include <stdbool.h>
 #include <linux/list.h>
@@ -44,10 +51,13 @@
 
 #define VERSION "0.5"
 
+<<<<<<< HEAD
+=======
 #define _STR(x) #x
 #define STR(x) _STR(x)
 #define MAX_PATH 256
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define TRACE_CTRL	"tracing_on"
 #define TRACE		"trace"
 #define AVAILABLE	"available_tracers"
@@ -73,6 +83,8 @@ struct events {
 };
 
 
+<<<<<<< HEAD
+=======
 
 static void die(const char *fmt, ...)
 {
@@ -93,6 +105,7 @@ static void die(const char *fmt, ...)
 	exit(ret);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void *malloc_or_die(unsigned int size)
 {
 	void *data;
@@ -183,6 +196,15 @@ int bigendian(void)
 	return *ptr == 0x01020304;
 }
 
+<<<<<<< HEAD
+/* unfortunately, you can not stat debugfs or proc files for size */
+static void record_file(const char *file, size_t hdr_sz)
+{
+	unsigned long long size = 0;
+	char buf[BUFSIZ], *sizep;
+	off_t hdr_pos = lseek(output_fd, 0, SEEK_CUR);
+	int r, fd;
+=======
 static unsigned long long copy_file_fd(int fd)
 {
 	unsigned long long size = 0;
@@ -204,10 +226,34 @@ static unsigned long long copy_file(const char *file)
 {
 	unsigned long long size = 0;
 	int fd;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		die("Can't read '%s'", file);
+<<<<<<< HEAD
+
+	/* put in zeros for file size, then fill true size later */
+	if (hdr_sz)
+		write_or_die(&size, hdr_sz);
+
+	do {
+		r = read(fd, buf, BUFSIZ);
+		if (r > 0) {
+			size += r;
+			write_or_die(buf, r);
+		}
+	} while (r > 0);
+	close(fd);
+
+	/* ugh, handle big-endian hdr_size == 4 */
+	sizep = (char*)&size;
+	if (bigendian())
+		sizep += sizeof(u64) - hdr_sz;
+
+	if (hdr_sz && pwrite(output_fd, sizep, hdr_sz, hdr_pos) < 0)
+		die("writing to %s", output_file);
+=======
 	size = copy_file_fd(fd);
 	close(fd);
 
@@ -243,10 +289,31 @@ static unsigned long get_size(const char *file)
 	close(fd);
 
 	return size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void read_header_files(void)
 {
+<<<<<<< HEAD
+	char *path;
+	struct stat st;
+
+	path = get_tracing_file("events/header_page");
+	if (stat(path, &st) < 0)
+		die("can't read '%s'", path);
+
+	write_or_die("header_page", 12);
+	record_file(path, 8);
+	put_tracing_file(path);
+
+	path = get_tracing_file("events/header_event");
+	if (stat(path, &st) < 0)
+		die("can't read '%s'", path);
+
+	write_or_die("header_event", 13);
+	record_file(path, 8);
+	put_tracing_file(path);
+=======
 	unsigned long long size, check_size;
 	char *path;
 	int fd;
@@ -283,6 +350,7 @@ static void read_header_files(void)
 		die("wrong size for '%s'", path);
 	put_tracing_file(path);
 	close(fd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static bool name_in_tp_list(char *sys, struct tracepoint_path *tps)
@@ -298,7 +366,10 @@ static bool name_in_tp_list(char *sys, struct tracepoint_path *tps)
 
 static void copy_event_system(const char *sys, struct tracepoint_path *tps)
 {
+<<<<<<< HEAD
+=======
 	unsigned long long size, check_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct dirent *dent;
 	struct stat st;
 	char *format;
@@ -338,6 +409,10 @@ static void copy_event_system(const char *sys, struct tracepoint_path *tps)
 		sprintf(format, "%s/%s/format", sys, dent->d_name);
 		ret = stat(format, &st);
 
+<<<<<<< HEAD
+		if (ret >= 0)
+			record_file(format, 8);
+=======
 		if (ret >= 0) {
 			/* unfortunately, you can not stat debugfs files for size */
 			size = get_size(format);
@@ -346,6 +421,7 @@ static void copy_event_system(const char *sys, struct tracepoint_path *tps)
 			if (size != check_size)
 				die("error in size of file '%s'", format);
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		free(format);
 	}
@@ -426,7 +502,11 @@ static void read_event_files(struct tracepoint_path *tps)
 
 static void read_proc_kallsyms(void)
 {
+<<<<<<< HEAD
+	unsigned int size;
+=======
 	unsigned int size, check_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	const char *path = "/proc/kallsyms";
 	struct stat st;
 	int ret;
@@ -438,17 +518,25 @@ static void read_proc_kallsyms(void)
 		write_or_die(&size, 4);
 		return;
 	}
+<<<<<<< HEAD
+	record_file(path, 4);
+=======
 	size = get_size(path);
 	write_or_die(&size, 4);
 	check_size = copy_file(path);
 	if (size != check_size)
 		die("error in size of file '%s'", path);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void read_ftrace_printk(void)
 {
+<<<<<<< HEAD
+	unsigned int size;
+=======
 	unsigned int size, check_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	char *path;
 	struct stat st;
 	int ret;
@@ -461,11 +549,16 @@ static void read_ftrace_printk(void)
 		write_or_die(&size, 4);
 		goto out;
 	}
+<<<<<<< HEAD
+	record_file(path, 4);
+
+=======
 	size = get_size(path);
 	write_or_die(&size, 4);
 	check_size = copy_file(path);
 	if (size != check_size)
 		die("error in size of file '%s'", path);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out:
 	put_tracing_file(path);
 }
@@ -490,6 +583,22 @@ get_tracepoints_path(struct list_head *pattrs)
 	return nr_tracepoints > 0 ? path.next : NULL;
 }
 
+<<<<<<< HEAD
+static void
+put_tracepoints_path(struct tracepoint_path *tps)
+{
+	while (tps) {
+		struct tracepoint_path *t = tps;
+
+		tps = tps->next;
+		free(t->name);
+		free(t->system);
+		free(t);
+	}
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 bool have_tracepoints(struct list_head *pattrs)
 {
 	struct perf_evsel *pos;
@@ -501,6 +610,13 @@ bool have_tracepoints(struct list_head *pattrs)
 	return false;
 }
 
+<<<<<<< HEAD
+static void tracing_data_header(void)
+{
+	char buf[20];
+
+	/* just guessing this is someone's birthday.. ;) */
+=======
 int read_tracing_data(int fd, struct list_head *pattrs)
 {
 	char buf[BUFSIZ];
@@ -514,6 +630,7 @@ int read_tracing_data(int fd, struct list_head *pattrs)
 
 	output_fd = fd;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	buf[0] = 23;
 	buf[1] = 8;
 	buf[2] = 68;
@@ -538,13 +655,94 @@ int read_tracing_data(int fd, struct list_head *pattrs)
 	/* save page_size */
 	page_size = sysconf(_SC_PAGESIZE);
 	write_or_die(&page_size, 4);
+<<<<<<< HEAD
+}
 
+struct tracing_data *tracing_data_get(struct list_head *pattrs,
+				      int fd, bool temp)
+{
+	struct tracepoint_path *tps;
+	struct tracing_data *tdata;
+
+	output_fd = fd;
+
+	tps = get_tracepoints_path(pattrs);
+	if (!tps)
+		return NULL;
+
+	tdata = malloc_or_die(sizeof(*tdata));
+	tdata->temp = temp;
+	tdata->size = 0;
+
+	if (temp) {
+		int temp_fd;
+
+		snprintf(tdata->temp_file, sizeof(tdata->temp_file),
+			 "/tmp/perf-XXXXXX");
+		if (!mkstemp(tdata->temp_file))
+			die("Can't make temp file");
+
+		temp_fd = open(tdata->temp_file, O_RDWR);
+		if (temp_fd < 0)
+			die("Can't read '%s'", tdata->temp_file);
+
+		/*
+		 * Set the temp file the default output, so all the
+		 * tracing data are stored into it.
+		 */
+		output_fd = temp_fd;
+	}
+
+	tracing_data_header();
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	read_header_files();
 	read_ftrace_files(tps);
 	read_event_files(tps);
 	read_proc_kallsyms();
 	read_ftrace_printk();
 
+<<<<<<< HEAD
+	/*
+	 * All tracing data are stored by now, we can restore
+	 * the default output file in case we used temp file.
+	 */
+	if (temp) {
+		tdata->size = lseek(output_fd, 0, SEEK_CUR);
+		close(output_fd);
+		output_fd = fd;
+	}
+
+	put_tracepoints_path(tps);
+	return tdata;
+}
+
+void tracing_data_put(struct tracing_data *tdata)
+{
+	if (tdata->temp) {
+		record_file(tdata->temp_file, 0);
+		unlink(tdata->temp_file);
+	}
+
+	free(tdata);
+}
+
+int read_tracing_data(int fd, struct list_head *pattrs)
+{
+	struct tracing_data *tdata;
+
+	/*
+	 * We work over the real file, so we can write data
+	 * directly, no temp file is needed.
+	 */
+	tdata = tracing_data_get(pattrs, fd, false);
+	if (!tdata)
+		return -ENOMEM;
+
+	tracing_data_put(tdata);
+	return 0;
+=======
 	return 0;
 }
 
@@ -562,4 +760,5 @@ ssize_t read_tracing_data_size(int fd, struct list_head *pattrs)
 		return err;
 
 	return size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

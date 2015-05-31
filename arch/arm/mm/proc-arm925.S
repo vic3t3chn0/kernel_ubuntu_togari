@@ -108,6 +108,10 @@ ENTRY(cpu_arm925_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ENTRY(cpu_arm925_reset)
 	/* Send software reset to MPU and DSP */
 	mov	ip, #0xff000000
@@ -115,6 +119,11 @@ ENTRY(cpu_arm925_reset)
 	orr	ip, ip, #0x0000ce00
 	mov	r4, #1
 	strh	r4, [ip, #0x10]
+<<<<<<< HEAD
+ENDPROC(cpu_arm925_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0		@ invalidate I,D caches
@@ -372,6 +381,12 @@ ENTRY(arm925_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(arm925_dma_unmap_area)
 
+<<<<<<< HEAD
+	.globl	arm925_flush_kern_cache_louis
+	.equ	arm925_flush_kern_cache_louis, arm925_flush_kern_cache_all
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions arm925
 

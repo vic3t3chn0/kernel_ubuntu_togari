@@ -36,7 +36,11 @@ struct snd_usb_audio {
 	struct snd_card *card;
 	struct usb_interface *pm_intf;
 	u32 usb_id;
+<<<<<<< HEAD
+	struct mutex shutdown_mutex;
+=======
 	struct rw_semaphore shutdown_rwsem;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int shutdown:1;
 	unsigned int probing:1;
 	unsigned int autosuspended:1;	
@@ -80,6 +84,10 @@ enum quirk_type {
 	QUIRK_MIDI_CME,
 	QUIRK_MIDI_AKAI,
 	QUIRK_MIDI_US122L,
+<<<<<<< HEAD
+	QUIRK_MIDI_FTDI,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	QUIRK_AUDIO_STANDARD_INTERFACE,
 	QUIRK_AUDIO_FIXED_ENDPOINT,
 	QUIRK_AUDIO_EDIROL_UAXX,

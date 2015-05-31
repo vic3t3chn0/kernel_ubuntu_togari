@@ -21,7 +21,10 @@
 #include <linux/seq_file.h>
 #include <linux/of_platform.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/pci-bridge.h>

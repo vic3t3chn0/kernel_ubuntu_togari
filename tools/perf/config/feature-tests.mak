@@ -65,6 +65,24 @@ int main(void)
 endef
 endif
 
+<<<<<<< HEAD
+ifndef NO_GTK2
+define SOURCE_GTK2
+#pragma GCC diagnostic ignored \"-Wstrict-prototypes\"
+#include <gtk/gtk.h>
+#pragma GCC diagnostic error \"-Wstrict-prototypes\"
+
+int main(int argc, char *argv[])
+{
+        gtk_init(&argc, &argv);
+
+        return 0;
+}
+endef
+endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ifndef NO_LIBPERL
 define SOURCE_PERL_EMBED
 #include <EXTERN.h>

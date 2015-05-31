@@ -166,7 +166,10 @@
 
 /* PLL registers bitfields */
 #define PLLP_SHIFT		0
+<<<<<<< HEAD
+=======
 #define PLLP_MASK		7
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define PLLQ_SHIFT		3
 #define PLLR_SHIFT		0
 #define PLLJ_SHIFT		2
@@ -213,9 +216,12 @@
 /* Default input volume */
 #define DEFAULT_GAIN    0x20
 
+<<<<<<< HEAD
+=======
 void aic3x_set_gpio(struct snd_soc_codec *codec, int gpio, int state);
 int aic3x_get_gpio(struct snd_soc_codec *codec, int gpio);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* headset detection / button API */
 
 /* The AIC3x supports detection of stereo headsets (GND + left + right signal)
@@ -253,10 +259,13 @@ enum {
 #define AIC3X_BUTTON_DEBOUNCE_SHIFT 	0
 #define AIC3X_BUTTON_DEBOUNCE_MASK	3
 
+<<<<<<< HEAD
+=======
 /* see the enums above for valid parameters to this function */
 void aic3x_set_headset_detection(struct snd_soc_codec *codec, int detect,
 				 int headset_debounce, int button_debounce);
 int aic3x_headset_detected(struct snd_soc_codec *codec);
 int aic3x_button_pressed(struct snd_soc_codec *codec);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _AIC3X_H */

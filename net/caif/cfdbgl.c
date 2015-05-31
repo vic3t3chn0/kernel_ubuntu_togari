@@ -19,6 +19,12 @@ static int cfdbgl_transmit(struct cflayer *layr, struct cfpkt *pkt);
 
 struct cflayer *cfdbgl_create(u8 channel_id, struct dev_info *dev_info)
 {
+<<<<<<< HEAD
+	struct cfsrvl *dbg = kzalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
+	if (!dbg)
+		return NULL;
+	caif_assert(offsetof(struct cfsrvl, layer) == 0);
+=======
 	struct cfsrvl *dbg = kmalloc(sizeof(struct cfsrvl), GFP_ATOMIC);
 	if (!dbg) {
 		pr_warn("Out of memory\n");
@@ -26,6 +32,7 @@ struct cflayer *cfdbgl_create(u8 channel_id, struct dev_info *dev_info)
 	}
 	caif_assert(offsetof(struct cfsrvl, layer) == 0);
 	memset(dbg, 0, sizeof(struct cfsrvl));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	cfsrvl_init(dbg, channel_id, dev_info, false);
 	dbg->layer.receive = cfdbgl_receive;
 	dbg->layer.transmit = cfdbgl_transmit;
@@ -44,8 +51,15 @@ static int cfdbgl_transmit(struct cflayer *layr, struct cfpkt *pkt)
 	struct caif_payload_info *info;
 	int ret;
 
+<<<<<<< HEAD
+	if (!cfsrvl_ready(service, &ret)) {
+		cfpkt_destroy(pkt);
+		return ret;
+	}
+=======
 	if (!cfsrvl_ready(service, &ret))
 		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Add info for MUX-layer to route the packet out */
 	info = cfpkt_info(pkt);

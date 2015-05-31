@@ -16,7 +16,10 @@
 #include <linux/etherdevice.h>
 #include <linux/llc.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+=======
 #include <linux/pkt_sched.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/net_namespace.h>
 #include <net/llc.h>
 #include <net/llc_pdu.h>
@@ -41,7 +44,10 @@ static void br_send_bpdu(struct net_bridge_port *p,
 
 	skb->dev = p->dev;
 	skb->protocol = htons(ETH_P_802_2);
+<<<<<<< HEAD
+=======
 	skb->priority = TC_PRIO_CONTROL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	skb_reserve(skb, LLC_RESERVE);
 	memcpy(__skb_put(skb, length), data, length);
@@ -212,10 +218,26 @@ void br_stp_rcv(const struct stp_proto *proto, struct sk_buff *skb,
 		bpdu.hello_time = br_get_ticks(buf+28);
 		bpdu.forward_delay = br_get_ticks(buf+30);
 
+<<<<<<< HEAD
+		if (bpdu.message_age > bpdu.max_age) {
+			if (net_ratelimit())
+				br_notice(p->br,
+					  "port %u config from %pM"
+					  " (message_age %ul > max_age %ul)\n",
+					  p->port_no,
+					  eth_hdr(skb)->h_source,
+					  bpdu.message_age, bpdu.max_age);
+			goto out;
+		}
+
+		br_received_config_bpdu(p, &bpdu);
+	} else if (buf[0] == BPDU_TYPE_TCN) {
+=======
 		br_received_config_bpdu(p, &bpdu);
 	}
 
 	else if (buf[0] == BPDU_TYPE_TCN) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		br_received_tcn_bpdu(p);
 	}
  out:

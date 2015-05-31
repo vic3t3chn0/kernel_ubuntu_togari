@@ -19,6 +19,10 @@
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+#include <linux/magic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/binfmts.h>
 #include <linux/slab.h>
 #include <linux/ctype.h>
@@ -116,6 +120,13 @@ static int load_misc_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 	if (!enabled)
 		goto _ret;
 
+<<<<<<< HEAD
+	retval = -ENOEXEC;
+	if (bprm->recursion_depth > BINPRM_MAX_RECURSION)
+		goto _ret;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* to keep locking time low, we copy the interpreter string */
 	read_lock(&entries_lock);
 	fmt = check_file(bprm);
@@ -145,8 +156,12 @@ static int load_misc_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 
 		/* if the binary is not readable than enforce mm->dumpable=0
 		   regardless of the interpreter's permissions */
+<<<<<<< HEAD
+		would_dump(bprm, bprm->file);
+=======
 		if (file_permission(bprm->file, MAY_READ))
 			bprm->interp_flags |= BINPRM_FLAGS_ENFORCE_NONDUMP;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		allow_write_access(bprm->file);
 		bprm->file = NULL;
@@ -172,10 +187,14 @@ static int load_misc_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 		goto _error;
 	bprm->argc ++;
 
+<<<<<<< HEAD
+	bprm->interp = iname;	/* for binfmt_script */
+=======
 	/* Update interp in case binfmt_script needs it. */
 	retval = bprm_change_interp(iname, bprm);
 	if (retval < 0)
 		goto _error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	interp_file = open_exec (iname);
 	retval = PTR_ERR (interp_file);
@@ -196,6 +215,11 @@ static int load_misc_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 	if (retval < 0)
 		goto _error;
 
+<<<<<<< HEAD
+	bprm->recursion_depth++;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	retval = search_binary_handler (bprm, regs);
 	if (retval < 0)
 		goto _error;
@@ -519,7 +543,11 @@ static void kill_node(Node *e)
 	write_unlock(&entries_lock);
 
 	if (dentry) {
+<<<<<<< HEAD
+		drop_nlink(dentry->d_inode);
+=======
 		dentry->d_inode->i_nlink--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		d_drop(dentry);
 		dput(dentry);
 		simple_release_fs(&bm_mnt, &entry_count);
@@ -558,7 +586,11 @@ static ssize_t bm_entry_write(struct file *file, const char __user *buffer,
 			break;
 		case 2: set_bit(Enabled, &e->flags);
 			break;
+<<<<<<< HEAD
+		case 3: root = dget(file->f_path.dentry->d_sb->s_root);
+=======
 		case 3: root = dget(file->f_path.mnt->mnt_sb->s_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			mutex_lock(&root->d_inode->i_mutex);
 
 			kill_node(e);
@@ -585,7 +617,11 @@ static ssize_t bm_register_write(struct file *file, const char __user *buffer,
 	Node *e;
 	struct inode *inode;
 	struct dentry *root, *dentry;
+<<<<<<< HEAD
+	struct super_block *sb = file->f_path.dentry->d_sb;
+=======
 	struct super_block *sb = file->f_path.mnt->mnt_sb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err = 0;
 
 	e = create_entry(buffer, count);
@@ -664,7 +700,11 @@ static ssize_t bm_status_write(struct file * file, const char __user * buffer,
 	switch (res) {
 		case 1: enabled = 0; break;
 		case 2: enabled = 1; break;
+<<<<<<< HEAD
+		case 3: root = dget(file->f_path.dentry->d_sb->s_root);
+=======
 		case 3: root = dget(file->f_path.mnt->mnt_sb->s_root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			mutex_lock(&root->d_inode->i_mutex);
 
 			while (!list_empty(&entries))
@@ -697,7 +737,11 @@ static int bm_fill_super(struct super_block * sb, void * data, int silent)
 		[3] = {"register", &bm_register_operations, S_IWUSR},
 		/* last one */ {""}
 	};
+<<<<<<< HEAD
+	int err = simple_fill_super(sb, BINFMTFS_MAGIC, bm_files);
+=======
 	int err = simple_fill_super(sb, 0x42494e4d, bm_files);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!err)
 		sb->s_op = &s_ops;
 	return err;
@@ -724,11 +768,16 @@ static struct file_system_type bm_fs_type = {
 static int __init init_misc_binfmt(void)
 {
 	int err = register_filesystem(&bm_fs_type);
+<<<<<<< HEAD
+	if (!err)
+		insert_binfmt(&misc_format);
+=======
 	if (!err) {
 		err = insert_binfmt(&misc_format);
 		if (err)
 			unregister_filesystem(&bm_fs_type);
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return err;
 }
 

@@ -6,7 +6,11 @@
  * needed to reduce the lookup overhead since most of these queries happen on
  * a per-packet basis.
  *
+<<<<<<< HEAD
+ * Author: Paul Moore <paul@paul-moore.com>
+=======
  * Author: Paul Moore <paul.moore@hp.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  */
 

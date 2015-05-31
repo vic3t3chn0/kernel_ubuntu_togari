@@ -115,7 +115,11 @@ struct iscsi_task {
 	/* copied values in case we need to send tmfs */
 	itt_t			hdr_itt;
 	__be32			cmdsn;
+<<<<<<< HEAD
+	struct scsi_lun		lun;
+=======
 	uint8_t			lun[8];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	int			itt;		/* this ITT */
 
@@ -268,7 +272,11 @@ struct iscsi_session {
 	int			lu_reset_timeout;
 	int			tgt_reset_timeout;
 	int			initial_r2t_en;
+<<<<<<< HEAD
+	unsigned short		max_r2t;
+=======
 	unsigned		max_r2t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int			imm_data_en;
 	unsigned		first_burst;
 	unsigned		max_burst;
@@ -284,6 +292,10 @@ struct iscsi_session {
 	char			*password;
 	char			*password_in;
 	char			*targetname;
+<<<<<<< HEAD
+	char			*targetalias;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	char			*ifacename;
 	char			*initiatorname;
 	/* control data */

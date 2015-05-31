@@ -8,6 +8,10 @@
 #ifndef ASM_SCHED_CLOCK
 #define ASM_SCHED_CLOCK
 
+<<<<<<< HEAD
+extern void sched_clock_postinit(void);
+extern void setup_sched_clock(u32 (*read)(void), int bits, unsigned long rate);
+=======
 #include <linux/kernel.h>
 #include <linux/types.h>
 
@@ -116,5 +120,6 @@ static inline void init_fixed_sched_clock(struct clock_data *cd,
 }
 
 extern void sched_clock_postinit(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

@@ -16,12 +16,21 @@
 #include <linux/param.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
 #include <linux/spi/spi.h>
 #include <linux/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/machdep.h>
 #include <asm/coldfire.h>
 #include <asm/mcfsim.h>
 #include <asm/mcfuart.h>
+<<<<<<< HEAD
+
+/***************************************************************************/
+
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+=======
 #include <asm/mcfqspi.h>
 
 /***************************************************************************/
@@ -263,6 +272,7 @@ static struct platform_device m527x_qspi = {
 	.resource		= m527x_qspi_resources,
 	.dev.platform_data	= &m527x_qspi_data,
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void __init m527x_qspi_init(void)
 {
@@ -280,6 +290,17 @@ static void __init m527x_qspi_init(void)
 	writew(0x003e, MCFGPIO_PAR_QSPI);
 #endif
 }
+<<<<<<< HEAD
+
+#endif /* IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI) */
+
+/***************************************************************************/
+
+static void __init m527x_uarts_init(void)
+{
+	u16 sepmask;
+
+=======
 #endif /* defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE) */
 
 static struct platform_device *m527x_devices[] __initdata = {
@@ -302,10 +323,17 @@ static void __init m527x_uart_init_line(int line, int irq)
 	if ((line < 0) || (line > 2))
 		return;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * External Pin Mask Setting & Enable External Pin for Interface
 	 */
 	sepmask = readw(MCF_IPSBAR + MCF_GPIO_PAR_UART);
+<<<<<<< HEAD
+	sepmask |= UART0_ENABLE_MASK | UART1_ENABLE_MASK | UART2_ENABLE_MASK;
+	writew(sepmask, MCF_IPSBAR + MCF_GPIO_PAR_UART);
+}
+
+=======
 	if (line == 0)
 		sepmask |= UART0_ENABLE_MASK;
 	else if (line == 1)
@@ -324,6 +352,7 @@ static void __init m527x_uarts_init(void)
 		m527x_uart_init_line(line, m527x_uart_platform[line].irq);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /***************************************************************************/
 
 static void __init m527x_fec_init(void)
@@ -340,9 +369,13 @@ static void __init m527x_fec_init(void)
 	writew(par | 0xf00, MCF_IPSBAR + 0x100082);
 	v = readb(MCF_IPSBAR + 0x100078);
 	writeb(v | 0xc0, MCF_IPSBAR + 0x100078);
+<<<<<<< HEAD
+
+=======
 #endif
 
 #ifdef CONFIG_FEC2
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Set multi-function pins to ethernet mode for fec1 */
 	par = readw(MCF_IPSBAR + 0x100082);
 	writew(par | 0xa0, MCF_IPSBAR + 0x100082);
@@ -353,6 +386,14 @@ static void __init m527x_fec_init(void)
 
 /***************************************************************************/
 
+<<<<<<< HEAD
+void __init config_BSP(char *commandp, int size)
+{
+	mach_sched_init = hw_timer_init;
+	m527x_uarts_init();
+	m527x_fec_init();
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+=======
 static void m527x_cpu_reset(void)
 {
 	local_irq_disable();
@@ -367,11 +408,14 @@ void __init config_BSP(char *commandp, int size)
 	m527x_uarts_init();
 	m527x_fec_init();
 #if defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	m527x_qspi_init();
 #endif
 }
 
 /***************************************************************************/
+<<<<<<< HEAD
+=======
 
 static int __init init_BSP(void)
 {
@@ -382,3 +426,4 @@ static int __init init_BSP(void)
 arch_initcall(init_BSP);
 
 /***************************************************************************/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

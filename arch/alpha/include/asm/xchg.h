@@ -1,10 +1,18 @@
+<<<<<<< HEAD
+#ifndef _ALPHA_CMPXCHG_H
+=======
 #ifndef __ALPHA_SYSTEM_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #error Do not include xchg.h directly!
 #else
 /*
  * xchg/xchg_local and cmpxchg/cmpxchg_local share the same code
  * except that local version do not have the expensive memory barrier.
+<<<<<<< HEAD
+ * So this file is included twice from asm/cmpxchg.h.
+=======
  * So this file is included twice from asm/system.h.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 /*

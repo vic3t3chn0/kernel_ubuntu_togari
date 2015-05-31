@@ -3,13 +3,20 @@
  *
  * OMAP LEDs dispatcher
  */
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/init.h>
 
 #include <asm/leds.h>
 #include <asm/mach-types.h>
 
+<<<<<<< HEAD
+=======
 #include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/mux.h>
 
 #include "leds.h"

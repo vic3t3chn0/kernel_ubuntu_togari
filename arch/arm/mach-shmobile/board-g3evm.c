@@ -32,12 +32,20 @@
 #include <linux/gpio.h>
 #include <linux/input.h>
 #include <linux/input/sh_keysc.h>
+<<<<<<< HEAD
+#include <linux/dma-mapping.h>
+#include <mach/irqs.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/sh7367.h>
 #include <mach/common.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
+<<<<<<< HEAD
+=======
 #include <asm/mach/map.h>
 #include <asm/mach/time.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * IrDA
@@ -245,6 +253,8 @@ static struct platform_device *g3evm_devices[] __initdata = {
 	&irda_device,
 };
 
+<<<<<<< HEAD
+=======
 static struct map_desc g3evm_io_desc[] __initdata = {
 	/* create a 1:1 entity map for 0xe6xxxxxx
 	 * used by CPGA, INTC and PFC.
@@ -266,6 +276,7 @@ static void __init g3evm_map_io(void)
 	shmobile_setup_console();
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __init g3evm_init(void)
 {
 	sh7367_pinmux_init();
@@ -353,6 +364,15 @@ static void __init g3evm_init(void)
 	platform_add_devices(g3evm_devices, ARRAY_SIZE(g3evm_devices));
 }
 
+<<<<<<< HEAD
+MACHINE_START(G3EVM, "g3evm")
+	.map_io		= sh7367_map_io,
+	.init_early	= sh7367_add_early_devices,
+	.init_irq	= sh7367_init_irq,
+	.handle_irq	= shmobile_handle_irq_intc,
+	.init_machine	= g3evm_init,
+	.timer		= &shmobile_timer,
+=======
 static void __init g3evm_timer_init(void)
 {
 	sh7367_clock_init();
@@ -369,4 +389,5 @@ MACHINE_START(G3EVM, "g3evm")
 	.handle_irq	= shmobile_handle_irq_intc,
 	.init_machine	= g3evm_init,
 	.timer		= &g3evm_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

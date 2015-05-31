@@ -16,7 +16,10 @@
  *
  */
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 #include <linux/types.h>
 #include <linux/sched.h>
@@ -51,6 +54,10 @@
 #include <linux/pim.h>
 #include <net/addrconf.h>
 #include <linux/netfilter_ipv6.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/ip6_checksum.h>
 
 struct mr6_table {
@@ -256,12 +263,18 @@ static void __net_exit ip6mr_rules_exit(struct net *net)
 {
 	struct mr6_table *mrt, *next;
 
+<<<<<<< HEAD
+=======
 	rtnl_lock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	list_for_each_entry_safe(mrt, next, &net->ipv6.mr6_tables, list) {
 		list_del(&mrt->list);
 		ip6mr_free_table(mrt);
 	}
+<<<<<<< HEAD
+=======
 	rtnl_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fib_rules_unregister(net->ipv6.mr6_rules_ops);
 }
 #else
@@ -288,10 +301,14 @@ static int __net_init ip6mr_rules_init(struct net *net)
 
 static void __net_exit ip6mr_rules_exit(struct net *net)
 {
+<<<<<<< HEAD
+	ip6mr_free_table(net->ipv6.mrt6);
+=======
 	rtnl_lock();
 	ip6mr_free_table(net->ipv6.mrt6);
 	net->ipv6.mrt6 = NULL;
 	rtnl_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 #endif
 
@@ -1109,8 +1126,13 @@ static int ip6mr_cache_report(struct mr6_table *mrt, struct sk_buff *pkt,
 		msg->im6_msgtype = MRT6MSG_WHOLEPKT;
 		msg->im6_mif = mrt->mroute_reg_vif_num;
 		msg->im6_pad = 0;
+<<<<<<< HEAD
+		msg->im6_src = ipv6_hdr(pkt)->saddr;
+		msg->im6_dst = ipv6_hdr(pkt)->daddr;
+=======
 		ipv6_addr_copy(&msg->im6_src, &ipv6_hdr(pkt)->saddr);
 		ipv6_addr_copy(&msg->im6_dst, &ipv6_hdr(pkt)->daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		skb->ip_summed = CHECKSUM_UNNECESSARY;
 	} else
@@ -1135,8 +1157,13 @@ static int ip6mr_cache_report(struct mr6_table *mrt, struct sk_buff *pkt,
 	msg->im6_msgtype = assert;
 	msg->im6_mif = mifi;
 	msg->im6_pad = 0;
+<<<<<<< HEAD
+	msg->im6_src = ipv6_hdr(pkt)->saddr;
+	msg->im6_dst = ipv6_hdr(pkt)->daddr;
+=======
 	ipv6_addr_copy(&msg->im6_src, &ipv6_hdr(pkt)->saddr);
 	ipv6_addr_copy(&msg->im6_dst, &ipv6_hdr(pkt)->daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	skb_dst_set(skb, dst_clone(skb_dst(pkt)));
 	skb->ip_summed = CHECKSUM_UNNECESSARY;
@@ -1930,8 +1957,15 @@ static int ip6mr_forward2(struct net *net, struct mr6_table *mrt,
 	};
 
 	dst = ip6_route_output(net, NULL, &fl6);
+<<<<<<< HEAD
+	if (dst->error) {
+		dst_release(dst);
+		goto out_free;
+	}
+=======
 	if (!dst)
 		goto out_free;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	skb_dst_drop(skb);
 	skb_dst_set(skb, dst);
@@ -2185,8 +2219,13 @@ int ip6mr_get_route(struct net *net,
 		iph->payload_len = 0;
 		iph->nexthdr = IPPROTO_NONE;
 		iph->hop_limit = 0;
+<<<<<<< HEAD
+		iph->saddr = rt->rt6i_src.addr;
+		iph->daddr = rt->rt6i_dst.addr;
+=======
 		ipv6_addr_copy(&iph->saddr, &rt->rt6i_src.addr);
 		ipv6_addr_copy(&iph->daddr, &rt->rt6i_dst.addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		err = ip6mr_cache_unresolved(mrt, vif, skb2);
 		read_unlock(&mrt_lock);

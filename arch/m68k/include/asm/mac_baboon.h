@@ -29,4 +29,13 @@ struct baboon {
 				 */
 };
 
+<<<<<<< HEAD
+extern int baboon_present;
+
+extern void baboon_register_interrupts(void);
+extern void baboon_irq_enable(int);
+extern void baboon_irq_disable(int);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASSEMBLY **/

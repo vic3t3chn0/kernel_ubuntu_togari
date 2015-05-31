@@ -12,7 +12,11 @@
  */
 #include <mach/ixp23xx.h>
 
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
 		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ldr	\rp, =IXP23XX_PERIPHERAL_PHYS 	@ physical
 		ldr	\rv, =IXP23XX_PERIPHERAL_VIRT	@ virtual
 #ifdef __ARMEB__

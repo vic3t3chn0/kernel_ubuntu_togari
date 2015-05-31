@@ -3,11 +3,19 @@
  *
  * Copyright 2007-2009	Johannes Berg <johannes@sipsolutions.net>
  */
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/bitops.h>
 #include <linux/etherdevice.h>
 #include <linux/slab.h>
 #include <net/cfg80211.h>
 #include <net/ip.h>
+<<<<<<< HEAD
+#include <net/dsfield.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "core.h"
 
 struct ieee80211_rate *
@@ -242,6 +250,8 @@ int cfg80211_validate_key_settings(struct cfg80211_registered_device *rdev,
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
 /* See IEEE 802.1H for LLC/SNAP encapsulation/decapsulation */
 /* Ethernet-II snap header (RFC1042 for most EtherTypes) */
 const unsigned char rfc1042_header[] __aligned(2) =
@@ -253,6 +263,7 @@ const unsigned char bridge_tunnel_header[] __aligned(2) =
 	{ 0xaa, 0xaa, 0x03, 0x00, 0x00, 0xf8 };
 EXPORT_SYMBOL(bridge_tunnel_header);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned int __attribute_const__ ieee80211_hdrlen(__le16 fc)
 {
 	unsigned int hdrlen = 24;
@@ -306,15 +317,27 @@ EXPORT_SYMBOL(ieee80211_get_hdrlen_from_skb);
 static int ieee80211_get_mesh_hdrlen(struct ieee80211s_hdr *meshhdr)
 {
 	int ae = meshhdr->flags & MESH_FLAGS_AE;
+<<<<<<< HEAD
+	/* 7.1.3.5a.2 */
+	switch (ae) {
+=======
 	/* 802.11-2012, 8.2.4.7.3 */
 	switch (ae) {
 	default:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 0:
 		return 6;
 	case MESH_FLAGS_AE_A4:
 		return 12;
 	case MESH_FLAGS_AE_A5_A6:
 		return 18;
+<<<<<<< HEAD
+	case (MESH_FLAGS_AE_A4 | MESH_FLAGS_AE_A5_A6):
+		return 24;
+	default:
+		return 6;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 }
 
@@ -364,8 +387,11 @@ int ieee80211_data_to_8023(struct sk_buff *skb, const u8 *addr,
 			/* make sure meshdr->flags is on the linear part */
 			if (!pskb_may_pull(skb, hdrlen + 1))
 				return -1;
+<<<<<<< HEAD
+=======
 			if (meshdr->flags & MESH_FLAGS_AE_A4)
 				return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (meshdr->flags & MESH_FLAGS_AE_A5_A6) {
 				skb_copy_bits(skb, hdrlen +
 					offsetof(struct ieee80211s_hdr, eaddr1),
@@ -390,8 +416,11 @@ int ieee80211_data_to_8023(struct sk_buff *skb, const u8 *addr,
 			/* make sure meshdr->flags is on the linear part */
 			if (!pskb_may_pull(skb, hdrlen + 1))
 				return -1;
+<<<<<<< HEAD
+=======
 			if (meshdr->flags & MESH_FLAGS_AE_A5_A6)
 				return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (meshdr->flags & MESH_FLAGS_AE_A4)
 				skb_copy_bits(skb, hdrlen +
 					offsetof(struct ieee80211s_hdr, eaddr1),
@@ -400,8 +429,14 @@ int ieee80211_data_to_8023(struct sk_buff *skb, const u8 *addr,
 		}
 		break;
 	case cpu_to_le16(0):
+<<<<<<< HEAD
+		if (iftype != NL80211_IFTYPE_ADHOC &&
+		    iftype != NL80211_IFTYPE_STATION)
+				return -1;
+=======
 		if (iftype != NL80211_IFTYPE_ADHOC)
 			return -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	}
 
@@ -521,10 +556,16 @@ int ieee80211_data_from_8023(struct sk_buff *skb, const u8 *addr,
 		if (head_need)
 			skb_orphan(skb);
 
+<<<<<<< HEAD
+		if (pskb_expand_head(skb, head_need, 0, GFP_ATOMIC))
+			return -ENOMEM;
+
+=======
 		if (pskb_expand_head(skb, head_need, 0, GFP_ATOMIC)) {
 			pr_err("failed to reallocate Tx buffer\n");
 			return -ENOMEM;
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		skb->truesize += head_need;
 	}
 
@@ -665,7 +706,14 @@ unsigned int cfg80211_classify8021d(struct sk_buff *skb)
 
 	switch (skb->protocol) {
 	case htons(ETH_P_IP):
+<<<<<<< HEAD
+		dscp = ipv4_get_dsfield(ip_hdr(skb)) & 0xfc;
+		break;
+	case htons(ETH_P_IPV6):
+		dscp = ipv6_get_dsfield(ipv6_hdr(skb)) & 0xfc;
+=======
 		dscp = ip_hdr(skb)->tos & 0xfc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	default:
 		return 0;
@@ -728,7 +776,11 @@ void cfg80211_upload_connect_keys(struct wireless_dev *wdev)
 	wdev->connect_keys = NULL;
 }
 
+<<<<<<< HEAD
+static void cfg80211_process_wdev_events(struct wireless_dev *wdev)
+=======
 void cfg80211_process_wdev_events(struct wireless_dev *wdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct cfg80211_event *ev;
 	unsigned long flags;
@@ -816,7 +868,11 @@ int cfg80211_change_iface(struct cfg80211_registered_device *rdev,
 	     ntype == NL80211_IFTYPE_P2P_CLIENT))
 		return -EBUSY;
 
+<<<<<<< HEAD
+	if (ntype != otype) {
+=======
 	if (ntype != otype && netif_running(dev)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = cfg80211_can_change_interface(rdev, dev->ieee80211_ptr,
 						    ntype);
 		if (err)
@@ -883,13 +939,95 @@ int cfg80211_change_iface(struct cfg80211_registered_device *rdev,
 	return err;
 }
 
+<<<<<<< HEAD
+static u32 cfg80211_calculate_bitrate_vht(struct rate_info *rate)
+{
+	static const u32 base[4][10] = {
+		{   6500000,
+		   13000000,
+		   19500000,
+		   26000000,
+		   39000000,
+		   52000000,
+		   58500000,
+		   65000000,
+		   78000000,
+		   0,
+		},
+		{  13500000,
+		   27000000,
+		   40500000,
+		   54000000,
+		   81000000,
+		  108000000,
+		  121500000,
+		  135000000,
+		  162000000,
+		  180000000,
+		},
+		{  29300000,
+		   58500000,
+		   87800000,
+		  117000000,
+		  175500000,
+		  234000000,
+		  263300000,
+		  292500000,
+		  351000000,
+		  390000000,
+		},
+		{  58500000,
+		  117000000,
+		  175500000,
+		  234000000,
+		  351000000,
+		  468000000,
+		  526500000,
+		  585000000,
+		  702000000,
+		  780000000,
+		},
+	};
+	u32 bitrate;
+	int idx;
+
+	if (WARN_ON_ONCE(rate->mcs > 9))
+		return 0;
+
+	idx = rate->flags & (RATE_INFO_FLAGS_160_MHZ_WIDTH |
+			     RATE_INFO_FLAGS_80P80_MHZ_WIDTH) ? 3 :
+		  rate->flags & RATE_INFO_FLAGS_80_MHZ_WIDTH ? 2 :
+		  rate->flags & RATE_INFO_FLAGS_40_MHZ_WIDTH ? 1 : 0;
+
+	bitrate = base[idx][rate->mcs];
+	bitrate *= rate->nss;
+
+	if (rate->flags & RATE_INFO_FLAGS_SHORT_GI)
+		bitrate = (bitrate / 9) * 10;
+
+	/* do NOT round down here */
+	return (bitrate + 50000) / 100000;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 u16 cfg80211_calculate_bitrate(struct rate_info *rate)
 {
 	int modulation, streams, bitrate;
 
+<<<<<<< HEAD
+	if (!(rate->flags & RATE_INFO_FLAGS_MCS) &&
+	    !(rate->flags & RATE_INFO_FLAGS_VHT_MCS))
+		return rate->legacy;
+
+	if (rate->flags & RATE_INFO_FLAGS_VHT_MCS)
+		return cfg80211_calculate_bitrate_vht(rate);
+
+=======
 	if (!(rate->flags & RATE_INFO_FLAGS_MCS))
 		return rate->legacy;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* the formula below does only work for MCS values smaller than 32 */
 	if (rate->mcs >= 32)
 		return 0;
@@ -915,6 +1053,10 @@ u16 cfg80211_calculate_bitrate(struct rate_info *rate)
 	/* do NOT round down here */
 	return (bitrate + 50000) / 100000;
 }
+<<<<<<< HEAD
+EXPORT_SYMBOL(cfg80211_calculate_bitrate);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int cfg80211_validate_beacon_int(struct cfg80211_registered_device *rdev,
 				 u32 beacon_int)
@@ -946,7 +1088,10 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 				  enum nl80211_iftype iftype)
 {
 	struct wireless_dev *wdev_iter;
+<<<<<<< HEAD
+=======
 	u32 used_iftypes = BIT(iftype);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int num[NUM_NL80211_IFTYPES];
 	int total = 1;
 	int i, j;
@@ -980,6 +1125,14 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 
 		num[wdev_iter->iftype]++;
 		total++;
+<<<<<<< HEAD
+	}
+	mutex_unlock(&rdev->devlist_mtx);
+
+	for (i = 0; i < rdev->wiphy.n_iface_combinations; i++) {
+		const struct ieee80211_iface_combination *c;
+		struct ieee80211_iface_limit *limits;
+=======
 		used_iftypes |= BIT(wdev_iter->iftype);
 	}
 	mutex_unlock(&rdev->devlist_mtx);
@@ -991,6 +1144,7 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 		const struct ieee80211_iface_combination *c;
 		struct ieee80211_iface_limit *limits;
 		u32 all_iftypes = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		c = &rdev->wiphy.iface_combinations[i];
 
@@ -1005,7 +1159,10 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 			if (rdev->wiphy.software_iftypes & BIT(iftype))
 				continue;
 			for (j = 0; j < c->n_limits; j++) {
+<<<<<<< HEAD
+=======
 				all_iftypes |= limits[j].types;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				if (!(limits[j].types & BIT(iftype)))
 					continue;
 				if (limits[j].max < num[iftype])
@@ -1013,6 +1170,9 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 				limits[j].max -= num[iftype];
 			}
 		}
+<<<<<<< HEAD
+		/* yay, it fits */
+=======
 
 		/*
 		 * Finally check that all iftypes that we're currently
@@ -1027,6 +1187,7 @@ int cfg80211_can_change_interface(struct cfg80211_registered_device *rdev,
 		 * This combination covered all interface types and
 		 * supported the requested numbers, so we're good.
 		 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		kfree(limits);
 		return 0;
  cont:
@@ -1064,6 +1225,10 @@ int ieee80211_get_ratemask(struct ieee80211_supported_band *sband,
 		if (!found)
 			return -EINVAL;
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * mask must have at least one bit set here since we
 	 * didn't accept a 0-length rates array nor allowed
@@ -1072,3 +1237,17 @@ int ieee80211_get_ratemask(struct ieee80211_supported_band *sband,
 
 	return 0;
 }
+<<<<<<< HEAD
+
+/* See IEEE 802.1H for LLC/SNAP encapsulation/decapsulation */
+/* Ethernet-II snap header (RFC1042 for most EtherTypes) */
+const unsigned char rfc1042_header[] __aligned(2) =
+	{ 0xaa, 0xaa, 0x03, 0x00, 0x00, 0x00 };
+EXPORT_SYMBOL(rfc1042_header);
+
+/* Bridge-Tunnel header (for EtherTypes ETH_P_AARP and ETH_P_IPX) */
+const unsigned char bridge_tunnel_header[] __aligned(2) =
+	{ 0xaa, 0xaa, 0x03, 0x00, 0x00, 0xf8 };
+EXPORT_SYMBOL(bridge_tunnel_header);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

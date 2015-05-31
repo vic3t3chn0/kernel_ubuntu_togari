@@ -33,11 +33,17 @@
 #include <linux/nfs4_mount.h>
 #include <linux/syscalls.h>
 #include <linux/ctype.h>
+<<<<<<< HEAD
+#include <linux/dirent.h>
+#include <linux/fsnotify.h>
+#include <linux/highuid.h>
+=======
 #include <linux/module.h>
 #include <linux/dirent.h>
 #include <linux/fsnotify.h>
 #include <linux/highuid.h>
 #include <linux/nfsd/syscall.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/personality.h>
 #include <linux/rwsem.h>
 #include <linux/tsacct_kern.h>
@@ -132,6 +138,37 @@ asmlinkage long compat_sys_utimes(const char __user *filename, struct compat_tim
 
 static int cp_compat_stat(struct kstat *stat, struct compat_stat __user *ubuf)
 {
+<<<<<<< HEAD
+	struct compat_stat tmp;
+
+	if (!old_valid_dev(stat->dev) || !old_valid_dev(stat->rdev))
+		return -EOVERFLOW;
+
+	memset(&tmp, 0, sizeof(tmp));
+	tmp.st_dev = old_encode_dev(stat->dev);
+	tmp.st_ino = stat->ino;
+	if (sizeof(tmp.st_ino) < sizeof(stat->ino) && tmp.st_ino != stat->ino)
+		return -EOVERFLOW;
+	tmp.st_mode = stat->mode;
+	tmp.st_nlink = stat->nlink;
+	if (tmp.st_nlink != stat->nlink)
+		return -EOVERFLOW;
+	SET_UID(tmp.st_uid, stat->uid);
+	SET_GID(tmp.st_gid, stat->gid);
+	tmp.st_rdev = old_encode_dev(stat->rdev);
+	if ((u64) stat->size > MAX_NON_LFS)
+		return -EOVERFLOW;
+	tmp.st_size = stat->size;
+	tmp.st_atime = stat->atime.tv_sec;
+	tmp.st_atime_nsec = stat->atime.tv_nsec;
+	tmp.st_mtime = stat->mtime.tv_sec;
+	tmp.st_mtime_nsec = stat->mtime.tv_nsec;
+	tmp.st_ctime = stat->ctime.tv_sec;
+	tmp.st_ctime_nsec = stat->ctime.tv_nsec;
+	tmp.st_blocks = stat->blocks;
+	tmp.st_blksize = stat->blksize;
+	return copy_to_user(ubuf, &tmp, sizeof(tmp)) ? -EFAULT : 0;
+=======
 	compat_ino_t ino = stat->ino;
 	typeof(ubuf->st_uid) uid = 0;
 	typeof(ubuf->st_gid) gid = 0;
@@ -167,6 +204,7 @@ static int cp_compat_stat(struct kstat *stat, struct compat_stat __user *ubuf)
 	err |= __put_user(stat->blksize, &ubuf->st_blksize);
 	err |= __put_user(stat->blocks, &ubuf->st_blocks);
 	return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 asmlinkage long compat_sys_newstat(const char __user * filename,
@@ -247,11 +285,16 @@ static int put_compat_statfs(struct compat_statfs __user *ubuf, struct kstatfs *
 	    __put_user(kbuf->f_fsid.val[0], &ubuf->f_fsid.val[0]) ||
 	    __put_user(kbuf->f_fsid.val[1], &ubuf->f_fsid.val[1]) ||
 	    __put_user(kbuf->f_frsize, &ubuf->f_frsize) ||
+<<<<<<< HEAD
+	    __put_user(kbuf->f_flags, &ubuf->f_flags) ||
+	    __clear_user(ubuf->f_spare, sizeof(ubuf->f_spare)))
+=======
 	    __put_user(0, &ubuf->f_spare[0]) || 
 	    __put_user(0, &ubuf->f_spare[1]) || 
 	    __put_user(0, &ubuf->f_spare[2]) || 
 	    __put_user(0, &ubuf->f_spare[3]) || 
 	    __put_user(0, &ubuf->f_spare[4]))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EFAULT;
 	return 0;
 }
@@ -346,6 +389,11 @@ asmlinkage long compat_sys_fstatfs64(unsigned int fd, compat_size_t sz, struct c
  */
 asmlinkage long compat_sys_ustat(unsigned dev, struct compat_ustat __user *u)
 {
+<<<<<<< HEAD
+	struct compat_ustat tmp;
+	struct kstatfs sbuf;
+	int err = vfs_ustat(new_decode_dev(dev), &sbuf);
+=======
 	struct super_block *sb;
 	struct compat_ustat tmp;
 	struct kstatfs sbuf;
@@ -356,6 +404,7 @@ asmlinkage long compat_sys_ustat(unsigned dev, struct compat_ustat __user *u)
 		return -EINVAL;
 	err = statfs_by_dentry(sb->s_root, &sbuf);
 	drop_super(sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err)
 		return err;
 
@@ -550,7 +599,11 @@ out:
 ssize_t compat_rw_copy_check_uvector(int type,
 		const struct compat_iovec __user *uvector, unsigned long nr_segs,
 		unsigned long fast_segs, struct iovec *fast_pointer,
+<<<<<<< HEAD
+		struct iovec **ret_pointer, int check_access)
+=======
 		struct iovec **ret_pointer)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	compat_ssize_t tot_len;
 	struct iovec *iov = *ret_pointer = fast_pointer;
@@ -576,10 +629,13 @@ ssize_t compat_rw_copy_check_uvector(int type,
 	}
 	*ret_pointer = iov;
 
+<<<<<<< HEAD
+=======
 	ret = -EFAULT;
 	if (!access_ok(VERIFY_READ, uvector, nr_segs*sizeof(*uvector)))
 		goto out;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Single unix specification:
 	 * We should -EINVAL if an element length is not >= 0 and fitting an
@@ -601,7 +657,12 @@ ssize_t compat_rw_copy_check_uvector(int type,
 		}
 		if (len < 0)	/* size_t not fitting in compat_ssize_t .. */
 			goto out;
+<<<<<<< HEAD
+		if (check_access &&
+		    !access_ok(vrfy_dir(type), compat_ptr(buf), len)) {
+=======
 		if (!access_ok(vrfy_dir(type), compat_ptr(buf), len)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			ret = -EFAULT;
 			goto out;
 		}
@@ -1110,12 +1171,26 @@ static ssize_t compat_do_readv_writev(int type, struct file *file,
 	if (!file->f_op)
 		goto out;
 
+<<<<<<< HEAD
+	ret = -EFAULT;
+	if (!access_ok(VERIFY_READ, uvector, nr_segs*sizeof(*uvector)))
+		goto out;
+
+	tot_len = compat_rw_copy_check_uvector(type, uvector, nr_segs,
+					       UIO_FASTIOV, iovstack, &iov, 1);
+	if (tot_len == 0) {
+		ret = 0;
+		goto out;
+	}
+
+=======
 	ret = compat_rw_copy_check_uvector(type, uvector, nr_segs,
 					       UIO_FASTIOV, iovstack, &iov);
 	if (ret <= 0)
 		goto out;
 
 	tot_len = ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ret = rw_verify_area(type, file, pos, tot_len);
 	if (ret < 0)
 		goto out;
@@ -1176,23 +1251,36 @@ compat_sys_readv(unsigned long fd, const struct compat_iovec __user *vec,
 	struct file *file;
 	int fput_needed;
 	ssize_t ret;
+<<<<<<< HEAD
+=======
 	loff_t pos;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	file = fget_light(fd, &fput_needed);
 	if (!file)
 		return -EBADF;
+<<<<<<< HEAD
+	ret = compat_readv(file, vec, vlen, &file->f_pos);
+=======
 	pos = file->f_pos;
 	ret = compat_readv(file, vec, vlen, &pos);
 	file->f_pos = pos;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fput_light(file, fput_needed);
 	return ret;
 }
 
 asmlinkage ssize_t
+<<<<<<< HEAD
+compat_sys_preadv64(unsigned long fd, const struct compat_iovec __user *vec,
+		    unsigned long vlen, loff_t pos)
+{
+=======
 compat_sys_preadv(unsigned long fd, const struct compat_iovec __user *vec,
 		  unsigned long vlen, u32 pos_low, u32 pos_high)
 {
 	loff_t pos = ((loff_t)pos_high << 32) | pos_low;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct file *file;
 	int fput_needed;
 	ssize_t ret;
@@ -1209,6 +1297,17 @@ compat_sys_preadv(unsigned long fd, const struct compat_iovec __user *vec,
 	return ret;
 }
 
+<<<<<<< HEAD
+asmlinkage ssize_t
+compat_sys_preadv(unsigned long fd, const struct compat_iovec __user *vec,
+		  unsigned long vlen, u32 pos_low, u32 pos_high)
+{
+	loff_t pos = ((loff_t)pos_high << 32) | pos_low;
+	return compat_sys_preadv64(fd, vec, vlen, pos);
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static size_t compat_writev(struct file *file,
 			    const struct compat_iovec __user *vec,
 			    unsigned long vlen, loff_t *pos)
@@ -1238,23 +1337,36 @@ compat_sys_writev(unsigned long fd, const struct compat_iovec __user *vec,
 	struct file *file;
 	int fput_needed;
 	ssize_t ret;
+<<<<<<< HEAD
+=======
 	loff_t pos;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	file = fget_light(fd, &fput_needed);
 	if (!file)
 		return -EBADF;
+<<<<<<< HEAD
+	ret = compat_writev(file, vec, vlen, &file->f_pos);
+=======
 	pos = file->f_pos;
 	ret = compat_writev(file, vec, vlen, &pos);
 	file->f_pos = pos;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fput_light(file, fput_needed);
 	return ret;
 }
 
 asmlinkage ssize_t
+<<<<<<< HEAD
+compat_sys_pwritev64(unsigned long fd, const struct compat_iovec __user *vec,
+		     unsigned long vlen, loff_t pos)
+{
+=======
 compat_sys_pwritev(unsigned long fd, const struct compat_iovec __user *vec,
 		   unsigned long vlen, u32 pos_low, u32 pos_high)
 {
 	loff_t pos = ((loff_t)pos_high << 32) | pos_low;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct file *file;
 	int fput_needed;
 	ssize_t ret;
@@ -1271,6 +1383,17 @@ compat_sys_pwritev(unsigned long fd, const struct compat_iovec __user *vec,
 	return ret;
 }
 
+<<<<<<< HEAD
+asmlinkage ssize_t
+compat_sys_pwritev(unsigned long fd, const struct compat_iovec __user *vec,
+		   unsigned long vlen, u32 pos_low, u32 pos_high)
+{
+	loff_t pos = ((loff_t)pos_high << 32) | pos_low;
+	return compat_sys_pwritev64(fd, vec, vlen, pos);
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 asmlinkage long
 compat_sys_vmsplice(int fd, const struct compat_iovec __user *iov32,
 		    unsigned int nr_segs, unsigned int flags)
@@ -1296,7 +1419,11 @@ compat_sys_vmsplice(int fd, const struct compat_iovec __user *iov32,
  * O_LARGEFILE flag.
  */
 asmlinkage long
+<<<<<<< HEAD
+compat_sys_open(const char __user *filename, int flags, umode_t mode)
+=======
 compat_sys_open(const char __user *filename, int flags, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return do_sys_open(AT_FDCWD, filename, flags, mode);
 }
@@ -1306,7 +1433,11 @@ compat_sys_open(const char __user *filename, int flags, int mode)
  * O_LARGEFILE flag.
  */
 asmlinkage long
+<<<<<<< HEAD
+compat_sys_openat(unsigned int dfd, const char __user *filename, int flags, umode_t mode)
+=======
 compat_sys_openat(unsigned int dfd, const char __user *filename, int flags, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return do_sys_open(dfd, filename, flags, mode);
 }
@@ -1680,6 +1811,8 @@ asmlinkage long compat_sys_ppoll(struct pollfd __user *ufds,
 }
 #endif /* HAVE_SET_RESTORE_SIGMASK */
 
+<<<<<<< HEAD
+=======
 #if (defined(CONFIG_NFSD) || defined(CONFIG_NFSD_MODULE)) && !defined(CONFIG_NFSD_DEPRECATED)
 /* Stuff for NFS server syscalls... */
 struct compat_nfsctl_svc {
@@ -1931,6 +2064,7 @@ long asmlinkage compat_sys_nfsservctl(int cmd, void *notused, void *notused2)
 }
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_EPOLL
 
 #ifdef HAVE_SET_RESTORE_SIGMASK

@@ -27,6 +27,10 @@
 #include <linux/adb.h>
 #include <linux/pmu.h>
 #include <linux/ioport.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/pci.h>
 #include <asm/sections.h>
 #include <asm/errno.h>

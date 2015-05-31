@@ -24,7 +24,11 @@
 
 #include <linux/fs.h>
 #include <linux/ioctl.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/pagemap.h>
 #include <linux/poll.h>
 #include <linux/ptrace.h>
@@ -1850,9 +1854,22 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+static int spufs_mfc_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+{
+	struct inode *inode = file->f_path.dentry->d_inode;
+	int err = filemap_write_and_wait_range(inode->i_mapping, start, end);
+	if (!err) {
+		mutex_lock(&inode->i_mutex);
+		err = spufs_mfc_flush(file, NULL);
+		mutex_unlock(&inode->i_mutex);
+	}
+	return err;
+=======
 static int spufs_mfc_fsync(struct file *file, int datasync)
 {
 	return spufs_mfc_flush(file, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int spufs_mfc_fasync(int fd, struct file *file, int on)

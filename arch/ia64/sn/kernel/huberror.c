@@ -192,6 +192,10 @@ void hub_error_init(struct hubdev_info *hubdev_info)
 		    hubdev_info);
 		return;
 	}
+<<<<<<< HEAD
+	irq_set_handler(SGI_II_ERROR, handle_level_irq);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sn_set_err_irq_affinity(SGI_II_ERROR);
 }
 
@@ -213,6 +217,10 @@ void ice_error_init(struct hubdev_info *hubdev_info)
                        hubdev_info);
 		return;
 	}
+<<<<<<< HEAD
+	irq_set_handler(SGI_TIO_ERROR, handle_level_irq);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sn_set_err_irq_affinity(SGI_TIO_ERROR);
 }
 

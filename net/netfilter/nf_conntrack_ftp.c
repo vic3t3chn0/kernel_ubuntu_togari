@@ -42,7 +42,11 @@ static u_int16_t ports[MAX_PORTS];
 static unsigned int ports_c;
 module_param_array(ports, ushort, &ports_c, 0400);
 
+<<<<<<< HEAD
+static bool loose;
+=======
 static int loose;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 module_param(loose, bool, 0600);
 
 unsigned int (*nf_nat_ftp_hook)(struct sk_buff *skb,

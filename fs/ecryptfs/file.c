@@ -33,6 +33,8 @@
 #include <linux/fs_stack.h>
 #include "ecryptfs_kernel.h"
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 #include <linux/ctype.h>
 #define ECRYPTFS_IOCTL_GET_ATTRIBUTES	_IOR('l', 0x10, __u32)
@@ -40,6 +42,7 @@
 #endif
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * ecryptfs_read_update_atime
  *
@@ -55,8 +58,12 @@ static ssize_t ecryptfs_read_update_atime(struct kiocb *iocb,
 				unsigned long nr_segs, loff_t pos)
 {
 	ssize_t rc;
+<<<<<<< HEAD
+	struct path lower;
+=======
 	struct dentry *lower_dentry;
 	struct vfsmount *lower_vfsmount;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct file *file = iocb->ki_filp;
 
 	rc = generic_file_aio_read(iocb, iov, nr_segs, pos);
@@ -67,9 +74,15 @@ static ssize_t ecryptfs_read_update_atime(struct kiocb *iocb,
 	if (-EIOCBQUEUED == rc)
 		rc = wait_on_sync_kiocb(iocb);
 	if (rc >= 0) {
+<<<<<<< HEAD
+		lower.dentry = ecryptfs_dentry_to_lower(file->f_path.dentry);
+		lower.mnt = ecryptfs_dentry_to_lower_mnt(file->f_path.dentry);
+		touch_atime(&lower);
+=======
 		lower_dentry = ecryptfs_dentry_to_lower(file->f_path.dentry);
 		lower_vfsmount = ecryptfs_dentry_to_lower_mnt(file->f_path.dentry);
 		touch_atime(lower_vfsmount, lower_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	return rc;
 }
@@ -244,6 +257,8 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 		rc = 0;
 		goto out;
 	}
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 	mutex_lock(&crypt_stat->cs_mutex);
 	if ((mount_crypt_stat->flags & ECRYPTFS_ENABLE_NEW_PASSTHROUGH)
@@ -275,6 +290,7 @@ static int ecryptfs_open(struct inode *inode, struct file *file)
 	}
 	mutex_unlock(&crypt_stat->cs_mutex);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mutex_lock(&crypt_stat->cs_mutex);
 	if (!(crypt_stat->flags & ECRYPTFS_POLICY_APPLIED)
 	    || !(crypt_stat->flags & ECRYPTFS_KEY_VALID)) {
@@ -329,6 +345,17 @@ static int ecryptfs_release(struct inode *inode, struct file *file)
 }
 
 static int
+<<<<<<< HEAD
+ecryptfs_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+{
+	int rc = 0;
+
+	rc = generic_file_fsync(file, start, end, datasync);
+	if (rc)
+		goto out;
+	rc = vfs_fsync_range(ecryptfs_file_to_lower(file), start, end,
+			     datasync);
+=======
 ecryptfs_fsync(struct file *file, int datasync)
 {
 	int rc = 0;
@@ -337,6 +364,7 @@ ecryptfs_fsync(struct file *file, int datasync)
 	if (rc)
 		goto out;
 	rc = vfs_fsync(ecryptfs_file_to_lower(file), datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out:
 	return rc;
 }
@@ -357,6 +385,9 @@ ecryptfs_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
 	struct file *lower_file = NULL;
 	long rc = -ENOTTY;
+<<<<<<< HEAD
+
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 	if (cmd == ECRYPTFS_IOCTL_GET_ATTRIBUTES) {
 		u32 __user *user_attr = (u32 __user *)arg;
@@ -387,6 +418,7 @@ ecryptfs_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 		return 0;
 	}
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (ecryptfs_file_to_private(file))
 		lower_file = ecryptfs_file_to_lower(file);
 	if (lower_file && lower_file->f_op && lower_file->f_op->unlocked_ioctl)
@@ -409,6 +441,8 @@ ecryptfs_compat_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 }
 #endif
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 int is_file_name_match(struct ecryptfs_mount_crypt_stat *mcs,
 					struct dentry *fp_dentry)
@@ -491,6 +525,7 @@ int is_file_ext_match(struct ecryptfs_mount_crypt_stat *mcs, char *str)
 }
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 const struct file_operations ecryptfs_dir_fops = {
 	.readdir = ecryptfs_readdir,
 	.read = generic_read_dir,

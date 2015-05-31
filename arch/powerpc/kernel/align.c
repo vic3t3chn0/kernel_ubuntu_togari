@@ -21,10 +21,17 @@
 #include <linux/mm.h>
 #include <asm/processor.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+#include <asm/cache.h>
+#include <asm/cputable.h>
+#include <asm/emulated_ops.h>
+#include <asm/switch_to.h>
+=======
 #include <asm/system.h>
 #include <asm/cache.h>
 #include <asm/cputable.h>
 #include <asm/emulated_ops.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct aligninfo {
 	unsigned char len;
@@ -764,6 +771,8 @@ int fix_alignment(struct pt_regs *regs)
 	nb = aligninfo[instr].len;
 	flags = aligninfo[instr].flags;
 
+<<<<<<< HEAD
+=======
 	/* ldbrx/stdbrx overlap lfs/stfs in the DSISR unfortunately */
 	if (IS_XFORM(instruction) && ((instruction >> 1) & 0x3ff) == 532) {
 		nb = 8;
@@ -774,6 +783,7 @@ int fix_alignment(struct pt_regs *regs)
 		flags = ST+SW;
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Byteswap little endian loads and stores */
 	swiz = 0;
 	if (regs->msr & MSR_LE) {

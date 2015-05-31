@@ -11,19 +11,39 @@
 #define _ASMARM_PGTABLE_H
 
 #include <linux/const.h>
+<<<<<<< HEAD
+=======
 #include <asm-generic/4level-fixup.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/proc-fns.h>
 
 #ifndef CONFIG_MMU
 
+<<<<<<< HEAD
+#include <asm-generic/4level-fixup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "pgtable-nommu.h"
 
 #else
 
+<<<<<<< HEAD
+#include <asm-generic/pgtable-nopud.h>
+#include <asm/memory.h>
+#include <asm/pgtable-hwdef.h>
+
+#ifdef CONFIG_ARM_LPAE
+#include <asm/pgtable-3level.h>
+#else
+#include <asm/pgtable-2level.h>
+#endif
+
+=======
 #include <asm/memory.h>
 #include <mach/vmalloc.h>
 #include <asm/pgtable-hwdef.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Just any arbitrary offset to the start of the vmalloc VM area: the
  * current 8MB value just means that there will be a 8MB "hole" after the
@@ -31,6 +51,12 @@
  * any out-of-bounds memory accesses will hopefully be caught.
  * The vmalloc() routines leaves a hole of 4kB between each vmalloced
  * area for the same reason. ;)
+<<<<<<< HEAD
+ */
+#define VMALLOC_OFFSET		(8*1024*1024)
+#define VMALLOC_START		(((unsigned long)high_memory + VMALLOC_OFFSET) & ~(VMALLOC_OFFSET-1))
+#define VMALLOC_END		0xff000000UL
+=======
  *
  * Note that platforms may override VMALLOC_START, but they must provide
  * VMALLOC_END.  VMALLOC_END defines the (exclusive) limit of this space,
@@ -113,6 +139,7 @@
  */
 #define PMD_SHIFT		21
 #define PGDIR_SHIFT		21
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define LIBRARY_TEXT_START	0x0c000000
 
@@ -124,12 +151,15 @@ extern void __pgd_error(const char *file, int line, pgd_t);
 #define pte_ERROR(pte)		__pte_error(__FILE__, __LINE__, pte)
 #define pmd_ERROR(pmd)		__pmd_error(__FILE__, __LINE__, pmd)
 #define pgd_ERROR(pgd)		__pgd_error(__FILE__, __LINE__, pgd)
+<<<<<<< HEAD
+=======
 #endif /* !__ASSEMBLY__ */
 
 #define PMD_SIZE		(1UL << PMD_SHIFT)
 #define PMD_MASK		(~(PMD_SIZE-1))
 #define PGDIR_SIZE		(1UL << PGDIR_SHIFT)
 #define PGDIR_MASK		(~(PGDIR_SIZE-1))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * This is the lowest virtual address we can permit any user space
@@ -138,6 +168,8 @@ extern void __pgd_error(const char *file, int line, pgd_t);
  */
 #define FIRST_USER_ADDRESS	PAGE_SIZE
 
+<<<<<<< HEAD
+=======
 #define USER_PTRS_PER_PGD	(TASK_SIZE / PGDIR_SIZE)
 
 /*
@@ -192,6 +224,7 @@ extern void __pgd_error(const char *file, int line, pgd_t);
 
 #ifndef __ASSEMBLY__
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * The pgprot_* and protection_map entries will be fixed up in runtime
  * to include the cachable and bufferable bits based on memory policy,
@@ -232,16 +265,42 @@ extern pgprot_t		pgprot_kernel;
 #define pgprot_writecombine(prot) \
 	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_BUFFERABLE)
 
+<<<<<<< HEAD
+#define pgprot_stronglyordered(prot) \
+	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_UNCACHED | L_PTE_XN)
+
+#define pgprot_device(prot) \
+	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_DEV_NONSHARED)
+
+#define pgprot_writethroughcache(prot) \
+	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_WRITETHROUGH)
+
+#define pgprot_writebackcache(prot) \
+	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_WRITEBACK)
+
+#define pgprot_writebackwacache(prot) \
+	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_WRITEALLOC)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_ARM_DMA_MEM_BUFFERABLE
 #define pgprot_dmacoherent(prot) \
 	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_BUFFERABLE | L_PTE_XN)
 #define __HAVE_PHYS_MEM_ACCESS_PROT
+<<<<<<< HEAD
+#define COHERENT_IS_NORMAL 1
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct file;
 extern pgprot_t phys_mem_access_prot(struct file *file, unsigned long pfn,
 				     unsigned long size, pgprot_t vma_prot);
 #else
 #define pgprot_dmacoherent(prot) \
 	__pgprot_modify(prot, L_PTE_MT_MASK, L_PTE_MT_UNCACHED | L_PTE_XN)
+<<<<<<< HEAD
+#define COHERENT_IS_NORMAL 0
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif /* __ASSEMBLY__ */
@@ -291,6 +350,17 @@ extern pgd_t swapper_pg_dir[PTRS_PER_PGD];
 /* to find an entry in a kernel page-table-directory */
 #define pgd_offset_k(addr)	pgd_offset(&init_mm, addr)
 
+<<<<<<< HEAD
+#define pmd_none(pmd)		(!pmd_val(pmd))
+#define pmd_present(pmd)	(pmd_val(pmd))
+
+static inline pte_t *pmd_page_vaddr(pmd_t pmd)
+{
+	return __va(pmd_val(pmd) & PHYS_MASK & (s32)PAGE_MASK);
+}
+
+#define pmd_page(pmd)		pfn_to_page(__phys_to_pfn(pmd_val(pmd) & PHYS_MASK))
+=======
 /*
  * The "pgd_xxx()" functions here are trivial for a folded two-level
  * setup: the pgd is never bad, and a pmd always exists (as it's folded
@@ -335,6 +405,7 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 /* we don't need complex calculations here as the pmd is folded into the pgd */
 #define pmd_addr_end(addr,end)	(end)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef CONFIG_HIGHPTE
 #define __pte_map(pmd)		pmd_page_vaddr(*(pmd))
@@ -351,12 +422,20 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 #define pte_offset_map(pmd,addr)	(__pte_map(pmd) + pte_index(addr))
 #define pte_unmap(pte)			__pte_unmap(pte)
 
+<<<<<<< HEAD
+#define pte_pfn(pte)		((pte_val(pte) & PHYS_MASK) >> PAGE_SHIFT)
+=======
 #define pte_pfn(pte)		(pte_val(pte) >> PAGE_SHIFT)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define pfn_pte(pfn,prot)	__pte(__pfn_to_phys(pfn) | pgprot_val(prot))
 
 #define pte_page(pte)		pfn_to_page(pte_pfn(pte))
 #define mk_pte(page,prot)	pfn_pte(page_to_pfn(page), prot)
 
+<<<<<<< HEAD
+#define pte_clear(mm,addr,ptep)	set_pte_ext(ptep, __pte(0), 0)
+
+=======
 #define set_pte_ext(ptep,pte,ext) cpu_set_pte_ext(ptep,pte,ext)
 #define pte_clear(mm,addr,ptep)	set_pte_ext(ptep, __pte(0), 0)
 
@@ -372,6 +451,7 @@ static inline pte_t *pmd_page_vaddr(pmd_t pmd)
 	((pte_val(pte) & (L_PTE_PRESENT | L_PTE_USER)) == \
 	 (L_PTE_PRESENT | L_PTE_USER))
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if __LINUX_ARM_ARCH__ < 6
 static inline void __sync_icache_dcache(pte_t pteval)
 {
@@ -383,6 +463,27 @@ extern void __sync_icache_dcache(pte_t pteval);
 static inline void set_pte_at(struct mm_struct *mm, unsigned long addr,
 			      pte_t *ptep, pte_t pteval)
 {
+<<<<<<< HEAD
+	if (addr >= TASK_SIZE)
+		set_pte_ext(ptep, pteval, 0);
+	else {
+		__sync_icache_dcache(pteval);
+		set_pte_ext(ptep, pteval, PTE_EXT_NG);
+	}
+}
+
+#define pte_none(pte)		(!pte_val(pte))
+#define pte_present(pte)	(pte_val(pte) & L_PTE_PRESENT)
+#define pte_write(pte)		(!(pte_val(pte) & L_PTE_RDONLY))
+#define pte_dirty(pte)		(pte_val(pte) & L_PTE_DIRTY)
+#define pte_young(pte)		(pte_val(pte) & L_PTE_YOUNG)
+#define pte_exec(pte)		(!(pte_val(pte) & L_PTE_XN))
+#define pte_special(pte)	(0)
+
+#define pte_present_user(pte) \
+	((pte_val(pte) & (L_PTE_PRESENT | L_PTE_USER)) == \
+	 (L_PTE_PRESENT | L_PTE_USER))
+=======
 	unsigned long ext = 0;
 
 	if (addr < TASK_SIZE && pte_present_user(pteval)) {
@@ -392,6 +493,7 @@ static inline void set_pte_at(struct mm_struct *mm, unsigned long addr,
 
 	set_pte_ext(ptep, pteval, ext);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define PTE_BIT_FUNC(fn,op) \
 static inline pte_t pte_##fn(pte_t pte) { pte_val(pte) op; return pte; }
@@ -402,6 +504,11 @@ PTE_BIT_FUNC(mkclean,   &= ~L_PTE_DIRTY);
 PTE_BIT_FUNC(mkdirty,   |= L_PTE_DIRTY);
 PTE_BIT_FUNC(mkold,     &= ~L_PTE_YOUNG);
 PTE_BIT_FUNC(mkyoung,   |= L_PTE_YOUNG);
+<<<<<<< HEAD
+PTE_BIT_FUNC(mkexec,   &= ~L_PTE_XN);
+PTE_BIT_FUNC(mknexec,   |= L_PTE_XN);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline pte_t pte_mkspecial(pte_t pte) { return pte; }
 
@@ -418,6 +525,15 @@ static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
  *
  *   3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1
  *   1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0
+<<<<<<< HEAD
+ *   <--------------- offset --------------------> <- type --> 0 0 0
+ *
+ * This gives us up to 63 swap files and 32GB per swap file.  Note that
+ * the offset field is always non-zero.
+ */
+#define __SWP_TYPE_SHIFT	3
+#define __SWP_TYPE_BITS		6
+=======
  *   <--------------- offset ----------------------> < type -> 0 0 0
  *
  * This gives us up to 31 swap files and 64GB per swap file.  Note that
@@ -425,6 +541,7 @@ static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
  */
 #define __SWP_TYPE_SHIFT	3
 #define __SWP_TYPE_BITS		5
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define __SWP_TYPE_MASK		((1 << __SWP_TYPE_BITS) - 1)
 #define __SWP_OFFSET_SHIFT	(__SWP_TYPE_BITS + __SWP_TYPE_SHIFT)
 
@@ -466,12 +583,22 @@ static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
  * We provide our own arch_get_unmapped_area to cope with VIPT caches.
  */
 #define HAVE_ARCH_UNMAPPED_AREA
+<<<<<<< HEAD
+#define HAVE_ARCH_UNMAPPED_AREA_TOPDOWN
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * remap a physical page `pfn' of size `size' with page protection `prot'
  * into virtual address `from'
  */
 #define io_remap_pfn_range(vma,from,pfn,size,prot) \
+<<<<<<< HEAD
+	remap_pfn_range(vma,from,pfn,size,prot)
+
+#define pgtable_cache_init() do { } while (0)
+
+=======
 		remap_pfn_range(vma, from, pfn, size, prot)
 
 #define pgtable_cache_init() do { } while (0)
@@ -479,6 +606,7 @@ static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
 void identity_mapping_add(pgd_t *, unsigned long, unsigned long);
 void identity_mapping_del(pgd_t *, unsigned long, unsigned long);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* !__ASSEMBLY__ */
 
 #endif /* CONFIG_MMU */

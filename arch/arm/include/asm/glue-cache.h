@@ -132,6 +132,10 @@
 #ifndef MULTI_CACHE
 #define __cpuc_flush_icache_all		__glue(_CACHE,_flush_icache_all)
 #define __cpuc_flush_kern_all		__glue(_CACHE,_flush_kern_cache_all)
+<<<<<<< HEAD
+#define __cpuc_flush_kern_louis		__glue(_CACHE,_flush_kern_cache_louis)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define __cpuc_flush_user_all		__glue(_CACHE,_flush_user_cache_all)
 #define __cpuc_flush_user_range		__glue(_CACHE,_flush_user_cache_range)
 #define __cpuc_coherent_kern_range	__glue(_CACHE,_coherent_kern_range)

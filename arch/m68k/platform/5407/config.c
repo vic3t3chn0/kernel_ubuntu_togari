@@ -16,6 +16,8 @@
 #include <asm/machdep.h>
 #include <asm/coldfire.h>
 #include <asm/mcfsim.h>
+<<<<<<< HEAD
+=======
 #include <asm/mcfuart.h>
 
 /***************************************************************************/
@@ -93,14 +95,19 @@ void m5407_cpu_reset(void)
 	for (;;)
 		/* wait for watchdog to timeout */;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /***************************************************************************/
 
 void __init config_BSP(char *commandp, int size)
 {
+<<<<<<< HEAD
+	mach_sched_init = hw_timer_init;
+=======
 	mach_reset = m5407_cpu_reset;
 	m5407_timers_init();
 	m5407_uarts_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Only support the external interrupts on their primary level */
 	mcf_mapirq2imr(25, MCFINTC_EINT1);
@@ -110,6 +117,8 @@ void __init config_BSP(char *commandp, int size)
 }
 
 /***************************************************************************/
+<<<<<<< HEAD
+=======
 
 static int __init init_BSP(void)
 {
@@ -120,3 +129,4 @@ static int __init init_BSP(void)
 arch_initcall(init_BSP);
 
 /***************************************************************************/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

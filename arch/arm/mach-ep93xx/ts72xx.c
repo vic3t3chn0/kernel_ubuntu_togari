@@ -23,10 +23,18 @@
 #include <mach/hardware.h>
 #include <mach/ts72xx.h>
 
+<<<<<<< HEAD
+#include <asm/hardware/vic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach-types.h>
 #include <asm/mach/map.h>
 #include <asm/mach/arch.h>
 
+<<<<<<< HEAD
+#include "soc.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct map_desc ts72xx_io_desc[] __initdata = {
 	{
@@ -116,8 +124,14 @@ static struct mtd_partition ts72xx_nand_parts[] = {
 		.mask_flags	= MTD_WRITEABLE,	/* force read-only */
 	}, {
 		.name		= "Linux",
+<<<<<<< HEAD
+		.offset		= MTDPART_OFS_RETAIN,
+		.size		= TS72XX_REDBOOT_PART_SIZE,
+				/* leave so much for last partition */
+=======
 		.offset		= MTDPART_OFS_APPEND,
 		.size		= 0,			/* filled in later */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}, {
 		.name		= "RedBoot",
 		.offset		= MTDPART_OFS_APPEND,
@@ -126,6 +140,8 @@ static struct mtd_partition ts72xx_nand_parts[] = {
 	},
 };
 
+<<<<<<< HEAD
+=======
 static void ts72xx_nand_set_parts(uint64_t size,
 				  struct platform_nand_chip *chip)
 {
@@ -141,13 +157,19 @@ static void ts72xx_nand_set_parts(uint64_t size,
 	}
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct platform_nand_data ts72xx_nand_data = {
 	.chip = {
 		.nr_chips	= 1,
 		.chip_offset	= 0,
 		.chip_delay	= 15,
 		.part_probe_types = ts72xx_nand_part_probes,
+<<<<<<< HEAD
+		.partitions	= ts72xx_nand_parts,
+		.nr_partitions	= ARRAY_SIZE(ts72xx_nand_parts),
+=======
 		.set_parts	= ts72xx_nand_set_parts,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.ctrl = {
 		.cmd_ctrl	= ts72xx_nand_hwcontrol,
@@ -257,9 +279,19 @@ static void __init ts72xx_init_machine(void)
 
 MACHINE_START(TS72XX, "Technologic Systems TS-72xx SBC")
 	/* Maintainer: Lennert Buytenhek <buytenh@wantstofly.org> */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.map_io		= ts72xx_map_io,
+	.init_irq	= ep93xx_init_irq,
+	.handle_irq	= vic_handle_irq,
+	.timer		= &ep93xx_timer,
+	.init_machine	= ts72xx_init_machine,
+	.restart	= ep93xx_restart,
+=======
 	.boot_params	= EP93XX_SDCE3_PHYS_BASE_SYNC + 0x100,
 	.map_io		= ts72xx_map_io,
 	.init_irq	= ep93xx_init_irq,
 	.timer		= &ep93xx_timer,
 	.init_machine	= ts72xx_init_machine,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

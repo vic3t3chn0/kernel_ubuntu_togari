@@ -67,8 +67,12 @@ put_sigset32(compat_sigset_t __user *up, sigset_t *set, size_t sz)
 {
 	compat_sigset_t s;
 
+<<<<<<< HEAD
+	if (sz != sizeof *set) panic("put_sigset32()");
+=======
 	if (sz != sizeof *set)
 		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sigset_64to32(&s, set);
 
 	return copy_to_user(up, &s, sizeof s);
@@ -80,8 +84,12 @@ get_sigset32(compat_sigset_t __user *up, sigset_t *set, size_t sz)
 	compat_sigset_t s;
 	int r;
 
+<<<<<<< HEAD
+	if (sz != sizeof *set) panic("put_sigset32()");
+=======
 	if (sz != sizeof *set)
 		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if ((r = copy_from_user(&s, up, sz)) == 0) {
 		sigset_32to64(set, &s);

@@ -20,6 +20,11 @@ struct ux500_musb_board_data {
 	bool (*dma_filter)(struct dma_chan *chan, void *filter_param);
 };
 
+<<<<<<< HEAD
+void ux500_add_usb(struct device *parent, resource_size_t base,
+		   int irq, int *dma_rx_cfg, int *dma_tx_cfg);
+=======
 void ux500_add_usb(resource_size_t base, int irq, int *dma_rx_cfg,
 	int *dma_tx_cfg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

@@ -168,7 +168,10 @@ struct dentry *isofs_lookup(struct inode *dir, struct dentry *dentry, struct nam
 	int found;
 	unsigned long uninitialized_var(block);
 	unsigned long uninitialized_var(offset);
+<<<<<<< HEAD
+=======
 	struct isofs_sb_info *sbi = ISOFS_SB(dir->i_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct inode *inode;
 	struct page *page;
 
@@ -176,13 +179,20 @@ struct dentry *isofs_lookup(struct inode *dir, struct dentry *dentry, struct nam
 	if (!page)
 		return ERR_PTR(-ENOMEM);
 
+<<<<<<< HEAD
+=======
 	mutex_lock(&sbi->s_mutex);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	found = isofs_find_entry(dir, dentry,
 				&block, &offset,
 				page_address(page),
 				1024 + page_address(page));
 	__free_page(page);
 
+<<<<<<< HEAD
+	inode = found ? isofs_iget(dir->i_sb, block, offset) : NULL;
+
+=======
 	inode = NULL;
 	if (found) {
 		inode = isofs_iget(dir->i_sb, block, offset);
@@ -192,5 +202,6 @@ struct dentry *isofs_lookup(struct inode *dir, struct dentry *dentry, struct nam
 		}
 	}
 	mutex_unlock(&sbi->s_mutex);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return d_splice_alias(inode, dentry);
 }

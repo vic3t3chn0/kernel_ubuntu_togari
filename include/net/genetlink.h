@@ -128,6 +128,13 @@ extern int genl_register_mc_group(struct genl_family *family,
 				  struct genl_multicast_group *grp);
 extern void genl_unregister_mc_group(struct genl_family *family,
 				     struct genl_multicast_group *grp);
+<<<<<<< HEAD
+extern void genl_notify(struct sk_buff *skb, struct net *net, u32 pid,
+			u32 group, struct nlmsghdr *nlh, gfp_t flags);
+
+void *genlmsg_put(struct sk_buff *skb, u32 pid, u32 seq,
+				struct genl_family *family, int flags, u8 cmd);
+=======
 
 /**
  * genlmsg_put - Add generic netlink header to netlink message
@@ -158,6 +165,7 @@ static inline void *genlmsg_put(struct sk_buff *skb, u32 pid, u32 seq,
 
 	return (char *) hdr + GENL_HDRLEN;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * genlmsg_nlhdr - Obtain netlink header from user specified header

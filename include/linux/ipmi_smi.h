@@ -36,11 +36,19 @@
 
 #include <linux/ipmi_msgdefs.h>
 #include <linux/proc_fs.h>
+<<<<<<< HEAD
+#include <linux/platform_device.h>
+#include <linux/ipmi.h>
+
+struct device;
+
+=======
 #include <linux/module.h>
 #include <linux/device.h>
 #include <linux/platform_device.h>
 #include <linux/ipmi.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* This files describes the interface for IPMI system management interface
    drivers to bind into the IPMI message handler. */
 

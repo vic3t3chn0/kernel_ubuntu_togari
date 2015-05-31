@@ -90,6 +90,11 @@ extern unsigned long highest_memmap_pfn;
  */
 extern int isolate_lru_page(struct page *page);
 extern void putback_lru_page(struct page *page);
+<<<<<<< HEAD
+extern unsigned long zone_reclaimable_pages(struct zone *zone);
+extern bool zone_reclaimable(struct zone *zone);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * in mm/page_alloc.c
@@ -100,7 +105,11 @@ extern void prep_compound_page(struct page *page, unsigned long order);
 extern bool is_free_buddy_page(struct page *page);
 #endif
 
+<<<<<<< HEAD
+#if defined CONFIG_COMPACTION || defined CONFIG_CMA
+=======
 #ifdef CONFIG_DMA_CMA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * in mm/compaction.c
@@ -113,6 +122,36 @@ extern bool is_free_buddy_page(struct page *page);
  * completes when free_pfn <= migrate_pfn
  */
 struct compact_control {
+<<<<<<< HEAD
+	struct list_head freepages;	/* List of free pages to migrate to */
+	struct list_head migratepages;	/* List of pages being migrated */
+	unsigned long nr_freepages;	/* Number of isolated free pages */
+	unsigned long nr_migratepages;	/* Number of pages to migrate */
+	unsigned long free_pfn;		/* isolate_freepages search base */
+	unsigned long migrate_pfn;	/* isolate_migratepages search base */
+	bool sync;			/* Synchronous migration */
+	bool ignore_skip_hint;		/* Scan blocks even if marked skip */
+	bool finished_update_free;	/* True when the zone cached pfns are
+					 * no longer being updated
+					 */
+	bool finished_update_migrate;
+
+	int order;			/* order a direct compactor needs */
+	int migratetype;		/* MOVABLE, RECLAIMABLE etc */
+	struct zone *zone;
+	bool contended;			/* True if a lock was contended */
+};
+
+unsigned long
+isolate_freepages_range(struct compact_control *cc,
+			unsigned long start_pfn, unsigned long end_pfn);
+unsigned long
+isolate_migratepages_range(struct zone *zone, struct compact_control *cc,
+	unsigned long low_pfn, unsigned long end_pfn, bool unevictable);
+
+#endif
+
+=======
 	struct list_head freepages; /* List of free pages to migrate to */
 	struct list_head migratepages;  /* List of pages being migrated */
 	unsigned long nr_freepages; /* Number of isolated free pages */
@@ -136,6 +175,7 @@ isolate_migratepages_range(struct zone *zone, struct compact_control *cc,
 #endif
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * function for dealing with page's order in buddy system.
  * zone->lock is already acquired when we use these.
@@ -344,3 +384,23 @@ extern u64 hwpoison_filter_flags_mask;
 extern u64 hwpoison_filter_flags_value;
 extern u64 hwpoison_filter_memcg;
 extern u32 hwpoison_filter_enable;
+<<<<<<< HEAD
+
+/* The ALLOC_WMARK bits are used as an index to zone->watermark */
+#define ALLOC_WMARK_MIN		WMARK_MIN
+#define ALLOC_WMARK_LOW		WMARK_LOW
+#define ALLOC_WMARK_HIGH	WMARK_HIGH
+#define ALLOC_NO_WATERMARKS	0x04 /* don't check watermarks at all */
+
+/* Mask to get the watermark bits */
+#define ALLOC_WMARK_MASK	(ALLOC_NO_WATERMARKS-1)
+
+#define ALLOC_HARDER		0x10 /* try to alloc harder */
+#define ALLOC_HIGH		0x20 /* __GFP_HIGH set */
+#define ALLOC_CPUSET		0x40 /* check for correct cpuset */
+#define ALLOC_CMA		0x80 /* allow allocations from CMA areas */
+
+unsigned long reclaim_clean_pages_from_list(struct zone *zone,
+					    struct list_head *page_list);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -18,13 +18,20 @@
 #include <asm/processor.h>
 #include <asm/uaccess.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/cacheflush.h>
 #include <asm/cache.h>
 #include <asm/elf.h>
 #include <asm/io.h>
 #include <asm/smp.h>
 #include <asm/sh_bios.h>
+<<<<<<< HEAD
+#include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_SH_FPU
 #define cpu_has_fpu	1

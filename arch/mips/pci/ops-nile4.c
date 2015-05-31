@@ -4,7 +4,10 @@
 #include <asm/bootinfo.h>
 
 #include <asm/lasat/lasat.h>
+<<<<<<< HEAD
+=======
 #include <asm/gt64120.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/nile4.h>
 
 #define PCI_ACCESS_READ  0

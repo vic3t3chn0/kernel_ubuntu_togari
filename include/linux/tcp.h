@@ -68,6 +68,20 @@ union tcp_word_hdr {
 
 #define tcp_flag_word(tp) ( ((union tcp_word_hdr *)(tp))->words [3]) 
 
+<<<<<<< HEAD
+enum {
+	TCP_FLAG_CWR = __constant_htonl(0x00800000),
+	TCP_FLAG_ECE = __constant_htonl(0x00400000),
+	TCP_FLAG_URG = __constant_htonl(0x00200000),
+	TCP_FLAG_ACK = __constant_htonl(0x00100000),
+	TCP_FLAG_PSH = __constant_htonl(0x00080000),
+	TCP_FLAG_RST = __constant_htonl(0x00040000),
+	TCP_FLAG_SYN = __constant_htonl(0x00020000),
+	TCP_FLAG_FIN = __constant_htonl(0x00010000),
+	TCP_RESERVED_BITS = __constant_htonl(0x0F000000),
+	TCP_DATA_OFFSET = __constant_htonl(0xF0000000)
+};
+=======
 enum { 
 	TCP_FLAG_CWR = __cpu_to_be32(0x00800000),
 	TCP_FLAG_ECE = __cpu_to_be32(0x00400000),
@@ -80,6 +94,7 @@ enum {
 	TCP_RESERVED_BITS = __cpu_to_be32(0x0F000000),
 	TCP_DATA_OFFSET = __cpu_to_be32(0xF0000000)
 }; 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * TCP general constants
@@ -111,7 +126,12 @@ enum {
 #define TCPI_OPT_TIMESTAMPS	1
 #define TCPI_OPT_SACK		2
 #define TCPI_OPT_WSCALE		4
+<<<<<<< HEAD
+#define TCPI_OPT_ECN		8 /* ECN was negociated at TCP session init */
+#define TCPI_OPT_ECN_SEEN	16 /* we received at least one packet with ECT */
+=======
 #define TCPI_OPT_ECN		8
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 enum tcp_ca_state {
 	TCP_CA_Open = 0,
@@ -134,6 +154,10 @@ struct tcp_info {
 	__u8	tcpi_backoff;
 	__u8	tcpi_options;
 	__u8	tcpi_snd_wscale : 4, tcpi_rcv_wscale : 4;
+<<<<<<< HEAD
+	__u8    tcpi_count;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	__u32	tcpi_rto;
 	__u32	tcpi_ato;
@@ -237,6 +261,14 @@ struct tcp_sack_block {
 	u32	end_seq;
 };
 
+<<<<<<< HEAD
+/*These are used to set the sack_ok field in struct tcp_options_received */
+#define TCP_SACK_SEEN     (1 << 0)   /*1 = peer is SACK capable, */
+#define TCP_FACK_ENABLED  (1 << 1)   /*1 = FACK is enabled locally*/
+#define TCP_DSACK_SEEN    (1 << 2)   /*1 = DSACK was received from peer*/
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct tcp_options_received {
 /*	PAWS/RTTM data	*/
 	long	ts_recent_stamp;/* Time we stored ts_recent (for aging) */
@@ -282,6 +314,10 @@ struct tcp_request_sock {
 #endif
 	u32				rcv_isn;
 	u32				snt_isn;
+<<<<<<< HEAD
+	u32				snt_synack; /* synack sent time */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static inline struct tcp_request_sock *tcp_rsk(const struct request_sock *req)
@@ -405,7 +441,12 @@ struct tcp_sock {
 
 	struct tcp_sack_block recv_sack_cache[4];
 
+<<<<<<< HEAD
+	struct sk_buff *highest_sack;   /* skb just after the highest
+					 * skb with SACKed bit set
+=======
 	struct sk_buff *highest_sack;   /* highest skb with SACK received
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					 * (validity guaranteed only if
 					 * sacked_out > 0)
 					 */
@@ -456,7 +497,11 @@ struct tcp_sock {
 	const struct tcp_sock_af_ops	*af_specific;
 
 /* TCP MD5 Signature Option information */
+<<<<<<< HEAD
+	struct tcp_md5sig_info	__rcu *md5sig_info;
+=======
 	struct tcp_md5sig_info	*md5sig_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	/* When the cookie options are generated and exchanged, then this
@@ -479,8 +524,12 @@ struct tcp_timewait_sock {
 	u32			  tw_ts_recent;
 	long			  tw_ts_recent_stamp;
 #ifdef CONFIG_TCP_MD5SIG
+<<<<<<< HEAD
+	struct tcp_md5sig_key	*tw_md5_key;
+=======
 	u16			  tw_md5_keylen;
 	u8			  tw_md5_key[TCP_MD5SIG_MAXKEYLEN];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	/* Few sockets in timewait have cookies; in that case, then this
 	 * object holds a reference to them (tw_cookie_values->kref).

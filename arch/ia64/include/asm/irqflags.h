@@ -10,6 +10,11 @@
 #ifndef _ASM_IA64_IRQFLAGS_H
 #define _ASM_IA64_IRQFLAGS_H
 
+<<<<<<< HEAD
+#include <asm/pal.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_IA64_DEBUG_IRQ
 extern unsigned long last_cli_ip;
 static inline void arch_maybe_save_ip(unsigned long flags)

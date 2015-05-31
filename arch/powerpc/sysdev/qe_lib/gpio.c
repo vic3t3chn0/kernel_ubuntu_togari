@@ -20,6 +20,10 @@
 #include <linux/of_gpio.h>
 #include <linux/gpio.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/qe.h>
 
 struct qe_gpio_chip {
@@ -138,14 +142,20 @@ struct qe_pin {
 struct qe_pin *qe_pin_request(struct device_node *np, int index)
 {
 	struct qe_pin *qe_pin;
+<<<<<<< HEAD
+=======
 	struct device_node *gpio_np;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct gpio_chip *gc;
 	struct of_mm_gpio_chip *mm_gc;
 	struct qe_gpio_chip *qe_gc;
 	int err;
+<<<<<<< HEAD
+=======
 	int size;
 	const void *gpio_spec;
 	const u32 *gpio_cells;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long flags;
 
 	qe_pin = kzalloc(sizeof(*qe_pin), GFP_KERNEL);
@@ -154,6 +164,21 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 		return ERR_PTR(-ENOMEM);
 	}
 
+<<<<<<< HEAD
+	err = of_get_gpio(np, index);
+	if (err < 0)
+		goto err0;
+	gc = gpio_to_chip(err);
+	if (WARN_ON(!gc))
+		goto err0;
+
+	if (!of_device_is_compatible(gc->of_node, "fsl,mpc8323-qe-pario-bank")) {
+		pr_debug("%s: tried to get a non-qe pin\n", __func__);
+		err = -EINVAL;
+		goto err0;
+	}
+
+=======
 	err = of_parse_phandles_with_args(np, "gpios", "#gpio-cells", index,
 					  &gpio_np, &gpio_spec);
 	if (err) {
@@ -188,11 +213,16 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 	if (err < 0)
 		goto err1;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mm_gc = to_of_mm_gpio_chip(gc);
 	qe_gc = to_qe_gpio_chip(mm_gc);
 
 	spin_lock_irqsave(&qe_gc->lock, flags);
 
+<<<<<<< HEAD
+	err -= gc->base;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (test_and_set_bit(QE_PIN_REQUESTED, &qe_gc->pin_flags[err]) == 0) {
 		qe_pin->controller = qe_gc;
 		qe_pin->num = err;
@@ -205,8 +235,11 @@ struct qe_pin *qe_pin_request(struct device_node *np, int index)
 
 	if (!err)
 		return qe_pin;
+<<<<<<< HEAD
+=======
 err1:
 	of_node_put(gpio_np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 err0:
 	kfree(qe_pin);
 	pr_debug("%s failed with status %d\n", __func__, err);

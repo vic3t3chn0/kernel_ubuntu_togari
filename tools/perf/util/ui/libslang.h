@@ -24,4 +24,9 @@
 #define sltt_set_color SLtt_set_color
 #endif
 
+<<<<<<< HEAD
+#define SL_KEY_UNTAB 0x1000
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _PERF_UI_SLANG_H_ */

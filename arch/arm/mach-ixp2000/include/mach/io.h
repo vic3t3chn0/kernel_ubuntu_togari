@@ -18,7 +18,10 @@
 #include <mach/hardware.h>
 
 #define IO_SPACE_LIMIT		0xffffffff
+<<<<<<< HEAD
+=======
 #define __mem_pci(a)		(a)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * The A? revisions of the IXP2000s assert byte lanes for PCI I/O

@@ -15,8 +15,13 @@
 #include <net/netfilter/nf_conntrack_extend.h>
 
 struct nf_conn_counter {
+<<<<<<< HEAD
+	atomic64_t packets;
+	atomic64_t bytes;
+=======
 	u_int64_t packets;
 	u_int64_t bytes;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static inline

@@ -2,7 +2,11 @@
 #include <linux/stacktrace.h>
 #include <linux/thread_info.h>
 #include <linux/ftrace.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/ptrace.h>
 #include <asm/stacktrace.h>
 

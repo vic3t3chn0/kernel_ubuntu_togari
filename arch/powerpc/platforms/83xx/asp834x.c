@@ -36,6 +36,9 @@ static void __init asp834x_setup_arch(void)
 	mpc834x_usb_cfg();
 }
 
+<<<<<<< HEAD
+machine_device_initcall(asp834x, mpc83xx_declare_of_platform_devices);
+=======
 static void __init asp834x_init_IRQ(void)
 {
 	struct device_node *np;
@@ -68,6 +71,7 @@ static int __init asp8347_declare_of_platform_devices(void)
 	return 0;
 }
 machine_device_initcall(asp834x, asp8347_declare_of_platform_devices);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Called very early, MMU is off, device-tree isn't unflattened
@@ -82,7 +86,11 @@ define_machine(asp834x) {
 	.name			= "ASP8347E",
 	.probe			= asp834x_probe,
 	.setup_arch		= asp834x_setup_arch,
+<<<<<<< HEAD
+	.init_IRQ		= mpc83xx_ipic_init_IRQ,
+=======
 	.init_IRQ		= asp834x_init_IRQ,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.get_irq		= ipic_get_irq,
 	.restart		= mpc83xx_restart,
 	.time_init		= mpc83xx_time_init,

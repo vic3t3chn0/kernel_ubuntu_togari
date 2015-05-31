@@ -13,7 +13,11 @@
  */
 
 #include <linux/migrate.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/swap.h>
 #include <linux/swapops.h>
 #include <linux/pagemap.h>
@@ -34,13 +38,20 @@
 #include <linux/syscalls.h>
 #include <linux/hugetlb.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
+#include <trace/events/kmem.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/tlbflush.h>
 
 #include "internal.h"
 
+<<<<<<< HEAD
+=======
 #define lru_to_page(_head) (list_entry((_head)->prev, struct page, lru))
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * migrate_prep() needs to be called before we start compiling a list of pages
  * to be migrated using isolate_lru_page(). If scheduling work on other CPUs is
@@ -147,7 +158,11 @@ static int remove_migration_pte(struct page *new, struct vm_area_struct *vma,
 	if (PageHuge(new))
 		pte = pte_mkhuge(pte);
 #endif
+<<<<<<< HEAD
+	flush_cache_page(vma, addr, pte_pfn(pte));
+=======
 	flush_dcache_page(new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	set_pte_at(mm, addr, ptep, pte);
 
 	if (PageHuge(new)) {
@@ -181,6 +196,18 @@ static void remove_migration_ptes(struct page *old, struct page *new)
  * Something used the pte of a page under migration. We need to
  * get to the page and wait until migration is finished.
  * When we return from this function the fault will be retried.
+<<<<<<< HEAD
+ */
+void migration_entry_wait(struct mm_struct *mm, pmd_t *pmd,
+				unsigned long address)
+{
+	pte_t *ptep, pte;
+	spinlock_t *ptl;
+	swp_entry_t entry;
+	struct page *page;
+
+	ptep = pte_offset_map_lock(mm, pmd, address, &ptl);
+=======
  *
  * This function is called from do_swap_page().
  */
@@ -192,6 +219,7 @@ static void __migration_entry_wait(struct mm_struct *mm, pte_t *ptep,
 	struct page *page;
 
 	spin_lock(ptl);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	pte = *ptep;
 	if (!is_swap_pte(pte))
 		goto out;
@@ -219,6 +247,8 @@ out:
 	pte_unmap_unlock(ptep, ptl);
 }
 
+<<<<<<< HEAD
+=======
 void migration_entry_wait(struct mm_struct *mm, pmd_t *pmd,
 				unsigned long address)
 {
@@ -233,6 +263,7 @@ void migration_entry_wait_huge(struct mm_struct *mm, pte_t *pte)
 	__migration_entry_wait(mm, pte, ptl);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_BLOCK
 /* Returns true if all buffers are successfully locked */
 static bool buffer_migrate_lock_buffers(struct buffer_head *head,
@@ -347,12 +378,21 @@ static int migrate_page_move_mapping(struct address_space *mapping,
 
 	radix_tree_replace_slot(pslot, newpage);
 
+<<<<<<< HEAD
+	/*
+	 * Drop cache reference from old page by unfreezing
+	 * to one less reference.
+	 * We know this isn't the last reference.
+	 */
+	page_unfreeze_refs(page, expected_count - 1);
+=======
 	page_unfreeze_refs(page, expected_count);
 	/*
 	 * Drop cache reference from old page.
 	 * We know this isn't the last reference.
 	 */
 	__put_page(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * If moved to a different zone then also account
@@ -412,9 +452,13 @@ int migrate_huge_page_move_mapping(struct address_space *mapping,
 
 	radix_tree_replace_slot(pslot, newpage);
 
+<<<<<<< HEAD
+	page_unfreeze_refs(page, expected_count - 1);
+=======
 	page_unfreeze_refs(page, expected_count);
 
 	__put_page(page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	spin_unlock_irq(&mapping->tree_lock);
 	return 0;
@@ -464,7 +508,10 @@ void migrate_page_copy(struct page *newpage, struct page *page)
 	ClearPageSwapCache(page);
 	ClearPagePrivate(page);
 	set_page_private(page, 0);
+<<<<<<< HEAD
+=======
 	page->mapping = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * If any waiters have accumulated on the new page then
@@ -686,6 +733,10 @@ static int move_to_new_page(struct page *newpage, struct page *page,
 	} else {
 		if (remap_swapcache)
 			remove_migration_ptes(page, newpage);
+<<<<<<< HEAD
+		page->mapping = NULL;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	unlock_page(newpage);
@@ -947,9 +998,15 @@ static int unmap_and_move_huge_page(new_page_t get_new_page,
 
 	if (anon_vma)
 		put_anon_vma(anon_vma);
+<<<<<<< HEAD
+	unlock_page(hpage);
+
+out:
+=======
 out:
 	unlock_page(hpage);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (rc != -EAGAIN) {
 		list_del(&hpage->lru);
 		put_page(hpage);
@@ -987,12 +1044,20 @@ int migrate_pages(struct list_head *from,
 {
 	int retry = 1;
 	int nr_failed = 0;
+<<<<<<< HEAD
+	int nr_succeeded = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int pass = 0;
 	struct page *page;
 	struct page *page2;
 	int swapwrite = current->flags & PF_SWAPWRITE;
 	int rc;
 
+<<<<<<< HEAD
+	trace_migrate_pages_start(mode);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!swapwrite)
 		current->flags |= PF_SWAPWRITE;
 
@@ -1011,8 +1076,15 @@ int migrate_pages(struct list_head *from,
 				goto out;
 			case -EAGAIN:
 				retry++;
+<<<<<<< HEAD
+				trace_migrate_retry(retry);
 				break;
 			case 0:
+				nr_succeeded++;
+=======
+				break;
+			case 0:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				break;
 			default:
 				/* Permanent failure */
@@ -1023,9 +1095,20 @@ int migrate_pages(struct list_head *from,
 	}
 	rc = 0;
 out:
+<<<<<<< HEAD
+	if (nr_succeeded)
+		count_vm_events(PGMIGRATE_SUCCESS, nr_succeeded);
+	if (nr_failed)
+		count_vm_events(PGMIGRATE_FAIL, nr_failed);
 	if (!swapwrite)
 		current->flags &= ~PF_SWAPWRITE;
 
+	trace_migrate_pages_end(mode);
+=======
+	if (!swapwrite)
+		current->flags &= ~PF_SWAPWRITE;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (rc)
 		return rc;
 
@@ -1193,20 +1276,30 @@ set_status:
  * Migrate an array of page address onto an array of nodes and fill
  * the corresponding array of status.
  */
+<<<<<<< HEAD
+static int do_pages_move(struct mm_struct *mm, nodemask_t task_nodes,
+=======
 static int do_pages_move(struct mm_struct *mm, struct task_struct *task,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			 unsigned long nr_pages,
 			 const void __user * __user *pages,
 			 const int __user *nodes,
 			 int __user *status, int flags)
 {
 	struct page_to_node *pm;
+<<<<<<< HEAD
+=======
 	nodemask_t task_nodes;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long chunk_nr_pages;
 	unsigned long chunk_start;
 	int err;
 
+<<<<<<< HEAD
+=======
 	task_nodes = cpuset_mems_allowed(task);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	err = -ENOMEM;
 	pm = (struct page_to_node *)__get_free_page(GFP_KERNEL);
 	if (!pm)
@@ -1368,6 +1461,10 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
 	struct task_struct *task;
 	struct mm_struct *mm;
 	int err;
+<<<<<<< HEAD
+	nodemask_t task_nodes;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Check flags */
 	if (flags & ~(MPOL_MF_MOVE|MPOL_MF_MOVE_ALL))
@@ -1383,11 +1480,15 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
 		rcu_read_unlock();
 		return -ESRCH;
 	}
+<<<<<<< HEAD
+	get_task_struct(task);
+=======
 	mm = get_task_mm(task);
 	rcu_read_unlock();
 
 	if (!mm)
 		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Check if this process has the right to modify the specified
@@ -1395,7 +1496,10 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
 	 * capabilities, superuser privileges or the same
 	 * userid as the target process.
 	 */
+<<<<<<< HEAD
+=======
 	rcu_read_lock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tcred = __task_cred(task);
 	if (cred->euid != tcred->suid && cred->euid != tcred->uid &&
 	    cred->uid  != tcred->suid && cred->uid  != tcred->uid &&
@@ -1410,6 +1514,26 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
  	if (err)
 		goto out;
 
+<<<<<<< HEAD
+	task_nodes = cpuset_mems_allowed(task);
+	mm = get_task_mm(task);
+	put_task_struct(task);
+
+	if (!mm)
+		return -EINVAL;
+
+	if (nodes)
+		err = do_pages_move(mm, task_nodes, nr_pages, pages,
+				    nodes, status, flags);
+	else
+		err = do_pages_stat(mm, nr_pages, pages, status);
+
+	mmput(mm);
+	return err;
+
+out:
+	put_task_struct(task);
+=======
 	if (nodes) {
 		err = do_pages_move(mm, task, nr_pages, pages, nodes, status,
 				    flags);
@@ -1419,6 +1543,7 @@ SYSCALL_DEFINE6(move_pages, pid_t, pid, unsigned long, nr_pages,
 
 out:
 	mmput(mm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return err;
 }
 

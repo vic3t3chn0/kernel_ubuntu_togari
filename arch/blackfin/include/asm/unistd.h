@@ -399,8 +399,15 @@
 #define __NR_syncfs		378
 #define __NR_setns		379
 #define __NR_sendmmsg		380
+<<<<<<< HEAD
+#define __NR_process_vm_readv	381
+#define __NR_process_vm_writev	382
+
+#define __NR_syscall		383
+=======
 
 #define __NR_syscall		381
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define NR_syscalls		__NR_syscall
 
 /* Old optional stuff no one actually uses */

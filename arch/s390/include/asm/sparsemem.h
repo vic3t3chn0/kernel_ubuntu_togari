@@ -4,8 +4,13 @@
 #ifdef CONFIG_64BIT
 
 #define SECTION_SIZE_BITS	28
+<<<<<<< HEAD
+#define MAX_PHYSADDR_BITS	46
+#define MAX_PHYSMEM_BITS	46
+=======
 #define MAX_PHYSADDR_BITS	42
 #define MAX_PHYSMEM_BITS	42
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else
 

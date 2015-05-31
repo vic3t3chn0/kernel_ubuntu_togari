@@ -7,7 +7,11 @@
  */
 #define _GNU_SOURCE
 #include <string.h>
+<<<<<<< HEAD
+
+=======
 #define LKC_DIRECT_LINK
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "lkc.h"
 #include "nconf.h"
 #include <ctype.h>
@@ -182,8 +186,11 @@ setmod_text[] = N_(
 "This feature depends on another which\n"
 "has been configured as a module.\n"
 "As a result, this feature will be built as a module."),
+<<<<<<< HEAD
+=======
 nohelp_text[] = N_(
 "There is no help available for this option.\n"),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 load_config_text[] = N_(
 "Enter the name of the configuration file you wish to load.\n"
 "Accept the name shown to restore the configuration you\n"
@@ -280,6 +287,12 @@ static int global_exit;
 /* the currently selected button */
 const char *current_instructions = menu_instructions;
 
+<<<<<<< HEAD
+static char *dialog_input_result;
+static int dialog_input_result_len;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void conf(struct menu *menu);
 static void conf_choice(struct menu *menu);
 static void conf_string(struct menu *menu);
@@ -695,7 +708,10 @@ static void search_conf(void)
 {
 	struct symbol **sym_arr;
 	struct gstr res;
+<<<<<<< HEAD
+=======
 	char dialog_input_result[100];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	char *dialog_input;
 	int dres;
 again:
@@ -703,7 +719,11 @@ again:
 			_("Search Configuration Parameter"),
 			_("Enter " CONFIG_ " (sub)string to search for "
 				"(with or without \"" CONFIG_ "\")"),
+<<<<<<< HEAD
+			"", &dialog_input_result, &dialog_input_result_len);
+=======
 			"", dialog_input_result, 99);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	switch (dres) {
 	case 0:
 		break;
@@ -1067,7 +1087,10 @@ static void conf(struct menu *menu)
 	struct menu *submenu = 0;
 	const char *prompt = menu_get_prompt(menu);
 	struct symbol *sym;
+<<<<<<< HEAD
+=======
 	struct menu *active_menu = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int res;
 	int current_index = 0;
 	int last_top_row = 0;
@@ -1152,6 +1175,11 @@ static void conf(struct menu *menu)
 			continue;
 
 		submenu = (struct menu *) item_data();
+<<<<<<< HEAD
+		if (!submenu || !menu_is_visible(submenu))
+			continue;
+		sym = submenu->sym;
+=======
 		active_menu = (struct menu *)item_data();
 		if (!submenu || !menu_is_visible(submenu))
 			continue;
@@ -1159,6 +1187,7 @@ static void conf(struct menu *menu)
 			sym = submenu->sym;
 		else
 			sym = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		switch (res) {
 		case ' ':
@@ -1222,6 +1251,15 @@ static void conf_message_callback(const char *fmt, va_list ap)
 
 static void show_help(struct menu *menu)
 {
+<<<<<<< HEAD
+	struct gstr help;
+
+	if (!menu)
+		return;
+
+	help = str_new();
+	menu_get_ext_help(menu, &help);
+=======
 	struct gstr help = str_new();
 
 	if (menu && menu->sym && menu_has_help(menu)) {
@@ -1236,6 +1274,7 @@ static void show_help(struct menu *menu)
 	} else {
 		str_append(&help, nohelp_text);
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	show_scroll_win(main_window, _(menu_get_prompt(menu)), str_get(&help));
 	str_free(&help);
 }
@@ -1360,7 +1399,10 @@ static void conf_choice(struct menu *menu)
 static void conf_string(struct menu *menu)
 {
 	const char *prompt = menu_get_prompt(menu);
+<<<<<<< HEAD
+=======
 	char dialog_input_result[256];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	while (1) {
 		int res;
@@ -1383,8 +1425,13 @@ static void conf_string(struct menu *menu)
 				prompt ? _(prompt) : _("Main Menu"),
 				heading,
 				sym_get_string_value(menu->sym),
+<<<<<<< HEAD
+				&dialog_input_result,
+				&dialog_input_result_len);
+=======
 				dialog_input_result,
 				sizeof(dialog_input_result));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (res) {
 		case 0:
 			if (sym_set_string_value(menu->sym,
@@ -1404,14 +1451,22 @@ static void conf_string(struct menu *menu)
 
 static void conf_load(void)
 {
+<<<<<<< HEAD
+=======
 	char dialog_input_result[256];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	while (1) {
 		int res;
 		res = dialog_inputbox(main_window,
 				NULL, load_config_text,
 				filename,
+<<<<<<< HEAD
+				&dialog_input_result,
+				&dialog_input_result_len);
+=======
 				dialog_input_result,
 				sizeof(dialog_input_result));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (res) {
 		case 0:
 			if (!dialog_input_result[0])
@@ -1436,14 +1491,22 @@ static void conf_load(void)
 
 static void conf_save(void)
 {
+<<<<<<< HEAD
+=======
 	char dialog_input_result[256];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	while (1) {
 		int res;
 		res = dialog_inputbox(main_window,
 				NULL, save_config_text,
 				filename,
+<<<<<<< HEAD
+				&dialog_input_result,
+				&dialog_input_result_len);
+=======
 				dialog_input_result,
 				sizeof(dialog_input_result));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (res) {
 		case 0:
 			if (!dialog_input_result[0])

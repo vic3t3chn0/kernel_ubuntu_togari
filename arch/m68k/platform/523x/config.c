@@ -16,6 +16,15 @@
 #include <linux/param.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+#include <asm/machdep.h>
+#include <asm/coldfire.h>
+#include <asm/mcfsim.h>
+
+/***************************************************************************/
+
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+=======
 #include <linux/spi/spi.h>
 #include <linux/gpio.h>
 #include <asm/machdep.h>
@@ -225,6 +234,7 @@ static struct platform_device m523x_qspi = {
 	.resource		= m523x_qspi_resources,
 	.dev.platform_data	= &m523x_qspi_data,
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void __init m523x_qspi_init(void)
 {
@@ -237,6 +247,10 @@ static void __init m523x_qspi_init(void)
 	par &= 0x3f3f;
 	writew(par, MCFGPIO_PAR_TIMER);
 }
+<<<<<<< HEAD
+
+#endif /* IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI) */
+=======
 #endif /* defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE) */
 
 static struct platform_device *m523x_devices[] __initdata = {
@@ -246,6 +260,7 @@ static struct platform_device *m523x_devices[] __initdata = {
 	&m523x_qspi,
 #endif
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /***************************************************************************/
 
@@ -263,6 +278,17 @@ static void __init m523x_fec_init(void)
 
 /***************************************************************************/
 
+<<<<<<< HEAD
+void __init config_BSP(char *commandp, int size)
+{
+	mach_sched_init = hw_timer_init;
+	m523x_fec_init();
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+	m523x_qspi_init();
+#endif
+}
+
+=======
 static void m523x_cpu_reset(void)
 {
 	local_irq_disable();
@@ -290,4 +316,5 @@ static int __init init_BSP(void)
 
 arch_initcall(init_BSP);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /***************************************************************************/

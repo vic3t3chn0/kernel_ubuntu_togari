@@ -451,6 +451,17 @@ out:
 static struct cache_dir *__cpuinit cacheinfo_create_cache_dir(unsigned int cpu_id)
 {
 	struct cache_dir *cache_dir;
+<<<<<<< HEAD
+	struct device *dev;
+	struct kobject *kobj = NULL;
+
+	dev = get_cpu_device(cpu_id);
+	WARN_ONCE(!dev, "no dev for CPU %i\n", cpu_id);
+	if (!dev)
+		goto err;
+
+	kobj = kobject_create_and_add("cache", &dev->kobj);
+=======
 	struct sys_device *sysdev;
 	struct kobject *kobj = NULL;
 
@@ -460,6 +471,7 @@ static struct cache_dir *__cpuinit cacheinfo_create_cache_dir(unsigned int cpu_i
 		goto err;
 
 	kobj = kobject_create_and_add("cache", &sysdev->kobj);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!kobj)
 		goto err;
 

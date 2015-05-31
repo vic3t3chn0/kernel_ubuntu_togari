@@ -1,6 +1,11 @@
 /*
    HIDP implementation for Linux Bluetooth stack (BlueZ).
    Copyright (C) 2003-2004 Marcel Holtmann <marcel@holtmann.org>
+<<<<<<< HEAD
+   Copyright 2011,2012 Sony Corporation
+   Copyright (c) 2012 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License version 2 as
@@ -80,8 +85,18 @@
 #define HIDP_VIRTUAL_CABLE_UNPLUG	0
 #define HIDP_BOOT_PROTOCOL_MODE		1
 #define HIDP_BLUETOOTH_VENDOR_ID	9
+<<<<<<< HEAD
+#define	HIDP_WAITING_FOR_RETURN		10
+#define HIDP_WAITING_FOR_SEND_ACK	11
 #define HIDP_WAITING_FOR_RETURN		10
 #define HIDP_WAITING_FOR_SEND_ACK	11
+#ifdef CONFIG_HID_SONY_PS3_CTRL_BT
+#define HIDP_DATA_SIZE_TRUE		8
+#endif
+=======
+#define HIDP_WAITING_FOR_RETURN		10
+#define HIDP_WAITING_FOR_SEND_ACK	11
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct hidp_connadd_req {
 	int   ctrl_sock;	/* Connected control socket */
@@ -143,7 +158,10 @@ struct hidp_session {
 	uint intr_mtu;
 
 	atomic_t terminate;
+<<<<<<< HEAD
+=======
 	struct task_struct *task;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	unsigned char keys[8];
 	unsigned char leds;

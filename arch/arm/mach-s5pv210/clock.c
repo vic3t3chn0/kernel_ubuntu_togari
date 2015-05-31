@@ -17,28 +17,43 @@
 #include <linux/errno.h>
 #include <linux/err.h>
 #include <linux/clk.h>
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
 #include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/io.h>
 
 #include <mach/map.h>
 
 #include <plat/cpu-freq.h>
 #include <mach/regs-clock.h>
+<<<<<<< HEAD
+=======
 #include <mach/regs-audss.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/clock.h>
 #include <plat/cpu.h>
 #include <plat/pll.h>
 #include <plat/s5p-clock.h>
 #include <plat/clock-clksrc.h>
+<<<<<<< HEAD
+
+#include "common.h"
+=======
 #include <plat/s5pv210.h>
 #include <plat/devs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static unsigned long xtal;
 
 static struct clksrc_clk clk_mout_apll = {
 	.clk	= {
 		.name		= "mout_apll",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clk_src_apll,
 	.reg_src	= { .reg = S5P_CLK_SRC0, .shift = 0, .size = 1 },
@@ -47,7 +62,10 @@ static struct clksrc_clk clk_mout_apll = {
 static struct clksrc_clk clk_mout_epll = {
 	.clk	= {
 		.name		= "mout_epll",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clk_src_epll,
 	.reg_src	= { .reg = S5P_CLK_SRC0, .shift = 8, .size = 1 },
@@ -56,7 +74,10 @@ static struct clksrc_clk clk_mout_epll = {
 static struct clksrc_clk clk_mout_mpll = {
 	.clk = {
 		.name		= "mout_mpll",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clk_src_mpll,
 	.reg_src	= { .reg = S5P_CLK_SRC0, .shift = 4, .size = 1 },
@@ -75,7 +96,10 @@ static struct clksrc_sources clkset_armclk = {
 static struct clksrc_clk clk_armclk = {
 	.clk	= {
 		.name		= "armclk",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clkset_armclk,
 	.reg_src	= { .reg = S5P_CLK_SRC0, .shift = 16, .size = 1 },
@@ -85,7 +109,10 @@ static struct clksrc_clk clk_armclk = {
 static struct clksrc_clk clk_hclk_msys = {
 	.clk	= {
 		.name		= "hclk_msys",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_armclk.clk,
 	},
 	.reg_div	= { .reg = S5P_CLK_DIV0, .shift = 8, .size = 3 },
@@ -94,7 +121,10 @@ static struct clksrc_clk clk_hclk_msys = {
 static struct clksrc_clk clk_pclk_msys = {
 	.clk	= {
 		.name		= "pclk_msys",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_msys.clk,
 	},
 	.reg_div        = { .reg = S5P_CLK_DIV0, .shift = 12, .size = 3 },
@@ -103,7 +133,10 @@ static struct clksrc_clk clk_pclk_msys = {
 static struct clksrc_clk clk_sclk_a2m = {
 	.clk	= {
 		.name		= "sclk_a2m",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_mout_apll.clk,
 	},
 	.reg_div	= { .reg = S5P_CLK_DIV0, .shift = 4, .size = 3 },
@@ -122,7 +155,10 @@ static struct clksrc_sources clkset_hclk_sys = {
 static struct clksrc_clk clk_hclk_dsys = {
 	.clk	= {
 		.name	= "hclk_dsys",
+<<<<<<< HEAD
+=======
 		.id	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clkset_hclk_sys,
 	.reg_src        = { .reg = S5P_CLK_SRC0, .shift = 20, .size = 1 },
@@ -132,7 +168,10 @@ static struct clksrc_clk clk_hclk_dsys = {
 static struct clksrc_clk clk_pclk_dsys = {
 	.clk	= {
 		.name	= "pclk_dsys",
+<<<<<<< HEAD
+=======
 		.id	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent	= &clk_hclk_dsys.clk,
 	},
 	.reg_div = { .reg = S5P_CLK_DIV0, .shift = 20, .size = 3 },
@@ -141,7 +180,10 @@ static struct clksrc_clk clk_pclk_dsys = {
 static struct clksrc_clk clk_hclk_psys = {
 	.clk	= {
 		.name	= "hclk_psys",
+<<<<<<< HEAD
+=======
 		.id	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clkset_hclk_sys,
 	.reg_src        = { .reg = S5P_CLK_SRC0, .shift = 24, .size = 1 },
@@ -151,7 +193,10 @@ static struct clksrc_clk clk_hclk_psys = {
 static struct clksrc_clk clk_pclk_psys = {
 	.clk	= {
 		.name	= "pclk_psys",
+<<<<<<< HEAD
+=======
 		.id	= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent	= &clk_hclk_psys.clk,
 	},
 	.reg_div        = { .reg = S5P_CLK_DIV0, .shift = 28, .size = 3 },
@@ -187,44 +232,80 @@ static int s5pv210_clk_mask1_ctrl(struct clk *clk, int enable)
 	return s5p_gatectrl(S5P_CLK_SRC_MASK1, clk, enable);
 }
 
+<<<<<<< HEAD
+static int s5pv210_clk_hdmiphy_ctrl(struct clk *clk, int enable)
+{
+	return s5p_gatectrl(S5P_HDMI_PHY_CONTROL, clk, enable);
+}
+
+static int exynos4_clk_dac_ctrl(struct clk *clk, int enable)
+{
+	return s5p_gatectrl(S5P_DAC_PHY_CONTROL, clk, enable);
+=======
 static int s5pv210_clk_audss_ctrl(struct clk *clk, int enable)
 {
 	return s5p_gatectrl(S5P_CLKGATE_AUDSS, clk, enable);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static struct clk clk_sclk_hdmi27m = {
 	.name		= "sclk_hdmi27m",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.rate		= 27000000,
 };
 
 static struct clk clk_sclk_hdmiphy = {
 	.name		= "sclk_hdmiphy",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct clk clk_sclk_usbphy0 = {
 	.name		= "sclk_usbphy0",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct clk clk_sclk_usbphy1 = {
 	.name		= "sclk_usbphy1",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct clk clk_pcmcdclk0 = {
 	.name		= "pcmcdclk",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct clk clk_pcmcdclk1 = {
 	.name		= "pcmcdclk",
+<<<<<<< HEAD
+=======
 	.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct clk clk_pcmcdclk2 = {
 	.name		= "pcmcdclk",
+<<<<<<< HEAD
+};
+
+static struct clk dummy_apb_pclk = {
+	.name		= "apb_pclk",
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.id		= -1,
 };
 
@@ -241,7 +322,10 @@ static struct clksrc_sources clkset_vpllsrc = {
 static struct clksrc_clk clk_vpllsrc = {
 	.clk	= {
 		.name		= "vpll_src",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 7),
 	},
@@ -262,7 +346,10 @@ static struct clksrc_sources clkset_sclk_vpll = {
 static struct clksrc_clk clk_sclk_vpll = {
 	.clk	= {
 		.name		= "sclk_vpll",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clkset_sclk_vpll,
 	.reg_src	= { .reg = S5P_CLK_SRC0, .shift = 12, .size = 1 },
@@ -283,7 +370,10 @@ static struct clksrc_sources clkset_moutdmc0src = {
 static struct clksrc_clk clk_mout_dmc0 = {
 	.clk	= {
 		.name		= "mout_dmc0",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	.sources	= &clkset_moutdmc0src,
 	.reg_src	= { .reg = S5P_CLK_SRC6, .shift = 24, .size = 2 },
@@ -292,7 +382,10 @@ static struct clksrc_clk clk_mout_dmc0 = {
 static struct clksrc_clk clk_sclk_dmc0 = {
 	.clk	= {
 		.name		= "sclk_dmc0",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_mout_dmc0.clk,
 	},
 	.reg_div	= { .reg = S5P_CLK_DIV6, .shift = 28, .size = 4 },
@@ -318,54 +411,143 @@ static struct clk_ops clk_fout_apll_ops = {
 
 static struct clk init_clocks_off[] = {
 	{
+<<<<<<< HEAD
+		.name		= "dma",
+		.devname	= "dma-pl330.0",
+		.parent		= &clk_hclk_psys.clk,
+		.enable		= s5pv210_clk_ip0_ctrl,
+		.ctrlbit	= (1 << 3),
+	}, {
+		.name		= "dma",
+		.devname	= "dma-pl330.1",
+		.parent		= &clk_hclk_psys.clk,
+		.enable		= s5pv210_clk_ip0_ctrl,
+		.ctrlbit	= (1 << 4),
+	}, {
+		.name		= "rot",
+=======
 		.name		= "rot",
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_dsys.clk,
 		.enable		= s5pv210_clk_ip0_ctrl,
 		.ctrlbit	= (1<<29),
 	}, {
 		.name		= "fimc",
+<<<<<<< HEAD
+		.devname	= "s5pv210-fimc.0",
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_dsys.clk,
 		.enable		= s5pv210_clk_ip0_ctrl,
 		.ctrlbit	= (1 << 24),
 	}, {
 		.name		= "fimc",
+<<<<<<< HEAD
+		.devname	= "s5pv210-fimc.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_dsys.clk,
 		.enable		= s5pv210_clk_ip0_ctrl,
 		.ctrlbit	= (1 << 25),
 	}, {
 		.name		= "fimc",
+<<<<<<< HEAD
+		.devname	= "s5pv210-fimc.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_dsys.clk,
 		.enable		= s5pv210_clk_ip0_ctrl,
 		.ctrlbit	= (1 << 26),
 	}, {
+<<<<<<< HEAD
+		.name		= "jpeg",
+		.parent		= &clk_hclk_dsys.clk,
+		.enable		= s5pv210_clk_ip0_ctrl,
+		.ctrlbit	= (1 << 28),
+	}, {
+		.name		= "mfc",
+		.devname	= "s5p-mfc",
+		.parent		= &clk_pclk_psys.clk,
+		.enable		= s5pv210_clk_ip0_ctrl,
+		.ctrlbit	= (1 << 16),
+	}, {
+		.name		= "dac",
+		.devname	= "s5p-sdo",
+		.parent		= &clk_hclk_dsys.clk,
+		.enable		= s5pv210_clk_ip1_ctrl,
+		.ctrlbit	= (1 << 10),
+	}, {
+		.name		= "mixer",
+		.devname	= "s5p-mixer",
+		.parent		= &clk_hclk_dsys.clk,
+		.enable		= s5pv210_clk_ip1_ctrl,
+		.ctrlbit	= (1 << 9),
+	}, {
+		.name		= "vp",
+		.devname	= "s5p-mixer",
+		.parent		= &clk_hclk_dsys.clk,
+		.enable		= s5pv210_clk_ip1_ctrl,
+		.ctrlbit	= (1 << 8),
+	}, {
+		.name		= "hdmi",
+		.devname	= "s5pv210-hdmi",
+		.parent		= &clk_hclk_dsys.clk,
+		.enable		= s5pv210_clk_ip1_ctrl,
+		.ctrlbit	= (1 << 11),
+	}, {
+		.name		= "hdmiphy",
+		.devname	= "s5pv210-hdmi",
+		.enable		= s5pv210_clk_hdmiphy_ctrl,
+		.ctrlbit	= (1 << 0),
+	}, {
+		.name		= "dacphy",
+		.devname	= "s5p-sdo",
+		.enable		= exynos4_clk_dac_ctrl,
+		.ctrlbit	= (1 << 0),
+	}, {
+		.name		= "otg",
+=======
 		.name		= "otg",
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_psys.clk,
 		.enable		= s5pv210_clk_ip1_ctrl,
 		.ctrlbit	= (1<<16),
 	}, {
 		.name		= "usb-host",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_psys.clk,
 		.enable		= s5pv210_clk_ip1_ctrl,
 		.ctrlbit	= (1<<17),
 	}, {
 		.name		= "lcd",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_dsys.clk,
 		.enable		= s5pv210_clk_ip1_ctrl,
 		.ctrlbit	= (1<<0),
 	}, {
 		.name		= "cfcon",
+<<<<<<< HEAD
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_psys.clk,
 		.enable		= s5pv210_clk_ip1_ctrl,
 		.ctrlbit	= (1<<25),
 	}, {
+<<<<<<< HEAD
+		.name		= "systimer",
+=======
 		.name		= "hsmmc",
 		.id		= 0,
 		.parent		= &clk_hclk_psys.clk,
@@ -392,95 +574,159 @@ static struct clk init_clocks_off[] = {
 	}, {
 		.name		= "systimer",
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<16),
 	}, {
 		.name		= "watchdog",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<22),
 	}, {
 		.name		= "rtc",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<15),
 	}, {
 		.name		= "i2c",
+<<<<<<< HEAD
+		.devname	= "s3c2440-i2c.0",
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<7),
 	}, {
 		.name		= "i2c",
+<<<<<<< HEAD
+		.devname	= "s3c2440-i2c.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 10),
 	}, {
 		.name		= "i2c",
+<<<<<<< HEAD
+		.devname	= "s3c2440-i2c.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<9),
 	}, {
+<<<<<<< HEAD
+		.name		= "i2c",
+		.devname	= "s3c2440-hdmiphy-i2c",
+		.parent		= &clk_pclk_psys.clk,
+		.enable		= s5pv210_clk_ip3_ctrl,
+		.ctrlbit	= (1 << 11),
+	}, {
+		.name		= "spi",
+		.devname	= "s3c64xx-spi.0",
+=======
 		.name		= "spi",
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<12),
 	}, {
 		.name		= "spi",
+<<<<<<< HEAD
+		.devname	= "s3c64xx-spi.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<13),
 	}, {
 		.name		= "spi",
+<<<<<<< HEAD
+		.devname	= "s3c64xx-spi.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<14),
 	}, {
 		.name		= "timers",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<23),
 	}, {
 		.name		= "adc",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<24),
 	}, {
 		.name		= "keypad",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<21),
 	}, {
 		.name		= "iis",
+<<<<<<< HEAD
+		.devname	= "samsung-i2s.0",
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_p,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1<<4),
 	}, {
 		.name		= "iis",
+<<<<<<< HEAD
+		.devname	= "samsung-i2s.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_p,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 5),
 	}, {
 		.name		= "iis",
+<<<<<<< HEAD
+		.devname	= "samsung-i2s.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_p,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 6),
 	}, {
 		.name		= "spdif",
+<<<<<<< HEAD
+		.parent		= &clk_p,
+		.enable		= s5pv210_clk_ip3_ctrl,
+		.ctrlbit	= (1 << 0),
+=======
 		.id		= -1,
 		.parent		= &clk_p,
 		.enable		= s5pv210_clk_ip3_ctrl,
@@ -516,50 +762,108 @@ static struct clk init_dmaclocks[] = {
 		.enable         = s5pv210_clk_ip0_ctrl,
 		.ctrlbit        = (1 << 4),
 		.dev            = &s5pv210_device_pdma1.dev,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 };
 
 static struct clk init_clocks[] = {
 	{
 		.name		= "hclk_imem",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_msys.clk,
 		.ctrlbit	= (1 << 5),
 		.enable		= s5pv210_clk_ip0_ctrl,
 		.ops		= &clk_hclk_imem_ops,
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
+		.devname	= "s5pv210-uart.0",
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 17),
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
+		.devname	= "s5pv210-uart.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 18),
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
+		.devname	= "s5pv210-uart.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 19),
 	}, {
 		.name		= "uart",
+<<<<<<< HEAD
+		.devname	= "s5pv210-uart.3",
+=======
 		.id		= 3,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_pclk_psys.clk,
 		.enable		= s5pv210_clk_ip3_ctrl,
 		.ctrlbit	= (1 << 20),
 	}, {
 		.name		= "sromc",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_hclk_psys.clk,
 		.enable		= s5pv210_clk_ip1_ctrl,
 		.ctrlbit	= (1 << 26),
 	},
 };
 
+<<<<<<< HEAD
+static struct clk clk_hsmmc0 = {
+	.name		= "hsmmc",
+	.devname	= "s3c-sdhci.0",
+	.parent		= &clk_hclk_psys.clk,
+	.enable		= s5pv210_clk_ip2_ctrl,
+	.ctrlbit	= (1<<16),
+};
+
+static struct clk clk_hsmmc1 = {
+	.name		= "hsmmc",
+	.devname	= "s3c-sdhci.1",
+	.parent		= &clk_hclk_psys.clk,
+	.enable		= s5pv210_clk_ip2_ctrl,
+	.ctrlbit	= (1<<17),
+};
+
+static struct clk clk_hsmmc2 = {
+	.name		= "hsmmc",
+	.devname	= "s3c-sdhci.2",
+	.parent		= &clk_hclk_psys.clk,
+	.enable		= s5pv210_clk_ip2_ctrl,
+	.ctrlbit	= (1<<18),
+};
+
+static struct clk clk_hsmmc3 = {
+	.name		= "hsmmc",
+	.devname	= "s3c-sdhci.3",
+	.parent		= &clk_hclk_psys.clk,
+	.enable		= s5pv210_clk_ip2_ctrl,
+	.ctrlbit	= (1<<19),
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct clk *clkset_uart_list[] = {
 	[6] = &clk_mout_mpll.clk,
 	[7] = &clk_mout_epll.clk,
@@ -605,7 +909,10 @@ static struct clksrc_sources clkset_sclk_dac = {
 static struct clksrc_clk clk_sclk_dac = {
 	.clk		= {
 		.name		= "sclk_dac",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 2),
 	},
@@ -616,7 +923,10 @@ static struct clksrc_clk clk_sclk_dac = {
 static struct clksrc_clk clk_sclk_pixel = {
 	.clk		= {
 		.name		= "sclk_pixel",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.parent		= &clk_sclk_vpll.clk,
 	},
 	.reg_div	= { .reg = S5P_CLK_DIV1, .shift = 0, .size = 4},
@@ -635,7 +945,10 @@ static struct clksrc_sources clkset_sclk_hdmi = {
 static struct clksrc_clk clk_sclk_hdmi = {
 	.clk		= {
 		.name		= "sclk_hdmi",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 0),
 	},
@@ -653,6 +966,26 @@ static struct clksrc_sources clkset_sclk_mixer = {
 	.nr_sources	= ARRAY_SIZE(clkset_sclk_mixer_list),
 };
 
+<<<<<<< HEAD
+static struct clksrc_clk clk_sclk_mixer = {
+	.clk		= {
+		.name		= "sclk_mixer",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 1),
+	},
+	.sources = &clkset_sclk_mixer,
+	.reg_src = { .reg = S5P_CLK_SRC1, .shift = 4, .size = 1 },
+};
+
+static struct clksrc_clk *sclk_tv[] = {
+	&clk_sclk_dac,
+	&clk_sclk_pixel,
+	&clk_sclk_hdmi,
+	&clk_sclk_mixer,
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct clk *clkset_sclk_audio0_list[] = {
 	[0] = &clk_ext_xtal_mux,
 	[1] = &clk_pcmcdclk0,
@@ -673,7 +1006,11 @@ static struct clksrc_sources clkset_sclk_audio0 = {
 static struct clksrc_clk clk_sclk_audio0 = {
 	.clk		= {
 		.name		= "sclk_audio",
+<<<<<<< HEAD
+		.devname	= "soc-audio.0",
+=======
 		.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 24),
 	},
@@ -682,6 +1019,8 @@ static struct clksrc_clk clk_sclk_audio0 = {
 	.reg_div = { .reg = S5P_CLK_DIV6, .shift = 0, .size = 4 },
 };
 
+<<<<<<< HEAD
+=======
 static struct clk *clkset_mout_audss_list[] = {
 	[0] = &clk_ext_xtal_mux,
 	[1] = &clk_fout_epll,
@@ -735,6 +1074,7 @@ static struct clksrc_clk clk_dout_audio_bus_clk_i2s = {
 	.reg_div	= { .reg = S5P_CLKDIV_AUDSS, .shift = 0, .size = 4 },
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct clk *clkset_sclk_audio1_list[] = {
 	[0] = &clk_ext_xtal_mux,
 	[1] = &clk_pcmcdclk1,
@@ -755,7 +1095,11 @@ static struct clksrc_sources clkset_sclk_audio1 = {
 static struct clksrc_clk clk_sclk_audio1 = {
 	.clk		= {
 		.name		= "sclk_audio",
+<<<<<<< HEAD
+		.devname	= "soc-audio.1",
+=======
 		.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 25),
 	},
@@ -784,7 +1128,11 @@ static struct clksrc_sources clkset_sclk_audio2 = {
 static struct clksrc_clk clk_sclk_audio2 = {
 	.clk		= {
 		.name		= "sclk_audio",
+<<<<<<< HEAD
+		.devname	= "soc-audio.2",
+=======
 		.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 26),
 	},
@@ -807,7 +1155,10 @@ static struct clksrc_sources clkset_sclk_spdif = {
 static struct clksrc_clk clk_sclk_spdif = {
 	.clk		= {
 		.name		= "sclk_spdif",
+<<<<<<< HEAD
+=======
 		.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.enable		= s5pv210_clk_mask0_ctrl,
 		.ctrlbit	= (1 << 27),
 		.ops		= &s5p_sclk_spdif_ops,
@@ -837,7 +1188,10 @@ static struct clksrc_clk clksrcs[] = {
 	{
 		.clk	= {
 			.name		= "sclk_dmc",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		},
 		.sources = &clkset_group1,
 		.reg_src = { .reg = S5P_CLK_SRC6, .shift = 24, .size = 2 },
@@ -845,13 +1199,20 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk	= {
 			.name		= "sclk_onenand",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		},
 		.sources = &clkset_sclk_onenand,
 		.reg_src = { .reg = S5P_CLK_SRC0, .shift = 28, .size = 1 },
 		.reg_div = { .reg = S5P_CLK_DIV6, .shift = 12, .size = 3 },
 	}, {
 		.clk	= {
+<<<<<<< HEAD
+			.name		= "sclk_fimc",
+			.devname	= "s5pv210-fimc.0",
+=======
 			.name		= "uclk1",
 			.id		= 0,
 			.enable		= s5pv210_clk_mask0_ctrl,
@@ -903,6 +1264,7 @@ static struct clksrc_clk clksrcs[] = {
 		.clk	= {
 			.name		= "sclk_fimc",
 			.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask1_ctrl,
 			.ctrlbit	= (1 << 2),
 		},
@@ -912,7 +1274,11 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk	= {
 			.name		= "sclk_fimc",
+<<<<<<< HEAD
+			.devname	= "s5pv210-fimc.1",
+=======
 			.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask1_ctrl,
 			.ctrlbit	= (1 << 3),
 		},
@@ -922,7 +1288,11 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk	= {
 			.name		= "sclk_fimc",
+<<<<<<< HEAD
+			.devname	= "s5pv210-fimc.2",
+=======
 			.id		= 2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask1_ctrl,
 			.ctrlbit	= (1 << 4),
 		},
@@ -931,8 +1301,12 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_div = { .reg = S5P_CLK_DIV3, .shift = 20, .size = 4 },
 	}, {
 		.clk		= {
+<<<<<<< HEAD
+			.name		= "sclk_cam0",
+=======
 			.name		= "sclk_cam",
 			.id		= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 3),
 		},
@@ -941,8 +1315,12 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_div = { .reg = S5P_CLK_DIV1, .shift = 12, .size = 4 },
 	}, {
 		.clk		= {
+<<<<<<< HEAD
+			.name		= "sclk_cam1",
+=======
 			.name		= "sclk_cam",
 			.id		= 1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 4),
 		},
@@ -952,7 +1330,10 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk		= {
 			.name		= "sclk_fimd",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 5),
 		},
@@ -961,6 +1342,10 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_div = { .reg = S5P_CLK_DIV1, .shift = 20, .size = 4 },
 	}, {
 		.clk		= {
+<<<<<<< HEAD
+			.name		= "sclk_mfc",
+			.devname	= "s5p-mfc",
+=======
 			.name		= "sclk_mmc",
 			.id		= 0,
 			.enable		= s5pv210_clk_mask0_ctrl,
@@ -1003,6 +1388,7 @@ static struct clksrc_clk clksrcs[] = {
 		.clk		= {
 			.name		= "sclk_mfc",
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_ip0_ctrl,
 			.ctrlbit	= (1 << 16),
 		},
@@ -1012,7 +1398,10 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk		= {
 			.name		= "sclk_g2d",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_ip0_ctrl,
 			.ctrlbit	= (1 << 12),
 		},
@@ -1022,7 +1411,10 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk		= {
 			.name		= "sclk_g3d",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_ip0_ctrl,
 			.ctrlbit	= (1 << 8),
 		},
@@ -1032,7 +1424,10 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk		= {
 			.name		= "sclk_csis",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 6),
 		},
@@ -1041,6 +1436,9 @@ static struct clksrc_clk clksrcs[] = {
 		.reg_div = { .reg = S5P_CLK_DIV1, .shift = 28, .size = 4 },
 	}, {
 		.clk		= {
+<<<<<<< HEAD
+			.name		= "sclk_pwi",
+=======
 			.name		= "sclk_spi",
 			.id		= 0,
 			.enable		= s5pv210_clk_mask0_ctrl,
@@ -1063,6 +1461,7 @@ static struct clksrc_clk clksrcs[] = {
 		.clk		= {
 			.name		= "sclk_pwi",
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 29),
 		},
@@ -1072,7 +1471,10 @@ static struct clksrc_clk clksrcs[] = {
 	}, {
 		.clk		= {
 			.name		= "sclk_pwm",
+<<<<<<< HEAD
+=======
 			.id		= -1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.enable		= s5pv210_clk_mask0_ctrl,
 			.ctrlbit	= (1 << 19),
 		},
@@ -1082,6 +1484,150 @@ static struct clksrc_clk clksrcs[] = {
 	},
 };
 
+<<<<<<< HEAD
+static struct clksrc_clk clk_sclk_uart0 = {
+	.clk	= {
+		.name		= "uclk1",
+		.devname	= "s5pv210-uart.0",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 12),
+	},
+	.sources = &clkset_uart,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 16, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 16, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_uart1 = {
+	.clk		= {
+		.name		= "uclk1",
+		.devname	= "s5pv210-uart.1",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 13),
+	},
+	.sources = &clkset_uart,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 20, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 20, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_uart2 = {
+	.clk		= {
+		.name		= "uclk1",
+		.devname	= "s5pv210-uart.2",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 14),
+	},
+	.sources = &clkset_uart,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 24, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 24, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_uart3	= {
+	.clk		= {
+		.name		= "uclk1",
+		.devname	= "s5pv210-uart.3",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 15),
+	},
+	.sources = &clkset_uart,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 28, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 28, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_mmc0 = {
+	.clk		= {
+		.name		= "sclk_mmc",
+		.devname	= "s3c-sdhci.0",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 8),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 0, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 0, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_mmc1 = {
+	.clk		= {
+		.name		= "sclk_mmc",
+		.devname	= "s3c-sdhci.1",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 9),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 4, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 4, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_mmc2 = {
+	.clk		= {
+		.name		= "sclk_mmc",
+		.devname	= "s3c-sdhci.2",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 10),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 8, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 8, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_mmc3 = {
+	.clk		= {
+		.name		= "sclk_mmc",
+		.devname	= "s3c-sdhci.3",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 11),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC4, .shift = 12, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV4, .shift = 12, .size = 4 },
+};
+
+static struct clksrc_clk clk_sclk_spi0 = {
+	.clk		= {
+		.name		= "sclk_spi",
+		.devname	= "s3c64xx-spi.0",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 16),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC5, .shift = 0, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV5, .shift = 0, .size = 4 },
+	};
+
+static struct clksrc_clk clk_sclk_spi1 = {
+	.clk		= {
+		.name		= "sclk_spi",
+		.devname	= "s3c64xx-spi.1",
+		.enable		= s5pv210_clk_mask0_ctrl,
+		.ctrlbit	= (1 << 17),
+	},
+	.sources = &clkset_group2,
+	.reg_src = { .reg = S5P_CLK_SRC5, .shift = 4, .size = 4 },
+	.reg_div = { .reg = S5P_CLK_DIV5, .shift = 4, .size = 4 },
+	};
+
+
+static struct clksrc_clk *clksrc_cdev[] = {
+	&clk_sclk_uart0,
+	&clk_sclk_uart1,
+	&clk_sclk_uart2,
+	&clk_sclk_uart3,
+	&clk_sclk_mmc0,
+	&clk_sclk_mmc1,
+	&clk_sclk_mmc2,
+	&clk_sclk_mmc3,
+	&clk_sclk_spi0,
+	&clk_sclk_spi1,
+};
+
+static struct clk *clk_cdev[] = {
+	&clk_hsmmc0,
+	&clk_hsmmc1,
+	&clk_hsmmc2,
+	&clk_hsmmc3,
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Clock initialisation code */
 static struct clksrc_clk *sysclks[] = {
 	&clk_mout_apll,
@@ -1097,18 +1643,24 @@ static struct clksrc_clk *sysclks[] = {
 	&clk_pclk_psys,
 	&clk_vpllsrc,
 	&clk_sclk_vpll,
+<<<<<<< HEAD
+=======
 	&clk_sclk_dac,
 	&clk_sclk_pixel,
 	&clk_sclk_hdmi,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&clk_mout_dmc0,
 	&clk_sclk_dmc0,
 	&clk_sclk_audio0,
 	&clk_sclk_audio1,
 	&clk_sclk_audio2,
 	&clk_sclk_spdif,
+<<<<<<< HEAD
+=======
 	&clk_mout_audss,
 	&clk_mout_i2s_a,
 	&clk_dout_audio_bus_clk_i2s,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static u32 epll_div[][6] = {
@@ -1187,6 +1739,64 @@ static struct clk_ops s5pv210_epll_ops = {
 	.get_rate = s5p_epll_get_rate,
 };
 
+<<<<<<< HEAD
+static u32 vpll_div[][5] = {
+	{  54000000, 3, 53, 3, 0 },
+	{ 108000000, 3, 53, 2, 0 },
+};
+
+static unsigned long s5pv210_vpll_get_rate(struct clk *clk)
+{
+	return clk->rate;
+}
+
+static int s5pv210_vpll_set_rate(struct clk *clk, unsigned long rate)
+{
+	unsigned int vpll_con;
+	unsigned int i;
+
+	/* Return if nothing changed */
+	if (clk->rate == rate)
+		return 0;
+
+	vpll_con = __raw_readl(S5P_VPLL_CON);
+	vpll_con &= ~(0x1 << 27 |					\
+			PLL90XX_MDIV_MASK << PLL90XX_MDIV_SHIFT |	\
+			PLL90XX_PDIV_MASK << PLL90XX_PDIV_SHIFT |	\
+			PLL90XX_SDIV_MASK << PLL90XX_SDIV_SHIFT);
+
+	for (i = 0; i < ARRAY_SIZE(vpll_div); i++) {
+		if (vpll_div[i][0] == rate) {
+			vpll_con |= vpll_div[i][1] << PLL90XX_PDIV_SHIFT;
+			vpll_con |= vpll_div[i][2] << PLL90XX_MDIV_SHIFT;
+			vpll_con |= vpll_div[i][3] << PLL90XX_SDIV_SHIFT;
+			vpll_con |= vpll_div[i][4] << 27;
+			break;
+		}
+	}
+
+	if (i == ARRAY_SIZE(vpll_div)) {
+		printk(KERN_ERR "%s: Invalid Clock VPLL Frequency\n",
+				__func__);
+		return -EINVAL;
+	}
+
+	__raw_writel(vpll_con, S5P_VPLL_CON);
+
+	/* Wait for VPLL lock */
+	while (!(__raw_readl(S5P_VPLL_CON) & (1 << PLL90XX_LOCKED_SHIFT)))
+		continue;
+
+	clk->rate = rate;
+	return 0;
+}
+static struct clk_ops s5pv210_vpll_ops = {
+	.get_rate = s5pv210_vpll_get_rate,
+	.set_rate = s5pv210_vpll_set_rate,
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init_or_cpufreq s5pv210_setup_clocks(void)
 {
 	struct clk *xtal_clk;
@@ -1206,6 +1816,10 @@ void __init_or_cpufreq s5pv210_setup_clocks(void)
 	u32 clkdiv0, clkdiv1;
 
 	/* Set functions for clk_fout_epll */
+<<<<<<< HEAD
+	clk_fout_epll.enable = s5p_epll_enable;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	clk_fout_epll.ops = &s5pv210_epll_ops;
 
 	printk(KERN_DEBUG "%s: registering clocks\n", __func__);
@@ -1234,6 +1848,10 @@ void __init_or_cpufreq s5pv210_setup_clocks(void)
 	clk_fout_apll.ops = &clk_fout_apll_ops;
 	clk_fout_mpll.rate = mpll;
 	clk_fout_epll.rate = epll;
+<<<<<<< HEAD
+	clk_fout_vpll.ops = &s5pv210_vpll_ops;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	clk_fout_vpll.rate = vpll;
 
 	printk(KERN_INFO "S5PV210: PLL settings, A=%ld, M=%ld, E=%ld V=%ld",
@@ -1270,6 +1888,28 @@ static struct clk *clks[] __initdata = {
 	&clk_pcmcdclk2,
 };
 
+<<<<<<< HEAD
+static struct clk_lookup s5pv210_clk_lookup[] = {
+	CLKDEV_INIT(NULL, "clk_uart_baud0", &clk_p),
+	CLKDEV_INIT("s5pv210-uart.0", "clk_uart_baud1", &clk_sclk_uart0.clk),
+	CLKDEV_INIT("s5pv210-uart.1", "clk_uart_baud1", &clk_sclk_uart1.clk),
+	CLKDEV_INIT("s5pv210-uart.2", "clk_uart_baud1", &clk_sclk_uart2.clk),
+	CLKDEV_INIT("s5pv210-uart.3", "clk_uart_baud1", &clk_sclk_uart3.clk),
+	CLKDEV_INIT("s3c-sdhci.0", "mmc_busclk.0", &clk_hsmmc0),
+	CLKDEV_INIT("s3c-sdhci.1", "mmc_busclk.0", &clk_hsmmc1),
+	CLKDEV_INIT("s3c-sdhci.2", "mmc_busclk.0", &clk_hsmmc2),
+	CLKDEV_INIT("s3c-sdhci.3", "mmc_busclk.0", &clk_hsmmc3),
+	CLKDEV_INIT("s3c-sdhci.0", "mmc_busclk.2", &clk_sclk_mmc0.clk),
+	CLKDEV_INIT("s3c-sdhci.1", "mmc_busclk.2", &clk_sclk_mmc1.clk),
+	CLKDEV_INIT("s3c-sdhci.2", "mmc_busclk.2", &clk_sclk_mmc2.clk),
+	CLKDEV_INIT("s3c-sdhci.3", "mmc_busclk.2", &clk_sclk_mmc3.clk),
+	CLKDEV_INIT(NULL, "spi_busclk0", &clk_p),
+	CLKDEV_INIT("s3c64xx-spi.0", "spi_busclk1", &clk_sclk_spi0.clk),
+	CLKDEV_INIT("s3c64xx-spi.1", "spi_busclk1", &clk_sclk_spi1.clk),
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init s5pv210_register_clocks(void)
 {
 	int ptr;
@@ -1279,15 +1919,34 @@ void __init s5pv210_register_clocks(void)
 	for (ptr = 0; ptr < ARRAY_SIZE(sysclks); ptr++)
 		s3c_register_clksrc(sysclks[ptr], 1);
 
+<<<<<<< HEAD
+	for (ptr = 0; ptr < ARRAY_SIZE(sclk_tv); ptr++)
+		s3c_register_clksrc(sclk_tv[ptr], 1);
+
+	for (ptr = 0; ptr < ARRAY_SIZE(clksrc_cdev); ptr++)
+		s3c_register_clksrc(clksrc_cdev[ptr], 1);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s3c_register_clksrc(clksrcs, ARRAY_SIZE(clksrcs));
 	s3c_register_clocks(init_clocks, ARRAY_SIZE(init_clocks));
 
 	s3c_register_clocks(init_clocks_off, ARRAY_SIZE(init_clocks_off));
 	s3c_disable_clocks(init_clocks_off, ARRAY_SIZE(init_clocks_off));
+<<<<<<< HEAD
+	clkdev_add_table(s5pv210_clk_lookup, ARRAY_SIZE(s5pv210_clk_lookup));
+
+	s3c24xx_register_clocks(clk_cdev, ARRAY_SIZE(clk_cdev));
+	for (ptr = 0; ptr < ARRAY_SIZE(clk_cdev); ptr++)
+		s3c_disable_clocks(clk_cdev[ptr], 1);
+
+	s3c24xx_register_clock(&dummy_apb_pclk);
+=======
 
 	/* Register DMA Clock */
 	s3c_register_clocks(init_dmaclocks, ARRAY_SIZE(init_dmaclocks));
 	s3c_disable_clocks(init_dmaclocks, ARRAY_SIZE(init_dmaclocks));
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s3c_pwmclk_init();
 }

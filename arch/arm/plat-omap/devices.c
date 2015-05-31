@@ -8,7 +8,11 @@
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  */
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -20,10 +24,19 @@
 #include <mach/hardware.h>
 #include <asm/mach-types.h>
 #include <asm/mach/map.h>
+<<<<<<< HEAD
+#include <asm/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <plat/tc.h>
 #include <plat/board.h>
 #include <plat/mmc.h>
+<<<<<<< HEAD
+#include <plat/menelaus.h>
+#include <plat/omap44xx.h>
+
+=======
 #include <mach/gpio.h>
 #include <plat/menelaus.h>
 #include <plat/mcbsp.h>
@@ -109,6 +122,7 @@ static inline void omap_init_mcpdm(void) {}
 
 /*-------------------------------------------------------------------------*/
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_MMC_OMAP) || defined(CONFIG_MMC_OMAP_MODULE) || \
 	defined(CONFIG_MMC_OMAP_HS) || defined(CONFIG_MMC_OMAP_HS_MODULE)
 
@@ -246,14 +260,21 @@ void __init omap_dsp_reserve_sdram_memblock(void)
 	if (!size)
 		return;
 
+<<<<<<< HEAD
+	paddr = arm_memblock_steal(size, SZ_1M);
+=======
 	paddr = memblock_alloc(size, SZ_1M);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!paddr) {
 		pr_err("%s: failed to reserve %x bytes\n",
 				__func__, size);
 		return;
 	}
+<<<<<<< HEAD
+=======
 	memblock_free(paddr, size);
 	memblock_remove(paddr, size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	omap_dsp_phys_mempool_base = paddr;
 }
@@ -291,7 +312,10 @@ static int __init omap_init_devices(void)
 	 * in alphabetical order so they're easier to sort through.
 	 */
 	omap_init_rng();
+<<<<<<< HEAD
+=======
 	omap_init_mcpdm();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	omap_init_uwire();
 	return 0;
 }

@@ -6,6 +6,10 @@
 
 #include <linux/sched.h>
 #include <linux/tracepoint.h>
+<<<<<<< HEAD
+#include <linux/binfmts.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Tracepoint for calling kthread_stop, performed to end a kthread:
@@ -50,6 +54,47 @@ TRACE_EVENT(sched_kthread_stop_ret,
 );
 
 /*
+<<<<<<< HEAD
+ * Tracepoint for task enqueue/dequeue:
+ */
+TRACE_EVENT(sched_enq_deq_task,
+
+	TP_PROTO(struct task_struct *p, int enqueue),
+
+	TP_ARGS(p, enqueue),
+
+	TP_STRUCT__entry(
+		__array(	char,	comm,	TASK_COMM_LEN	)
+		__field(	pid_t,	pid			)
+		__field(	int,	prio			)
+		__field(	int,	cpu			)
+		__field(	int,	enqueue			)
+		__field(unsigned int,	nr_running		)
+		__field(unsigned long,	cpu_load		)
+		__field(unsigned int,	rt_nr_running		)
+	),
+
+	TP_fast_assign(
+		memcpy(__entry->comm, p->comm, TASK_COMM_LEN);
+		__entry->pid		= p->pid;
+		__entry->prio		= p->prio;
+		__entry->cpu		= task_cpu(p);
+		__entry->enqueue	= enqueue;
+		__entry->nr_running	= task_rq(p)->nr_running;
+		__entry->cpu_load	= task_rq(p)->cpu_load[0];
+		__entry->rt_nr_running	= task_rq(p)->rt.rt_nr_running;
+	),
+
+	TP_printk("cpu=%d %s comm=%s pid=%d prio=%d nr_running=%u cpu_load=%lu rt_nr_running=%u",
+			__entry->cpu, __entry->enqueue ? "enqueue" : "dequeue",
+			__entry->comm, __entry->pid,
+			__entry->prio, __entry->nr_running,
+			__entry->cpu_load, __entry->rt_nr_running)
+);
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Tracepoint for waking up a task:
  */
 DECLARE_EVENT_CLASS(sched_wakeup_template,
@@ -100,7 +145,11 @@ static inline long __trace_sched_switch_state(struct task_struct *p)
 	 * For all intents and purposes a preempted task is a running task.
 	 */
 	if (task_thread_info(p)->preempt_count & PREEMPT_ACTIVE)
+<<<<<<< HEAD
+		state = TASK_RUNNING | TASK_STATE_MAX;
+=======
 		state = TASK_RUNNING;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	return state;
@@ -137,6 +186,16 @@ TRACE_EVENT(sched_switch,
 		__entry->next_prio	= next->prio;
 	),
 
+<<<<<<< HEAD
+	TP_printk("prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d",
+		__entry->prev_comm, __entry->prev_pid, __entry->prev_prio,
+		__entry->prev_state & (TASK_STATE_MAX-1) ?
+		  __print_flags(__entry->prev_state & (TASK_STATE_MAX-1), "|",
+				{ 1, "S"} , { 2, "D" }, { 4, "T" }, { 8, "t" },
+				{ 16, "Z" }, { 32, "X" }, { 64, "x" },
+				{ 128, "W" }) : "R",
+		__entry->prev_state & TASK_STATE_MAX ? "+" : "",
+=======
 	TP_printk("prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s ==> next_comm=%s next_pid=%d next_prio=%d",
 		__entry->prev_comm, __entry->prev_pid, __entry->prev_prio,
 		__entry->prev_state ?
@@ -144,6 +203,7 @@ TRACE_EVENT(sched_switch,
 				{ 1, "S"} , { 2, "D" }, { 4, "T" }, { 8, "t" },
 				{ 16, "Z" }, { 32, "X" }, { 64, "x" },
 				{ 128, "W" }) : "R",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__entry->next_comm, __entry->next_pid, __entry->next_prio)
 );
 
@@ -177,6 +237,84 @@ TRACE_EVENT(sched_migrate_task,
 		  __entry->orig_cpu, __entry->dest_cpu)
 );
 
+<<<<<<< HEAD
+/*
+ * Tracepoint for a CPU going offline/online:
+ */
+TRACE_EVENT(sched_cpu_hotplug,
+
+	TP_PROTO(int affected_cpu, int error, int status),
+
+	TP_ARGS(affected_cpu, error, status),
+
+	TP_STRUCT__entry(
+		__field(	int,	affected_cpu		)
+		__field(	int,	error			)
+		__field(	int,	status			)
+	),
+
+	TP_fast_assign(
+		__entry->affected_cpu	= affected_cpu;
+		__entry->error		= error;
+		__entry->status		= status;
+	),
+
+	TP_printk("cpu %d %s error=%d", __entry->affected_cpu,
+		__entry->status ? "online" : "offline", __entry->error)
+);
+
+/*
+ * Tracepoint for load balancing:
+ */
+#if NR_CPUS > 32
+#error "Unsupported NR_CPUS for lb tracepoint."
+#endif
+TRACE_EVENT(sched_load_balance,
+
+	TP_PROTO(int cpu, enum cpu_idle_type idle, int balance,
+		 unsigned long group_mask, int busiest_nr_running,
+		 unsigned long imbalance, unsigned int env_flags, int ld_moved,
+		 unsigned int balance_interval),
+
+	TP_ARGS(cpu, idle, balance, group_mask, busiest_nr_running,
+		imbalance, env_flags, ld_moved, balance_interval),
+
+	TP_STRUCT__entry(
+		__field(	int,			cpu)
+		__field(	enum cpu_idle_type,	idle)
+		__field(	int,			balance)
+		__field(	unsigned long,		group_mask)
+		__field(	int,			busiest_nr_running)
+		__field(	unsigned long,		imbalance)
+		__field(	unsigned int,		env_flags)
+		__field(	int,			ld_moved)
+		__field(	unsigned int,		balance_interval)
+	),
+
+	TP_fast_assign(
+		__entry->cpu			= cpu;
+		__entry->idle			= idle;
+		__entry->balance		= balance;
+		__entry->group_mask		= group_mask;
+		__entry->busiest_nr_running	= busiest_nr_running;
+		__entry->imbalance		= imbalance;
+		__entry->env_flags		= env_flags;
+		__entry->ld_moved		= ld_moved;
+		__entry->balance_interval	= balance_interval;
+	),
+
+	TP_printk("cpu=%d state=%s balance=%d group=%#lx busy_nr=%d imbalance=%ld flags=%#x ld_moved=%d bal_int=%d",
+		  __entry->cpu,
+		  __entry->idle == CPU_IDLE ? "idle" :
+		  (__entry->idle == CPU_NEWLY_IDLE ? "newly_idle" : "busy"),
+		  __entry->balance,
+		  __entry->group_mask, __entry->busiest_nr_running,
+		  __entry->imbalance, __entry->env_flags, __entry->ld_moved,
+		  __entry->balance_interval)
+);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 DECLARE_EVENT_CLASS(sched_process_template,
 
 	TP_PROTO(struct task_struct *p),
@@ -275,6 +413,35 @@ TRACE_EVENT(sched_process_fork,
 );
 
 /*
+<<<<<<< HEAD
+ * Tracepoint for exec:
+ */
+TRACE_EVENT(sched_process_exec,
+
+	TP_PROTO(struct task_struct *p, pid_t old_pid,
+		 struct linux_binprm *bprm),
+
+	TP_ARGS(p, old_pid, bprm),
+
+	TP_STRUCT__entry(
+		__string(	filename,	bprm->filename	)
+		__field(	pid_t,		pid		)
+		__field(	pid_t,		old_pid		)
+	),
+
+	TP_fast_assign(
+		__assign_str(filename, bprm->filename);
+		__entry->pid		= p->pid;
+		__entry->old_pid	= old_pid;
+	),
+
+	TP_printk("filename=%s pid=%d old_pid=%d", __get_str(filename),
+		  __entry->pid, __entry->old_pid)
+);
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * XXX the below sched_stat tracepoints only apply to SCHED_OTHER/BATCH/IDLE
  *     adding sched_stat support to SCHED_FIFO/RR would be welcome.
  */
@@ -330,6 +497,16 @@ DEFINE_EVENT(sched_stat_template, sched_stat_iowait,
 	     TP_ARGS(tsk, delay));
 
 /*
+<<<<<<< HEAD
+ * Tracepoint for accounting blocked time (time the task is in uninterruptible).
+ */
+DEFINE_EVENT(sched_stat_template, sched_stat_blocked,
+	     TP_PROTO(struct task_struct *tsk, u64 delay),
+	     TP_ARGS(tsk, delay));
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Tracepoint for accounting runtime (time the task is executing
  * on a CPU).
  */

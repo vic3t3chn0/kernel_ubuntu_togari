@@ -11,6 +11,10 @@
 #include <linux/ptrace.h>
 #include <asm/uaccess.h>
 #include <arch/sv_addr_ag.h>
+<<<<<<< HEAD
+#include <arch/system.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void
 show_registers(struct pt_regs *regs)

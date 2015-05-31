@@ -29,7 +29,10 @@
 
 #include <asm/asi.h>
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 #include <asm/psrcompat.h>
 #include <asm/visasm.h>
@@ -1071,6 +1074,16 @@ asmlinkage int syscall_trace_enter(struct pt_regs *regs)
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_enter(regs, regs->u_regs[UREG_G1]);
 
+<<<<<<< HEAD
+	audit_syscall_entry((test_thread_flag(TIF_32BIT) ?
+			     AUDIT_ARCH_SPARC :
+			     AUDIT_ARCH_SPARC64),
+			    regs->u_regs[UREG_G1],
+			    regs->u_regs[UREG_I0],
+			    regs->u_regs[UREG_I1],
+			    regs->u_regs[UREG_I2],
+			    regs->u_regs[UREG_I3]);
+=======
 	if (unlikely(current->audit_context) && !ret)
 		audit_syscall_entry((test_thread_flag(TIF_32BIT) ?
 				     AUDIT_ARCH_SPARC :
@@ -1080,12 +1093,17 @@ asmlinkage int syscall_trace_enter(struct pt_regs *regs)
 				    regs->u_regs[UREG_I1],
 				    regs->u_regs[UREG_I2],
 				    regs->u_regs[UREG_I3]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return ret;
 }
 
 asmlinkage void syscall_trace_leave(struct pt_regs *regs)
 {
+<<<<<<< HEAD
+	audit_syscall_exit(regs);
+
+=======
 #ifdef CONFIG_AUDITSYSCALL
 	if (unlikely(current->audit_context)) {
 		unsigned long tstate = regs->tstate;
@@ -1097,6 +1115,7 @@ asmlinkage void syscall_trace_leave(struct pt_regs *regs)
 		audit_syscall_exit(result, regs->u_regs[UREG_I0]);
 	}
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (unlikely(test_thread_flag(TIF_SYSCALL_TRACEPOINT)))
 		trace_sys_exit(regs, regs->u_regs[UREG_G1]);
 

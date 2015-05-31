@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* linux/arch/arm/mach-exynos4/mach-armlex4210.c
+=======
 /* linux/arch/arm/mach-exynos/mach-armlex4210.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -16,11 +20,18 @@
 #include <linux/smsc911x.h>
 
 #include <asm/mach/arch.h>
+<<<<<<< HEAD
+#include <asm/hardware/gic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach-types.h>
 
 #include <plat/cpu.h>
 #include <plat/devs.h>
+<<<<<<< HEAD
+=======
 #include <plat/exynos4.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/gpio-cfg.h>
 #include <plat/regs-serial.h>
 #include <plat/regs-srom.h>
@@ -28,6 +39,11 @@
 
 #include <mach/map.h>
 
+<<<<<<< HEAD
+#include "common.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Following are default values for UCON, ULCON and UFCON UART registers */
 #define ARMLEX4210_UCON_DEFAULT	(S3C2410_UCON_TXILEVEL |	\
 				 S3C2410_UCON_RXILEVEL |	\
@@ -155,6 +171,10 @@ static struct platform_device *armlex4210_devices[] __initdata = {
 	&s3c_device_hsmmc3,
 	&s3c_device_rtc,
 	&s3c_device_wdt,
+<<<<<<< HEAD
+	&exynos4_device_sysmmu,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&samsung_asoc_dma,
 	&armlex4210_smsc911x,
 	&exynos4_device_ahci,
@@ -186,7 +206,11 @@ static void __init armlex4210_smsc911x_init(void)
 
 static void __init armlex4210_map_io(void)
 {
+<<<<<<< HEAD
+	exynos_init_io(NULL, 0);
+=======
 	s5p_init_io(NULL, 0, S5P_VA_CHIPID);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s3c24xx_init_clocks(24000000);
 	s3c24xx_init_uarts(armlex4210_uartcfgs,
 			   ARRAY_SIZE(armlex4210_uartcfgs));
@@ -206,9 +230,19 @@ static void __init armlex4210_machine_init(void)
 
 MACHINE_START(ARMLEX4210, "ARMLEX4210")
 	/* Maintainer: Alim Akhtar <alim.akhtar@samsung.com> */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.init_irq	= exynos4_init_irq,
+	.map_io		= armlex4210_map_io,
+	.handle_irq	= gic_handle_irq,
+	.init_machine	= armlex4210_machine_init,
+	.timer		= &exynos4_timer,
+	.restart	= exynos4_restart,
+=======
 	.boot_params	= S5P_PA_SDRAM + 0x100,
 	.init_irq	= exynos4_init_irq,
 	.map_io		= armlex4210_map_io,
 	.init_machine	= armlex4210_machine_init,
 	.timer		= &exynos4_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

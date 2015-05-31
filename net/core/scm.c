@@ -28,7 +28,10 @@
 #include <linux/nsproxy.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 
 #include <net/protocol.h>
@@ -173,7 +176,11 @@ int __scm_send(struct socket *sock, struct msghdr *msg, struct scm_cookie *p)
 			if (err)
 				goto error;
 
+<<<<<<< HEAD
+			if (!p->pid || pid_vnr(p->pid) != p->creds.pid) {
+=======
 			if (pid_vnr(p->pid) != p->creds.pid) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				struct pid *pid;
 				err = -ESRCH;
 				pid = find_get_pid(p->creds.pid);
@@ -183,8 +190,14 @@ int __scm_send(struct socket *sock, struct msghdr *msg, struct scm_cookie *p)
 				p->pid = pid;
 			}
 
+<<<<<<< HEAD
+			if (!p->cred ||
+			    (p->cred->euid != p->creds.uid) ||
+			    (p->cred->egid != p->creds.gid)) {
+=======
 			if ((p->cred->euid != p->creds.uid) ||
 				(p->cred->egid != p->creds.gid)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				struct cred *cred;
 				err = -ENOMEM;
 				cred = prepare_creds();
@@ -193,7 +206,12 @@ int __scm_send(struct socket *sock, struct msghdr *msg, struct scm_cookie *p)
 
 				cred->uid = cred->euid = p->creds.uid;
 				cred->gid = cred->egid = p->creds.gid;
+<<<<<<< HEAD
+				if (p->cred)
+					put_cred(p->cred);
+=======
 				put_cred(p->cred);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				p->cred = cred;
 			}
 			break;

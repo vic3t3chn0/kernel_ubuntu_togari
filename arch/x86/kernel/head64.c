@@ -98,9 +98,14 @@ void __init x86_64_start_reservations(char *real_mode_data)
 {
 	copy_bootdata(__va(real_mode_data));
 
+<<<<<<< HEAD
+	memblock_reserve(__pa_symbol(&_text),
+			 __pa_symbol(&__bss_stop) - __pa_symbol(&_text));
+=======
 	memblock_init();
 
 	memblock_x86_reserve_range(__pa_symbol(&_text), __pa_symbol(&__bss_stop), "TEXT DATA BSS");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_BLK_DEV_INITRD
 	/* Reserve INITRD */
@@ -109,7 +114,11 @@ void __init x86_64_start_reservations(char *real_mode_data)
 		unsigned long ramdisk_image = boot_params.hdr.ramdisk_image;
 		unsigned long ramdisk_size  = boot_params.hdr.ramdisk_size;
 		unsigned long ramdisk_end   = PAGE_ALIGN(ramdisk_image + ramdisk_size);
+<<<<<<< HEAD
+		memblock_reserve(ramdisk_image, ramdisk_end - ramdisk_image);
+=======
 		memblock_x86_reserve_range(ramdisk_image, ramdisk_end, "RAMDISK");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 #endif
 

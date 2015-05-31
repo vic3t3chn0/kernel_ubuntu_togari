@@ -14,6 +14,27 @@
 #define GPIOF_OUT_INIT_LOW	(GPIOF_DIR_OUT | GPIOF_INIT_LOW)
 #define GPIOF_OUT_INIT_HIGH	(GPIOF_DIR_OUT | GPIOF_INIT_HIGH)
 
+<<<<<<< HEAD
+/* Gpio pin is open drain */
+#define GPIOF_OPEN_DRAIN	(1 << 2)
+
+/* Gpio pin is open source */
+#define GPIOF_OPEN_SOURCE	(1 << 3)
+
+/**
+ * struct gpio - a structure describing a GPIO with configuration
+ * @gpio:	the GPIO number
+ * @flags:	GPIO configuration as specified by GPIOF_*
+ * @label:	a literal description string of this GPIO
+ */
+struct gpio {
+	unsigned	gpio;
+	unsigned long	flags;
+	const char	*label;
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_GENERIC_GPIO
 #include <asm/gpio.h>
 
@@ -22,6 +43,13 @@
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+
+struct device;
+struct gpio_chip;
+
+=======
 
 struct device;
 struct gpio;
@@ -36,6 +64,7 @@ struct gpio_chip;
  * warning when something is wrongly called.
  */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline bool gpio_is_valid(int number)
 {
 	return false;
@@ -163,6 +192,25 @@ static inline int irq_to_gpio(unsigned irq)
 	return -EINVAL;
 }
 
+<<<<<<< HEAD
+#ifdef CONFIG_PINCTRL
+
+static inline int
+gpiochip_add_pin_range(struct gpio_chip *chip, const char *pinctl_name,
+		       unsigned int pin_base, unsigned int npins)
+{
+}
+
+static inline void
+gpiochip_remove_pin_ranges(struct gpio_chip *chip)
+{
+}
+
+#endif /* CONFIG_PINCTRL */
+
+#endif /* ! CONFIG_GENERIC_GPIO */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __LINUX_GPIO_H */

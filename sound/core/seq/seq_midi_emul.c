@@ -32,6 +32,10 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/string.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/seq_kernel.h>
 #include <sound/seq_midi_emul.h>

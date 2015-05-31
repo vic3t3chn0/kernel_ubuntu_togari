@@ -1,11 +1,19 @@
 /*
  * AEAD: Authenticated Encryption with Associated Data
+<<<<<<< HEAD
+ * 
+=======
  *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Copyright (c) 2007 Herbert Xu <herbert@gondor.apana.org.au>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
+<<<<<<< HEAD
+ * Software Foundation; either version 2 of the License, or (at your option) 
+=======
  * Software Foundation; either version 2 of the License, or (at your option)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * any later version.
  *
  */
@@ -39,24 +47,30 @@ static inline struct crypto_aead *aead_givcrypt_reqtfm(
 static inline int crypto_aead_givencrypt(struct aead_givcrypt_request *req)
 {
 	struct aead_tfm *crt = crypto_aead_crt(aead_givcrypt_reqtfm(req));
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crt->givencrypt(req);
 };
 
 static inline int crypto_aead_givdecrypt(struct aead_givcrypt_request *req)
 {
 	struct aead_tfm *crt = crypto_aead_crt(aead_givcrypt_reqtfm(req));
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crt->givdecrypt(req);
 };
 
@@ -71,11 +85,14 @@ static inline struct aead_givcrypt_request *aead_givcrypt_alloc(
 {
 	struct aead_givcrypt_request *req;
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return NULL;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	req = kmalloc(sizeof(struct aead_givcrypt_request) +
 		      crypto_aead_reqsize(tfm), gfp);
 

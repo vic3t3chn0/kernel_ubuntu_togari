@@ -9,7 +9,10 @@
  * This file handles the architecture-dependent parts of process handling..
  */
 
+<<<<<<< HEAD
+=======
 #include <linux/stackprotector.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/cpu.h>
 #include <linux/errno.h>
 #include <linux/sched.h>
@@ -31,7 +34,10 @@
 #include <linux/kallsyms.h>
 #include <linux/ptrace.h>
 #include <linux/personality.h>
+<<<<<<< HEAD
+=======
 #include <linux/tick.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/percpu.h>
 #include <linux/prctl.h>
 #include <linux/ftrace.h>
@@ -40,10 +46,17 @@
 #include <linux/kdebug.h>
 
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+#include <asm/ldt.h>
+#include <asm/processor.h>
+#include <asm/i387.h>
+#include <asm/fpu-internal.h>
+=======
 #include <asm/system.h>
 #include <asm/ldt.h>
 #include <asm/processor.h>
 #include <asm/i387.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/desc.h>
 #ifdef CONFIG_MATH_EMULATION
 #include <asm/math_emu.h>
@@ -56,6 +69,10 @@
 #include <asm/idle.h>
 #include <asm/syscalls.h>
 #include <asm/debugreg.h>
+<<<<<<< HEAD
+#include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 asmlinkage void ret_from_fork(void) __asm__("ret_from_fork");
 
@@ -67,6 +84,8 @@ unsigned long thread_saved_pc(struct task_struct *tsk)
 	return ((unsigned long *)tsk->thread.sp)[3];
 }
 
+<<<<<<< HEAD
+=======
 #ifndef CONFIG_SMP
 static inline void play_dead(void)
 {
@@ -119,6 +138,7 @@ void cpu_idle(void)
 	}
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __show_regs(struct pt_regs *regs, int all)
 {
 	unsigned long cr0 = 0L, cr2 = 0L, cr3 = 0L, cr4 = 0L;
@@ -208,6 +228,10 @@ int copy_thread(unsigned long clone_flags, unsigned long sp,
 
 	task_user_gs(p) = get_user_gs(regs);
 
+<<<<<<< HEAD
+	p->fpu_counter = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	p->thread.io_bitmap_ptr = NULL;
 	tsk = current;
 	err = -ENOMEM;
@@ -260,7 +284,11 @@ EXPORT_SYMBOL_GPL(start_thread);
 
 
 /*
+<<<<<<< HEAD
+ *	switch_to(x,y) should switch tasks from x to y.
+=======
  *	switch_to(x,yn) should switch tasks from x to y.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * We fsave/fwait so that an exception goes off at the right time
  * (as a call from the fsave or fwait in effect) rather than to
@@ -297,7 +325,11 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 
 	/* never put a printk in __switch_to... printk() calls wake_up*() indirectly */
 
+<<<<<<< HEAD
+	fpu = switch_fpu_prepare(prev_p, next_p, cpu);
+=======
 	fpu = switch_fpu_prepare(prev_p, next_p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Reload esp0.

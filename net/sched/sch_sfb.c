@@ -26,6 +26,10 @@
 #include <net/ip.h>
 #include <net/pkt_sched.h>
 #include <net/inet_ecn.h>
+<<<<<<< HEAD
+#include <net/flow_keys.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * SFB uses two B[l][n] : L x N arrays of bins (L levels, N bins per level)
@@ -285,6 +289,16 @@ static int sfb_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 	u32 minqlen = ~0;
 	u32 r, slot, salt, sfbhash;
 	int ret = NET_XMIT_SUCCESS | __NET_XMIT_BYPASS;
+<<<<<<< HEAD
+	struct flow_keys keys;
+
+	if (unlikely(sch->q.qlen >= q->limit)) {
+		sch->qstats.overlimits++;
+		q->stats.queuedrop++;
+		goto drop;
+	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (q->rehash_interval > 0) {
 		unsigned long limit = q->rehash_time + q->rehash_interval;
@@ -302,13 +316,28 @@ static int sfb_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 		/* If using external classifiers, get result and record it. */
 		if (!sfb_classify(skb, q, &ret, &salt))
 			goto other_drop;
+<<<<<<< HEAD
+		keys.src = salt;
+		keys.dst = 0;
+		keys.ports = 0;
+	} else {
+		skb_flow_dissect(skb, &keys);
+=======
 	} else {
 		salt = skb_get_rxhash(skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	slot = q->slot;
 
+<<<<<<< HEAD
+	sfbhash = jhash_3words((__force u32)keys.dst,
+			       (__force u32)keys.src,
+			       (__force u32)keys.ports,
+			       q->bins[slot].perturbation);
+=======
 	sfbhash = jhash_1word(salt, q->bins[slot].perturbation);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!sfbhash)
 		sfbhash = 1;
 	sfb_skb_cb(skb)->hashes[slot] = sfbhash;
@@ -331,19 +360,32 @@ static int sfb_enqueue(struct sk_buff *skb, struct Qdisc *sch)
 	slot ^= 1;
 	sfb_skb_cb(skb)->hashes[slot] = 0;
 
+<<<<<<< HEAD
+	if (unlikely(minqlen >= q->max)) {
+		sch->qstats.overlimits++;
+		q->stats.bucketdrop++;
+=======
 	if (unlikely(minqlen >= q->max || sch->q.qlen >= q->limit)) {
 		sch->qstats.overlimits++;
 		if (minqlen >= q->max)
 			q->stats.bucketdrop++;
 		else
 			q->stats.queuedrop++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto drop;
 	}
 
 	if (unlikely(p_min >= SFB_MAX_PROB)) {
 		/* Inelastic flow */
 		if (q->double_buffering) {
+<<<<<<< HEAD
+			sfbhash = jhash_3words((__force u32)keys.dst,
+					       (__force u32)keys.src,
+					       (__force u32)keys.ports,
+					       q->bins[slot].perturbation);
+=======
 			sfbhash = jhash_1word(salt, q->bins[slot].perturbation);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (!sfbhash)
 				sfbhash = 1;
 			sfb_skb_cb(skb)->hashes[slot] = sfbhash;
@@ -556,8 +598,11 @@ static int sfb_dump(struct Qdisc *sch, struct sk_buff *skb)
 
 	sch->qstats.backlog = q->qdisc->qstats.backlog;
 	opts = nla_nest_start(skb, TCA_OPTIONS);
+<<<<<<< HEAD
+=======
 	if (opts == NULL)
 		goto nla_put_failure;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	NLA_PUT(skb, TCA_SFB_PARMS, sizeof(opt), &opt);
 	return nla_nest_end(skb, opts);
 

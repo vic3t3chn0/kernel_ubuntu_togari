@@ -6,9 +6,16 @@
 typedef struct {
 #ifdef CONFIG_CPU_HAS_ASID
 	unsigned int id;
+<<<<<<< HEAD
+	raw_spinlock_t id_lock;
+#endif
+	unsigned int kvm_seq;
+	unsigned long	sigpage;
+=======
 	spinlock_t id_lock;
 #endif
 	unsigned int kvm_seq;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } mm_context_t;
 
 #ifdef CONFIG_CPU_HAS_ASID
@@ -16,7 +23,11 @@ typedef struct {
 
 /* init_mm.context.id_lock should be initialized. */
 #define INIT_MM_CONTEXT(name)                                                 \
+<<<<<<< HEAD
+	.context.id_lock    = __RAW_SPIN_LOCK_UNLOCKED(name.context.id_lock),
+=======
 	.context.id_lock    = __SPIN_LOCK_UNLOCKED(name.context.id_lock),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 #define ASID(mm)	(0)
 #endif
@@ -34,4 +45,14 @@ typedef struct {
 
 #endif
 
+<<<<<<< HEAD
+/*
+ * switch_mm() may do a full cache flush over the context switch,
+ * so enable interrupts over the context switch to avoid high
+ * latency.
+ */
+#define __ARCH_WANT_INTERRUPTS_ON_CTXSW
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

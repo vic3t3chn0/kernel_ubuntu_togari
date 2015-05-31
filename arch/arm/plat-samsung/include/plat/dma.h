@@ -10,12 +10,22 @@
  * published by the Free Software Foundation.
 */
 
+<<<<<<< HEAD
+#ifndef __PLAT_DMA_H
+#define __PLAT_DMA_H
+
+#include <linux/dma-mapping.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum s3c2410_dma_buffresult {
 	S3C2410_RES_OK,
 	S3C2410_RES_ERR,
 	S3C2410_RES_ABORT
 };
 
+<<<<<<< HEAD
+=======
 enum s3c2410_dmasrc {
 	S3C2410_DMASRC_HW,		/* source is memory */
 	S3C2410_DMASRC_MEM,		/* source is hardware */
@@ -23,6 +33,7 @@ enum s3c2410_dmasrc {
 	S3C_DMA_MEM2MEM_SET,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* enum s3c2410_chan_op
  *
  * operation codes passed to the DMA code by the user, and also used
@@ -98,6 +109,10 @@ extern int s3c2410_dma_free(enum dma_ch channel, struct s3c2410_dma_client *);
  * drained before the buffer is given to the DMA system.
 */
 
+<<<<<<< HEAD
+extern int s3c2410_dma_enqueue(enum dma_ch channel, void *id,
+			       dma_addr_t data, int size);
+=======
 #define s3c2410_dma_enqueue(id, token, addr, size)		\
 			s3c2410_dma_enqueue_ring(id, token, addr, size, 0)
 
@@ -110,6 +125,7 @@ extern int s3c2410_dma_free(enum dma_ch channel, struct s3c2410_dma_client *);
 
 extern int s3c2410_dma_enqueue_ring(enum dma_ch channel, void *id,
 			       dma_addr_t data, int size, int numofblock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* s3c2410_dma_config
  *
@@ -124,7 +140,11 @@ extern int s3c2410_dma_config(enum dma_ch channel, int xferunit);
 */
 
 extern int s3c2410_dma_devconfig(enum dma_ch channel,
+<<<<<<< HEAD
+		enum dma_data_direction source, unsigned long devaddr);
+=======
 		enum s3c2410_dmasrc source, unsigned long devaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* s3c2410_dma_getposition
  *
@@ -137,4 +157,10 @@ extern int s3c2410_dma_getposition(enum dma_ch channel,
 extern int s3c2410_dma_set_opfn(enum dma_ch, s3c2410_dma_opfn_t rtn);
 extern int s3c2410_dma_set_buffdone_fn(enum dma_ch, s3c2410_dma_cbfn_t rtn);
 
+<<<<<<< HEAD
+#include <plat/dma-ops.h>
 
+#endif
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

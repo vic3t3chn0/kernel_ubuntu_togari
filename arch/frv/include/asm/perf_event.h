@@ -12,6 +12,9 @@
 #ifndef _ASM_PERF_EVENT_H
 #define _ASM_PERF_EVENT_H
 
+<<<<<<< HEAD
+=======
 #define PERF_EVENT_INDEX_OFFSET	0
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_PERF_EVENT_H */

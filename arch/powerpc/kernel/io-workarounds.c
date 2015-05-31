@@ -12,6 +12,10 @@
 #undef DEBUG
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
+#include <linux/sched.h>	/* for init_mm */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/io.h>
 #include <asm/machdep.h>

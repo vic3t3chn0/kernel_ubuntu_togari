@@ -2,6 +2,15 @@
  * (C) 1997 Linus Torvalds
  * (C) 1999 Andrea Arcangeli <andrea@suse.de> (dynamic inode allocation)
  */
+<<<<<<< HEAD
+#include <linux/export.h>
+#include <linux/fs.h>
+#include <linux/mm.h>
+#include <linux/backing-dev.h>
+#include <linux/hash.h>
+#include <linux/swap.h>
+#include <linux/security.h>
+=======
 #include <linux/fs.h>
 #include <linux/mm.h>
 #include <linux/dcache.h>
@@ -16,16 +25,24 @@
 #include <linux/swap.h>
 #include <linux/security.h>
 #include <linux/pagemap.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/cdev.h>
 #include <linux/bootmem.h>
 #include <linux/fsnotify.h>
 #include <linux/mount.h>
+<<<<<<< HEAD
+#include <linux/posix_acl.h>
+#include <linux/prefetch.h>
+#include <linux/buffer_head.h> /* for inode_has_buffers */
+#include <linux/ratelimit.h>
+=======
 #include <linux/async.h>
 #include <linux/posix_acl.h>
 #include <linux/prefetch.h>
 #include <linux/ima.h>
 #include <linux/cred.h>
 #include <linux/buffer_head.h> /* for inode_has_buffers */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "internal.h"
 
 /*
@@ -33,11 +50,19 @@
  *
  * inode->i_lock protects:
  *   inode->i_state, inode->i_hash, __iget()
+<<<<<<< HEAD
+ * inode->i_sb->s_inode_lru_lock protects:
+ *   inode->i_sb->s_inode_lru, inode->i_lru
+ * inode_sb_list_lock protects:
+ *   sb->s_inodes, inode->i_sb_list
+ * bdi->wb.list_lock protects:
+=======
  * inode_lru_lock protects:
  *   inode_lru, inode->i_lru
  * inode_sb_list_lock protects:
  *   sb->s_inodes, inode->i_sb_list
  * inode_wb_list_lock protects:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *   bdi->wb.b_{dirty,io,more_io}, inode->i_wb_list
  * inode_hash_lock protects:
  *   inode_hashtable, inode->i_hash
@@ -46,9 +71,15 @@
  *
  * inode_sb_list_lock
  *   inode->i_lock
+<<<<<<< HEAD
+ *     inode->i_sb->s_inode_lru_lock
+ *
+ * bdi->wb.list_lock
+=======
  *     inode_lru_lock
  *
  * inode_wb_list_lock
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *   inode->i_lock
  *
  * inode_hash_lock
@@ -64,6 +95,9 @@ static unsigned int i_hash_shift __read_mostly;
 static struct hlist_head *inode_hashtable __read_mostly;
 static __cacheline_aligned_in_smp DEFINE_SPINLOCK(inode_hash_lock);
 
+<<<<<<< HEAD
+__cacheline_aligned_in_smp DEFINE_SPINLOCK(inode_sb_list_lock);
+=======
 static LIST_HEAD(inode_lru);
 static DEFINE_SPINLOCK(inode_lru_lock);
 
@@ -80,6 +114,7 @@ __cacheline_aligned_in_smp DEFINE_SPINLOCK(inode_wb_list_lock);
  * time we are past evict_inodes.
  */
 static DECLARE_RWSEM(iprune_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Empty aops. Can be used for the cases where the user does not
@@ -95,6 +130,10 @@ EXPORT_SYMBOL(empty_aops);
 struct inodes_stat_t inodes_stat;
 
 static DEFINE_PER_CPU(unsigned int, nr_inodes);
+<<<<<<< HEAD
+static DEFINE_PER_CPU(unsigned int, nr_unused);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct kmem_cache *inode_cachep __read_mostly;
 
@@ -109,7 +148,15 @@ static int get_nr_inodes(void)
 
 static inline int get_nr_inodes_unused(void)
 {
+<<<<<<< HEAD
+	int i;
+	int sum = 0;
+	for_each_possible_cpu(i)
+		sum += per_cpu(nr_unused, i);
+	return sum < 0 ? 0 : sum;
+=======
 	return inodes_stat.nr_unused;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 int get_nr_dirty_inodes(void)
@@ -127,6 +174,10 @@ int proc_nr_inodes(ctl_table *table, int write,
 		   void __user *buffer, size_t *lenp, loff_t *ppos)
 {
 	inodes_stat.nr_inodes = get_nr_inodes();
+<<<<<<< HEAD
+	inodes_stat.nr_unused = get_nr_inodes_unused();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return proc_dointvec(table, write, buffer, lenp, ppos);
 }
 #endif
@@ -151,7 +202,12 @@ int inode_init_always(struct super_block *sb, struct inode *inode)
 	atomic_set(&inode->i_count, 1);
 	inode->i_op = &empty_iops;
 	inode->i_fop = &empty_fops;
+<<<<<<< HEAD
+	inode->__i_nlink = 1;
+	inode->i_opflags = 0;
+=======
 	inode->i_nlink = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	inode->i_uid = 0;
 	inode->i_gid = 0;
 	atomic_set(&inode->i_writecount, 0);
@@ -176,8 +232,12 @@ int inode_init_always(struct super_block *sb, struct inode *inode)
 	mutex_init(&inode->i_mutex);
 	lockdep_set_class(&inode->i_mutex, &sb->s_type->i_mutex_key);
 
+<<<<<<< HEAD
+	atomic_set(&inode->i_dio_count, 0);
+=======
 	init_rwsem(&inode->i_alloc_sem);
 	lockdep_set_class(&inode->i_alloc_sem, &sb->s_type->i_alloc_sem_key);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	mapping->a_ops = &empty_aops;
 	mapping->host = inode;
@@ -200,6 +260,10 @@ int inode_init_always(struct super_block *sb, struct inode *inode)
 	}
 	inode->i_private = NULL;
 	inode->i_mapping = mapping;
+<<<<<<< HEAD
+	INIT_LIST_HEAD(&inode->i_dentry);	/* buggered by rcu freeing */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_FS_POSIX_ACL
 	inode->i_acl = inode->i_default_acl = ACL_NOT_CACHED;
 #endif
@@ -250,6 +314,14 @@ void __destroy_inode(struct inode *inode)
 	BUG_ON(inode_has_buffers(inode));
 	security_inode_free(inode);
 	fsnotify_inode_delete(inode);
+<<<<<<< HEAD
+	if (!inode->i_nlink) {
+		WARN_ON(atomic_long_read(&inode->i_sb->s_remove_count) == 0);
+		atomic_long_dec(&inode->i_sb->s_remove_count);
+	}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_FS_POSIX_ACL
 	if (inode->i_acl && inode->i_acl != ACL_NOT_CACHED)
 		posix_acl_release(inode->i_acl);
@@ -263,7 +335,10 @@ EXPORT_SYMBOL(__destroy_inode);
 static void i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
 	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kmem_cache_free(inode_cachep, inode);
 }
 
@@ -277,6 +352,85 @@ static void destroy_inode(struct inode *inode)
 		call_rcu(&inode->i_rcu, i_callback);
 }
 
+<<<<<<< HEAD
+/**
+ * drop_nlink - directly drop an inode's link count
+ * @inode: inode
+ *
+ * This is a low-level filesystem helper to replace any
+ * direct filesystem manipulation of i_nlink.  In cases
+ * where we are attempting to track writes to the
+ * filesystem, a decrement to zero means an imminent
+ * write when the file is truncated and actually unlinked
+ * on the filesystem.
+ */
+void drop_nlink(struct inode *inode)
+{
+	WARN_ON(inode->i_nlink == 0);
+	inode->__i_nlink--;
+	if (!inode->i_nlink)
+		atomic_long_inc(&inode->i_sb->s_remove_count);
+}
+EXPORT_SYMBOL(drop_nlink);
+
+/**
+ * clear_nlink - directly zero an inode's link count
+ * @inode: inode
+ *
+ * This is a low-level filesystem helper to replace any
+ * direct filesystem manipulation of i_nlink.  See
+ * drop_nlink() for why we care about i_nlink hitting zero.
+ */
+void clear_nlink(struct inode *inode)
+{
+	if (inode->i_nlink) {
+		inode->__i_nlink = 0;
+		atomic_long_inc(&inode->i_sb->s_remove_count);
+	}
+}
+EXPORT_SYMBOL(clear_nlink);
+
+/**
+ * set_nlink - directly set an inode's link count
+ * @inode: inode
+ * @nlink: new nlink (should be non-zero)
+ *
+ * This is a low-level filesystem helper to replace any
+ * direct filesystem manipulation of i_nlink.
+ */
+void set_nlink(struct inode *inode, unsigned int nlink)
+{
+	if (!nlink) {
+		clear_nlink(inode);
+	} else {
+		/* Yes, some filesystems do change nlink from zero to one */
+		if (inode->i_nlink == 0)
+			atomic_long_dec(&inode->i_sb->s_remove_count);
+
+		inode->__i_nlink = nlink;
+	}
+}
+EXPORT_SYMBOL(set_nlink);
+
+/**
+ * inc_nlink - directly increment an inode's link count
+ * @inode: inode
+ *
+ * This is a low-level filesystem helper to replace any
+ * direct filesystem manipulation of i_nlink.  Currently,
+ * it is only here for parity with dec_nlink().
+ */
+void inc_nlink(struct inode *inode)
+{
+	if (WARN_ON(inode->i_nlink == 0))
+		atomic_long_dec(&inode->i_sb->s_remove_count);
+
+	inode->__i_nlink++;
+}
+EXPORT_SYMBOL(inc_nlink);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void address_space_init_once(struct address_space *mapping)
 {
 	memset(mapping, 0, sizeof(*mapping));
@@ -299,7 +453,10 @@ void inode_init_once(struct inode *inode)
 {
 	memset(inode, 0, sizeof(*inode));
 	INIT_HLIST_NODE(&inode->i_hash);
+<<<<<<< HEAD
+=======
 	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	INIT_LIST_HEAD(&inode->i_devices);
 	INIT_LIST_HEAD(&inode->i_wb_list);
 	INIT_LIST_HEAD(&inode->i_lru);
@@ -337,22 +494,42 @@ EXPORT_SYMBOL(ihold);
 
 static void inode_lru_list_add(struct inode *inode)
 {
+<<<<<<< HEAD
+	spin_lock(&inode->i_sb->s_inode_lru_lock);
+	if (list_empty(&inode->i_lru)) {
+		list_add(&inode->i_lru, &inode->i_sb->s_inode_lru);
+		inode->i_sb->s_nr_inodes_unused++;
+		this_cpu_inc(nr_unused);
+	}
+	spin_unlock(&inode->i_sb->s_inode_lru_lock);
+=======
 	spin_lock(&inode_lru_lock);
 	if (list_empty(&inode->i_lru)) {
 		list_add(&inode->i_lru, &inode_lru);
 		inodes_stat.nr_unused++;
 	}
 	spin_unlock(&inode_lru_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void inode_lru_list_del(struct inode *inode)
 {
+<<<<<<< HEAD
+	spin_lock(&inode->i_sb->s_inode_lru_lock);
+	if (!list_empty(&inode->i_lru)) {
+		list_del_init(&inode->i_lru);
+		inode->i_sb->s_nr_inodes_unused--;
+		this_cpu_dec(nr_unused);
+	}
+	spin_unlock(&inode->i_sb->s_inode_lru_lock);
+=======
 	spin_lock(&inode_lru_lock);
 	if (!list_empty(&inode->i_lru)) {
 		list_del_init(&inode->i_lru);
 		inodes_stat.nr_unused--;
 	}
 	spin_unlock(&inode_lru_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**
@@ -369,9 +546,17 @@ EXPORT_SYMBOL_GPL(inode_sb_list_add);
 
 static inline void inode_sb_list_del(struct inode *inode)
 {
+<<<<<<< HEAD
+	if (!list_empty(&inode->i_sb_list)) {
+		spin_lock(&inode_sb_list_lock);
+		list_del_init(&inode->i_sb_list);
+		spin_unlock(&inode_sb_list_lock);
+	}
+=======
 	spin_lock(&inode_sb_list_lock);
 	list_del_init(&inode->i_sb_list);
 	spin_unlock(&inode_sb_list_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static unsigned long hash(struct super_block *sb, unsigned long hashval)
@@ -405,12 +590,20 @@ void __insert_inode_hash(struct inode *inode, unsigned long hashval)
 EXPORT_SYMBOL(__insert_inode_hash);
 
 /**
+<<<<<<< HEAD
+ *	__remove_inode_hash - remove an inode from the hash
+=======
  *	remove_inode_hash - remove an inode from the hash
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	@inode: inode to unhash
  *
  *	Remove an inode from the superblock.
  */
+<<<<<<< HEAD
+void __remove_inode_hash(struct inode *inode)
+=======
 void remove_inode_hash(struct inode *inode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	spin_lock(&inode_hash_lock);
 	spin_lock(&inode->i_lock);
@@ -418,7 +611,11 @@ void remove_inode_hash(struct inode *inode)
 	spin_unlock(&inode->i_lock);
 	spin_unlock(&inode_hash_lock);
 }
+<<<<<<< HEAD
+EXPORT_SYMBOL(__remove_inode_hash);
+=======
 EXPORT_SYMBOL(remove_inode_hash);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void end_writeback(struct inode *inode)
 {
@@ -460,7 +657,13 @@ static void evict(struct inode *inode)
 	BUG_ON(!(inode->i_state & I_FREEING));
 	BUG_ON(!list_empty(&inode->i_lru));
 
+<<<<<<< HEAD
+	if (!list_empty(&inode->i_wb_list))
+		inode_wb_list_del(inode);
+
+=======
 	inode_wb_list_del(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	inode_sb_list_del(inode);
 
 	if (op->evict_inode) {
@@ -537,6 +740,8 @@ void evict_inodes(struct super_block *sb)
 	spin_unlock(&inode_sb_list_lock);
 
 	dispose_list(&dispose);
+<<<<<<< HEAD
+=======
 
 	/*
 	 * Cycle through iprune_sem to make sure any inode that prune_icache
@@ -545,6 +750,7 @@ void evict_inodes(struct super_block *sb)
 	 */
 	down_write(&iprune_sem);
 	up_write(&iprune_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**
@@ -607,8 +813,15 @@ static int can_unuse(struct inode *inode)
 }
 
 /*
+<<<<<<< HEAD
+ * Walk the superblock inode LRU for freeable inodes and attempt to free them.
+ * This is called from the superblock shrinker function with a number of inodes
+ * to trim from the LRU. Inodes to be freed are moved to a temporary list and
+ * then are freed outside inode_lock by dispose_list().
+=======
  * Scan `goal' inodes on the unused list for freeable ones. They are moved to a
  * temporary list and then are freed outside inode_lru_lock by dispose_list().
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Any inodes which are pinned purely because of attached pagecache have their
  * pagecache removed.  If the inode has metadata buffers attached to
@@ -622,12 +835,29 @@ static int can_unuse(struct inode *inode)
  * LRU does not have strict ordering. Hence we don't want to reclaim inodes
  * with this flag set because they are the inodes that are out of order.
  */
+<<<<<<< HEAD
+void prune_icache_sb(struct super_block *sb, int nr_to_scan)
+=======
 static void prune_icache(int nr_to_scan)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	LIST_HEAD(freeable);
 	int nr_scanned;
 	unsigned long reap = 0;
 
+<<<<<<< HEAD
+	spin_lock(&sb->s_inode_lru_lock);
+	for (nr_scanned = nr_to_scan; nr_scanned >= 0; nr_scanned--) {
+		struct inode *inode;
+
+		if (list_empty(&sb->s_inode_lru))
+			break;
+
+		inode = list_entry(sb->s_inode_lru.prev, struct inode, i_lru);
+
+		/*
+		 * we are inverting the sb->s_inode_lru_lock/inode->i_lock here,
+=======
 	down_read(&iprune_sem);
 	spin_lock(&inode_lru_lock);
 	for (nr_scanned = 0; nr_scanned < nr_to_scan; nr_scanned++) {
@@ -640,11 +870,16 @@ static void prune_icache(int nr_to_scan)
 
 		/*
 		 * we are inverting the inode_lru_lock/inode->i_lock here,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		 * so use a trylock. If we fail to get the lock, just move the
 		 * inode to the back of the list so we don't spin on it.
 		 */
 		if (!spin_trylock(&inode->i_lock)) {
+<<<<<<< HEAD
+			list_move_tail(&inode->i_lru, &sb->s_inode_lru);
+=======
 			list_move(&inode->i_lru, &inode_lru);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 		}
 
@@ -656,28 +891,47 @@ static void prune_icache(int nr_to_scan)
 		    (inode->i_state & ~I_REFERENCED)) {
 			list_del_init(&inode->i_lru);
 			spin_unlock(&inode->i_lock);
+<<<<<<< HEAD
+			sb->s_nr_inodes_unused--;
+			this_cpu_dec(nr_unused);
+=======
 			inodes_stat.nr_unused--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 		}
 
 		/* recently referenced inodes get one more pass */
 		if (inode->i_state & I_REFERENCED) {
 			inode->i_state &= ~I_REFERENCED;
+<<<<<<< HEAD
+			list_move(&inode->i_lru, &sb->s_inode_lru);
+=======
 			list_move(&inode->i_lru, &inode_lru);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			spin_unlock(&inode->i_lock);
 			continue;
 		}
 		if (inode_has_buffers(inode) || inode->i_data.nrpages) {
 			__iget(inode);
 			spin_unlock(&inode->i_lock);
+<<<<<<< HEAD
+			spin_unlock(&sb->s_inode_lru_lock);
+=======
 			spin_unlock(&inode_lru_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (remove_inode_buffers(inode))
 				reap += invalidate_mapping_pages(&inode->i_data,
 								0, -1);
 			iput(inode);
+<<<<<<< HEAD
+			spin_lock(&sb->s_inode_lru_lock);
+
+			if (inode != list_entry(sb->s_inode_lru.next,
+=======
 			spin_lock(&inode_lru_lock);
 
 			if (inode != list_entry(inode_lru.next,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 						struct inode, i_lru))
 				continue;	/* wrong inode or list_empty */
 			/* avoid lock inversions with trylock */
@@ -693,12 +947,26 @@ static void prune_icache(int nr_to_scan)
 		spin_unlock(&inode->i_lock);
 
 		list_move(&inode->i_lru, &freeable);
+<<<<<<< HEAD
+		sb->s_nr_inodes_unused--;
+		this_cpu_dec(nr_unused);
+=======
 		inodes_stat.nr_unused--;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	if (current_is_kswapd())
 		__count_vm_events(KSWAPD_INODESTEAL, reap);
 	else
 		__count_vm_events(PGINODESTEAL, reap);
+<<<<<<< HEAD
+	spin_unlock(&sb->s_inode_lru_lock);
+	if (current->reclaim_state)
+		current->reclaim_state->reclaimed_slab += reap;
+
+	dispose_list(&freeable);
+}
+
+=======
 	spin_unlock(&inode_lru_lock);
 
 	dispose_list(&freeable);
@@ -738,6 +1006,7 @@ static struct shrinker icache_shrinker = {
 	.seeks = DEFAULT_SEEKS,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __wait_on_freeing_inode(struct inode *inode);
 /*
  * Called with the inode lock held.
@@ -843,6 +1112,32 @@ unsigned int get_next_ino(void)
 EXPORT_SYMBOL(get_next_ino);
 
 /**
+<<<<<<< HEAD
+ *	new_inode_pseudo 	- obtain an inode
+ *	@sb: superblock
+ *
+ *	Allocates a new inode for given superblock.
+ *	Inode wont be chained in superblock s_inodes list
+ *	This means :
+ *	- fs can't be unmount
+ *	- quotas, fsnotify, writeback can't work
+ */
+struct inode *new_inode_pseudo(struct super_block *sb)
+{
+	struct inode *inode = alloc_inode(sb);
+
+	if (inode) {
+		spin_lock(&inode->i_lock);
+		inode->i_state = 0;
+		spin_unlock(&inode->i_lock);
+		INIT_LIST_HEAD(&inode->i_sb_list);
+	}
+	return inode;
+}
+
+/**
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	new_inode 	- obtain an inode
  *	@sb: superblock
  *
@@ -860,6 +1155,11 @@ struct inode *new_inode(struct super_block *sb)
 
 	spin_lock_prefetch(&inode_sb_list_lock);
 
+<<<<<<< HEAD
+	inode = new_inode_pseudo(sb);
+	if (inode)
+		inode_sb_list_add(inode);
+=======
 	inode = alloc_inode(sb);
 	if (inode) {
 		spin_lock(&inode->i_lock);
@@ -867,10 +1167,16 @@ struct inode *new_inode(struct super_block *sb)
 		spin_unlock(&inode->i_lock);
 		inode_sb_list_add(inode);
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return inode;
 }
 EXPORT_SYMBOL(new_inode);
 
+<<<<<<< HEAD
+#ifdef CONFIG_DEBUG_LOCK_ALLOC
+void lockdep_annotate_inode_mutex_key(struct inode *inode)
+{
+=======
 /**
  * unlock_new_inode - clear the I_NEW state and wake up any waiters
  * @inode:	new inode to unlock
@@ -881,12 +1187,17 @@ EXPORT_SYMBOL(new_inode);
 void unlock_new_inode(struct inode *inode)
 {
 #ifdef CONFIG_DEBUG_LOCK_ALLOC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (S_ISDIR(inode->i_mode)) {
 		struct file_system_type *type = inode->i_sb->s_type;
 
 		/* Set new key only if filesystem hasn't already changed it */
+<<<<<<< HEAD
+		if (lockdep_match_class(&inode->i_mutex, &type->i_mutex_key)) {
+=======
 		if (!lockdep_match_class(&inode->i_mutex,
 		    &type->i_mutex_key)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			/*
 			 * ensure nobody is actually holding i_mutex
 			 */
@@ -896,10 +1207,31 @@ void unlock_new_inode(struct inode *inode)
 					  &type->i_mutex_dir_key);
 		}
 	}
+<<<<<<< HEAD
+}
+EXPORT_SYMBOL(lockdep_annotate_inode_mutex_key);
+#endif
+
+/**
+ * unlock_new_inode - clear the I_NEW state and wake up any waiters
+ * @inode:	new inode to unlock
+ *
+ * Called when the inode is fully initialised to clear the new state of the
+ * inode and wake up anyone waiting for the inode to finish initialisation.
+ */
+void unlock_new_inode(struct inode *inode)
+{
+	lockdep_annotate_inode_mutex_key(inode);
+	spin_lock(&inode->i_lock);
+	WARN_ON(!(inode->i_state & I_NEW));
+	inode->i_state &= ~I_NEW;
+	smp_mb();
+=======
 #endif
 	spin_lock(&inode->i_lock);
 	WARN_ON(!(inode->i_state & I_NEW));
 	inode->i_state &= ~I_NEW;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	wake_up_bit(&inode->i_state, __I_NEW);
 	spin_unlock(&inode->i_lock);
 }
@@ -1303,6 +1635,8 @@ int generic_delete_inode(struct inode *inode)
 EXPORT_SYMBOL(generic_delete_inode);
 
 /*
+<<<<<<< HEAD
+=======
  * Normal UNIX filesystem behaviour: delete the
  * inode when the usage count drops to zero, and
  * i_nlink is zero.
@@ -1314,6 +1648,7 @@ int generic_drop_inode(struct inode *inode)
 EXPORT_SYMBOL_GPL(generic_drop_inode);
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Called when we're dropping the last reference
  * to an inode.
  *
@@ -1331,7 +1666,11 @@ static void iput_final(struct inode *inode)
 
 	WARN_ON(inode->i_state & I_NEW);
 
+<<<<<<< HEAD
+	if (op->drop_inode)
+=======
 	if (op && op->drop_inode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		drop = op->drop_inode(inode);
 	else
 		drop = generic_drop_inode(inode);
@@ -1354,7 +1693,12 @@ static void iput_final(struct inode *inode)
 	}
 
 	inode->i_state |= I_FREEING;
+<<<<<<< HEAD
+	if (!list_empty(&inode->i_lru))
+		inode_lru_list_del(inode);
+=======
 	inode_lru_list_del(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spin_unlock(&inode->i_lock);
 
 	evict(inode);
@@ -1443,9 +1787,16 @@ static int relatime_need_update(struct vfsmount *mnt, struct inode *inode,
  *	This function automatically handles read only file systems and media,
  *	as well as the "noatime" flag and inode specific "noatime" markers.
  */
+<<<<<<< HEAD
+void touch_atime(struct path *path)
+{
+	struct vfsmount *mnt = path->mnt;
+	struct inode *inode = path->dentry->d_inode;
+=======
 void touch_atime(struct vfsmount *mnt, struct dentry *dentry)
 {
 	struct inode *inode = dentry->d_inode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct timespec now;
 
 	if (inode->i_flags & S_NOATIME)
@@ -1524,7 +1875,11 @@ void file_update_time(struct file *file)
 	if (sync_it & S_MTIME)
 		inode->i_mtime = now;
 	mark_inode_dirty_sync(inode);
+<<<<<<< HEAD
+	mnt_drop_write_file(file);
+=======
 	mnt_drop_write(file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(file_update_time);
 
@@ -1584,7 +1939,11 @@ __setup("ihash_entries=", set_ihash_entries);
  */
 void __init inode_init_early(void)
 {
+<<<<<<< HEAD
+	unsigned int loop;
+=======
 	int loop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* If hashes are distributed across NUMA nodes, defer
 	 * hash allocation until vmalloc space is available.
@@ -1602,13 +1961,21 @@ void __init inode_init_early(void)
 					&i_hash_mask,
 					0);
 
+<<<<<<< HEAD
+	for (loop = 0; loop < (1U << i_hash_shift); loop++)
+=======
 	for (loop = 0; loop < (1 << i_hash_shift); loop++)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		INIT_HLIST_HEAD(&inode_hashtable[loop]);
 }
 
 void __init inode_init(void)
 {
+<<<<<<< HEAD
+	unsigned int loop;
+=======
 	int loop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* inode slab cache */
 	inode_cachep = kmem_cache_create("inode_cache",
@@ -1617,7 +1984,10 @@ void __init inode_init(void)
 					 (SLAB_RECLAIM_ACCOUNT|SLAB_PANIC|
 					 SLAB_MEM_SPREAD),
 					 init_once);
+<<<<<<< HEAD
+=======
 	register_shrinker(&icache_shrinker);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Hash may have been set up in inode_init_early */
 	if (!hashdist)
@@ -1633,7 +2003,11 @@ void __init inode_init(void)
 					&i_hash_mask,
 					0);
 
+<<<<<<< HEAD
+	for (loop = 0; loop < (1U << i_hash_shift); loop++)
+=======
 	for (loop = 0; loop < (1 << i_hash_shift); loop++)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		INIT_HLIST_HEAD(&inode_hashtable[loop]);
 }
 
@@ -1664,7 +2038,11 @@ EXPORT_SYMBOL(init_special_inode);
  * @mode: mode of the new inode
  */
 void inode_init_owner(struct inode *inode, const struct inode *dir,
+<<<<<<< HEAD
+			umode_t mode)
+=======
 			mode_t mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	inode->i_uid = current_fsuid();
 	if (dir && dir->i_mode & S_ISGID) {

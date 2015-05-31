@@ -45,7 +45,11 @@
 #define JZ4740_IRQ_LCD		JZ4740_IRQ(30)
 
 /* 2nd-level interrupts */
+<<<<<<< HEAD
+#define JZ4740_IRQ_DMA(x)	(JZ4740_IRQ(32) + (x))
+=======
 #define JZ4740_IRQ_DMA(x)	(JZ4740_IRQ(32) + (X))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define JZ4740_IRQ_INTC_GPIO(x) (JZ4740_IRQ_GPIO0 - (x))
 #define JZ4740_IRQ_GPIO(x)	(JZ4740_IRQ(48) + (x))

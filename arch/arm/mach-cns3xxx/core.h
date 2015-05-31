@@ -13,8 +13,21 @@
 
 extern struct sys_timer cns3xxx_timer;
 
+<<<<<<< HEAD
+#ifdef CONFIG_CACHE_L2X0
+void __init cns3xxx_l2x0_init(void);
+#else
+static inline void cns3xxx_l2x0_init(void) {}
+#endif /* CONFIG_CACHE_L2X0 */
+
 void __init cns3xxx_map_io(void);
 void __init cns3xxx_init_irq(void);
 void cns3xxx_power_off(void);
+void cns3xxx_restart(char, const char *);
+=======
+void __init cns3xxx_map_io(void);
+void __init cns3xxx_init_irq(void);
+void cns3xxx_power_off(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __CNS3XXX_CORE_H */

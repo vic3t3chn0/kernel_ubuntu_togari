@@ -92,6 +92,9 @@ void clk_put(struct clk *clk)
 {
 }
 
+<<<<<<< HEAD
+static AMBA_AHB_DEVICE(fb, "fb", 0, 0x00104000, { NETX_IRQ_LCD }, NULL);
+=======
 static struct amba_device fb_device = {
 	.dev		= {
 		.init_name = "fb",
@@ -104,6 +107,7 @@ static struct amba_device fb_device = {
 	},
 	.irq		= { NETX_IRQ_LCD, NO_IRQ },
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int netx_fb_init(struct clcd_board *board, struct clcd_panel *panel)
 {

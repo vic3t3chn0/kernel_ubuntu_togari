@@ -20,6 +20,10 @@
  */
 #include <linux/platform_device.h>
 #include <asm/mach/time.h>
+<<<<<<< HEAD
+#include <asm/smp_twd.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void __init shmobile_late_time_init(void)
 {
@@ -36,9 +40,19 @@ static void __init shmobile_late_time_init(void)
 	early_platform_driver_probe("earlytimer", 2, 0);
 }
 
+<<<<<<< HEAD
+void __init shmobile_earlytimer_init(void)
+{
+	late_time_init = shmobile_late_time_init;
+}
+
+static void __init shmobile_timer_init(void)
+{
+=======
 static void __init shmobile_timer_init(void)
 {
 	late_time_init = shmobile_late_time_init;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 struct sys_timer shmobile_timer = {

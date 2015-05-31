@@ -21,7 +21,10 @@
 #include <linux/gpio.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/orion5x.h>
 #include "common.h"
 #include "mpp.h"
@@ -186,7 +189,11 @@ static struct mv_sata_platform_data ls_hgl_sata_data = {
 
 static void ls_hgl_power_off(void)
 {
+<<<<<<< HEAD
+	orion5x_restart('h', NULL);
+=======
 	arm_machine_restart('h', NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 
@@ -265,11 +272,19 @@ static void __init ls_hgl_init(void)
 
 MACHINE_START(LINKSTATION_LS_HGL, "Buffalo Linkstation LS-HGL")
 	/* Maintainer: Zhu Qingsen <zhuqs@cn.fujistu.com> */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
 	.boot_params	= 0x00000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_machine	= ls_hgl_init,
 	.map_io		= orion5x_map_io,
 	.init_early	= orion5x_init_early,
 	.init_irq	= orion5x_init_irq,
 	.timer		= &orion5x_timer,
 	.fixup		= tag_fixup_mem32,
+<<<<<<< HEAD
+	.restart	= orion5x_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

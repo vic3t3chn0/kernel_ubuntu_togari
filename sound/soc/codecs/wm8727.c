@@ -59,7 +59,11 @@ static int __devexit wm8727_remove(struct platform_device *pdev)
 
 static struct platform_driver wm8727_codec_driver = {
 	.driver = {
+<<<<<<< HEAD
+			.name = "wm8727",
+=======
 			.name = "wm8727-codec",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.owner = THIS_MODULE,
 	},
 
@@ -67,6 +71,9 @@ static struct platform_driver wm8727_codec_driver = {
 	.remove = __devexit_p(wm8727_remove),
 };
 
+<<<<<<< HEAD
+module_platform_driver(wm8727_codec_driver);
+=======
 static int __init wm8727_init(void)
 {
 	return platform_driver_register(&wm8727_codec_driver);
@@ -78,6 +85,7 @@ static void __exit wm8727_exit(void)
 	platform_driver_unregister(&wm8727_codec_driver);
 }
 module_exit(wm8727_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_DESCRIPTION("ASoC wm8727 driver");
 MODULE_AUTHOR("Neil Jones");

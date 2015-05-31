@@ -1150,7 +1150,11 @@ struct rpc_procinfo	nfs_procedures[] = {
 	PROC(STATFS,	fhandle,	statfsres,	0),
 };
 
+<<<<<<< HEAD
+const struct rpc_version nfs_version2 = {
+=======
 struct rpc_version		nfs_version2 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.number			= 2,
 	.nrprocs		= ARRAY_SIZE(nfs_procedures),
 	.procs			= nfs_procedures

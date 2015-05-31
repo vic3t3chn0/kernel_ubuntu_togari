@@ -90,9 +90,13 @@ void cpu_idle (void)
 
 			idle();
 		}
+<<<<<<< HEAD
+		schedule_preempt_disabled();
+=======
 		preempt_enable_no_resched();
 		schedule();
 		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 }
 

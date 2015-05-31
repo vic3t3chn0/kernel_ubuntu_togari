@@ -33,6 +33,12 @@
 #define TRACE_ON 1
 #define TRACE_OFF 0
 
+<<<<<<< HEAD
+static void send_dm_alert(struct work_struct *unused);
+
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Globals, our netlink socket pointer
  * and the work handle that will send up
@@ -42,10 +48,18 @@ static int trace_state = TRACE_OFF;
 static DEFINE_MUTEX(trace_state_mutex);
 
 struct per_cpu_dm_data {
+<<<<<<< HEAD
+	struct work_struct dm_alert_work;
+	struct sk_buff __rcu *skb;
+	atomic_t dm_hit_count;
+	struct timer_list send_timer;
+	int cpu;
+=======
 	spinlock_t		lock;
 	struct sk_buff		*skb;
 	struct work_struct	dm_alert_work;
 	struct timer_list	send_timer;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct dm_hw_stat_delta {
@@ -71,13 +85,21 @@ static int dm_delay = 1;
 static unsigned long dm_hw_check_delta = 2*HZ;
 static LIST_HEAD(hw_stats_list);
 
+<<<<<<< HEAD
+static void reset_per_cpu_data(struct per_cpu_dm_data *data)
+=======
 static struct sk_buff *reset_per_cpu_data(struct per_cpu_dm_data *data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	size_t al;
 	struct net_dm_alert_msg *msg;
 	struct nlattr *nla;
 	struct sk_buff *skb;
+<<<<<<< HEAD
+	struct sk_buff *oskb = rcu_dereference_protected(data->skb, 1);
+=======
 	unsigned long flags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	al = sizeof(struct net_dm_alert_msg);
 	al += dm_hit_limit * sizeof(struct net_dm_drop_point);
@@ -92,6 +114,52 @@ static struct sk_buff *reset_per_cpu_data(struct per_cpu_dm_data *data)
 				  sizeof(struct net_dm_alert_msg));
 		msg = nla_data(nla);
 		memset(msg, 0, al);
+<<<<<<< HEAD
+	} else
+		schedule_work_on(data->cpu, &data->dm_alert_work);
+
+	/*
+	 * Don't need to lock this, since we are guaranteed to only
+	 * run this on a single cpu at a time.
+	 * Note also that we only update data->skb if the old and new skb
+	 * pointers don't match.  This ensures that we don't continually call
+	 * synchornize_rcu if we repeatedly fail to alloc a new netlink message.
+	 */
+	if (skb != oskb) {
+		rcu_assign_pointer(data->skb, skb);
+
+		synchronize_rcu();
+
+		atomic_set(&data->dm_hit_count, dm_hit_limit);
+	}
+
+}
+
+static void send_dm_alert(struct work_struct *unused)
+{
+	struct sk_buff *skb;
+	struct per_cpu_dm_data *data = &get_cpu_var(dm_cpu_data);
+
+	WARN_ON_ONCE(data->cpu != smp_processor_id());
+
+	/*
+	 * Grab the skb we're about to send
+	 */
+	skb = rcu_dereference_protected(data->skb, 1);
+
+	/*
+	 * Replace it with a new one
+	 */
+	reset_per_cpu_data(data);
+
+	/*
+	 * Ship it!
+	 */
+	if (skb)
+		genlmsg_multicast(skb, 0, NET_DM_GRP_ALERT, GFP_KERNEL);
+
+	put_cpu_var(dm_cpu_data);
+=======
 	} else {
 		mod_timer(&data->send_timer, jiffies + HZ / 10);
 	}
@@ -114,11 +182,24 @@ static void send_dm_alert(struct work_struct *work)
 
 	if (skb)
 		genlmsg_multicast(skb, 0, NET_DM_GRP_ALERT, GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
  * This is the timer function to delay the sending of an alert
  * in the event that more drops will arrive during the
+<<<<<<< HEAD
+ * hysteresis period.  Note that it operates under the timer interrupt
+ * so we don't need to disable preemption here
+ */
+static void sched_send_work(unsigned long unused)
+{
+	struct per_cpu_dm_data *data =  &get_cpu_var(dm_cpu_data);
+
+	schedule_work_on(smp_processor_id(), &data->dm_alert_work);
+
+	put_cpu_var(dm_cpu_data);
+=======
  * hysteresis period.
  */
 static void sched_send_work(unsigned long _data)
@@ -126,6 +207,7 @@ static void sched_send_work(unsigned long _data)
 	struct per_cpu_dm_data *data = (struct per_cpu_dm_data *)_data;
 
 	schedule_work(&data->dm_alert_work);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void trace_drop_common(struct sk_buff *skb, void *location)
@@ -135,6 +217,13 @@ static void trace_drop_common(struct sk_buff *skb, void *location)
 	struct nlattr *nla;
 	int i;
 	struct sk_buff *dskb;
+<<<<<<< HEAD
+	struct per_cpu_dm_data *data = &get_cpu_var(dm_cpu_data);
+
+
+	rcu_read_lock();
+	dskb = rcu_dereference(data->skb);
+=======
 	struct per_cpu_dm_data *data;
 	unsigned long flags;
 
@@ -142,21 +231,40 @@ static void trace_drop_common(struct sk_buff *skb, void *location)
 	data = &__get_cpu_var(dm_cpu_data);
 	spin_lock(&data->lock);
 	dskb = data->skb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!dskb)
 		goto out;
 
+<<<<<<< HEAD
+	if (!atomic_add_unless(&data->dm_hit_count, -1, 0)) {
+		/*
+		 * we're already at zero, discard this hit
+		 */
+		goto out;
+	}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	nlh = (struct nlmsghdr *)dskb->data;
 	nla = genlmsg_data(nlmsg_data(nlh));
 	msg = nla_data(nla);
 	for (i = 0; i < msg->entries; i++) {
 		if (!memcmp(&location, msg->points[i].pc, sizeof(void *))) {
 			msg->points[i].count++;
+<<<<<<< HEAD
+			atomic_inc(&data->dm_hit_count);
+			goto out;
+		}
+	}
+
+=======
 			goto out;
 		}
 	}
 	if (msg->entries == dm_hit_limit)
 		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * We need to create a new entry
 	 */
@@ -168,11 +276,21 @@ static void trace_drop_common(struct sk_buff *skb, void *location)
 
 	if (!timer_pending(&data->send_timer)) {
 		data->send_timer.expires = jiffies + dm_delay * HZ;
+<<<<<<< HEAD
+		add_timer_on(&data->send_timer, smp_processor_id());
+	}
+
+out:
+	rcu_read_unlock();
+	put_cpu_var(dm_cpu_data);
+	return;
+=======
 		add_timer(&data->send_timer);
 	}
 
 out:
 	spin_unlock_irqrestore(&data->lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void trace_kfree_skb_hit(void *ignore, struct sk_buff *skb, void *location)
@@ -370,11 +488,19 @@ static int __init init_net_drop_monitor(void)
 
 	for_each_present_cpu(cpu) {
 		data = &per_cpu(dm_cpu_data, cpu);
+<<<<<<< HEAD
+		data->cpu = cpu;
+		INIT_WORK(&data->dm_alert_work, send_dm_alert);
+		init_timer(&data->send_timer);
+		data->send_timer.data = cpu;
+		data->send_timer.function = sched_send_work;
+=======
 		INIT_WORK(&data->dm_alert_work, send_dm_alert);
 		init_timer(&data->send_timer);
 		data->send_timer.data = (unsigned long)data;
 		data->send_timer.function = sched_send_work;
 		spin_lock_init(&data->lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		reset_per_cpu_data(data);
 	}
 

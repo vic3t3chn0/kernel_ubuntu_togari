@@ -13,6 +13,10 @@
 #include <linux/fs.h>
 #include <linux/log2.h>
 #include <linux/mount.h>
+<<<<<<< HEAD
+#include <linux/magic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/pipe_fs_i.h>
 #include <linux/uio.h>
 #include <linux/highmem.h>
@@ -230,7 +234,11 @@ void *generic_pipe_buf_map(struct pipe_inode_info *pipe,
 {
 	if (atomic) {
 		buf->flags |= PIPE_BUF_FLAG_ATOMIC;
+<<<<<<< HEAD
+		return kmap_atomic(buf->page);
+=======
 		return kmap_atomic(buf->page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	return kmap(buf->page);
@@ -251,7 +259,11 @@ void generic_pipe_buf_unmap(struct pipe_inode_info *pipe,
 {
 	if (buf->flags & PIPE_BUF_FLAG_ATOMIC) {
 		buf->flags &= ~PIPE_BUF_FLAG_ATOMIC;
+<<<<<<< HEAD
+		kunmap_atomic(map_data);
+=======
 		kunmap_atomic(map_data, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else
 		kunmap(buf->page);
 }
@@ -587,14 +599,22 @@ redo1:
 			iov_fault_in_pages_read(iov, chars);
 redo2:
 			if (atomic)
+<<<<<<< HEAD
+				src = kmap_atomic(page);
+=======
 				src = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			else
 				src = kmap(page);
 
 			error = pipe_iov_copy_from_user(src, iov, chars,
 							atomic);
 			if (atomic)
+<<<<<<< HEAD
+				kunmap_atomic(src);
+=======
 				kunmap_atomic(src, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			else
 				kunmap(page);
 
@@ -859,9 +879,12 @@ pipe_rdwr_open(struct inode *inode, struct file *filp)
 {
 	int ret = -ENOENT;
 
+<<<<<<< HEAD
+=======
 	if (!(filp->f_mode & (FMODE_READ|FMODE_WRITE)))
 		return -EINVAL;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mutex_lock(&inode->i_mutex);
 
 	if (inode->i_pipe) {
@@ -978,7 +1001,11 @@ static const struct dentry_operations pipefs_dentry_operations = {
 
 static struct inode * get_pipe_inode(void)
 {
+<<<<<<< HEAD
+	struct inode *inode = new_inode_pseudo(pipe_mnt->mnt_sb);
+=======
 	struct inode *inode = new_inode(pipe_mnt->mnt_sb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct pipe_inode_info *pipe;
 
 	if (!inode)
@@ -1167,7 +1194,11 @@ static long pipe_set_size(struct pipe_inode_info *pipe, unsigned long nr_pages)
 	if (nr_pages < pipe->nrbufs)
 		return -EBUSY;
 
+<<<<<<< HEAD
+	bufs = kcalloc(nr_pages, sizeof(*bufs), GFP_KERNEL | __GFP_NOWARN);
+=======
 	bufs = kcalloc(nr_pages, sizeof(struct pipe_buffer), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (unlikely(!bufs))
 		return -ENOMEM;
 
@@ -1284,6 +1315,10 @@ out:
 
 static const struct super_operations pipefs_ops = {
 	.destroy_inode = free_inode_nonrcu,
+<<<<<<< HEAD
+	.statfs = simple_statfs,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /*
@@ -1319,6 +1354,9 @@ static int __init init_pipe_fs(void)
 	return err;
 }
 
+<<<<<<< HEAD
+fs_initcall(init_pipe_fs);
+=======
 static void __exit exit_pipe_fs(void)
 {
 	unregister_filesystem(&pipe_fs_type);
@@ -1327,3 +1365,4 @@ static void __exit exit_pipe_fs(void)
 
 fs_initcall(init_pipe_fs);
 module_exit(exit_pipe_fs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

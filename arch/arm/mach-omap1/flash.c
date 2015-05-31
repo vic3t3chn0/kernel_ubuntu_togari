@@ -6,6 +6,27 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
+#include <linux/io.h>
+#include <linux/mtd/mtd.h>
+#include <linux/mtd/map.h>
+
+#include <plat/tc.h>
+#include <plat/flash.h>
+
+#include <mach/hardware.h>
+
+void omap1_set_vpp(struct platform_device *pdev, int enable)
+{
+	u32 l;
+
+	l = omap_readl(EMIFS_CONFIG);
+	if (enable)
+		l |= OMAP_EMIFS_CONFIG_WP;
+	else
+		l &= ~OMAP_EMIFS_CONFIG_WP;
+	omap_writel(l, EMIFS_CONFIG);
+=======
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/map.h>
 
@@ -31,4 +52,5 @@ void omap1_set_vpp(struct platform_device *pdev, int enable)
 			omap_writel(l, EMIFS_CONFIG);
 		}
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

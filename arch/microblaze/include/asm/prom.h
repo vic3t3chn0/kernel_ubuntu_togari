@@ -21,11 +21,23 @@
 
 #include <linux/types.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define HAVE_ARCH_DEVTREE_FIXUPS
 
 /* Other Prototypes */
+<<<<<<< HEAD
+enum early_consoles {
+	UARTLITE = 1,
+	UART16550 = 2,
+};
+
+extern int of_early_console(void *version);
+=======
 extern int early_uartlite_console(void);
 extern int early_uart16550_console(void);
 
@@ -43,6 +55,7 @@ extern struct device_node *pci_busdev_to_OF_node(struct pci_bus *bus,
 extern struct device_node *pci_device_to_OF_node(struct pci_dev *dev);
 extern void pci_create_OF_bus_map(void);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * OF address retreival & translation

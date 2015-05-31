@@ -145,6 +145,10 @@ work_notifysig:
 	 mov	r15, r4
 	mov	r12, r5		! set arg1(save_r0)
 	mov	r0, r6
+<<<<<<< HEAD
+	sti
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mov.l	2f, r1
 	mov.l	3f, r0
 	jmp	@r1

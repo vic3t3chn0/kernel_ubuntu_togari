@@ -151,6 +151,17 @@ extern void __cpu_copy_user_highpage(struct page *to, struct page *from,
 #define clear_page(page)	memset((void *)(page), 0, PAGE_SIZE)
 extern void copy_page(void *to, const void *from);
 
+<<<<<<< HEAD
+#ifdef CONFIG_KUSER_HELPERS
+#define __HAVE_ARCH_GATE_AREA 1
+#endif
+
+#ifdef CONFIG_ARM_LPAE
+#include <asm/pgtable-3level-types.h>
+#else
+#include <asm/pgtable-2level-types.h>
+#endif
+=======
 typedef unsigned long pteval_t;
 
 #undef STRICT_MM_TYPECHECKS
@@ -192,6 +203,7 @@ typedef unsigned long pgprot_t;
 #define __pgprot(x)     (x)
 
 #endif /* STRICT_MM_TYPECHECKS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* CONFIG_MMU */
 
@@ -201,6 +213,14 @@ typedef struct page *pgtable_t;
 extern int pfn_valid(unsigned long);
 #endif
 
+<<<<<<< HEAD
+#ifdef CONFIG_MEMORY_HOTPLUG_SPARSE
+extern int _early_pfn_valid(unsigned long);
+#define early_pfn_valid(pfn) (_early_pfn_valid(pfn))
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/memory.h>
 
 #endif /* !__ASSEMBLY__ */

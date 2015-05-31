@@ -2,6 +2,8 @@
 #
 # Licensed under GPLv2
 
+<<<<<<< HEAD
+=======
 config CPU_S3C2440
 	bool
 	select CPU_ARM920T
@@ -35,6 +37,7 @@ config CPU_S3C244X
 
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config S3C2440_CPUFREQ
 	bool "S3C2440/S3C2442 CPU Frequency scaling support"
 	depends on CPU_FREQ_S3C24XX && (CPU_S3C2440 || CPU_S3C2442)
@@ -68,6 +71,8 @@ config S3C2440_PLL_16934400
 	default y if CPU_FREQ_S3C24XX_PLL
 	help
 	  PLL tables for S3C2440 or S3C2442 CPUs with 16.934MHz crystals.
+<<<<<<< HEAD
+=======
 
 config S3C2440_DMA
 	bool
@@ -204,3 +209,4 @@ config MACH_RX1950
 	   Say Y here if you're using HP iPAQ rx1950
 
 endmenu
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -140,7 +140,11 @@ static inline void *kmap(struct page *page)
 
 #define kunmap(page)			kunmap_parisc(page_address(page))
 
+<<<<<<< HEAD
+static inline void *kmap_atomic(struct page *page)
+=======
 static inline void *__kmap_atomic(struct page *page)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	pagefault_disable();
 	return page_address(page);

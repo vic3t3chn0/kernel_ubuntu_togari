@@ -60,13 +60,18 @@ static u32 *decode_read_list(u32 *va, u32 *vaend)
 	struct rpcrdma_read_chunk *ch = (struct rpcrdma_read_chunk *)va;
 
 	while (ch->rc_discrim != xdr_zero) {
+<<<<<<< HEAD
+=======
 		u64 ch_offset;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (((unsigned long)ch + sizeof(struct rpcrdma_read_chunk)) >
 		    (unsigned long)vaend) {
 			dprintk("svcrdma: vaend=%p, ch=%p\n", vaend, ch);
 			return NULL;
 		}
+<<<<<<< HEAD
+=======
 
 		ch->rc_discrim = ntohl(ch->rc_discrim);
 		ch->rc_position = ntohl(ch->rc_position);
@@ -75,6 +80,7 @@ static u32 *decode_read_list(u32 *va, u32 *vaend)
 		va = (u32 *)&ch->rc_target.rs_offset;
 		xdr_decode_hyper(va, &ch_offset);
 		put_unaligned(ch_offset, (u64 *)va);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ch++;
 	}
 	return (u32 *)&ch->rc_position;
@@ -91,7 +97,11 @@ void svc_rdma_rcl_chunk_counts(struct rpcrdma_read_chunk *ch,
 	*byte_count = 0;
 	*ch_count = 0;
 	for (; ch->rc_discrim != 0; ch++) {
+<<<<<<< HEAD
+		*byte_count = *byte_count + ntohl(ch->rc_target.rs_length);
+=======
 		*byte_count = *byte_count + ch->rc_target.rs_length;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		*ch_count = *ch_count + 1;
 	}
 }
@@ -108,7 +118,12 @@ void svc_rdma_rcl_chunk_counts(struct rpcrdma_read_chunk *ch,
  */
 static u32 *decode_write_list(u32 *va, u32 *vaend)
 {
+<<<<<<< HEAD
+	int nchunks;
+
+=======
 	int ch_no;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct rpcrdma_write_array *ary =
 		(struct rpcrdma_write_array *)va;
 
@@ -121,6 +136,16 @@ static u32 *decode_write_list(u32 *va, u32 *vaend)
 		dprintk("svcrdma: ary=%p, vaend=%p\n", ary, vaend);
 		return NULL;
 	}
+<<<<<<< HEAD
+	nchunks = ntohl(ary->wc_nchunks);
+	if (((unsigned long)&ary->wc_array[0] +
+	     (sizeof(struct rpcrdma_write_chunk) * nchunks)) >
+	    (unsigned long)vaend) {
+		dprintk("svcrdma: ary=%p, wc_nchunks=%d, vaend=%p\n",
+			ary, nchunks, vaend);
+		return NULL;
+	}
+=======
 	ary->wc_discrim = ntohl(ary->wc_discrim);
 	ary->wc_nchunks = ntohl(ary->wc_nchunks);
 	if (((unsigned long)&ary->wc_array[0] +
@@ -142,16 +167,25 @@ static u32 *decode_write_list(u32 *va, u32 *vaend)
 		put_unaligned(ch_offset, (u64 *)va);
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * rs_length is the 2nd 4B field in wc_target and taking its
 	 * address skips the list terminator
 	 */
+<<<<<<< HEAD
+	return (u32 *)&ary->wc_array[nchunks].wc_target.rs_length;
+=======
 	return (u32 *)&ary->wc_array[ch_no].wc_target.rs_length;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static u32 *decode_reply_array(u32 *va, u32 *vaend)
 {
+<<<<<<< HEAD
+	int nchunks;
+=======
 	int ch_no;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct rpcrdma_write_array *ary =
 		(struct rpcrdma_write_array *)va;
 
@@ -164,6 +198,17 @@ static u32 *decode_reply_array(u32 *va, u32 *vaend)
 		dprintk("svcrdma: ary=%p, vaend=%p\n", ary, vaend);
 		return NULL;
 	}
+<<<<<<< HEAD
+	nchunks = ntohl(ary->wc_nchunks);
+	if (((unsigned long)&ary->wc_array[0] +
+	     (sizeof(struct rpcrdma_write_chunk) * nchunks)) >
+	    (unsigned long)vaend) {
+		dprintk("svcrdma: ary=%p, wc_nchunks=%d, vaend=%p\n",
+			ary, nchunks, vaend);
+		return NULL;
+	}
+	return (u32 *)&ary->wc_array[nchunks];
+=======
 	ary->wc_discrim = ntohl(ary->wc_discrim);
 	ary->wc_nchunks = ntohl(ary->wc_nchunks);
 	if (((unsigned long)&ary->wc_array[0] +
@@ -186,6 +231,7 @@ static u32 *decode_reply_array(u32 *va, u32 *vaend)
 	}
 
 	return (u32 *)&ary->wc_array[ch_no];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 int svc_rdma_xdr_decode_req(struct rpcrdma_msg **rdma_req,
@@ -386,6 +432,16 @@ void svc_rdma_xdr_encode_reply_array(struct rpcrdma_write_array *ary,
 
 void svc_rdma_xdr_encode_array_chunk(struct rpcrdma_write_array *ary,
 				     int chunk_no,
+<<<<<<< HEAD
+				     __be32 rs_handle,
+				     __be64 rs_offset,
+				     u32 write_len)
+{
+	struct rpcrdma_segment *seg = &ary->wc_array[chunk_no].wc_target;
+	seg->rs_handle = rs_handle;
+	seg->rs_offset = rs_offset;
+	seg->rs_length = htonl(write_len);
+=======
 				     u32 rs_handle, u64 rs_offset,
 				     u32 write_len)
 {
@@ -393,6 +449,7 @@ void svc_rdma_xdr_encode_array_chunk(struct rpcrdma_write_array *ary,
 	seg->rs_handle = htonl(rs_handle);
 	seg->rs_length = htonl(write_len);
 	xdr_encode_hyper((u32 *) &seg->rs_offset, rs_offset);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void svc_rdma_xdr_encode_reply_header(struct svcxprt_rdma *xprt,

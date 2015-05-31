@@ -14,13 +14,20 @@
  */
 
 #include <linux/platform_device.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/pcm_params.h>
 #include <sound/soc.h>
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_SLP_WIP
 #include <linux/slab.h>
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int snd_soc_calc_frame_size(int sample_size, int channels, int tdm_slots)
 {
@@ -75,6 +82,10 @@ static const struct snd_pcm_hardware dummy_dma_hardware = {
 	.periods_max		= 128,
 };
 
+<<<<<<< HEAD
+static int dummy_dma_open(struct snd_pcm_substream *substream)
+{
+=======
 #ifdef CONFIG_SLP_WIP
 struct dma_dummy {
 	unsigned long base_time;
@@ -95,11 +106,17 @@ static int dummy_dma_open(struct snd_pcm_substream *substream)
 
 	runtime->private_data = pdma;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	snd_soc_set_runtime_hwparams(substream, &dummy_dma_hardware);
 
 	return 0;
 }
 
+<<<<<<< HEAD
+static struct snd_pcm_ops dummy_dma_ops = {
+	.open		= dummy_dma_open,
+	.ioctl		= snd_pcm_lib_ioctl,
+=======
 #ifdef CONFIG_SLP_WIP
 static int dummy_dma_close(struct snd_pcm_substream *substream)
 {
@@ -185,20 +202,48 @@ static struct snd_pcm_ops dummy_dma_ops = {
 	.prepare	= dummy_dma_prepare,
 	.trigger	= dummy_dma_trigger,
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct snd_soc_platform_driver dummy_platform = {
 	.ops = &dummy_dma_ops,
 };
 
+<<<<<<< HEAD
+static struct snd_soc_codec_driver dummy_codec;
+static struct snd_soc_dai_driver dummy_dai = {
+	.name = "snd-soc-dummy-dai",
+};
+
+static __devinit int snd_soc_dummy_probe(struct platform_device *pdev)
+{
+	int ret;
+
+	ret = snd_soc_register_codec(&pdev->dev, &dummy_codec, &dummy_dai, 1);
+	if (ret < 0)
+		return ret;
+
+	ret = snd_soc_register_platform(&pdev->dev, &dummy_platform);
+	if (ret < 0) {
+		snd_soc_unregister_codec(&pdev->dev);
+		return ret;
+	}
+
+	return ret;
+=======
 static __devinit int snd_soc_dummy_probe(struct platform_device *pdev)
 {
 	return snd_soc_register_platform(&pdev->dev, &dummy_platform);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static __devexit int snd_soc_dummy_remove(struct platform_device *pdev)
 {
 	snd_soc_unregister_platform(&pdev->dev);
+<<<<<<< HEAD
+	snd_soc_unregister_codec(&pdev->dev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }

@@ -26,6 +26,14 @@ enum s3c_hsotg_dmamode {
 struct s3c_hsotg_plat {
 	enum s3c_hsotg_dmamode	dma;
 	unsigned int		is_osc : 1;
+<<<<<<< HEAD
+
+	int (*phy_init)(struct platform_device *pdev, int type);
+	int (*phy_exit)(struct platform_device *pdev, int type);
+};
+
+extern void s3c_hsotg_set_platdata(struct s3c_hsotg_plat *pd);
+=======
 };
 
 typedef enum usb_cable_status {
@@ -38,3 +46,4 @@ typedef enum usb_cable_status {
 	USB_CABLE_DETACHED_WITHOUT_NOTI,
 } usb_cable_status;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

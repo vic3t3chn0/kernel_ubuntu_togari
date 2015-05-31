@@ -54,6 +54,12 @@ struct wl12xx_platform_data {
 	int board_ref_clock;
 	int board_tcxo_clock;
 	unsigned long platform_quirks;
+<<<<<<< HEAD
+	bool pwr_in_suspend;
+
+	struct wl1271_if_operations *ops;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Platform does not support level trigger interrupts */
@@ -73,6 +79,10 @@ int wl12xx_set_platform_data(const struct wl12xx_platform_data *data)
 
 #endif
 
+<<<<<<< HEAD
+struct wl12xx_platform_data *wl12xx_get_platform_data(void);
+=======
 const struct wl12xx_platform_data *wl12xx_get_platform_data(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

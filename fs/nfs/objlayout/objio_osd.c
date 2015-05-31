@@ -38,12 +38,21 @@
  */
 
 #include <linux/module.h>
+<<<<<<< HEAD
+#include <scsi/osd_ore.h>
+=======
 #include <scsi/osd_initiator.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "objlayout.h"
 
 #define NFSDBG_FACILITY         NFSDBG_PNFS_LD
 
+<<<<<<< HEAD
+struct objio_dev_ent {
+	struct nfs4_deviceid_node id_node;
+	struct ore_dev od;
+=======
 #define _LLU(x) ((unsigned long long)x)
 
 enum { BIO_MAX_PAGES_KMALLOC =
@@ -53,6 +62,7 @@ enum { BIO_MAX_PAGES_KMALLOC =
 struct objio_dev_ent {
 	struct nfs4_deviceid_node id_node;
 	struct osd_dev *od;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static void
@@ -60,8 +70,13 @@ objio_free_deviceid_node(struct nfs4_deviceid_node *d)
 {
 	struct objio_dev_ent *de = container_of(d, struct objio_dev_ent, id_node);
 
+<<<<<<< HEAD
+	dprintk("%s: free od=%p\n", __func__, de->od.od);
+	osduld_put_device(de->od.od);
+=======
 	dprintk("%s: free od=%p\n", __func__, de->od);
 	osduld_put_device(de->od);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kfree(de);
 }
 
@@ -98,12 +113,20 @@ _dev_list_add(const struct nfs_server *nfss,
 				nfss->pnfs_curr_ld,
 				nfss->nfs_client,
 				d_id);
+<<<<<<< HEAD
+	de->od.od = od;
+=======
 	de->od = od;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	d = nfs4_insert_deviceid_node(&de->id_node);
 	n = container_of(d, struct objio_dev_ent, id_node);
 	if (n != de) {
+<<<<<<< HEAD
+		dprintk("%s: Race with other n->od=%p\n", __func__, n->od.od);
+=======
 		dprintk("%s: Race with other n->od=%p\n", __func__, n->od);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		objio_free_deviceid_node(&de->id_node);
 		de = n;
 	}
@@ -111,6 +134,13 @@ _dev_list_add(const struct nfs_server *nfss,
 	return de;
 }
 
+<<<<<<< HEAD
+struct objio_segment {
+	struct pnfs_layout_segment lseg;
+
+	struct ore_layout layout;
+	struct ore_components oc;
+=======
 struct caps_buffers {
 	u8 caps_key[OSD_CRYPTO_KEYID_SIZE];
 	u8 creds[OSD_CAP_LEN];
@@ -133,6 +163,7 @@ struct objio_segment {
 	unsigned num_comps;
 	/* variable length */
 	struct objio_dev_ent *ods[];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static inline struct objio_segment *
@@ -141,6 +172,15 @@ OBJIO_LSEG(struct pnfs_layout_segment *lseg)
 	return container_of(lseg, struct objio_segment, lseg);
 }
 
+<<<<<<< HEAD
+struct objio_state {
+	/* Generic layer */
+	struct objlayout_io_res oir;
+
+	bool sync;
+	/*FIXME: Support for extra_bytes at ore_get_rw_state() */
+	struct ore_io_state *ios;
+=======
 struct objio_state;
 typedef ssize_t (*objio_done_fn)(struct objio_state *ios);
 
@@ -164,10 +204,29 @@ struct objio_state {
 		u64 offset;
 		unsigned dev;
 	} per_dev[];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Send and wait for a get_device_info of devices in the layout,
    then look them up with the osd_initiator library */
+<<<<<<< HEAD
+static int objio_devices_lookup(struct pnfs_layout_hdr *pnfslay,
+	struct objio_segment *objio_seg, unsigned c, struct nfs4_deviceid *d_id,
+	gfp_t gfp_flags)
+{
+	struct pnfs_osd_deviceaddr *deviceaddr;
+	struct objio_dev_ent *ode;
+	struct osd_dev *od;
+	struct osd_dev_info odi;
+	bool retry_flag = true;
+	int err;
+
+	ode = _dev_list_find(NFS_SERVER(pnfslay->plh_inode), d_id);
+	if (ode) {
+		objio_seg->oc.ods[c] = &ode->od; /* must use container_of */
+		return 0;
+	}
+=======
 static struct objio_dev_ent *_device_lookup(struct pnfs_layout_hdr *pnfslay,
 				struct objio_segment *objio_seg, unsigned comp,
 				gfp_t gfp_flags)
@@ -184,16 +243,26 @@ static struct objio_dev_ent *_device_lookup(struct pnfs_layout_hdr *pnfslay,
 	ode = _dev_list_find(NFS_SERVER(pnfslay->plh_inode), d_id);
 	if (ode)
 		return ode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	err = objlayout_get_deviceinfo(pnfslay, d_id, &deviceaddr, gfp_flags);
 	if (unlikely(err)) {
 		dprintk("%s: objlayout_get_deviceinfo dev(%llx:%llx) =>%d\n",
 			__func__, _DEVID_LO(d_id), _DEVID_HI(d_id), err);
+<<<<<<< HEAD
+		return err;
+=======
 		return ERR_PTR(err);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	odi.systemid_len = deviceaddr->oda_systemid.len;
 	if (odi.systemid_len > sizeof(odi.systemid)) {
+<<<<<<< HEAD
+		dprintk("%s: odi.systemid_len > sizeof(systemid=%zd)\n",
+			__func__, sizeof(odi.systemid));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = -EINVAL;
 		goto out;
 	} else if (odi.systemid_len)
@@ -209,15 +278,89 @@ static struct objio_dev_ent *_device_lookup(struct pnfs_layout_hdr *pnfslay,
 		goto out;
 	}
 
+<<<<<<< HEAD
+retry_lookup:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	od = osduld_info_lookup(&odi);
 	if (unlikely(IS_ERR(od))) {
 		err = PTR_ERR(od);
 		dprintk("%s: osduld_info_lookup => %d\n", __func__, err);
+<<<<<<< HEAD
+		if (err == -ENODEV && retry_flag) {
+			err = objlayout_autologin(deviceaddr);
+			if (likely(!err)) {
+				retry_flag = false;
+				goto retry_lookup;
+			}
+		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out;
 	}
 
 	ode = _dev_list_add(NFS_SERVER(pnfslay->plh_inode), d_id, od,
 			    gfp_flags);
+<<<<<<< HEAD
+	objio_seg->oc.ods[c] = &ode->od; /* must use container_of */
+	dprintk("Adding new dev_id(%llx:%llx)\n",
+		_DEVID_LO(d_id), _DEVID_HI(d_id));
+out:
+	objlayout_put_deviceinfo(deviceaddr);
+	return err;
+}
+
+static void copy_single_comp(struct ore_components *oc, unsigned c,
+			     struct pnfs_osd_object_cred *src_comp)
+{
+	struct ore_comp *ocomp = &oc->comps[c];
+
+	WARN_ON(src_comp->oc_cap_key.cred_len > 0); /* libosd is NO_SEC only */
+	WARN_ON(src_comp->oc_cap.cred_len > sizeof(ocomp->cred));
+
+	ocomp->obj.partition = src_comp->oc_object_id.oid_partition_id;
+	ocomp->obj.id = src_comp->oc_object_id.oid_object_id;
+
+	memcpy(ocomp->cred, src_comp->oc_cap.cred, sizeof(ocomp->cred));
+}
+
+int __alloc_objio_seg(unsigned numdevs, gfp_t gfp_flags,
+		       struct objio_segment **pseg)
+{
+/*	This is the in memory structure of the objio_segment
+ *
+ *	struct __alloc_objio_segment {
+ *		struct objio_segment olseg;
+ *		struct ore_dev *ods[numdevs];
+ *		struct ore_comp	comps[numdevs];
+ *	} *aolseg;
+ *	NOTE: The code as above compiles and runs perfectly. It is elegant,
+ *	type safe and compact. At some Past time Linus has decided he does not
+ *	like variable length arrays, For the sake of this principal we uglify
+ *	the code as below.
+ */
+	struct objio_segment *lseg;
+	size_t lseg_size = sizeof(*lseg) +
+			numdevs * sizeof(lseg->oc.ods[0]) +
+			numdevs * sizeof(*lseg->oc.comps);
+
+	lseg = kzalloc(lseg_size, gfp_flags);
+	if (unlikely(!lseg)) {
+		dprintk("%s: Faild allocation numdevs=%d size=%zd\n", __func__,
+			numdevs, lseg_size);
+		return -ENOMEM;
+	}
+
+	lseg->oc.numdevs = numdevs;
+	lseg->oc.single_comp = EC_MULTPLE_COMPS;
+	lseg->oc.ods = (void *)(lseg + 1);
+	lseg->oc.comps = (void *)(lseg->oc.ods + numdevs);
+
+	*pseg = lseg;
+	return 0;
+}
+
+=======
 
 out:
 	dprintk("%s: return=%d\n", __func__, err);
@@ -308,6 +451,7 @@ static void copy_single_comp(struct pnfs_osd_object_cred *cur_comp,
 	cur_comp->oc_cap.cred = caps_p->creds;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int objio_alloc_lseg(struct pnfs_layout_segment **outp,
 	struct pnfs_layout_hdr *pnfslay,
 	struct pnfs_layout_range *range,
@@ -317,14 +461,51 @@ int objio_alloc_lseg(struct pnfs_layout_segment **outp,
 	struct objio_segment *objio_seg;
 	struct pnfs_osd_xdr_decode_layout_iter iter;
 	struct pnfs_osd_layout layout;
+<<<<<<< HEAD
+	struct pnfs_osd_object_cred src_comp;
+	unsigned cur_comp;
+=======
 	struct pnfs_osd_object_cred *cur_comp, src_comp;
 	struct caps_buffers *caps_p;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err;
 
 	err = pnfs_osd_xdr_decode_layout_map(&layout, &iter, xdr);
 	if (unlikely(err))
 		return err;
 
+<<<<<<< HEAD
+	err = __alloc_objio_seg(layout.olo_num_comps, gfp_flags, &objio_seg);
+	if (unlikely(err))
+		return err;
+
+	objio_seg->layout.stripe_unit = layout.olo_map.odm_stripe_unit;
+	objio_seg->layout.group_width = layout.olo_map.odm_group_width;
+	objio_seg->layout.group_depth = layout.olo_map.odm_group_depth;
+	objio_seg->layout.mirrors_p1 = layout.olo_map.odm_mirror_cnt + 1;
+	objio_seg->layout.raid_algorithm = layout.olo_map.odm_raid_algorithm;
+
+	err = ore_verify_layout(layout.olo_map.odm_num_comps,
+					  &objio_seg->layout);
+	if (unlikely(err))
+		goto err;
+
+	objio_seg->oc.first_dev = layout.olo_comps_index;
+	cur_comp = 0;
+	while (pnfs_osd_xdr_decode_layout_comp(&src_comp, &iter, xdr, &err)) {
+		copy_single_comp(&objio_seg->oc, cur_comp, &src_comp);
+		err = objio_devices_lookup(pnfslay, objio_seg, cur_comp,
+					   &src_comp.oc_object_id.oid_device_id,
+					   gfp_flags);
+		if (err)
+			goto err;
+		++cur_comp;
+	}
+	/* pnfs_osd_xdr_decode_layout_comp returns false on error */
+	if (unlikely(err))
+		goto err;
+
+=======
 	err = _verify_data_map(&layout);
 	if (unlikely(err))
 		return err;
@@ -371,6 +552,7 @@ int objio_alloc_lseg(struct pnfs_layout_segment **outp,
 				  objio_seg->stripe_unit) *
 				 objio_seg->group_width;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	*outp = &objio_seg->lseg;
 	return 0;
 
@@ -386,14 +568,72 @@ void objio_free_lseg(struct pnfs_layout_segment *lseg)
 	int i;
 	struct objio_segment *objio_seg = OBJIO_LSEG(lseg);
 
+<<<<<<< HEAD
+	for (i = 0; i < objio_seg->oc.numdevs; i++) {
+		struct ore_dev *od = objio_seg->oc.ods[i];
+		struct objio_dev_ent *ode;
+
+		if (!od)
+			break;
+		ode = container_of(od, typeof(*ode), od);
+		nfs4_put_deviceid_node(&ode->id_node);
+=======
 	for (i = 0; i < objio_seg->num_comps; i++) {
 		if (!objio_seg->ods[i])
 			break;
 		nfs4_put_deviceid_node(&objio_seg->ods[i]->id_node);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	kfree(objio_seg);
 }
 
+<<<<<<< HEAD
+static int
+objio_alloc_io_state(struct pnfs_layout_hdr *pnfs_layout_type, bool is_reading,
+	struct pnfs_layout_segment *lseg, struct page **pages, unsigned pgbase,
+	loff_t offset, size_t count, void *rpcdata, gfp_t gfp_flags,
+	struct objio_state **outp)
+{
+	struct objio_segment *objio_seg = OBJIO_LSEG(lseg);
+	struct ore_io_state *ios;
+	int ret;
+	struct __alloc_objio_state {
+		struct objio_state objios;
+		struct pnfs_osd_ioerr ioerrs[objio_seg->oc.numdevs];
+	} *aos;
+
+	aos = kzalloc(sizeof(*aos), gfp_flags);
+	if (unlikely(!aos))
+		return -ENOMEM;
+
+	objlayout_init_ioerrs(&aos->objios.oir, objio_seg->oc.numdevs,
+			aos->ioerrs, rpcdata, pnfs_layout_type);
+
+	ret = ore_get_rw_state(&objio_seg->layout, &objio_seg->oc, is_reading,
+			       offset, count, &ios);
+	if (unlikely(ret)) {
+		kfree(aos);
+		return ret;
+	}
+
+	ios->pages = pages;
+	ios->pgbase = pgbase;
+	ios->private = aos;
+	BUG_ON(ios->nr_pages > (pgbase + count + PAGE_SIZE - 1) >> PAGE_SHIFT);
+
+	aos->objios.sync = 0;
+	aos->objios.ios = ios;
+	*outp = &aos->objios;
+	return 0;
+}
+
+void objio_free_result(struct objlayout_io_res *oir)
+{
+	struct objio_state *objios = container_of(oir, struct objio_state, oir);
+
+	ore_put_io_state(objios->ios);
+	kfree(objios);
+=======
 int objio_alloc_io_state(struct pnfs_layout_segment *lseg,
 			 struct objlayout_io_state **outp,
 			 gfp_t gfp_flags)
@@ -423,6 +663,7 @@ void objio_free_io_state(struct objlayout_io_state *ol_state)
 					       ol_state);
 
 	kfree(ios);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 enum pnfs_osd_errno osd_pri_2_pnfs_err(enum osd_err_priority oep)
@@ -455,6 +696,27 @@ enum pnfs_osd_errno osd_pri_2_pnfs_err(enum osd_err_priority oep)
 	}
 }
 
+<<<<<<< HEAD
+static void __on_dev_error(struct ore_io_state *ios,
+	struct ore_dev *od, unsigned dev_index, enum osd_err_priority oep,
+	u64 dev_offset, u64  dev_len)
+{
+	struct objio_state *objios = ios->private;
+	struct pnfs_osd_objid pooid;
+	struct objio_dev_ent *ode = container_of(od, typeof(*ode), od);
+	/* FIXME: what to do with more-then-one-group layouts. We need to
+	 * translate from ore_io_state index to oc->comps index
+	 */
+	unsigned comp = dev_index;
+
+	pooid.oid_device_id = ode->id_node.deviceid;
+	pooid.oid_partition_id = ios->oc->comps[comp].obj.partition;
+	pooid.oid_object_id = ios->oc->comps[comp].obj.id;
+
+	objlayout_io_set_result(&objios->oir, comp,
+				&pooid, osd_pri_2_pnfs_err(oep),
+				dev_offset, dev_len, !ios->reading);
+=======
 static void _clear_bio(struct bio *bio)
 {
 	struct bio_vec *bv;
@@ -775,23 +1037,55 @@ static ssize_t _io_exec(struct objio_state *ios)
 	}
 
 	return status;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
  * read
  */
+<<<<<<< HEAD
+static void _read_done(struct ore_io_state *ios, void *private)
+{
+	struct objio_state *objios = private;
+	ssize_t status;
+	int ret = ore_check_io(ios, &__on_dev_error);
+
+	/* FIXME: _io_free(ios) can we dealocate the libosd resources; */
+=======
 static ssize_t _read_done(struct objio_state *ios)
 {
 	ssize_t status;
 	int ret = _io_check(ios, false);
 
 	_io_free(ios);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (likely(!ret))
 		status = ios->length;
 	else
 		status = ret;
 
+<<<<<<< HEAD
+	objlayout_read_done(&objios->oir, status, objios->sync);
+}
+
+int objio_read_pagelist(struct nfs_read_data *rdata)
+{
+	struct objio_state *objios;
+	int ret;
+
+	ret = objio_alloc_io_state(NFS_I(rdata->inode)->layout, true,
+			rdata->lseg, rdata->args.pages, rdata->args.pgbase,
+			rdata->args.offset, rdata->args.count, rdata,
+			GFP_KERNEL, &objios);
+	if (unlikely(ret))
+		return ret;
+
+	objios->ios->done = _read_done;
+	dprintk("%s: offset=0x%llx length=0x%x\n", __func__,
+		rdata->args.offset, rdata->args.count);
+	return ore_read(objios->ios);
+=======
 	objlayout_read_done(&ios->ol_state, status, ios->ol_state.sync);
 	return status;
 }
@@ -865,27 +1159,112 @@ ssize_t objio_read_pagelist(struct objlayout_io_state *ol_state)
 		return ret;
 
 	return _read_exec(ios);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
  * write
  */
+<<<<<<< HEAD
+static void _write_done(struct ore_io_state *ios, void *private)
+{
+	struct objio_state *objios = private;
+	ssize_t status;
+	int ret = ore_check_io(ios, &__on_dev_error);
+
+	/* FIXME: _io_free(ios) can we dealocate the libosd resources; */
+=======
 static ssize_t _write_done(struct objio_state *ios)
 {
 	ssize_t status;
 	int ret = _io_check(ios, true);
 
 	_io_free(ios);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (likely(!ret)) {
 		/* FIXME: should be based on the OSD's persistence model
 		 * See OSD2r05 Section 4.13 Data persistence model */
+<<<<<<< HEAD
+		objios->oir.committed = NFS_FILE_SYNC;
+=======
 		ios->ol_state.committed = NFS_FILE_SYNC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		status = ios->length;
 	} else {
 		status = ret;
 	}
 
+<<<<<<< HEAD
+	objlayout_write_done(&objios->oir, status, objios->sync);
+}
+
+static struct page *__r4w_get_page(void *priv, u64 offset, bool *uptodate)
+{
+	struct objio_state *objios = priv;
+	struct nfs_write_data *wdata = objios->oir.rpcdata;
+	pgoff_t index = offset / PAGE_SIZE;
+	struct page *page = find_get_page(wdata->inode->i_mapping, index);
+
+	if (!page) {
+		page = find_or_create_page(wdata->inode->i_mapping,
+						index, GFP_NOFS);
+		if (unlikely(!page)) {
+			dprintk("%s: grab_cache_page Failed index=0x%lx\n",
+				__func__, index);
+			return NULL;
+		}
+		unlock_page(page);
+	}
+	if (PageDirty(page) || PageWriteback(page))
+		*uptodate = true;
+	else
+		*uptodate = PageUptodate(page);
+	dprintk("%s: index=0x%lx uptodate=%d\n", __func__, index, *uptodate);
+	return page;
+}
+
+static void __r4w_put_page(void *priv, struct page *page)
+{
+	dprintk("%s: index=0x%lx\n", __func__, page->index);
+	page_cache_release(page);
+	return;
+}
+
+static const struct _ore_r4w_op _r4w_op = {
+	.get_page = &__r4w_get_page,
+	.put_page = &__r4w_put_page,
+};
+
+int objio_write_pagelist(struct nfs_write_data *wdata, int how)
+{
+	struct objio_state *objios;
+	int ret;
+
+	ret = objio_alloc_io_state(NFS_I(wdata->inode)->layout, false,
+			wdata->lseg, wdata->args.pages, wdata->args.pgbase,
+			wdata->args.offset, wdata->args.count, wdata, GFP_NOFS,
+			&objios);
+	if (unlikely(ret))
+		return ret;
+
+	objios->sync = 0 != (how & FLUSH_SYNC);
+	objios->ios->r4w = &_r4w_op;
+
+	if (!objios->sync)
+		objios->ios->done = _write_done;
+
+	dprintk("%s: offset=0x%llx length=0x%x\n", __func__,
+		wdata->args.offset, wdata->args.count);
+	ret = ore_write(objios->ios);
+	if (unlikely(ret))
+		return ret;
+
+	if (objios->sync)
+		_write_done(objios->ios, objios);
+
+	return 0;
+=======
 	objlayout_write_done(&ios->ol_state, status, ios->ol_state.sync);
 	return status;
 }
@@ -988,6 +1367,7 @@ ssize_t objio_write_pagelist(struct objlayout_io_state *ol_state, bool stable)
 		return ret;
 
 	return _write_exec(ios);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static bool objio_pg_test(struct nfs_pageio_descriptor *pgio,
@@ -996,6 +1376,24 @@ static bool objio_pg_test(struct nfs_pageio_descriptor *pgio,
 	if (!pnfs_generic_pg_test(pgio, prev, req))
 		return false;
 
+<<<<<<< HEAD
+	return pgio->pg_count + req->wb_bytes <=
+			OBJIO_LSEG(pgio->pg_lseg)->layout.max_io_length;
+}
+
+static const struct nfs_pageio_ops objio_pg_read_ops = {
+	.pg_init = pnfs_generic_pg_init_read,
+	.pg_test = objio_pg_test,
+	.pg_doio = pnfs_generic_pg_readpages,
+};
+
+static const struct nfs_pageio_ops objio_pg_write_ops = {
+	.pg_init = pnfs_generic_pg_init_write,
+	.pg_test = objio_pg_test,
+	.pg_doio = pnfs_generic_pg_writepages,
+};
+
+=======
 	if (pgio->pg_lseg == NULL)
 		return true;
 
@@ -1003,6 +1401,7 @@ static bool objio_pg_test(struct nfs_pageio_descriptor *pgio,
 			OBJIO_LSEG(pgio->pg_lseg)->max_io_size;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct pnfs_layoutdriver_type objlayout_type = {
 	.id = LAYOUT_OSD2_OBJECTS,
 	.name = "LAYOUT_OSD2_OBJECTS",
@@ -1017,7 +1416,12 @@ static struct pnfs_layoutdriver_type objlayout_type = {
 
 	.read_pagelist           = objlayout_read_pagelist,
 	.write_pagelist          = objlayout_write_pagelist,
+<<<<<<< HEAD
+	.pg_read_ops             = &objio_pg_read_ops,
+	.pg_write_ops            = &objio_pg_write_ops,
+=======
 	.pg_test                 = objio_pg_test,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	.free_deviceid_node	 = objio_free_deviceid_node,
 
@@ -1036,10 +1440,17 @@ objlayout_init(void)
 
 	if (ret)
 		printk(KERN_INFO
+<<<<<<< HEAD
+			"NFS: %s: Registering OSD pNFS Layout Driver failed: error=%d\n",
+			__func__, ret);
+	else
+		printk(KERN_INFO "NFS: %s: Registered OSD pNFS Layout Driver\n",
+=======
 			"%s: Registering OSD pNFS Layout Driver failed: error=%d\n",
 			__func__, ret);
 	else
 		printk(KERN_INFO "%s: Registered OSD pNFS Layout Driver\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			__func__);
 	return ret;
 }
@@ -1048,9 +1459,18 @@ static void __exit
 objlayout_exit(void)
 {
 	pnfs_unregister_layoutdriver(&objlayout_type);
+<<<<<<< HEAD
+	printk(KERN_INFO "NFS: %s: Unregistered OSD pNFS Layout Driver\n",
+	       __func__);
+}
+
+MODULE_ALIAS("nfs-layouttype4-2");
+
+=======
 	printk(KERN_INFO "%s: Unregistered OSD pNFS Layout Driver\n",
 	       __func__);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 module_init(objlayout_init);
 module_exit(objlayout_exit);

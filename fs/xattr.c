@@ -14,6 +14,17 @@
 #include <linux/mount.h>
 #include <linux/namei.h>
 #include <linux/security.h>
+<<<<<<< HEAD
+#include <linux/evm.h>
+#include <linux/syscalls.h>
+#include <linux/export.h>
+#include <linux/fsnotify.h>
+#include <linux/audit.h>
+#include <linux/vmalloc.h>
+
+#include <asm/uaccess.h>
+
+=======
 #include <linux/syscalls.h>
 #include <linux/module.h>
 #include <linux/fsnotify.h>
@@ -21,6 +32,7 @@
 #include <asm/uaccess.h>
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Check permissions for extended attribute access.  This is a bit complicated
  * because different namespaces have very different rules.
@@ -166,6 +178,67 @@ out_noalloc:
 }
 EXPORT_SYMBOL_GPL(xattr_getsecurity);
 
+<<<<<<< HEAD
+/*
+ * vfs_getxattr_alloc - allocate memory, if necessary, before calling getxattr
+ *
+ * Allocate memory, if not already allocated, or re-allocate correct size,
+ * before retrieving the extended attribute.
+ *
+ * Returns the result of alloc, if failed, or the getxattr operation.
+ */
+ssize_t
+vfs_getxattr_alloc(struct dentry *dentry, const char *name, char **xattr_value,
+		   size_t xattr_size, gfp_t flags)
+{
+	struct inode *inode = dentry->d_inode;
+	char *value = *xattr_value;
+	int error;
+
+	error = xattr_permission(inode, name, MAY_READ);
+	if (error)
+		return error;
+
+	if (!inode->i_op->getxattr)
+		return -EOPNOTSUPP;
+
+	error = inode->i_op->getxattr(dentry, name, NULL, 0);
+	if (error < 0)
+		return error;
+
+	if (!value || (error > xattr_size)) {
+		value = krealloc(*xattr_value, error + 1, flags);
+		if (!value)
+			return -ENOMEM;
+		memset(value, 0, error + 1);
+	}
+
+	error = inode->i_op->getxattr(dentry, name, value, error);
+	*xattr_value = value;
+	return error;
+}
+
+/* Compare an extended attribute value with the given value */
+int vfs_xattr_cmp(struct dentry *dentry, const char *xattr_name,
+		  const char *value, size_t size, gfp_t flags)
+{
+	char *xattr_value = NULL;
+	int rc;
+
+	rc = vfs_getxattr_alloc(dentry, xattr_name, &xattr_value, 0, flags);
+	if (rc < 0)
+		return rc;
+
+	if ((rc != size) || (memcmp(xattr_value, value, rc) != 0))
+		rc = -EINVAL;
+	else
+		rc = 0;
+	kfree(xattr_value);
+	return rc;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ssize_t
 vfs_getxattr(struct dentry *dentry, const char *name, void *value, size_t size)
 {
@@ -243,8 +316,15 @@ vfs_removexattr(struct dentry *dentry, const char *name)
 	error = inode->i_op->removexattr(dentry, name);
 	mutex_unlock(&inode->i_mutex);
 
+<<<<<<< HEAD
+	if (!error) {
+		fsnotify_xattr(dentry);
+		evm_inode_post_removexattr(dentry, name);
+	}
+=======
 	if (!error)
 		fsnotify_xattr(dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return error;
 }
 EXPORT_SYMBOL_GPL(vfs_removexattr);
@@ -259,6 +339,10 @@ setxattr(struct dentry *d, const char __user *name, const void __user *value,
 {
 	int error;
 	void *kvalue = NULL;
+<<<<<<< HEAD
+	void *vvalue = NULL;	/* If non-NULL, we used vmalloc() */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	char kname[XATTR_NAME_MAX + 1];
 
 	if (flags & ~(XATTR_CREATE|XATTR_REPLACE))
@@ -273,6 +357,27 @@ setxattr(struct dentry *d, const char __user *name, const void __user *value,
 	if (size) {
 		if (size > XATTR_SIZE_MAX)
 			return -E2BIG;
+<<<<<<< HEAD
+		kvalue = kmalloc(size, GFP_KERNEL | __GFP_NOWARN);
+		if (!kvalue) {
+			vvalue = vmalloc(size);
+			if (!vvalue)
+				return -ENOMEM;
+			kvalue = vvalue;
+		}
+		if (copy_from_user(kvalue, value, size)) {
+			error = -EFAULT;
+			goto out;
+		}
+	}
+
+	error = vfs_setxattr(d, kname, kvalue, size, flags);
+out:
+	if (vvalue)
+		vfree(vvalue);
+	else
+		kfree(kvalue);
+=======
 		kvalue = memdup_user(value, size);
 		if (IS_ERR(kvalue))
 			return PTR_ERR(kvalue);
@@ -280,6 +385,7 @@ setxattr(struct dentry *d, const char __user *name, const void __user *value,
 
 	error = vfs_setxattr(d, kname, kvalue, size, flags);
 	kfree(kvalue);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return error;
 }
 
@@ -336,7 +442,11 @@ SYSCALL_DEFINE5(fsetxattr, int, fd, const char __user *, name,
 	error = mnt_want_write_file(f);
 	if (!error) {
 		error = setxattr(dentry, name, value, size, flags);
+<<<<<<< HEAD
+		mnt_drop_write_file(f);
+=======
 		mnt_drop_write(f->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	fput(f);
 	return error;
@@ -431,13 +541,27 @@ listxattr(struct dentry *d, char __user *list, size_t size)
 {
 	ssize_t error;
 	char *klist = NULL;
+<<<<<<< HEAD
+	char *vlist = NULL;	/* If non-NULL, we used vmalloc() */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (size) {
 		if (size > XATTR_LIST_MAX)
 			size = XATTR_LIST_MAX;
+<<<<<<< HEAD
+		klist = kmalloc(size, __GFP_NOWARN | GFP_KERNEL);
+		if (!klist) {
+			vlist = vmalloc(size);
+			if (!vlist)
+				return -ENOMEM;
+			klist = vlist;
+		}
+=======
 		klist = kmalloc(size, GFP_KERNEL);
 		if (!klist)
 			return -ENOMEM;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	error = vfs_listxattr(d, klist, size);
@@ -449,7 +573,14 @@ listxattr(struct dentry *d, char __user *list, size_t size)
 		   than XATTR_LIST_MAX bytes. Not possible. */
 		error = -E2BIG;
 	}
+<<<<<<< HEAD
+	if (vlist)
+		vfree(vlist);
+	else
+		kfree(klist);
+=======
 	kfree(klist);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return error;
 }
 
@@ -563,7 +694,11 @@ SYSCALL_DEFINE2(fremovexattr, int, fd, const char __user *, name)
 	error = mnt_want_write_file(f);
 	if (!error) {
 		error = removexattr(dentry, name);
+<<<<<<< HEAD
+		mnt_drop_write_file(f);
+=======
 		mnt_drop_write(f->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	fput(f);
 	return error;

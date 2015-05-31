@@ -49,6 +49,8 @@ static void drop_slab(void)
 	} while (nr_objects > 10);
 }
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_DMA_CMA
 void perform_drop_caches(unsigned int mode)
 {
@@ -59,6 +61,7 @@ void perform_drop_caches(unsigned int mode)
 }
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int drop_caches_sysctl_handler(ctl_table *table, int write,
 	void __user *buffer, size_t *length, loff_t *ppos)
 {
@@ -67,17 +70,23 @@ int drop_caches_sysctl_handler(ctl_table *table, int write,
 	ret = proc_dointvec_minmax(table, write, buffer, length, ppos);
 	if (ret)
 		return ret;
+<<<<<<< HEAD
+=======
 
 #ifndef CONFIG_DMA_CMA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (write) {
 		if (sysctl_drop_caches & 1)
 			iterate_supers(drop_pagecache_sb, NULL);
 		if (sysctl_drop_caches & 2)
 			drop_slab();
 	}
+<<<<<<< HEAD
+=======
 #else
 	if (write)
 		perform_drop_caches(sysctl_drop_caches);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }

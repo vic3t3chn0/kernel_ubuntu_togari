@@ -10,7 +10,11 @@ struct dev_archdata {
 #ifdef CONFIG_ACPI
 	void	*acpi_handle;
 #endif
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+=======
 #ifdef CONFIG_DMAR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void *iommu; /* hook for IOMMU specific extension */
 #endif
 };

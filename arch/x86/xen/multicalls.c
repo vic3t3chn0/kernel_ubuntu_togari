@@ -30,12 +30,20 @@
 
 #define MC_BATCH	32
 
+<<<<<<< HEAD
+#define MC_DEBUG	0
+=======
 #define MC_DEBUG	1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define MC_ARGS		(MC_BATCH * 16)
 
 
 struct mc_buffer {
+<<<<<<< HEAD
+	unsigned mcidx, argidx, cbidx;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct multicall_entry entries[MC_BATCH];
 #if MC_DEBUG
 	struct multicall_entry debug[MC_BATCH];
@@ -46,12 +54,21 @@ struct mc_buffer {
 		void (*fn)(void *);
 		void *data;
 	} callbacks[MC_BATCH];
+<<<<<<< HEAD
+=======
 	unsigned mcidx, argidx, cbidx;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static DEFINE_PER_CPU(struct mc_buffer, mc_buffer);
 DEFINE_PER_CPU(unsigned long, xen_mc_irq_flags);
 
+<<<<<<< HEAD
+void xen_mc_flush(void)
+{
+	struct mc_buffer *b = &__get_cpu_var(mc_buffer);
+	struct multicall_entry *mc;
+=======
 /* flush reasons 0- slots, 1- args, 2- callbacks */
 enum flush_reasons
 {
@@ -125,6 +142,7 @@ static inline void mc_stats_flush(enum flush_reasons idx)
 void xen_mc_flush(void)
 {
 	struct mc_buffer *b = &__get_cpu_var(mc_buffer);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = 0;
 	unsigned long flags;
 	int i;
@@ -135,9 +153,32 @@ void xen_mc_flush(void)
 	   something in the middle */
 	local_irq_save(flags);
 
+<<<<<<< HEAD
+	trace_xen_mc_flush(b->mcidx, b->argidx, b->cbidx);
+
+	switch (b->mcidx) {
+	case 0:
+		/* no-op */
+		BUG_ON(b->argidx != 0);
+		break;
+
+	case 1:
+		/* Singleton multicall - bypass multicall machinery
+		   and just do the call directly. */
+		mc = &b->entries[0];
+
+		mc->result = privcmd_call(mc->op,
+					  mc->args[0], mc->args[1], mc->args[2], 
+					  mc->args[3], mc->args[4]);
+		ret = mc->result < 0;
+		break;
+
+	default:
+=======
 	mc_add_stats(b);
 
 	if (b->mcidx) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if MC_DEBUG
 		memcpy(b->debug, b->entries,
 		       b->mcidx * sizeof(struct multicall_entry));
@@ -164,11 +205,18 @@ void xen_mc_flush(void)
 			}
 		}
 #endif
+<<<<<<< HEAD
+	}
+
+	b->mcidx = 0;
+	b->argidx = 0;
+=======
 
 		b->mcidx = 0;
 		b->argidx = 0;
 	} else
 		BUG_ON(b->argidx != 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	for (i = 0; i < b->cbidx; i++) {
 		struct callback *cb = &b->callbacks[i];
@@ -188,18 +236,34 @@ struct multicall_space __xen_mc_entry(size_t args)
 	struct multicall_space ret;
 	unsigned argidx = roundup(b->argidx, sizeof(u64));
 
+<<<<<<< HEAD
+	trace_xen_mc_entry_alloc(args);
+
+	BUG_ON(preemptible());
+	BUG_ON(b->argidx >= MC_ARGS);
+
+	if (unlikely(b->mcidx == MC_BATCH ||
+		     (argidx + args) >= MC_ARGS)) {
+		trace_xen_mc_flush_reason((b->mcidx == MC_BATCH) ?
+					  XEN_MC_FL_BATCH : XEN_MC_FL_ARGS);
+=======
 	BUG_ON(preemptible());
 	BUG_ON(b->argidx >= MC_ARGS);
 
 	if (b->mcidx == MC_BATCH ||
 	    (argidx + args) >= MC_ARGS) {
 		mc_stats_flush(b->mcidx == MC_BATCH ? FL_SLOTS : FL_ARGS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		xen_mc_flush();
 		argidx = roundup(b->argidx, sizeof(u64));
 	}
 
 	ret.mc = &b->entries[b->mcidx];
+<<<<<<< HEAD
+#if MC_DEBUG
+=======
 #ifdef MC_DEBUG
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b->caller[b->mcidx] = __builtin_return_address(0);
 #endif
 	b->mcidx++;
@@ -218,6 +282,18 @@ struct multicall_space xen_mc_extend_args(unsigned long op, size_t size)
 	BUG_ON(preemptible());
 	BUG_ON(b->argidx >= MC_ARGS);
 
+<<<<<<< HEAD
+	if (unlikely(b->mcidx == 0 ||
+		     b->entries[b->mcidx - 1].op != op)) {
+		trace_xen_mc_extend_args(op, size, XEN_MC_XE_BAD_OP);
+		goto out;
+	}
+
+	if (unlikely((b->argidx + size) >= MC_ARGS)) {
+		trace_xen_mc_extend_args(op, size, XEN_MC_XE_NO_SPACE);
+		goto out;
+	}
+=======
 	if (b->mcidx == 0)
 		return ret;
 
@@ -226,12 +302,19 @@ struct multicall_space xen_mc_extend_args(unsigned long op, size_t size)
 
 	if ((b->argidx + size) >= MC_ARGS)
 		return ret;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	ret.mc = &b->entries[b->mcidx - 1];
 	ret.args = &b->args[b->argidx];
 	b->argidx += size;
 
 	BUG_ON(b->argidx >= MC_ARGS);
+<<<<<<< HEAD
+
+	trace_xen_mc_extend_args(op, size, XEN_MC_XE_OK);
+out:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 
@@ -241,14 +324,25 @@ void xen_mc_callback(void (*fn)(void *), void *data)
 	struct callback *cb;
 
 	if (b->cbidx == MC_BATCH) {
+<<<<<<< HEAD
+		trace_xen_mc_flush_reason(XEN_MC_FL_CALLBACK);
+		xen_mc_flush();
+	}
+
+	trace_xen_mc_callback(fn, data);
+
+=======
 		mc_stats_flush(FL_CALLBACKS);
 		xen_mc_flush();
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	cb = &b->callbacks[b->cbidx++];
 	cb->fn = fn;
 	cb->data = data;
 }
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_XEN_DEBUG_FS
 
@@ -281,3 +375,4 @@ static int __init xen_mc_debugfs(void)
 fs_initcall(xen_mc_debugfs);
 
 #endif	/* CONFIG_XEN_DEBUG_FS */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

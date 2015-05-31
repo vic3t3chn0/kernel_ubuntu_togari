@@ -143,9 +143,12 @@ config MAX_ACTIVE_REGIONS
 		       CPU_SUBTYPE_SH7785)
 	default "1"
 
+<<<<<<< HEAD
+=======
 config ARCH_POPULATES_NODE_MAP
 	def_bool y
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config ARCH_SELECT_MEMORY_MODEL
 	def_bool y
 

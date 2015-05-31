@@ -1,6 +1,10 @@
 /*
    BlueZ - Bluetooth protocol stack for Linux
    Copyright (C) 2000-2001 Qualcomm Incorporated
+<<<<<<< HEAD
+   Copyright (c) 2011, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
    Written 2000,2001 by Maxim Krasnyansky <maxk@qualcomm.com>
 
@@ -22,11 +26,14 @@
    SOFTWARE IS DISCLAIMED.
 */
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_BT_MGMT
 #include "sco_mgmt.h"
 #elif defined(CONFIG_BT_TIZEN)
 #include "tizen/sco.h"
 #else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef __SCO_H
 #define __SCO_H
 
@@ -35,7 +42,11 @@
 #define SCO_DEFAULT_FLUSH_TO	0xFFFF
 
 #define SCO_CONN_TIMEOUT	(HZ * 40)
+<<<<<<< HEAD
+#define SCO_DISCONN_TIMEOUT	(HZ * 20)
+=======
 #define SCO_DISCONN_TIMEOUT	(HZ * 2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define SCO_CONN_IDLE_TIMEOUT	(HZ * 60)
 
 /* SCO socket address */
@@ -43,6 +54,10 @@ struct sockaddr_sco {
 	sa_family_t	sco_family;
 	bdaddr_t	sco_bdaddr;
 	__u16		sco_pkt_type;
+<<<<<<< HEAD
+	__s8		is_wbs;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* SCO socket options */
@@ -84,4 +99,7 @@ struct sco_pinfo {
 };
 
 #endif /* __SCO_H */
+<<<<<<< HEAD
+=======
 #endif /* CONFIG_BT_MGMT */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

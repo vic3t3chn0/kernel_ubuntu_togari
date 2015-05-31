@@ -44,4 +44,11 @@ void intel_gtt_insert_pages(unsigned int first_entry, unsigned int num_entries,
 /* flag for GFDT type */
 #define AGP_USER_CACHED_MEMORY_GFDT (1 << 3)
 
+<<<<<<< HEAD
+#ifdef CONFIG_INTEL_IOMMU
+extern int intel_iommu_gfx_mapped;
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

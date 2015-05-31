@@ -87,6 +87,8 @@ static u16 reg_map[] = {
 	[CCDN]			= 0xd8,
 };
 
+<<<<<<< HEAD
+=======
 static struct omap_device_pm_latency omap2_dma_latency[] = {
 	{
 		.deactivate_func = omap_device_idle_hwmods,
@@ -95,6 +97,7 @@ static struct omap_device_pm_latency omap2_dma_latency[] = {
 	},
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __iomem *dma_base;
 static inline void dma_write(u32 val, int reg, int lch)
 {
@@ -228,14 +231,22 @@ static u32 configure_dma_errata(void)
 /* One time initializations */
 static int __init omap2_system_dma_init_dev(struct omap_hwmod *oh, void *unused)
 {
+<<<<<<< HEAD
+	struct platform_device			*pdev;
+=======
 	struct omap_device			*od;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct omap_system_dma_plat_info	*p;
 	struct resource				*mem;
 	char					*name = "omap_dma_system";
 
 	dma_stride		= OMAP2_DMA_STRIDE;
 	dma_common_ch_start	= CSDP;
+<<<<<<< HEAD
+	if (cpu_is_omap3630() || cpu_is_omap44xx())
+=======
 	if (cpu_is_omap3630() || cpu_is_omap4430())
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		dma_common_ch_end = CCDN;
 	else
 		dma_common_ch_end = CCFN;
@@ -258,6 +269,19 @@ static int __init omap2_system_dma_init_dev(struct omap_hwmod *oh, void *unused)
 
 	p->errata		= configure_dma_errata();
 
+<<<<<<< HEAD
+	pdev = omap_device_build(name, 0, oh, p, sizeof(*p), NULL, 0, 0);
+	kfree(p);
+	if (IS_ERR(pdev)) {
+		pr_err("%s: Can't build omap_device for %s:%s.\n",
+			__func__, name, oh->name);
+		return PTR_ERR(pdev);
+	}
+
+	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+	if (!mem) {
+		dev_err(&pdev->dev, "%s: no mem resource\n", __func__);
+=======
 	od = omap_device_build(name, 0, oh, p, sizeof(*p),
 			omap2_dma_latency, ARRAY_SIZE(omap2_dma_latency), 0);
 	kfree(p);
@@ -270,11 +294,16 @@ static int __init omap2_system_dma_init_dev(struct omap_hwmod *oh, void *unused)
 	mem = platform_get_resource(&od->pdev, IORESOURCE_MEM, 0);
 	if (!mem) {
 		dev_err(&od->pdev.dev, "%s: no mem resource\n", __func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EINVAL;
 	}
 	dma_base = ioremap(mem->start, resource_size(mem));
 	if (!dma_base) {
+<<<<<<< HEAD
+		dev_err(&pdev->dev, "%s: ioremap fail\n", __func__);
+=======
 		dev_err(&od->pdev.dev, "%s: ioremap fail\n", __func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -ENOMEM;
 	}
 
@@ -283,7 +312,11 @@ static int __init omap2_system_dma_init_dev(struct omap_hwmod *oh, void *unused)
 					(d->lch_count), GFP_KERNEL);
 
 	if (!d->chan) {
+<<<<<<< HEAD
+		dev_err(&pdev->dev, "%s: kzalloc fail\n", __func__);
+=======
 		dev_err(&od->pdev.dev, "%s: kzalloc fail\n", __func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -ENOMEM;
 	}
 	return 0;

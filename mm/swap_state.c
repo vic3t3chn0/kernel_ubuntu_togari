@@ -5,8 +5,14 @@
  *  Swap reorganised 29.12.95, Stephen Tweedie
  *
  *  Rewritten to use page cache, (C) 1998 Stephen Tweedie
+<<<<<<< HEAD
+ *
+ *  Copyright (C) VMware, Inc. 2013
+ */
+=======
  */
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/mm.h>
 #include <linux/gfp.h>
 #include <linux/kernel_stat.h>
@@ -14,11 +20,18 @@
 #include <linux/swapops.h>
 #include <linux/init.h>
 #include <linux/pagemap.h>
+<<<<<<< HEAD
+=======
 #include <linux/buffer_head.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/backing-dev.h>
 #include <linux/pagevec.h>
 #include <linux/migrate.h>
 #include <linux/page_cgroup.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/pgtable.h>
 
@@ -44,6 +57,10 @@ struct address_space swapper_space = {
 	.i_mmap_nonlinear = LIST_HEAD_INIT(swapper_space.i_mmap_nonlinear),
 	.backing_dev_info = &swap_backing_dev_info,
 };
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(swapper_space);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define INC_CACHE_INFO(x)	do { swap_cache_info.x++; } while (0)
 
@@ -60,7 +77,12 @@ void show_swap_cache_info(void)
 	printk("Swap cache stats: add %lu, delete %lu, find %lu/%lu\n",
 		swap_cache_info.add_total, swap_cache_info.del_total,
 		swap_cache_info.find_success, swap_cache_info.find_total);
+<<<<<<< HEAD
+	printk("Free swap  = %ldkB\n",
+		get_nr_swap_pages() << (PAGE_SHIFT - 10));
+=======
 	printk("Free swap  = %ldkB\n", nr_swap_pages << (PAGE_SHIFT - 10));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	printk("Total swap = %lukB\n", total_swap_pages << (PAGE_SHIFT - 10));
 }
 
@@ -315,6 +337,10 @@ struct page *read_swap_cache_async(swp_entry_t entry, gfp_t gfp_mask,
 		 * Swap entry may have been freed since our caller observed it.
 		 */
 		err = swapcache_prepare(entry);
+<<<<<<< HEAD
+		if (err == -EEXIST) {	/* seems racy */
+			radix_tree_preload_end();
+=======
 		if (err == -EEXIST) {
 			radix_tree_preload_end();
 			/*
@@ -333,6 +359,7 @@ struct page *read_swap_cache_async(swp_entry_t entry, gfp_t gfp_mask,
 			 * tasks to run.
 			 */
 			cond_resched();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 		}
 		if (err) {		/* swp entry is obsolete ? */
@@ -390,6 +417,20 @@ struct page *read_swap_cache_async(swp_entry_t entry, gfp_t gfp_mask,
 struct page *swapin_readahead(swp_entry_t entry, gfp_t gfp_mask,
 			struct vm_area_struct *vma, unsigned long addr)
 {
+<<<<<<< HEAD
+	struct page *page;
+	unsigned long offset = swp_offset(entry);
+	unsigned long start_offset, end_offset;
+	unsigned long mask = (1UL << page_cluster) - 1;
+
+	/* Read a page_cluster sized and aligned cluster around offset. */
+	start_offset = offset & ~mask;
+	end_offset = offset | mask;
+	if (!start_offset)	/* First page is swap header. */
+		start_offset++;
+
+	for (offset = start_offset; offset <= end_offset ; offset++) {
+=======
 	int nr_pages;
 	struct page *page;
 	unsigned long offset;
@@ -404,11 +445,16 @@ struct page *swapin_readahead(swp_entry_t entry, gfp_t gfp_mask,
 	 */
 	nr_pages = valid_swaphandles(entry, &offset);
 	for (end_offset = offset + nr_pages; offset < end_offset; offset++) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		/* Ok, do the async read-ahead now */
 		page = read_swap_cache_async(swp_entry(swp_type(entry), offset),
 						gfp_mask, vma, addr);
 		if (!page)
+<<<<<<< HEAD
+			continue;
+=======
 			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		page_cache_release(page);
 	}
 	lru_add_drain();	/* Push any new pages onto the LRU now */

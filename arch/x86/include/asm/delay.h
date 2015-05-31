@@ -1,6 +1,9 @@
 #ifndef _ASM_X86_DELAY_H
 #define _ASM_X86_DELAY_H
 
+<<<<<<< HEAD
+#include <asm-generic/delay.h>
+=======
 /*
  * Copyright (C) 1993 Linus Torvalds
  *
@@ -25,6 +28,7 @@ extern void __delay(unsigned long loops);
 #define ndelay(n) (__builtin_constant_p(n) ? \
 	((n) > 20000 ? __bad_ndelay() : __const_udelay((n) * 5ul)) : \
 	__ndelay(n))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void use_tsc_delay(void);
 

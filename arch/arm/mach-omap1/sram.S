@@ -9,10 +9,20 @@
  */
 
 #include <linux/linkage.h>
+<<<<<<< HEAD
+
+#include <asm/assembler.h>
+
+#include <mach/hardware.h>
+
+#include "iomap.h"
+
+=======
 #include <asm/assembler.h>
 #include <mach/io.h>
 #include <mach/hardware.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.text
 
 /*

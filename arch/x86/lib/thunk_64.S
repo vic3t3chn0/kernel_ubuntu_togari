@@ -5,6 +5,25 @@
  * Added trace_hardirqs callers - Copyright 2007 Steven Rostedt, Red Hat, Inc.
  * Subject to the GNU public license, v.2. No warranty of any kind.
  */
+<<<<<<< HEAD
+#include <linux/linkage.h>
+#include <asm/dwarf2.h>
+#include <asm/calling.h>
+
+	/* rdi:	arg1 ... normal C conventions. rax is saved/restored. */
+	.macro THUNK name, func, put_ret_addr_in_rdi=0
+	.globl \name
+\name:
+	CFI_STARTPROC
+
+	/* this one pushes 9 elems, the next one would be %rIP */
+	SAVE_ARGS
+
+	.if \put_ret_addr_in_rdi
+	movq_cfi_restore 9*8, rdi
+	.endif
+
+=======
 
 	#include <linux/linkage.h>
 	#include <asm/dwarf2.h>
@@ -17,12 +36,23 @@
 \name:	
 	CFI_STARTPROC
 	SAVE_ARGS
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	call \func
 	jmp  restore
 	CFI_ENDPROC
 	.endm
 
 #ifdef CONFIG_TRACE_IRQFLAGS
+<<<<<<< HEAD
+	THUNK trace_hardirqs_on_thunk,trace_hardirqs_on_caller,1
+	THUNK trace_hardirqs_off_thunk,trace_hardirqs_off_caller,1
+#endif
+
+#ifdef CONFIG_DEBUG_LOCK_ALLOC
+	THUNK lockdep_sys_exit_thunk,lockdep_sys_exit
+#endif
+
+=======
 	/* put return address in rdi (arg1) */
 	.macro thunk_ra name,func
 	.globl \name
@@ -45,10 +75,15 @@
 	thunk lockdep_sys_exit_thunk,lockdep_sys_exit
 #endif
 	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* SAVE_ARGS below is used only for the .cfi directives it contains. */
 	CFI_STARTPROC
 	SAVE_ARGS
 restore:
 	RESTORE_ARGS
+<<<<<<< HEAD
+	ret
+=======
 	ret	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	CFI_ENDPROC

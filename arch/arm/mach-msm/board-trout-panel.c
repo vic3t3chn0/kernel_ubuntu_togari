@@ -1,7 +1,11 @@
 /* linux/arch/arm/mach-msm/board-trout-mddi.c
 ** Author: Brian Swetland <swetland@google.com>
 */
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
@@ -11,6 +15,16 @@
 #include <linux/err.h>
 
 #include <asm/io.h>
+<<<<<<< HEAD
+#include <asm/mach-types.h>
+#include <asm/system_info.h>
+
+#include <mach/msm_fb.h>
+#include <mach/vreg.h>
+#include <mach/proc_comm.h>
+
+#include "board-trout.h"
+=======
 #include <asm/gpio.h>
 #include <asm/mach-types.h>
 
@@ -19,6 +33,7 @@
 
 #include "board-trout.h"
 #include "proc_comm.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "devices.h"
 
 #define TROUT_DEFAULT_BACKLIGHT_BRIGHTNESS 255

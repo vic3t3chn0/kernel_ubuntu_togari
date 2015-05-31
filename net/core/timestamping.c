@@ -21,6 +21,10 @@
 #include <linux/phy.h>
 #include <linux/ptp_classify.h>
 #include <linux/skbuff.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct sock_filter ptp_filter[] = {
 	PTP_FILTER
@@ -72,6 +76,10 @@ void skb_clone_tx_timestamp(struct sk_buff *skb)
 		break;
 	}
 }
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(skb_clone_tx_timestamp);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void skb_complete_tx_timestamp(struct sk_buff *skb,
 			       struct skb_shared_hwtstamps *hwtstamps)
@@ -129,6 +137,10 @@ bool skb_defer_rx_timestamp(struct sk_buff *skb)
 
 	return false;
 }
+<<<<<<< HEAD
+EXPORT_SYMBOL_GPL(skb_defer_rx_timestamp);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void __init skb_timestamping_init(void)
 {

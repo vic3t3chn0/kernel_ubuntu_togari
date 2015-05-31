@@ -2,6 +2,13 @@
 # Makefile for the linux arm-specific parts of the memory manager.
 #
 
+<<<<<<< HEAD
+obj-y				:= dma-mapping.o extable.o fault.o init.o \
+				   iomap.o
+
+obj-$(CONFIG_MMU)		+= fault-armv.o flush.o idmap.o ioremap.o \
+				   mmap.o pgd.o mmu.o vmregion.o
+=======
 obj-y				:= extable.o fault.o \
 				   iomap.o
 
@@ -29,6 +36,7 @@ obj-y				+= mmu.o
 endif
 endif
 endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 ifneq ($(CONFIG_MMU),y)
 obj-y				+= nommu.o
@@ -120,6 +128,12 @@ AFLAGS_proc-v7.o	:=-Wa,-march=armv7-a
 
 obj-$(CONFIG_CACHE_FEROCEON_L2)	+= cache-feroceon-l2.o
 obj-$(CONFIG_CACHE_L2X0)	+= cache-l2x0.o
+<<<<<<< HEAD
+obj-$(CONFIG_CACHE_PL310_ERP)   += cache-pl310-erp.o
+obj-$(CONFIG_CACHE_XSC3L2)	+= cache-xsc3l2.o
+obj-$(CONFIG_CACHE_TAUROS2)	+= cache-tauros2.o
+=======
 obj-$(CONFIG_CACHE_XSC3L2)	+= cache-xsc3l2.o
 obj-$(CONFIG_CACHE_TAUROS2)	+= cache-tauros2.o
 obj-$(CONFIG_CACHE_PERF)	+= cache_perf.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

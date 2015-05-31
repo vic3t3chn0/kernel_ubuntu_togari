@@ -14,12 +14,18 @@
 #ifndef _HWMON_H_
 #define _HWMON_H_
 
+<<<<<<< HEAD
+struct device;
+=======
 #include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct device *hwmon_device_register(struct device *dev);
 
 void hwmon_device_unregister(struct device *dev);
 
+<<<<<<< HEAD
+=======
 struct hwmon_property;
 
 /*
@@ -54,6 +60,7 @@ extern int hwmon_get_value(struct device *hwmon, struct hwmon_property * prop,
 extern int hwmon_set_value(struct device *hwmon, struct hwmon_property * prop,
 			   int value);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Scale user input to sensible values */
 static inline int SENSORS_LIMIT(long value, long low, long high)
 {

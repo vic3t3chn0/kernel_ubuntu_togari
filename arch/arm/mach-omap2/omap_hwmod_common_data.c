@@ -49,6 +49,11 @@ struct omap_hwmod_sysc_fields omap_hwmod_sysc_type2 = {
 	.srst_shift	= SYSC_TYPE2_SOFTRESET_SHIFT,
 };
 
+<<<<<<< HEAD
+struct omap_dss_dispc_dev_attr omap2_3_dss_dispc_dev_attr = {
+	.manager_count		= 2,
+	.has_framedonetv_irq	= 0
+=======
 
 /*
  * omap_hwmod class data
@@ -68,4 +73,5 @@ struct omap_hwmod_class mpu_hwmod_class = {
 
 struct omap_hwmod_class iva_hwmod_class = {
 	.name = "iva"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };

@@ -29,11 +29,19 @@ typedef unsigned long long cycles_t;
 
 #if CHIP_HAS_SPLIT_CYCLE()
 cycles_t get_cycles(void);
+<<<<<<< HEAD
+#define get_cycles_low() __insn_mfspr(SPR_CYCLE_LOW)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 static inline cycles_t get_cycles(void)
 {
 	return __insn_mfspr(SPR_CYCLE);
 }
+<<<<<<< HEAD
+#define get_cycles_low() __insn_mfspr(SPR_CYCLE)   /* just get all 64 bits */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 cycles_t get_clock_rate(void);

@@ -97,10 +97,14 @@ SYSCALL_DEFINE1(rt_sigreturn, struct pt_regs *, regs)
 		goto badframe;
 
 	sigdelsetmask(&set, ~_BLOCKABLE);
+<<<<<<< HEAD
+	set_current_blocked(&set);
+=======
 	spin_lock_irq(&current->sighand->siglock);
 	current->blocked = set;
 	recalc_sigpending();
 	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (restore_sigcontext(regs, &frame->uc.uc_mcontext))
 		goto badframe;
@@ -286,6 +290,9 @@ static int handle_signal(unsigned long sig, siginfo_t *info,
 		 * the work_pending path in the return-to-user code, and
 		 * either way we can re-enable interrupts unconditionally.
 		 */
+<<<<<<< HEAD
+		block_sigmask(ka, sig);
+=======
 		spin_lock_irq(&current->sighand->siglock);
 		sigorsets(&current->blocked,
 			  &current->blocked, &ka->sa.sa_mask);
@@ -293,6 +300,7 @@ static int handle_signal(unsigned long sig, siginfo_t *info,
 			sigaddset(&current->blocked, sig);
 		recalc_sigpending();
 		spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	return ret;

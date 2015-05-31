@@ -51,13 +51,21 @@ static irqreturn_t ipi_call_interrupt(int irq, void *dev_id)
 
 static struct irqaction irq_resched = {
 	.handler	= ipi_resched_interrupt,
+<<<<<<< HEAD
+	.flags		= IRQF_PERCPU,
+=======
 	.flags		= IRQF_DISABLED | IRQF_PERCPU,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name		= "IPI_resched"
 };
 
 static struct irqaction irq_call = {
 	.handler	= ipi_call_interrupt,
+<<<<<<< HEAD
+	.flags		= IRQF_PERCPU,
+=======
 	.flags		= IRQF_DISABLED | IRQF_PERCPU,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name		= "IPI_call"
 };
 

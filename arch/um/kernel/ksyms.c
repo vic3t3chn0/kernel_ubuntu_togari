@@ -3,6 +3,13 @@
  * Licensed under the GPL
  */
 
+<<<<<<< HEAD
+#include <linux/module.h>
+#include "os.h"
+
+EXPORT_SYMBOL(set_signals);
+EXPORT_SYMBOL(get_signals);
+=======
 #include "linux/module.h"
 #include "linux/syscalls.h"
 #include "asm/tlbflush.h"
@@ -30,6 +37,7 @@ EXPORT_SYMBOL(copy_to_user);
 EXPORT_SYMBOL(copy_from_user);
 EXPORT_SYMBOL(clear_user);
 EXPORT_SYMBOL(uml_strdup);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 EXPORT_SYMBOL(os_stat_fd);
 EXPORT_SYMBOL(os_stat_file);
@@ -57,13 +65,19 @@ EXPORT_SYMBOL(os_connect_socket);
 EXPORT_SYMBOL(os_accept_connection);
 EXPORT_SYMBOL(os_rcv_fd);
 EXPORT_SYMBOL(run_helper);
+<<<<<<< HEAD
+=======
 EXPORT_SYMBOL(start_thread);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 EXPORT_SYMBOL(os_major);
 EXPORT_SYMBOL(os_minor);
 EXPORT_SYMBOL(os_makedev);
 
 EXPORT_SYMBOL(add_sigio_fd);
 EXPORT_SYMBOL(ignore_sigio_fd);
+<<<<<<< HEAD
+EXPORT_SYMBOL(sigio_broken);
+=======
 EXPORT_SYMBOL(deactivate_fd);
 EXPORT_SYMBOL(sigio_broken);
 
@@ -78,3 +92,4 @@ extern void __read_lock_failed(rwlock_t *rw);
 EXPORT_SYMBOL(__read_lock_failed);
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

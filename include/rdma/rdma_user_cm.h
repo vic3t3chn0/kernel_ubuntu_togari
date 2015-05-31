@@ -77,7 +77,12 @@ struct rdma_ucm_create_id {
 	__u64 uid;
 	__u64 response;
 	__u16 ps;
+<<<<<<< HEAD
+	__u8  qp_type;
+	__u8  reserved[5];
+=======
 	__u8  reserved[6];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct rdma_ucm_create_id_resp {

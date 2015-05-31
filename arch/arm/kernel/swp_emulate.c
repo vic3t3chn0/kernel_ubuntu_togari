@@ -25,6 +25,10 @@
 #include <linux/syscalls.h>
 #include <linux/perf_event.h>
 
+<<<<<<< HEAD
+#include <asm/opcodes.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/traps.h>
 #include <asm/uaccess.h>
 
@@ -108,12 +112,18 @@ static void set_segfault(struct pt_regs *regs, unsigned long addr)
 {
 	siginfo_t info;
 
+<<<<<<< HEAD
+=======
 	down_read(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (find_vma(current->mm, addr) == NULL)
 		info.si_code = SEGV_MAPERR;
 	else
 		info.si_code = SEGV_ACCERR;
+<<<<<<< HEAD
+=======
 	up_read(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	info.si_signo = SIGSEGV;
 	info.si_errno = 0;
@@ -175,6 +185,60 @@ static int emulate_swpX(unsigned int address, unsigned int *data,
 	return res;
 }
 
+<<<<<<< HEAD
+static int check_condition(struct pt_regs *regs, unsigned int insn)
+{
+	unsigned int base_cond, neg, cond = 0;
+	unsigned int cpsr_z, cpsr_c, cpsr_n, cpsr_v;
+
+	cpsr_n = (regs->ARM_cpsr & PSR_N_BIT) ? 1 : 0;
+	cpsr_z = (regs->ARM_cpsr & PSR_Z_BIT) ? 1 : 0;
+	cpsr_c = (regs->ARM_cpsr & PSR_C_BIT) ? 1 : 0;
+	cpsr_v = (regs->ARM_cpsr & PSR_V_BIT) ? 1 : 0;
+
+	/* Upper 3 bits indicate condition, lower bit incicates negation */
+	base_cond = insn >> 29;
+	neg = insn & BIT(28) ? 1 : 0;
+
+	switch (base_cond) {
+	case 0x0:	/* equal */
+		cond = cpsr_z;
+		break;
+
+	case 0x1:	/* carry set */
+		cond = cpsr_c;
+		break;
+
+	case 0x2:	/* minus / negative */
+		cond = cpsr_n;
+		break;
+
+	case 0x3:	/* overflow */
+		cond = cpsr_v;
+		break;
+
+	case 0x4:	/* unsigned higher */
+		cond = (cpsr_c == 1) && (cpsr_z == 0);
+		break;
+
+	case 0x5:	/* signed greater / equal */
+		cond = (cpsr_n == cpsr_v);
+		break;
+
+	case 0x6:	/* signed greater */
+		cond = (cpsr_z == 0) && (cpsr_n == cpsr_v);
+		break;
+
+	case 0x7:	/* always */
+		cond = 1;
+		break;
+	};
+
+	return cond && !neg;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * swp_handler logs the id of calling process, dissects the instruction, sanity
  * checks the memory location, calls emulate_swpX for the actual operation and
@@ -185,7 +249,26 @@ static int swp_handler(struct pt_regs *regs, unsigned int instr)
 	unsigned int address, destreg, data, type;
 	unsigned int res = 0;
 
+<<<<<<< HEAD
+	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, regs->ARM_pc);
+
+	res = arm_check_condition(instr, regs->ARM_cpsr);
+	switch (res) {
+	case ARM_OPCODE_CONDTEST_PASS:
+		break;
+	case ARM_OPCODE_CONDTEST_FAIL:
+		/* Condition failed - return to next instruction */
+		regs->ARM_pc += 4;
+		return 0;
+	case ARM_OPCODE_CONDTEST_UNCOND:
+		/* If unconditional encoding - not a SWP, undef */
+		return -EFAULT;
+	default:
+		return -EINVAL;
+	}
+=======
 	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, 0, regs, regs->ARM_pc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (current->pid != previous_pid) {
 		pr_debug("\"%s\" (%ld) uses deprecated SWP{B} instruction\n",
@@ -193,6 +276,15 @@ static int swp_handler(struct pt_regs *regs, unsigned int instr)
 		previous_pid = current->pid;
 	}
 
+<<<<<<< HEAD
+	/* Ignore the instruction if it fails its condition code check */
+	if (!check_condition(regs, instr)) {
+		regs->ARM_pc += 4;
+		return 0;
+	}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	address = regs->uregs[EXTRACT_REG_NUM(instr, RN_OFFSET)];
 	data	= regs->uregs[EXTRACT_REG_NUM(instr, RT2_OFFSET)];
 	destreg = EXTRACT_REG_NUM(instr, RT_OFFSET);

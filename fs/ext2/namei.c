@@ -67,6 +67,13 @@ static struct dentry *ext2_lookup(struct inode * dir, struct dentry *dentry, str
 	inode = NULL;
 	if (ino) {
 		inode = ext2_iget(dir->i_sb, ino);
+<<<<<<< HEAD
+		if (inode == ERR_PTR(-ESTALE)) {
+			ext2_error(dir->i_sb, __func__,
+					"deleted inode referenced: %lu",
+					(unsigned long) ino);
+			return ERR_PTR(-EIO);
+=======
 		if (IS_ERR(inode)) {
 			if (PTR_ERR(inode) == -ESTALE) {
 				ext2_error(dir->i_sb, __func__,
@@ -76,6 +83,7 @@ static struct dentry *ext2_lookup(struct inode * dir, struct dentry *dentry, str
 			} else {
 				return ERR_CAST(inode);
 			}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	}
 	return d_splice_alias(inode, dentry);
@@ -98,7 +106,11 @@ struct dentry *ext2_get_parent(struct dentry *child)
  * If the create succeeds, we fill in the inode information
  * with d_instantiate(). 
  */
+<<<<<<< HEAD
+static int ext2_create (struct inode * dir, struct dentry * dentry, umode_t mode, struct nameidata *nd)
+=======
 static int ext2_create (struct inode * dir, struct dentry * dentry, int mode, struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inode *inode;
 
@@ -123,7 +135,11 @@ static int ext2_create (struct inode * dir, struct dentry * dentry, int mode, st
 	return ext2_add_nondir(dentry, inode);
 }
 
+<<<<<<< HEAD
+static int ext2_mknod (struct inode * dir, struct dentry *dentry, umode_t mode, dev_t rdev)
+=======
 static int ext2_mknod (struct inode * dir, struct dentry *dentry, int mode, dev_t rdev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inode * inode;
 	int err;
@@ -199,9 +215,12 @@ static int ext2_link (struct dentry * old_dentry, struct inode * dir,
 	struct inode *inode = old_dentry->d_inode;
 	int err;
 
+<<<<<<< HEAD
+=======
 	if (inode->i_nlink >= EXT2_LINK_MAX)
 		return -EMLINK;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dquot_initialize(dir);
 
 	inode->i_ctime = CURRENT_TIME_SEC;
@@ -218,6 +237,12 @@ static int ext2_link (struct dentry * old_dentry, struct inode * dir,
 	return err;
 }
 
+<<<<<<< HEAD
+static int ext2_mkdir(struct inode * dir, struct dentry * dentry, umode_t mode)
+{
+	struct inode * inode;
+	int err;
+=======
 static int ext2_mkdir(struct inode * dir, struct dentry * dentry, int mode)
 {
 	struct inode * inode;
@@ -225,6 +250,7 @@ static int ext2_mkdir(struct inode * dir, struct dentry * dentry, int mode)
 
 	if (dir->i_nlink >= EXT2_LINK_MAX)
 		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	dquot_initialize(dir);
 
@@ -350,11 +376,14 @@ static int ext2_rename (struct inode * old_dir, struct dentry * old_dentry,
 			drop_nlink(new_inode);
 		inode_dec_link_count(new_inode);
 	} else {
+<<<<<<< HEAD
+=======
 		if (dir_de) {
 			err = -EMLINK;
 			if (new_dir->i_nlink >= EXT2_LINK_MAX)
 				goto out_dir;
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = ext2_add_link(new_dentry, old_inode);
 		if (err)
 			goto out_dir;
@@ -412,7 +441,11 @@ const struct inode_operations ext2_dir_inode_operations = {
 	.removexattr	= generic_removexattr,
 #endif
 	.setattr	= ext2_setattr,
+<<<<<<< HEAD
+	.get_acl	= ext2_get_acl,
+=======
 	.check_acl	= ext2_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 const struct inode_operations ext2_special_inode_operations = {
@@ -423,5 +456,9 @@ const struct inode_operations ext2_special_inode_operations = {
 	.removexattr	= generic_removexattr,
 #endif
 	.setattr	= ext2_setattr,
+<<<<<<< HEAD
+	.get_acl	= ext2_get_acl,
+=======
 	.check_acl	= ext2_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };

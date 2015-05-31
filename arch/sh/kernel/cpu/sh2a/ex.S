@@ -66,6 +66,10 @@ vector	=	0
 	.long	exception_entry0 + vector * 6
 vector	=	vector + 1
 	.endr
+<<<<<<< HEAD
+vector	=	0
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.rept	256
 	.long	exception_entry1 + vector * 6
 vector	=	vector + 1

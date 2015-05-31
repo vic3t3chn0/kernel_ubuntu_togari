@@ -11,6 +11,8 @@
 #ifndef __ASM_ARCH_GPIO_H_
 #define __ASM_ARCH_GPIO_H_
 
+<<<<<<< HEAD
+=======
 #include <linux/kernel.h>
 
 #define KS8695_GPIO_0		0
@@ -35,11 +37,14 @@
  */
 extern int ks8695_gpio_interrupt(unsigned int pin, unsigned int type);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Map IRQ number to GPIO line.
  */
 extern int irq_to_gpio(unsigned int irq);
 
+<<<<<<< HEAD
+=======
 #include <asm-generic/gpio.h>
 
 /* If it turns out that we need to optimise GPIO access for the
@@ -54,4 +59,5 @@ extern int irq_to_gpio(unsigned int irq);
 /* Register the GPIOs */
 extern void ks8695_register_gpios(void);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

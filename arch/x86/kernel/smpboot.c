@@ -50,6 +50,10 @@
 #include <linux/tboot.h>
 #include <linux/stackprotector.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
+#include <linux/cpuidle.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/acpi.h>
 #include <asm/desc.h>
@@ -207,6 +211,26 @@ static void __cpuinit smp_callin(void)
 	 * Need to setup vector mappings before we enable interrupts.
 	 */
 	setup_vector_irq(smp_processor_id());
+<<<<<<< HEAD
+
+	/*
+	 * Save our processor parameters. Note: this information
+	 * is needed for clock calibration.
+	 */
+	smp_store_cpu_info(cpuid);
+
+	/*
+	 * Get our bogomips.
+	 * Update loops_per_jiffy in cpu_data. Previous call to
+	 * smp_store_cpu_info() stored a value that is close but not as
+	 * accurate as the value just calculated.
+	 */
+	calibrate_delay();
+	cpu_data(cpuid).loops_per_jiffy = loops_per_jiffy;
+	pr_debug("Stack at about %p\n", &cpuid);
+
+	/*
+=======
 	/*
 	 * Get our bogomips.
 	 *
@@ -224,6 +248,7 @@ static void __cpuinit smp_callin(void)
 	smp_store_cpu_info(cpuid);
 
 	/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	 * This must be done before setting cpu_online_mask
 	 * or calling notify_cpu_starting.
 	 */
@@ -249,6 +274,10 @@ notrace static void __cpuinit start_secondary(void *unused)
 	 * most necessary things.
 	 */
 	cpu_init();
+<<<<<<< HEAD
+	x86_cpuinit.early_percpu_clock_init();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	preempt_disable();
 	smp_callin();
 
@@ -285,6 +314,8 @@ notrace static void __cpuinit start_secondary(void *unused)
 	per_cpu(cpu_state, smp_processor_id()) = CPU_ONLINE;
 	x86_platform.nmi_init();
 
+<<<<<<< HEAD
+=======
 	/*
 	 * Wait until the cpu which brought this one up marked it
 	 * online before enabling interrupts. If we don't do that then
@@ -298,6 +329,7 @@ notrace static void __cpuinit start_secondary(void *unused)
 	while (!cpumask_test_cpu(smp_processor_id(), cpu_active_mask))
 		cpu_relax();
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* enable local interrupts */
 	local_irq_enable();
 
@@ -438,7 +470,11 @@ static void impress_friends(void)
 void __inquire_remote_apic(int apicid)
 {
 	unsigned i, regs[] = { APIC_ID >> 4, APIC_LVR >> 4, APIC_SPIV >> 4 };
+<<<<<<< HEAD
+	const char * const names[] = { "ID", "VERSION", "SPIV" };
+=======
 	char *names[] = { "ID", "VERSION", "SPIV" };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int timeout;
 	u32 status;
 
@@ -734,8 +770,11 @@ do_rest:
 	 * the targeted processor.
 	 */
 
+<<<<<<< HEAD
+=======
 	printk(KERN_DEBUG "smpboot cpu %d: start_ip = %lx\n", cpu, start_ip);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	atomic_set(&init_deasserted, 0);
 
 	if (get_uv_system_type() != UV_NON_UNIQUE_APIC) {
@@ -785,9 +824,16 @@ do_rest:
 			schedule();
 		}
 
+<<<<<<< HEAD
+		if (cpumask_test_cpu(cpu, cpu_callin_mask)) {
+			print_cpu_msr(&cpu_data(cpu));
+			pr_debug("CPU%d: has booted.\n", cpu);
+		} else {
+=======
 		if (cpumask_test_cpu(cpu, cpu_callin_mask))
 			pr_debug("CPU%d: has booted.\n", cpu);
 		else {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			boot_error = 1;
 			if (*(volatile u32 *)TRAMPOLINE_SYM(trampoline_status)
 			    == 0xA5A5A5A5)
@@ -840,7 +886,12 @@ int __cpuinit native_cpu_up(unsigned int cpu)
 	pr_debug("++++++++++++++++++++=_---CPU UP  %u\n", cpu);
 
 	if (apicid == BAD_APICID || apicid == boot_cpu_physical_apicid ||
+<<<<<<< HEAD
+	    !physid_isset(apicid, phys_cpu_present_map) ||
+	    !apic->apic_id_valid(apicid)) {
+=======
 	    !physid_isset(apicid, phys_cpu_present_map)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		printk(KERN_ERR "%s: bad cpu %d\n", __func__, cpu);
 		return -EINVAL;
 	}
@@ -1142,6 +1193,10 @@ void __init native_smp_cpus_done(unsigned int max_cpus)
 {
 	pr_debug("Boot done.\n");
 
+<<<<<<< HEAD
+	nmi_selftest();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	impress_friends();
 #ifdef CONFIG_X86_IO_APIC
 	setup_ioapic_dest();
@@ -1414,7 +1469,12 @@ void native_play_dead(void)
 	tboot_shutdown(TB_SHUTDOWN_WFS);
 
 	mwait_play_dead();	/* Only returns on failure */
+<<<<<<< HEAD
+	if (cpuidle_play_dead())
+		hlt_play_dead();
+=======
 	hlt_play_dead();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #else /* ... !CONFIG_HOTPLUG_CPU */

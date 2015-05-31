@@ -8,6 +8,9 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
+extern void __init at91sam9_ioremap_smc(int id, u32 addr);
+=======
 struct sam9_smc_config {
 	/* Setup register */
 	u8 ncs_read_setup;
@@ -31,3 +34,4 @@ struct sam9_smc_config {
 };
 
 extern void __init sam9_smc_configure(int cs, struct sam9_smc_config* config);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

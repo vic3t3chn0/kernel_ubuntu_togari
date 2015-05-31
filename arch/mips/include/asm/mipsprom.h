@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+#ifndef __ASM_MIPSPROM_H
+#define __ASM_MIPSPROM_H
+=======
 #ifndef __ASM_MIPS_PROM_H
 #define __ASM_MIPS_PROM_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define PROM_RESET		0
 #define PROM_EXEC		1
@@ -73,4 +78,8 @@
 
 extern char *prom_getenv(char *);
 
+<<<<<<< HEAD
+#endif /* __ASM_MIPSPROM_H */
+=======
 #endif /* __ASM_MIPS_PROM_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

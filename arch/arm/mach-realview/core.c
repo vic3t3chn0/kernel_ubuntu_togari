@@ -21,7 +21,11 @@
 #include <linux/init.h>
 #include <linux/platform_device.h>
 #include <linux/dma-mapping.h>
+<<<<<<< HEAD
+#include <linux/device.h>
+=======
 #include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/interrupt.h>
 #include <linux/amba/bus.h>
 #include <linux/amba/clcd.h>
@@ -33,7 +37,10 @@
 #include <linux/clkdev.h>
 #include <linux/mtd/physmap.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/hardware.h>
 #include <asm/irq.h>
 #include <asm/leds.h>
@@ -517,8 +524,12 @@ void __init realview_timer_init(unsigned int timer_irq)
 /*
  * Setup the memory banks.
  */
+<<<<<<< HEAD
+void realview_fixup(struct tag *tags, char **from, struct meminfo *meminfo)
+=======
 void realview_fixup(struct machine_desc *mdesc, struct tag *tags, char **from,
 		    struct meminfo *meminfo)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/*
 	 * Most RealView platforms have 512MB contiguous RAM at 0x70000000.

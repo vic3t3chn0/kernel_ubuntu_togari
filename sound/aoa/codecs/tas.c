@@ -1026,6 +1026,9 @@ static struct i2c_driver tas_driver = {
 	.id_table = tas_i2c_id,
 };
 
+<<<<<<< HEAD
+module_i2c_driver(tas_driver);
+=======
 static int __init tas_init(void)
 {
 	return i2c_add_driver(&tas_driver);
@@ -1038,3 +1041,4 @@ static void __exit tas_exit(void)
 
 module_init(tas_init);
 module_exit(tas_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

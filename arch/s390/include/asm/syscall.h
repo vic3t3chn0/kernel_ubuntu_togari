@@ -13,6 +13,10 @@
 #define _ASM_SYSCALL_H	1
 
 #include <linux/sched.h>
+<<<<<<< HEAD
+#include <linux/err.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/ptrace.h>
 
 /*
@@ -25,7 +29,12 @@ extern const unsigned int sys_call_table[];
 static inline long syscall_get_nr(struct task_struct *task,
 				  struct pt_regs *regs)
 {
+<<<<<<< HEAD
+	return test_tsk_thread_flag(task, TIF_SYSCALL) ?
+		(regs->int_code & 0xffff) : -1;
+=======
 	return regs->svcnr ? regs->svcnr : -1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline void syscall_rollback(struct task_struct *task,
@@ -37,7 +46,11 @@ static inline void syscall_rollback(struct task_struct *task,
 static inline long syscall_get_error(struct task_struct *task,
 				     struct pt_regs *regs)
 {
+<<<<<<< HEAD
+	return IS_ERR_VALUE(regs->gprs[2]) ? regs->gprs[2] : 0;
+=======
 	return (regs->gprs[2] >= -4096UL) ? -regs->gprs[2] : 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline long syscall_get_return_value(struct task_struct *task,

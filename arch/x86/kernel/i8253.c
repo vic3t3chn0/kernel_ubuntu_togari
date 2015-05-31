@@ -3,6 +3,16 @@
  *
  */
 #include <linux/clockchips.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+#include <linux/timex.h>
+#include <linux/i8253.h>
+
+#include <asm/hpet.h>
+#include <asm/time.h>
+#include <asm/smp.h>
+
+=======
 #include <linux/interrupt.h>
 #include <linux/spinlock.h>
 #include <linux/jiffies.h>
@@ -19,12 +29,19 @@
 DEFINE_RAW_SPINLOCK(i8253_lock);
 EXPORT_SYMBOL(i8253_lock);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * HPET replaces the PIT, when enabled. So we need to know, which of
  * the two timers is used
  */
 struct clock_event_device *global_clock_event;
 
+<<<<<<< HEAD
+void __init setup_pit_timer(void)
+{
+	clockevent_i8253_init(true);
+	global_clock_event = &i8253_clockevent;
+=======
 /*
  * Initialize the PIT timer.
  *
@@ -110,6 +127,7 @@ void __init setup_pit_timer(void)
 
 	clockevents_config_and_register(&pit_ce, CLOCK_TICK_RATE, 0xF, 0x7FFF);
 	global_clock_event = &pit_ce;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #ifndef CONFIG_X86_64
@@ -123,7 +141,11 @@ static int __init init_pit_clocksource(void)
 	  * - when local APIC timer is active (PIT is switched off)
 	  */
 	if (num_possible_cpus() > 1 || is_hpet_enabled() ||
+<<<<<<< HEAD
+	    i8253_clockevent.mode != CLOCK_EVT_MODE_PERIODIC)
+=======
 	    pit_ce.mode != CLOCK_EVT_MODE_PERIODIC)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 0;
 
 	return clocksource_i8253_init();

@@ -111,7 +111,12 @@ struct compat_statfs {
 	int		f_bavail;
 	compat_fsid_t	f_fsid;
 	int		f_namelen;
+<<<<<<< HEAD
+	int		f_flags;
+	int		f_spare[5];
+=======
 	int		f_spare[6];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #define COMPAT_RLIM_INFINITY	0x7fffffffUL

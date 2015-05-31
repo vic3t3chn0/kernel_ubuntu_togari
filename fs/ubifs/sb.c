@@ -247,7 +247,11 @@ static int create_default_filesystem(struct ubifs_info *c)
 	mst->total_dirty = cpu_to_le64(tmp64);
 
 	/*  The indexing LEB does not contribute to dark space */
+<<<<<<< HEAD
+	tmp64 = ((long long)(c->main_lebs - 1) * c->dark_wm);
+=======
 	tmp64 = (c->main_lebs - 1) * c->dark_wm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mst->total_dark = cpu_to_le64(tmp64);
 
 	mst->total_used = cpu_to_le64(UBIFS_INO_NODE_SZ);
@@ -410,6 +414,25 @@ static int validate_sb(struct ubifs_info *c, struct ubifs_sb_node *sup)
 	}
 
 	if (c->main_lebs < UBIFS_MIN_MAIN_LEBS) {
+<<<<<<< HEAD
+		ubifs_err("too few main LEBs count %d, must be at least %d",
+			  c->main_lebs, UBIFS_MIN_MAIN_LEBS);
+		goto failed;
+	}
+
+	max_bytes = (long long)c->leb_size * UBIFS_MIN_BUD_LEBS;
+	if (c->max_bud_bytes < max_bytes) {
+		ubifs_err("too small journal (%lld bytes), must be at least "
+			  "%lld bytes",  c->max_bud_bytes, max_bytes);
+		goto failed;
+	}
+
+	max_bytes = (long long)c->leb_size * c->main_lebs;
+	if (c->max_bud_bytes > max_bytes) {
+		ubifs_err("too large journal size (%lld bytes), only %lld bytes"
+			  "available in the main area",
+			  c->max_bud_bytes, max_bytes);
+=======
 		err = 7;
 		goto failed;
 	}
@@ -417,6 +440,7 @@ static int validate_sb(struct ubifs_info *c, struct ubifs_sb_node *sup)
 	if (c->max_bud_bytes < (long long)c->leb_size * UBIFS_MIN_BUD_LEBS ||
 	    c->max_bud_bytes > (long long)c->leb_size * c->main_lebs) {
 		err = 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto failed;
 	}
 
@@ -450,7 +474,10 @@ static int validate_sb(struct ubifs_info *c, struct ubifs_sb_node *sup)
 		goto failed;
 	}
 
+<<<<<<< HEAD
+=======
 	max_bytes = c->main_lebs * (long long)c->leb_size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (c->rp_size < 0 || max_bytes < c->rp_size) {
 		err = 14;
 		goto failed;
@@ -674,6 +701,17 @@ static int fixup_leb(struct ubifs_info *c, int lnum, int len)
 
 	if (len == 0) {
 		dbg_mnt("unmap empty LEB %d", lnum);
+<<<<<<< HEAD
+		return ubifs_leb_unmap(c, lnum);
+	}
+
+	dbg_mnt("fixup LEB %d, data len %d", lnum, len);
+	err = ubifs_leb_read(c, lnum, c->sbuf, 0, len, 1);
+	if (err)
+		return err;
+
+	return ubifs_leb_change(c, lnum, c->sbuf, len, UBI_UNKNOWN);
+=======
 		return ubi_leb_unmap(c->ubi, lnum);
 	}
 
@@ -683,6 +721,7 @@ static int fixup_leb(struct ubifs_info *c, int lnum, int len)
 		return err;
 
 	return ubi_leb_change(c->ubi, lnum, c->sbuf, len, UBI_UNKNOWN);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**
@@ -715,12 +754,17 @@ static int fixup_free_space(struct ubifs_info *c)
 		lnum = ubifs_next_log_lnum(c, lnum);
 	}
 
+<<<<<<< HEAD
+	/* Fixup the current log head */
+	err = fixup_leb(c, c->lhead_lnum, c->lhead_offs);
+=======
 	/*
 	 * Fixup the log head which contains the only a CS node at the
 	 * beginning.
 	 */
 	err = fixup_leb(c, c->lhead_lnum,
 			ALIGN(UBIFS_CS_NODE_SZ, c->min_io_size));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err)
 		goto out;
 

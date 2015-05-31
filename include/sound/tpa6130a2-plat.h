@@ -23,6 +23,9 @@
 #ifndef TPA6130A2_PLAT_H
 #define TPA6130A2_PLAT_H
 
+<<<<<<< HEAD
+struct tpa6130a2_platform_data {
+=======
 enum tpa_model {
 	TPA6130A2,
 	TPA6140A2,
@@ -30,6 +33,7 @@ enum tpa_model {
 
 struct tpa6130a2_platform_data {
 	enum tpa_model id;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int power_gpio;
 };
 

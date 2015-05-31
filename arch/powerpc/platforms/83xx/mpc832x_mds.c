@@ -26,8 +26,12 @@
 #include <linux/of_platform.h>
 #include <linux/of_device.h>
 
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/system.h>
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/io.h>
 #include <asm/machdep.h>
@@ -68,6 +72,13 @@ static void __init mpc832x_sys_setup_arch(void)
 		struct resource res;
 
 		of_address_to_resource(np, 0, &res);
+<<<<<<< HEAD
+		bcsr_regs = ioremap(res.start, resource_size(&res));
+		of_node_put(np);
+	}
+
+	mpc83xx_setup_pci();
+=======
 		bcsr_regs = ioremap(res.start, res.end - res.start +1);
 		of_node_put(np);
 	}
@@ -76,6 +87,7 @@ static void __init mpc832x_sys_setup_arch(void)
 	for_each_compatible_node(np, "pci", "fsl,mpc8349-pci")
 		mpc83xx_add_bridge(np);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_QUICC_ENGINE
 	qe_reset();
@@ -101,6 +113,9 @@ static void __init mpc832x_sys_setup_arch(void)
 #endif				/* CONFIG_QUICC_ENGINE */
 }
 
+<<<<<<< HEAD
+machine_device_initcall(mpc832x_mds, mpc83xx_declare_of_platform_devices);
+=======
 static struct of_device_id mpc832x_ids[] = {
 	{ .type = "soc", },
 	{ .compatible = "soc", },
@@ -146,6 +161,7 @@ static void __init mpc832x_sys_init_IRQ(void)
 	of_node_put(np);
 #endif				/* CONFIG_QUICC_ENGINE */
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Called very early, MMU is off, device-tree isn't unflattened
@@ -161,7 +177,11 @@ define_machine(mpc832x_mds) {
 	.name 		= "MPC832x MDS",
 	.probe 		= mpc832x_sys_probe,
 	.setup_arch 	= mpc832x_sys_setup_arch,
+<<<<<<< HEAD
+	.init_IRQ	= mpc83xx_ipic_and_qe_init_IRQ,
+=======
 	.init_IRQ 	= mpc832x_sys_init_IRQ,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.get_irq 	= ipic_get_irq,
 	.restart 	= mpc83xx_restart,
 	.time_init 	= mpc83xx_time_init,

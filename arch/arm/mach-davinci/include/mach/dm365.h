@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty, remove once unused */
+=======
 /*
  * Copyright (C) 2009 Texas Instruments Incorporated
  *
@@ -50,3 +53,4 @@ void dm365_init_spi0(unsigned chipselect_mask,
 
 void dm365_set_vpfe_config(struct vpfe_config *cfg);
 #endif /* __ASM_ARCH_DM365_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -12,6 +12,10 @@
 
 #include <linux/clk.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <sound/soc.h>
 #include <sound/pcm_params.h>
@@ -333,14 +337,22 @@ static int spdif_resume(struct snd_soc_dai *cpu_dai)
 #define spdif_resume NULL
 #endif
 
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops spdif_dai_ops = {
+=======
 static struct snd_soc_dai_ops spdif_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.set_sysclk	= spdif_set_sysclk,
 	.trigger	= spdif_trigger,
 	.hw_params	= spdif_hw_params,
 	.shutdown	= spdif_shutdown,
 };
 
+<<<<<<< HEAD
+static struct snd_soc_dai_driver samsung_spdif_dai = {
+=======
 struct snd_soc_dai_driver samsung_spdif_dai = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name = "samsung-spdif",
 	.playback = {
 		.stream_name = "S/PDIF Playback",
@@ -393,7 +405,11 @@ static __devinit int spdif_probe(struct platform_device *pdev)
 	spdif->pclk = clk_get(&pdev->dev, "spdif");
 	if (IS_ERR(spdif->pclk)) {
 		dev_err(&pdev->dev, "failed to get peri-clock\n");
+<<<<<<< HEAD
+		ret = -ENOENT;
+=======
 		ret = PTR_ERR(spdif->pclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto err0;
 	}
 	clk_enable(spdif->pclk);
@@ -401,7 +417,11 @@ static __devinit int spdif_probe(struct platform_device *pdev)
 	spdif->sclk = clk_get(&pdev->dev, "sclk_spdif");
 	if (IS_ERR(spdif->sclk)) {
 		dev_err(&pdev->dev, "failed to get internal source clock\n");
+<<<<<<< HEAD
+		ret = -ENOENT;
+=======
 		ret = PTR_ERR(spdif->sclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto err1;
 	}
 	clk_enable(spdif->sclk);
@@ -475,13 +495,20 @@ static __devexit int spdif_remove(struct platform_device *pdev)
 
 static struct platform_driver samsung_spdif_driver = {
 	.probe	= spdif_probe,
+<<<<<<< HEAD
+	.remove	= __devexit_p(spdif_remove),
+=======
 	.remove	= spdif_remove,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.driver	= {
 		.name	= "samsung-spdif",
 		.owner	= THIS_MODULE,
 	},
 };
 
+<<<<<<< HEAD
+module_platform_driver(samsung_spdif_driver);
+=======
 static int __init spdif_init(void)
 {
 	return platform_driver_register(&samsung_spdif_driver);
@@ -493,6 +520,7 @@ static void __exit spdif_exit(void)
 	platform_driver_unregister(&samsung_spdif_driver);
 }
 module_exit(spdif_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_AUTHOR("Seungwhan Youn, <sw.youn@samsung.com>");
 MODULE_DESCRIPTION("Samsung S/PDIF Controller Driver");

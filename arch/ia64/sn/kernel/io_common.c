@@ -7,6 +7,10 @@
  */
 
 #include <linux/bootmem.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <asm/sn/types.h>
 #include <asm/sn/addrs.h>

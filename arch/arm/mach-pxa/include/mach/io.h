@@ -6,8 +6,11 @@
 #ifndef __ASM_ARM_ARCH_IO_H
 #define __ASM_ARM_ARCH_IO_H
 
+<<<<<<< HEAD
+=======
 #include <mach/hardware.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IO_SPACE_LIMIT 0xffffffff
 
 /*
@@ -15,6 +18,9 @@
  * drivers out there that might just work if we fake them...
  */
 #define __io(a)		__typesafe_io(a)
+<<<<<<< HEAD
+=======
 #define __mem_pci(a)	(a)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

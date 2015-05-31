@@ -12,6 +12,15 @@
 #include <linux/param.h>
 #include <linux/init.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+#include <linux/platform_device.h>
+#include <asm/machdep.h>
+#include <asm/coldfire.h>
+#include <asm/mcfsim.h>
+
+/***************************************************************************/
+
+=======
 #include <linux/spi/spi.h>
 #include <linux/gpio.h>
 #include <asm/machdep.h>
@@ -40,6 +49,7 @@ static struct platform_device m5249_uart = {
 	.dev.platform_data	= m5249_uart_platform,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_M5249C3
 
 static struct resource m5249_smc91x_resources[] = {
@@ -64,6 +74,17 @@ static struct platform_device m5249_smc91x = {
 
 #endif /* CONFIG_M5249C3 */
 
+<<<<<<< HEAD
+static struct platform_device *m5249_devices[] __initdata = {
+#ifdef CONFIG_M5249C3
+	&m5249_smc91x,
+#endif
+};
+
+/***************************************************************************/
+
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+=======
 #if defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE)
 static struct resource m5249_qspi_resources[] = {
 	{
@@ -211,6 +232,7 @@ static struct platform_device m5249_qspi = {
 	.resource		= m5249_qspi_resources,
 	.dev.platform_data	= &m5249_qspi_data,
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void __init m5249_qspi_init(void)
 {
@@ -219,6 +241,10 @@ static void __init m5249_qspi_init(void)
 	       MCF_MBAR + MCFSIM_QSPIICR);
 	mcf_mapirq2imr(MCF_IRQ_QSPI, MCFINTC_QSPI);
 }
+<<<<<<< HEAD
+
+#endif /* IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI) */
+=======
 #endif /* defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE) */
 
 
@@ -255,6 +281,7 @@ static void __init m5249_uarts_init(void)
 	for (line = 0; (line < nrlines); line++)
 		m5249_uart_init_line(line, m5249_uart_platform[line].irq);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /***************************************************************************/
 
@@ -276,6 +303,16 @@ static void __init m5249_smc91x_init(void)
 
 /***************************************************************************/
 
+<<<<<<< HEAD
+void __init config_BSP(char *commandp, int size)
+{
+	mach_sched_init = hw_timer_init;
+
+#ifdef CONFIG_M5249C3
+	m5249_smc91x_init();
+#endif
+#if IS_ENABLED(CONFIG_SPI_COLDFIRE_QSPI)
+=======
 static void __init m5249_timers_init(void)
 {
 	/* Timer1 is always used as system timer */
@@ -313,6 +350,7 @@ void __init config_BSP(char *commandp, int size)
 	m5249_smc91x_init();
 #endif
 #if defined(CONFIG_SPI_COLDFIRE_QSPI) || defined(CONFIG_SPI_COLDFIRE_QSPI_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	m5249_qspi_init();
 #endif
 }

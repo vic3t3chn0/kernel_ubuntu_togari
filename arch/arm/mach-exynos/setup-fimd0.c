@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* linux/arch/arm/mach-exynos4/setup-fimd0.c
+=======
 /* linux/arch/arm/mach-exynos/setup-fimd0.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2009-2011 Samsung Electronics Co., Ltd.
  *             http://www.samsung.com
@@ -10,6 +14,25 @@
  * published by the Free Software Foundation.
 */
 
+<<<<<<< HEAD
+#include <linux/fb.h>
+#include <linux/gpio.h>
+
+#include <plat/gpio-cfg.h>
+#include <plat/regs-fb-v4.h>
+
+#include <mach/map.h>
+
+void exynos4_fimd0_gpio_setup_24bpp(void)
+{
+	unsigned int reg;
+
+	s3c_gpio_cfgrange_nopull(EXYNOS4_GPF0(0), 8, S3C_GPIO_SFN(2));
+	s3c_gpio_cfgrange_nopull(EXYNOS4_GPF1(0), 8, S3C_GPIO_SFN(2));
+	s3c_gpio_cfgrange_nopull(EXYNOS4_GPF2(0), 8, S3C_GPIO_SFN(2));
+	s3c_gpio_cfgrange_nopull(EXYNOS4_GPF3(0), 4, S3C_GPIO_SFN(2));
+
+=======
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/fb.h>
@@ -52,6 +75,7 @@ void exynos4_fimd0_gpio_setup_24bpp(void)
 	exynos4_fimd0_cfg_gpios(EXYNOS4_GPF2(0), 8, S3C_GPIO_SFN(2), S5P_GPIO_DRVSTR_LV1);
 	exynos4_fimd0_cfg_gpios(EXYNOS4_GPF3(0), 4, S3C_GPIO_SFN(2), S5P_GPIO_DRVSTR_LV1);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Set DISPLAY_CONTROL register for Display path selection.
 	 *
@@ -62,6 +86,11 @@ void exynos4_fimd0_gpio_setup_24bpp(void)
 	 *  10 | FIMD : selected
 	 *  11 | FIMD
 	 */
+<<<<<<< HEAD
+	reg = __raw_readl(S3C_VA_SYS + 0x0210);
+	reg |= (1 << 1);
+	__raw_writel(reg, S3C_VA_SYS + 0x0210);
+=======
 #ifdef CONFIG_FB_S5P_MDNIE
 	reg = __raw_readl(S3C_VA_SYS + 0x0210);
 	reg &= ~(1<<13);
@@ -116,4 +145,5 @@ int __init exynos4_fimd0_setup_clock(struct device *dev, const char *parent,
 	clk_put(clk_parent);
 
 	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

@@ -26,8 +26,13 @@
 #include <linux/tty.h>
 #include <linux/serial_core.h>
 #include <linux/of_platform.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+
+=======
 
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/prom.h>
@@ -147,14 +152,22 @@ static void __init holly_setup_arch(void)
 static void __init holly_init_IRQ(void)
 {
 	struct mpic *mpic;
+<<<<<<< HEAD
+=======
 	phys_addr_t mpic_paddr = 0;
 	struct device_node *tsi_pic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_PCI
 	unsigned int cascade_pci_irq;
 	struct device_node *tsi_pci;
 	struct device_node *cascade_node = NULL;
 #endif
 
+<<<<<<< HEAD
+	mpic = mpic_alloc(NULL, 0, MPIC_BIG_ENDIAN |
+			MPIC_SPV_EOI | MPIC_NO_PTHROU_DIS | MPIC_REGSET_TSI108,
+			24, 0,
+=======
 	tsi_pic = of_find_node_by_type(NULL, "open-pic");
 	if (tsi_pic) {
 		unsigned int size;
@@ -174,11 +187,16 @@ static void __init holly_init_IRQ(void)
 			MPIC_SPV_EOI | MPIC_NO_PTHROU_DIS | MPIC_REGSET_TSI108,
 			24,
 			NR_IRQS-4, /* num_sources used */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			"Tsi108_PIC");
 
 	BUG_ON(mpic == NULL);
 
+<<<<<<< HEAD
+	mpic_assign_isu(mpic, 0, mpic->paddr + 0x100);
+=======
 	mpic_assign_isu(mpic, 0, mpic_paddr + 0x100);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	mpic_init(mpic);
 
@@ -203,7 +221,10 @@ static void __init holly_init_IRQ(void)
 #endif
 	/* Configure MPIC outputs to CPU0 */
 	tsi108_write_reg(TSI108_MPIC_OFFSET + 0x30c, 0);
+<<<<<<< HEAD
+=======
 	of_node_put(tsi_pic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void holly_show_cpuinfo(struct seq_file *m)

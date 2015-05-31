@@ -12,6 +12,10 @@
 #include "bitops.h"
                 .text
 
+<<<<<<< HEAD
+bitop	_clear_bit, bic
+=======
 ENTRY(_clear_bit)
 	bitop	bic
 ENDPROC(_clear_bit)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

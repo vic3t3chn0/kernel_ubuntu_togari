@@ -22,6 +22,11 @@
 #define DEBUGP(fmt...)
 #endif
 
+<<<<<<< HEAD
+/* TODO: At least one of apply_relocate or apply_relocate_add must be
+ * implemented in order to get working module support.
+ */
+=======
 void *module_alloc(unsigned long size)
 {
 	if (size == 0)
@@ -76,3 +81,4 @@ int module_finalize(const Elf_Ehdr *hdr,
 void module_arch_cleanup(struct module *mod)
 {
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

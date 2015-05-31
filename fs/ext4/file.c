@@ -181,8 +181,13 @@ static int ext4_file_open(struct inode * inode, struct file * filp)
 		path.dentry = mnt->mnt_root;
 		cp = d_path(&path, buf, sizeof(buf));
 		if (!IS_ERR(cp)) {
+<<<<<<< HEAD
+			strlcpy(sbi->s_es->s_last_mounted, cp,
+				sizeof(sbi->s_es->s_last_mounted));
+=======
 			memcpy(sbi->s_es->s_last_mounted, cp,
 			       sizeof(sbi->s_es->s_last_mounted));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			ext4_mark_super_dirty(sb);
 		}
 	}
@@ -224,6 +229,10 @@ loff_t ext4_llseek(struct file *file, loff_t offset, int origin)
 		maxbytes = EXT4_SB(inode->i_sb)->s_bitmap_maxbytes;
 	else
 		maxbytes = inode->i_sb->s_maxbytes;
+<<<<<<< HEAD
+
+	return generic_file_llseek_size(file, offset, origin, maxbytes);
+=======
 	mutex_lock(&inode->i_mutex);
 	switch (origin) {
 	case SEEK_END:
@@ -250,6 +259,7 @@ loff_t ext4_llseek(struct file *file, loff_t offset, int origin)
 	mutex_unlock(&inode->i_mutex);
 
 	return offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 const struct file_operations ext4_file_operations = {
@@ -280,7 +290,11 @@ const struct inode_operations ext4_file_inode_operations = {
 	.listxattr	= ext4_listxattr,
 	.removexattr	= generic_removexattr,
 #endif
+<<<<<<< HEAD
+	.get_acl	= ext4_get_acl,
+=======
 	.check_acl	= ext4_check_acl,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.fiemap		= ext4_fiemap,
 };
 

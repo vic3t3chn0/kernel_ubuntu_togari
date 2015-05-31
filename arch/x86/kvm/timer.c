@@ -15,12 +15,22 @@
 #include <linux/kvm_host.h>
 #include <linux/kvm.h>
 #include <linux/hrtimer.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include "kvm_timer.h"
+
+enum hrtimer_restart kvm_timer_fn(struct hrtimer *data)
+{
+	struct kvm_timer *ktimer = container_of(data, struct kvm_timer, timer);
+	struct kvm_vcpu *vcpu = ktimer->vcpu;
+=======
 #include <asm/atomic.h>
 #include "kvm_timer.h"
 
 static int __kvm_timer_fn(struct kvm_vcpu *vcpu, struct kvm_timer *ktimer)
 {
 	int restart_timer = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	wait_queue_head_t *q = &vcpu->wq;
 
 	/*
@@ -40,6 +50,12 @@ static int __kvm_timer_fn(struct kvm_vcpu *vcpu, struct kvm_timer *ktimer)
 
 	if (ktimer->t_ops->is_periodic(ktimer)) {
 		hrtimer_add_expires_ns(&ktimer->timer, ktimer->period);
+<<<<<<< HEAD
+		return HRTIMER_RESTART;
+	} else
+		return HRTIMER_NORESTART;
+}
+=======
 		restart_timer = 1;
 	}
 
@@ -63,3 +79,4 @@ enum hrtimer_restart kvm_timer_fn(struct hrtimer *data)
 		return HRTIMER_NORESTART;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

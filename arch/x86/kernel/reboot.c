@@ -39,6 +39,17 @@ static int reboot_mode;
 enum reboot_type reboot_type = BOOT_ACPI;
 int reboot_force;
 
+<<<<<<< HEAD
+/* This variable is used privately to keep track of whether or not
+ * reboot_type is still set to its default value (i.e., reboot= hasn't
+ * been set on the command line).  This is needed so that we can
+ * suppress DMI scanning for reboot quirks.  Without it, it's
+ * impossible to override a faulty reboot quirk without recompiling.
+ */
+static int reboot_default = 1;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_X86_32) && defined(CONFIG_SMP)
 static int reboot_cpu = -1;
 #endif
@@ -67,6 +78,15 @@ bool port_cf9_safe = false;
 static int __init reboot_setup(char *str)
 {
 	for (;;) {
+<<<<<<< HEAD
+		/* Having anything passed on the command line via
+		 * reboot= will cause us to disable DMI checking
+		 * below.
+		 */
+		reboot_default = 0;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (*str) {
 		case 'w':
 			reboot_mode = 0x1234;
@@ -295,6 +315,8 @@ static struct dmi_system_id __initdata reboot_dmi_table[] = {
 			DMI_MATCH(DMI_BOARD_NAME, "P4S800"),
 		},
 	},
+<<<<<<< HEAD
+=======
 	{	/* Handle problems with rebooting on VersaLogic Menlow boards */
 		.callback = set_bios_reboot,
 		.ident = "VersaLogic Menlow based board",
@@ -303,6 +325,7 @@ static struct dmi_system_id __initdata reboot_dmi_table[] = {
 			DMI_MATCH(DMI_BOARD_NAME, "VersaLogic Menlow board"),
 		},
 	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{ /* Handle reboot issue on Acer Aspire one */
 		.callback = set_kbd_reboot,
 		.ident = "Acer Aspire One A110",
@@ -316,7 +339,16 @@ static struct dmi_system_id __initdata reboot_dmi_table[] = {
 
 static int __init reboot_init(void)
 {
+<<<<<<< HEAD
+	/* Only do the DMI check if reboot_type hasn't been overridden
+	 * on the command line
+	 */
+	if (reboot_default) {
+		dmi_check_system(reboot_dmi_table);
+	}
+=======
 	dmi_check_system(reboot_dmi_table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 core_initcall(reboot_init);
@@ -452,11 +484,18 @@ static struct dmi_system_id __initdata pci_reboot_dmi_table[] = {
 			DMI_MATCH(DMI_PRODUCT_NAME, "Latitude E6420"),
 		},
 	},
+<<<<<<< HEAD
+	{	/* Handle problems with rebooting on the OptiPlex 990. */
+=======
 	{	/* Handle problems with rebooting on the Precision M6600. */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.callback = set_pci_reboot,
 		.ident = "Dell OptiPlex 990",
 		.matches = {
 			DMI_MATCH(DMI_SYS_VENDOR, "Dell Inc."),
+<<<<<<< HEAD
+			DMI_MATCH(DMI_PRODUCT_NAME, "OptiPlex 990"),
+=======
 			DMI_MATCH(DMI_PRODUCT_NAME, "Precision M6600"),
 		},
 	},
@@ -474,6 +513,7 @@ static struct dmi_system_id __initdata pci_reboot_dmi_table[] = {
 		.matches = {
 			DMI_MATCH(DMI_SYS_VENDOR, "Dell"),
 			DMI_MATCH(DMI_PRODUCT_NAME, "C6100"),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		},
 	},
 	{ }
@@ -481,7 +521,16 @@ static struct dmi_system_id __initdata pci_reboot_dmi_table[] = {
 
 static int __init pci_reboot_init(void)
 {
+<<<<<<< HEAD
+	/* Only do the DMI check if reboot_type hasn't been overridden
+	 * on the command line
+	 */
+	if (reboot_default) {
+		dmi_check_system(pci_reboot_dmi_table);
+	}
+=======
 	dmi_check_system(pci_reboot_dmi_table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 core_initcall(pci_reboot_init);
@@ -497,7 +546,11 @@ static inline void kb_wait(void)
 	}
 }
 
+<<<<<<< HEAD
+static void vmxoff_nmi(int cpu, struct pt_regs *regs)
+=======
 static void vmxoff_nmi(int cpu, struct die_args *args)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	cpu_emergency_vmxoff();
 }
@@ -769,6 +822,12 @@ static nmi_shootdown_cb shootdown_callback;
 
 static atomic_t waiting_for_crash_ipi;
 
+<<<<<<< HEAD
+static int crash_nmi_callback(unsigned int val, struct pt_regs *regs)
+{
+	int cpu;
+
+=======
 static int crash_nmi_callback(struct notifier_block *self,
 			unsigned long val, void *data)
 {
@@ -777,6 +836,7 @@ static int crash_nmi_callback(struct notifier_block *self,
 	if (val != DIE_NMI)
 		return NOTIFY_OK;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	cpu = raw_smp_processor_id();
 
 	/* Don't do anything if this handler is invoked on crashing cpu.
@@ -784,10 +844,17 @@ static int crash_nmi_callback(struct notifier_block *self,
 	 * an NMI if system was initially booted with nmi_watchdog parameter.
 	 */
 	if (cpu == crashing_cpu)
+<<<<<<< HEAD
+		return NMI_HANDLED;
+	local_irq_disable();
+
+	shootdown_callback(cpu, regs);
+=======
 		return NOTIFY_STOP;
 	local_irq_disable();
 
 	shootdown_callback(cpu, (struct die_args *)data);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	atomic_dec(&waiting_for_crash_ipi);
 	/* Assume hlt works */
@@ -795,7 +862,11 @@ static int crash_nmi_callback(struct notifier_block *self,
 	for (;;)
 		cpu_relax();
 
+<<<<<<< HEAD
+	return NMI_HANDLED;
+=======
 	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void smp_send_nmi_allbutself(void)
@@ -803,12 +874,15 @@ static void smp_send_nmi_allbutself(void)
 	apic->send_IPI_allbutself(NMI_VECTOR);
 }
 
+<<<<<<< HEAD
+=======
 static struct notifier_block crash_nmi_nb = {
 	.notifier_call = crash_nmi_callback,
 	/* we want to be the first one called */
 	.priority = NMI_LOCAL_HIGH_PRIOR+1,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Halt all other CPUs, calling the specified function on each of them
  *
  * This function can be used to halt all other CPUs on crash
@@ -827,7 +901,12 @@ void nmi_shootdown_cpus(nmi_shootdown_cb callback)
 
 	atomic_set(&waiting_for_crash_ipi, num_online_cpus() - 1);
 	/* Would it be better to replace the trap vector here? */
+<<<<<<< HEAD
+	if (register_nmi_handler(NMI_LOCAL, crash_nmi_callback,
+				 NMI_FLAG_FIRST, "crash"))
+=======
 	if (register_die_notifier(&crash_nmi_nb))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return;		/* return what? */
 	/* Ensure the new callback function is set before sending
 	 * out the NMI

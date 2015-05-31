@@ -68,7 +68,11 @@ int jfs_umount(struct super_block *sb)
 		/*
 		 * Wait for outstanding transactions to be written to log:
 		 */
+<<<<<<< HEAD
+		jfs_flush_journal(log, 2);
+=======
 		jfs_flush_journal(log, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * close fileset inode allocation map (aka fileset inode)
@@ -146,7 +150,11 @@ int jfs_umount_rw(struct super_block *sb)
 	 *
 	 * remove file system from log active file system list.
 	 */
+<<<<<<< HEAD
+	jfs_flush_journal(log, 2);
+=======
 	jfs_flush_journal(log, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Make sure all metadata makes it to disk

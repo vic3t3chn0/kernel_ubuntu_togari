@@ -9,11 +9,19 @@
  * the Free Software Foundation
  */
 
+<<<<<<< HEAD
+=======
 #include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kmemcheck.h>
 
 #define C2PORT_NAME_LEN			32
 
+<<<<<<< HEAD
+struct device;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * C2 port basic structs
  */

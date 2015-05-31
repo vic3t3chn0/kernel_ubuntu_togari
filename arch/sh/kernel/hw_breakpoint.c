@@ -22,6 +22,10 @@
 #include <asm/hw_breakpoint.h>
 #include <asm/mmu_context.h>
 #include <asm/ptrace.h>
+<<<<<<< HEAD
+#include <asm/traps.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Stores the breakpoints currently in use on each breakpoint address

@@ -18,6 +18,11 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/kprobes.h>
 #include <linux/socket.h>
@@ -239,7 +244,11 @@ static __init int tcpprobe_init(void)
 	if (ret)
 		goto err1;
 
+<<<<<<< HEAD
+	pr_info("probe registered (port=%d) bufsize=%u\n", port, bufsize);
+=======
 	pr_info("TCP probe registered (port=%d) bufsize=%u\n", port, bufsize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
  err1:
 	proc_net_remove(&init_net, procname);

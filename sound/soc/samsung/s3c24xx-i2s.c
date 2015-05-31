@@ -18,6 +18,10 @@
 #include <linux/clk.h>
 #include <linux/io.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <sound/soc.h>
 #include <sound/pcm_params.h>
@@ -443,7 +447,11 @@ static int s3c24xx_i2s_resume(struct snd_soc_dai *cpu_dai)
 	SNDRV_PCM_RATE_22050 | SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_44100 | \
 	SNDRV_PCM_RATE_48000 | SNDRV_PCM_RATE_88200 | SNDRV_PCM_RATE_96000)
 
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops s3c24xx_i2s_dai_ops = {
+=======
 static struct snd_soc_dai_ops s3c24xx_i2s_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.trigger	= s3c24xx_i2s_trigger,
 	.hw_params	= s3c24xx_i2s_hw_params,
 	.set_fmt	= s3c24xx_i2s_set_fmt,
@@ -481,13 +489,20 @@ static __devexit int s3c24xx_iis_dev_remove(struct platform_device *pdev)
 
 static struct platform_driver s3c24xx_iis_driver = {
 	.probe  = s3c24xx_iis_dev_probe,
+<<<<<<< HEAD
+	.remove = __devexit_p(s3c24xx_iis_dev_remove),
+=======
 	.remove = s3c24xx_iis_dev_remove,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.driver = {
 		.name = "s3c24xx-iis",
 		.owner = THIS_MODULE,
 	},
 };
 
+<<<<<<< HEAD
+module_platform_driver(s3c24xx_iis_driver);
+=======
 static int __init s3c24xx_i2s_init(void)
 {
 	return platform_driver_register(&s3c24xx_iis_driver);
@@ -499,6 +514,7 @@ static void __exit s3c24xx_i2s_exit(void)
 	platform_driver_unregister(&s3c24xx_iis_driver);
 }
 module_exit(s3c24xx_i2s_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Module information */
 MODULE_AUTHOR("Ben Dooks, <ben@simtec.co.uk>");

@@ -27,6 +27,11 @@
 #ifndef _DRM_MODE_H
 #define _DRM_MODE_H
 
+<<<<<<< HEAD
+#include <linux/types.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define DRM_DISPLAY_INFO_LEN	32
 #define DRM_CONNECTOR_NAME_LEN	32
 #define DRM_DISPLAY_MODE_LEN	32
@@ -228,7 +233,10 @@ struct drm_mode_get_connector {
 #define DRM_MODE_PROP_IMMUTABLE	(1<<2)
 #define DRM_MODE_PROP_ENUM	(1<<3) /* enumerated type with text strings */
 #define DRM_MODE_PROP_BLOB	(1<<4)
+<<<<<<< HEAD
+=======
 #define DRM_MODE_PROP_BITMASK	(1<<5) /* bitmask of enumerated types */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct drm_mode_property_enum {
 	__u64 value;
@@ -253,6 +261,8 @@ struct drm_mode_connector_set_property {
 	__u32 connector_id;
 };
 
+<<<<<<< HEAD
+=======
 struct drm_mode_obj_get_properties {
 	__u64 props_ptr;
 	__u64 prop_values_ptr;
@@ -268,6 +278,7 @@ struct drm_mode_obj_set_property {
 	__u32 obj_type;
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct drm_mode_get_blob {
 	__u32 blob_id;
 	__u32 length;

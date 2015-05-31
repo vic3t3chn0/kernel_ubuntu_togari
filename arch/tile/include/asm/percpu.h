@@ -15,6 +15,11 @@
 #ifndef _ASM_TILE_PERCPU_H
 #define _ASM_TILE_PERCPU_H
 
+<<<<<<< HEAD
+register unsigned long __my_cpu_offset __asm__("tp");
+#define __my_cpu_offset __my_cpu_offset
+#define set_my_cpu_offset(tp) (__my_cpu_offset = (tp))
+=======
 register unsigned long my_cpu_offset_reg asm("tp");
 
 #ifdef CONFIG_PREEMPT
@@ -46,6 +51,7 @@ static inline unsigned long __my_cpu_offset(void)
 #endif
 
 #define set_my_cpu_offset(tp) (my_cpu_offset_reg = (tp))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm-generic/percpu.h>
 

@@ -181,11 +181,25 @@ struct virtqueue {
 #define smp_mb()	mb()
 # define smp_rmb()	barrier()
 # define smp_wmb()	barrier()
+<<<<<<< HEAD
+/* Weak barriers should be used. If not - it's a bug */
+# define rmb()	abort()
+# define wmb()	abort()
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 #error Please fill in barrier macros
 #endif
 
 /* Interfaces exported by virtio_ring. */
+<<<<<<< HEAD
+int virtqueue_add_buf(struct virtqueue *vq,
+		      struct scatterlist sg[],
+		      unsigned int out_num,
+		      unsigned int in_num,
+		      void *data,
+		      gfp_t gfp);
+=======
 int virtqueue_add_buf_gfp(struct virtqueue *vq,
 			  struct scatterlist sg[],
 			  unsigned int out_num,
@@ -201,6 +215,7 @@ static inline int virtqueue_add_buf(struct virtqueue *vq,
 {
 	return virtqueue_add_buf_gfp(vq, sg, out_num, in_num, data, GFP_ATOMIC);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void virtqueue_kick(struct virtqueue *vq);
 
@@ -214,6 +229,10 @@ void *virtqueue_detach_unused_buf(struct virtqueue *vq);
 struct virtqueue *vring_new_virtqueue(unsigned int num,
 				      unsigned int vring_align,
 				      struct virtio_device *vdev,
+<<<<<<< HEAD
+				      bool weak_barriers,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				      void *pages,
 				      void (*notify)(struct virtqueue *vq),
 				      void (*callback)(struct virtqueue *vq),

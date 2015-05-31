@@ -40,9 +40,15 @@ void scatterwalk_start(struct scatter_walk *walk, struct scatterlist *sg)
 }
 EXPORT_SYMBOL_GPL(scatterwalk_start);
 
+<<<<<<< HEAD
+void *scatterwalk_map(struct scatter_walk *walk)
+{
+	return kmap_atomic(scatterwalk_page(walk)) +
+=======
 void *scatterwalk_map(struct scatter_walk *walk, int out)
 {
 	return crypto_kmap(scatterwalk_page(walk), out) +
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	       offset_in_page(walk->offset);
 }
 EXPORT_SYMBOL_GPL(scatterwalk_map);
@@ -83,9 +89,15 @@ void scatterwalk_copychunks(void *buf, struct scatter_walk *walk,
 		if (len_this_page > nbytes)
 			len_this_page = nbytes;
 
+<<<<<<< HEAD
+		vaddr = scatterwalk_map(walk);
+		memcpy_dir(buf, vaddr, len_this_page, out);
+		scatterwalk_unmap(vaddr);
+=======
 		vaddr = scatterwalk_map(walk, out);
 		memcpy_dir(buf, vaddr, len_this_page, out);
 		scatterwalk_unmap(vaddr, out);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		scatterwalk_advance(walk, len_this_page);
 

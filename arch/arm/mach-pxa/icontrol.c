@@ -86,7 +86,11 @@ static struct spi_board_info mcp251x_board_info[] = {
 		.chip_select     = 0,
 		.platform_data   = &mcp251x_info,
 		.controller_data = &mcp251x_chip_info1,
+<<<<<<< HEAD
+		.irq             = PXA_GPIO_TO_IRQ(ICONTROL_MCP251x_nIRQ1)
+=======
 		.irq             = gpio_to_irq(ICONTROL_MCP251x_nIRQ1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	{
 		.modalias        = "mcp2515",
@@ -95,7 +99,11 @@ static struct spi_board_info mcp251x_board_info[] = {
 		.chip_select     = 1,
 		.platform_data   = &mcp251x_info,
 		.controller_data = &mcp251x_chip_info2,
+<<<<<<< HEAD
+		.irq             = PXA_GPIO_TO_IRQ(ICONTROL_MCP251x_nIRQ2)
+=======
 		.irq             = gpio_to_irq(ICONTROL_MCP251x_nIRQ2)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	{
 		.modalias        = "mcp2515",
@@ -104,7 +112,11 @@ static struct spi_board_info mcp251x_board_info[] = {
 		.chip_select     = 0,
 		.platform_data   = &mcp251x_info,
 		.controller_data = &mcp251x_chip_info3,
+<<<<<<< HEAD
+		.irq             = PXA_GPIO_TO_IRQ(ICONTROL_MCP251x_nIRQ3)
+=======
 		.irq             = gpio_to_irq(ICONTROL_MCP251x_nIRQ3)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	{
 		.modalias        = "mcp2515",
@@ -113,7 +125,11 @@ static struct spi_board_info mcp251x_board_info[] = {
 		.chip_select     = 1,
 		.platform_data   = &mcp251x_info,
 		.controller_data = &mcp251x_chip_info4,
+<<<<<<< HEAD
+		.irq             = PXA_GPIO_TO_IRQ(ICONTROL_MCP251x_nIRQ4)
+=======
 		.irq             = gpio_to_irq(ICONTROL_MCP251x_nIRQ4)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 };
 
@@ -191,9 +207,20 @@ static void __init icontrol_init(void)
 }
 
 MACHINE_START(ICONTROL, "iControl/SafeTcam boards using Embedian MXM-8x10 CoM")
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.map_io		= pxa3xx_map_io,
+	.nr_irqs	= PXA_NR_IRQS,
+	.init_irq	= pxa3xx_init_irq,
+	.handle_irq	= pxa3xx_handle_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= icontrol_init,
+	.restart	= pxa_restart,
+=======
 	.boot_params	= 0xa0000100,
 	.map_io		= pxa3xx_map_io,
 	.init_irq	= pxa3xx_init_irq,
 	.timer		= &pxa_timer,
 	.init_machine	= icontrol_init
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

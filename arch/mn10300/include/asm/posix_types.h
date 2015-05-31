@@ -17,6 +17,21 @@
  * assume GCC is being used.
  */
 
+<<<<<<< HEAD
+typedef unsigned short	__kernel_mode_t;
+#define __kernel_mode_t __kernel_mode_t
+
+typedef unsigned short	__kernel_nlink_t;
+#define __kernel_nlink_t __kernel_nlink_t
+
+typedef unsigned short	__kernel_ipc_pid_t;
+#define __kernel_ipc_pid_t __kernel_ipc_pid_t
+
+typedef unsigned short	__kernel_uid_t;
+typedef unsigned short	__kernel_gid_t;
+#define __kernel_uid_t __kernel_uid_t
+
+=======
 typedef unsigned long	__kernel_ino_t;
 typedef unsigned short	__kernel_mode_t;
 typedef unsigned short	__kernel_nlink_t;
@@ -25,6 +40,7 @@ typedef int		__kernel_pid_t;
 typedef unsigned short	__kernel_ipc_pid_t;
 typedef unsigned short	__kernel_uid_t;
 typedef unsigned short	__kernel_gid_t;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if __GNUC__ == 4
 typedef unsigned int	__kernel_size_t;
 typedef signed int	__kernel_ssize_t;
@@ -33,6 +49,14 @@ typedef unsigned long	__kernel_size_t;
 typedef signed long	__kernel_ssize_t;
 #endif
 typedef int		__kernel_ptrdiff_t;
+<<<<<<< HEAD
+#define __kernel_size_t __kernel_size_t
+
+typedef unsigned short	__kernel_old_dev_t;
+#define __kernel_old_dev_t __kernel_old_dev_t
+
+#include <asm-generic/posix_types.h>
+=======
 typedef long		__kernel_time_t;
 typedef long		__kernel_suseconds_t;
 typedef long		__kernel_clock_t;
@@ -133,5 +157,6 @@ static inline void __FD_ZERO(__kernel_fd_set *__p)
 }
 
 #endif /* defined(__KERNEL__) || !defined(__GLIBC__) || (__GLIBC__ < 2) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* _ASM_POSIX_TYPES_H */

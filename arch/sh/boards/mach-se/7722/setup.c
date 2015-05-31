@@ -127,9 +127,12 @@ static struct platform_device sh_keysc_device = {
 	.dev	= {
 		.platform_data	= &sh_keysc_info,
 	},
+<<<<<<< HEAD
+=======
 	.archdata = {
 		.hwblk_id = HWBLK_KEYSC,
 	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct platform_device *se7722_devices[] __initdata = {

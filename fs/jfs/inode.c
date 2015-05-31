@@ -125,7 +125,11 @@ int jfs_write_inode(struct inode *inode, struct writeback_control *wbc)
 {
 	int wait = wbc->sync_mode == WB_SYNC_ALL;
 
+<<<<<<< HEAD
+	if (test_cflag(COMMIT_Nolink, inode))
+=======
 	if (inode->i_nlink == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 0;
 	/*
 	 * If COMMIT_DIRTY is not set, the inode isn't really dirty.
@@ -329,8 +333,13 @@ static ssize_t jfs_direct_IO(int rw, struct kiocb *iocb,
 	struct inode *inode = file->f_mapping->host;
 	ssize_t ret;
 
+<<<<<<< HEAD
+	ret = blockdev_direct_IO(rw, iocb, inode, iov, offset, nr_segs,
+				 jfs_get_block);
+=======
 	ret = blockdev_direct_IO(rw, iocb, inode, inode->i_sb->s_bdev, iov,
 				offset, nr_segs, jfs_get_block, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * In case of error extending write may have instantiated a few

@@ -8,6 +8,10 @@
 
 #include <linux/kernel.h>
 #include <linux/of_platform.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 unsigned int
 mpc5xxx_get_bus_frequency(struct device_node *node)

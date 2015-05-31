@@ -43,4 +43,8 @@ static inline void s3c_pm_arch_update_uart(void __iomem *regs,
 }
 
 static inline void s3c_pm_restored_gpios(void) { }
+<<<<<<< HEAD
+static inline void samsung_pm_saved_gpios(void) { }
+=======
 static inline void s3c_pm_saved_gpios(void) { }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

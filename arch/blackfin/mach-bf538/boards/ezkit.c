@@ -38,7 +38,11 @@ static struct platform_device rtc_device = {
 	.name = "rtc-bfin",
 	.id   = -1,
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_RTC_DRV_BFIN */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_SERIAL_BFIN) || defined(CONFIG_SERIAL_BFIN_MODULE)
 #ifdef CONFIG_SERIAL_BFIN_UART0
@@ -49,8 +53,18 @@ static struct resource bfin_uart0_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+		.start = IRQ_UART0_TX,
+		.end = IRQ_UART0_TX,
+		.flags = IORESOURCE_IRQ,
+	},
+	{
+		.start = IRQ_UART0_RX,
+		.end = IRQ_UART0_RX,
+=======
 		.start = IRQ_UART0_RX,
 		.end = IRQ_UART0_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -95,7 +109,11 @@ static struct platform_device bfin_uart0_device = {
 		.platform_data = &bfin_uart0_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_UART0 */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_SERIAL_BFIN_UART1
 static struct resource bfin_uart1_resources[] = {
 	{
@@ -104,8 +122,18 @@ static struct resource bfin_uart1_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+		.start = IRQ_UART1_TX,
+		.end = IRQ_UART1_TX,
+		.flags = IORESOURCE_IRQ,
+	},
+	{
+		.start = IRQ_UART1_RX,
+		.end = IRQ_UART1_RX,
+=======
 		.start = IRQ_UART1_RX,
 		.end = IRQ_UART1_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -138,7 +166,11 @@ static struct platform_device bfin_uart1_device = {
 		.platform_data = &bfin_uart1_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_UART1 */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_SERIAL_BFIN_UART2
 static struct resource bfin_uart2_resources[] = {
 	{
@@ -147,8 +179,18 @@ static struct resource bfin_uart2_resources[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
+		.start = IRQ_UART2_TX,
+		.end = IRQ_UART2_TX,
+		.flags = IORESOURCE_IRQ,
+	},
+	{
+		.start = IRQ_UART2_RX,
+		.end = IRQ_UART2_RX,
+=======
 		.start = IRQ_UART2_RX,
 		.end = IRQ_UART2_RX+1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags = IORESOURCE_IRQ,
 	},
 	{
@@ -181,8 +223,13 @@ static struct platform_device bfin_uart2_device = {
 		.platform_data = &bfin_uart2_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_UART2 */
+#endif	/* CONFIG_SERIAL_BFIN */
+=======
 #endif
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_BFIN_SIR) || defined(CONFIG_BFIN_SIR_MODULE)
 #ifdef CONFIG_BFIN_SIR0
@@ -209,7 +256,11 @@ static struct platform_device bfin_sir0_device = {
 	.num_resources = ARRAY_SIZE(bfin_sir0_resources),
 	.resource = bfin_sir0_resources,
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_BFIN_SIR0 */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_BFIN_SIR1
 static struct resource bfin_sir1_resources[] = {
 	{
@@ -234,7 +285,11 @@ static struct platform_device bfin_sir1_device = {
 	.num_resources = ARRAY_SIZE(bfin_sir1_resources),
 	.resource = bfin_sir1_resources,
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_BFIN_SIR1 */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_BFIN_SIR2
 static struct resource bfin_sir2_resources[] = {
 	{
@@ -259,8 +314,13 @@ static struct platform_device bfin_sir2_device = {
 	.num_resources = ARRAY_SIZE(bfin_sir2_resources),
 	.resource = bfin_sir2_resources,
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_BFIN_SIR2 */
+#endif	/* CONFIG_BFIN_SIR */
+=======
 #endif
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_SERIAL_BFIN_SPORT) || defined(CONFIG_SERIAL_BFIN_SPORT_MODULE)
 #ifdef CONFIG_SERIAL_BFIN_SPORT0_UART
@@ -296,7 +356,11 @@ static struct platform_device bfin_sport0_uart_device = {
 		.platform_data = &bfin_sport0_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_SPORT0_UART */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_SERIAL_BFIN_SPORT1_UART
 static struct resource bfin_sport1_uart_resources[] = {
 	{
@@ -330,7 +394,11 @@ static struct platform_device bfin_sport1_uart_device = {
 		.platform_data = &bfin_sport1_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_SPORT1_UART */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_SERIAL_BFIN_SPORT2_UART
 static struct resource bfin_sport2_uart_resources[] = {
 	{
@@ -364,7 +432,11 @@ static struct platform_device bfin_sport2_uart_device = {
 		.platform_data = &bfin_sport2_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_SPORT2_UART */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_SERIAL_BFIN_SPORT3_UART
 static struct resource bfin_sport3_uart_resources[] = {
 	{
@@ -398,8 +470,13 @@ static struct platform_device bfin_sport3_uart_device = {
 		.platform_data = &bfin_sport3_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SERIAL_BFIN_SPORT3_UART */
+#endif	/* CONFIG_SERIAL_BFIN_SPORT */
+=======
 #endif
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_CAN_BFIN) || defined(CONFIG_CAN_BFIN_MODULE)
 static unsigned short bfin_can_peripherals[] = {
@@ -437,7 +514,11 @@ static struct platform_device bfin_can_device = {
 		.platform_data = &bfin_can_peripherals, /* Passed to driver */
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_CAN_BFIN */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  *  USB-LAN EzExtender board
@@ -473,9 +554,15 @@ static struct platform_device smc91x_device = {
 		.platform_data	= &smc91x_info,
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_SMC91X */
+
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
 #endif
 
 #if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* all SPI peripherals info goes here */
 #if defined(CONFIG_MTD_M25P80) \
 	|| defined(CONFIG_MTD_M25P80_MODULE)
@@ -502,9 +589,15 @@ static struct flash_platform_data bfin_spi_flash_data = {
 
 static struct bfin5xx_spi_chip spi_flash_chip_info = {
 	.enable_dma = 0,         /* use dma transfer with this chip*/
+<<<<<<< HEAD
+};
+#endif	/* CONFIG_MTD_M25P80 */
+#endif	/* CONFIG_SPI_BFIN5XX */
+=======
 	.bits_per_word = 8,
 };
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_TOUCHSCREEN_AD7879) || defined(CONFIG_TOUCHSCREEN_AD7879_MODULE)
 #include <linux/spi/ad7879.h>
@@ -521,6 +614,9 @@ static const struct ad7879_platform_data bfin_ad7879_ts_info = {
 	.gpio_export		= 1,	/* Export GPIO to gpiolib */
 	.gpio_base		= -1,	/* Dynamic allocation */
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_TOUCHSCREEN_AD7879 */
+=======
 #endif
 
 #if defined(CONFIG_TOUCHSCREEN_AD7879_SPI) || defined(CONFIG_TOUCHSCREEN_AD7879_SPI_MODULE)
@@ -529,6 +625,7 @@ static struct bfin5xx_spi_chip spi_ad7879_chip_info = {
 	.bits_per_word = 16,
 };
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_FB_BFIN_LQ035Q1) || defined(CONFIG_FB_BFIN_LQ035Q1_MODULE)
 #include <asm/bfin-lq035q1.h>
@@ -557,6 +654,9 @@ static struct platform_device bfin_lq035q1_device = {
 		.platform_data = &bfin_lq035q1_data,
 	},
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_FB_BFIN_LQ035Q1 */
+=======
 #endif
 
 #if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
@@ -572,6 +672,7 @@ static struct bfin5xx_spi_chip lq035q1_spi_chip_info = {
 	.bits_per_word	= 8,
 };
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct spi_board_info bf538_spi_board_info[] __initdata = {
 #if defined(CONFIG_MTD_M25P80) \
@@ -586,7 +687,11 @@ static struct spi_board_info bf538_spi_board_info[] __initdata = {
 		.controller_data = &spi_flash_chip_info,
 		.mode = SPI_MODE_3,
 	},
+<<<<<<< HEAD
+#endif	/* CONFIG_MTD_M25P80 */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_TOUCHSCREEN_AD7879_SPI) || defined(CONFIG_TOUCHSCREEN_AD7879_SPI_MODULE)
 	{
 		.modalias = "ad7879",
@@ -595,29 +700,46 @@ static struct spi_board_info bf538_spi_board_info[] __initdata = {
 		.max_speed_hz = 5000000,     /* max spi clock (SCK) speed in HZ */
 		.bus_num = 0,
 		.chip_select = 1,
+<<<<<<< HEAD
+		.mode = SPI_CPHA | SPI_CPOL,
+	},
+#endif	/* CONFIG_TOUCHSCREEN_AD7879_SPI */
+=======
 		.controller_data = &spi_ad7879_chip_info,
 		.mode = SPI_CPHA | SPI_CPOL,
 	},
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_FB_BFIN_LQ035Q1) || defined(CONFIG_FB_BFIN_LQ035Q1_MODULE)
 	{
 		.modalias = "bfin-lq035q1-spi",
 		.max_speed_hz = 20000000,     /* max spi clock (SCK) speed in HZ */
 		.bus_num = 0,
 		.chip_select = 2,
+<<<<<<< HEAD
+		.mode = SPI_CPHA | SPI_CPOL,
+	},
+#endif	/* CONFIG_FB_BFIN_LQ035Q1 */
+=======
 		.controller_data = &lq035q1_spi_chip_info,
 		.mode = SPI_CPHA | SPI_CPOL,
 	},
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_SPI_SPIDEV) || defined(CONFIG_SPI_SPIDEV_MODULE)
 	{
 		.modalias = "spidev",
 		.max_speed_hz = 3125000,     /* max spi clock (SCK) speed in HZ */
 		.bus_num = 0,
 		.chip_select = 1,
+<<<<<<< HEAD
+	},
+#endif	/* CONFIG_SPI_SPIDEV */
+=======
 		.controller_data = &spidev_chip_info,
 	},
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* SPI (0) */
@@ -726,8 +848,11 @@ static struct platform_device bf538_spi_master2 = {
 		},
 };
 
+<<<<<<< HEAD
+=======
 #endif  /* spi master and devices */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #if defined(CONFIG_I2C_BLACKFIN_TWI) || defined(CONFIG_I2C_BLACKFIN_TWI_MODULE)
 static struct resource bfin_twi0_resource[] = {
 	[0] = {
@@ -769,8 +894,13 @@ static struct platform_device i2c_bfin_twi1_device = {
 	.num_resources = ARRAY_SIZE(bfin_twi1_resource),
 	.resource = bfin_twi1_resource,
 };
+<<<<<<< HEAD
+#endif	/* CONFIG_BF542 */
+#endif	/* CONFIG_I2C_BLACKFIN_TWI */
+=======
 #endif
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_KEYBOARD_GPIO) || defined(CONFIG_KEYBOARD_GPIO_MODULE)
 #include <linux/gpio_keys.h>
@@ -884,7 +1014,11 @@ static struct platform_device *cm_bf538_devices[] __initdata = {
 #endif
 #endif
 
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
 #if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&bf538_spi_master0,
 	&bf538_spi_master1,
 	&bf538_spi_master2,
@@ -948,7 +1082,11 @@ static int __init ezkit_init(void)
 	printk(KERN_INFO "%s(): registering device resources\n", __func__);
 	platform_add_devices(cm_bf538_devices, ARRAY_SIZE(cm_bf538_devices));
 
+<<<<<<< HEAD
+#if defined(CONFIG_SPI_BFIN5XX) || defined(CONFIG_SPI_BFIN5XX_MODULE)
+=======
 #if defined(CONFIG_SPI_BFIN) || defined(CONFIG_SPI_BFIN_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spi_register_board_info(bf538_spi_board_info,
 			ARRAY_SIZE(bf538_spi_board_info));
 #endif

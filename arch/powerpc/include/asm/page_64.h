@@ -64,6 +64,8 @@ extern void copy_page(void *to, void *from);
 /* Log 2 of page table size */
 extern u64 ppc64_pft_size;
 
+<<<<<<< HEAD
+=======
 /* Large pages size */
 #ifdef CONFIG_HUGETLB_PAGE
 extern unsigned int HPAGE_SHIFT;
@@ -75,6 +77,7 @@ extern unsigned int HPAGE_SHIFT;
 #define HUGETLB_PAGE_ORDER	(HPAGE_SHIFT - PAGE_SHIFT)
 #define HUGE_MAX_HSTATE		(MMU_PAGE_COUNT-1)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASSEMBLY__ */
 
 #ifdef CONFIG_PPC_MM_SLICES
@@ -141,7 +144,13 @@ do {						\
 
 #ifdef CONFIG_HUGETLB_PAGE
 
+<<<<<<< HEAD
+#ifdef CONFIG_PPC_MM_SLICES
 #define HAVE_ARCH_HUGETLB_UNMAPPED_AREA
+#endif
+=======
+#define HAVE_ARCH_HUGETLB_UNMAPPED_AREA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* !CONFIG_HUGETLB_PAGE */
 

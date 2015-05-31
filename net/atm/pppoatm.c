@@ -37,13 +37,21 @@
 
 #include <linux/module.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/interrupt.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/skbuff.h>
 #include <linux/slab.h>
 #include <linux/atm.h>
 #include <linux/atmdev.h>
 #include <linux/capability.h>
 #include <linux/ppp_defs.h>
+<<<<<<< HEAD
+#include <linux/ppp-ioctl.h>
+=======
 #include <linux/if_ppp.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/ppp_channel.h>
 #include <linux/atmppp.h>
 
@@ -302,6 +310,13 @@ static int pppoatm_assign_vcc(struct atm_vcc *atmvcc, void __user *arg)
 	atmvcc->push = pppoatm_push;
 	atmvcc->pop = pppoatm_pop;
 	__module_get(THIS_MODULE);
+<<<<<<< HEAD
+
+	/* re-process everything received between connection setup and
+	   backend setup */
+	vcc_process_recv_queue(atmvcc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 

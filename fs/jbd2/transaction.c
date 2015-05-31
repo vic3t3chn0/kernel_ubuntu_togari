@@ -27,11 +27,47 @@
 #include <linux/highmem.h>
 #include <linux/hrtimer.h>
 #include <linux/backing-dev.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/module.h>
 
 static void __jbd2_journal_temp_unlink_buffer(struct journal_head *jh);
 static void __jbd2_journal_unfile_buffer(struct journal_head *jh);
 
+<<<<<<< HEAD
+static struct kmem_cache *transaction_cache;
+int __init jbd2_journal_init_transaction_cache(void)
+{
+	J_ASSERT(!transaction_cache);
+	transaction_cache = kmem_cache_create("jbd2_transaction_s",
+					sizeof(transaction_t),
+					0,
+					SLAB_HWCACHE_ALIGN|SLAB_TEMPORARY,
+					NULL);
+	if (transaction_cache)
+		return 0;
+	return -ENOMEM;
+}
+
+void jbd2_journal_destroy_transaction_cache(void)
+{
+	if (transaction_cache) {
+		kmem_cache_destroy(transaction_cache);
+		transaction_cache = NULL;
+	}
+}
+
+void jbd2_journal_free_transaction(transaction_t *transaction)
+{
+	if (unlikely(ZERO_OR_NULL_PTR(transaction)))
+		return;
+	kmem_cache_free(transaction_cache, transaction);
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * jbd2_get_transaction: obtain a new transaction_t object.
  *
@@ -115,7 +151,11 @@ static inline void update_t_max_wait(transaction_t *transaction,
  */
 
 static int start_this_handle(journal_t *journal, handle_t *handle,
+<<<<<<< HEAD
+			     gfp_t gfp_mask)
+=======
 			     int gfp_mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	transaction_t	*transaction, *new_transaction = NULL;
 	tid_t		tid;
@@ -124,7 +164,11 @@ static int start_this_handle(journal_t *journal, handle_t *handle,
 	unsigned long ts = jiffies;
 
 	if (nblocks > journal->j_max_transaction_buffers) {
+<<<<<<< HEAD
+		printk(KERN_ERR "JBD2: %s wants too many credits (%d > %d)\n",
+=======
 		printk(KERN_ERR "JBD: %s wants too many credits (%d > %d)\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       current->comm, nblocks,
 		       journal->j_max_transaction_buffers);
 		return -ENOSPC;
@@ -132,7 +176,12 @@ static int start_this_handle(journal_t *journal, handle_t *handle,
 
 alloc_transaction:
 	if (!journal->j_running_transaction) {
+<<<<<<< HEAD
+		new_transaction = kmem_cache_alloc(transaction_cache,
+						   gfp_mask | __GFP_ZERO);
+=======
 		new_transaction = kzalloc(sizeof(*new_transaction), gfp_mask);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!new_transaction) {
 			/*
 			 * If __GFP_FS is not present, then we may be
@@ -161,7 +210,11 @@ repeat:
 	if (is_journal_aborted(journal) ||
 	    (journal->j_errno != 0 && !(journal->j_flags & JBD2_ACK_ERR))) {
 		read_unlock(&journal->j_state_lock);
+<<<<<<< HEAD
+		jbd2_journal_free_transaction(new_transaction);
+=======
 		kfree(new_transaction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EROFS;
 	}
 
@@ -178,6 +231,8 @@ repeat:
 		if (!new_transaction)
 			goto alloc_transaction;
 		write_lock(&journal->j_state_lock);
+<<<<<<< HEAD
+=======
 
 		/* add to bug fix code, j.gap.lee@samsung.com, 2012.04.23 */
 		/* barrier check */
@@ -187,6 +242,7 @@ repeat:
 		}
 		/* end */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!journal->j_running_transaction &&
 		    !journal->j_barrier_count) {
 			jbd2_get_transaction(journal, new_transaction);
@@ -293,7 +349,11 @@ repeat:
 	read_unlock(&journal->j_state_lock);
 
 	lock_map_acquire(&handle->h_lockdep_map);
+<<<<<<< HEAD
+	jbd2_journal_free_transaction(new_transaction);
+=======
 	kfree(new_transaction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 
@@ -330,7 +390,11 @@ static handle_t *new_handle(int nblocks)
  * Return a pointer to a newly allocated handle, or an ERR_PTR() value
  * on failure.
  */
+<<<<<<< HEAD
+handle_t *jbd2__journal_start(journal_t *journal, int nblocks, gfp_t gfp_mask)
+=======
 handle_t *jbd2__journal_start(journal_t *journal, int nblocks, int gfp_mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	handle_t *handle = journal_current_handle();
 	int err;
@@ -453,7 +517,11 @@ out:
  * transaction capabable of guaranteeing the requested number of
  * credits.
  */
+<<<<<<< HEAD
+int jbd2__journal_restart(handle_t *handle, int nblocks, gfp_t gfp_mask)
+=======
 int jbd2__journal_restart(handle_t *handle, int nblocks, int gfp_mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	transaction_t *transaction = handle->h_transaction;
 	journal_t *journal = transaction->t_journal;
@@ -478,10 +546,17 @@ int jbd2__journal_restart(handle_t *handle, int nblocks, int gfp_mask)
 		   &transaction->t_outstanding_credits);
 	if (atomic_dec_and_test(&transaction->t_updates))
 		wake_up(&journal->j_wait_updates);
+<<<<<<< HEAD
+	spin_unlock(&transaction->t_handle_lock);
+
+	jbd_debug(2, "restarting handle %p\n", handle);
+	tid = transaction->t_tid;
+=======
 	tid = transaction->t_tid;
 	spin_unlock(&transaction->t_handle_lock);
 
 	jbd_debug(2, "restarting handle %p\n", handle);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	need_to_start = !tid_geq(journal->j_commit_request, tid);
 	read_unlock(&journal->j_state_lock);
 	if (need_to_start)
@@ -526,12 +601,22 @@ void jbd2_journal_lock_updates(journal_t *journal)
 			break;
 
 		spin_lock(&transaction->t_handle_lock);
+<<<<<<< HEAD
+		prepare_to_wait(&journal->j_wait_updates, &wait,
+				TASK_UNINTERRUPTIBLE);
+		if (!atomic_read(&transaction->t_updates)) {
+			spin_unlock(&transaction->t_handle_lock);
+			finish_wait(&journal->j_wait_updates, &wait);
+			break;
+		}
+=======
 		if (!atomic_read(&transaction->t_updates)) {
 			spin_unlock(&transaction->t_handle_lock);
 			break;
 		}
 		prepare_to_wait(&journal->j_wait_updates, &wait,
 				TASK_UNINTERRUPTIBLE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		spin_unlock(&transaction->t_handle_lock);
 		write_unlock(&journal->j_state_lock);
 		schedule();
@@ -573,7 +658,11 @@ static void warn_dirty_buffer(struct buffer_head *bh)
 	char b[BDEVNAME_SIZE];
 
 	printk(KERN_WARNING
+<<<<<<< HEAD
+	       "JBD2: Spotted dirty metadata buffer (dev = %s, blocknr = %llu). "
+=======
 	       "JBD: Spotted dirty metadata buffer (dev = %s, blocknr = %llu). "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	       "There's a risk of filesystem corruption in case of system "
 	       "crash.\n",
 	       bdevname(bh->b_bdev, b), (unsigned long long)bh->b_blocknr);
@@ -791,12 +880,20 @@ done:
 			    "Possible IO failure.\n");
 		page = jh2bh(jh)->b_page;
 		offset = offset_in_page(jh2bh(jh)->b_data);
+<<<<<<< HEAD
+		source = kmap_atomic(page);
+=======
 		source = kmap_atomic(page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		/* Fire data frozen trigger just before we copy the data */
 		jbd2_buffer_frozen_trigger(jh, source + offset,
 					   jh->b_triggers);
 		memcpy(jh->b_frozen_data, source+offset, jh2bh(jh)->b_size);
+<<<<<<< HEAD
+		kunmap_atomic(source);
+=======
 		kunmap_atomic(source, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/*
 		 * Now that the frozen data is saved off, we need to store
@@ -1059,6 +1156,13 @@ void jbd2_buffer_abort_trigger(struct journal_head *jh,
  * mark dirty metadata which needs to be journaled as part of the current
  * transaction.
  *
+<<<<<<< HEAD
+ * The buffer must have previously had jbd2_journal_get_write_access()
+ * called so that it has a valid journal_head attached to the buffer
+ * head.
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * The buffer is placed on the transaction's metadata list and is marked
  * as belonging to the transaction.
  *
@@ -1075,11 +1179,22 @@ int jbd2_journal_dirty_metadata(handle_t *handle, struct buffer_head *bh)
 	transaction_t *transaction = handle->h_transaction;
 	journal_t *journal = transaction->t_journal;
 	struct journal_head *jh = bh2jh(bh);
+<<<<<<< HEAD
+	int ret = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	jbd_debug(5, "journal_head %p\n", jh);
 	JBUFFER_TRACE(jh, "entry");
 	if (is_handle_aborted(handle))
 		goto out;
+<<<<<<< HEAD
+	if (!buffer_jbd(bh)) {
+		ret = -EUCLEAN;
+		goto out;
+	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	jbd_lock_bh_state(bh);
 
@@ -1103,8 +1218,25 @@ int jbd2_journal_dirty_metadata(handle_t *handle, struct buffer_head *bh)
 	 */
 	if (jh->b_transaction == transaction && jh->b_jlist == BJ_Metadata) {
 		JBUFFER_TRACE(jh, "fastpath");
+<<<<<<< HEAD
+		if (unlikely(jh->b_transaction !=
+			     journal->j_running_transaction)) {
+			printk(KERN_EMERG "JBD: %s: "
+			       "jh->b_transaction (%llu, %p, %u) != "
+			       "journal->j_running_transaction (%p, %u)",
+			       journal->j_devname,
+			       (unsigned long long) bh->b_blocknr,
+			       jh->b_transaction,
+			       jh->b_transaction ? jh->b_transaction->t_tid : 0,
+			       journal->j_running_transaction,
+			       journal->j_running_transaction ?
+			       journal->j_running_transaction->t_tid : 0);
+			ret = -EINVAL;
+		}
+=======
 		J_ASSERT_JH(jh, jh->b_transaction ==
 					journal->j_running_transaction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_unlock_bh;
 	}
 
@@ -1118,9 +1250,38 @@ int jbd2_journal_dirty_metadata(handle_t *handle, struct buffer_head *bh)
 	 */
 	if (jh->b_transaction != transaction) {
 		JBUFFER_TRACE(jh, "already on other transaction");
+<<<<<<< HEAD
+		if (unlikely(jh->b_transaction !=
+			     journal->j_committing_transaction)) {
+			printk(KERN_EMERG "JBD: %s: "
+			       "jh->b_transaction (%llu, %p, %u) != "
+			       "journal->j_committing_transaction (%p, %u)",
+			       journal->j_devname,
+			       (unsigned long long) bh->b_blocknr,
+			       jh->b_transaction,
+			       jh->b_transaction ? jh->b_transaction->t_tid : 0,
+			       journal->j_committing_transaction,
+			       journal->j_committing_transaction ?
+			       journal->j_committing_transaction->t_tid : 0);
+			ret = -EINVAL;
+		}
+		if (unlikely(jh->b_next_transaction != transaction)) {
+			printk(KERN_EMERG "JBD: %s: "
+			       "jh->b_next_transaction (%llu, %p, %u) != "
+			       "transaction (%p, %u)",
+			       journal->j_devname,
+			       (unsigned long long) bh->b_blocknr,
+			       jh->b_next_transaction,
+			       jh->b_next_transaction ?
+			       jh->b_next_transaction->t_tid : 0,
+			       transaction, transaction->t_tid);
+			ret = -EINVAL;
+		}
+=======
 		J_ASSERT_JH(jh, jh->b_transaction ==
 					journal->j_committing_transaction);
 		J_ASSERT_JH(jh, jh->b_next_transaction == transaction);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		/* And this case is illegal: we can't reuse another
 		 * transaction's data buffer, ever. */
 		goto out_unlock_bh;
@@ -1137,7 +1298,12 @@ out_unlock_bh:
 	jbd_unlock_bh_state(bh);
 out:
 	JBUFFER_TRACE(jh, "exit");
+<<<<<<< HEAD
+	WARN_ON(ret);	/* All errors are bugs, so dump the stack */
+	return ret;
+=======
 	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -1512,9 +1678,15 @@ __blist_del_buffer(struct journal_head **list, struct journal_head *jh)
  * of these pointers, it could go bad.  Generally the caller needs to re-read
  * the pointer from the transaction_t.
  *
+<<<<<<< HEAD
+ * Called under j_list_lock.
+ */
+static void __jbd2_journal_temp_unlink_buffer(struct journal_head *jh)
+=======
  * Called under j_list_lock.  The journal may not be locked.
  */
 void __jbd2_journal_temp_unlink_buffer(struct journal_head *jh)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct journal_head **list = NULL;
 	transaction_t *transaction;
@@ -1609,10 +1781,15 @@ __journal_try_to_free_buffer(journal_t *journal, struct buffer_head *bh)
 	spin_lock(&journal->j_list_lock);
 	if (jh->b_cp_transaction != NULL && jh->b_transaction == NULL) {
 		/* written-back checkpointed metadata buffer */
+<<<<<<< HEAD
+		JBUFFER_TRACE(jh, "remove from checkpoint list");
+		__jbd2_journal_remove_checkpoint(jh);
+=======
 		if (jh->b_jlist == BJ_None) {
 			JBUFFER_TRACE(jh, "remove from checkpoint list");
 			__jbd2_journal_remove_checkpoint(jh);
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	spin_unlock(&journal->j_list_lock);
 out:
@@ -1684,6 +1861,10 @@ int jbd2_journal_try_to_free_buffers(journal_t *journal,
 		__journal_try_to_free_buffer(journal, bh);
 		jbd2_journal_put_journal_head(jh);
 		jbd_unlock_bh_state(bh);
+<<<<<<< HEAD
+		if (buffer_jbd(bh))
+			goto busy;
+=======
 #ifndef CONFIG_DMA_CMA
 		if (buffer_jbd(bh))
 			goto busy;
@@ -1698,6 +1879,7 @@ int jbd2_journal_try_to_free_buffers(journal_t *journal,
 				goto busy;
 		}
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} while ((bh = bh->b_this_page) != head);
 
 	ret = try_to_free_buffers(page);

@@ -8,9 +8,15 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+#include <linux/types.h>
+#include <linux/cpu.h>
+#include <linux/cpu_pm.h>
+=======
 #include <linux/module.h>
 #include <linux/types.h>
 #include <linux/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/hardirq.h>
 #include <linux/kernel.h>
 #include <linux/notifier.h>
@@ -18,8 +24,19 @@
 #include <linux/sched.h>
 #include <linux/smp.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/uaccess.h>
+#include <linux/user.h>
+#include <linux/proc_fs.h>
+#include <linux/seq_file.h>
+
+#include <asm/cp15.h>
+#include <asm/cputype.h>
+#include <asm/system_info.h>
+=======
 
 #include <asm/cputype.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/thread_notify.h>
 #include <asm/vfp.h>
 
@@ -36,18 +53,71 @@ void vfp_null_entry(void);
 void (*vfp_vector)(void) = vfp_null_entry;
 
 /*
- * The pointer to the vfpstate structure of the thread which currently
- * owns the context held in the VFP hardware, or NULL if the hardware
- * context is invalid.
- */
-union vfp_state *vfp_current_hw_state[NR_CPUS];
-
-/*
+<<<<<<< HEAD
  * Dual-use variable.
  * Used in startup: set to non-zero if VFP checks fail
  * After startup, holds VFP architecture
  */
 unsigned int VFP_arch;
+
+/*
+ * The pointer to the vfpstate structure of the thread which currently
+ * owns the context held in the VFP hardware, or NULL if the hardware
+ * context is invalid.
+ *
+ * For UP, this is sufficient to tell which thread owns the VFP context.
+ * However, for SMP, we also need to check the CPU number stored in the
+ * saved state too to catch migrations.
+=======
+ * The pointer to the vfpstate structure of the thread which currently
+ * owns the context held in the VFP hardware, or NULL if the hardware
+ * context is invalid.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+ */
+union vfp_state *vfp_current_hw_state[NR_CPUS];
+
+/*
+<<<<<<< HEAD
+ * Is 'thread's most up to date state stored in this CPUs hardware?
+ * Must be called from non-preemptible context.
+ */
+static bool vfp_state_in_hw(unsigned int cpu, struct thread_info *thread)
+{
+#ifdef CONFIG_SMP
+	if (thread->vfpstate.hard.cpu != cpu)
+		return false;
+#endif
+	return vfp_current_hw_state[cpu] == &thread->vfpstate;
+}
+
+/*
+ * Force a reload of the VFP context from the thread structure.  We do
+ * this by ensuring that access to the VFP hardware is disabled, and
+ * clear vfp_current_hw_state.  Must be called from non-preemptible context.
+ */
+static void vfp_force_reload(unsigned int cpu, struct thread_info *thread)
+{
+	if (vfp_state_in_hw(cpu, thread)) {
+		fmxr(FPEXC, fmrx(FPEXC) & ~FPEXC_EN);
+		vfp_current_hw_state[cpu] = NULL;
+	}
+#ifdef CONFIG_SMP
+	thread->vfpstate.hard.cpu = NR_CPUS;
+	vfp_current_hw_state[cpu] = NULL;
+#endif
+}
+
+/*
+ * Used for reporting emulation statistics via /proc
+ */
+static atomic64_t vfp_bounce_count = ATOMIC64_INIT(0);
+=======
+ * Dual-use variable.
+ * Used in startup: set to non-zero if VFP checks fail
+ * After startup, holds VFP architecture
+ */
+unsigned int VFP_arch;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Per-thread VFP initialization.
@@ -57,6 +127,15 @@ static void vfp_thread_flush(struct thread_info *thread)
 	union vfp_state *vfp = &thread->vfpstate;
 	unsigned int cpu;
 
+<<<<<<< HEAD
+	/*
+	 * Disable VFP to ensure we initialize it first.  We must ensure
+	 * that the modification of vfp_current_hw_state[] and hardware
+	 * disable are done for the same CPU and without preemption.
+	 *
+	 * Do this first to ensure that preemption won't overwrite our
+	 * state saving should access to the VFP be enabled at this point.
+=======
 	memset(vfp, 0, sizeof(union vfp_state));
 
 	vfp->hard.fpexc = FPEXC_EN;
@@ -66,12 +145,24 @@ static void vfp_thread_flush(struct thread_info *thread)
 	 * Disable VFP to ensure we initialize it first.  We must ensure
 	 * that the modification of vfp_current_hw_state[] and hardware disable
 	 * are done for the same CPU and without preemption.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	 */
 	cpu = get_cpu();
 	if (vfp_current_hw_state[cpu] == vfp)
 		vfp_current_hw_state[cpu] = NULL;
 	fmxr(FPEXC, fmrx(FPEXC) & ~FPEXC_EN);
 	put_cpu();
+<<<<<<< HEAD
+
+	memset(vfp, 0, sizeof(union vfp_state));
+
+	vfp->hard.fpexc = FPEXC_EN;
+	vfp->hard.fpscr = FPSCR_ROUND_NEAREST;
+#ifdef CONFIG_SMP
+	vfp->hard.cpu = NR_CPUS;
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void vfp_thread_exit(struct thread_info *thread)
@@ -91,6 +182,12 @@ static void vfp_thread_copy(struct thread_info *thread)
 
 	vfp_sync_hwstate(parent);
 	thread->vfpstate = parent->vfpstate;
+<<<<<<< HEAD
+#ifdef CONFIG_SMP
+	thread->vfpstate.hard.cpu = NR_CPUS;
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -136,6 +233,10 @@ static int vfp_notifier(struct notifier_block *self, unsigned long cmd, void *v)
 		 * case the thread migrates to a different CPU. The
 		 * restoring is done lazily.
 		 */
+<<<<<<< HEAD
+		if ((fpexc & FPEXC_EN) && vfp_current_hw_state[cpu])
+			vfp_save_state(vfp_current_hw_state[cpu], fpexc);
+=======
 		if ((fpexc & FPEXC_EN) && vfp_current_hw_state[cpu]) {
 			vfp_save_state(vfp_current_hw_state[cpu], fpexc);
 			vfp_current_hw_state[cpu]->hard.cpu = cpu;
@@ -147,6 +248,7 @@ static int vfp_notifier(struct notifier_block *self, unsigned long cmd, void *v)
 		 */
 		if (thread->vfpstate.hard.cpu != cpu)
 			vfp_current_hw_state[cpu] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 		/*
@@ -300,6 +402,10 @@ void VFP_bounce(u32 trigger, u32 fpexc, struct pt_regs *regs)
 	u32 fpscr, orig_fpscr, fpsid, exceptions;
 
 	pr_debug("VFP: bounce: trigger %08x fpexc %08x\n", trigger, fpexc);
+<<<<<<< HEAD
+	atomic64_inc(&vfp_bounce_count);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * At this point, FPEXC can have the following configuration:
@@ -376,7 +482,11 @@ void VFP_bounce(u32 trigger, u32 fpexc, struct pt_regs *regs)
 	 * If there isn't a second FP instruction, exit now. Note that
 	 * the FPEXC.FP2V bit is valid only if FPEXC.EX is 1.
 	 */
+<<<<<<< HEAD
+	if (fpexc ^ (FPEXC_EX | FPEXC_FP2V))
+=======
 	if ((fpexc & (FPEXC_EX | FPEXC_FP2V)) != (FPEXC_EX | FPEXC_FP2V))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto exit;
 
 	/*
@@ -400,16 +510,25 @@ static void vfp_enable(void *unused)
 
 	BUG_ON(preemptible());
 	access = get_copro_access();
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Enable full access to VFP (cp10 and cp11)
 	 */
 	set_copro_access(access | CPACC_FULL(10) | CPACC_FULL(11));
 }
 
+<<<<<<< HEAD
+#ifdef CONFIG_CPU_PM
+int vfp_pm_suspend(void)
+=======
 #ifdef CONFIG_PM
 #include <linux/syscore_ops.h>
 
 static int vfp_pm_suspend(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct thread_info *ti = current_thread_info();
 	u32 fpexc = fmrx(FPEXC);
@@ -435,7 +554,11 @@ static int vfp_pm_suspend(void)
 	return 0;
 }
 
+<<<<<<< HEAD
+void vfp_pm_resume(void)
+=======
 static void vfp_pm_resume(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/* ensure we have access to the vfp */
 	vfp_enable(NULL);
@@ -444,29 +567,66 @@ static void vfp_pm_resume(void)
 	fmxr(FPEXC, fmrx(FPEXC) & ~FPEXC_EN);
 }
 
+<<<<<<< HEAD
+static int vfp_cpu_pm_notifier(struct notifier_block *self, unsigned long cmd,
+	void *v)
+{
+	switch (cmd) {
+	case CPU_PM_ENTER:
+		vfp_pm_suspend();
+		break;
+	case CPU_PM_ENTER_FAILED:
+	case CPU_PM_EXIT:
+		vfp_pm_resume();
+		break;
+	}
+	return NOTIFY_OK;
+}
+
+static struct notifier_block vfp_cpu_pm_notifier_block = {
+	.notifier_call = vfp_cpu_pm_notifier,
+=======
 static struct syscore_ops vfp_pm_syscore_ops = {
 	.suspend	= vfp_pm_suspend,
 	.resume		= vfp_pm_resume,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static void vfp_pm_init(void)
 {
+<<<<<<< HEAD
+	cpu_pm_register_notifier(&vfp_cpu_pm_notifier_block);
+=======
 	register_syscore_ops(&vfp_pm_syscore_ops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #else
 static inline void vfp_pm_init(void) { }
+<<<<<<< HEAD
+#endif /* CONFIG_CPU_PM */
+
+/*
+ * Ensure that the VFP state stored in 'thread->vfpstate' is up to date
+ * with the hardware state.
+ */
+=======
 #endif /* CONFIG_PM */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void vfp_sync_hwstate(struct thread_info *thread)
 {
 	unsigned int cpu = get_cpu();
 
+<<<<<<< HEAD
+	if (vfp_state_in_hw(cpu, thread)) {
+=======
 	/*
 	 * If the thread we're interested in is the current owner of the
 	 * hardware VFP state, then we need to save its state.
 	 */
 	if (vfp_current_hw_state[cpu] == &thread->vfpstate) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		u32 fpexc = fmrx(FPEXC);
 
 		/*
@@ -480,10 +640,106 @@ void vfp_sync_hwstate(struct thread_info *thread)
 	put_cpu();
 }
 
+<<<<<<< HEAD
+/* Ensure that the thread reloads the hardware VFP state on the next use. */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void vfp_flush_hwstate(struct thread_info *thread)
 {
 	unsigned int cpu = get_cpu();
 
+<<<<<<< HEAD
+	vfp_force_reload(cpu, thread);
+
+	put_cpu();
+}
+
+/*
+ * Save the current VFP state into the provided structures and prepare
+ * for entry into a new function (signal handler).
+ */
+int vfp_preserve_user_clear_hwstate(struct user_vfp __user *ufp,
+				    struct user_vfp_exc __user *ufp_exc)
+{
+	struct thread_info *thread = current_thread_info();
+	struct vfp_hard_struct *hwstate = &thread->vfpstate.hard;
+	int err = 0;
+
+	/* Ensure that the saved hwstate is up-to-date. */
+	vfp_sync_hwstate(thread);
+
+	/*
+	 * Copy the floating point registers. There can be unused
+	 * registers see asm/hwcap.h for details.
+	 */
+	err |= __copy_to_user(&ufp->fpregs, &hwstate->fpregs,
+			      sizeof(hwstate->fpregs));
+	/*
+	 * Copy the status and control register.
+	 */
+	__put_user_error(hwstate->fpscr, &ufp->fpscr, err);
+
+	/*
+	 * Copy the exception registers.
+	 */
+	__put_user_error(hwstate->fpexc, &ufp_exc->fpexc, err);
+	__put_user_error(hwstate->fpinst, &ufp_exc->fpinst, err);
+	__put_user_error(hwstate->fpinst2, &ufp_exc->fpinst2, err);
+
+	if (err)
+		return -EFAULT;
+
+	/* Ensure that VFP is disabled. */
+	vfp_flush_hwstate(thread);
+
+	/*
+	 * As per the PCS, clear the length and stride bits for function
+	 * entry.
+	 */
+	hwstate->fpscr &= ~(FPSCR_LENGTH_MASK | FPSCR_STRIDE_MASK);
+	return 0;
+}
+
+/* Sanitise and restore the current VFP state from the provided structures. */
+int vfp_restore_user_hwstate(struct user_vfp __user *ufp,
+			     struct user_vfp_exc __user *ufp_exc)
+{
+	struct thread_info *thread = current_thread_info();
+	struct vfp_hard_struct *hwstate = &thread->vfpstate.hard;
+	unsigned long fpexc;
+	int err = 0;
+
+	/* Disable VFP to avoid corrupting the new thread state. */
+	vfp_flush_hwstate(thread);
+
+	/*
+	 * Copy the floating point registers. There can be unused
+	 * registers see asm/hwcap.h for details.
+	 */
+	err |= __copy_from_user(&hwstate->fpregs, &ufp->fpregs,
+				sizeof(hwstate->fpregs));
+	/*
+	 * Copy the status and control register.
+	 */
+	__get_user_error(hwstate->fpscr, &ufp->fpscr, err);
+
+	/*
+	 * Sanitise and restore the exception registers.
+	 */
+	__get_user_error(fpexc, &ufp_exc->fpexc, err);
+
+	/* Ensure the VFP is enabled. */
+	fpexc |= FPEXC_EN;
+
+	/* Ensure FPINST2 is invalid and the exception flag is cleared. */
+	fpexc &= ~(FPEXC_EX | FPEXC_FP2V);
+	hwstate->fpexc = fpexc;
+
+	__get_user_error(hwstate->fpinst, &ufp_exc->fpinst, err);
+	__get_user_error(hwstate->fpinst2, &ufp_exc->fpinst2, err);
+
+	return err ? -EFAULT : 0;
+=======
 	/*
 	 * If the thread we're interested in is the current owner of the
 	 * hardware VFP state, then we need to save its state.
@@ -511,6 +767,7 @@ void vfp_flush_hwstate(struct thread_info *thread)
 	thread->vfpstate.hard.cpu = NR_CPUS;
 #endif
 	put_cpu();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -528,13 +785,40 @@ static int vfp_hotplug(struct notifier_block *b, unsigned long action,
 	void *hcpu)
 {
 	if (action == CPU_DYING || action == CPU_DYING_FROZEN) {
+<<<<<<< HEAD
+		vfp_force_reload((long)hcpu, current_thread_info());
+=======
 		unsigned int cpu = (long)hcpu;
 		vfp_current_hw_state[cpu] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else if (action == CPU_STARTING || action == CPU_STARTING_FROZEN)
 		vfp_enable(NULL);
 	return NOTIFY_OK;
 }
 
+<<<<<<< HEAD
+#ifdef CONFIG_PROC_FS
+static int vfp_bounce_show(struct seq_file *m, void *v)
+{
+	seq_printf(m, "%llu\n", atomic64_read(&vfp_bounce_count));
+	return 0;
+}
+
+static int vfp_bounce_open(struct inode *inode, struct file *file)
+{
+	return single_open(file, vfp_bounce_show, NULL);
+}
+
+static const struct file_operations vfp_bounce_fops = {
+	.open		= vfp_bounce_open,
+	.read		= seq_read,
+	.llseek		= seq_lseek,
+	.release	= single_release,
+};
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * VFP support code initialisation.
  */
@@ -542,7 +826,13 @@ static int __init vfp_init(void)
 {
 	unsigned int vfpsid;
 	unsigned int cpu_arch = cpu_architecture();
+<<<<<<< HEAD
+#ifdef CONFIG_PROC_FS
+	static struct proc_dir_entry *procfs_entry;
+#endif
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (cpu_arch >= CPU_ARCH_ARMv6)
 		on_each_cpu(vfp_enable, NULL, 1);
 
@@ -588,6 +878,13 @@ static int __init vfp_init(void)
 			elf_hwcap |= HWCAP_VFPv3;
 
 			/*
+<<<<<<< HEAD
+			 * Check for VFPv3 D16. CPUs in this configuration
+			 * only have 16 x 64bit registers.
+			 */
+			if (((fmrx(MVFR0) & MVFR0_A_SIMD_MASK)) == 1)
+				elf_hwcap |= HWCAP_VFPv3D16;
+=======
 			 * Check for VFPv3 D16 and VFPv4 D16.  CPUs in
 			 * this configuration only have 16 x 64bit
 			 * registers.
@@ -596,6 +893,7 @@ static int __init vfp_init(void)
 				elf_hwcap |= HWCAP_VFPv3D16; /* also v4-D16 */
 			else
 				elf_hwcap |= HWCAP_VFPD32;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 #endif
 		/*
@@ -609,10 +907,26 @@ static int __init vfp_init(void)
 			if ((fmrx(MVFR1) & 0x000fff00) == 0x00011100)
 				elf_hwcap |= HWCAP_NEON;
 #endif
+<<<<<<< HEAD
+			if ((fmrx(MVFR1) & 0xf0000000) == 0x10000000 ||
+			    (read_cpuid_id() & 0xff00fc00) == 0x51000400)
+				elf_hwcap |= HWCAP_VFPv4;
+		}
+	}
+
+#ifdef CONFIG_PROC_FS
+	procfs_entry = proc_create("cpu/vfp_bounce", S_IRUGO, NULL,
+			&vfp_bounce_fops);
+	if (!procfs_entry)
+		pr_err("Failed to create procfs node for VFP bounce reporting\n");
+#endif
+
+=======
 			if ((fmrx(MVFR1) & 0xf0000000) == 0x10000000)
 				elf_hwcap |= HWCAP_VFPv4;
 		}
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 

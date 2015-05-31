@@ -14,6 +14,8 @@
 #include <mach/hardware.h>
 #include <mach/global_reg.h>
 
+<<<<<<< HEAD
+=======
 static inline void arch_idle(void)
 {
 	/*
@@ -28,6 +30,7 @@ static inline void arch_idle(void)
 	cpu_do_idle();
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void arch_reset(char mode, const char *cmd)
 {
 	__raw_writel(RESET_GLOBAL | RESET_CPU1,

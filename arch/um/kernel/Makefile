@@ -3,15 +3,26 @@
 # Licensed under the GPL
 #
 
+<<<<<<< HEAD
+CPPFLAGS_vmlinux.lds := -DSTART=$(LDS_START)		\
+                        -DELF_ARCH=$(LDS_ELF_ARCH)	\
+                        -DELF_FORMAT=$(LDS_ELF_FORMAT)	\
+			$(LDS_EXTRA)
+=======
 CPPFLAGS_vmlinux.lds := -U$(SUBARCH) -DSTART=$(LDS_START) \
                         -DELF_ARCH=$(LDS_ELF_ARCH)        \
                         -DELF_FORMAT=$(LDS_ELF_FORMAT)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extra-y := vmlinux.lds
 clean-files :=
 
 obj-y = config.o exec.o exitcode.o init_task.o irq.o ksyms.o mem.o \
 	physmem.o process.o ptrace.o reboot.o sigio.o \
+<<<<<<< HEAD
+	signal.o smp.o syscall.o sysrq.o time.o tlb.o trap.o \
+=======
 	signal.o smp.o syscall.o sysrq.o time.o tlb.o trap.o uaccess.o \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	um_arch.o umid.o skas/
 
 obj-$(CONFIG_BLK_DEV_INITRD) += initrd.o

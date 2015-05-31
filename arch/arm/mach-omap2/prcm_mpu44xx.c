@@ -15,8 +15,13 @@
 #include <linux/err.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
+#include "iomap.h"
+#include "common.h"
+=======
 #include <plat/common.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "prcm_mpu44xx.h"
 #include "cm-regbits-44xx.h"
 

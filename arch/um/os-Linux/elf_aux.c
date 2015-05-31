@@ -12,6 +12,14 @@
 #include "init.h"
 #include "elf_user.h"
 #include "mem_user.h"
+<<<<<<< HEAD
+
+typedef Elf32_auxv_t elf_auxv_t;
+
+/* These are initialized very early in boot and never changed */
+char * elf_aux_platform;
+extern long elf_aux_hwcap;
+=======
 #include <kern_constants.h>
 
 /* Use the one from the kernel - the host may miss it, if having old headers. */
@@ -24,6 +32,7 @@ typedef Elf64_auxv_t elf_auxv_t;
 /* These are initialized very early in boot and never changed */
 char * elf_aux_platform;
 long elf_aux_hwcap;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned long vsyscall_ehdr;
 unsigned long vsyscall_end;
 unsigned long __kernel_vsyscall;

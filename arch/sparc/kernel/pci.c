@@ -8,7 +8,11 @@
  * with minor modifications, see there for credits.
  */
 
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/string.h>
 #include <linux/sched.h>
@@ -230,7 +234,12 @@ static void pci_parse_of_addrs(struct platform_device *op,
 			res = &dev->resource[(i - PCI_BASE_ADDRESS_0) >> 2];
 		} else if (i == dev->rom_base_reg) {
 			res = &dev->resource[PCI_ROM_RESOURCE];
+<<<<<<< HEAD
+			flags |= IORESOURCE_READONLY | IORESOURCE_CACHEABLE
+			      | IORESOURCE_SIZEALIGN;
+=======
 			flags |= IORESOURCE_READONLY | IORESOURCE_CACHEABLE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} else {
 			printk(KERN_ERR "PCI: bad cfg reg num 0x%x\n", i);
 			continue;
@@ -284,7 +293,11 @@ static struct pci_dev *of_create_pci_dev(struct pci_pbm_info *pbm,
 	dev->sysdata = node;
 	dev->dev.parent = bus->bridge;
 	dev->dev.bus = &pci_bus_type;
+<<<<<<< HEAD
+	dev->dev.of_node = of_node_get(node);
+=======
 	dev->dev.of_node = node;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dev->devfn = devfn;
 	dev->multifunction = 0;		/* maybe a lie? */
 	set_pcie_port_type(dev);
@@ -374,6 +387,8 @@ static void __devinit apb_calc_first_last(u8 map, u32 *first_p, u32 *last_p)
 	*last_p = last;
 }
 
+<<<<<<< HEAD
+=======
 static void pci_resource_adjust(struct resource *res,
 				struct resource *root)
 {
@@ -381,6 +396,7 @@ static void pci_resource_adjust(struct resource *res,
 	res->end += root->start;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* For PCI bus devices which lack a 'ranges' property we interrogate
  * the config space values to set the resources, just like the generic
  * Linux PCI probing code does.
@@ -389,7 +405,12 @@ static void __devinit pci_cfg_fake_ranges(struct pci_dev *dev,
 					  struct pci_bus *bus,
 					  struct pci_pbm_info *pbm)
 {
+<<<<<<< HEAD
+	struct pci_bus_region region;
+	struct resource *res, res2;
+=======
 	struct resource *res;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u8 io_base_lo, io_limit_lo;
 	u16 mem_base_lo, mem_limit_lo;
 	unsigned long base, limit;
@@ -411,11 +432,22 @@ static void __devinit pci_cfg_fake_ranges(struct pci_dev *dev,
 	res = bus->resource[0];
 	if (base <= limit) {
 		res->flags = (io_base_lo & PCI_IO_RANGE_TYPE_MASK) | IORESOURCE_IO;
+<<<<<<< HEAD
+		res2.flags = res->flags;
+		region.start = base;
+		region.end = limit + 0xfff;
+		pcibios_bus_to_resource(dev, &res2, &region);
+		if (!res->start)
+			res->start = res2.start;
+		if (!res->end)
+			res->end = res2.end;
+=======
 		if (!res->start)
 			res->start = base;
 		if (!res->end)
 			res->end = limit + 0xfff;
 		pci_resource_adjust(res, &pbm->io_space);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	pci_read_config_word(dev, PCI_MEMORY_BASE, &mem_base_lo);
@@ -427,9 +459,15 @@ static void __devinit pci_cfg_fake_ranges(struct pci_dev *dev,
 	if (base <= limit) {
 		res->flags = ((mem_base_lo & PCI_MEMORY_RANGE_TYPE_MASK) |
 			      IORESOURCE_MEM);
+<<<<<<< HEAD
+		region.start = base;
+		region.end = limit + 0xfffff;
+		pcibios_bus_to_resource(dev, res, &region);
+=======
 		res->start = base;
 		res->end = limit + 0xfffff;
 		pci_resource_adjust(res, &pbm->mem_space);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
@@ -458,9 +496,15 @@ static void __devinit pci_cfg_fake_ranges(struct pci_dev *dev,
 	if (base <= limit) {
 		res->flags = ((mem_base_lo & PCI_MEMORY_RANGE_TYPE_MASK) |
 			      IORESOURCE_MEM | IORESOURCE_PREFETCH);
+<<<<<<< HEAD
+		region.start = base;
+		region.end = limit + 0xfffff;
+		pcibios_bus_to_resource(dev, res, &region);
+=======
 		res->start = base;
 		res->end = limit + 0xfffff;
 		pci_resource_adjust(res, &pbm->mem_space);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 }
 
@@ -471,6 +515,10 @@ static void __devinit apb_fake_ranges(struct pci_dev *dev,
 				      struct pci_bus *bus,
 				      struct pci_pbm_info *pbm)
 {
+<<<<<<< HEAD
+	struct pci_bus_region region;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct resource *res;
 	u32 first, last;
 	u8 map;
@@ -478,18 +526,32 @@ static void __devinit apb_fake_ranges(struct pci_dev *dev,
 	pci_read_config_byte(dev, APB_IO_ADDRESS_MAP, &map);
 	apb_calc_first_last(map, &first, &last);
 	res = bus->resource[0];
+<<<<<<< HEAD
+	res->flags = IORESOURCE_IO;
+	region.start = (first << 21);
+	region.end = (last << 21) + ((1 << 21) - 1);
+	pcibios_bus_to_resource(dev, res, &region);
+=======
 	res->start = (first << 21);
 	res->end = (last << 21) + ((1 << 21) - 1);
 	res->flags = IORESOURCE_IO;
 	pci_resource_adjust(res, &pbm->io_space);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	pci_read_config_byte(dev, APB_MEM_ADDRESS_MAP, &map);
 	apb_calc_first_last(map, &first, &last);
 	res = bus->resource[1];
+<<<<<<< HEAD
+	res->flags = IORESOURCE_MEM;
+	region.start = (first << 21);
+	region.end = (last << 21) + ((1 << 21) - 1);
+	pcibios_bus_to_resource(dev, res, &region);
+=======
 	res->start = (first << 21);
 	res->end = (last << 21) + ((1 << 21) - 1);
 	res->flags = IORESOURCE_MEM;
 	pci_resource_adjust(res, &pbm->mem_space);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __devinit pci_of_scan_bus(struct pci_pbm_info *pbm,
@@ -505,6 +567,10 @@ static void __devinit of_scan_pci_bridge(struct pci_pbm_info *pbm,
 	struct pci_bus *bus;
 	const u32 *busrange, *ranges;
 	int len, i, simba;
+<<<<<<< HEAD
+	struct pci_bus_region region;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct resource *res;
 	unsigned int flags;
 	u64 size;
@@ -555,8 +621,11 @@ static void __devinit of_scan_pci_bridge(struct pci_pbm_info *pbm,
 	}
 	i = 1;
 	for (; len >= 32; len -= 32, ranges += 8) {
+<<<<<<< HEAD
+=======
 		struct resource *root;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		flags = pci_parse_of_flags(ranges[0]);
 		size = GET_64BIT(ranges, 6);
 		if (flags == 0 || size == 0)
@@ -568,7 +637,10 @@ static void __devinit of_scan_pci_bridge(struct pci_pbm_info *pbm,
 				       " for bridge %s\n", node->full_name);
 				continue;
 			}
+<<<<<<< HEAD
+=======
 			root = &pbm->io_space;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} else {
 			if (i >= PCI_NUM_RESOURCES - PCI_BRIDGE_RESOURCES) {
 				printk(KERN_ERR "PCI: too many memory ranges"
@@ -577,6 +649,14 @@ static void __devinit of_scan_pci_bridge(struct pci_pbm_info *pbm,
 			}
 			res = bus->resource[i];
 			++i;
+<<<<<<< HEAD
+		}
+
+		res->flags = flags;
+		region.start = GET_64BIT(ranges, 1);
+		region.end = region.start + size - 1;
+		pcibios_bus_to_resource(dev, res, &region);
+=======
 			root = &pbm->mem_space;
 		}
 
@@ -589,6 +669,7 @@ static void __devinit of_scan_pci_bridge(struct pci_pbm_info *pbm,
 		 * range property value in a PCI device.
 		 */
 		pci_resource_adjust(res, root);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 after_ranges:
 	sprintf(bus->name, "PCI Bus %04x:%02x", pci_domain_nr(bus),
@@ -684,23 +765,43 @@ static void __devinit pci_bus_register_of_sysfs(struct pci_bus *bus)
 struct pci_bus * __devinit pci_scan_one_pbm(struct pci_pbm_info *pbm,
 					    struct device *parent)
 {
+<<<<<<< HEAD
+	LIST_HEAD(resources);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct device_node *node = pbm->op->dev.of_node;
 	struct pci_bus *bus;
 
 	printk("PCI: Scanning PBM %s\n", node->full_name);
 
+<<<<<<< HEAD
+	pci_add_resource_offset(&resources, &pbm->io_space,
+				pbm->io_space.start);
+	pci_add_resource_offset(&resources, &pbm->mem_space,
+				pbm->mem_space.start);
+	bus = pci_create_root_bus(parent, pbm->pci_first_busno, pbm->pci_ops,
+				  pbm, &resources);
+	if (!bus) {
+		printk(KERN_ERR "Failed to create bus for %s\n",
+		       node->full_name);
+		pci_free_resource_list(&resources);
+=======
 	bus = pci_create_bus(parent, pbm->pci_first_busno, pbm->pci_ops, pbm);
 	if (!bus) {
 		printk(KERN_ERR "Failed to create bus for %s\n",
 		       node->full_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return NULL;
 	}
 	bus->secondary = pbm->pci_first_busno;
 	bus->subordinate = pbm->pci_last_busno;
 
+<<<<<<< HEAD
+=======
 	bus->resource[0] = &pbm->io_space;
 	bus->resource[1] = &pbm->mem_space;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	pci_of_scan_bus(pbm, node, bus);
 	pci_bus_add_devices(bus);
 	pci_bus_register_of_sysfs(bus);
@@ -710,6 +811,8 @@ struct pci_bus * __devinit pci_scan_one_pbm(struct pci_pbm_info *pbm,
 
 void __devinit pcibios_fixup_bus(struct pci_bus *pbus)
 {
+<<<<<<< HEAD
+=======
 	struct pci_pbm_info *pbm = pbus->sysdata;
 
 	/* Generic PCI bus probing sets these to point at
@@ -717,6 +820,7 @@ void __devinit pcibios_fixup_bus(struct pci_bus *pbus)
 	 */
 	pbus->resource[0] = &pbm->io_space;
 	pbus->resource[1] = &pbm->mem_space;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void pcibios_update_irq(struct pci_dev *pdev, int irq)
@@ -759,6 +863,8 @@ int pcibios_enable_device(struct pci_dev *dev, int mask)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
 void pcibios_resource_to_bus(struct pci_dev *pdev, struct pci_bus_region *region,
 			     struct resource *res)
 {
@@ -799,6 +905,7 @@ void pcibios_bus_to_resource(struct pci_dev *pdev, struct resource *res,
 }
 EXPORT_SYMBOL(pcibios_bus_to_resource);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 char * __devinit pcibios_setup(char *str)
 {
 	return str;
@@ -820,11 +927,17 @@ static int __pci_mmap_make_offset_bus(struct pci_dev *pdev, struct vm_area_struc
 	unsigned long space_size, user_offset, user_size;
 
 	if (mmap_state == pci_mmap_io) {
+<<<<<<< HEAD
+		space_size = resource_size(&pbm->io_space);
+	} else {
+		space_size = resource_size(&pbm->mem_space);
+=======
 		space_size = (pbm->io_space.end -
 			      pbm->io_space.start) + 1;
 	} else {
 		space_size = (pbm->mem_space.end -
 			      pbm->mem_space.start) + 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	/* Make sure the request is in range. */
@@ -1021,12 +1134,15 @@ void arch_teardown_msi_irq(unsigned int irq)
 }
 #endif /* !(CONFIG_PCI_MSI) */
 
+<<<<<<< HEAD
+=======
 struct device_node *pci_device_to_OF_node(struct pci_dev *pdev)
 {
 	return pdev->dev.of_node;
 }
 EXPORT_SYMBOL(pci_device_to_OF_node);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void ali_sound_dma_hack(struct pci_dev *pdev, int set_bit)
 {
 	struct pci_dev *ali_isa_bridge;
@@ -1090,6 +1206,14 @@ void pci_resource_to_user(const struct pci_dev *pdev, int bar,
 	*end = rp->end - offset;
 }
 
+<<<<<<< HEAD
+void pcibios_set_master(struct pci_dev *dev)
+{
+	/* No special bus mastering setup handling */
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int __init pcibios_init(void)
 {
 	pci_dfl_cache_line_size = 64 >> 2;

@@ -129,6 +129,20 @@ struct fib_result_nl {
 };
 
 #ifdef CONFIG_IP_ROUTE_MULTIPATH
+<<<<<<< HEAD
+
+#define FIB_RES_NH(res)		((res).fi->fib_nh[(res).nh_sel])
+
+#define FIB_TABLE_HASHSZ 2
+
+#else /* CONFIG_IP_ROUTE_MULTIPATH */
+
+#define FIB_RES_NH(res)		((res).fi->fib_nh[0])
+
+#define FIB_TABLE_HASHSZ 256
+
+#endif /* CONFIG_IP_ROUTE_MULTIPATH */
+=======
 #define FIB_RES_NH(res)		((res).fi->fib_nh[(res).nh_sel])
 #else /* CONFIG_IP_ROUTE_MULTIPATH */
 #define FIB_RES_NH(res)		((res).fi->fib_nh[0])
@@ -139,6 +153,7 @@ struct fib_result_nl {
 #else
 #define FIB_TABLE_HASHSZ 2
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern __be32 fib_info_update_nh_saddr(struct net *net, struct fib_nh *nh);
 

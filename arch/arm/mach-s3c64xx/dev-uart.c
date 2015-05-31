@@ -37,6 +37,12 @@ static struct resource s3c64xx_uart0_resource[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
+		.start	= IRQ_UART0,
+		.end	= IRQ_UART0,
+		.flags	= IORESOURCE_IRQ,
+	},
+=======
 		.start	= IRQ_S3CUART_RX0,
 		.end	= IRQ_S3CUART_RX0,
 		.flags	= IORESOURCE_IRQ,
@@ -52,6 +58,7 @@ static struct resource s3c64xx_uart0_resource[] = {
 		.end	= IRQ_S3CUART_ERR0,
 		.flags	= IORESOURCE_IRQ,
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct resource s3c64xx_uart1_resource[] = {
@@ -61,6 +68,10 @@ static struct resource s3c64xx_uart1_resource[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
+		.start	= IRQ_UART1,
+		.end	= IRQ_UART1,
+=======
 		.start	= IRQ_S3CUART_RX1,
 		.end	= IRQ_S3CUART_RX1,
 		.flags	= IORESOURCE_IRQ,
@@ -74,6 +85,7 @@ static struct resource s3c64xx_uart1_resource[] = {
 	[3] = {
 		.start	= IRQ_S3CUART_ERR1,
 		.end	= IRQ_S3CUART_ERR1,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags	= IORESOURCE_IRQ,
 	},
 };
@@ -85,6 +97,10 @@ static struct resource s3c6xx_uart2_resource[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
+		.start	= IRQ_UART2,
+		.end	= IRQ_UART2,
+=======
 		.start	= IRQ_S3CUART_RX2,
 		.end	= IRQ_S3CUART_RX2,
 		.flags	= IORESOURCE_IRQ,
@@ -98,6 +114,7 @@ static struct resource s3c6xx_uart2_resource[] = {
 	[3] = {
 		.start	= IRQ_S3CUART_ERR2,
 		.end	= IRQ_S3CUART_ERR2,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags	= IORESOURCE_IRQ,
 	},
 };
@@ -109,6 +126,10 @@ static struct resource s3c64xx_uart3_resource[] = {
 		.flags = IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
+		.start	= IRQ_UART3,
+		.end	= IRQ_UART3,
+=======
 		.start	= IRQ_S3CUART_RX3,
 		.end	= IRQ_S3CUART_RX3,
 		.flags	= IORESOURCE_IRQ,
@@ -122,6 +143,7 @@ static struct resource s3c64xx_uart3_resource[] = {
 	[3] = {
 		.start	= IRQ_S3CUART_ERR3,
 		.end	= IRQ_S3CUART_ERR3,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags	= IORESOURCE_IRQ,
 	},
 };

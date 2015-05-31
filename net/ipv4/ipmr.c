@@ -26,7 +26,10 @@
  *
  */
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 #include <linux/types.h>
 #include <linux/capability.h>
@@ -61,6 +64,10 @@
 #include <linux/if_arp.h>
 #include <linux/netfilter_ipv4.h>
 #include <linux/compat.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/ipip.h>
 #include <net/checksum.h>
 #include <net/netlink.h>
@@ -124,8 +131,11 @@ static DEFINE_SPINLOCK(mfc_unres_lock);
 static struct kmem_cache *mrt_cachep __read_mostly;
 
 static struct mr_table *ipmr_new_table(struct net *net, u32 id);
+<<<<<<< HEAD
+=======
 static void ipmr_free_table(struct mr_table *mrt);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int ip_mr_forward(struct net *net, struct mr_table *mrt,
 			 struct sk_buff *skb, struct mfc_cache *cache,
 			 int local);
@@ -133,7 +143,10 @@ static int ipmr_cache_report(struct mr_table *mrt,
 			     struct sk_buff *pkt, vifi_t vifi, int assert);
 static int __ipmr_fill_mroute(struct mr_table *mrt, struct sk_buff *skb,
 			      struct mfc_cache *c, struct rtmsg *rtm);
+<<<<<<< HEAD
+=======
 static void mroute_clean_tables(struct mr_table *mrt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void ipmr_expire_process(unsigned long arg);
 
 #ifdef CONFIG_IP_MROUTE_MULTIPLE_TABLES
@@ -274,7 +287,11 @@ static void __net_exit ipmr_rules_exit(struct net *net)
 
 	list_for_each_entry_safe(mrt, next, &net->ipv4.mr_tables, list) {
 		list_del(&mrt->list);
+<<<<<<< HEAD
+		kfree(mrt);
+=======
 		ipmr_free_table(mrt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	fib_rules_unregister(net->ipv4.mr_rules_ops);
 }
@@ -302,7 +319,11 @@ static int __net_init ipmr_rules_init(struct net *net)
 
 static void __net_exit ipmr_rules_exit(struct net *net)
 {
+<<<<<<< HEAD
+	kfree(net->ipv4.mrt);
+=======
 	ipmr_free_table(net->ipv4.mrt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 #endif
 
@@ -339,6 +360,8 @@ static struct mr_table *ipmr_new_table(struct net *net, u32 id)
 	return mrt;
 }
 
+<<<<<<< HEAD
+=======
 static void ipmr_free_table(struct mr_table *mrt)
 {
 	del_timer_sync(&mrt->ipmr_expire_timer);
@@ -346,6 +369,7 @@ static void ipmr_free_table(struct mr_table *mrt)
 	kfree(mrt);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Service routines creating virtual interfaces: DVMRP tunnels and PIMREG */
 
 static void ipmr_del_tunnel(struct net_device *dev, struct vifctl *v)
@@ -960,7 +984,11 @@ static int ipmr_cache_report(struct mr_table *mrt,
 	rcu_read_unlock();
 	if (ret < 0) {
 		if (net_ratelimit())
+<<<<<<< HEAD
+			pr_warn("mroute: pending queue full, dropping entries\n");
+=======
 			printk(KERN_WARNING "mroute: pending queue full, dropping entries.\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		kfree_skb(skb);
 	}
 
@@ -1186,7 +1214,11 @@ static void mrtsock_destruct(struct sock *sk)
 	ipmr_for_each_table(mrt, net) {
 		if (sk == rtnl_dereference(mrt->mroute_sk)) {
 			IPV4_DEVCONF_ALL(net, MC_FORWARDING)--;
+<<<<<<< HEAD
+			RCU_INIT_POINTER(mrt->mroute_sk, NULL);
+=======
 			rcu_assign_pointer(mrt->mroute_sk, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			mroute_clean_tables(mrt);
 		}
 	}
@@ -1213,7 +1245,11 @@ int ip_mroute_setsockopt(struct sock *sk, int optname, char __user *optval, unsi
 		return -ENOENT;
 
 	if (optname != MRT_INIT) {
+<<<<<<< HEAD
+		if (sk != rcu_access_pointer(mrt->mroute_sk) &&
+=======
 		if (sk != rcu_dereference_raw(mrt->mroute_sk) &&
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		    !capable(CAP_NET_ADMIN))
 			return -EACCES;
 	}
@@ -1240,7 +1276,11 @@ int ip_mroute_setsockopt(struct sock *sk, int optname, char __user *optval, unsi
 		rtnl_unlock();
 		return ret;
 	case MRT_DONE:
+<<<<<<< HEAD
+		if (sk != rcu_access_pointer(mrt->mroute_sk))
+=======
 		if (sk != rcu_dereference_raw(mrt->mroute_sk))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			return -EACCES;
 		return ip_ra_control(sk, 0, NULL);
 	case MRT_ADD_VIF:
@@ -1529,7 +1569,10 @@ static int ipmr_device_event(struct notifier_block *this, unsigned long event, v
 	struct mr_table *mrt;
 	struct vif_device *v;
 	int ct;
+<<<<<<< HEAD
+=======
 	LIST_HEAD(list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (event != NETDEV_UNREGISTER)
 		return NOTIFY_DONE;
@@ -1538,10 +1581,16 @@ static int ipmr_device_event(struct notifier_block *this, unsigned long event, v
 		v = &mrt->vif_table[0];
 		for (ct = 0; ct < mrt->maxvif; ct++, v++) {
 			if (v->dev == dev)
+<<<<<<< HEAD
+				vif_delete(mrt, ct, 1, NULL);
+		}
+	}
+=======
 				vif_delete(mrt, ct, 1, &list);
 		}
 	}
 	unregister_netdevice_many(&list);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return NOTIFY_DONE;
 }
 
@@ -1575,7 +1624,11 @@ static void ip_encap(struct sk_buff *skb, __be32 saddr, __be32 daddr)
 	iph->protocol	=	IPPROTO_IPIP;
 	iph->ihl	=	5;
 	iph->tot_len	=	htons(skb->len);
+<<<<<<< HEAD
+	ip_select_ident(iph, skb_dst(skb), NULL);
+=======
 	ip_select_ident(skb, skb_dst(skb), NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ip_send_check(iph);
 
 	memset(&(IPCB(skb)->opt), 0, sizeof(IPCB(skb)->opt));
@@ -2549,7 +2602,11 @@ int __init ip_mr_init(void)
 		goto reg_notif_fail;
 #ifdef CONFIG_IP_PIMSM_V2
 	if (inet_add_protocol(&pim_protocol, IPPROTO_PIM) < 0) {
+<<<<<<< HEAD
+		pr_err("%s: can't add PIM protocol\n", __func__);
+=======
 		printk(KERN_ERR "ip_mr_init: can't add PIM protocol\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = -EAGAIN;
 		goto add_proto_fail;
 	}

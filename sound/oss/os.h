@@ -16,7 +16,10 @@
 #include <linux/slab.h>
 #include <linux/ioport.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/vmalloc.h>
 #include <asm/uaccess.h>
 #include <linux/poll.h>

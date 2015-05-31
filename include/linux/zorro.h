@@ -187,7 +187,11 @@ extern struct zorro_dev *zorro_find_device(zorro_id id,
 
 #define zorro_resource_start(z)	((z)->resource.start)
 #define zorro_resource_end(z)	((z)->resource.end)
+<<<<<<< HEAD
+#define zorro_resource_len(z)	(resource_size(&(z)->resource))
+=======
 #define zorro_resource_len(z)	((z)->resource.end-(z)->resource.start+1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define zorro_resource_flags(z)	((z)->resource.flags)
 
 #define zorro_request_device(z, name) \

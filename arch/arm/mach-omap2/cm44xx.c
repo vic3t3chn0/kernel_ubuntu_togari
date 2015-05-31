@@ -18,8 +18,13 @@
 #include <linux/err.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
+#include "iomap.h"
+#include "common.h"
+=======
 #include <plat/common.h>
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "cm.h"
 #include "cm1_44xx.h"
 #include "cm2_44xx.h"

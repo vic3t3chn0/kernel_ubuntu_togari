@@ -27,7 +27,10 @@
 #include <linux/gfp.h>
 
 #include <asm/sections.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/vac-ops.h>
 #include <asm/page.h>
 #include <asm/pgtable.h>
@@ -78,7 +81,11 @@ void show_mem(unsigned int filter)
 	printk("Mem-info:\n");
 	show_free_areas(filter);
 	printk("Free swap:       %6ldkB\n",
+<<<<<<< HEAD
+	       get_nr_swap_pages() << (PAGE_SHIFT-10));
+=======
 	       nr_swap_pages << (PAGE_SHIFT-10));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	printk("%ld pages of RAM\n", totalram_pages);
 	printk("%ld free pages\n", nr_free_pages());
 #if 0 /* undefined pgtable_cache_size, pgd_cache_size */

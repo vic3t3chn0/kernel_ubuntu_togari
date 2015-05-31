@@ -33,7 +33,11 @@
  * The xattrs themselves are protected by the xattr_sem.
  */
 
+<<<<<<< HEAD
+#include "reiserfs.h"
+=======
 #include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/capability.h>
 #include <linux/dcache.h>
 #include <linux/namei.h>
@@ -43,8 +47,13 @@
 #include <linux/file.h>
 #include <linux/pagemap.h>
 #include <linux/xattr.h>
+<<<<<<< HEAD
+#include "xattr.h"
+#include "acl.h"
+=======
 #include <linux/reiserfs_xattr.h>
 #include <linux/reiserfs_acl.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 #include <net/checksum.h>
 #include <linux/stat.h>
@@ -66,7 +75,11 @@ static int xattr_create(struct inode *dir, struct dentry *dentry, int mode)
 }
 #endif
 
+<<<<<<< HEAD
+static int xattr_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode)
+=======
 static int xattr_mkdir(struct inode *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	BUG_ON(!mutex_is_locked(&dir->i_mutex));
 	return dir->i_op->mkdir(dir, dentry, mode);
@@ -187,8 +200,13 @@ fill_with_dentries(void *buf, const char *name, int namelen, loff_t offset,
 	if (dbuf->count == ARRAY_SIZE(dbuf->dentries))
 		return -ENOSPC;
 
+<<<<<<< HEAD
+	if (name[0] == '.' && (name[1] == '\0' ||
+			       (name[1] == '.' && name[2] == '\0')))
+=======
 	if (name[0] == '.' && (namelen < 2 ||
 			       (namelen == 2 && name[1] == '.')))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 0;
 
 	dentry = lookup_one_len(name, dbuf->xadir, namelen);
@@ -555,11 +573,18 @@ reiserfs_xattr_set_handle(struct reiserfs_transaction_handle *th,
 
 		reiserfs_write_unlock(inode->i_sb);
 		mutex_lock_nested(&dentry->d_inode->i_mutex, I_MUTEX_XATTR);
+<<<<<<< HEAD
+		inode_dio_wait(dentry->d_inode);
+		reiserfs_write_lock(inode->i_sb);
+
+		err = reiserfs_setattr(dentry, &newattrs);
+=======
 		down_write(&dentry->d_inode->i_alloc_sem);
 		reiserfs_write_lock(inode->i_sb);
 
 		err = reiserfs_setattr(dentry, &newattrs);
 		up_write(&dentry->d_inode->i_alloc_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mutex_unlock(&dentry->d_inode->i_mutex);
 	} else
 		update_ctime(inode);
@@ -868,6 +893,8 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
 static int reiserfs_check_acl(struct inode *inode, int mask, unsigned int flags)
 {
 	struct posix_acl *acl;
@@ -889,6 +916,7 @@ static int reiserfs_check_acl(struct inode *inode, int mask, unsigned int flags)
 	return error;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int create_privroot(struct dentry *dentry)
 {
 	int err;
@@ -952,7 +980,11 @@ static int xattr_mount_check(struct super_block *s)
 	return 0;
 }
 
+<<<<<<< HEAD
+int reiserfs_permission(struct inode *inode, int mask)
+=======
 int reiserfs_permission(struct inode *inode, int mask, unsigned int flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/*
 	 * We don't do permission checks on the internal objects.
@@ -961,6 +993,9 @@ int reiserfs_permission(struct inode *inode, int mask, unsigned int flags)
 	if (IS_PRIVATE(inode))
 		return 0;
 
+<<<<<<< HEAD
+	return generic_permission(inode, mask);
+=======
 #ifdef CONFIG_REISERFS_FS_XATTR
 	/*
 	 * Stat data v1 doesn't support ACLs.
@@ -970,6 +1005,7 @@ int reiserfs_permission(struct inode *inode, int mask, unsigned int flags)
 					reiserfs_check_acl);
 #endif
 	return generic_permission(inode, mask, flags, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int xattr_hide_revalidate(struct dentry *dentry, struct nameidata *nd)

@@ -20,8 +20,14 @@
 #include <linux/types.h>
 #include <asm/byteorder.h>
 
+<<<<<<< HEAD
+#include <linux/socket.h>
+#include <linux/if_ether.h>
+#ifdef  __KERNEL__
+=======
 #ifdef  __KERNEL__
 #include <linux/if_ether.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/if.h>
 #include <linux/netdevice.h>
 #include <linux/ppp_channel.h>
@@ -67,7 +73,11 @@ struct pptp_addr {
 #define PX_MAX_PROTO   5
 
 struct sockaddr_pppox {
+<<<<<<< HEAD
+	__kernel_sa_family_t sa_family;       /* address family, AF_PPPOX */
+=======
 	sa_family_t     sa_family;            /* address family, AF_PPPOX */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int    sa_protocol;          /* protocol identifier */
 	union {
 		struct pppoe_addr  pppoe;
@@ -81,7 +91,11 @@ struct sockaddr_pppox {
  * type instead.
  */
 struct sockaddr_pppol2tp {
+<<<<<<< HEAD
+	__kernel_sa_family_t sa_family; /* address family, AF_PPPOX */
+=======
 	sa_family_t     sa_family;      /* address family, AF_PPPOX */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int    sa_protocol;    /* protocol identifier */
 	struct pppol2tp_addr pppol2tp;
 } __attribute__((packed));
@@ -90,7 +104,11 @@ struct sockaddr_pppol2tp {
  * bits. So we need a different sockaddr structure.
  */
 struct sockaddr_pppol2tpv3 {
+<<<<<<< HEAD
+	__kernel_sa_family_t sa_family; /* address family, AF_PPPOX */
+=======
 	sa_family_t     sa_family;      /* address family, AF_PPPOX */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int    sa_protocol;    /* protocol identifier */
 	struct pppol2tpv3_addr pppol2tp;
 } __attribute__((packed));
@@ -131,11 +149,19 @@ struct pppoe_tag {
 
 struct pppoe_hdr {
 #if defined(__LITTLE_ENDIAN_BITFIELD)
+<<<<<<< HEAD
+	__u8 ver : 4;
+	__u8 type : 4;
+#elif defined(__BIG_ENDIAN_BITFIELD)
+	__u8 type : 4;
+	__u8 ver : 4;
+=======
 	__u8 type : 4;
 	__u8 ver : 4;
 #elif defined(__BIG_ENDIAN_BITFIELD)
 	__u8 ver : 4;
 	__u8 type : 4;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 #error	"Please fix <asm/byteorder.h>"
 #endif

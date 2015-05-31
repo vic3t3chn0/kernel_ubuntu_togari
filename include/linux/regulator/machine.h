@@ -71,7 +71,11 @@ struct regulator_state {
  * @uV_offset: Offset applied to voltages from consumer to compensate for
  *             voltage drops.
  *
+<<<<<<< HEAD
+ * @min_uA: Smallest current consumers may set.
+=======
  * @min_uA: Smallest consumers consumers may set.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @max_uA: Largest current consumers may set.
  *
  * @valid_modes_mask: Mask of modes which may be configured by consumers.
@@ -95,7 +99,11 @@ struct regulator_state {
  */
 struct regulation_constraints {
 
+<<<<<<< HEAD
+	const char *name;
+=======
 	char *name;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* voltage output range (inclusive) - for voltage control */
 	int min_uV;
@@ -134,17 +142,26 @@ struct regulation_constraints {
 /**
  * struct regulator_consumer_supply - supply -> device mapping
  *
+<<<<<<< HEAD
+ * This maps a supply name to a device. Use of dev_name allows support for
+ * buses which make struct device available late such as I2C.
+ *
+=======
  * This maps a supply name to a device.  Only one of dev or dev_name
  * can be specified.  Use of dev_name allows support for buses which
  * make struct device available late such as I2C and is the preferred
  * form.
  *
  * @dev: Device structure for the consumer.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @dev_name: Result of dev_name() for the consumer.
  * @supply: Name for the supply.
  */
 struct regulator_consumer_supply {
+<<<<<<< HEAD
+=======
 	struct device *dev;	/* consumer */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	const char *dev_name;   /* dev_name() for consumer */
 	const char *supply;	/* consumer supply - e.g. "vcc" */
 };
@@ -192,6 +209,10 @@ int regulator_suspend_finish(void);
 #ifdef CONFIG_REGULATOR
 void regulator_has_full_constraints(void);
 void regulator_use_dummy_regulator(void);
+<<<<<<< HEAD
+void regulator_suppress_info_printing(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 static inline void regulator_has_full_constraints(void)
 {
@@ -200,6 +221,13 @@ static inline void regulator_has_full_constraints(void)
 static inline void regulator_use_dummy_regulator(void)
 {
 }
+<<<<<<< HEAD
+
+static inline void regulator_suppress_info_printing(void)
+{
+}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif

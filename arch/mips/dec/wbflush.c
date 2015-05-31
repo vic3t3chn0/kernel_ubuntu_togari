@@ -17,8 +17,13 @@
 #include <linux/init.h>
 
 #include <asm/bootinfo.h>
+<<<<<<< HEAD
+#include <asm/wbflush.h>
+#include <asm/barrier.h>
+=======
 #include <asm/system.h>
 #include <asm/wbflush.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void wbflush_kn01(void);
 static void wbflush_kn210(void);

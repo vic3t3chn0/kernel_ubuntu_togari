@@ -39,12 +39,15 @@
 #include <linux/magic.h>
 #include "ecryptfs_kernel.h"
 
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 #include <linux/ctype.h>
 #endif
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * Module parameter that defines the ecryptfs_verbosity level.
  */
@@ -182,9 +185,12 @@ enum { ecryptfs_opt_sig, ecryptfs_opt_ecryptfs_sig,
        ecryptfs_opt_fn_cipher, ecryptfs_opt_fn_cipher_key_bytes,
        ecryptfs_opt_unlink_sigs, ecryptfs_opt_mount_auth_tok_only,
        ecryptfs_opt_check_dev_ruid,
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 	ecryptfs_opt_enable_filtering,
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
        ecryptfs_opt_err };
 
 static const match_table_t tokens = {
@@ -202,9 +208,12 @@ static const match_table_t tokens = {
 	{ecryptfs_opt_unlink_sigs, "ecryptfs_unlink_sigs"},
 	{ecryptfs_opt_mount_auth_tok_only, "ecryptfs_mount_auth_tok_only"},
 	{ecryptfs_opt_check_dev_ruid, "ecryptfs_check_dev_ruid"},
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 	{ecryptfs_opt_enable_filtering, "ecryptfs_enable_filtering=%s"},
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{ecryptfs_opt_err, NULL}
 };
 
@@ -245,6 +254,9 @@ static void ecryptfs_init_mount_crypt_stat(
 	mutex_init(&mount_crypt_stat->global_auth_tok_list_mutex);
 	mount_crypt_stat->flags |= ECRYPTFS_MOUNT_CRYPT_STAT_INITIALIZED;
 }
+<<<<<<< HEAD
+
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 
 static int parse_enc_file_filter_parms(
@@ -296,6 +308,7 @@ static int parse_enc_filter_parms(
 	return 0;
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * ecryptfs_parse_options
  * @sb: The ecryptfs super block
@@ -341,7 +354,10 @@ static int ecryptfs_parse_options(struct ecryptfs_sb_info *sbi, char *options,
 	char *fnek_src;
 	char *cipher_key_bytes_src;
 	char *fn_cipher_key_bytes_src;
+<<<<<<< HEAD
+=======
 	u8 cipher_code;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	*check_ruid = 0;
 
@@ -452,6 +468,8 @@ static int ecryptfs_parse_options(struct ecryptfs_sb_info *sbi, char *options,
 		case ecryptfs_opt_check_dev_ruid:
 			*check_ruid = 1;
 			break;
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_WTL_ENCRYPTION_FILTER
 		case ecryptfs_opt_enable_filtering:
 			rc = parse_enc_filter_parms(mount_crypt_stat,
@@ -465,6 +483,7 @@ static int ecryptfs_parse_options(struct ecryptfs_sb_info *sbi, char *options,
 			mount_crypt_stat->flags |= ECRYPTFS_ENABLE_FILTERING;
 			break;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case ecryptfs_opt_err:
 		default:
 			printk(KERN_WARNING
@@ -496,6 +515,8 @@ static int ecryptfs_parse_options(struct ecryptfs_sb_info *sbi, char *options,
 	    && !fn_cipher_key_bytes_set)
 		mount_crypt_stat->global_default_fn_cipher_key_bytes =
 			mount_crypt_stat->global_default_cipher_key_size;
+<<<<<<< HEAD
+=======
 
 	cipher_code = ecryptfs_code_for_cipher_string(
 		mount_crypt_stat->global_default_cipher_name,
@@ -508,6 +529,7 @@ static int ecryptfs_parse_options(struct ecryptfs_sb_info *sbi, char *options,
 		goto out;
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mutex_lock(&key_tfm_list_mutex);
 	if (!ecryptfs_tfm_exists(mount_crypt_stat->global_default_cipher_name,
 				 NULL)) {
@@ -593,6 +615,10 @@ static struct dentry *ecryptfs_mount(struct file_system_type *fs_type, int flags
 		goto out;
 	}
 
+<<<<<<< HEAD
+	s->s_flags = flags;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rc = bdi_setup_and_register(&sbi->bdi, "ecryptfs", BDI_CAP_MAP_COPY);
 	if (rc)
 		goto out1;
@@ -628,6 +654,8 @@ static struct dentry *ecryptfs_mount(struct file_system_type *fs_type, int flags
 	}
 
 	ecryptfs_set_superblock_lower(s, path.dentry->d_sb);
+<<<<<<< HEAD
+=======
 
 	/**
 	 * Set the POSIX ACL flag based on whether they're enabled in the lower
@@ -637,6 +665,7 @@ static struct dentry *ecryptfs_mount(struct file_system_type *fs_type, int flags
 	s->s_flags = flags & ~MS_POSIXACL;
 	s->s_flags |= path.dentry->d_sb->s_flags & (MS_RDONLY | MS_POSIXACL);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s->s_maxbytes = path.dentry->d_sb->s_maxbytes;
 	s->s_blocksize = path.dentry->d_sb->s_blocksize;
 	s->s_magic = ECRYPTFS_SUPER_MAGIC;
@@ -646,9 +675,14 @@ static struct dentry *ecryptfs_mount(struct file_system_type *fs_type, int flags
 	if (IS_ERR(inode))
 		goto out_free;
 
+<<<<<<< HEAD
+	s->s_root = d_make_root(inode);
+	if (!s->s_root) {
+=======
 	s->s_root = d_alloc_root(inode);
 	if (!s->s_root) {
 		iput(inode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		rc = -ENOMEM;
 		goto out_free;
 	}
@@ -891,6 +925,12 @@ static int __init ecryptfs_init(void)
 		       "Failed to allocate one or more kmem_cache objects\n");
 		goto out;
 	}
+<<<<<<< HEAD
+	rc = do_sysfs_registration();
+	if (rc) {
+		printk(KERN_ERR "sysfs registration failed\n");
+		goto out_free_kmem_caches;
+=======
 	rc = register_filesystem(&ecryptfs_fs_type);
 	if (rc) {
 		printk(KERN_ERR "Failed to register filesystem\n");
@@ -900,6 +940,7 @@ static int __init ecryptfs_init(void)
 	if (rc) {
 		printk(KERN_ERR "sysfs registration failed\n");
 		goto out_unregister_filesystem;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	rc = ecryptfs_init_kthread();
 	if (rc) {
@@ -920,19 +961,35 @@ static int __init ecryptfs_init(void)
 		       "rc = [%d]\n", rc);
 		goto out_release_messaging;
 	}
+<<<<<<< HEAD
+	rc = register_filesystem(&ecryptfs_fs_type);
+	if (rc) {
+		printk(KERN_ERR "Failed to register filesystem\n");
+		goto out_destroy_crypto;
+	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (ecryptfs_verbosity > 0)
 		printk(KERN_CRIT "eCryptfs verbosity set to %d. Secret values "
 			"will be written to the syslog!\n", ecryptfs_verbosity);
 
 	goto out;
+<<<<<<< HEAD
+out_destroy_crypto:
+	ecryptfs_destroy_crypto();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out_release_messaging:
 	ecryptfs_release_messaging();
 out_destroy_kthread:
 	ecryptfs_destroy_kthread();
 out_do_sysfs_unregistration:
 	do_sysfs_unregistration();
+<<<<<<< HEAD
+=======
 out_unregister_filesystem:
 	unregister_filesystem(&ecryptfs_fs_type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out_free_kmem_caches:
 	ecryptfs_free_kmem_caches();
 out:
@@ -954,7 +1011,10 @@ static void __exit ecryptfs_exit(void)
 	ecryptfs_free_kmem_caches();
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MODULE_AUTHOR("Michael A. Halcrow <mhalcrow@us.ibm.com>");
 MODULE_DESCRIPTION("eCryptfs");
 

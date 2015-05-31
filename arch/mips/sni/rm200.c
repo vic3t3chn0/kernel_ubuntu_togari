@@ -359,6 +359,10 @@ void sni_rm200_init_8259A(void)
 static struct irqaction sni_rm200_irq2 = {
 	.handler = no_action,
 	.name = "cascade",
+<<<<<<< HEAD
+	.flags = IRQF_NO_THREAD,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct resource sni_rm200_pic1_resource = {

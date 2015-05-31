@@ -67,8 +67,12 @@ nlmsvc_retrieve_args(struct svc_rqst *rqstp, struct nlm_args *argp,
 
 	/* Obtain file pointer. Not used by FREE_ALL call. */
 	if (filp != NULL) {
+<<<<<<< HEAD
+		if ((error = nlm_lookup_file(rqstp, &file, &lock->fh)) != 0)
+=======
 		error = cast_status(nlm_lookup_file(rqstp, &file, &lock->fh));
 		if (error != 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			goto no_locks;
 		*filp = file;
 

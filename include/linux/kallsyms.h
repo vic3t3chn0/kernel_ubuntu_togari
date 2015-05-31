@@ -36,6 +36,10 @@ const char *kallsyms_lookup(unsigned long addr,
 
 /* Look up a kernel symbol and return it in a text buffer. */
 extern int sprint_symbol(char *buffer, unsigned long address);
+<<<<<<< HEAD
+extern int sprint_symbol_no_offset(char *buffer, unsigned long address);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int sprint_backtrace(char *buffer, unsigned long address);
 
 /* Look up a kernel symbol and print it to the kernel messages. */
@@ -80,6 +84,15 @@ static inline int sprint_symbol(char *buffer, unsigned long addr)
 	return 0;
 }
 
+<<<<<<< HEAD
+static inline int sprint_symbol_no_offset(char *buffer, unsigned long addr)
+{
+	*buffer = '\0';
+	return 0;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline int sprint_backtrace(char *buffer, unsigned long addr)
 {
 	*buffer = '\0';
@@ -101,9 +114,14 @@ static inline int lookup_symbol_attrs(unsigned long addr, unsigned long *size, u
 #endif /*CONFIG_KALLSYMS*/
 
 /* This macro allows us to keep printk typechecking */
+<<<<<<< HEAD
+static __printf(1, 2)
+void __check_printsym_format(const char *fmt, ...)
+=======
 static void __check_printsym_format(const char *fmt, ...)
 __attribute__((format(printf,1,2)));
 static inline void __check_printsym_format(const char *fmt, ...)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 }
 

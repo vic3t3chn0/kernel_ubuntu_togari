@@ -64,11 +64,21 @@ static int audit_caps(struct aa_profile *profile, struct task_struct *task,
 	struct audit_cache *ent;
 	int type = AUDIT_APPARMOR_AUTO;
 	struct common_audit_data sa;
+<<<<<<< HEAD
+	struct apparmor_audit_data aad = {0,};
+	COMMON_AUDIT_DATA_INIT(&sa, CAP);
+	sa.aad = &aad;
+	sa.tsk = task;
+	sa.u.cap = cap;
+	sa.aad->op = OP_CAPABLE;
+	sa.aad->error = error;
+=======
 	COMMON_AUDIT_DATA_INIT(&sa, CAP);
 	sa.tsk = task;
 	sa.u.cap = cap;
 	sa.aad.op = OP_CAPABLE;
 	sa.aad.error = error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (likely(!error)) {
 		/* test if auditing is being forced */

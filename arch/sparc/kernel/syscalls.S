@@ -147,7 +147,11 @@ linux_syscall_trace32:
 	srl	%i4, 0, %o4
 	srl	%i1, 0, %o1
 	srl	%i2, 0, %o2
+<<<<<<< HEAD
+	ba,pt	%xcc, 2f
+=======
 	ba,pt	%xcc, 5f
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	 srl	%i3, 0, %o3
 
 linux_syscall_trace:
@@ -177,13 +181,22 @@ linux_sparc_syscall32:
 	srl	%i1, 0, %o1				! IEU0	Group
 	ldx	[%g6 + TI_FLAGS], %l0		! Load
 
+<<<<<<< HEAD
+	srl	%i5, 0, %o5				! IEU1
+=======
 	srl	%i3, 0, %o3				! IEU0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	srl	%i2, 0, %o2				! IEU0	Group
 	andcc	%l0, (_TIF_SYSCALL_TRACE|_TIF_SECCOMP|_TIF_SYSCALL_AUDIT|_TIF_SYSCALL_TRACEPOINT), %g0
 	bne,pn	%icc, linux_syscall_trace32		! CTI
 	 mov	%i0, %l5				! IEU1
+<<<<<<< HEAD
+	call	%l7					! CTI	Group brk forced
+	 srl	%i3, 0, %o3				! IEU0
+=======
 5:	call	%l7					! CTI	Group brk forced
 	 srl	%i5, 0, %o5				! IEU1
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ba,a,pt	%xcc, 3f
 
 	/* Linux native system calls enter here... */
@@ -212,10 +225,29 @@ linux_sparc_syscall:
 3:	stx	%o0, [%sp + PTREGS_OFF + PT_V9_I0]
 ret_sys_call:
 	ldx	[%sp + PTREGS_OFF + PT_V9_TSTATE], %g3
+<<<<<<< HEAD
+	ldx	[%sp + PTREGS_OFF + PT_V9_TNPC], %l1 ! pc = npc
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sra	%o0, 0, %o0
 	mov	%ulo(TSTATE_XCARRY | TSTATE_ICARRY), %g2
 	sllx	%g2, 32, %g2
 
+<<<<<<< HEAD
+	/* Check if force_successful_syscall_return()
+	 * was invoked.
+	 */
+	ldub	[%g6 + TI_SYS_NOERROR], %l2
+	brnz,a,pn %l2, 80f
+	 stb	%g0, [%g6 + TI_SYS_NOERROR]
+
+	cmp	%o0, -ERESTART_RESTARTBLOCK
+	bgeu,pn	%xcc, 1f
+	 andcc	%l0, (_TIF_SYSCALL_TRACE|_TIF_SECCOMP|_TIF_SYSCALL_AUDIT|_TIF_SYSCALL_TRACEPOINT), %l6
+80:
+	/* System call success, clear Carry condition code. */
+	andn	%g3, %g2, %g3
+=======
 	cmp	%o0, -ERESTART_RESTARTBLOCK
 	bgeu,pn	%xcc, 1f
 	 andcc	%l0, (_TIF_SYSCALL_TRACE|_TIF_SECCOMP|_TIF_SYSCALL_AUDIT|_TIF_SYSCALL_TRACEPOINT), %g0
@@ -226,6 +258,7 @@ ret_sys_call:
 	/* System call success, clear Carry condition code. */
 	andn	%g3, %g2, %g3
 3:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	stx	%g3, [%sp + PTREGS_OFF + PT_V9_TSTATE]	
 	bne,pn	%icc, linux_syscall_trace2
 	 add	%l1, 0x4, %l2			! npc = npc+4
@@ -234,6 +267,22 @@ ret_sys_call:
 	 stx	%l2, [%sp + PTREGS_OFF + PT_V9_TNPC]
 
 1:
+<<<<<<< HEAD
+	/* System call failure, set Carry condition code.
+	 * Also, get abs(errno) to return to the process.
+	 */
+	andcc	%l0, (_TIF_SYSCALL_TRACE|_TIF_SECCOMP|_TIF_SYSCALL_AUDIT|_TIF_SYSCALL_TRACEPOINT), %l6	
+	sub	%g0, %o0, %o0
+	or	%g3, %g2, %g3
+	stx	%o0, [%sp + PTREGS_OFF + PT_V9_I0]
+	stx	%g3, [%sp + PTREGS_OFF + PT_V9_TSTATE]
+	bne,pn	%icc, linux_syscall_trace2
+	 add	%l1, 0x4, %l2			! npc = npc+4
+	stx	%l1, [%sp + PTREGS_OFF + PT_V9_TPC]
+
+	b,pt	%xcc, rtrap
+	 stx	%l2, [%sp + PTREGS_OFF + PT_V9_TNPC]
+=======
 	/* Check if force_successful_syscall_return()
 	 * was invoked.
 	 */
@@ -248,6 +297,7 @@ ret_sys_call:
 	ba,pt	%xcc, 3b
 	 or	%g3, %g2, %g3
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 linux_syscall_trace2:
 	call	syscall_trace_leave
 	 add	%sp, PTREGS_OFF, %o0

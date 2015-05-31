@@ -24,6 +24,10 @@
 #include <linux/spinlock.h>
 #include <linux/debugfs.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/device.h>
 #include <linux/types.h>
 #include <linux/sched.h>
@@ -62,6 +66,11 @@ struct dma_debug_entry {
 #endif
 };
 
+<<<<<<< HEAD
+typedef bool (*match_fn)(struct dma_debug_entry *, struct dma_debug_entry *);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct hash_bucket {
 	struct list_head list;
 	spinlock_t lock;
@@ -167,7 +176,11 @@ static bool driver_filter(struct device *dev)
 		return false;
 
 	/* driver filter on but not yet initialized */
+<<<<<<< HEAD
+	drv = dev->driver;
+=======
 	drv = get_driver(dev->driver);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!drv)
 		return false;
 
@@ -182,7 +195,10 @@ static bool driver_filter(struct device *dev)
 	}
 
 	read_unlock_irqrestore(&driver_name_lock, flags);
+<<<<<<< HEAD
+=======
 	put_driver(drv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return ret;
 }
@@ -240,18 +256,50 @@ static void put_hash_bucket(struct hash_bucket *bucket,
 	spin_unlock_irqrestore(&bucket->lock, __flags);
 }
 
+<<<<<<< HEAD
+static bool exact_match(struct dma_debug_entry *a, struct dma_debug_entry *b)
+{
+	return ((a->dev_addr == b->dev_addr) &&
+		(a->dev == b->dev)) ? true : false;
+}
+
+static bool containing_match(struct dma_debug_entry *a,
+			     struct dma_debug_entry *b)
+{
+	if (a->dev != b->dev)
+		return false;
+
+	if ((b->dev_addr <= a->dev_addr) &&
+	    ((b->dev_addr + b->size) >= (a->dev_addr + a->size)))
+		return true;
+
+	return false;
+}
+
+/*
+ * Search a given entry in the hash bucket list
+ */
+static struct dma_debug_entry *__hash_bucket_find(struct hash_bucket *bucket,
+						  struct dma_debug_entry *ref,
+						  match_fn match)
+=======
 /*
  * Search a given entry in the hash bucket list
  */
 static struct dma_debug_entry *hash_bucket_find(struct hash_bucket *bucket,
 						struct dma_debug_entry *ref)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct dma_debug_entry *entry, *ret = NULL;
 	int matches = 0, match_lvl, last_lvl = 0;
 
 	list_for_each_entry(entry, &bucket->list, list) {
+<<<<<<< HEAD
+		if (!match(ref, entry))
+=======
 		if ((entry->dev_addr != ref->dev_addr) ||
 		    (entry->dev != ref->dev))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 
 		/*
@@ -293,6 +341,42 @@ static struct dma_debug_entry *hash_bucket_find(struct hash_bucket *bucket,
 	return ret;
 }
 
+<<<<<<< HEAD
+static struct dma_debug_entry *bucket_find_exact(struct hash_bucket *bucket,
+						 struct dma_debug_entry *ref)
+{
+	return __hash_bucket_find(bucket, ref, exact_match);
+}
+
+static struct dma_debug_entry *bucket_find_contain(struct hash_bucket **bucket,
+						   struct dma_debug_entry *ref,
+						   unsigned long *flags)
+{
+
+	unsigned int max_range = dma_get_max_seg_size(ref->dev);
+	struct dma_debug_entry *entry, index = *ref;
+	unsigned int range = 0;
+
+	while (range <= max_range) {
+		entry = __hash_bucket_find(*bucket, &index, containing_match);
+
+		if (entry)
+			return entry;
+
+		/*
+		 * Nothing found, go back a hash bucket
+		 */
+		put_hash_bucket(*bucket, flags);
+		range          += (1 << HASH_FN_SHIFT);
+		index.dev_addr -= (1 << HASH_FN_SHIFT);
+		*bucket = get_hash_bucket(&index, flags);
+	}
+
+	return NULL;
+}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Add an entry to a hash bucket
  */
@@ -802,7 +886,11 @@ static void check_unmap(struct dma_debug_entry *ref)
 	}
 
 	bucket = get_hash_bucket(ref, &flags);
+<<<<<<< HEAD
+	entry = bucket_find_exact(bucket, ref);
+=======
 	entry = hash_bucket_find(bucket, ref);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!entry) {
 		err_printk(ref->dev, NULL, "DMA-API: device driver tries "
@@ -902,7 +990,11 @@ static void check_sync(struct device *dev,
 
 	bucket = get_hash_bucket(ref, &flags);
 
+<<<<<<< HEAD
+	entry = bucket_find_contain(&bucket, ref, &flags);
+=======
 	entry = hash_bucket_find(bucket, ref);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!entry) {
 		err_printk(dev, NULL, "DMA-API: device driver tries "
@@ -1060,7 +1152,11 @@ static int get_nr_mapped_entries(struct device *dev,
 	int mapped_ents;
 
 	bucket       = get_hash_bucket(ref, &flags);
+<<<<<<< HEAD
+	entry        = bucket_find_exact(bucket, ref);
+=======
 	entry        = hash_bucket_find(bucket, ref);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mapped_ents  = 0;
 
 	if (entry)

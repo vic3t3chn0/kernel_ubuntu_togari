@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
+ *  linux/arch/arm/mach-exynos4/headsmp.S
+=======
  *  linux/arch/arm/mach-exynos/headsmp.S
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  *  Cloned from linux/arch/arm/mach-realview/headsmp.S
  *
@@ -20,7 +24,11 @@
  * a "holding pen" into which all secondary cores are held until we're
  * ready for them to initialise.
  */
+<<<<<<< HEAD
+ENTRY(exynos4_secondary_startup)
+=======
 ENTRY(exynos_secondary_startup)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mrc	p15, 0, r0, c0, c0, 5
 	and	r0, r0, #15
 	adr	r4, 1f
@@ -36,6 +44,12 @@ pen:	ldr	r7, [r6]
 	 * should now contain the SVC stack for this core
 	 */
 	b	secondary_startup
+<<<<<<< HEAD
+ENDPROC(exynos4_secondary_startup)
 
+	.align 2
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 1:	.long	.
 	.long	pen_release

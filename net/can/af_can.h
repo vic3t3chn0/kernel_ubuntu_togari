@@ -35,8 +35,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  *
+<<<<<<< HEAD
+=======
  * Send feedback to <socketcan-users@lists.berlios.de>
  *
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef AF_CAN_H

@@ -61,6 +61,10 @@ static void pmu_irq_ack(struct irq_data *d)
 	int pin = irq_to_pmu(d->irq);
 	u32 u;
 
+<<<<<<< HEAD
+	u = ~(1 << (pin & 31));
+	writel(u, PMU_INTERRUPT_CAUSE);
+=======
 	/*
 	 * The PMU mask register is not RW0C: it is RW.  This means that
 	 * the bits take whatever value is written to them; if you write
@@ -75,6 +79,7 @@ static void pmu_irq_ack(struct irq_data *d)
 	u = ~(1 << (pin & 31));
 	u &= readl_relaxed(PMU_INTERRUPT_CAUSE);
 	writel_relaxed(u, PMU_INTERRUPT_CAUSE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static struct irq_chip pmu_irq_chip = {

@@ -38,6 +38,8 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 	},
 	{
 		.gpio_chip			= {
+<<<<<<< HEAD
+=======
 			.label			= "BUSCTL",
 			.request		= mcf_gpio_request,
 			.free			= mcf_gpio_free,
@@ -74,6 +76,7 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 	},
 	{
 		.gpio_chip			= {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.label			= "CS",
 			.request		= mcf_gpio_request,
 			.free			= mcf_gpio_free,
@@ -81,7 +84,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 9,
+=======
 			.base			= 25,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 3,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_CS,
@@ -99,7 +106,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 16,
+=======
 			.base			= 32,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 4,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_FECI2C,
@@ -117,7 +128,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 24,
+=======
 			.base			= 40,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 4,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_QSPI,
@@ -135,7 +150,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 32,
+=======
 			.base			= 48,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 4,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_TIMER,
@@ -153,7 +172,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 40,
+=======
 			.base			= 56,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 8,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_UART,
@@ -171,7 +194,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 48,
+=======
 			.base			= 64,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 8,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_FECH,
@@ -189,7 +216,11 @@ static struct mcf_gpio_chip mcf_gpio_chips[] = {
 			.direction_output	= mcf_gpio_direction_output,
 			.get			= mcf_gpio_get_value,
 			.set			= mcf_gpio_set_value_fast,
+<<<<<<< HEAD
+			.base			= 56,
+=======
 			.base			= 72,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			.ngpio			= 8,
 		},
 		.pddr				= (void __iomem *) MCFGPIO_PDDR_FECL,

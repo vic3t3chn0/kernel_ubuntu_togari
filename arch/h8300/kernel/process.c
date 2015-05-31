@@ -38,7 +38,10 @@
 #include <linux/slab.h>
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/traps.h>
 #include <asm/setup.h>
 #include <asm/pgtable.h>
@@ -81,9 +84,13 @@ void cpu_idle(void)
 	while (1) {
 		while (!need_resched())
 			idle();
+<<<<<<< HEAD
+		schedule_preempt_disabled();
+=======
 		preempt_enable_no_resched();
 		schedule();
 		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 }
 

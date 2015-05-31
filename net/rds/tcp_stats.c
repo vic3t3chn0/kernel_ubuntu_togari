@@ -40,7 +40,11 @@
 DEFINE_PER_CPU(struct rds_tcp_statistics, rds_tcp_stats)
 	____cacheline_aligned;
 
+<<<<<<< HEAD
+static const char * const rds_tcp_stat_names[] = {
+=======
 static const char const *rds_tcp_stat_names[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	"tcp_data_ready_calls",
 	"tcp_write_space_calls",
 	"tcp_sndbuf_full",

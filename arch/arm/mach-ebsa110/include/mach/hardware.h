@@ -12,6 +12,11 @@
 #ifndef __ASM_ARCH_HARDWARE_H
 #define __ASM_ARCH_HARDWARE_H
 
+<<<<<<< HEAD
+#define ISAMEM_BASE		0xe0000000
+#define ISAIO_BASE		0xf0000000
+
+=======
 /*
  * The EBSA110 has a weird "ISA IO" region:
  *
@@ -54,6 +59,7 @@
 #define PIT_BASE		0xfc000000
 #define SOFT_BASE		0xfd000000
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * RAM definitions
  */

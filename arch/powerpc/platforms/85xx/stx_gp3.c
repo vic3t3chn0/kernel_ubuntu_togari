@@ -28,7 +28,10 @@
 #include <linux/seq_file.h>
 #include <linux/of_platform.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/pci-bridge.h>
@@ -40,6 +43,12 @@
 #include <sysdev/fsl_soc.h>
 #include <sysdev/fsl_pci.h>
 
+<<<<<<< HEAD
+#include "mpc85xx.h"
+
+#ifdef CONFIG_CPM2
+#include <asm/cpm2.h>
+=======
 #ifdef CONFIG_CPM2
 #include <asm/cpm2.h>
 #include <sysdev/cpm2_pic.h>
@@ -54,10 +63,19 @@ static void cpm2_cascade(unsigned int irq, struct irq_desc *desc)
 
 	chip->irq_eoi(&desc->irq_data);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* CONFIG_CPM2 */
 
 static void __init stx_gp3_pic_init(void)
 {
+<<<<<<< HEAD
+	struct mpic *mpic = mpic_alloc(NULL, 0, MPIC_BIG_ENDIAN,
+			0, 256, " OpenPIC  ");
+	BUG_ON(mpic == NULL);
+	mpic_init(mpic);
+
+	mpc85xx_cpm2_pic_init();
+=======
 	struct mpic *mpic;
 	struct resource r;
 	struct device_node *np;
@@ -104,6 +122,7 @@ static void __init stx_gp3_pic_init(void)
 	of_node_put(np);
 	irq_set_chained_handler(irq, cpm2_cascade);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -144,6 +163,9 @@ static void stx_gp3_show_cpuinfo(struct seq_file *m)
 	seq_printf(m, "PLL setting\t: 0x%x\n", ((phid1 >> 24) & 0x3f));
 }
 
+<<<<<<< HEAD
+machine_device_initcall(stx_gp3, mpc85xx_common_publish_devices);
+=======
 static struct of_device_id __initdata of_bus_ids[] = {
 	{ .compatible = "simple-bus", },
 	{ .compatible = "gianfar", },
@@ -157,6 +179,7 @@ static int __init declare_of_platform_devices(void)
 	return 0;
 }
 machine_device_initcall(stx_gp3, declare_of_platform_devices);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Called very early, device-tree isn't unflattened

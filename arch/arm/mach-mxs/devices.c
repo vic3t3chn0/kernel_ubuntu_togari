@@ -77,14 +77,38 @@ err:
 
 int __init mxs_add_amba_device(const struct amba_device *dev)
 {
+<<<<<<< HEAD
+	struct amba_device *adev = amba_device_alloc(dev->dev.init_name,
+		dev->res.start, resource_size(&dev->res));
+=======
 	struct amba_device *adev = kmalloc(sizeof(*adev), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!adev) {
 		pr_err("%s: failed to allocate memory", __func__);
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
+	adev->irq[0] = dev->irq[0];
+	adev->irq[1] = dev->irq[1];
+
+	return amba_device_add(adev, &iomem_resource);
+}
+
+struct device mxs_apbh_bus = {
+	.init_name	= "mxs_apbh",
+	.parent         = &platform_bus,
+};
+
+static int __init mxs_device_init(void)
+{
+	return device_register(&mxs_apbh_bus);
+}
+core_initcall(mxs_device_init);
+=======
 	*adev = *dev;
 
 	return amba_device_register(adev, &iomem_resource);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

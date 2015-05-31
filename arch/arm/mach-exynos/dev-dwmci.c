@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
+ * linux/arch/arm/mach-exynos4/dev-dwmci.c
+=======
  * linux/arch/arm/mach-exynos/dev-dwmci.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -16,6 +20,16 @@
 #include <linux/dma-mapping.h>
 #include <linux/platform_device.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
+#include <linux/ioport.h>
+#include <linux/mmc/dw_mmc.h>
+
+#include <plat/devs.h>
+
+#include <mach/map.h>
+
+static int exynos4_dwmci_get_bus_wd(u32 slot_id)
+=======
 #include <linux/mmc/dw_mmc.h>
 #include <linux/mmc/host.h>
 
@@ -27,10 +41,57 @@
 #define DWMCI_CLKSEL	0x09c
 
 static int exynos_dwmci_get_bus_wd(u32 slot_id)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 4;
 }
 
+<<<<<<< HEAD
+static int exynos4_dwmci_init(u32 slot_id, irq_handler_t handler, void *data)
+{
+	return 0;
+}
+
+static struct resource exynos4_dwmci_resource[] = {
+	[0] = DEFINE_RES_MEM(EXYNOS4_PA_DWMCI, SZ_4K),
+	[1] = DEFINE_RES_IRQ(EXYNOS4_IRQ_DWMCI),
+};
+
+static struct dw_mci_board exynos4_dwci_pdata = {
+	.num_slots			= 1,
+	.quirks				= DW_MCI_QUIRK_BROKEN_CARD_DETECTION,
+	.bus_hz				= 80 * 1000 * 1000,
+	.detect_delay_ms	= 200,
+	.init				= exynos4_dwmci_init,
+	.get_bus_wd			= exynos4_dwmci_get_bus_wd,
+};
+
+static u64 exynos4_dwmci_dmamask = DMA_BIT_MASK(32);
+
+struct platform_device exynos4_device_dwmci = {
+	.name		= "dw_mmc",
+	.id		= -1,
+	.num_resources	= ARRAY_SIZE(exynos4_dwmci_resource),
+	.resource	= exynos4_dwmci_resource,
+	.dev		= {
+		.dma_mask		= &exynos4_dwmci_dmamask,
+		.coherent_dma_mask	= DMA_BIT_MASK(32),
+		.platform_data	= &exynos4_dwci_pdata,
+	},
+};
+
+void __init exynos4_dwmci_set_platdata(struct dw_mci_board *pd)
+{
+	struct dw_mci_board *npd;
+
+	npd = s3c_set_platdata(pd, sizeof(struct dw_mci_board),
+			&exynos4_device_dwmci);
+
+	if (!npd->init)
+		npd->init = exynos4_dwmci_init;
+	if (!npd->get_bus_wd)
+		npd->get_bus_wd = exynos4_dwmci_get_bus_wd;
+=======
 static int exynos_dwmci_init(u32 slot_id, irq_handler_t handler, void *data)
 {
 	struct dw_mci *host = (struct dw_mci *)data;
@@ -236,4 +297,5 @@ void __init exynos_dwmci_set_platdata(struct dw_mci_board *pd, u32 slot_id)
 		if (!npd->set_io_timing)
 			npd->set_io_timing = exynos_dwmci_set_io_timing;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

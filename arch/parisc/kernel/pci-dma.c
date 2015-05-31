@@ -2,7 +2,11 @@
 ** PARISC 1.1 Dynamic DMA mapping support.
 ** This implementation is for PA-RISC platforms that do not support
 ** I/O TLBs (aka DMA address translation hardware).
+<<<<<<< HEAD
+** See Documentation/DMA-API-HOWTO.txt for interface definitions.
+=======
 ** See Documentation/PCI/PCI-DMA-mapping.txt for interface definitions.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 **
 **      (c) Copyright 1999,2000 Hewlett-Packard Company
 **      (c) Copyright 2000 Grant Grundler
@@ -26,6 +30,10 @@
 #include <linux/string.h>
 #include <linux/types.h>
 #include <linux/scatterlist.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/cacheflush.h>
 #include <asm/dma.h>    /* for DMA_CHUNK_SIZE */

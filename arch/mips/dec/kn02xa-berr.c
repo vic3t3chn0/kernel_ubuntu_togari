@@ -21,7 +21,10 @@
 #include <asm/addrspace.h>
 #include <asm/irq_regs.h>
 #include <asm/ptrace.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/traps.h>
 
 #include <asm/dec/kn02ca.h>

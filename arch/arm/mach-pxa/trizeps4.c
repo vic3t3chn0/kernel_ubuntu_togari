@@ -16,6 +16,10 @@
 #include <linux/kernel.h>
 #include <linux/platform_device.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sched.h>
 #include <linux/bitops.h>
 #include <linux/fb.h>
@@ -554,18 +558,40 @@ static void __init trizeps4_map_io(void)
 
 MACHINE_START(TRIZEPS4, "Keith und Koep Trizeps IV module")
 	/* MAINTAINER("Jürgen Schindele") */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.init_machine	= trizeps4_init,
+	.map_io		= trizeps4_map_io,
+	.nr_irqs	= PXA_NR_IRQS,
+	.init_irq	= pxa27x_init_irq,
+	.handle_irq	= pxa27x_handle_irq,
+	.timer		= &pxa_timer,
+	.restart	= pxa_restart,
+=======
 	.boot_params	= TRIZEPS4_SDRAM_BASE + 0x100,
 	.init_machine	= trizeps4_init,
 	.map_io		= trizeps4_map_io,
 	.init_irq	= pxa27x_init_irq,
 	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END
 
 MACHINE_START(TRIZEPS4WL, "Keith und Koep Trizeps IV-WL module")
 	/* MAINTAINER("Jürgen Schindele") */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+	.init_machine	= trizeps4_init,
+	.map_io		= trizeps4_map_io,
+	.nr_irqs	= PXA_NR_IRQS,
+	.init_irq	= pxa27x_init_irq,
+	.handle_irq	= pxa27x_handle_irq,
+	.timer		= &pxa_timer,
+	.restart	= pxa_restart,
+=======
 	.boot_params	= TRIZEPS4_SDRAM_BASE + 0x100,
 	.init_machine	= trizeps4_init,
 	.map_io		= trizeps4_map_io,
 	.init_irq	= pxa27x_init_irq,
 	.timer		= &pxa_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

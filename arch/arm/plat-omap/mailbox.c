@@ -29,6 +29,10 @@
 #include <linux/kfifo.h>
 #include <linux/err.h>
 #include <linux/notifier.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <plat/mailbox.h>
 
@@ -306,7 +310,11 @@ static void omap_mbox_fini(struct omap_mbox *mbox)
 	if (!--mbox->use_count) {
 		free_irq(mbox->irq, mbox);
 		tasklet_kill(&mbox->txq->tasklet);
+<<<<<<< HEAD
+		flush_work_sync(&mbox->rxq->work);
+=======
 	flush_work_sync(&mbox->rxq->work);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mbox_queue_free(mbox->txq);
 		mbox_queue_free(mbox->rxq);
 	}

@@ -31,8 +31,12 @@
 #include <linux/kthread.h>
 #include <linux/unistd.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/system.h>
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/irq_handler.h>
 
 DEFINE_PER_CPU(struct pt_regs, __ipipe_tick_regs);

@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty */
+=======
 /*
  * arch/arm/plat-spear/include/plat/gpio.h
  *
@@ -22,3 +25,4 @@
 #define gpio_to_irq	__gpio_to_irq
 
 #endif /* __PLAT_GPIO_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

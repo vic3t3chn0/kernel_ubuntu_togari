@@ -7,7 +7,11 @@
  */
 
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/platform_device.h>
 #include <linux/gpio.h>
 #include <linux/ioport.h>

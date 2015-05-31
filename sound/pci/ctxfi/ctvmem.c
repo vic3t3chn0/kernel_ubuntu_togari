@@ -36,7 +36,11 @@ get_vm_block(struct ct_vm *vm, unsigned int size)
 
 	size = CT_PAGE_ALIGN(size);
 	if (size > vm->size) {
+<<<<<<< HEAD
+		printk(KERN_ERR "ctxfi: Fail! No sufficient device virtual "
+=======
 		printk(KERN_ERR "ctxfi: Fail! No sufficient device virtural "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				  "memory space available!\n");
 		return NULL;
 	}

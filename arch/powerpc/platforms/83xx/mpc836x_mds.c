@@ -33,8 +33,12 @@
 #include <linux/of_platform.h>
 #include <linux/of_device.h>
 
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/system.h>
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/io.h>
 #include <asm/machdep.h>
@@ -76,6 +80,13 @@ static void __init mpc836x_mds_setup_arch(void)
 		struct resource res;
 
 		of_address_to_resource(np, 0, &res);
+<<<<<<< HEAD
+		bcsr_regs = ioremap(res.start, resource_size(&res));
+		of_node_put(np);
+	}
+
+	mpc83xx_setup_pci();
+=======
 		bcsr_regs = ioremap(res.start, res.end - res.start +1);
 		of_node_put(np);
 	}
@@ -84,6 +95,7 @@ static void __init mpc836x_mds_setup_arch(void)
 	for_each_compatible_node(np, "pci", "fsl,mpc8349-pci")
 		mpc83xx_add_bridge(np);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_QUICC_ENGINE
 	qe_reset();
@@ -144,6 +156,9 @@ static void __init mpc836x_mds_setup_arch(void)
 #endif				/* CONFIG_QUICC_ENGINE */
 }
 
+<<<<<<< HEAD
+machine_device_initcall(mpc836x_mds, mpc83xx_declare_of_platform_devices);
+=======
 static struct of_device_id mpc836x_ids[] = {
 	{ .type = "soc", },
 	{ .compatible = "soc", },
@@ -161,6 +176,7 @@ static int __init mpc836x_declare_of_platform_devices(void)
 	return 0;
 }
 machine_device_initcall(mpc836x_mds, mpc836x_declare_of_platform_devices);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_QE_USB
 static int __init mpc836x_usb_cfg(void)
@@ -226,6 +242,8 @@ err:
 machine_arch_initcall(mpc836x_mds, mpc836x_usb_cfg);
 #endif /* CONFIG_QE_USB */
 
+<<<<<<< HEAD
+=======
 static void __init mpc836x_mds_init_IRQ(void)
 {
 	struct device_node *np;
@@ -254,6 +272,7 @@ static void __init mpc836x_mds_init_IRQ(void)
 #endif				/* CONFIG_QUICC_ENGINE */
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Called very early, MMU is off, device-tree isn't unflattened
  */
@@ -268,7 +287,11 @@ define_machine(mpc836x_mds) {
 	.name		= "MPC836x MDS",
 	.probe		= mpc836x_mds_probe,
 	.setup_arch	= mpc836x_mds_setup_arch,
+<<<<<<< HEAD
+	.init_IRQ	= mpc83xx_ipic_and_qe_init_IRQ,
+=======
 	.init_IRQ	= mpc836x_mds_init_IRQ,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.get_irq	= ipic_get_irq,
 	.restart	= mpc83xx_restart,
 	.time_init	= mpc83xx_time_init,

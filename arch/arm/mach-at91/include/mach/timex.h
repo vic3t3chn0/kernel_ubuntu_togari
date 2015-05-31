@@ -23,6 +23,20 @@
 
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+#ifdef CONFIG_ARCH_AT91X40
+
+#define AT91X40_MASTER_CLOCK	40000000
+#define CLOCK_TICK_RATE		(AT91X40_MASTER_CLOCK)
+
+#else
+
+#define CLOCK_TICK_RATE		12345678
+
+#endif
+
+#endif /* __ASM_ARCH_TIMEX_H */
+=======
 #if defined(CONFIG_ARCH_AT91RM9200)
 
 #define CLOCK_TICK_RATE		(AT91_SLOW_CLOCK)
@@ -85,3 +99,4 @@
 #endif
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

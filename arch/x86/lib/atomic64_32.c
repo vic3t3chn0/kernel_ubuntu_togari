@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+#define ATOMIC64_EXPORT EXPORT_SYMBOL
+
+#include <linux/export.h>
+#include <linux/atomic.h>
+=======
 #include <linux/compiler.h>
 #include <linux/module.h>
 #include <linux/types.h>
@@ -57,3 +63,4 @@ EXPORT_SYMBOL(atomic64_inc_not_zero_386);
 int atomic64_add_unless_386(atomic64_t *v, long long a, long long u);
 EXPORT_SYMBOL(atomic64_add_unless_386);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

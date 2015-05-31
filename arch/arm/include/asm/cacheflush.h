@@ -16,7 +16,10 @@
 #include <asm/shmparam.h>
 #include <asm/cachetype.h>
 #include <asm/outercache.h>
+<<<<<<< HEAD
+=======
 #include <mach/smc.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define CACHE_COLOUR(vaddr)	((vaddr & (SHMLBA - 1)) >> PAGE_SHIFT)
 
@@ -50,6 +53,16 @@
  *
  *		Unconditionally clean and invalidate the entire cache.
  *
+<<<<<<< HEAD
+ *     flush_kern_louis()
+ *
+ *             Flush data cache levels up to the level of unification
+ *             inner shareable and invalidate the I-cache.
+ *             Only needed from v7 onwards, falls back to flush_cache_all()
+ *             for all other processor versions.
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	flush_user_all()
  *
  *		Clean and invalidate all user space cache entries
@@ -88,6 +101,24 @@
  *	DMA Cache Coherency
  *	===================
  *
+<<<<<<< HEAD
+ *	dma_inv_range(start, end)
+ *
+ *		Invalidate (discard) the specified virtual address range.
+ *		May not write back any entries.  If 'start' or 'end'
+ *		are not cache line aligned, those lines must be written
+ *		back.
+ *		- start  - virtual start address
+ *		- end    - virtual end address
+ *
+ *	dma_clean_range(start, end)
+ *
+ *		Clean (write back) the specified virtual address range.
+ *		- start  - virtual start address
+ *		- end    - virtual end address
+ *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	dma_flush_range(start, end)
  *
  *		Clean and invalidate the specified virtual address range.
@@ -98,6 +129,10 @@
 struct cpu_cache_fns {
 	void (*flush_icache_all)(void);
 	void (*flush_kern_all)(void);
+<<<<<<< HEAD
+	void (*flush_kern_louis)(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void (*flush_user_all)(void);
 	void (*flush_user_range)(unsigned long, unsigned long, unsigned int);
 
@@ -108,6 +143,11 @@ struct cpu_cache_fns {
 	void (*dma_map_area)(const void *, size_t, int);
 	void (*dma_unmap_area)(const void *, size_t, int);
 
+<<<<<<< HEAD
+	void (*dma_inv_range)(const void *, const void *);
+	void (*dma_clean_range)(const void *, const void *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void (*dma_flush_range)(const void *, const void *);
 };
 
@@ -120,6 +160,10 @@ extern struct cpu_cache_fns cpu_cache;
 
 #define __cpuc_flush_icache_all		cpu_cache.flush_icache_all
 #define __cpuc_flush_kern_all		cpu_cache.flush_kern_all
+<<<<<<< HEAD
+#define __cpuc_flush_kern_louis		cpu_cache.flush_kern_louis
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define __cpuc_flush_user_all		cpu_cache.flush_user_all
 #define __cpuc_flush_user_range		cpu_cache.flush_user_range
 #define __cpuc_coherent_kern_range	cpu_cache.coherent_kern_range
@@ -134,12 +178,21 @@ extern struct cpu_cache_fns cpu_cache;
  */
 #define dmac_map_area			cpu_cache.dma_map_area
 #define dmac_unmap_area			cpu_cache.dma_unmap_area
+<<<<<<< HEAD
+#define dmac_inv_range			cpu_cache.dma_inv_range
+#define dmac_clean_range		cpu_cache.dma_clean_range
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define dmac_flush_range		cpu_cache.dma_flush_range
 
 #else
 
 extern void __cpuc_flush_icache_all(void);
 extern void __cpuc_flush_kern_all(void);
+<<<<<<< HEAD
+extern void __cpuc_flush_kern_louis(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void __cpuc_flush_user_all(void);
 extern void __cpuc_flush_user_range(unsigned long, unsigned long, unsigned int);
 extern void __cpuc_coherent_kern_range(unsigned long, unsigned long);
@@ -154,6 +207,11 @@ extern void __cpuc_flush_dcache_area(void *, size_t);
  */
 extern void dmac_map_area(const void *, size_t, int);
 extern void dmac_unmap_area(const void *, size_t, int);
+<<<<<<< HEAD
+extern void dmac_inv_range(const void *, const void *);
+extern void dmac_clean_range(const void *, const void *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void dmac_flush_range(const void *, const void *);
 
 #endif
@@ -205,6 +263,15 @@ static inline void __flush_icache_all(void)
 	__flush_icache_preferred();
 }
 
+<<<<<<< HEAD
+/*
+ * Flush caches up to Level of Unification Inner Shareable
+ */
+#define flush_cache_louis()		__cpuc_flush_kern_louis()
+
+#define flush_cache_all()		__cpuc_flush_kern_all()
+
+=======
 #define flush_cache_all()		__cpuc_flush_kern_all()
 
 #ifndef CONFIG_SMP
@@ -213,6 +280,7 @@ static inline void __flush_icache_all(void)
 extern void flush_all_cpu_caches(void);
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void vivt_flush_cache_mm(struct mm_struct *mm)
 {
 	if (cpumask_test_cpu(smp_processor_id(), mm_cpumask(mm)))
@@ -222,9 +290,13 @@ static inline void vivt_flush_cache_mm(struct mm_struct *mm)
 static inline void
 vivt_flush_cache_range(struct vm_area_struct *vma, unsigned long start, unsigned long end)
 {
+<<<<<<< HEAD
+	if (cpumask_test_cpu(smp_processor_id(), mm_cpumask(vma->vm_mm)))
+=======
 	struct mm_struct *mm = vma->vm_mm;
 
 	if (!mm || cpumask_test_cpu(smp_processor_id(), mm_cpumask(mm)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__cpuc_flush_user_range(start & PAGE_MASK, PAGE_ALIGN(end),
 					vma->vm_flags);
 }
@@ -232,9 +304,13 @@ vivt_flush_cache_range(struct vm_area_struct *vma, unsigned long start, unsigned
 static inline void
 vivt_flush_cache_page(struct vm_area_struct *vma, unsigned long user_addr, unsigned long pfn)
 {
+<<<<<<< HEAD
+	if (cpumask_test_cpu(smp_processor_id(), mm_cpumask(vma->vm_mm))) {
+=======
 	struct mm_struct *mm = vma->vm_mm;
 
 	if (!mm || cpumask_test_cpu(smp_processor_id(), mm_cpumask(mm))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		unsigned long addr = user_addr & PAGE_MASK;
 		__cpuc_flush_user_range(addr, addr + PAGE_SIZE, vma->vm_flags);
 	}
@@ -355,6 +431,13 @@ static inline void flush_cache_vunmap(unsigned long start, unsigned long end)
 		flush_cache_all();
 }
 
+<<<<<<< HEAD
+int set_memory_ro(unsigned long addr, int numpages);
+int set_memory_rw(unsigned long addr, int numpages);
+int set_memory_x(unsigned long addr, int numpages);
+int set_memory_nx(unsigned long addr, int numpages);
+
+=======
 /*
  * Control the full line of zero function that must be enabled
  * only when the slaves connected on cortex-A9 AXI master port support it.
@@ -388,4 +471,5 @@ static inline void __enable_cache_foz(int enable)
 #define enable_cache_foz()	do { } while (0)
 #define disable_cache_foz()	do { } while (0)
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

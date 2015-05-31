@@ -11,7 +11,11 @@
 */
 
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/platform_device.h>
 #include <linux/err.h>
 #include <linux/pm_runtime.h>
@@ -22,13 +26,18 @@ static int samsung_pd_probe(struct platform_device *pdev)
 {
 	struct samsung_pd_info *pdata = pdev->dev.platform_data;
 	struct device *dev = &pdev->dev;
+<<<<<<< HEAD
+=======
 	int ret = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!pdata) {
 		dev_err(dev, "no device data specified\n");
 		return -ENOENT;
 	}
 
+<<<<<<< HEAD
+=======
 	pdata->id = pdev->id;
 	if (pdata->init) {
 		ret = pdata->init(dev);
@@ -38,6 +47,7 @@ static int samsung_pd_probe(struct platform_device *pdev)
 		}
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	pm_runtime_set_active(dev);
 	pm_runtime_enable(dev);
 
@@ -53,6 +63,8 @@ static int __devexit samsung_pd_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
 static int samsung_pd_suspend(struct device *dev)
 {
 	struct samsung_pd_info *pdata = dev->platform_data;
@@ -79,6 +91,7 @@ static int samsung_pd_resume(struct device *dev)
 	return ret;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int samsung_pd_runtime_suspend(struct device *dev)
 {
 	struct samsung_pd_info *pdata = dev->platform_data;
@@ -87,7 +100,11 @@ static int samsung_pd_runtime_suspend(struct device *dev)
 	if (pdata->disable)
 		ret = pdata->disable(dev);
 
+<<<<<<< HEAD
+	dev_dbg(dev, "suspended\n");
+=======
 	dev_dbg(dev, "runtime suspended\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 
@@ -99,13 +116,20 @@ static int samsung_pd_runtime_resume(struct device *dev)
 	if (pdata->enable)
 		ret = pdata->enable(dev);
 
+<<<<<<< HEAD
+	dev_dbg(dev, "resumed\n");
+=======
 	dev_dbg(dev, "runtime resumed\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 
 static const struct dev_pm_ops samsung_pd_pm_ops = {
+<<<<<<< HEAD
+=======
 	.suspend		= samsung_pd_suspend,
 	.resume			= samsung_pd_resume,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.runtime_suspend	= samsung_pd_runtime_suspend,
 	.runtime_resume		= samsung_pd_runtime_resume,
 };

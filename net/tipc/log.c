@@ -304,7 +304,11 @@ struct sk_buff *tipc_log_resize_cmd(const void *req_tlv_area, int req_tlv_space)
 		return tipc_cfg_reply_error_string(TIPC_CFG_TLV_ERROR);
 
 	value = ntohl(*(__be32 *)TLV_DATA(req_tlv_area));
+<<<<<<< HEAD
+	if (value > 32768)
+=======
 	if (value != delimit(value, 0, 32768))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return tipc_cfg_reply_error_string(TIPC_CFG_INVALID_VALUE
 						   " (log size must be 0-32768)");
 	if (tipc_log_resize(value))

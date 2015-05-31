@@ -1,8 +1,21 @@
 /*
  * Access vector cache interface for object managers.
  *
+<<<<<<< HEAD
+ * Copyright (C) 2014 Sony Mobile Communications AB.
+ *
+ * Author : Stephen Smalley, <sds@epoch.ncsc.mil>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2, as
+ * published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ */
+
+=======
  * Author : Stephen Smalley, <sds@epoch.ncsc.mil>
  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef _SELINUX_AVC_H_
 #define _SELINUX_AVC_H_
 
@@ -15,7 +28,10 @@
 #include <linux/audit.h>
 #include <linux/lsm_audit.h>
 #include <linux/in6.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "flask.h"
 #include "av_permissions.h"
 #include "security.h"
@@ -48,6 +64,37 @@ struct avc_cache_stats {
 };
 
 /*
+<<<<<<< HEAD
+ * We only need this data after we have decided to send an audit message.
+ */
+struct selinux_late_audit_data {
+	u32 ssid;
+	u32 tsid;
+	u16 tclass;
+	u32 requested;
+	u32 audited;
+	u32 denied;
+	int result;
+#ifdef CONFIG_SECURITY_SELINUX_AVC_EXTRA_INFO
+	int op_result;
+#endif
+};
+
+/*
+ * We collect this at the beginning or during an selinux security operation
+ */
+struct selinux_audit_data {
+	/*
+	 * auditdeny is a bit tricky and unintuitive.  See the
+	 * comments in avc.c for it's meaning and usage.
+	 */
+	u32 auditdeny;
+	struct selinux_late_audit_data *slad;
+};
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * AVC operations
  */
 

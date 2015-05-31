@@ -12,7 +12,10 @@
 #include <linux/mbus.h>
 
 struct mvsdio_platform_data {
+<<<<<<< HEAD
+=======
 	struct mbus_dram_target_info *dram;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int clock;
 	int gpio_card_detect;
 	int gpio_write_protect;

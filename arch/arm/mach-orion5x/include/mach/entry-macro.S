@@ -10,12 +10,15 @@
 
 #include <mach/bridge-regs.h>
 
+<<<<<<< HEAD
+=======
 	.macro  disable_fiq
 	.endm
 
 	.macro  arch_ret_to_user, tmp1, tmp2
 	.endm
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.macro  get_irqnr_preamble, base, tmp
 	ldr	\base, =MAIN_IRQ_CAUSE
 	.endm

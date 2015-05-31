@@ -136,11 +136,19 @@ static int crc32c_cra_init(struct crypto_tfm *tfm)
 static struct shash_alg alg = {
 	.digestsize		=	CHKSUM_DIGEST_SIZE,
 	.setkey			=	chksum_setkey,
+<<<<<<< HEAD
+	.init		=	chksum_init,
+	.update		=	chksum_update,
+	.final		=	chksum_final,
+	.finup		=	chksum_finup,
+	.digest		=	chksum_digest,
+=======
 	.init   		= 	chksum_init,
 	.update 		=	chksum_update,
 	.final  		=	chksum_final,
 	.finup  		=	chksum_finup,
 	.digest  		=	chksum_digest,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.descsize		=	sizeof(struct chksum_desc_ctx),
 	.base			=	{
 		.cra_name		=	"crc32c",

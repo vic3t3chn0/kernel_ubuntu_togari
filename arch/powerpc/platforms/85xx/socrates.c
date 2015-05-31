@@ -29,7 +29,10 @@
 #include <linux/seq_file.h>
 #include <linux/of_platform.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/machdep.h>
 #include <asm/pci-bridge.h>
@@ -41,10 +44,21 @@
 #include <sysdev/fsl_soc.h>
 #include <sysdev/fsl_pci.h>
 
+<<<<<<< HEAD
+#include "mpc85xx.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "socrates_fpga_pic.h"
 
 static void __init socrates_pic_init(void)
 {
+<<<<<<< HEAD
+	struct device_node *np;
+
+	struct mpic *mpic = mpic_alloc(NULL, 0, MPIC_BIG_ENDIAN,
+			0, 256, " OpenPIC  ");
+	BUG_ON(mpic == NULL);
+=======
 	struct mpic *mpic;
 	struct resource r;
 	struct device_node *np;
@@ -67,6 +81,7 @@ static void __init socrates_pic_init(void)
 	BUG_ON(mpic == NULL);
 	of_node_put(np);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mpic_init(mpic);
 
 	np = of_find_compatible_node(NULL, NULL, "abb,socrates-fpga-pic");
@@ -96,6 +111,9 @@ static void __init socrates_setup_arch(void)
 #endif
 }
 
+<<<<<<< HEAD
+machine_device_initcall(socrates, mpc85xx_common_publish_devices);
+=======
 static struct of_device_id __initdata socrates_of_bus_ids[] = {
 	{ .compatible = "simple-bus", },
 	{ .compatible = "gianfar", },
@@ -107,6 +125,7 @@ static int __init socrates_publish_devices(void)
 	return of_platform_bus_probe(NULL, socrates_of_bus_ids, NULL);
 }
 machine_device_initcall(socrates, socrates_publish_devices);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Called very early, device-tree isn't unflattened

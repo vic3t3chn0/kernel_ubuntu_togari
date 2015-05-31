@@ -3,6 +3,10 @@
  *
  * Copyright 2009	Johannes Berg <johannes@sipsolutions.net>
  * Copyright (C) 2009   Intel Corporation. All rights reserved.
+<<<<<<< HEAD
+ * Copyright (C) 2012   Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #include <linux/etherdevice.h>
@@ -190,7 +194,12 @@ static int cfg80211_conn_do_work(struct wireless_dev *wdev)
 					    prev_bssid,
 					    params->ssid, params->ssid_len,
 					    params->ie, params->ie_len,
+<<<<<<< HEAD
+					    params->mfp != NL80211_MFP_NO,
+					    &params->crypto,
+=======
 					    false, &params->crypto,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					    params->flags, &params->ht_capa,
 					    &params->ht_capa_mask);
 		if (err)
@@ -415,7 +424,10 @@ void __cfg80211_connect_result(struct net_device *dev, const u8 *bssid,
 			       struct cfg80211_bss *bss)
 {
 	struct wireless_dev *wdev = dev->ieee80211_ptr;
+<<<<<<< HEAD
+=======
 	u8 *country_ie;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_CFG80211_WEXT
 	union iwreq_data wrqu;
 #endif
@@ -498,6 +510,8 @@ void __cfg80211_connect_result(struct net_device *dev, const u8 *bssid,
 
 	wdev->sme_state = CFG80211_SME_CONNECTED;
 	cfg80211_upload_connect_keys(wdev);
+<<<<<<< HEAD
+=======
 
 	country_ie = (u8 *) ieee80211_bss_get_ie(bss, WLAN_EID_COUNTRY);
 
@@ -513,6 +527,7 @@ void __cfg80211_connect_result(struct net_device *dev, const u8 *bssid,
 			    bss->channel->band,
 			    country_ie + 2,
 			    country_ie[1]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void cfg80211_connect_result(struct net_device *dev, const u8 *bssid,

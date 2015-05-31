@@ -18,11 +18,15 @@
 #include <linux/linkage.h>
 #include <linux/init.h>
 
+<<<<<<< HEAD
+	__CPUINIT
+=======
 /* Physical address needed since MMU not enabled yet on secondary core */
 #define OMAP4_AUX_CORE_BOOT1_PA			0x48281804
 
 	__INIT
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * OMAP4 specific entry point for secondary CPU to jump from ROM
  * code.  This routine also provides a holding flag into which

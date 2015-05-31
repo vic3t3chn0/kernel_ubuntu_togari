@@ -20,9 +20,13 @@
    COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS, RELATING TO USE OF THIS
    SOFTWARE IS DISCLAIMED.
 */
+<<<<<<< HEAD
+
+=======
 #if defined(CONFIG_BT_TIZEN)
 #include "tizen/rfcomm.h"
 #else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef __RFCOMM_H
 #define __RFCOMM_H
 
@@ -162,7 +166,10 @@ struct rfcomm_session {
 	unsigned long    flags;
 	atomic_t         refcnt;
 	int              initiator;
+<<<<<<< HEAD
+=======
 	int              acceptor_inc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Default DLC parameters */
 	int    cfc;
@@ -237,8 +244,12 @@ int rfcomm_send_rpn(struct rfcomm_session *s, int cr, u8 dlci,
 /* ---- RFCOMM DLCs (channels) ---- */
 struct rfcomm_dlc *rfcomm_dlc_alloc(gfp_t prio);
 void rfcomm_dlc_free(struct rfcomm_dlc *d);
+<<<<<<< HEAD
+int  rfcomm_dlc_open(struct rfcomm_dlc *d, bdaddr_t *src, bdaddr_t *dst, u8 channel);
+=======
 int  rfcomm_dlc_open(struct rfcomm_dlc *d, bdaddr_t *src, bdaddr_t *dst,
 								u8 channel);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int  rfcomm_dlc_close(struct rfcomm_dlc *d, int reason);
 int  rfcomm_dlc_send(struct rfcomm_dlc *d, struct sk_buff *skb);
 int  rfcomm_dlc_set_modem_status(struct rfcomm_dlc *d, u8 v24_sig);
@@ -275,8 +286,12 @@ static inline void rfcomm_dlc_unthrottle(struct rfcomm_dlc *d)
 }
 
 /* ---- RFCOMM sessions ---- */
+<<<<<<< HEAD
+void   rfcomm_session_getaddr(struct rfcomm_session *s, bdaddr_t *src, bdaddr_t *dst);
+=======
 void   rfcomm_session_getaddr(struct rfcomm_session *s, bdaddr_t *src,
 								bdaddr_t *dst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline void rfcomm_session_hold(struct rfcomm_session *s)
 {
@@ -317,8 +332,12 @@ struct rfcomm_pinfo {
 int  rfcomm_init_sockets(void);
 void rfcomm_cleanup_sockets(void);
 
+<<<<<<< HEAD
+int  rfcomm_connect_ind(struct rfcomm_session *s, u8 channel, struct rfcomm_dlc **d);
+=======
 int  rfcomm_connect_ind(struct rfcomm_session *s, u8 channel,
 							struct rfcomm_dlc **d);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* ---- RFCOMM TTY ---- */
 #define RFCOMM_MAX_DEV  256
@@ -372,4 +391,7 @@ static inline void rfcomm_cleanup_ttys(void)
 }
 #endif
 #endif /* __RFCOMM_H */
+<<<<<<< HEAD
+=======
 #endif /* CONFIG_BT_TIZEN */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -9,6 +9,11 @@
 #error need to implement an architecture specific asm/tlbflush.h
 #endif
 
+<<<<<<< HEAD
+#include <linux/bug.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void flush_tlb_mm(struct mm_struct *mm)
 {
 	BUG();

@@ -20,16 +20,32 @@
 #include <linux/highmem.h>
 #include <linux/perf_event.h>
 
+<<<<<<< HEAD
+#include <asm/exception.h>
+#include <asm/pgtable.h>
+#include <asm/system_misc.h>
+#include <asm/system_info.h>
+#include <asm/tlbflush.h>
+#include <asm/cputype.h>
+#if defined(CONFIG_ARCH_MSM_SCORPION) && !defined(CONFIG_MSM_SMP)
+#include <asm/io.h>
+#include <mach/msm_iomap.h>
+=======
 #include <asm/system.h>
 #include <asm/pgtable.h>
 #include <asm/tlbflush.h>
 
 #if defined(CONFIG_MACH_Q1_BD)
 #include <mach/sec_debug.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #include "fault.h"
 
+<<<<<<< HEAD
+#define CREATE_TRACE_POINTS
+#include <trace/events/exception.h>
+=======
 /*
  * Fault status register encodings.  We steal bit 31 for our own purposes.
  */
@@ -42,6 +58,7 @@ static inline int fsr_fs(unsigned int fsr)
 {
 	return (fsr & FSR_FS3_0) | (fsr & FSR_FS4) >> 6;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_MMU
 
@@ -98,7 +115,11 @@ void show_pte(struct mm_struct *mm, unsigned long addr)
 
 		pud = pud_offset(pgd, addr);
 		if (PTRS_PER_PUD != 1)
+<<<<<<< HEAD
+			printk(", *pud=%08llx", (long long)pud_val(*pud));
+=======
 			printk(", *pud=%08lx", pud_val(*pud));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		if (pud_none(*pud))
 			break;
@@ -126,8 +147,15 @@ void show_pte(struct mm_struct *mm, unsigned long addr)
 
 		pte = pte_offset_map(pmd, addr);
 		printk(", *pte=%08llx", (long long)pte_val(*pte));
+<<<<<<< HEAD
+#ifndef CONFIG_ARM_LPAE
 		printk(", *ppte=%08llx",
 		       (long long)pte_val(pte[PTE_HWTABLE_PTRS]));
+#endif
+=======
+		printk(", *ppte=%08llx",
+		       (long long)pte_val(pte[PTE_HWTABLE_PTRS]));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		pte_unmap(pte);
 	} while(0);
 
@@ -166,6 +194,8 @@ __do_kernel_fault(struct mm_struct *mm, unsigned long addr, unsigned int fsr,
 	do_exit(SIGKILL);
 }
 
+<<<<<<< HEAD
+=======
 #if defined(CONFIG_MACH_Q1_BD)
 /*
  * This function can be used while current pointer is invalid.
@@ -189,6 +219,7 @@ __do_kernel_fault_safe(struct mm_struct *mm, unsigned long addr,
 }
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Something tried to access memory that isn't in our memory map..
  * User mode accesses just cause a SIGSEGV
@@ -200,8 +231,16 @@ __do_user_fault(struct task_struct *tsk, unsigned long addr,
 {
 	struct siginfo si;
 
+<<<<<<< HEAD
+	trace_user_fault(tsk, addr, fsr);
+
+#ifdef CONFIG_DEBUG_USER
+	if (((user_debug & UDBG_SEGV) && (sig == SIGSEGV)) ||
+	    ((user_debug & UDBG_BUS)  && (sig == SIGBUS))) {
+=======
 #ifdef CONFIG_DEBUG_USER
 	if (user_debug & UDBG_SEGV) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		printk(KERN_DEBUG "%s: unhandled page fault (%d) at 0x%08lx, code 0x%03x\n",
 		       tsk->comm, sig, addr, fsr);
 		show_pte(tsk->mm, addr);
@@ -257,7 +296,11 @@ static inline bool access_error(unsigned int fsr, struct vm_area_struct *vma)
 
 static int __kprobes
 __do_page_fault(struct mm_struct *mm, unsigned long addr, unsigned int fsr,
+<<<<<<< HEAD
+		unsigned int flags, struct task_struct *tsk)
+=======
 		struct task_struct *tsk)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct vm_area_struct *vma;
 	int fault;
@@ -279,6 +322,9 @@ good_area:
 		goto out;
 	}
 
+<<<<<<< HEAD
+	return handle_mm_fault(mm, vma, addr & PAGE_MASK, flags);
+=======
 	/*
 	 * If for any reason at all we couldn't handle the fault, make
 	 * sure we exit gracefully rather than endlessly redo the fault.
@@ -291,6 +337,7 @@ good_area:
 	else
 		tsk->min_flt++;
 	return fault;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 check_stack:
 	/* Don't allow expansion below FIRST_USER_ADDRESS */
@@ -307,11 +354,24 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	struct task_struct *tsk;
 	struct mm_struct *mm;
 	int fault, sig, code;
+<<<<<<< HEAD
+	int write = fsr & FSR_WRITE;
+	unsigned int flags = FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE |
+				(write ? FAULT_FLAG_WRITE : 0);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (notify_page_fault(regs, fsr))
 		return 0;
 
 	tsk = current;
+<<<<<<< HEAD
+	mm  = tsk->mm;
+
+	/* Enable interrupts if they were enabled in the parent context. */
+	if (interrupts_enabled(regs))
+		local_irq_enable();
+=======
 #if defined(CONFIG_MACH_Q1_BD)
 	/*
 	 * If current pointer is NULL, infinite abort can occur.
@@ -323,6 +383,7 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	}
 #endif
 	mm = tsk->mm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * If we're in an interrupt or have no user
@@ -339,6 +400,10 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	if (!down_read_trylock(&mm->mmap_sem)) {
 		if (!user_mode(regs) && !search_exception_tables(regs->ARM_pc))
 			goto no_context;
+<<<<<<< HEAD
+retry:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		down_read(&mm->mmap_sem);
 	} else {
 		/*
@@ -354,6 +419,44 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 #endif
 	}
 
+<<<<<<< HEAD
+	fault = __do_page_fault(mm, addr, fsr, flags, tsk);
+
+	/* If we need to retry but a fatal signal is pending, handle the
+	 * signal first. We do not need to release the mmap_sem because
+	 * it would already be released in __lock_page_or_retry in
+	 * mm/filemap.c. */
+	if ((fault & VM_FAULT_RETRY) && fatal_signal_pending(current))
+		return 0;
+
+	/*
+	 * Major/minor page fault accounting is only done on the
+	 * initial attempt. If we go through a retry, it is extremely
+	 * likely that the page will be found in page cache at that point.
+	 */
+
+	perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS, 1, regs, addr);
+	if (!(fault & VM_FAULT_ERROR) && flags & FAULT_FLAG_ALLOW_RETRY) {
+		if (fault & VM_FAULT_MAJOR) {
+			tsk->maj_flt++;
+			perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MAJ, 1,
+					regs, addr);
+		} else {
+			tsk->min_flt++;
+			perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MIN, 1,
+					regs, addr);
+		}
+		if (fault & VM_FAULT_RETRY) {
+			/* Clear FAULT_FLAG_ALLOW_RETRY to avoid any risk
+			* of starvation. */
+			flags &= ~FAULT_FLAG_ALLOW_RETRY;
+			goto retry;
+		}
+	}
+
+	up_read(&mm->mmap_sem);
+
+=======
 	fault = __do_page_fault(mm, addr, fsr, tsk);
 	up_read(&mm->mmap_sem);
 
@@ -363,6 +466,7 @@ do_page_fault(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	else if (fault & VM_FAULT_MINOR)
 		perf_sw_event(PERF_COUNT_SW_PAGE_FAULTS_MIN, 1, 0, regs, addr);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * Handle the "normal" case first - VM_FAULT_MAJOR / VM_FAULT_MINOR
 	 */
@@ -475,6 +579,15 @@ do_translation_fault(unsigned long addr, unsigned int fsr,
 	pmd = pmd_offset(pud, addr);
 	pmd_k = pmd_offset(pud_k, addr);
 
+<<<<<<< HEAD
+#ifdef CONFIG_ARM_LPAE
+	/*
+	 * Only one hardware entry per PMD with LPAE.
+	 */
+	index = 0;
+#else
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * On ARM one Linux PGD entry contains two hardware entries (see page
 	 * tables layout in pgtable.h). We normally guarantee that we always
@@ -484,6 +597,10 @@ do_translation_fault(unsigned long addr, unsigned int fsr,
 	 * for the first of pair.
 	 */
 	index = (addr >> SECTION_SHIFT) & 1;
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (pmd_none(pmd_k[index]))
 		goto bad_area;
 
@@ -523,11 +640,69 @@ do_bad(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	return 1;
 }
 
+<<<<<<< HEAD
+#if defined(CONFIG_ARCH_MSM_SCORPION) && !defined(CONFIG_MSM_SMP)
+#define __str(x) #x
+#define MRC(x, v1, v2, v4, v5, v6) do {					\
+	unsigned int __##x;						\
+	asm("mrc " __str(v1) ", " __str(v2) ", %0, " __str(v4) ", "	\
+		__str(v5) ", " __str(v6) "\n" \
+		: "=r" (__##x));					\
+	pr_info("%s: %s = 0x%.8x\n", __func__, #x, __##x);		\
+} while(0)
+
+#define MSM_TCSR_SPARE2 (MSM_TCSR_BASE + 0x60)
+
+#endif
+
+int
+do_imprecise_ext(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
+{
+#if defined(CONFIG_ARCH_MSM_SCORPION) && !defined(CONFIG_MSM_SMP)
+	MRC(ADFSR,    p15, 0,  c5, c1, 0);
+	MRC(DFSR,     p15, 0,  c5, c0, 0);
+	MRC(ACTLR,    p15, 0,  c1, c0, 1);
+	MRC(EFSR,     p15, 7, c15, c0, 1);
+	MRC(L2SR,     p15, 3, c15, c1, 0);
+	MRC(L2CR0,    p15, 3, c15, c0, 1);
+	MRC(L2CPUESR, p15, 3, c15, c1, 1);
+	MRC(L2CPUCR,  p15, 3, c15, c0, 2);
+	MRC(SPESR,    p15, 1,  c9, c7, 0);
+	MRC(SPCR,     p15, 0,  c9, c7, 0);
+	MRC(DMACHSR,  p15, 1, c11, c0, 0);
+	MRC(DMACHESR, p15, 1, c11, c0, 1);
+	MRC(DMACHCR,  p15, 0, c11, c0, 2);
+
+	/* clear out EFSR and ADFSR after fault */
+	asm volatile ("mcr p15, 7, %0, c15, c0, 1\n\t"
+		      "mcr p15, 0, %0, c5, c1, 0"
+		      : : "r" (0));
+#endif
+#if defined(CONFIG_ARCH_MSM_SCORPION) && !defined(CONFIG_MSM_SMP)
+	pr_info("%s: TCSR_SPARE2 = 0x%.8x\n", __func__, readl(MSM_TCSR_SPARE2));
+#endif
+	return 1;
+}
+
+struct fsr_info {
+=======
 static struct fsr_info {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int	(*fn)(unsigned long addr, unsigned int fsr, struct pt_regs *regs);
 	int	sig;
 	int	code;
 	const char *name;
+<<<<<<< HEAD
+};
+
+/* FSR definition */
+#ifdef CONFIG_ARM_LPAE
+#include "fsr-3level.c"
+#else
+#include "fsr-2level.c"
+#endif
+
+=======
 } fsr_info[] = {
 	/*
 	 * The following are the standard ARMv3 and ARMv4 aborts.  ARMv5
@@ -572,6 +747,7 @@ static struct fsr_info {
 	{ do_bad,		SIGBUS,  0,		"unknown 31"			   }
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init
 hook_fault_code(int nr, int (*fn)(unsigned long, unsigned int, struct pt_regs *),
 		int sig, int code, const char *name)
@@ -585,6 +761,78 @@ hook_fault_code(int nr, int (*fn)(unsigned long, unsigned int, struct pt_regs *)
 	fsr_info[nr].name = name;
 }
 
+<<<<<<< HEAD
+#ifdef CONFIG_MSM_KRAIT_TBB_ABORT_HANDLER
+static int krait_tbb_fixup(unsigned int fsr, struct pt_regs *regs)
+{
+	int base_cond, cond = 0;
+	unsigned int p1, cpsr_z, cpsr_c, cpsr_n, cpsr_v;
+
+	if ((read_cpuid_id() & 0xFFFFFFFC) != 0x510F04D0)
+		return 0;
+
+	if (!thumb_mode(regs))
+		return 0;
+
+	/* If ITSTATE is 0, return quickly */
+	if ((regs->ARM_cpsr & PSR_IT_MASK) == 0)
+		return 0;
+
+	cpsr_n = (regs->ARM_cpsr & PSR_N_BIT) ? 1 : 0;
+	cpsr_z = (regs->ARM_cpsr & PSR_Z_BIT) ? 1 : 0;
+	cpsr_c = (regs->ARM_cpsr & PSR_C_BIT) ? 1 : 0;
+	cpsr_v = (regs->ARM_cpsr & PSR_V_BIT) ? 1 : 0;
+
+	p1 = (regs->ARM_cpsr & BIT(12)) ? 1 : 0;
+
+	base_cond = (regs->ARM_cpsr >> 13) & 0x07;
+
+	switch (base_cond) {
+	case 0x0:	/* equal */
+		cond = cpsr_z;
+		break;
+
+	case 0x1:	/* carry set */
+		cond = cpsr_c;
+		break;
+
+	case 0x2:	/* minus / negative */
+		cond = cpsr_n;
+		break;
+
+	case 0x3:	/* overflow */
+		cond = cpsr_v;
+		break;
+
+	case 0x4:	/* unsigned higher */
+		cond = (cpsr_c == 1) && (cpsr_z == 0);
+		break;
+
+	case 0x5:	/* signed greater / equal */
+		cond = (cpsr_n == cpsr_v);
+		break;
+
+	case 0x6:	/* signed greater */
+		cond = (cpsr_z == 0) && (cpsr_n == cpsr_v);
+		break;
+
+	case 0x7:	/* always */
+		cond = 1;
+		break;
+	};
+
+	if (cond == p1) {
+		pr_debug("Conditional abort fixup, PC=%08x, base=%d, cond=%d\n",
+			 (unsigned int) regs->ARM_pc, base_cond, cond);
+		regs->ARM_pc += 2;
+		return 1;
+	}
+	return 0;
+}
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Dispatch a data abort to the relevant handler.
  */
@@ -594,6 +842,14 @@ do_DataAbort(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	const struct fsr_info *inf = fsr_info + fsr_fs(fsr);
 	struct siginfo info;
 
+<<<<<<< HEAD
+#ifdef CONFIG_MSM_KRAIT_TBB_ABORT_HANDLER
+	if (krait_tbb_fixup(fsr, regs))
+		return;
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!inf->fn(addr, fsr & ~FSR_LNX_PF, regs))
 		return;
 
@@ -607,6 +863,8 @@ do_DataAbort(unsigned long addr, unsigned int fsr, struct pt_regs *regs)
 	arm_notify_die("", regs, &info, fsr, 0);
 }
 
+<<<<<<< HEAD
+=======
 
 static struct fsr_info ifsr_info[] = {
 	{ do_bad,		SIGBUS,  0,		"unknown 0"			   },
@@ -643,6 +901,7 @@ static struct fsr_info ifsr_info[] = {
 	{ do_bad,		SIGBUS,  0,		"unknown 31"			   },
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init
 hook_ifault_code(int nr, int (*fn)(unsigned long, unsigned int, struct pt_regs *),
 		 int sig, int code, const char *name)
@@ -675,6 +934,10 @@ do_PrefetchAbort(unsigned long addr, unsigned int ifsr, struct pt_regs *regs)
 	arm_notify_die("", regs, &info, ifsr, 0);
 }
 
+<<<<<<< HEAD
+#ifndef CONFIG_ARM_LPAE
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int __init exceptions_init(void)
 {
 	if (cpu_architecture() >= CPU_ARCH_ARMv6) {
@@ -697,3 +960,7 @@ static int __init exceptions_init(void)
 }
 
 arch_initcall(exceptions_init);
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -9,11 +9,20 @@
  * 2 of the License, or (at your option) any later version.
  */
 
+<<<<<<< HEAD
+#include <linux/irqdomain.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/threads.h>
 #include <linux/list.h>
 #include <linux/radix-tree.h>
 
 #include <asm/types.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+
+
+=======
 #include <asm/atomic.h>
 
 
@@ -21,11 +30,21 @@
 #define for_each_irq(i) \
 	for ((i) = 0; (i) < NR_IRQS; ++(i))
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern atomic_t ppc_n_lost_interrupts;
 
 /* This number is used when no interrupt has been assigned */
 #define NO_IRQ			(0)
 
+<<<<<<< HEAD
+/* Total number of virq in the platform */
+#define NR_IRQS		CONFIG_NR_IRQS
+
+/* Same thing, used by the generic IRQ code */
+#define NR_IRQS_LEGACY		NUM_ISA_INTERRUPTS
+
+extern irq_hw_number_t virq_to_hw(unsigned int virq);
+=======
 /* This is a special irq number to return from get_irq() to tell that
  * no interrupt happened _and_ ignore it (don't count it as bad). Some
  * platforms like iSeries rely on that.
@@ -287,6 +306,7 @@ extern unsigned int irq_alloc_virt(struct irq_host *host,
  * prior to calling this.
  */
 extern void irq_free_virt(unsigned int virq, unsigned int count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * irq_early_init - Init irq remapping subsystem
@@ -330,5 +350,10 @@ extern int call_handle_irq(int irq, void *p1,
 			   struct thread_info *tp, void *func);
 extern void do_IRQ(struct pt_regs *regs);
 
+<<<<<<< HEAD
+int irq_choose_cpu(const struct cpumask *mask);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_IRQ_H */
 #endif /* __KERNEL__ */

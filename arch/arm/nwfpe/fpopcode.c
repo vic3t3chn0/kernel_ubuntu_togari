@@ -61,6 +61,8 @@ const float32 float32Constant[] = {
 	0x41200000		/* single 10.0 */
 };
 
+<<<<<<< HEAD
+=======
 /* condition code lookup table
  index into the table is test code: EQ, NE, ... LT, GT, AL, NV
  bit position in short is condition code: NZCV */
@@ -87,3 +89,4 @@ unsigned int checkCondition(const unsigned int opcode, const unsigned int ccodes
 {
 	return (aCC[opcode >> 28] >> (ccodes >> 28)) & 1;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

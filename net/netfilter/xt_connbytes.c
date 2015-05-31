@@ -40,6 +40,16 @@ connbytes_mt(const struct sk_buff *skb, struct xt_action_param *par)
 	case XT_CONNBYTES_PKTS:
 		switch (sinfo->direction) {
 		case XT_CONNBYTES_DIR_ORIGINAL:
+<<<<<<< HEAD
+			what = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].packets);
+			break;
+		case XT_CONNBYTES_DIR_REPLY:
+			what = atomic64_read(&counters[IP_CT_DIR_REPLY].packets);
+			break;
+		case XT_CONNBYTES_DIR_BOTH:
+			what = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].packets);
+			what += atomic64_read(&counters[IP_CT_DIR_REPLY].packets);
+=======
 			what = counters[IP_CT_DIR_ORIGINAL].packets;
 			break;
 		case XT_CONNBYTES_DIR_REPLY:
@@ -48,12 +58,23 @@ connbytes_mt(const struct sk_buff *skb, struct xt_action_param *par)
 		case XT_CONNBYTES_DIR_BOTH:
 			what = counters[IP_CT_DIR_ORIGINAL].packets;
 			what += counters[IP_CT_DIR_REPLY].packets;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 		}
 		break;
 	case XT_CONNBYTES_BYTES:
 		switch (sinfo->direction) {
 		case XT_CONNBYTES_DIR_ORIGINAL:
+<<<<<<< HEAD
+			what = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].bytes);
+			break;
+		case XT_CONNBYTES_DIR_REPLY:
+			what = atomic64_read(&counters[IP_CT_DIR_REPLY].bytes);
+			break;
+		case XT_CONNBYTES_DIR_BOTH:
+			what = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].bytes);
+			what += atomic64_read(&counters[IP_CT_DIR_REPLY].bytes);
+=======
 			what = counters[IP_CT_DIR_ORIGINAL].bytes;
 			break;
 		case XT_CONNBYTES_DIR_REPLY:
@@ -62,12 +83,27 @@ connbytes_mt(const struct sk_buff *skb, struct xt_action_param *par)
 		case XT_CONNBYTES_DIR_BOTH:
 			what = counters[IP_CT_DIR_ORIGINAL].bytes;
 			what += counters[IP_CT_DIR_REPLY].bytes;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 		}
 		break;
 	case XT_CONNBYTES_AVGPKT:
 		switch (sinfo->direction) {
 		case XT_CONNBYTES_DIR_ORIGINAL:
+<<<<<<< HEAD
+			bytes = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].bytes);
+			pkts  = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].packets);
+			break;
+		case XT_CONNBYTES_DIR_REPLY:
+			bytes = atomic64_read(&counters[IP_CT_DIR_REPLY].bytes);
+			pkts  = atomic64_read(&counters[IP_CT_DIR_REPLY].packets);
+			break;
+		case XT_CONNBYTES_DIR_BOTH:
+			bytes = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].bytes) +
+				atomic64_read(&counters[IP_CT_DIR_REPLY].bytes);
+			pkts  = atomic64_read(&counters[IP_CT_DIR_ORIGINAL].packets) +
+				atomic64_read(&counters[IP_CT_DIR_REPLY].packets);
+=======
 			bytes = counters[IP_CT_DIR_ORIGINAL].bytes;
 			pkts  = counters[IP_CT_DIR_ORIGINAL].packets;
 			break;
@@ -80,6 +116,7 @@ connbytes_mt(const struct sk_buff *skb, struct xt_action_param *par)
 				counters[IP_CT_DIR_REPLY].bytes;
 			pkts  = counters[IP_CT_DIR_ORIGINAL].packets +
 				counters[IP_CT_DIR_REPLY].packets;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 		}
 		if (pkts != 0)
@@ -87,10 +124,17 @@ connbytes_mt(const struct sk_buff *skb, struct xt_action_param *par)
 		break;
 	}
 
+<<<<<<< HEAD
+	if (sinfo->count.to >= sinfo->count.from)
+		return what <= sinfo->count.to && what >= sinfo->count.from;
+	else /* inverted */
+		return what < sinfo->count.to || what > sinfo->count.from;
+=======
 	if (sinfo->count.to)
 		return what <= sinfo->count.to && what >= sinfo->count.from;
 	else
 		return what >= sinfo->count.from;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int connbytes_mt_check(const struct xt_mtchk_param *par)

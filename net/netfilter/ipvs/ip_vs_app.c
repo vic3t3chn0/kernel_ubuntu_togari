@@ -31,7 +31,10 @@
 #include <net/net_namespace.h>
 #include <net/protocol.h>
 #include <net/tcp.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/stat.h>
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
@@ -576,7 +579,11 @@ static const struct file_operations ip_vs_app_fops = {
 };
 #endif
 
+<<<<<<< HEAD
+int __net_init ip_vs_app_net_init(struct net *net)
+=======
 int __net_init __ip_vs_app_init(struct net *net)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct netns_ipvs *ipvs = net_ipvs(net);
 
@@ -585,6 +592,12 @@ int __net_init __ip_vs_app_init(struct net *net)
 	return 0;
 }
 
+<<<<<<< HEAD
+void __net_exit ip_vs_app_net_cleanup(struct net *net)
+{
+	proc_net_remove(net, "ip_vs_app");
+}
+=======
 void __net_exit __ip_vs_app_cleanup(struct net *net)
 {
 	proc_net_remove(net, "ip_vs_app");
@@ -599,3 +612,4 @@ int __init ip_vs_app_init(void)
 void ip_vs_app_cleanup(void)
 {
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

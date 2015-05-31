@@ -5,13 +5,39 @@
 #
 # Licensed under GPLv2
 
+<<<<<<< HEAD
+obj-y				:=
+=======
 ifneq ($(CONFIG_CMA),y)
 obj-y				:= reserve_mem-exynos4.o
 endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 obj-m				:=
 obj-n				:=
 obj-				:=
 
+<<<<<<< HEAD
+# Core
+
+obj-$(CONFIG_ARCH_EXYNOS)	+= common.o
+obj-$(CONFIG_ARCH_EXYNOS4)	+= clock-exynos4.o
+obj-$(CONFIG_ARCH_EXYNOS5)	+= clock-exynos5.o
+obj-$(CONFIG_CPU_EXYNOS4210)	+= clock-exynos4210.o
+obj-$(CONFIG_SOC_EXYNOS4212)	+= clock-exynos4212.o
+
+obj-$(CONFIG_PM)		+= pm.o
+obj-$(CONFIG_PM_GENERIC_DOMAINS) += pm_domains.o
+obj-$(CONFIG_CPU_IDLE)		+= cpuidle.o
+
+obj-$(CONFIG_ARCH_EXYNOS4)	+= pmu.o
+
+obj-$(CONFIG_SMP)		+= platsmp.o headsmp.o
+
+obj-$(CONFIG_EXYNOS4_MCT)	+= mct.o
+
+obj-$(CONFIG_HOTPLUG_CPU)	+= hotplug.o
+
+=======
 # Core support for EXYNOS system
 
 obj-y				+= init.o irq-combiner.o dma.o irq-eint.o ppmu.o
@@ -60,12 +86,37 @@ obj-$(CONFIG_WITH_DVFS_POLICY)		+= dvfs-hotplug.o
 obj-$(CONFIG_DVFS_NR_RUNNING_POLICY)	+= dynamic-dvfs-nr_running-hotplug.o
 obj-$(CONFIG_NR_RUNNING_POLICY)		+= dynamic-nr_running-hotplug.o
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # machine support
 
 obj-$(CONFIG_MACH_SMDKC210)		+= mach-smdkv310.o
 obj-$(CONFIG_MACH_SMDKV310)		+= mach-smdkv310.o
 obj-$(CONFIG_MACH_ARMLEX4210)		+= mach-armlex4210.o
 obj-$(CONFIG_MACH_UNIVERSAL_C210)	+= mach-universal_c210.o
+<<<<<<< HEAD
+obj-$(CONFIG_MACH_NURI)			+= mach-nuri.o
+obj-$(CONFIG_MACH_ORIGEN)		+= mach-origen.o
+
+obj-$(CONFIG_MACH_SMDK4212)		+= mach-smdk4x12.o
+obj-$(CONFIG_MACH_SMDK4412)		+= mach-smdk4x12.o
+
+obj-$(CONFIG_MACH_EXYNOS4_DT)		+= mach-exynos4-dt.o
+obj-$(CONFIG_MACH_EXYNOS5_DT)		+= mach-exynos5-dt.o
+
+# device support
+
+obj-y					+= dev-uart.o
+obj-$(CONFIG_ARCH_EXYNOS4)		+= dev-audio.o
+obj-$(CONFIG_EXYNOS4_DEV_AHCI)		+= dev-ahci.o
+obj-$(CONFIG_EXYNOS4_DEV_SYSMMU)	+= dev-sysmmu.o
+obj-$(CONFIG_EXYNOS4_DEV_DWMCI)		+= dev-dwmci.o
+obj-$(CONFIG_EXYNOS4_DEV_DMA)		+= dma.o
+obj-$(CONFIG_EXYNOS4_DEV_USB_OHCI)	+= dev-ohci.o
+
+obj-$(CONFIG_ARCH_EXYNOS)		+= setup-i2c0.o
+obj-$(CONFIG_EXYNOS4_SETUP_FIMC)	+= setup-fimc.o
+obj-$(CONFIG_EXYNOS4_SETUP_FIMD0)	+= setup-fimd0.o
+=======
 obj-$(CONFIG_MACH_TRATS)		+= board-trats.o sec-common.o sec-switch_max8997.o \
 					   u1-wlan.o u1_regulator_consumer.o sec-reboot.o
 obj-$(CONFIG_MACH_U1)			+= mach-u1.o sec-common.o sec-switch_max8997.o
@@ -248,6 +299,7 @@ obj-$(CONFIG_EXYNOS4_SETUP_FIMC_IS)	+= setup-fimc-is.o
 obj-$(CONFIG_EXYNOS5_SETUP_GSC)		+= setup-gsc.o
 obj-$(CONFIG_EXYNOS4_SETUP_HDMI)	+= setup-hdmi.o
 obj-y					+= setup-i2c0.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 obj-$(CONFIG_EXYNOS4_SETUP_I2C1)	+= setup-i2c1.o
 obj-$(CONFIG_EXYNOS4_SETUP_I2C2)	+= setup-i2c2.o
 obj-$(CONFIG_EXYNOS4_SETUP_I2C3)	+= setup-i2c3.o
@@ -256,6 +308,11 @@ obj-$(CONFIG_EXYNOS4_SETUP_I2C5)	+= setup-i2c5.o
 obj-$(CONFIG_EXYNOS4_SETUP_I2C6)	+= setup-i2c6.o
 obj-$(CONFIG_EXYNOS4_SETUP_I2C7)	+= setup-i2c7.o
 obj-$(CONFIG_EXYNOS4_SETUP_KEYPAD)	+= setup-keypad.o
+<<<<<<< HEAD
+obj-$(CONFIG_EXYNOS4_SETUP_SDHCI_GPIO)	+= setup-sdhci-gpio.o
+obj-$(CONFIG_EXYNOS4_SETUP_USB_PHY)	+= setup-usb-phy.o
+obj-$(CONFIG_EXYNOS4_SETUP_SPI)		+= setup-spi.o
+=======
 obj-$(CONFIG_EXYNOS4_SETUP_MFC)		+= setup-mfc.o
 obj-$(CONFIG_EXYNOS4_SETUP_SDHCI)	+= setup-sdhci.o
 obj-$(CONFIG_EXYNOS4_SETUP_SDHCI_GPIO)	+= setup-sdhci-gpio.o
@@ -320,3 +377,4 @@ obj-$(CONFIG_CORESIGHT_ETM) += coresight.o coresight-etb.o coresight-tpiu.o core
 
 # for audio platform data driver
 obj-$(CONFIG_EXYNOS_SOUND_PLATFORM_DATA)	+= exynos_sound_platform_data.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

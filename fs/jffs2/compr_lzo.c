@@ -33,7 +33,10 @@ static int __init alloc_workspace(void)
 	lzo_compress_buf = vmalloc(lzo1x_worst_compress(PAGE_SIZE));
 
 	if (!lzo_mem || !lzo_compress_buf) {
+<<<<<<< HEAD
+=======
 		printk(KERN_WARNING "Failed to allocate lzo deflate workspace\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		free_workspace();
 		return -ENOMEM;
 	}

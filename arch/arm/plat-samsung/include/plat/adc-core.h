@@ -20,7 +20,11 @@
 /* re-define device name depending on support. */
 static inline void s3c_adc_setname(char *name)
 {
+<<<<<<< HEAD
+#if defined(CONFIG_SAMSUNG_DEV_ADC) || defined(CONFIG_PLAT_S3C24XX)
+=======
 #ifdef CONFIG_SAMSUNG_DEV_ADC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s3c_device_adc.name = name;
 #endif
 }

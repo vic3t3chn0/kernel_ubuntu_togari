@@ -29,6 +29,10 @@ PROPNODECHAR	[a-zA-Z0-9,._+*#?@-]
 PATHCHAR	({PROPNODECHAR}|[/])
 LABEL		[a-zA-Z_][a-zA-Z0-9_]*
 STRING		\"([^\\"]|\\.)*\"
+<<<<<<< HEAD
+CHAR_LITERAL	'([^']|\\')*'
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 WS		[[:space:]]
 COMMENT		"/*"([^*]|\*+[^*/])*\*+"/"
 LINECOMMENT	"//".*\n
@@ -70,6 +74,30 @@ static int pop_input_file(void);
 			push_input_file(name);
 		}
 
+<<<<<<< HEAD
+<*>^"#"(line)?{WS}+[0-9]+{WS}+{STRING}({WS}+[0-9]+)? {
+			char *line, *tmp, *fn;
+			/* skip text before line # */
+			line = yytext;
+			while (!isdigit(*line))
+				line++;
+			/* skip digits in line # */
+			tmp = line;
+			while (!isspace(*tmp))
+				tmp++;
+			/* "NULL"-terminate line # */
+			*tmp = '\0';
+			/* start of filename */
+			fn = strchr(tmp + 1, '"') + 1;
+			/* strip trailing " from filename */
+			tmp = strchr(fn, '"');
+			*tmp = 0;
+			/* -1 since #line is the number of the next line */
+			srcpos_set_line(xstrdup(fn), atoi(line) - 1);
+		}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 <*><<EOF>>		{
 			if (!pop_input_file()) {
 				yyterminate();
@@ -96,6 +124,29 @@ static int pop_input_file(void);
 			return DT_MEMRESERVE;
 		}
 
+<<<<<<< HEAD
+<*>"/bits/"	{
+			DPRINT("Keyword: /bits/\n");
+			BEGIN_DEFAULT();
+			return DT_BITS;
+		}
+
+<*>"/delete-property/"	{
+			DPRINT("Keyword: /delete-property/\n");
+			DPRINT("<PROPNODENAME>\n");
+			BEGIN(PROPNODENAME);
+			return DT_DEL_PROP;
+		}
+
+<*>"/delete-node/"	{
+			DPRINT("Keyword: /delete-node/\n");
+			DPRINT("<PROPNODENAME>\n");
+			BEGIN(PROPNODENAME);
+			return DT_DEL_NODE;
+		}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 <*>{LABEL}:	{
 			DPRINT("Label: %s\n", yytext);
 			yylval.labelref = xstrdup(yytext);
@@ -103,12 +154,26 @@ static int pop_input_file(void);
 			return DT_LABEL;
 		}
 
+<<<<<<< HEAD
+<V1>([0-9]+|0[xX][0-9a-fA-F]+)(U|L|UL|LL|ULL)? {
+=======
 <V1>[0-9]+|0[xX][0-9a-fA-F]+      {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			yylval.literal = xstrdup(yytext);
 			DPRINT("Literal: '%s'\n", yylval.literal);
 			return DT_LITERAL;
 		}
 
+<<<<<<< HEAD
+<*>{CHAR_LITERAL}	{
+			yytext[yyleng-1] = '\0';
+			yylval.literal = xstrdup(yytext+1);
+			DPRINT("Character literal: %s\n", yylval.literal);
+			return DT_CHAR_LITERAL;
+		}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 <*>\&{LABEL}	{	/* label reference */
 			DPRINT("Ref: %s\n", yytext+1);
 			yylval.labelref = xstrdup(yytext+1);
@@ -134,9 +199,16 @@ static int pop_input_file(void);
 			return ']';
 		}
 
+<<<<<<< HEAD
+<PROPNODENAME>\\?{PROPNODECHAR}+ {
+			DPRINT("PropNodeName: %s\n", yytext);
+			yylval.propnodename = xstrdup((yytext[0] == '\\') ?
+							yytext + 1 : yytext);
+=======
 <PROPNODENAME>{PROPNODECHAR}+ {
 			DPRINT("PropNodeName: %s\n", yytext);
 			yylval.propnodename = xstrdup(yytext);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			BEGIN_DEFAULT();
 			return DT_PROPNODENAME;
 		}
@@ -150,6 +222,18 @@ static int pop_input_file(void);
 <*>{COMMENT}+	/* eat C-style comments */
 <*>{LINECOMMENT}+ /* eat C++-style comments */
 
+<<<<<<< HEAD
+<*>"<<"		{ return DT_LSHIFT; };
+<*>">>"		{ return DT_RSHIFT; };
+<*>"<="		{ return DT_LE; };
+<*>">="		{ return DT_GE; };
+<*>"=="		{ return DT_EQ; };
+<*>"!="		{ return DT_NE; };
+<*>"&&"		{ return DT_AND; };
+<*>"||"		{ return DT_OR; };
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 <*>.		{
 			DPRINT("Char: %c (\\x%02x)\n", yytext[0],
 				(unsigned)yytext[0]);

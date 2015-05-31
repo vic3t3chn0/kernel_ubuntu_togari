@@ -48,7 +48,11 @@
 #include <linux/io.h>
 
 #include <asm/apicdef.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/fixmap.h>
 #include <asm/mpspec.h>
 #include <asm/setup.h>
@@ -625,6 +629,10 @@ static struct apic __refdata apic_es7000_cluster = {
 	.name				= "es7000",
 	.probe				= probe_es7000,
 	.acpi_madt_oem_check		= es7000_acpi_madt_oem_check_cluster,
+<<<<<<< HEAD
+	.apic_id_valid			= default_apic_id_valid,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.apic_id_registered		= es7000_apic_id_registered,
 
 	.irq_delivery_mode		= dest_LowestPrio,
@@ -690,6 +698,10 @@ static struct apic __refdata apic_es7000 = {
 	.name				= "es7000",
 	.probe				= probe_es7000,
 	.acpi_madt_oem_check		= es7000_acpi_madt_oem_check,
+<<<<<<< HEAD
+	.apic_id_valid			= default_apic_id_valid,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.apic_id_registered		= es7000_apic_id_registered,
 
 	.irq_delivery_mode		= dest_Fixed,

@@ -57,6 +57,10 @@
 #define ACPI_SUCCESS(a)                 (!(a))
 #define ACPI_FAILURE(a)                 (a)
 
+<<<<<<< HEAD
+#define ACPI_SKIP(a)                    (a == AE_CTRL_SKIP)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define AE_OK                           (acpi_status) 0x0000
 
 /*
@@ -89,8 +93,14 @@
 #define AE_SAME_HANDLER                 (acpi_status) (0x0019 | AE_CODE_ENVIRONMENTAL)
 #define AE_NO_HANDLER                   (acpi_status) (0x001A | AE_CODE_ENVIRONMENTAL)
 #define AE_OWNER_ID_LIMIT               (acpi_status) (0x001B | AE_CODE_ENVIRONMENTAL)
+<<<<<<< HEAD
+#define AE_NOT_CONFIGURED               (acpi_status) (0x001C | AE_CODE_ENVIRONMENTAL)
+
+#define AE_CODE_ENV_MAX                 0x001C
+=======
 
 #define AE_CODE_ENV_MAX                 0x001B
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Programmer exceptions
@@ -213,7 +223,12 @@ char const *acpi_gbl_exception_names_env[] = {
 	"AE_ABORT_METHOD",
 	"AE_SAME_HANDLER",
 	"AE_NO_HANDLER",
+<<<<<<< HEAD
+	"AE_OWNER_ID_LIMIT",
+	"AE_NOT_CONFIGURED"
+=======
 	"AE_OWNER_ID_LIMIT"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 char const *acpi_gbl_exception_names_pgm[] = {

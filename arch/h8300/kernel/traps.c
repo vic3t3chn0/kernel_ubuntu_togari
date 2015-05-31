@@ -22,7 +22,10 @@
 #include <linux/module.h>
 #include <linux/bug.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/irq.h>
 #include <asm/traps.h>
 #include <asm/page.h>

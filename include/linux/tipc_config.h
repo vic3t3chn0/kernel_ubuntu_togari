@@ -41,6 +41,13 @@
 #include <linux/string.h>
 #include <asm/byteorder.h>
 
+<<<<<<< HEAD
+#ifndef __KERNEL__
+#include <arpa/inet.h> /* for ntohs etc. */
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Configuration
  *

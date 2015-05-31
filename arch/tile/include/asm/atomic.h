@@ -17,10 +17,19 @@
 #ifndef _ASM_TILE_ATOMIC_H
 #define _ASM_TILE_ATOMIC_H
 
+<<<<<<< HEAD
+#include <asm/cmpxchg.h>
+
+#ifndef __ASSEMBLY__
+
+#include <linux/compiler.h>
+#include <linux/types.h>
+=======
 #ifndef __ASSEMBLY__
 
 #include <linux/compiler.h>
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define ATOMIC_INIT(i)	{ (i) }
 
@@ -121,6 +130,8 @@ static inline int atomic_read(const atomic_t *v)
  */
 #define atomic_add_negative(i, v)	(atomic_add_return((i), (v)) < 0)
 
+<<<<<<< HEAD
+=======
 /**
  * atomic_inc_not_zero - increment unless the number is zero
  * @v: pointer of type atomic_t
@@ -178,6 +189,7 @@ extern unsigned long __cmpxchg_called_with_bad_pointer(void);
 
 #define tas(ptr) (xchg((ptr), 1))
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASSEMBLY__ */
 
 #ifndef __tilegx__
@@ -186,9 +198,12 @@ extern unsigned long __cmpxchg_called_with_bad_pointer(void);
 #include <asm/atomic_64.h>
 #endif
 
+<<<<<<< HEAD
+=======
 /* Provide the appropriate atomic_long_t definitions. */
 #ifndef __ASSEMBLY__
 #include <asm-generic/atomic-long.h>
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_TILE_ATOMIC_H */

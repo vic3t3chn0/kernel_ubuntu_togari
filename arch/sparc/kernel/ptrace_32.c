@@ -23,8 +23,13 @@
 #include <linux/tracehook.h>
 
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+#include <asm/uaccess.h>
+#include <asm/cacheflush.h>
+=======
 #include <asm/system.h>
 #include <asm/uaccess.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* #define ALLOW_INIT_TRACING */
 

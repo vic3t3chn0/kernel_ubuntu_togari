@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* linux/arch/arm/mach-exynos4/mach-smdkv310.c
+=======
 /* linux/arch/arm/mach-exynos/mach-smdkv310.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2010-2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -11,13 +15,46 @@
 #include <linux/serial_core.h>
 #include <linux/delay.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+=======
 #include <linux/gpio_event.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/lcd.h>
 #include <linux/mmc/host.h>
 #include <linux/platform_device.h>
 #include <linux/smsc911x.h>
 #include <linux/io.h>
 #include <linux/i2c.h>
+<<<<<<< HEAD
+#include <linux/input.h>
+#include <linux/pwm_backlight.h>
+
+#include <asm/mach/arch.h>
+#include <asm/hardware/gic.h>
+#include <asm/mach-types.h>
+
+#include <video/platform_lcd.h>
+#include <plat/regs-serial.h>
+#include <plat/regs-srom.h>
+#include <plat/regs-fb-v4.h>
+#include <plat/cpu.h>
+#include <plat/devs.h>
+#include <plat/fb.h>
+#include <plat/keypad.h>
+#include <plat/sdhci.h>
+#include <plat/iic.h>
+#include <plat/pd.h>
+#include <plat/gpio-cfg.h>
+#include <plat/backlight.h>
+#include <plat/mfc.h>
+#include <plat/ehci.h>
+#include <plat/clock.h>
+
+#include <mach/map.h>
+#include <mach/ohci.h>
+
+#include "common.h"
+=======
 #include <linux/pwm_backlight.h>
 #include <linux/input.h>
 #include <linux/spi/spi.h>
@@ -114,6 +151,7 @@
 #include <mach/dsim.h>
 #include <../../../drivers/video/samsung/s3cfb.h>
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Following are default values for UCON, ULCON and UFCON UART registers */
 #define SMDKV310_UCON_DEFAULT	(S3C2410_UCON_TXILEVEL |	\
@@ -160,6 +198,8 @@ static struct s3c2410_uartcfg smdkv310_uartcfgs[] __initdata = {
 	},
 };
 
+<<<<<<< HEAD
+=======
 #define WRITEBACK_ENABLED
 
 #if defined(CONFIG_VIDEO_FIMC) || defined(CONFIG_VIDEO_SAMSUNG_S5P_FIMC)
@@ -626,6 +666,7 @@ static struct dw_mci_board exynos_dwmci_pdata __initdata = {
 #endif
 
 #ifdef CONFIG_S3C_DEV_HSMMC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct s3c_sdhci_platdata smdkv310_hsmmc0_pdata __initdata = {
 	.cd_type		= S3C_SDHCI_CD_INTERNAL,
 	.clk_type		= S3C_SDHCI_CLK_DIV_EXTERNAL,
@@ -634,6 +675,16 @@ static struct s3c_sdhci_platdata smdkv310_hsmmc0_pdata __initdata = {
 	.host_caps		= MMC_CAP_8_BIT_DATA,
 #endif
 };
+<<<<<<< HEAD
+
+static struct s3c_sdhci_platdata smdkv310_hsmmc1_pdata __initdata = {
+	.cd_type		= S3C_SDHCI_CD_GPIO,
+	.ext_cd_gpio		= EXYNOS4_GPK0(2),
+	.ext_cd_gpio_invert	= 1,
+	.clk_type		= S3C_SDHCI_CLK_DIV_EXTERNAL,
+};
+
+=======
 #endif
 
 #ifdef CONFIG_S3C_DEV_HSMMC1
@@ -644,6 +695,7 @@ static struct s3c_sdhci_platdata smdkv310_hsmmc1_pdata __initdata = {
 #endif
 
 #ifdef CONFIG_S3C_DEV_HSMMC2
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct s3c_sdhci_platdata smdkv310_hsmmc2_pdata __initdata = {
 	.cd_type		= S3C_SDHCI_CD_INTERNAL,
 	.clk_type		= S3C_SDHCI_CLK_DIV_EXTERNAL,
@@ -652,6 +704,16 @@ static struct s3c_sdhci_platdata smdkv310_hsmmc2_pdata __initdata = {
 	.host_caps		= MMC_CAP_8_BIT_DATA,
 #endif
 };
+<<<<<<< HEAD
+
+static struct s3c_sdhci_platdata smdkv310_hsmmc3_pdata __initdata = {
+	.cd_type		= S3C_SDHCI_CD_GPIO,
+	.ext_cd_gpio		= EXYNOS4_GPK2(2),
+	.ext_cd_gpio_invert	= 1,
+	.clk_type		= S3C_SDHCI_CLK_DIV_EXTERNAL,
+};
+
+=======
 #endif
 
 #ifdef CONFIG_S3C_DEV_HSMMC3
@@ -899,6 +961,7 @@ static struct s3c_fb_pd_win smdkv310_fb_win2 = {
 };
 
 #elif defined(CONFIG_LCD_LTE480WV)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void lcd_lte480wv_set_power(struct plat_lcd_data *pd,
 				   unsigned int power)
 {
@@ -933,7 +996,11 @@ static struct plat_lcd_data smdkv310_lcd_lte480wv_data = {
 static struct platform_device smdkv310_lcd_lte480wv = {
 	.name			= "platform-lcd",
 	.dev.parent		= &s5p_device_fimd0.dev,
+<<<<<<< HEAD
+	.dev.platform_data	= &smdkv310_lcd_lte480wv_data,
+=======
 	.dev.platform_data      = &smdkv310_lcd_lte480wv_data,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct s3c_fb_pd_win smdkv310_fb_win0 = {
@@ -947,14 +1014,29 @@ static struct s3c_fb_pd_win smdkv310_fb_win0 = {
 		.xres		= 800,
 		.yres		= 480,
 	},
+<<<<<<< HEAD
+=======
 	.virtual_x		= 800,
 	.virtual_y		= 960,
 	.width			= 104,
 	.height			= 62,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.max_bpp		= 32,
 	.default_bpp		= 24,
 };
 
+<<<<<<< HEAD
+static struct s3c_fb_platdata smdkv310_lcd0_pdata __initdata = {
+	.win[0]		= &smdkv310_fb_win0,
+	.vidcon0	= VIDCON0_VIDOUT_RGB | VIDCON0_PNRMODE_RGB,
+	.vidcon1	= VIDCON1_INV_HSYNC | VIDCON1_INV_VSYNC,
+	.setup_gpio	= exynos4_fimd0_gpio_setup_24bpp,
+};
+
+static struct resource smdkv310_smsc911x_resources[] = {
+	[0] = {
+		.start	= EXYNOS4_PA_SROM_BANK(1),
+=======
 static struct s3c_fb_pd_win smdkv310_fb_win1 = {
 	.win_mode = {
 		.left_margin	= 13,
@@ -1211,6 +1293,7 @@ static void __init mipi_fb_init(void)
 static struct resource smdkv310_smsc911x_resources[] = {
 	[0] = {
 		.start	= EXYNOS4_PA_SROM_BANK(1),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.end	= EXYNOS4_PA_SROM_BANK(1) + SZ_64K - 1,
 		.flags	= IORESOURCE_MEM,
 	},
@@ -1239,6 +1322,8 @@ static struct platform_device smdkv310_smsc911x = {
 	},
 };
 
+<<<<<<< HEAD
+=======
 /* max8649 */
 static struct regulator_consumer_supply max8952_supply =
 	REGULATOR_SUPPLY("vdd_arm", NULL);
@@ -1642,6 +1727,7 @@ static struct wm8994_pdata wm8994_platform_data = {
 	.ldo[1] = { 0, NULL, &wm8994_ldo2_data },
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static uint32_t smdkv310_keymap[] __initdata = {
 	/* KEY(row, col, keycode) */
 	KEY(0, 3, KEY_1), KEY(0, 4, KEY_2), KEY(0, 5, KEY_3),
@@ -1661,6 +1747,13 @@ static struct samsung_keypad_platdata smdkv310_keypad_data __initdata = {
 	.cols		= 8,
 };
 
+<<<<<<< HEAD
+static struct i2c_board_info i2c_devs1[] __initdata = {
+	{I2C_BOARD_INFO("wm8994", 0x1a),},
+};
+
+/* USB EHCI */
+=======
 #ifdef CONFIG_BATTERY_SAMSUNG
 static struct platform_device samsung_device_battery = {
 	.name	= "samsung-fake-battery",
@@ -1722,6 +1815,7 @@ static struct s3c_hwmon_pdata smdkv310_hwmon_pdata __initdata = {
 
 /* USB EHCI */
 #ifdef CONFIG_USB_EHCI_S5P
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct s5p_ehci_platdata smdkv310_ehci_pdata;
 
 static void __init smdkv310_ehci_init(void)
@@ -1730,6 +1824,54 @@ static void __init smdkv310_ehci_init(void)
 
 	s5p_ehci_set_platdata(pdata);
 }
+<<<<<<< HEAD
+
+/* USB OHCI */
+static struct exynos4_ohci_platdata smdkv310_ohci_pdata;
+
+static void __init smdkv310_ohci_init(void)
+{
+	struct exynos4_ohci_platdata *pdata = &smdkv310_ohci_pdata;
+
+	exynos4_ohci_set_platdata(pdata);
+}
+
+static struct platform_device *smdkv310_devices[] __initdata = {
+	&s3c_device_hsmmc0,
+	&s3c_device_hsmmc1,
+	&s3c_device_hsmmc2,
+	&s3c_device_hsmmc3,
+	&s3c_device_i2c1,
+	&s5p_device_i2c_hdmiphy,
+	&s3c_device_rtc,
+	&s3c_device_wdt,
+	&s5p_device_ehci,
+	&s5p_device_fimc0,
+	&s5p_device_fimc1,
+	&s5p_device_fimc2,
+	&s5p_device_fimc3,
+	&s5p_device_fimc_md,
+	&s5p_device_g2d,
+	&s5p_device_jpeg,
+	&exynos4_device_ac97,
+	&exynos4_device_i2s0,
+	&exynos4_device_ohci,
+	&samsung_device_keypad,
+	&s5p_device_mfc,
+	&s5p_device_mfc_l,
+	&s5p_device_mfc_r,
+	&exynos4_device_spdif,
+	&exynos4_device_sysmmu,
+	&samsung_asoc_dma,
+	&samsung_asoc_idma,
+	&s5p_device_fimd0,
+	&smdkv310_lcd_lte480wv,
+	&smdkv310_smsc911x,
+	&exynos4_device_ahci,
+	&s5p_device_hdmi,
+	&s5p_device_mixer,
+};
+=======
 #endif
 
 #ifdef CONFIG_USB_OHCI_S5P
@@ -2069,6 +2211,7 @@ static void __init smdkv310_camera_config(void)
 #endif
 }
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void __init smdkv310_smsc911x_init(void)
 {
@@ -2093,6 +2236,8 @@ static void __init smdkv310_smsc911x_init(void)
 		     (0x1 << S5P_SROM_BCX__TACS__SHIFT), S5P_SROM_BC1);
 }
 
+<<<<<<< HEAD
+=======
 #if defined(CONFIG_CMA)
 static void __init exynos4_reserve_mem(void)
 {
@@ -2270,6 +2415,7 @@ static void __init exynos4_reserve_mem(void)
 }
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* LCD Backlight data */
 static struct samsung_bl_gpio_info smdkv310_bl_gpio_info = {
 	.no = EXYNOS4_GPD0(1),
@@ -2278,6 +2424,29 @@ static struct samsung_bl_gpio_info smdkv310_bl_gpio_info = {
 
 static struct platform_pwm_backlight_data smdkv310_bl_data = {
 	.pwm_id = 1,
+<<<<<<< HEAD
+	.pwm_period_ns  = 1000,
+};
+
+static void s5p_tv_setup(void)
+{
+	/* direct HPD to HDMI chip */
+	WARN_ON(gpio_request_one(EXYNOS4_GPX3(7), GPIOF_IN, "hpd-plug"));
+	s3c_gpio_cfgpin(EXYNOS4_GPX3(7), S3C_GPIO_SFN(0x3));
+	s3c_gpio_setpull(EXYNOS4_GPX3(7), S3C_GPIO_PULL_NONE);
+}
+
+static void __init smdkv310_map_io(void)
+{
+	exynos_init_io(NULL, 0);
+	s3c24xx_init_clocks(24000000);
+	s3c24xx_init_uarts(smdkv310_uartcfgs, ARRAY_SIZE(smdkv310_uartcfgs));
+}
+
+static void __init smdkv310_reserve(void)
+{
+	s5p_mfc_reserve_mem(0x43000000, 8 << 20, 0x51000000, 8 << 20);
+=======
 #if defined(CONFIG_LCD_LTE480WV)
 	.pwm_period_ns  = 1000,
 #endif
@@ -2341,10 +2510,60 @@ static void __init exynos_sysmmu_init(void)
 #ifdef CONFIG_VIDEO_EXYNOS_ROTATOR
 	sysmmu_set_owner(&SYSMMU_PLATDEV(rot).dev, &exynos_device_rotator.dev);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __init smdkv310_machine_init(void)
 {
+<<<<<<< HEAD
+	s3c_i2c1_set_platdata(NULL);
+	i2c_register_board_info(1, i2c_devs1, ARRAY_SIZE(i2c_devs1));
+
+	smdkv310_smsc911x_init();
+
+	s3c_sdhci0_set_platdata(&smdkv310_hsmmc0_pdata);
+	s3c_sdhci1_set_platdata(&smdkv310_hsmmc1_pdata);
+	s3c_sdhci2_set_platdata(&smdkv310_hsmmc2_pdata);
+	s3c_sdhci3_set_platdata(&smdkv310_hsmmc3_pdata);
+
+	s5p_tv_setup();
+	s5p_i2c_hdmiphy_set_platdata(NULL);
+
+	samsung_keypad_set_platdata(&smdkv310_keypad_data);
+
+	samsung_bl_set(&smdkv310_bl_gpio_info, &smdkv310_bl_data);
+	s5p_fimd0_set_platdata(&smdkv310_lcd0_pdata);
+
+	smdkv310_ehci_init();
+	smdkv310_ohci_init();
+	clk_xusbxti.rate = 24000000;
+
+	platform_add_devices(smdkv310_devices, ARRAY_SIZE(smdkv310_devices));
+}
+
+MACHINE_START(SMDKV310, "SMDKV310")
+	/* Maintainer: Kukjin Kim <kgene.kim@samsung.com> */
+	/* Maintainer: Changhwan Youn <chaos.youn@samsung.com> */
+	.atag_offset	= 0x100,
+	.init_irq	= exynos4_init_irq,
+	.map_io		= smdkv310_map_io,
+	.handle_irq	= gic_handle_irq,
+	.init_machine	= smdkv310_machine_init,
+	.timer		= &exynos4_timer,
+	.reserve	= &smdkv310_reserve,
+	.restart	= exynos4_restart,
+MACHINE_END
+
+MACHINE_START(SMDKC210, "SMDKC210")
+	/* Maintainer: Kukjin Kim <kgene.kim@samsung.com> */
+	.atag_offset	= 0x100,
+	.init_irq	= exynos4_init_irq,
+	.map_io		= smdkv310_map_io,
+	.handle_irq	= gic_handle_irq,
+	.init_machine	= smdkv310_machine_init,
+	.timer		= &exynos4_timer,
+	.restart	= exynos4_restart,
+=======
 #ifdef CONFIG_S3C64XX_DEV_SPI
 	struct clk *sclk = NULL;
 	struct clk *prnt = NULL;
@@ -2677,4 +2896,5 @@ MACHINE_START(SMDKV310, "SMDKV310")
 	.map_io		= smdkv310_map_io,
 	.init_machine	= smdkv310_machine_init,
 	.timer		= &exynos4_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

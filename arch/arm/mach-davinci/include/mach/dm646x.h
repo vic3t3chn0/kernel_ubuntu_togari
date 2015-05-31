@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty, remove once unused */
+=======
 /*
  * Chip specific defines for DM646x SoC
  *
@@ -92,3 +95,4 @@ void dm646x_setup_vpif(struct vpif_display_config *,
 		       struct vpif_capture_config *);
 
 #endif /* __ASM_ARCH_DM646X_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

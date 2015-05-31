@@ -17,11 +17,19 @@
 #include <linux/dma-mapping.h>
 
 static inline dma_addr_t
+<<<<<<< HEAD
+vb2_dma_contig_plane_dma_addr(struct vb2_buffer *vb, unsigned int plane_no)
+{
+	dma_addr_t *addr = vb2_plane_cookie(vb, plane_no);
+
+	return *addr;
+=======
 vb2_dma_contig_plane_paddr(struct vb2_buffer *vb, unsigned int plane_no)
 {
 	dma_addr_t *paddr = vb2_plane_cookie(vb, plane_no);
 
 	return *paddr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void *vb2_dma_contig_init_ctx(struct device *dev);

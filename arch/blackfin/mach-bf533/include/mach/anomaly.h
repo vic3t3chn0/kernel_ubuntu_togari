@@ -11,7 +11,11 @@
  */
 
 /* This file should be up to date with:
+<<<<<<< HEAD
+ *  - Revision G, 05/23/2011; ADSP-BF531/BF532/BF533 Blackfin Processor Anomaly List
+=======
  *  - Revision F, 05/25/2010; ADSP-BF531/BF532/BF533 Blackfin Processor Anomaly List
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef _MACH_ANOMALY_H_
@@ -152,7 +156,11 @@
 #define ANOMALY_05000277 (__SILICON_REVISION__ < 6)
 /* Disabling Peripherals with DMA Running May Cause DMA System Instability */
 #define ANOMALY_05000278 (__SILICON_REVISION__ < 6)
+<<<<<<< HEAD
+/* False Hardware Error when ISR Context Is Not Restored */
+=======
 /* False Hardware Error Exception when ISR Context Is Not Restored */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ANOMALY_05000281 (__SILICON_REVISION__ < 6)
 /* Memory DMA Corruption with 32-Bit Data and Traffic Control */
 #define ANOMALY_05000282 (__SILICON_REVISION__ < 6)
@@ -210,18 +218,38 @@
 #define ANOMALY_05000462 (1)
 /* Boot Failure When SDRAM Control Signals Toggle Coming Out Of Reset */
 #define ANOMALY_05000471 (1)
+<<<<<<< HEAD
+/* Interrupted SPORT Receive Data Register Read Results In Underflow when SLEN > 15 */
+#define ANOMALY_05000473 (1)
+/* Possible Lockup Condition when Modifying PLL from External Memory */
+=======
 /* Interrupted 32-Bit SPORT Data Register Access Results In Underflow */
 #define ANOMALY_05000473 (1)
 /* Possible Lockup Condition whem Modifying PLL from External Memory */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ANOMALY_05000475 (1)
 /* TESTSET Instruction Cannot Be Interrupted */
 #define ANOMALY_05000477 (1)
 /* Reads of ITEST_COMMAND and ITEST_DATA Registers Cause Cache Corruption */
 #define ANOMALY_05000481 (1)
+<<<<<<< HEAD
+/* PLL May Latch Incorrect Values Coming Out of Reset */
+#define ANOMALY_05000489 (1)
+/* Instruction Memory Stalls Can Cause IFLUSH to Fail */
+#define ANOMALY_05000491 (1)
+/* EXCPT Instruction May Be Lost If NMI Happens Simultaneously */
+#define ANOMALY_05000494 (1)
+/* RXS Bit in SPI_STAT May Become Stuck In RX DMA Modes */
+#define ANOMALY_05000501 (1)
+
+/*
+ * These anomalies have been "phased" out of analog.com anomaly sheets and are
+=======
 /* IFLUSH sucks at life */
 #define ANOMALY_05000491 (1)
 
 /* These anomalies have been "phased" out of analog.com anomaly sheets and are
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * here to show running on older silicon just isn't feasible.
  */
 

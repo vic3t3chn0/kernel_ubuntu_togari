@@ -30,11 +30,21 @@
 #include <linux/slab.h>
 #include <linux/mutex.h>
 #include <linux/pipe_fs_i.h>
+<<<<<<< HEAD
+#include <net/netlabel.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/cipso_ipv4.h>
 #include <linux/audit.h>
 #include <linux/magic.h>
 #include <linux/dcache.h>
 #include <linux/personality.h>
+<<<<<<< HEAD
+#include <linux/msg.h>
+#include <linux/shm.h>
+#include <linux/binfmts.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "smack.h"
 
 #define task_security(task)	(task_cred_xxx((task), security))
@@ -53,12 +63,23 @@
 static char *smk_fetch(const char *name, struct inode *ip, struct dentry *dp)
 {
 	int rc;
+<<<<<<< HEAD
+	char in[SMK_LABELLEN];
+=======
 	char *buffer;
 	char *result = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (ip->i_op->getxattr == NULL)
 		return NULL;
 
+<<<<<<< HEAD
+	rc = ip->i_op->getxattr(dp, name, in, SMK_LABELLEN);
+	if (rc < 0)
+		return NULL;
+
+	return smk_import(in, rc);
+=======
 	buffer = kzalloc(SMK_LONGLABEL, GFP_KERNEL);
 	if (buffer == NULL)
 		return NULL;
@@ -70,6 +91,7 @@ static char *smk_fetch(const char *name, struct inode *ip, struct dentry *dp)
 	kfree(buffer);
 
 	return result;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**
@@ -214,7 +236,11 @@ static int smack_syslog(int typefrom_file)
 	int rc = 0;
 	char *sp = smk_of_current();
 
+<<<<<<< HEAD
+	if (capable(CAP_MAC_OVERRIDE))
+=======
 	if (smack_privileged(CAP_MAC_OVERRIDE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 0;
 
 	 if (sp != smack_known_floor.smk_known)
@@ -412,7 +438,11 @@ static int smack_sb_statfs(struct dentry *dentry)
 static int smack_sb_mount(char *dev_name, struct path *path,
 			  char *type, unsigned long flags, void *data)
 {
+<<<<<<< HEAD
+	struct superblock_smack *sbp = path->dentry->d_sb->s_security;
+=======
 	struct superblock_smack *sbp = path->mnt->mnt_sb->s_security;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct smk_audit_info ad;
 
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_PATH);
@@ -441,7 +471,11 @@ static int smack_sb_umount(struct vfsmount *mnt, int flags)
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_PATH);
 	smk_ad_setfield_u_fs_path(&ad, path);
 
+<<<<<<< HEAD
+	sbp = path.dentry->d_sb->s_security;
+=======
 	sbp = mnt->mnt_sb->s_security;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return smk_curacc(sbp->smk_floor, MAY_WRITE, &ad);
 }
 
@@ -559,7 +593,10 @@ static int smack_inode_init_security(struct inode *inode, struct inode *dir,
 				     void **value, size_t *len)
 {
 	struct smack_known *skp;
+<<<<<<< HEAD
+=======
 	struct inode_smack *issp = inode->i_security;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	char *csp = smk_of_current();
 	char *isp = smk_of_inode(inode);
 	char *dsp = smk_of_inode(dir);
@@ -581,6 +618,12 @@ static int smack_inode_init_security(struct inode *inode, struct inode *dir,
 		 * If the access rule allows transmutation and
 		 * the directory requests transmutation then
 		 * by all means transmute.
+<<<<<<< HEAD
+		 */
+		if (may > 0 && ((may & MAY_TRANSMUTE) != 0) &&
+		    smk_inode_transmutable(dir))
+			isp = dsp;
+=======
 		 * Mark the inode as changed.
 		 */
 		if (may > 0 && ((may & MAY_TRANSMUTE) != 0) &&
@@ -588,6 +631,7 @@ static int smack_inode_init_security(struct inode *inode, struct inode *dir,
 			isp = dsp;
 			issp->smk_flags |= SMK_INODE_CHANGED;
 		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		*value = kstrdup(isp, GFP_KERNEL);
 		if (*value == NULL)
@@ -733,15 +777,25 @@ static int smack_inode_rename(struct inode *old_inode,
  * smack_inode_permission - Smack version of permission()
  * @inode: the inode in question
  * @mask: the access requested
+<<<<<<< HEAD
+=======
  * @flags: special case
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This is the important Smack hook.
  *
  * Returns 0 if access is permitted, -EACCES otherwise
  */
+<<<<<<< HEAD
+static int smack_inode_permission(struct inode *inode, int mask)
+{
+	struct smk_audit_info ad;
+	int no_block = mask & MAY_NOT_BLOCK;
+=======
 static int smack_inode_permission(struct inode *inode, int mask, unsigned flags)
 {
 	struct smk_audit_info ad;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	mask &= (MAY_READ|MAY_WRITE|MAY_EXEC|MAY_APPEND);
 	/*
@@ -751,9 +805,14 @@ static int smack_inode_permission(struct inode *inode, int mask, unsigned flags)
 		return 0;
 
 	/* May be droppable after audit */
+<<<<<<< HEAD
+	if (no_block)
+		return -ECHILD;
+=======
 	if (flags & IPERM_FLAG_RCU)
 		return -ECHILD;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_INODE);
 	smk_ad_setfield_u_fs_inode(&ad, inode);
 	return smk_curacc(smk_of_inode(inode), mask, &ad);
@@ -823,17 +882,29 @@ static int smack_inode_setxattr(struct dentry *dentry, const char *name,
 	    strcmp(name, XATTR_NAME_SMACKIPOUT) == 0 ||
 	    strcmp(name, XATTR_NAME_SMACKEXEC) == 0 ||
 	    strcmp(name, XATTR_NAME_SMACKMMAP) == 0) {
+<<<<<<< HEAD
+		if (!capable(CAP_MAC_ADMIN))
+=======
 		if (!smack_privileged(CAP_MAC_ADMIN))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			rc = -EPERM;
 		/*
 		 * check label validity here so import wont fail on
 		 * post_setxattr
 		 */
+<<<<<<< HEAD
+		if (size == 0 || size >= SMK_LABELLEN ||
+		    smk_import(value, size) == NULL)
+			rc = -EINVAL;
+	} else if (strcmp(name, XATTR_NAME_SMACKTRANSMUTE) == 0) {
+		if (!capable(CAP_MAC_ADMIN))
+=======
 		if (size == 0 || size >= SMK_LONGLABEL ||
 		    smk_import(value, size) == NULL)
 			rc = -EINVAL;
 	} else if (strcmp(name, XATTR_NAME_SMACKTRANSMUTE) == 0) {
 		if (!smack_privileged(CAP_MAC_ADMIN))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			rc = -EPERM;
 		if (size != TRANS_TRUE_SIZE ||
 		    strncmp(value, TRANS_TRUE, TRANS_TRUE_SIZE) != 0)
@@ -929,7 +1000,11 @@ static int smack_inode_removexattr(struct dentry *dentry, const char *name)
 	    strcmp(name, XATTR_NAME_SMACKEXEC) == 0 ||
 	    strcmp(name, XATTR_NAME_SMACKTRANSMUTE) == 0 ||
 	    strcmp(name, XATTR_NAME_SMACKMMAP)) {
+<<<<<<< HEAD
+		if (!capable(CAP_MAC_ADMIN))
+=======
 		if (!smack_privileged(CAP_MAC_ADMIN))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			rc = -EPERM;
 	} else
 		rc = cap_inode_removexattr(dentry, name);
@@ -1724,8 +1799,12 @@ static int smack_task_wait(struct task_struct *p)
 	 * state into account in the decision as well as
 	 * the smack value.
 	 */
+<<<<<<< HEAD
+	if (capable(CAP_MAC_OVERRIDE) || has_capability(p, CAP_MAC_OVERRIDE))
+=======
 	if (smack_privileged(CAP_MAC_OVERRIDE) ||
 	    has_capability(p, CAP_MAC_OVERRIDE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		rc = 0;
 	/* we log only if we didn't get overriden */
  out_log:
@@ -1829,6 +1908,68 @@ static char *smack_host_label(struct sockaddr_in *sip)
 }
 
 /**
+<<<<<<< HEAD
+ * smack_set_catset - convert a capset to netlabel mls categories
+ * @catset: the Smack categories
+ * @sap: where to put the netlabel categories
+ *
+ * Allocates and fills attr.mls.cat
+ */
+static void smack_set_catset(char *catset, struct netlbl_lsm_secattr *sap)
+{
+	unsigned char *cp;
+	unsigned char m;
+	int cat;
+	int rc;
+	int byte;
+
+	if (!catset)
+		return;
+
+	sap->flags |= NETLBL_SECATTR_MLS_CAT;
+	sap->attr.mls.cat = netlbl_secattr_catmap_alloc(GFP_ATOMIC);
+	sap->attr.mls.cat->startbit = 0;
+
+	for (cat = 1, cp = catset, byte = 0; byte < SMK_LABELLEN; cp++, byte++)
+		for (m = 0x80; m != 0; m >>= 1, cat++) {
+			if ((m & *cp) == 0)
+				continue;
+			rc = netlbl_secattr_catmap_setbit(sap->attr.mls.cat,
+							  cat, GFP_ATOMIC);
+		}
+}
+
+/**
+ * smack_to_secattr - fill a secattr from a smack value
+ * @smack: the smack value
+ * @nlsp: where the result goes
+ *
+ * Casey says that CIPSO is good enough for now.
+ * It can be used to effect.
+ * It can also be abused to effect when necessary.
+ * Apologies to the TSIG group in general and GW in particular.
+ */
+static void smack_to_secattr(char *smack, struct netlbl_lsm_secattr *nlsp)
+{
+	struct smack_cipso cipso;
+	int rc;
+
+	nlsp->domain = smack;
+	nlsp->flags = NETLBL_SECATTR_DOMAIN | NETLBL_SECATTR_MLS_LVL;
+
+	rc = smack_to_cipso(smack, &cipso);
+	if (rc == 0) {
+		nlsp->attr.mls.lvl = cipso.smk_level;
+		smack_set_catset(cipso.smk_catset, nlsp);
+	} else {
+		nlsp->attr.mls.lvl = smack_cipso_direct;
+		smack_set_catset(smack, nlsp);
+	}
+}
+
+/**
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * smack_netlabel - Set the secattr on a socket
  * @sk: the socket
  * @labeled: socket label scheme
@@ -1840,8 +1981,13 @@ static char *smack_host_label(struct sockaddr_in *sip)
  */
 static int smack_netlabel(struct sock *sk, int labeled)
 {
+<<<<<<< HEAD
+	struct socket_smack *ssp = sk->sk_security;
+	struct netlbl_lsm_secattr secattr;
+=======
 	struct smack_known *skp;
 	struct socket_smack *ssp = sk->sk_security;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int rc = 0;
 
 	/*
@@ -1859,8 +2005,15 @@ static int smack_netlabel(struct sock *sk, int labeled)
 	    labeled == SMACK_UNLABELED_SOCKET)
 		netlbl_sock_delattr(sk);
 	else {
+<<<<<<< HEAD
+		netlbl_secattr_init(&secattr);
+		smack_to_secattr(ssp->smk_out, &secattr);
+		rc = netlbl_sock_setattr(sk, sk->sk_family, &secattr);
+		netlbl_secattr_destroy(&secattr);
+=======
 		skp = smk_find_entry(ssp->smk_out);
 		rc = netlbl_sock_setattr(sk, sk->sk_family, &skp->smk_netlabel);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	bh_unlock_sock(sk);
@@ -1891,6 +2044,17 @@ static int smack_netlabel_send(struct sock *sk, struct sockaddr_in *sap)
 	rcu_read_lock();
 	hostsp = smack_host_label(sap);
 	if (hostsp != NULL) {
+<<<<<<< HEAD
+#ifdef CONFIG_AUDIT
+		struct lsm_network_audit net;
+
+		smk_ad_init_net(&ad, __func__, LSM_AUDIT_DATA_NET, &net);
+		ad.a.u.net->family = sap->sin_family;
+		ad.a.u.net->dport = sap->sin_port;
+		ad.a.u.net->v4info.daddr = sap->sin_addr.s_addr;
+#endif
+		sk_lbl = SMACK_UNLABELED_SOCKET;
+=======
 		sk_lbl = SMACK_UNLABELED_SOCKET;
 #ifdef CONFIG_AUDIT
 		smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_NET);
@@ -1898,6 +2062,7 @@ static int smack_netlabel_send(struct sock *sk, struct sockaddr_in *sap)
 		ad.a.u.net.dport = sap->sin_port;
 		ad.a.u.net.v4info.daddr = sap->sin_addr.s_addr;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		rc = smk_access(ssp->smk_out, hostsp, MAY_WRITE, &ad);
 	} else {
 		sk_lbl = SMACK_CIPSO_SOCKET;
@@ -1931,7 +2096,11 @@ static int smack_inode_setsecurity(struct inode *inode, const char *name,
 	struct socket *sock;
 	int rc = 0;
 
+<<<<<<< HEAD
+	if (value == NULL || size > SMK_LABELLEN || size == 0)
+=======
 	if (value == NULL || size > SMK_LONGLABEL || size == 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EACCES;
 
 	sp = smk_import(value, size);
@@ -2498,7 +2667,10 @@ static void smack_d_instantiate(struct dentry *opt_dentry, struct inode *inode)
 	char *final;
 	char trattr[TRANS_TRUE_SIZE];
 	int transflag = 0;
+<<<<<<< HEAD
+=======
 	int rc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct dentry *dp;
 
 	if (inode == NULL)
@@ -2617,6 +2789,19 @@ static void smack_d_instantiate(struct dentry *opt_dentry, struct inode *inode)
 		 */
 		dp = dget(opt_dentry);
 		fetched = smk_fetch(XATTR_NAME_SMACK, inode, dp);
+<<<<<<< HEAD
+		if (fetched != NULL) {
+			final = fetched;
+			if (S_ISDIR(inode->i_mode)) {
+				trattr[0] = '\0';
+				inode->i_op->getxattr(dp,
+					XATTR_NAME_SMACKTRANSMUTE,
+					trattr, TRANS_TRUE_SIZE);
+				if (strncmp(trattr, TRANS_TRUE,
+					    TRANS_TRUE_SIZE) == 0)
+					transflag = SMK_INODE_TRANSMUTE;
+			}
+=======
 		if (fetched != NULL)
 			final = fetched;
 
@@ -2649,6 +2834,7 @@ static void smack_d_instantiate(struct dentry *opt_dentry, struct inode *inode)
 			}
 			if (rc >= 0)
 				transflag = SMK_INODE_TRANSMUTE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		isp->smk_task = smk_fetch(XATTR_NAME_SMACKEXEC, inode, dp);
 		isp->smk_mmap = smk_fetch(XATTR_NAME_SMACKMMAP, inode, dp);
@@ -2724,10 +2910,17 @@ static int smack_setprocattr(struct task_struct *p, char *name,
 	if (p != current)
 		return -EPERM;
 
+<<<<<<< HEAD
+	if (!capable(CAP_MAC_ADMIN))
+		return -EPERM;
+
+	if (value == NULL || size == 0 || size >= SMK_LABELLEN)
+=======
 	if (!smack_privileged(CAP_MAC_ADMIN))
 		return -EPERM;
 
 	if (value == NULL || size == 0 || size >= SMK_LONGLABEL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EINVAL;
 
 	if (strcmp(name, "current") != 0)
@@ -2780,10 +2973,21 @@ static int smack_unix_stream_connect(struct sock *sock,
 	struct smk_audit_info ad;
 	int rc = 0;
 
+<<<<<<< HEAD
+#ifdef CONFIG_AUDIT
+	struct lsm_network_audit net;
+
+	smk_ad_init_net(&ad, __func__, LSM_AUDIT_DATA_NET, &net);
+	smk_ad_setfield_u_net_sk(&ad, other);
+#endif
+
+	if (!capable(CAP_MAC_OVERRIDE))
+=======
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_NET);
 	smk_ad_setfield_u_net_sk(&ad, other);
 
 	if (!smack_privileged(CAP_MAC_OVERRIDE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		rc = smk_access(ssp->smk_out, osp->smk_in, MAY_WRITE, &ad);
 
 	/*
@@ -2812,10 +3016,21 @@ static int smack_unix_may_send(struct socket *sock, struct socket *other)
 	struct smk_audit_info ad;
 	int rc = 0;
 
+<<<<<<< HEAD
+#ifdef CONFIG_AUDIT
+	struct lsm_network_audit net;
+
+	smk_ad_init_net(&ad, __func__, LSM_AUDIT_DATA_NET, &net);
+	smk_ad_setfield_u_net_sk(&ad, other->sk);
+#endif
+
+	if (!capable(CAP_MAC_OVERRIDE))
+=======
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_NET);
 	smk_ad_setfield_u_net_sk(&ad, other->sk);
 
 	if (!smack_privileged(CAP_MAC_OVERRIDE))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		rc = smk_access(ssp->smk_out, osp->smk_in, MAY_WRITE, &ad);
 
 	return rc;
@@ -2855,9 +3070,16 @@ static int smack_socket_sendmsg(struct socket *sock, struct msghdr *msg,
 static char *smack_from_secattr(struct netlbl_lsm_secattr *sap,
 				struct socket_smack *ssp)
 {
+<<<<<<< HEAD
+	struct smack_known *skp;
+	char smack[SMK_LABELLEN];
+	char *sp;
+	int pcat;
+=======
 	struct smack_known *kp;
 	char *sp;
 	int found = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if ((sap->flags & NETLBL_SECATTR_MLS_LVL) != 0) {
 		/*
@@ -2865,11 +3087,65 @@ static char *smack_from_secattr(struct netlbl_lsm_secattr *sap,
 		 * If there are flags but no level netlabel isn't
 		 * behaving the way we expect it to.
 		 *
+<<<<<<< HEAD
+		 * Get the categories, if any
+=======
 		 * Look it up in the label table
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		 * Without guidance regarding the smack value
 		 * for the packet fall back on the network
 		 * ambient value.
 		 */
+<<<<<<< HEAD
+		memset(smack, '\0', SMK_LABELLEN);
+		if ((sap->flags & NETLBL_SECATTR_MLS_CAT) != 0)
+			for (pcat = -1;;) {
+				pcat = netlbl_secattr_catmap_walk(
+					sap->attr.mls.cat, pcat + 1);
+				if (pcat < 0)
+					break;
+				smack_catset_bit(pcat, smack);
+			}
+		/*
+		 * If it is CIPSO using smack direct mapping
+		 * we are already done. WeeHee.
+		 */
+		if (sap->attr.mls.lvl == smack_cipso_direct) {
+			/*
+			 * The label sent is usually on the label list.
+			 *
+			 * If it is not we may still want to allow the
+			 * delivery.
+			 *
+			 * If the recipient is accepting all packets
+			 * because it is using the star ("*") label
+			 * for SMACK64IPIN provide the web ("@") label
+			 * so that a directed response will succeed.
+			 * This is not very correct from a MAC point
+			 * of view, but gets around the problem that
+			 * locking prevents adding the newly discovered
+			 * label to the list.
+			 * The case where the recipient is not using
+			 * the star label should obviously fail.
+			 * The easy way to do this is to provide the
+			 * star label as the subject label.
+			 */
+			skp = smk_find_entry(smack);
+			if (skp != NULL)
+				return skp->smk_known;
+			if (ssp != NULL &&
+			    ssp->smk_in == smack_known_star.smk_known)
+				return smack_known_web.smk_known;
+			return smack_known_star.smk_known;
+		}
+		/*
+		 * Look it up in the supplied table if it is not
+		 * a direct mapping.
+		 */
+		sp = smack_from_cipso(sap->attr.mls.lvl, smack);
+		if (sp != NULL)
+			return sp;
+=======
 		rcu_read_lock();
 		list_for_each_entry(kp, &smack_known_list, list) {
 			if (sap->attr.mls.lvl != kp->smk_netlabel.attr.mls.lvl)
@@ -2886,6 +3162,7 @@ static char *smack_from_secattr(struct netlbl_lsm_secattr *sap,
 		if (found)
 			return kp->smk_known;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (ssp != NULL && ssp->smk_in == smack_known_star.smk_known)
 			return smack_known_web.smk_known;
 		return smack_known_star.smk_known;
@@ -2927,6 +3204,12 @@ static int smack_socket_sock_rcv_skb(struct sock *sk, struct sk_buff *skb)
 	char *csp;
 	int rc;
 	struct smk_audit_info ad;
+<<<<<<< HEAD
+#ifdef CONFIG_AUDIT
+	struct lsm_network_audit net;
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (sk->sk_family != PF_INET && sk->sk_family != PF_INET6)
 		return 0;
 
@@ -2944,9 +3227,15 @@ static int smack_socket_sock_rcv_skb(struct sock *sk, struct sk_buff *skb)
 	netlbl_secattr_destroy(&secattr);
 
 #ifdef CONFIG_AUDIT
+<<<<<<< HEAD
+	smk_ad_init_net(&ad, __func__, LSM_AUDIT_DATA_NET, &net);
+	ad.a.u.net->family = sk->sk_family;
+	ad.a.u.net->netif = skb->skb_iif;
+=======
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_NET);
 	ad.a.u.net.family = sk->sk_family;
 	ad.a.u.net.netif = skb->skb_iif;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ipv4_skb_to_auditdata(skb, &ad.a, NULL);
 #endif
 	/*
@@ -3082,15 +3371,26 @@ static int smack_inet_conn_request(struct sock *sk, struct sk_buff *skb,
 				   struct request_sock *req)
 {
 	u16 family = sk->sk_family;
+<<<<<<< HEAD
+=======
 	struct smack_known *skp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct socket_smack *ssp = sk->sk_security;
 	struct netlbl_lsm_secattr secattr;
 	struct sockaddr_in addr;
 	struct iphdr *hdr;
 	char *sp;
+<<<<<<< HEAD
+	int rc;
+	struct smk_audit_info ad;
+#ifdef CONFIG_AUDIT
+	struct lsm_network_audit net;
+#endif
+=======
 	char *hsp;
 	int rc;
 	struct smk_audit_info ad;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* handle mapped IPv4 packets arriving via IPv6 sockets */
 	if (family == PF_INET6 && skb->protocol == htons(ETH_P_IP))
@@ -3105,9 +3405,15 @@ static int smack_inet_conn_request(struct sock *sk, struct sk_buff *skb,
 	netlbl_secattr_destroy(&secattr);
 
 #ifdef CONFIG_AUDIT
+<<<<<<< HEAD
+	smk_ad_init_net(&ad, __func__, LSM_AUDIT_DATA_NET, &net);
+	ad.a.u.net->family = family;
+	ad.a.u.net->netif = skb->skb_iif;
+=======
 	smk_ad_init(&ad, __func__, LSM_AUDIT_DATA_NET);
 	ad.a.u.net.family = family;
 	ad.a.u.net.netif = skb->skb_iif;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ipv4_skb_to_auditdata(skb, &ad.a, NULL);
 #endif
 	/*
@@ -3132,6 +3438,18 @@ static int smack_inet_conn_request(struct sock *sk, struct sk_buff *skb,
 	hdr = ip_hdr(skb);
 	addr.sin_addr.s_addr = hdr->saddr;
 	rcu_read_lock();
+<<<<<<< HEAD
+	if (smack_host_label(&addr) == NULL) {
+		rcu_read_unlock();
+		netlbl_secattr_init(&secattr);
+		smack_to_secattr(sp, &secattr);
+		rc = netlbl_req_setattr(req, &secattr);
+		netlbl_secattr_destroy(&secattr);
+	} else {
+		rcu_read_unlock();
+		netlbl_req_delattr(req);
+	}
+=======
 	hsp = smack_host_label(&addr);
 	rcu_read_unlock();
 
@@ -3140,6 +3458,7 @@ static int smack_inet_conn_request(struct sock *sk, struct sk_buff *skb,
 		rc = netlbl_req_setattr(req, &skp->smk_netlabel);
 	} else
 		netlbl_req_delattr(req);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return rc;
 }
@@ -3564,6 +3883,18 @@ struct security_operations smack_ops = {
 static __init void init_smack_known_list(void)
 {
 	/*
+<<<<<<< HEAD
+	 * Initialize CIPSO locks
+	 */
+	spin_lock_init(&smack_known_huh.smk_cipsolock);
+	spin_lock_init(&smack_known_hat.smk_cipsolock);
+	spin_lock_init(&smack_known_star.smk_cipsolock);
+	spin_lock_init(&smack_known_floor.smk_cipsolock);
+	spin_lock_init(&smack_known_invalid.smk_cipsolock);
+	spin_lock_init(&smack_known_web.smk_cipsolock);
+	/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	 * Initialize rule list locks
 	 */
 	mutex_init(&smack_known_huh.smk_rules_lock);

@@ -7,9 +7,17 @@ struct spi_device;
  * struct ep93xx_spi_info - EP93xx specific SPI descriptor
  * @num_chipselect: number of chip selects on this board, must be
  *                  at least one
+<<<<<<< HEAD
+ * @use_dma: use DMA for the transfers
  */
 struct ep93xx_spi_info {
 	int	num_chipselect;
+	bool	use_dma;
+=======
+ */
+struct ep93xx_spi_info {
+	int	num_chipselect;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /**

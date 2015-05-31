@@ -6,7 +6,10 @@
 #include <linux/cpumask.h>
 
 struct cputopo_arm {
+<<<<<<< HEAD
+=======
 	int id;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int thread_id;
 	int core_id;
 	int socket_id;
@@ -28,15 +31,20 @@ void init_cpu_topology(void);
 void store_cpu_topology(unsigned int cpuid);
 const struct cpumask *cpu_coregroup_mask(int cpu);
 
+<<<<<<< HEAD
+=======
 void set_power_scale(unsigned int cpu, unsigned int power);
 int topology_register_notifier(struct notifier_block *nb);
 int topology_unregister_notifier(struct notifier_block *nb);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 
 static inline void init_cpu_topology(void) { }
 static inline void store_cpu_topology(unsigned int cpuid) { }
 
+<<<<<<< HEAD
+=======
 static inline void set_power_scale(unsigned int cpu, unsigned int power) { }
 static inline int topology_register_notifier(struct notifier_block *nb)  { }
 static inline int topology_unregister_notifier(struct notifier_block *nb)  { }
@@ -77,6 +85,7 @@ static inline int topology_unregister_notifier(struct notifier_block *nb)  { }
 	.last_balance		= jiffies,				\
 	.balance_interval	= 1,					\
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #include <asm-generic/topology.h>

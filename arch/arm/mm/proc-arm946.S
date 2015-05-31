@@ -55,6 +55,10 @@ ENTRY(cpu_arm946_proc_fin)
  * Params  : r0 = address to jump to
  * Notes   : This sets up everything for a reset
  */
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ENTRY(cpu_arm946_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c5, 0		@ flush I cache
@@ -65,6 +69,11 @@ ENTRY(cpu_arm946_reset)
 	bic	ip, ip, #0x00001000		@ i-cache
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
+ENDPROC(cpu_arm946_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * cpu_arm946_do_idle()
@@ -306,6 +315,12 @@ ENTRY(arm946_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(arm946_dma_unmap_area)
 
+<<<<<<< HEAD
+	.globl	arm946_flush_kern_cache_louis
+	.equ	arm946_flush_kern_cache_louis, arm946_flush_kern_cache_all
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions arm946
 
@@ -410,6 +425,10 @@ __arm946_proc_info:
 	.long	0x41009460
 	.long	0xff00fff0
 	.long	0
+<<<<<<< HEAD
+	.long	0
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b	__arm946_setup
 	.long	cpu_arch_name
 	.long	cpu_elf_name
@@ -418,6 +437,10 @@ __arm946_proc_info:
 	.long	arm946_processor_functions
 	.long	0
 	.long	0
+<<<<<<< HEAD
+	.long	arm946_cache_fns
+=======
 	.long	arm940_cache_fns
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.size	__arm946_proc_info, . - __arm946_proc_info
 

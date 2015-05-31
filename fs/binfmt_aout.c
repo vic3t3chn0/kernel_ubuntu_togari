@@ -26,7 +26,10 @@
 #include <linux/coredump.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uaccess.h>
 #include <asm/cacheflush.h>
 #include <asm/a.out-core.h>
@@ -51,9 +54,13 @@ static int set_brk(unsigned long start, unsigned long end)
 	end = PAGE_ALIGN(end);
 	if (end > start) {
 		unsigned long addr;
+<<<<<<< HEAD
+		addr = vm_brk(start, end - start);
+=======
 		down_write(&current->mm->mmap_sem);
 		addr = do_brk(start, end - start);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (BAD_ADDR(addr))
 			return addr;
 	}
@@ -259,8 +266,19 @@ static int load_aout_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 	current->mm->free_area_cache = current->mm->mmap_base;
 	current->mm->cached_hole_size = 0;
 
+<<<<<<< HEAD
+	retval = setup_arg_pages(bprm, STACK_TOP, EXSTACK_DEFAULT);
+	if (retval < 0) {
+		/* Someone check-me: is this error path enough? */
+		send_sig(SIGKILL, current, 0);
+		return retval;
+	}
+
+	install_exec_creds(bprm);
+=======
 	install_exec_creds(bprm);
  	current->flags &= ~PF_FORKNOEXEC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (N_MAGIC(ex) == OMAGIC) {
 		unsigned long text_addr, map_size;
@@ -275,9 +293,13 @@ static int load_aout_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 		pos = 32;
 		map_size = ex.a_text+ex.a_data;
 #endif
+<<<<<<< HEAD
+		error = vm_brk(text_addr & PAGE_MASK, map_size);
+=======
 		down_write(&current->mm->mmap_sem);
 		error = do_brk(text_addr & PAGE_MASK, map_size);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (error != (text_addr & PAGE_MASK)) {
 			send_sig(SIGKILL, current, 0);
 			return error;
@@ -308,9 +330,13 @@ static int load_aout_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 
 		if (!bprm->file->f_op->mmap||((fd_offset & ~PAGE_MASK) != 0)) {
 			loff_t pos = fd_offset;
+<<<<<<< HEAD
+			vm_brk(N_TXTADDR(ex), ex.a_text+ex.a_data);
+=======
 			down_write(&current->mm->mmap_sem);
 			do_brk(N_TXTADDR(ex), ex.a_text+ex.a_data);
 			up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			bprm->file->f_op->read(bprm->file,
 					(char __user *)N_TXTADDR(ex),
 					ex.a_text+ex.a_data, &pos);
@@ -320,24 +346,38 @@ static int load_aout_binary(struct linux_binprm * bprm, struct pt_regs * regs)
 			goto beyond_if;
 		}
 
+<<<<<<< HEAD
+		error = vm_mmap(bprm->file, N_TXTADDR(ex), ex.a_text,
+			PROT_READ | PROT_EXEC,
+			MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE | MAP_EXECUTABLE,
+			fd_offset);
+=======
 		down_write(&current->mm->mmap_sem);
 		error = do_mmap(bprm->file, N_TXTADDR(ex), ex.a_text,
 			PROT_READ | PROT_EXEC,
 			MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE | MAP_EXECUTABLE,
 			fd_offset);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		if (error != N_TXTADDR(ex)) {
 			send_sig(SIGKILL, current, 0);
 			return error;
 		}
 
+<<<<<<< HEAD
+		error = vm_mmap(bprm->file, N_DATADDR(ex), ex.a_data,
+				PROT_READ | PROT_WRITE | PROT_EXEC,
+				MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE | MAP_EXECUTABLE,
+				fd_offset + ex.a_text);
+=======
 		down_write(&current->mm->mmap_sem);
  		error = do_mmap(bprm->file, N_DATADDR(ex), ex.a_data,
 				PROT_READ | PROT_WRITE | PROT_EXEC,
 				MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE | MAP_EXECUTABLE,
 				fd_offset + ex.a_text);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (error != N_DATADDR(ex)) {
 			send_sig(SIGKILL, current, 0);
 			return error;
@@ -352,6 +392,8 @@ beyond_if:
 		return retval;
 	}
 
+<<<<<<< HEAD
+=======
 	retval = setup_arg_pages(bprm, STACK_TOP, EXSTACK_DEFAULT);
 	if (retval < 0) { 
 		/* Someone check-me: is this error path enough? */ 
@@ -359,6 +401,7 @@ beyond_if:
 		return retval;
 	}
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	current->mm->start_stack =
 		(unsigned long) create_aout_tables((char __user *) bprm->p, bprm);
 #ifdef __alpha__
@@ -414,9 +457,13 @@ static int load_aout_library(struct file *file)
 			       "N_TXTOFF is not page aligned. Please convert library: %s\n",
 			       file->f_path.dentry->d_name.name);
 		}
+<<<<<<< HEAD
+		vm_brk(start_addr, ex.a_text + ex.a_data + ex.a_bss);
+=======
 		down_write(&current->mm->mmap_sem);
 		do_brk(start_addr, ex.a_text + ex.a_data + ex.a_bss);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		
 		file->f_op->read(file, (char __user *)start_addr,
 			ex.a_text + ex.a_data, &pos);
@@ -427,12 +474,19 @@ static int load_aout_library(struct file *file)
 		goto out;
 	}
 	/* Now use mmap to map the library into memory. */
+<<<<<<< HEAD
+	error = vm_mmap(file, start_addr, ex.a_text + ex.a_data,
+			PROT_READ | PROT_WRITE | PROT_EXEC,
+			MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE,
+			N_TXTOFF(ex));
+=======
 	down_write(&current->mm->mmap_sem);
 	error = do_mmap(file, start_addr, ex.a_text + ex.a_data,
 			PROT_READ | PROT_WRITE | PROT_EXEC,
 			MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE,
 			N_TXTOFF(ex));
 	up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	retval = error;
 	if (error != start_addr)
 		goto out;
@@ -440,9 +494,13 @@ static int load_aout_library(struct file *file)
 	len = PAGE_ALIGN(ex.a_text + ex.a_data);
 	bss = ex.a_text + ex.a_data + ex.a_bss;
 	if (bss > len) {
+<<<<<<< HEAD
+		error = vm_brk(start_addr + len, bss - len);
+=======
 		down_write(&current->mm->mmap_sem);
 		error = do_brk(start_addr + len, bss - len);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		retval = error;
 		if (error != start_addr + len)
 			goto out;
@@ -454,7 +512,12 @@ out:
 
 static int __init init_aout_binfmt(void)
 {
+<<<<<<< HEAD
+	register_binfmt(&aout_format);
+	return 0;
+=======
 	return register_binfmt(&aout_format);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __exit exit_aout_binfmt(void)

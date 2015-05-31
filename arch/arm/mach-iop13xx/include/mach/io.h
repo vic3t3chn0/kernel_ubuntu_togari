@@ -22,6 +22,10 @@
 #define IO_SPACE_LIMIT 0xffffffff
 
 #define __io(a) __iop13xx_io(a)
+<<<<<<< HEAD
+
+extern void __iomem * __iop13xx_io(unsigned long io_addr);
+=======
 #define __mem_pci(a) (a)
 #define __mem_isa(a) (a)
 
@@ -37,5 +41,6 @@ extern size_t iop13xx_atux_mem_size;
 
 #define __arch_ioremap	__iop13xx_ioremap
 #define __arch_iounmap	__iop13xx_iounmap
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

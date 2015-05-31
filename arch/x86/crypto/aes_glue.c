@@ -3,7 +3,13 @@
  *
  */
 
+<<<<<<< HEAD
+#include <linux/module.h>
 #include <crypto/aes.h>
+#include <asm/aes.h>
+=======
+#include <crypto/aes.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 asmlinkage void aes_enc_blk(struct crypto_aes_ctx *ctx, u8 *out, const u8 *in);
 asmlinkage void aes_dec_blk(struct crypto_aes_ctx *ctx, u8 *out, const u8 *in);

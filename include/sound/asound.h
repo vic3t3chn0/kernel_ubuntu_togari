@@ -95,10 +95,16 @@ enum {
 	SNDRV_HWDEP_IFACE_SB_RC,	/* SB Extigy/Audigy2NX remote control */
 	SNDRV_HWDEP_IFACE_HDA,		/* HD-audio */
 	SNDRV_HWDEP_IFACE_USB_STREAM,	/* direct access to usb stream */
+<<<<<<< HEAD
+
+	/* Don't forget to change the following: */
+	SNDRV_HWDEP_IFACE_LAST = SNDRV_HWDEP_IFACE_USB_STREAM
+=======
 	SNDRV_HWDEP_IFACE_MC1N2,	/* MC1N2 */
 
 	/* Don't forget to change the following: */
 	SNDRV_HWDEP_IFACE_LAST = SNDRV_HWDEP_IFACE_MC1N2
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct snd_hwdep_info {
@@ -459,6 +465,39 @@ enum {
 	SNDRV_PCM_TSTAMP_TYPE_LAST = SNDRV_PCM_TSTAMP_TYPE_MONOTONIC,
 };
 
+<<<<<<< HEAD
+/* channel positions */
+enum {
+	SNDRV_CHMAP_UNKNOWN = 0,
+	SNDRV_CHMAP_FL,		/* front left */
+	SNDRV_CHMAP_FC,		/* front center */
+	SNDRV_CHMAP_FR,		/* front right */
+	SNDRV_CHMAP_FLC,	/* front left center */
+	SNDRV_CHMAP_FRC,	/* front right center */
+	SNDRV_CHMAP_RL,		/* rear left */
+	SNDRV_CHMAP_RC,		/* rear center */
+	SNDRV_CHMAP_RR,		/* rear right */
+	SNDRV_CHMAP_RLC,	/* rear left center */
+	SNDRV_CHMAP_RRC,	/* rear right center */
+	SNDRV_CHMAP_SL,		/* side left */
+	SNDRV_CHMAP_SR,		/* side right */
+	SNDRV_CHMAP_LFE,	/* LFE */
+	SNDRV_CHMAP_FLW,	/* front left wide */
+	SNDRV_CHMAP_FRW,	/* front right wide */
+	SNDRV_CHMAP_FLH,	/* front left high */
+	SNDRV_CHMAP_FCH,	/* front center high */
+	SNDRV_CHMAP_FRH,	/* front right high */
+	SNDRV_CHMAP_TC,		/* top center */
+	SNDRV_CHMAP_NA,		/* N/A, silent */
+	SNDRV_CHMAP_LAST = SNDRV_CHMAP_NA,
+};
+
+#define SNDRV_CHMAP_POSITION_MASK	0xffff
+#define SNDRV_CHMAP_PHASE_INVERSE	(0x01 << 16)
+#define SNDRV_CHMAP_DRIVER_SPEC		(0x02 << 16)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define SNDRV_PCM_IOCTL_PVERSION	_IOR('A', 0x00, int)
 #define SNDRV_PCM_IOCTL_INFO		_IOR('A', 0x01, struct snd_pcm_info)
 #define SNDRV_PCM_IOCTL_TSTAMP		_IOW('A', 0x02, int)
@@ -707,7 +746,11 @@ struct snd_timer_tread {
  *                                                                          *
  ****************************************************************************/
 
+<<<<<<< HEAD
+#define SNDRV_CTL_VERSION		SNDRV_PROTOCOL_VERSION(2, 0, 7)
+=======
 #define SNDRV_CTL_VERSION		SNDRV_PROTOCOL_VERSION(2, 0, 6)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct snd_ctl_card_info {
 	int card;			/* card number */
@@ -804,6 +847,11 @@ struct snd_ctl_elem_info {
 			unsigned int items;	/* R: number of items */
 			unsigned int item;	/* W: item number */
 			char name[64];		/* R: value name */
+<<<<<<< HEAD
+			__u64 names_ptr;	/* W: names list (ELEM_ADD only) */
+			unsigned int names_length;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} enumerated;
 		unsigned char reserved[128];
 	} value;

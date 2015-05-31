@@ -38,6 +38,12 @@
 #include <rdma/ib_mad.h>
 #include <rdma/ib_sa.h>
 
+<<<<<<< HEAD
+/* ib_cm and ib_user_cm modules share /sys/class/infiniband_cm */
+extern struct class cm_class;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum ib_cm_state {
 	IB_CM_IDLE,
 	IB_CM_LISTEN,

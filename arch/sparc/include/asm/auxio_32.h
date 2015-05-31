@@ -6,7 +6,10 @@
 #ifndef _SPARC_AUXIO_H
 #define _SPARC_AUXIO_H
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/vaddrs.h>
 
 /* This register is an unsigned char in IO space.  It does two things.

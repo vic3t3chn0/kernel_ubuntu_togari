@@ -68,6 +68,8 @@
 	stmia \ptr!, {\reg1, \reg2, \reg3, \reg4, \reg5, \reg6, \reg7, \reg8}
 	.endm
 
+<<<<<<< HEAD
+=======
 	.macro cpy8w dst src reg1 reg2 abort
 	.irp    offset, #0, #8, #16, #24
 	ldr1w \src, \reg1, \abort
@@ -77,6 +79,7 @@
 	add	\dst, \dst, #32
 	.endm
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.macro str1b ptr reg cond=al abort
 	str\cond\()b \reg, [\ptr], #1
 	.endm

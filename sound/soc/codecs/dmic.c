@@ -21,6 +21,10 @@
 
 #include <linux/platform_device.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/soc.h>
@@ -88,6 +92,9 @@ static struct platform_driver dmic_driver = {
 	.remove = __devexit_p(dmic_dev_remove),
 };
 
+<<<<<<< HEAD
+module_platform_driver(dmic_driver);
+=======
 static int __init dmic_init(void)
 {
 	return platform_driver_register(&dmic_driver);
@@ -99,6 +106,7 @@ static void __exit dmic_exit(void)
 	platform_driver_unregister(&dmic_driver);
 }
 module_exit(dmic_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_DESCRIPTION("Generic DMIC driver");
 MODULE_AUTHOR("Liam Girdwood <lrg@slimlogic.co.uk>");

@@ -84,6 +84,8 @@
 #define EMIFS_CCS(n)		(EMIFS_CS0_CONFIG + (4 * (n)))
 #define EMIFS_ACS(n)		(EMIFS_ACS0 + (4 * (n)))
 
+<<<<<<< HEAD
+=======
 /* Almost all documentation for chip and board memory maps assumes
  * BM is clear.  Most devel boards have a switch to control booting
  * from NOR flash (using external chipselect 3) rather than mask ROM,
@@ -101,6 +103,7 @@ static inline u32 omap_cs3_phys(void)
 			? 0 : OMAP_CS3_PHYS;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* __ASSEMBLER__ */
 
 #endif	/* __ASM_ARCH_TC_H */

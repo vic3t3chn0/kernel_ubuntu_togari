@@ -10,6 +10,11 @@
  *
  */
 
+<<<<<<< HEAD
+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/string.h>
 #include <linux/types.h>
 #include <linux/jffs2.h>

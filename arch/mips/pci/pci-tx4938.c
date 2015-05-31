@@ -136,7 +136,11 @@ void __init tx4938_setup_pcierr_irq(void)
 {
 	if (request_irq(TXX9_IRQ_BASE + TX4938_IR_PCIERR,
 			tx4927_pcierr_interrupt,
+<<<<<<< HEAD
+			0, "PCI error",
+=======
 			IRQF_DISABLED, "PCI error",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			(void *)TX4927_PCIC_REG))
 		printk(KERN_WARNING "Failed to request irq for PCIERR\n");
 }

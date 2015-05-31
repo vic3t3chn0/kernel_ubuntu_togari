@@ -27,7 +27,11 @@
 #include "jfs_xattr.h"
 #include "jfs_acl.h"
 
+<<<<<<< HEAD
+struct posix_acl *jfs_get_acl(struct inode *inode, int type)
+=======
 static struct posix_acl *jfs_get_acl(struct inode *inode, int type)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct posix_acl *acl;
 	char *ea_name;
@@ -114,6 +118,11 @@ out:
 	return rc;
 }
 
+<<<<<<< HEAD
+int jfs_init_acl(tid_t tid, struct inode *inode, struct inode *dir)
+{
+	struct posix_acl *acl = NULL;
+=======
 int jfs_check_acl(struct inode *inode, int mask, unsigned int flags)
 {
 	struct posix_acl *acl;
@@ -138,6 +147,7 @@ int jfs_init_acl(tid_t tid, struct inode *inode, struct inode *dir)
 	struct posix_acl *acl = NULL;
 	struct posix_acl *clone;
 	mode_t mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int rc = 0;
 
 	if (S_ISLNK(inode->i_mode))
@@ -153,6 +163,13 @@ int jfs_init_acl(tid_t tid, struct inode *inode, struct inode *dir)
 			if (rc)
 				goto cleanup;
 		}
+<<<<<<< HEAD
+		rc = posix_acl_create(&acl, GFP_KERNEL, &inode->i_mode);
+		if (rc < 0)
+			goto cleanup; /* posix_acl_release(NULL) is no-op */
+		if (rc > 0)
+			rc = jfs_set_acl(tid, inode, ACL_TYPE_ACCESS, acl);
+=======
 		clone = posix_acl_clone(acl, GFP_KERNEL);
 		if (!clone) {
 			rc = -ENOMEM;
@@ -167,6 +184,7 @@ int jfs_init_acl(tid_t tid, struct inode *inode, struct inode *dir)
 						 clone);
 		}
 		posix_acl_release(clone);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 cleanup:
 		posix_acl_release(acl);
 	} else
@@ -180,8 +198,14 @@ cleanup:
 
 int jfs_acl_chmod(struct inode *inode)
 {
+<<<<<<< HEAD
+	struct posix_acl *acl;
+	int rc;
+	tid_t tid;
+=======
 	struct posix_acl *acl, *clone;
 	int rc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (S_ISLNK(inode->i_mode))
 		return -EOPNOTSUPP;
@@ -190,6 +214,21 @@ int jfs_acl_chmod(struct inode *inode)
 	if (IS_ERR(acl) || !acl)
 		return PTR_ERR(acl);
 
+<<<<<<< HEAD
+	rc = posix_acl_chmod(&acl, GFP_KERNEL, inode->i_mode);
+	if (rc)
+		return rc;
+
+	tid = txBegin(inode->i_sb, 0);
+	mutex_lock(&JFS_IP(inode)->commit_mutex);
+	rc = jfs_set_acl(tid, inode, ACL_TYPE_ACCESS, acl);
+	if (!rc)
+		rc = txCommit(tid, 1, &inode, 0);
+	txEnd(tid);
+	mutex_unlock(&JFS_IP(inode)->commit_mutex);
+
+	posix_acl_release(acl);
+=======
 	clone = posix_acl_clone(acl, GFP_KERNEL);
 	posix_acl_release(acl);
 	if (!clone)
@@ -207,5 +246,6 @@ int jfs_acl_chmod(struct inode *inode)
 	}
 
 	posix_acl_release(clone);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return rc;
 }

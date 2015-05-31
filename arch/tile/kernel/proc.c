@@ -23,6 +23,10 @@
 #include <linux/sysctl.h>
 #include <linux/hardirq.h>
 #include <linux/mman.h>
+<<<<<<< HEAD
+#include <asm/unaligned.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/pgtable.h>
 #include <asm/processor.h>
 #include <asm/sections.h>
@@ -145,7 +149,10 @@ static ctl_table unaligned_table[] = {
 	},
 	{}
 };
+<<<<<<< HEAD
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct ctl_path tile_path[] = {
 	{ .procname = "tile" },
@@ -154,10 +161,18 @@ static struct ctl_path tile_path[] = {
 
 static int __init proc_sys_tile_init(void)
 {
+<<<<<<< HEAD
+	register_sysctl_paths(tile_path, unaligned_table);
+=======
 #ifndef __tilegx__  /* FIXME: GX: no support for unaligned access yet */
 	register_sysctl_paths(tile_path, unaligned_table);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 
 arch_initcall(proc_sys_tile_init);
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

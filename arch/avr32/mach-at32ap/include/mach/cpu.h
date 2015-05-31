@@ -30,9 +30,12 @@
 #define cpu_is_at91sam9261()	(0)
 #define cpu_is_at91sam9263()	(0)
 #define cpu_is_at91sam9rl()	(0)
+<<<<<<< HEAD
+=======
 #define cpu_is_at91cap9()	(0)
 #define cpu_is_at91cap9_revB()	(0)
 #define cpu_is_at91cap9_revC()	(0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define cpu_is_at91sam9g10()	(0)
 #define cpu_is_at91sam9g20()	(0)
 #define cpu_is_at91sam9g45()	(0)

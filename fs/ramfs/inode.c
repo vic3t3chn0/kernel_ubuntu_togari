@@ -23,7 +23,10 @@
  * caches is sufficient.
  */
 
+<<<<<<< HEAD
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/fs.h>
 #include <linux/pagemap.h>
 #include <linux/highmem.h>
@@ -53,7 +56,11 @@ static struct backing_dev_info ramfs_backing_dev_info = {
 };
 
 struct inode *ramfs_get_inode(struct super_block *sb,
+<<<<<<< HEAD
+				const struct inode *dir, umode_t mode, dev_t dev)
+=======
 				const struct inode *dir, int mode, dev_t dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inode * inode = new_inode(sb);
 
@@ -93,7 +100,11 @@ struct inode *ramfs_get_inode(struct super_block *sb,
  */
 /* SMP-safe */
 static int
+<<<<<<< HEAD
+ramfs_mknod(struct inode *dir, struct dentry *dentry, umode_t mode, dev_t dev)
+=======
 ramfs_mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inode * inode = ramfs_get_inode(dir->i_sb, dir, mode, dev);
 	int error = -ENOSPC;
@@ -107,7 +118,11 @@ ramfs_mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t dev)
 	return error;
 }
 
+<<<<<<< HEAD
+static int ramfs_mkdir(struct inode * dir, struct dentry * dentry, umode_t mode)
+=======
 static int ramfs_mkdir(struct inode * dir, struct dentry * dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int retval = ramfs_mknod(dir, dentry, mode | S_IFDIR, 0);
 	if (!retval)
@@ -115,7 +130,11 @@ static int ramfs_mkdir(struct inode * dir, struct dentry * dentry, int mode)
 	return retval;
 }
 
+<<<<<<< HEAD
+static int ramfs_create(struct inode *dir, struct dentry *dentry, umode_t mode, struct nameidata *nd)
+=======
 static int ramfs_create(struct inode *dir, struct dentry *dentry, int mode, struct nameidata *nd)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return ramfs_mknod(dir, dentry, mode | S_IFREG, 0);
 }
@@ -210,14 +229,26 @@ static int ramfs_parse_options(char *data, struct ramfs_mount_opts *opts)
 int ramfs_fill_super(struct super_block *sb, void *data, int silent)
 {
 	struct ramfs_fs_info *fsi;
+<<<<<<< HEAD
+	struct inode *inode;
+=======
 	struct inode *inode = NULL;
 	struct dentry *root;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err;
 
 	save_mount_options(sb, data);
 
 	fsi = kzalloc(sizeof(struct ramfs_fs_info), GFP_KERNEL);
 	sb->s_fs_info = fsi;
+<<<<<<< HEAD
+	if (!fsi)
+		return -ENOMEM;
+
+	err = ramfs_parse_options(data, &fsi->mount_opts);
+	if (err)
+		return err;
+=======
 	if (!fsi) {
 		err = -ENOMEM;
 		goto fail;
@@ -226,6 +257,7 @@ int ramfs_fill_super(struct super_block *sb, void *data, int silent)
 	err = ramfs_parse_options(data, &fsi->mount_opts);
 	if (err)
 		goto fail;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	sb->s_maxbytes		= MAX_LFS_FILESIZE;
 	sb->s_blocksize		= PAGE_CACHE_SIZE;
@@ -235,6 +267,13 @@ int ramfs_fill_super(struct super_block *sb, void *data, int silent)
 	sb->s_time_gran		= 1;
 
 	inode = ramfs_get_inode(sb, NULL, S_IFDIR | fsi->mount_opts.mode, 0);
+<<<<<<< HEAD
+	sb->s_root = d_make_root(inode);
+	if (!sb->s_root)
+		return -ENOMEM;
+
+	return 0;
+=======
 	if (!inode) {
 		err = -ENOMEM;
 		goto fail;
@@ -253,6 +292,7 @@ fail:
 	sb->s_fs_info = NULL;
 	iput(inode);
 	return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 struct dentry *ramfs_mount(struct file_system_type *fs_type,
@@ -288,6 +328,9 @@ static int __init init_ramfs_fs(void)
 {
 	return register_filesystem(&ramfs_fs_type);
 }
+<<<<<<< HEAD
+module_init(init_ramfs_fs)
+=======
 
 static void __exit exit_ramfs_fs(void)
 {
@@ -296,6 +339,7 @@ static void __exit exit_ramfs_fs(void)
 
 module_init(init_ramfs_fs)
 module_exit(exit_ramfs_fs)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int __init init_rootfs(void)
 {
@@ -311,5 +355,8 @@ int __init init_rootfs(void)
 
 	return err;
 }
+<<<<<<< HEAD
+=======
 
 MODULE_LICENSE("GPL");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

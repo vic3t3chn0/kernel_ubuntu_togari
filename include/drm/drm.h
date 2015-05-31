@@ -36,7 +36,11 @@
 #ifndef _DRM_H_
 #define _DRM_H_
 
+<<<<<<< HEAD
+#if defined(__KERNEL__) || defined(_LINUX) || defined(__linux__)
+=======
 #if defined(__linux__)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/types.h>
 #include <asm/ioctl.h>
@@ -730,8 +734,11 @@ struct drm_prime_handle {
 #define DRM_IOCTL_MODE_GETPLANE	DRM_IOWR(0xB6, struct drm_mode_get_plane)
 #define DRM_IOCTL_MODE_SETPLANE	DRM_IOWR(0xB7, struct drm_mode_set_plane)
 #define DRM_IOCTL_MODE_ADDFB2		DRM_IOWR(0xB8, struct drm_mode_fb_cmd2)
+<<<<<<< HEAD
+=======
 #define DRM_IOCTL_MODE_OBJ_GETPROPERTIES	DRM_IOWR(0xB9, struct drm_mode_obj_get_properties)
 #define DRM_IOCTL_MODE_OBJ_SETPROPERTY	DRM_IOWR(0xBA, struct drm_mode_obj_set_property)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * Device specific ioctls should only be in their respective headers

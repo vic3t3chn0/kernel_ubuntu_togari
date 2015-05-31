@@ -20,7 +20,10 @@ struct task_struct;	/* forward declaration for elf.h */
 #include <asm/pal.h>
 #include <asm/pgtable.h>
 #include <asm/sal.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "ssc.h"
 

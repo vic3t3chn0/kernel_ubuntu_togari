@@ -9,6 +9,8 @@
 #include <asm/uaccess.h>
 
 /*
+<<<<<<< HEAD
+=======
  * Copy a null terminated string from userspace.
  */
 
@@ -58,6 +60,7 @@ strncpy_from_user(char *dst, const char __user *src, long count)
 EXPORT_SYMBOL(strncpy_from_user);
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Zero Userspace
  */
 
@@ -169,10 +172,17 @@ copy_user_handle_tail(char *to, char *from, unsigned len, unsigned zerorest)
 	char c;
 	unsigned zero_len;
 
+<<<<<<< HEAD
+	for (; len; --len) {
+		if (__get_user_nocheck(c, from++, sizeof(char)))
+			break;
+		if (__put_user_nocheck(c, to++, sizeof(char)))
+=======
 	for (; len; --len, to++) {
 		if (__get_user_nocheck(c, from++, sizeof(char)))
 			break;
 		if (__put_user_nocheck(c, to, sizeof(char)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 	}
 

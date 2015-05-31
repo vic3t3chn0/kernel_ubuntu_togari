@@ -96,6 +96,13 @@ struct ucb1400_gpio {
 
 struct ucb1400_ts {
 	struct input_dev	*ts_idev;
+<<<<<<< HEAD
+	int			id;
+	int			irq;
+	struct snd_ac97		*ac97;
+	wait_queue_head_t	ts_wait;
+	bool			stopped;
+=======
 	struct task_struct	*ts_task;
 	int			id;
 	wait_queue_head_t	ts_wait;
@@ -103,6 +110,7 @@ struct ucb1400_ts {
 	int			irq;
 	unsigned int		irq_pending;	/* not bit field shared */
 	struct snd_ac97		*ac97;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct ucb1400 {

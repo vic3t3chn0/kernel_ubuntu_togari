@@ -124,6 +124,16 @@ static __inline__ unsigned long fn(			\
 	return (old & mask);				\
 }
 
+<<<<<<< HEAD
+DEFINE_TESTOP(test_and_set_bits, or, PPC_ATOMIC_ENTRY_BARRIER,
+	      PPC_ATOMIC_EXIT_BARRIER, 0)
+DEFINE_TESTOP(test_and_set_bits_lock, or, "",
+	      PPC_ACQUIRE_BARRIER, 1)
+DEFINE_TESTOP(test_and_clear_bits, andc, PPC_ATOMIC_ENTRY_BARRIER,
+	      PPC_ATOMIC_EXIT_BARRIER, 0)
+DEFINE_TESTOP(test_and_change_bits, xor, PPC_ATOMIC_ENTRY_BARRIER,
+	      PPC_ATOMIC_EXIT_BARRIER, 0)
+=======
 DEFINE_TESTOP(test_and_set_bits, or, PPC_RELEASE_BARRIER,
 	      PPC_ACQUIRE_BARRIER, 0)
 DEFINE_TESTOP(test_and_set_bits_lock, or, "",
@@ -132,6 +142,7 @@ DEFINE_TESTOP(test_and_clear_bits, andc, PPC_RELEASE_BARRIER,
 	      PPC_ACQUIRE_BARRIER, 0)
 DEFINE_TESTOP(test_and_change_bits, xor, PPC_RELEASE_BARRIER,
 	      PPC_ACQUIRE_BARRIER, 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static __inline__ int test_and_set_bit(unsigned long nr,
 				       volatile unsigned long *addr)
@@ -327,10 +338,14 @@ unsigned long find_next_bit_le(const void *addr,
 				    unsigned long size, unsigned long offset);
 /* Bitmap functions for the ext2 filesystem */
 
+<<<<<<< HEAD
+#include <asm-generic/bitops/ext2-atomic-setbit.h>
+=======
 #define ext2_set_bit_atomic(lock, nr, addr) \
 	test_and_set_bit_le((nr), (unsigned long*)addr)
 #define ext2_clear_bit_atomic(lock, nr, addr) \
 	test_and_clear_bit_le((nr), (unsigned long*)addr)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm-generic/bitops/sched.h>
 

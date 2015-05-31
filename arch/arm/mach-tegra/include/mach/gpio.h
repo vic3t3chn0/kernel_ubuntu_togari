@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty */
+=======
 /*
  * arch/arm/mach-tegra/include/mach/gpio.h
  *
@@ -58,3 +61,4 @@ void tegra_gpio_enable(int gpio);
 void tegra_gpio_disable(int gpio);
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

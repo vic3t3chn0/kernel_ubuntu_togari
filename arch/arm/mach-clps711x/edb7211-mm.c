@@ -21,6 +21,10 @@
  */
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/hardware.h>
 #include <asm/page.h>

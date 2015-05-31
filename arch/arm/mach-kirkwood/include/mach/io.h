@@ -19,6 +19,9 @@ static inline void __iomem *__io(unsigned long addr)
 					+ KIRKWOOD_PCIE_IO_VIRT_BASE);
 }
 
+<<<<<<< HEAD
+#define __io(a)			__io(a)
+=======
 static inline void __iomem *
 __arch_ioremap(unsigned long paddr, size_t size, unsigned int mtype)
 {
@@ -47,5 +50,6 @@ __arch_iounmap(void __iomem *addr)
 #define __io(a)			__io(a)
 #define __mem_pci(a)		(a)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

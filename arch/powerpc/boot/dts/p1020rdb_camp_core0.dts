@@ -16,7 +16,11 @@
  * option) any later version.
  */
 
+<<<<<<< HEAD
+/include/ "p1020rdb.dts"
+=======
 /include/ "p1020si.dtsi"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 / {
 	model = "fsl,P1020RDB";
@@ -32,7 +36,11 @@
 
 	cpus {
 		PowerPC,P1020@1 {
+<<<<<<< HEAD
+			status = "disabled";
+=======
 		status = "disabled";
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		};
 	};
 
@@ -45,6 +53,8 @@
 	};
 
 	soc@ffe00000 {
+<<<<<<< HEAD
+=======
 		i2c@3000 {
 			rtc@68 {
 				compatible = "dallas,ds1339";
@@ -52,10 +62,13 @@
 			};
 		};
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		serial1: serial@4600 {
 			status = "disabled";
 		};
 
+<<<<<<< HEAD
+=======
 		spi@7000 {
 			fsl_m25p80@0 {
 				#address-cells = <1>;
@@ -121,10 +134,13 @@
 			};
 		};
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		enet0: ethernet@b0000 {
 			status = "disabled";
 		};
 
+<<<<<<< HEAD
+=======
 		enet1: ethernet@b1000 {
 			phy-handle = <&phy0>;
 			tbi-handle = <&tbi0>;
@@ -150,12 +166,15 @@
 		};
 		*/
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mpic: pic@40000 {
 			protected-sources = <
 			42 29 30 34	/* serial1, enet0-queue-group0 */
 			17 18 24 45	/* enet0-queue-group1, crypto */
 			>;
 		};
+<<<<<<< HEAD
+=======
 
 	};
 
@@ -209,5 +228,6 @@
 				  0x1000000 0x0 0x0
 				  0x0 0x100000>;
 		};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	};
 };

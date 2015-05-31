@@ -12,12 +12,25 @@
 
 #include <linux/kernel.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
+=======
 
 #define ARCH_NR_GPIOS 1024
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sh_pfc.h>
 
 #ifdef CONFIG_GPIOLIB
 
+<<<<<<< HEAD
+static inline int irq_to_gpio(unsigned int irq)
+{
+	return -ENOSYS;
+}
+
+#else
+
+#define __ARM_GPIOLIB_COMPLEX
+=======
 static inline int gpio_get_value(unsigned gpio)
 {
 	return __gpio_get_value(gpio);
@@ -42,6 +55,7 @@ static inline int irq_to_gpio(unsigned int irq)
 {
 	return -ENOSYS;
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* CONFIG_GPIOLIB */
 

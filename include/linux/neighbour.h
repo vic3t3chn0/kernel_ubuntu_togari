@@ -116,6 +116,10 @@ enum {
 	NDTPA_PROXY_DELAY,		/* u64, msecs */
 	NDTPA_PROXY_QLEN,		/* u32 */
 	NDTPA_LOCKTIME,			/* u64, msecs */
+<<<<<<< HEAD
+	NDTPA_QUEUE_LENBYTES,		/* u32 */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__NDTPA_MAX
 };
 #define NDTPA_MAX (__NDTPA_MAX - 1)

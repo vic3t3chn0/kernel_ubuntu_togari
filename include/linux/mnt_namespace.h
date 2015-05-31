@@ -2,6 +2,18 @@
 #define _NAMESPACE_H_
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
+struct mnt_namespace;
+struct fs_struct;
+
+extern struct mnt_namespace *copy_mnt_ns(unsigned long, struct mnt_namespace *,
+		struct fs_struct *);
+extern void put_mnt_ns(struct mnt_namespace *ns);
+
+extern const struct file_operations proc_mounts_operations;
+extern const struct file_operations proc_mountinfo_operations;
+extern const struct file_operations proc_mountstats_operations;
+=======
 #include <linux/path.h>
 #include <linux/seq_file.h>
 #include <linux/wait.h>
@@ -36,6 +48,7 @@ extern const struct seq_operations mounts_op;
 extern const struct seq_operations mountinfo_op;
 extern const struct seq_operations mountstats_op;
 extern int mnt_had_events(struct proc_mounts *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif
 #endif

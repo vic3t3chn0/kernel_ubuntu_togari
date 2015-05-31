@@ -7,6 +7,11 @@
  *  option) any later version.
  */
 
+<<<<<<< HEAD
+#include "../codecs/wm8994.h"
+#include <sound/pcm_params.h>
+#include <linux/module.h>
+=======
 #include <linux/platform_device.h>
 #include <linux/clk.h>
 #include <linux/io.h>
@@ -22,6 +27,7 @@
 #include "s3c-i2s-v2.h"
 #include "../codecs/wm8994.h"
 #include <sound/pcm_params.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
  /*
   * Default CFG switch settings to use this driver:
@@ -48,6 +54,8 @@
 /* SMDK has a 16.934MHZ crystal attached to WM8994 */
 #define SMDK_WM8994_FREQ 16934000
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_SND_SAMSUNG_I2S_MASTER
 static int set_epll_rate(unsigned long rate)
 {
@@ -71,6 +79,7 @@ out:
 #endif /* CONFIG_SND_SAMSUNG_I2S_MASTER */
 
 #ifndef CONFIG_SND_SAMSUNG_I2S_MASTER
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int smdk_hw_params(struct snd_pcm_substream *substream,
 	struct snd_pcm_hw_params *params)
 {
@@ -110,6 +119,10 @@ static int smdk_hw_params(struct snd_pcm_substream *substream,
 	if (ret < 0)
 		return ret;
 
+<<<<<<< HEAD
+	return 0;
+}
+=======
 	ret = snd_soc_dai_set_sysclk(cpu_dai, SAMSUNG_I2S_OPCLK,
 					0, MOD_OPCLK_PCLK);
 	if (ret < 0)
@@ -232,6 +245,7 @@ static int smdk_hw_params(struct snd_pcm_substream *substream,
 	return 0;
 }
 #endif /* CONFIG_SND_SAMSUNG_I2S_MASTER */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * SMDK WM8994 DAI operations.
@@ -273,8 +287,11 @@ static int smdk_wm8994_init_paiftx(struct snd_soc_pcm_runtime *rtd)
 	snd_soc_dapm_nc_pin(dapm, "IN1RP");
 	snd_soc_dapm_nc_pin(dapm, "IN2RP:VXRP");
 
+<<<<<<< HEAD
+=======
 	snd_soc_dapm_sync(dapm);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 
@@ -288,11 +305,21 @@ static struct snd_soc_dai_link smdk_dai[] = {
 		.codec_name = "wm8994-codec",
 		.init = smdk_wm8994_init_paiftx,
 		.ops = &smdk_ops,
+<<<<<<< HEAD
+	}, { /* Sec_Fifo Playback i/f */
+=======
 	}, { /* Sec_Fifo DAI i/f */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.name = "Sec_FIFO TX",
 		.stream_name = "Sec_Dai",
 		.cpu_dai_name = "samsung-i2s.4",
 		.codec_dai_name = "wm8994-aif1",
+<<<<<<< HEAD
+		.platform_name = "samsung-audio",
+		.codec_name = "wm8994-codec",
+		.ops = &smdk_ops,
+	},
+=======
 #ifdef CONFIG_SND_SOC_SAMSUNG_USE_DMA_WRAPPER
 		.platform_name = "samsung-audio",
 #else
@@ -303,14 +330,20 @@ static struct snd_soc_dai_link smdk_dai[] = {
 		.ops = &smdk_ops,
 	},
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct snd_soc_card smdk = {
 	.name = "SMDK-I2S",
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+	.dai_link = smdk_dai,
+=======
 	.dai_link = smdk_dai,
 
 	/* If you want to use sec_fifo device,
 	 * changes the num_link = 2 or ARRAY_SIZE(smdk_dai). */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.num_links = ARRAY_SIZE(smdk_dai),
 };
 

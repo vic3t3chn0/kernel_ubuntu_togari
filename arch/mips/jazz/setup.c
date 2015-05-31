@@ -21,6 +21,10 @@
 #include <asm/jazzdma.h>
 #include <asm/reboot.h>
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+#include <asm/tlbmisc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern asmlinkage void jazz_handle_int(void);
 

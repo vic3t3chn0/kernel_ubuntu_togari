@@ -45,20 +45,39 @@ enum clock_event_nofitiers {
  */
 #define CLOCK_EVT_FEAT_PERIODIC		0x000001
 #define CLOCK_EVT_FEAT_ONESHOT		0x000002
+<<<<<<< HEAD
+#define CLOCK_EVT_FEAT_KTIME		0x000004
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * x86(64) specific misfeatures:
  *
  * - Clockevent source stops in C3 State and needs broadcast support.
  * - Local APIC timer is used as a dummy device.
  */
+<<<<<<< HEAD
+#define CLOCK_EVT_FEAT_C3STOP		0x000008
+#define CLOCK_EVT_FEAT_DUMMY		0x000010
+
+/*
+ * Core shall set the interrupt affinity dynamically in broadcast mode
+ */
+#define CLOCK_EVT_FEAT_DYNIRQ		0x000020
+=======
 #define CLOCK_EVT_FEAT_C3STOP		0x000004
 #define CLOCK_EVT_FEAT_DUMMY		0x000008
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * struct clock_event_device - clock event device descriptor
  * @event_handler:	Assigned by the framework to be called by the low
  *			level handler of the event source
+<<<<<<< HEAD
+ * @set_next_event:	set next event function using a clocksource delta
+ * @set_next_ktime:	set next event function using a direct ktime value
+=======
  * @set_next_event:	set next event function
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @next_event:		local storage for the next event in oneshot mode
  * @max_delta_ns:	maximum delta value in ns
  * @min_delta_ns:	minimum delta value in ns
@@ -81,6 +100,11 @@ struct clock_event_device {
 	void			(*event_handler)(struct clock_event_device *);
 	int			(*set_next_event)(unsigned long evt,
 						  struct clock_event_device *);
+<<<<<<< HEAD
+	int			(*set_next_ktime)(ktime_t expires,
+						  struct clock_event_device *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ktime_t			next_event;
 	u64			max_delta_ns;
 	u64			min_delta_ns;
@@ -140,7 +164,11 @@ extern void clockevents_set_mode(struct clock_event_device *dev,
 				 enum clock_event_mode mode);
 extern int clockevents_register_notifier(struct notifier_block *nb);
 extern int clockevents_program_event(struct clock_event_device *dev,
+<<<<<<< HEAD
+				     ktime_t expires, bool force);
+=======
 				     ktime_t expires, ktime_t now);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern void clockevents_handle_noop(struct clock_event_device *dev);
 

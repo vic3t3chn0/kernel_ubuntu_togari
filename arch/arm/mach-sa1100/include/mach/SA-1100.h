@@ -1590,6 +1590,11 @@
 
 /*
  * Direct Memory Access (DMA) control registers
+<<<<<<< HEAD
+ */
+#define DMA_SIZE	(6 * 0x20)
+#define DMA_PHYS	0xb0000000
+=======
  *
  * Registers
  *    DDAR0     	Direct Memory Access (DMA) Device Address Register
@@ -1808,6 +1813,7 @@
 #define DBT_TC  	Fld (13, 0)	/* Transfer Count                  */
 #define DBTA_TCA	DBT_TC  	/* Transfer Count buffer A         */
 #define DBTB_TCB	DBT_TC  	/* Transfer Count buffer B         */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /*
@@ -1903,6 +1909,8 @@
 #define LCD_Int100_0A	0xF     	/* LCD Intensity = 100.0% =  1     */
                 	        	/* (Alternative)                   */
 
+<<<<<<< HEAD
+=======
 #define LCCR0		__REG(0xB0100000)  /* LCD Control Reg. 0 */
 #define LCSR		__REG(0xB0100004)  /* LCD Status Reg. */
 #define DBAR1		__REG(0xB0100010)  /* LCD DMA Base Address Reg. channel 1 */
@@ -1913,6 +1921,7 @@
 #define LCCR2		__REG(0xB0100024)  /* LCD Control Reg. 2 */
 #define LCCR3		__REG(0xB0100028)  /* LCD Control Reg. 3 */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define LCCR0_LEN	0x00000001	/* LCD ENable                      */
 #define LCCR0_CMS	0x00000002	/* Color/Monochrome display Select */
 #define LCCR0_Color	(LCCR0_CMS*0)	/*  Color display                  */

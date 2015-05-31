@@ -22,7 +22,10 @@
 #include <linux/stddef.h>
 #include <linux/sched.h>
 #include <linux/signal.h>
+<<<<<<< HEAD
+=======
 #include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/device.h>
 #include <linux/bootmem.h>
 #include <linux/spinlock.h>
@@ -246,13 +249,21 @@ static struct irq_chip qe_ic_irq_chip = {
 	.irq_mask_ack = qe_ic_mask_irq,
 };
 
+<<<<<<< HEAD
+static int qe_ic_host_match(struct irq_domain *h, struct device_node *node)
+=======
 static int qe_ic_host_match(struct irq_host *h, struct device_node *node)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/* Exact match, unless qe_ic node is NULL */
 	return h->of_node == NULL || h->of_node == node;
 }
 
+<<<<<<< HEAD
+static int qe_ic_host_map(struct irq_domain *h, unsigned int virq,
+=======
 static int qe_ic_host_map(struct irq_host *h, unsigned int virq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			  irq_hw_number_t hw)
 {
 	struct qe_ic *qe_ic = h->host_data;
@@ -273,6 +284,12 @@ static int qe_ic_host_map(struct irq_host *h, unsigned int virq,
 	return 0;
 }
 
+<<<<<<< HEAD
+static struct irq_domain_ops qe_ic_host_ops = {
+	.match = qe_ic_host_match,
+	.map = qe_ic_host_map,
+	.xlate = irq_domain_xlate_onetwocell,
+=======
 static int qe_ic_host_xlate(struct irq_host *h, struct device_node *ct,
 			    const u32 * intspec, unsigned int intsize,
 			    irq_hw_number_t * out_hwirq,
@@ -290,6 +307,7 @@ static struct irq_host_ops qe_ic_host_ops = {
 	.match = qe_ic_host_match,
 	.map = qe_ic_host_map,
 	.xlate = qe_ic_host_xlate,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Return an interrupt vector or NO_IRQ if no interrupt is pending. */
@@ -340,16 +358,26 @@ void __init qe_ic_init(struct device_node *node, unsigned int flags,
 	if (qe_ic == NULL)
 		return;
 
+<<<<<<< HEAD
+	qe_ic->irqhost = irq_domain_add_linear(node, NR_QE_IC_INTS,
+					       &qe_ic_host_ops, qe_ic);
+=======
 	qe_ic->irqhost = irq_alloc_host(node, IRQ_HOST_MAP_LINEAR,
 					NR_QE_IC_INTS, &qe_ic_host_ops, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (qe_ic->irqhost == NULL) {
 		kfree(qe_ic);
 		return;
 	}
 
+<<<<<<< HEAD
+	qe_ic->regs = ioremap(res.start, resource_size(&res));
+
+=======
 	qe_ic->regs = ioremap(res.start, res.end - res.start + 1);
 
 	qe_ic->irqhost->host_data = qe_ic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	qe_ic->hc_irq = qe_ic_irq_chip;
 
 	qe_ic->virq_high = irq_of_parse_and_map(node, 0);
@@ -484,6 +512,16 @@ int qe_ic_set_high_priority(unsigned int virq, unsigned int priority, int high)
 	return 0;
 }
 
+<<<<<<< HEAD
+static struct bus_type qe_ic_subsys = {
+	.name = "qe_ic",
+	.dev_name = "qe_ic",
+};
+
+static struct device device_qe_ic = {
+	.id = 0,
+	.bus = &qe_ic_subsys,
+=======
 static struct sysdev_class qe_ic_sysclass = {
 	.name = "qe_ic",
 };
@@ -491,6 +529,7 @@ static struct sysdev_class qe_ic_sysclass = {
 static struct sys_device device_qe_ic = {
 	.id = 0,
 	.cls = &qe_ic_sysclass,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static int __init init_qe_ic_sysfs(void)
@@ -499,12 +538,20 @@ static int __init init_qe_ic_sysfs(void)
 
 	printk(KERN_DEBUG "Registering qe_ic with sysfs...\n");
 
+<<<<<<< HEAD
+	rc = subsys_system_register(&qe_ic_subsys, NULL);
+=======
 	rc = sysdev_class_register(&qe_ic_sysclass);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (rc) {
 		printk(KERN_ERR "Failed registering qe_ic sys class\n");
 		return -ENODEV;
 	}
+<<<<<<< HEAD
+	rc = device_register(&device_qe_ic);
+=======
 	rc = sysdev_register(&device_qe_ic);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (rc) {
 		printk(KERN_ERR "Failed registering qe_ic sys device\n");
 		return -ENODEV;

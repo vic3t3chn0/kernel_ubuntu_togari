@@ -10,8 +10,12 @@
 
 #include <asm/cpu.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/hardirq.h>
 #include <asm/mmu_context.h>
 #include <asm/mipsregs.h>

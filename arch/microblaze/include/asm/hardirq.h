@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+#include <asm-generic/hardirq.h>
+=======
 /*
  * Copyright (C) 2006 Atmark Techno, Inc.
  *
@@ -15,3 +18,4 @@ extern unsigned int get_irq(struct pt_regs *regs);
 #include <asm-generic/hardirq.h>
 
 #endif /* _ASM_MICROBLAZE_HARDIRQ_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -29,8 +29,11 @@
 #ifndef _EXYNOS_DRM_H_
 #define _EXYNOS_DRM_H_
 
+<<<<<<< HEAD
+=======
 #include "drm.h"
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * User-desired buffer creation information structure.
  *
@@ -64,7 +67,10 @@ struct drm_exynos_gem_map_off {
  * A structure for mapping buffer.
  *
  * @handle: a handle to gem object created.
+<<<<<<< HEAD
+=======
  * @pad: just padding to be 64-bit aligned.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @size: memory size to be mapped.
  * @mapped: having user virtual address mmaped.
  *	- this variable would be filled by exynos gem module
@@ -73,12 +79,18 @@ struct drm_exynos_gem_map_off {
  */
 struct drm_exynos_gem_mmap {
 	unsigned int handle;
+<<<<<<< HEAD
+	unsigned int size;
+=======
 	unsigned int pad;
 	uint64_t size;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	uint64_t mapped;
 };
 
 /**
+<<<<<<< HEAD
+=======
  * User-requested user space importing structure
  *
  * @userptr: user space address allocated by malloc.
@@ -124,6 +136,7 @@ struct drm_exynos_user_limit {
 };
 
 /**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * A structure for user connection request of virtual display.
  *
  * @connection: indicate whether doing connetion or not by user.
@@ -134,6 +147,14 @@ struct drm_exynos_user_limit {
 struct drm_exynos_vidi_connection {
 	unsigned int connection;
 	unsigned int extensions;
+<<<<<<< HEAD
+	uint64_t edid;
+};
+
+struct drm_exynos_plane_set_zpos {
+	__u32 plane_id;
+	__s32 zpos;
+=======
 	uint64_t *edid;
 };
 
@@ -197,10 +218,16 @@ enum e_drm_exynos_gem_cache_op {
 						EXYNOS_DRM_CACHE_CLN_RANGE,
 	EXYNOS_DRM_CACHE_OP_MASK	= EXYNOS_DRM_CACHE_FSH_ALL |
 						EXYNOS_DRM_CACHE_FSH_RANGE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* memory type definitions. */
 enum e_drm_exynos_gem_mem_type {
+<<<<<<< HEAD
+	/* Physically Non-Continuous memory. */
+	EXYNOS_BO_NONCONTIG	= 1 << 0,
+	EXYNOS_BO_MASK		= EXYNOS_BO_NONCONTIG
+=======
 	/* Physically Continuous memory and used as default. */
 	EXYNOS_BO_CONTIG	= 0 << 0,
 	/* Physically Non-Continuous memory. */
@@ -390,11 +417,18 @@ struct drm_exynos_ipp_buf {
 struct drm_exynos_ipp_ctrl {
 	__u32	prop_id;
 	__u32	use;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #define DRM_EXYNOS_GEM_CREATE		0x00
 #define DRM_EXYNOS_GEM_MAP_OFFSET	0x01
 #define DRM_EXYNOS_GEM_MMAP		0x02
+<<<<<<< HEAD
+/* Reserved 0x03 ~ 0x05 for exynos specific gem ioctl */
+#define DRM_EXYNOS_PLANE_SET_ZPOS	0x06
+#define DRM_EXYNOS_VIDI_CONNECTION	0x07
+
+=======
 #define DRM_EXYNOS_GEM_USERPTR		0x03
 #define DRM_EXYNOS_GEM_GET		0x04
 #define DRM_EXYNOS_USER_LIMIT		0x05
@@ -418,6 +452,7 @@ struct drm_exynos_ipp_ctrl {
 #define DRM_EXYNOS_IPP_BUF			0x32
 #define DRM_EXYNOS_IPP_CTRL			0x33
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define DRM_IOCTL_EXYNOS_GEM_CREATE		DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_GEM_CREATE, struct drm_exynos_gem_create)
 
@@ -427,6 +462,10 @@ struct drm_exynos_ipp_ctrl {
 #define DRM_IOCTL_EXYNOS_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_GEM_MMAP, struct drm_exynos_gem_mmap)
 
+<<<<<<< HEAD
+#define DRM_IOCTL_EXYNOS_PLANE_SET_ZPOS	DRM_IOWR(DRM_COMMAND_BASE + \
+		DRM_EXYNOS_PLANE_SET_ZPOS, struct drm_exynos_plane_set_zpos)
+=======
 #define DRM_IOCTL_EXYNOS_GEM_USERPTR	DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_GEM_USERPTR, struct drm_exynos_gem_userptr)
 
@@ -447,10 +486,14 @@ struct drm_exynos_ipp_ctrl {
 		DRM_EXYNOS_GEM_GET_PHY, struct drm_exynos_gem_get_phy)
 #define DRM_IOCTL_EXYNOS_GEM_PHY_IMP	DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_GEM_PHY_IMP, struct drm_exynos_gem_phy_imp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define DRM_IOCTL_EXYNOS_VIDI_CONNECTION	DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_VIDI_CONNECTION, struct drm_exynos_vidi_connection)
 
+<<<<<<< HEAD
+#ifdef __KERNEL__
+=======
 #define DRM_IOCTL_EXYNOS_G2D_GET_VER		DRM_IOWR(DRM_COMMAND_BASE + \
 		DRM_EXYNOS_G2D_GET_VER, struct drm_exynos_g2d_get_ver)
 #define DRM_IOCTL_EXYNOS_G2D_SET_CMDLIST	DRM_IOWR(DRM_COMMAND_BASE + \
@@ -489,6 +532,7 @@ struct drm_exynos_ipp_event {
 	__u32			reserved;
 	__u32			buf_id[EXYNOS_DRM_OPS_MAX];
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * A structure for lcd panel information.
@@ -509,7 +553,10 @@ struct exynos_drm_panel_info {
  * @panel: default panel info for initializing
  * @default_win: default window layer number to be used for UI.
  * @bpp: default bit per pixel.
+<<<<<<< HEAD
+=======
  * @enabled: indicate whether fimd hardware was on or not at bootloader.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 struct exynos_drm_fimd_pdata {
 	struct exynos_drm_panel_info panel;
@@ -517,10 +564,13 @@ struct exynos_drm_fimd_pdata {
 	u32				vidcon1;
 	unsigned int			default_win;
 	unsigned int			bpp;
+<<<<<<< HEAD
+=======
 	bool				enabled;
 	bool				mdnie_enabled;
 	unsigned int			dynamic_refresh;
 	unsigned int			high_freq;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /**
@@ -540,6 +590,22 @@ struct exynos_drm_common_hdmi_pd {
 /**
  * Platform Specific Structure for DRM based HDMI core.
  *
+<<<<<<< HEAD
+ * @timing: default video mode for initializing
+ * @default_win: default window layer number to be used for UI.
+ * @bpp: default bit per pixel.
+ * @is_v13: set if hdmi version 13 is.
+ */
+struct exynos_drm_hdmi_pdata {
+	struct fb_videomode		timing;
+	unsigned int			default_win;
+	unsigned int			bpp;
+	unsigned int			is_v13:1;
+};
+
+#endif	/* __KERNEL__ */
+#endif	/* _EXYNOS_DRM_H_ */
+=======
  * @is_v13: set if hdmi version 13 is.
  * @cfg_hpd: function pointer to configure hdmi hotplug detection pin
  * @get_hpd: function pointer to get value of hdmi hotplug detection pin
@@ -584,3 +650,4 @@ struct exynos_drm_fimc_pdata {
 };
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

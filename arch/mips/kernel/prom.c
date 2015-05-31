@@ -9,7 +9,11 @@
  */
 
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/errno.h>
 #include <linux/types.h>
 #include <linux/bootmem.h>
@@ -60,6 +64,8 @@ void __init early_init_dt_setup_initrd_arch(unsigned long start,
 }
 #endif
 
+<<<<<<< HEAD
+=======
 /*
  * irq_create_of_mapping - Hook to resolve OF irq specifier into a Linux irq#
  *
@@ -74,6 +80,7 @@ unsigned int irq_create_of_mapping(struct device_node *controller,
 }
 EXPORT_SYMBOL_GPL(irq_create_of_mapping);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init early_init_devtree(void *params)
 {
 	/* Setup flat device-tree pointer */

@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/* empty */
+=======
 /*
  * Copyright 2007 Freescale Semiconductor, Inc. All Rights Reserved.
  * Copyright 2008 Juergen Beisert, kernel@pengutronix.de
@@ -64,3 +67,4 @@ struct mxc_gpio_port {
 int mxc_gpio_init(struct mxc_gpio_port*, int);
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -1,8 +1,15 @@
 /*
+<<<<<<< HEAD
+ * Copyright 2004-2009 Analog Devices Inc.
+ *
+ * Licensed under the GPL-2 or later.
+ */
+=======
  * Copyright 2004-2009 Analog Devices Inc.
  *
  * Licensed under the GPL-2 or later.
  */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef _BLACKFIN_PAGE_H
 #define _BLACKFIN_PAGE_H

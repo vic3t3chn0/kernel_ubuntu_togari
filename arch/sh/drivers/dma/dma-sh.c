@@ -95,7 +95,11 @@ static int sh_dmac_request_dma(struct dma_channel *chan)
 #if defined(CONFIG_SH_DMA_IRQ_MULTI)
 				IRQF_SHARED,
 #else
+<<<<<<< HEAD
+				0,
+=======
 				IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 				chan->dev_id, chan);
 }
@@ -305,7 +309,11 @@ static int __init sh_dmac_init(void)
 #if defined(CONFIG_SH_DMA_IRQ_MULTI)
 				IRQF_SHARED,
 #else
+<<<<<<< HEAD
+				0,
+=======
 				IRQF_DISABLED,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 				dmae_name[n], (void *)dmae_name[n]);
 		if (unlikely(i < 0)) {

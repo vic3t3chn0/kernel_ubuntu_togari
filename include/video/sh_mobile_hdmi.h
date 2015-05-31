@@ -31,8 +31,11 @@ struct clk;
 #define HDMI_SND_SRC_HBR	(3 << 0)
 
 struct sh_mobile_hdmi_info {
+<<<<<<< HEAD
+=======
 	struct sh_mobile_lcdc_chan_cfg	*lcd_chan;
 	struct device			*lcd_dev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int			 flags;
 	long (*clk_optimize_parent)(unsigned long target, unsigned long *best_freq,
 				    unsigned long *parent_freq);

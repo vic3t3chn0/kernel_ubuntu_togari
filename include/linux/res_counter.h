@@ -109,12 +109,24 @@ void res_counter_init(struct res_counter *counter, struct res_counter *parent);
  *
  * returns 0 on success and <0 if the counter->usage will exceed the
  * counter->limit _locked call expects the counter->lock to be taken
+<<<<<<< HEAD
+ *
+ * charge_nofail works the same, except that it charges the resource
+ * counter unconditionally, and returns < 0 if the after the current
+ * charge we are over limit.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 int __must_check res_counter_charge_locked(struct res_counter *counter,
 		unsigned long val);
 int __must_check res_counter_charge(struct res_counter *counter,
 		unsigned long val, struct res_counter **limit_fail_at);
+<<<<<<< HEAD
+int __must_check res_counter_charge_nofail(struct res_counter *counter,
+		unsigned long val, struct res_counter **limit_fail_at);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * uncharge - tell that some portion of the resource is released
@@ -142,7 +154,14 @@ static inline unsigned long long res_counter_margin(struct res_counter *cnt)
 	unsigned long flags;
 
 	spin_lock_irqsave(&cnt->lock, flags);
+<<<<<<< HEAD
+	if (cnt->limit > cnt->usage)
+		margin = cnt->limit - cnt->usage;
+	else
+		margin = 0;
+=======
 	margin = cnt->limit - cnt->usage;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spin_unlock_irqrestore(&cnt->lock, flags);
 	return margin;
 }

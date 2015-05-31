@@ -126,10 +126,13 @@ static int _get_more_prng_bytes(struct prng_context *ctx, int cont_test)
 			output = ctx->rand_data;
 			break;
 		case 2:
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 			if (unlikely(in_fips_err()))
 				return -EINVAL;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			/*
 			 * First check that we didn't produce the same
 			 * random data that we did last time around through this
@@ -137,9 +140,14 @@ static int _get_more_prng_bytes(struct prng_context *ctx, int cont_test)
 			if (!memcmp(ctx->rand_data, ctx->last_rand_data,
 					DEFAULT_BLK_SZ)) {
 				if (cont_test) {
+<<<<<<< HEAD
+					panic("cprng %p Failed repetition check!\n",
+						ctx);
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 					set_in_fips_err();
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				}
 
 				printk(KERN_ERR
@@ -377,11 +385,14 @@ static int cprng_reset(struct crypto_rng *tfm, u8 *seed, unsigned int slen)
 	if (slen < DEFAULT_PRNG_KSZ + DEFAULT_BLK_SZ)
 		return -EINVAL;
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (!memcmp(key, seed, DEFAULT_PRNG_KSZ))
 		return -EINVAL;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (slen >= (2 * DEFAULT_BLK_SZ + DEFAULT_PRNG_KSZ))
 		dt = key + DEFAULT_PRNG_KSZ;
 
@@ -418,21 +429,38 @@ static int fips_cprng_get_random(struct crypto_rng *tfm, u8 *rdata,
 {
 	struct prng_context *prng = crypto_rng_ctx(tfm);
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EINVAL;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return get_prng_bytes(rdata, dlen, prng, 1);
 }
 
 static int fips_cprng_reset(struct crypto_rng *tfm, u8 *seed, unsigned int slen)
 {
 	u8 rdata[DEFAULT_BLK_SZ];
+<<<<<<< HEAD
+	u8 *key = seed + DEFAULT_BLK_SZ;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int rc;
 
 	struct prng_context *prng = crypto_rng_ctx(tfm);
 
+<<<<<<< HEAD
+	if (slen < DEFAULT_PRNG_KSZ + DEFAULT_BLK_SZ)
+		return -EINVAL;
+
+	/* fips strictly requires seed != key */
+	if (!memcmp(seed, key, DEFAULT_PRNG_KSZ))
+		return -EINVAL;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rc = cprng_reset(tfm, seed, slen);
 
 	if (!rc)

@@ -47,7 +47,11 @@
 #include <linux/string.h>
 #include <asm/uaccess.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/hardirq.h>
 #include <linux/netdevice.h>
 #include <linux/in.h>
@@ -62,12 +66,15 @@ struct tipc_msg;	/* msg.h */
 struct print_buf;	/* log.h */
 
 /*
+<<<<<<< HEAD
+=======
  * TIPC sanity test macros
  */
 
 #define assert(i)  BUG_ON(!(i))
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * TIPC system monitoring code
  */
 
@@ -136,6 +143,8 @@ void tipc_msg_dbg(struct print_buf *, struct tipc_msg *, const char *);
 #define ELINKCONG EAGAIN	/* link congestion <=> resource unavailable */
 
 /*
+<<<<<<< HEAD
+=======
  * TIPC operating mode routines
  */
 #define TIPC_NOT_RUNNING  0
@@ -143,6 +152,7 @@ void tipc_msg_dbg(struct print_buf *, struct tipc_msg *, const char *);
 #define TIPC_NET_MODE     2
 
 /*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Global configuration variables
  */
 
@@ -157,7 +167,10 @@ extern int tipc_remote_management;
  * Other global variables
  */
 
+<<<<<<< HEAD
+=======
 extern int tipc_mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int tipc_random;
 extern const char tipc_alphabet[];
 
@@ -174,6 +187,8 @@ extern void tipc_netlink_stop(void);
 extern int  tipc_socket_init(void);
 extern void tipc_socket_stop(void);
 
+<<<<<<< HEAD
+=======
 static inline int delimit(int val, int min, int max)
 {
 	if (val > max)
@@ -184,6 +199,7 @@ static inline int delimit(int val, int min, int max)
 }
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * TIPC timer and signal code
  */
@@ -285,6 +301,8 @@ static inline struct tipc_msg *buf_msg(struct sk_buff *skb)
 
 extern struct sk_buff *tipc_buf_acquire(u32 size);
 
+<<<<<<< HEAD
+=======
 /**
  * buf_discard - frees a TIPC message buffer
  * @skb: message buffer
@@ -309,4 +327,5 @@ static inline int buf_linearize(struct sk_buff *skb)
 	return skb_linearize(skb);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

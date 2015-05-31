@@ -11,6 +11,13 @@
 #include <sched.h>
 #include <signal.h>
 #include <string.h>
+<<<<<<< HEAD
+#include "kern_util.h"
+#include "init.h"
+#include "os.h"
+#include "sigio.h"
+#include "um_malloc.h"
+=======
 #include "kern_constants.h"
 #include "kern_util.h"
 #include "init.h"
@@ -19,6 +26,7 @@
 #include "sigio.h"
 #include "um_malloc.h"
 #include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Protected by sigio_lock(), also used by sigio_cleanup, which is an

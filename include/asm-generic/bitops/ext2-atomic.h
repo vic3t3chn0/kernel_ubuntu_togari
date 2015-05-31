@@ -1,6 +1,13 @@
 #ifndef _ASM_GENERIC_BITOPS_EXT2_ATOMIC_H_
 #define _ASM_GENERIC_BITOPS_EXT2_ATOMIC_H_
 
+<<<<<<< HEAD
+/*
+ * Spinlock based version of ext2 atomic bitops
+ */
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ext2_set_bit_atomic(lock, nr, addr)		\
 	({						\
 		int ret;				\

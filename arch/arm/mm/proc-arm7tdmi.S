@@ -45,8 +45,16 @@ ENTRY(cpu_arm7tdmi_proc_fin)
  * Params  : loc(r0)	address to jump to
  * Purpose : Sets up everything for a reset and jump to the location for soft reset.
  */
+<<<<<<< HEAD
+		.pushsection	.idmap.text, "ax"
 ENTRY(cpu_arm7tdmi_reset)
 		mov	pc, r0
+ENDPROC(cpu_arm7tdmi_reset)
+		.popsection
+=======
+ENTRY(cpu_arm7tdmi_reset)
+		mov	pc, r0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		__CPUINIT
 

@@ -106,6 +106,8 @@
 #define DEFAULT_HT_TYPE0_CFG_BASE       0x16000000
 #define DEFAULT_HT_TYPE1_CFG_BASE       0x17000000
 
+<<<<<<< HEAD
+=======
 #ifndef __ASSEMBLY__
 #include <linux/types.h>
 #include <asm/byteorder.h>
@@ -128,4 +130,5 @@ extern unsigned long netlogic_io_base;
 				((base)[(offset)] = cpu_to_le32((value)))
 #define netlogic_io_mmio(offset) ((nlm_reg_t *)(netlogic_io_base+(offset)))
 #endif /* __ASSEMBLY__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

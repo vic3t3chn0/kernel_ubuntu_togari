@@ -77,12 +77,18 @@ struct  seminfo {
 #define SEMUSZ  20		/* sizeof struct sem_undo */
 
 #ifdef __KERNEL__
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/rcupdate.h>
 #include <linux/cache.h>
 
 struct task_struct;
 
+<<<<<<< HEAD
+=======
 /* One semaphore structure for each semaphore in the system. */
 struct sem {
 	int	semval;		/* current value */
@@ -90,6 +96,7 @@ struct sem {
 	struct list_head sem_pending; /* pending single-sop operations */
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* One sem_array data structure for each set of semaphores in the system. */
 struct sem_array {
 	struct kern_ipc_perm	____cacheline_aligned_in_smp
@@ -103,6 +110,9 @@ struct sem_array {
 	int			complex_count;	/* pending complex operations */
 };
 
+<<<<<<< HEAD
+#ifdef CONFIG_SYSVIPC
+=======
 /* One queue for each sleeping process in the system. */
 struct sem_queue {
 	struct list_head	simple_list; /* queue of pending operations */
@@ -137,17 +147,29 @@ struct sem_undo_list {
 	spinlock_t		lock;
 	struct list_head	list_proc;
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct sysv_sem {
 	struct sem_undo_list *undo_list;
 };
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_SYSVIPC
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int copy_semundo(unsigned long clone_flags, struct task_struct *tsk);
 extern void exit_sem(struct task_struct *tsk);
 
 #else
+<<<<<<< HEAD
+
+struct sysv_sem {
+	/* empty */
+};
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline int copy_semundo(unsigned long clone_flags, struct task_struct *tsk)
 {
 	return 0;

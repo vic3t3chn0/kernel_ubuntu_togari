@@ -123,12 +123,19 @@ static int pageattr_test(void)
 	if (print)
 		printk(KERN_INFO "CPA self-test:\n");
 
+<<<<<<< HEAD
+	bm = vzalloc((max_pfn_mapped + 7) / 8);
+=======
 	bm = vmalloc((max_pfn_mapped + 7) / 8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!bm) {
 		printk(KERN_ERR "CPA Cannot vmalloc bitmap\n");
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
+=======
 	memset(bm, 0, (max_pfn_mapped + 7) / 8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	failed += print_split(&sa);
 	srandom32(100);

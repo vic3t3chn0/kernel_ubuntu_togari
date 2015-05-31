@@ -25,7 +25,11 @@ int fixup_exception(struct pt_regs *regs)
 	if (fixup) {
 		/* If fixup is less than 16, it means uaccess error */
 		if (fixup->fixup < 16) {
+<<<<<<< HEAD
+			current_thread_info()->uaccess_err = 1;
+=======
 			current_thread_info()->uaccess_err = -EFAULT;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			regs->ip += fixup->fixup;
 			return 1;
 		}

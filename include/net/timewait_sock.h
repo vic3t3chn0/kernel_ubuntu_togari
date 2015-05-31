@@ -12,6 +12,10 @@
 #define _TIMEWAIT_SOCK_H
 
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/sock.h>
 
 struct timewait_sock_ops {

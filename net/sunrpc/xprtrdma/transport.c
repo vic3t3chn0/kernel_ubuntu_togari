@@ -200,7 +200,10 @@ xprt_rdma_connect_worker(struct work_struct *work)
 	int rc = 0;
 
 	if (!xprt->shutdown) {
+<<<<<<< HEAD
+=======
 		current->flags |= PF_FSTRANS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		xprt_clear_connected(xprt);
 
 		dprintk("RPC:       %s: %sconnect\n", __func__,
@@ -213,10 +216,17 @@ xprt_rdma_connect_worker(struct work_struct *work)
 
 out:
 	xprt_wake_pending_tasks(xprt, rc);
+<<<<<<< HEAD
+
+out_clear:
+	dprintk("RPC:       %s: exit\n", __func__);
+	xprt_clear_connecting(xprt);
+=======
 out_clear:
 	dprintk("RPC:       %s: exit\n", __func__);
 	xprt_clear_connecting(xprt);
 	current->flags &= ~PF_FSTRANS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -284,6 +294,10 @@ xprt_setup_rdma(struct xprt_create *args)
 	}
 
 	xprt = xprt_alloc(args->net, sizeof(struct rpcrdma_xprt),
+<<<<<<< HEAD
+			xprt_rdma_slot_table_entries,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			xprt_rdma_slot_table_entries);
 	if (xprt == NULL) {
 		dprintk("RPC:       %s: couldn't allocate rpcrdma_xprt\n",
@@ -453,9 +467,14 @@ xprt_rdma_connect(struct rpc_task *task)
 }
 
 static int
+<<<<<<< HEAD
+xprt_rdma_reserve_xprt(struct rpc_xprt *xprt, struct rpc_task *task)
+{
+=======
 xprt_rdma_reserve_xprt(struct rpc_task *task)
 {
 	struct rpc_xprt *xprt = task->tk_xprt;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct rpcrdma_xprt *r_xprt = rpcx_to_rdmax(xprt);
 	int credits = atomic_read(&r_xprt->rx_buf.rb_credits);
 
@@ -467,7 +486,11 @@ xprt_rdma_reserve_xprt(struct rpc_task *task)
 		BUG_ON(r_xprt->rx_buf.rb_cwndscale <= 0);
 	}
 	xprt->cwnd = credits * r_xprt->rx_buf.rb_cwndscale;
+<<<<<<< HEAD
+	return xprt_reserve_xprt_cong(xprt, task);
+=======
 	return xprt_reserve_xprt_cong(task);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*

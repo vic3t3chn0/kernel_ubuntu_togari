@@ -50,7 +50,11 @@ struct eth_addr {
 	u8 addr[6];
 };
 static struct eth_addr __initdata hw_addr[1];
+<<<<<<< HEAD
+static struct macb_platform_data __initdata eth_data[1] = {
+=======
 static struct eth_platform_data __initdata eth_data[1] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{
 		.phy_mask	= ~(1U << 1),
 	},

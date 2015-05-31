@@ -25,12 +25,20 @@ extern unsigned long samsung_cpu_id;
 
 #define S3C6400_CPU_ID		0x36400000
 #define S3C6410_CPU_ID		0x36410000
+<<<<<<< HEAD
+#define S3C64XX_CPU_MASK	0xFFFFF000
+
+#define S5P6440_CPU_ID		0x56440000
+#define S5P6450_CPU_ID		0x36450000
+#define S5P64XX_CPU_MASK	0xFFFFF000
+=======
 #define S3C64XX_CPU_ID		(S3C6400_CPU_ID & S3C6410_CPU_ID)
 #define S3C64XX_CPU_MASK	0x1FF40000
 
 #define S5P6440_CPU_ID		0x56440000
 #define S5P6450_CPU_ID		0x36450000
 #define S5P64XX_CPU_MASK	0x1FF40000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define S5PC100_CPU_ID		0x43100000
 #define S5PC100_CPU_MASK	0xFFFFF000
@@ -41,9 +49,16 @@ extern unsigned long samsung_cpu_id;
 #define EXYNOS4210_CPU_ID	0x43210000
 #define EXYNOS4212_CPU_ID	0x43220000
 #define EXYNOS4412_CPU_ID	0xE4412200
+<<<<<<< HEAD
+#define EXYNOS4_CPU_MASK	0xFFFE0000
+
+#define EXYNOS5250_SOC_ID	0x43520000
+#define EXYNOS5_SOC_MASK	0xFFFFF000
+=======
 #define EXYNOS5210_CPU_ID	0x43510000
 #define EXYNOS5250_CPU_ID	0x43520000
 #define EXYNOS_CPU_MASK		0xFFFE0000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define IS_SAMSUNG_CPU(name, id, mask)		\
 static inline int is_samsung_##name(void)	\
@@ -52,16 +67,28 @@ static inline int is_samsung_##name(void)	\
 }
 
 IS_SAMSUNG_CPU(s3c24xx, S3C24XX_CPU_ID, S3C24XX_CPU_MASK)
+<<<<<<< HEAD
+IS_SAMSUNG_CPU(s3c6400, S3C6400_CPU_ID, S3C64XX_CPU_MASK)
+IS_SAMSUNG_CPU(s3c6410, S3C6410_CPU_ID, S3C64XX_CPU_MASK)
+=======
 IS_SAMSUNG_CPU(s3c64xx, S3C64XX_CPU_ID, S3C64XX_CPU_MASK)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 IS_SAMSUNG_CPU(s5p6440, S5P6440_CPU_ID, S5P64XX_CPU_MASK)
 IS_SAMSUNG_CPU(s5p6450, S5P6450_CPU_ID, S5P64XX_CPU_MASK)
 IS_SAMSUNG_CPU(s5pc100, S5PC100_CPU_ID, S5PC100_CPU_MASK)
 IS_SAMSUNG_CPU(s5pv210, S5PV210_CPU_ID, S5PV210_CPU_MASK)
+<<<<<<< HEAD
+IS_SAMSUNG_CPU(exynos4210, EXYNOS4210_CPU_ID, EXYNOS4_CPU_MASK)
+IS_SAMSUNG_CPU(exynos4212, EXYNOS4212_CPU_ID, EXYNOS4_CPU_MASK)
+IS_SAMSUNG_CPU(exynos4412, EXYNOS4412_CPU_ID, EXYNOS4_CPU_MASK)
+IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_SOC_ID, EXYNOS5_SOC_MASK)
+=======
 IS_SAMSUNG_CPU(exynos4210, EXYNOS4210_CPU_ID, EXYNOS_CPU_MASK)
 IS_SAMSUNG_CPU(exynos4212, EXYNOS4212_CPU_ID, EXYNOS_CPU_MASK)
 IS_SAMSUNG_CPU(exynos4412, EXYNOS4412_CPU_ID, EXYNOS_CPU_MASK)
 IS_SAMSUNG_CPU(exynos5210, EXYNOS5210_CPU_ID, EXYNOS_CPU_MASK)
 IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_CPU_ID, EXYNOS_CPU_MASK)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #if defined(CONFIG_CPU_S3C2410) || defined(CONFIG_CPU_S3C2412) || \
     defined(CONFIG_CPU_S3C2416) || defined(CONFIG_CPU_S3C2440) || \
@@ -73,7 +100,11 @@ IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_CPU_ID, EXYNOS_CPU_MASK)
 #endif
 
 #if defined(CONFIG_CPU_S3C6400) || defined(CONFIG_CPU_S3C6410)
+<<<<<<< HEAD
+# define soc_is_s3c64xx()	(is_samsung_s3c6400() || is_samsung_s3c6410())
+=======
 # define soc_is_s3c64xx()	is_samsung_s3c64xx()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 # define soc_is_s3c64xx()	0
 #endif
@@ -108,26 +139,46 @@ IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_CPU_ID, EXYNOS_CPU_MASK)
 # define soc_is_exynos4210()	0
 #endif
 
+<<<<<<< HEAD
+#if defined(CONFIG_SOC_EXYNOS4212)
+=======
 #define EXYNOS4210_REV_0       (0x0)
 #define EXYNOS4210_REV_1_0     (0x10)
 #define EXYNOS4210_REV_1_1     (0x11)
 #define EXYNOS4210_REV_1_2     (0x12)
 
 #if defined(CONFIG_CPU_EXYNOS4212)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # define soc_is_exynos4212()	is_samsung_exynos4212()
 #else
 # define soc_is_exynos4212()	0
 #endif
 
+<<<<<<< HEAD
+#if defined(CONFIG_SOC_EXYNOS4412)
+=======
 #define EXYNOS4212_REV_0       (0x0)
 #define EXYNOS4212_REV_1_0     (0x10)
 
 #if defined(CONFIG_CPU_EXYNOS4412)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # define soc_is_exynos4412()	is_samsung_exynos4412()
 #else
 # define soc_is_exynos4412()	0
 #endif
 
+<<<<<<< HEAD
+#define EXYNOS4210_REV_0	(0x0)
+#define EXYNOS4210_REV_1_0	(0x10)
+#define EXYNOS4210_REV_1_1	(0x11)
+
+#if defined(CONFIG_SOC_EXYNOS5250)
+# define soc_is_exynos5250()	is_samsung_exynos5250()
+#else
+# define soc_is_exynos5250()	0
+#endif
+
+=======
 #define EXYNOS4412_REV_0       (0x0)
 #define EXYNOS4412_REV_0_1     (0x01)
 #define EXYNOS4412_REV_1_0     (0x10)
@@ -152,6 +203,7 @@ IS_SAMSUNG_CPU(exynos5250, EXYNOS5250_CPU_ID, EXYNOS_CPU_MASK)
 #define EXYNOS5250_REV_0	(0x0)
 #define EXYNOS5250_REV_1_0	(0x10)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IODESC_ENT(x) { (unsigned long)S3C24XX_VA_##x, __phys_to_pfn(S3C24XX_PA_##x), S3C24XX_SZ_##x, MT_DEVICE }
 
 #ifndef MHZ
@@ -184,6 +236,11 @@ extern void s3c_init_cpu(unsigned long idcode,
 /* core initialisation functions */
 
 extern void s3c24xx_init_irq(void);
+<<<<<<< HEAD
+extern void s5p_init_irq(u32 *vic, u32 num_vic);
+
+extern void s3c24xx_init_io(struct map_desc *mach_desc, int size);
+=======
 extern void s3c64xx_init_irq(u32 vic0, u32 vic1);
 extern void s5p_init_irq(u32 *vic, u32 num_vic);
 
@@ -191,6 +248,7 @@ extern void s3c24xx_init_io(struct map_desc *mach_desc, int size);
 extern void s3c64xx_init_io(struct map_desc *mach_desc, int size);
 extern void s5p_init_io(struct map_desc *mach_desc,
 			int size, void __iomem *cpuid_addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern void s3c24xx_init_cpu(void);
 extern void s3c64xx_init_cpu(void);
@@ -215,6 +273,22 @@ extern struct syscore_ops s3c2410_pm_syscore_ops;
 extern struct syscore_ops s3c2412_pm_syscore_ops;
 extern struct syscore_ops s3c2416_pm_syscore_ops;
 extern struct syscore_ops s3c244x_pm_syscore_ops;
+<<<<<<< HEAD
+
+/* system device subsystems */
+
+extern struct bus_type s3c2410_subsys;
+extern struct bus_type s3c2410a_subsys;
+extern struct bus_type s3c2412_subsys;
+extern struct bus_type s3c2416_subsys;
+extern struct bus_type s3c2440_subsys;
+extern struct bus_type s3c2442_subsys;
+extern struct bus_type s3c2443_subsys;
+extern struct bus_type s3c6410_subsys;
+extern struct bus_type s5p64x0_subsys;
+extern struct bus_type s5pv210_subsys;
+extern struct bus_type exynos4_subsys;
+=======
 extern struct syscore_ops s3c64xx_irq_syscore_ops;
 
 /* system device classes */
@@ -232,6 +306,7 @@ extern struct sysdev_class s5p64x0_sysclass;
 extern struct sysdev_class s5pv210_sysclass;
 extern struct sysdev_class exynos4_sysclass;
 extern struct sysdev_class exynos5_sysclass;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern void (*s5pc1xx_idle)(void);
 

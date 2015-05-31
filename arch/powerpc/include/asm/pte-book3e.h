@@ -72,6 +72,12 @@
 #define	PTE_RPN_SHIFT	(24)
 #endif
 
+<<<<<<< HEAD
+#define PTE_WIMGE_SHIFT (19)
+#define PTE_BAP_SHIFT	(2)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* On 32-bit, we never clear the top part of the PTE */
 #ifdef CONFIG_PPC32
 #define _PTE_NONE_MASK	0xffffffff00000000ULL

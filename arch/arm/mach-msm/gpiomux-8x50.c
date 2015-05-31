@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* Copyright (c) 2010, The Linux Foundation. All rights reserved.
+=======
 /* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -8,6 +12,18 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+<<<<<<< HEAD
+ */
+#include <linux/module.h>
+#include <mach/irqs.h>
+#include <mach/gpiomux.h>
+
+static int __init gpiomux_init(void)
+{
+	return msm_gpiomux_init(NR_GPIO_IRQS);
+}
+postcore_initcall(gpiomux_init);
+=======
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
@@ -49,3 +65,4 @@ struct msm_gpiomux_config msm_gpiomux_configs[GPIOMUX_NGPIOS] = {
 		.suspended = SDC1_SUSPEND_CONFIG
 	},
 };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

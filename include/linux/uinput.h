@@ -68,7 +68,11 @@ struct uinput_device {
 	unsigned char		head;
 	unsigned char		tail;
 	struct input_event	buff[UINPUT_BUFFER_SIZE];
+<<<<<<< HEAD
+	unsigned int		ff_effects_max;
+=======
 	int			ff_effects_max;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	struct uinput_request	*requests[UINPUT_NUM_REQUESTS];
 	wait_queue_head_t	requests_waitq;

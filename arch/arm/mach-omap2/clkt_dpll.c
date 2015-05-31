@@ -22,6 +22,10 @@
 #include <asm/div64.h>
 
 #include <plat/clock.h>
+<<<<<<< HEAD
+#include <plat/cpu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "clock.h"
 #include "cm-regbits-24xx.h"
@@ -46,10 +50,26 @@
 					 (DPLL_SCALE_FACTOR / DPLL_SCALE_BASE))
 
 /* DPLL valid Fint frequency band limits - from 34xx TRM Section 4.7.6.2 */
+<<<<<<< HEAD
+#define OMAP3430_DPLL_FINT_BAND1_MIN	750000
+#define OMAP3430_DPLL_FINT_BAND1_MAX	2100000
+#define OMAP3430_DPLL_FINT_BAND2_MIN	7500000
+#define OMAP3430_DPLL_FINT_BAND2_MAX	21000000
+
+/*
+ * DPLL valid Fint frequency range for OMAP36xx and OMAP4xxx.
+ * From device data manual section 4.3 "DPLL and DLL Specifications".
+ */
+#define OMAP3PLUS_DPLL_FINT_JTYPE_MIN	500000
+#define OMAP3PLUS_DPLL_FINT_JTYPE_MAX	2500000
+#define OMAP3PLUS_DPLL_FINT_MIN		32000
+#define OMAP3PLUS_DPLL_FINT_MAX		52000000
+=======
 #define DPLL_FINT_BAND1_MIN		750000
 #define DPLL_FINT_BAND1_MAX		2100000
 #define DPLL_FINT_BAND2_MIN		7500000
 #define DPLL_FINT_BAND2_MAX		21000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* _dpll_test_fint() return codes */
 #define DPLL_FINT_UNDERFLOW		-1
@@ -71,19 +91,46 @@
 static int _dpll_test_fint(struct clk *clk, u8 n)
 {
 	struct dpll_data *dd;
+<<<<<<< HEAD
+	long fint, fint_min, fint_max;
+=======
 	long fint;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = 0;
 
 	dd = clk->dpll_data;
 
 	/* DPLL divider must result in a valid jitter correction val */
 	fint = clk->parent->rate / n;
+<<<<<<< HEAD
+
+	if (cpu_is_omap24xx()) {
+		/* Should not be called for OMAP2, so warn if it is called */
+		WARN(1, "No fint limits available for OMAP2!\n");
+		return DPLL_FINT_INVALID;
+	} else if (cpu_is_omap3430()) {
+		fint_min = OMAP3430_DPLL_FINT_BAND1_MIN;
+		fint_max = OMAP3430_DPLL_FINT_BAND2_MAX;
+	} else if (dd->flags & DPLL_J_TYPE) {
+		fint_min = OMAP3PLUS_DPLL_FINT_JTYPE_MIN;
+		fint_max = OMAP3PLUS_DPLL_FINT_JTYPE_MAX;
+	} else {
+		fint_min = OMAP3PLUS_DPLL_FINT_MIN;
+		fint_max = OMAP3PLUS_DPLL_FINT_MAX;
+	}
+
+	if (fint < fint_min) {
+=======
 	if (fint < DPLL_FINT_BAND1_MIN) {
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		pr_debug("rejecting n=%d due to Fint failure, "
 			 "lowering max_divider\n", n);
 		dd->max_divider = n;
 		ret = DPLL_FINT_UNDERFLOW;
+<<<<<<< HEAD
+	} else if (fint > fint_max) {
+=======
 
 	} else if (fint > DPLL_FINT_BAND1_MAX &&
 		   fint < DPLL_FINT_BAND2_MIN) {
@@ -93,11 +140,19 @@ static int _dpll_test_fint(struct clk *clk, u8 n)
 
 	} else if (fint > DPLL_FINT_BAND2_MAX) {
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		pr_debug("rejecting n=%d due to Fint failure, "
 			 "boosting min_divider\n", n);
 		dd->min_divider = n;
 		ret = DPLL_FINT_INVALID;
+<<<<<<< HEAD
+	} else if (cpu_is_omap3430() && fint > OMAP3430_DPLL_FINT_BAND1_MAX &&
+		   fint < OMAP3430_DPLL_FINT_BAND2_MIN) {
+		pr_debug("rejecting n=%d due to Fint failure\n", n);
+		ret = DPLL_FINT_INVALID;
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	return ret;

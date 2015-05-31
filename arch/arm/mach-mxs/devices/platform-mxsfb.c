@@ -5,6 +5,10 @@
  * the terms of the GNU General Public License version 2 as published by the
  * Free Software Foundation.
  */
+<<<<<<< HEAD
+#include <linux/dma-mapping.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/sizes.h>
 #include <mach/mx23.h>
 #include <mach/mx28.h>

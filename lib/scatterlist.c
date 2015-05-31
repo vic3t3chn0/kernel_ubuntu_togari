@@ -6,7 +6,11 @@
  * This source code is licensed under the GNU General Public License,
  * Version 2. See the file COPYING for more details.
  */
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <linux/scatterlist.h>
 #include <linux/highmem.h>
@@ -228,12 +232,22 @@ int __sg_alloc_table(struct sg_table *table, unsigned int nents,
 	struct scatterlist *sg, *prv;
 	unsigned int left;
 
+<<<<<<< HEAD
+	memset(table, 0, sizeof(*table));
+
+	if (nents == 0)
+		return -EINVAL;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef ARCH_HAS_SG_CHAIN
 	BUG_ON(nents > max_ents);
 #endif
 
+<<<<<<< HEAD
+=======
 	memset(table, 0, sizeof(*table));
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	left = nents;
 	prv = NULL;
 	do {
@@ -390,7 +404,11 @@ bool sg_miter_next(struct sg_mapping_iter *miter)
 	miter->consumed = miter->length;
 
 	if (miter->__flags & SG_MITER_ATOMIC)
+<<<<<<< HEAD
+		miter->addr = kmap_atomic(miter->page) + off;
+=======
 		miter->addr = kmap_atomic(miter->page, KM_BIO_SRC_IRQ) + off;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		miter->addr = kmap(miter->page) + off;
 
@@ -424,7 +442,11 @@ void sg_miter_stop(struct sg_mapping_iter *miter)
 
 		if (miter->__flags & SG_MITER_ATOMIC) {
 			WARN_ON(!irqs_disabled());
+<<<<<<< HEAD
+			kunmap_atomic(miter->addr);
+=======
 			kunmap_atomic(miter->addr, KM_BIO_SRC_IRQ);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} else
 			kunmap(miter->page);
 

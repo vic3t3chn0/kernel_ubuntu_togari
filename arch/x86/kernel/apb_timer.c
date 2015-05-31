@@ -27,6 +27,14 @@
  * timer, but by default APB timer has higher rating than local APIC timers.
  */
 
+<<<<<<< HEAD
+#include <linux/delay.h>
+#include <linux/dw_apb_timer.h>
+#include <linux/errno.h>
+#include <linux/init.h>
+#include <linux/slab.h>
+#include <linux/pm.h>
+=======
 #include <linux/clocksource.h>
 #include <linux/clockchips.h>
 #include <linux/delay.h>
@@ -36,6 +44,7 @@
 #include <linux/slab.h>
 #include <linux/pm.h>
 #include <linux/pci.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sfi.h>
 #include <linux/interrupt.h>
 #include <linux/cpu.h>
@@ -44,6 +53,19 @@
 #include <asm/fixmap.h>
 #include <asm/apb_timer.h>
 #include <asm/mrst.h>
+<<<<<<< HEAD
+#include <asm/time.h>
+
+#define APBT_CLOCKEVENT_RATING		110
+#define APBT_CLOCKSOURCE_RATING		250
+
+#define APBT_CLOCKEVENT0_NUM   (0)
+#define APBT_CLOCKSOURCE_NUM   (2)
+
+static phys_addr_t apbt_address;
+static int apb_timer_block_enabled;
+static void __iomem *apbt_virt_address;
+=======
 
 #define APBT_MASK			CLOCKSOURCE_MASK(32)
 #define APBT_SHIFT			22
@@ -60,10 +82,30 @@ static unsigned long apbt_address;
 static int apb_timer_block_enabled;
 static void __iomem *apbt_virt_address;
 static int phy_cs_timer_id;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Common DW APB timer info
  */
+<<<<<<< HEAD
+static unsigned long apbt_freq;
+
+struct apbt_dev {
+	struct dw_apb_clock_event_device	*timer;
+	unsigned int				num;
+	int					cpu;
+	unsigned int				irq;
+	char					name[10];
+};
+
+static struct dw_apb_clocksource *clocksource_apbt;
+
+static inline void __iomem *adev_virt_addr(struct apbt_dev *adev)
+{
+	return apbt_virt_address + adev->num * APBTMRS_REG_SIZE;
+}
+
+=======
 static uint64_t apbt_freq;
 
 static void apbt_set_mode(enum clock_event_mode mode,
@@ -84,10 +126,19 @@ struct apbt_dev {
 	char name[10];
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static DEFINE_PER_CPU(struct apbt_dev, cpu_apbt_dev);
 
 #ifdef CONFIG_SMP
 static unsigned int apbt_num_timers_used;
+<<<<<<< HEAD
+#endif
+
+static inline void apbt_set_mapping(void)
+{
+	struct sfi_timer_table_entry *mtmr;
+	int phy_cs_timer_id = 0;
+=======
 static struct apbt_dev *apbt_devs;
 #endif
 
@@ -114,6 +165,7 @@ static inline void apbt_writel(int n, unsigned long d, unsigned long a)
 static inline void apbt_set_mapping(void)
 {
 	struct sfi_timer_table_entry *mtmr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (apbt_virt_address) {
 		pr_debug("APBT base already mapped\n");
@@ -125,12 +177,24 @@ static inline void apbt_set_mapping(void)
 		       APBT_CLOCKEVENT0_NUM);
 		return;
 	}
+<<<<<<< HEAD
+	apbt_address = (phys_addr_t)mtmr->phys_addr;
+=======
 	apbt_address = (unsigned long)mtmr->phys_addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!apbt_address) {
 		printk(KERN_WARNING "No timer base from SFI, use default\n");
 		apbt_address = APBT_DEFAULT_BASE;
 	}
 	apbt_virt_address = ioremap_nocache(apbt_address, APBT_MMAP_SIZE);
+<<<<<<< HEAD
+	if (!apbt_virt_address) {
+		pr_debug("Failed mapping APBT phy address at %lu\n",\
+			 (unsigned long)apbt_address);
+		goto panic_noapbt;
+	}
+	apbt_freq = mtmr->freq_hz;
+=======
 	if (apbt_virt_address) {
 		pr_debug("Mapped APBT physical addr %p at virtual addr %p\n",\
 			 (void *)apbt_address, (void *)apbt_virt_address);
@@ -140,6 +204,7 @@ static inline void apbt_set_mapping(void)
 		goto panic_noapbt;
 	}
 	apbt_freq = mtmr->freq_hz / USEC_PER_SEC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sfi_free_mtmr(mtmr);
 
 	/* Now figure out the physical timer id for clocksource device */
@@ -148,9 +213,20 @@ static inline void apbt_set_mapping(void)
 		goto panic_noapbt;
 
 	/* Now figure out the physical timer id */
+<<<<<<< HEAD
+	pr_debug("Use timer %d for clocksource\n",
+		 (int)(mtmr->phys_addr & 0xff) / APBTMRS_REG_SIZE);
+	phy_cs_timer_id = (unsigned int)(mtmr->phys_addr & 0xff) /
+		APBTMRS_REG_SIZE;
+
+	clocksource_apbt = dw_apb_clocksource_init(APBT_CLOCKSOURCE_RATING,
+		"apbt0", apbt_virt_address + phy_cs_timer_id *
+		APBTMRS_REG_SIZE, apbt_freq);
+=======
 	phy_cs_timer_id = (unsigned int)(mtmr->phys_addr & 0xff)
 		/ APBTMRS_REG_SIZE;
 	pr_debug("Use timer %d for clocksource\n", phy_cs_timer_id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return;
 
 panic_noapbt:
@@ -172,6 +248,8 @@ static inline int is_apbt_capable(void)
 	return apbt_virt_address ? 1 : 0;
 }
 
+<<<<<<< HEAD
+=======
 static struct clocksource clocksource_apbt = {
 	.name		= "apbt",
 	.rating		= APBT_CLOCKSOURCE_RATING,
@@ -248,6 +326,7 @@ static void apbt_disable_int(int n)
 }
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int __init apbt_clockevent_register(void)
 {
 	struct sfi_timer_table_entry *mtmr;
@@ -260,6 +339,18 @@ static int __init apbt_clockevent_register(void)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
+	adev->num = smp_processor_id();
+	adev->timer = dw_apb_clockevent_init(smp_processor_id(), "apbt0",
+		mrst_timer_options == MRST_TIMER_LAPIC_APBT ?
+		APBT_CLOCKEVENT_RATING - 100 : APBT_CLOCKEVENT_RATING,
+		adev_virt_addr(adev), 0, apbt_freq);
+	/* Firmware does EOI handling for us. */
+	adev->timer->eoi = NULL;
+
+	if (mrst_timer_options == MRST_TIMER_LAPIC_APBT) {
+		global_clock_event = &adev->timer->ced;
+=======
 	/*
 	 * We need to calculate the scaled math multiplication factor for
 	 * nanosecond to apbt tick conversion.
@@ -285,10 +376,14 @@ static int __init apbt_clockevent_register(void)
 	if (mrst_timer_options == MRST_TIMER_LAPIC_APBT) {
 		adev->evt.rating = APBT_CLOCKEVENT_RATING - 100;
 		global_clock_event = &adev->evt;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		printk(KERN_DEBUG "%s clockevent registered as global\n",
 		       global_clock_event->name);
 	}
 
+<<<<<<< HEAD
+	dw_apb_clockevent_register(adev->timer);
+=======
 	if (request_irq(apbt_clockevent.irq, apbt_interrupt_handler,
 			IRQF_TIMER | IRQF_DISABLED | IRQF_NOBALANCING,
 			apbt_clockevent.name, adev)) {
@@ -299,6 +394,7 @@ static int __init apbt_clockevent_register(void)
 	clockevents_register_device(&adev->evt);
 	/* Start APBT 0 interrupts */
 	apbt_enable_int(APBT_CLOCKEVENT0_NUM);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	sfi_free_mtmr(mtmr);
 	return 0;
@@ -316,6 +412,8 @@ static void apbt_setup_irq(struct apbt_dev *adev)
 	irq_set_affinity(adev->irq, cpumask_of(adev->cpu));
 	/* APB timer irqs are set up as mp_irqs, timer is edge type */
 	__irq_set_handler(adev->irq, handle_edge_irq, 0, "edge");
+<<<<<<< HEAD
+=======
 
 	if (system_state == SYSTEM_BOOTING) {
 		if (request_irq(adev->irq, apbt_interrupt_handler,
@@ -327,19 +425,41 @@ static void apbt_setup_irq(struct apbt_dev *adev)
 		}
 	} else
 		enable_irq(adev->irq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /* Should be called with per cpu */
 void apbt_setup_secondary_clock(void)
 {
 	struct apbt_dev *adev;
+<<<<<<< HEAD
+=======
 	struct clock_event_device *aevt;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int cpu;
 
 	/* Don't register boot CPU clockevent */
 	cpu = smp_processor_id();
 	if (!cpu)
 		return;
+<<<<<<< HEAD
+
+	adev = &__get_cpu_var(cpu_apbt_dev);
+	if (!adev->timer) {
+		adev->timer = dw_apb_clockevent_init(cpu, adev->name,
+			APBT_CLOCKEVENT_RATING, adev_virt_addr(adev),
+			adev->irq, apbt_freq);
+		adev->timer->eoi = NULL;
+	} else {
+		dw_apb_clockevent_resume(adev->timer);
+	}
+
+	printk(KERN_INFO "Registering CPU %d clockevent device %s, cpu %08x\n",
+	       cpu, adev->name, adev->cpu);
+
+	apbt_setup_irq(adev);
+	dw_apb_clockevent_register(adev->timer);
+=======
 	/*
 	 * We need to calculate the scaled math multiplication factor for
 	 * nanosecond to apbt tick conversion.
@@ -362,6 +482,7 @@ void apbt_setup_secondary_clock(void)
 	clockevents_register_device(aevt);
 
 	apbt_enable_int(cpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return;
 }
@@ -384,13 +505,21 @@ static int apbt_cpuhp_notify(struct notifier_block *n,
 
 	switch (action & 0xf) {
 	case CPU_DEAD:
+<<<<<<< HEAD
+		dw_apb_clockevent_pause(adev->timer);
+=======
 		disable_irq(adev->irq);
 		apbt_disable_int(cpu);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (system_state == SYSTEM_RUNNING) {
 			pr_debug("skipping APBT CPU %lu offline\n", cpu);
 		} else if (adev) {
 			pr_debug("APBT clockevent for cpu %lu offline\n", cpu);
+<<<<<<< HEAD
+			dw_apb_clockevent_stop(adev->timer);
+=======
 			free_irq(adev->irq, adev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		break;
 	default:
@@ -415,6 +544,8 @@ void apbt_setup_secondary_clock(void) {}
 
 #endif /* CONFIG_SMP */
 
+<<<<<<< HEAD
+=======
 static void apbt_set_mode(enum clock_event_mode mode,
 			  struct clock_event_device *evt)
 {
@@ -515,16 +646,24 @@ static cycle_t apbt_read_clocksource(struct clocksource *cs)
 	return (cycle_t)~current_count;
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int apbt_clocksource_register(void)
 {
 	u64 start, now;
 	cycle_t t1;
 
 	/* Start the counter, use timer 2 as source, timer 0/1 for event */
+<<<<<<< HEAD
+	dw_apb_clocksource_start(clocksource_apbt);
+
+	/* Verify whether apbt counter works */
+	t1 = dw_apb_clocksource_read(clocksource_apbt);
+=======
 	apbt_start_counter(phy_cs_timer_id);
 
 	/* Verify whether apbt counter works */
 	t1 = apbt_read_clocksource(&clocksource_apbt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rdtscll(start);
 
 	/*
@@ -539,10 +678,17 @@ static int apbt_clocksource_register(void)
 	} while ((now - start) < 200000UL);
 
 	/* APBT is the only always on clocksource, it has to work! */
+<<<<<<< HEAD
+	if (t1 == dw_apb_clocksource_read(clocksource_apbt))
+		panic("APBT counter not counting. APBT disabled\n");
+
+	dw_apb_clocksource_register(clocksource_apbt);
+=======
 	if (t1 == apbt_read_clocksource(&clocksource_apbt))
 		panic("APBT counter not counting. APBT disabled\n");
 
 	clocksource_register_khz(&clocksource_apbt, (u32)apbt_freq*1000);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }
@@ -566,10 +712,14 @@ void __init apbt_time_init(void)
 	if (apb_timer_block_enabled)
 		return;
 	apbt_set_mapping();
+<<<<<<< HEAD
+	if (!apbt_virt_address)
+=======
 	if (apbt_virt_address) {
 		pr_debug("Found APBT version 0x%lx\n",\
 			 apbt_readl_reg(APBTMRS_COMP_VERSION));
 	} else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_noapbt;
 	/*
 	 * Read the frequency and check for a sane value, for ESL model
@@ -577,7 +727,11 @@ void __init apbt_time_init(void)
 	 */
 
 	if (apbt_freq < APBT_MIN_FREQ || apbt_freq > APBT_MAX_FREQ) {
+<<<<<<< HEAD
+		pr_debug("APBT has invalid freq 0x%lx\n", apbt_freq);
+=======
 		pr_debug("APBT has invalid freq 0x%llx\n", apbt_freq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_noapbt;
 	}
 	if (apbt_clocksource_register()) {
@@ -603,23 +757,36 @@ void __init apbt_time_init(void)
 	} else {
 		percpu_timer = 0;
 		apbt_num_timers_used = 1;
+<<<<<<< HEAD
+=======
 		adev = &per_cpu(cpu_apbt_dev, 0);
 		adev->flags &= ~APBT_DEV_USED;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	pr_debug("%s: %d APB timers used\n", __func__, apbt_num_timers_used);
 
 	/* here we set up per CPU timer data structure */
+<<<<<<< HEAD
+=======
 	apbt_devs = kzalloc(sizeof(struct apbt_dev) * apbt_num_timers_used,
 			    GFP_KERNEL);
 	if (!apbt_devs) {
 		printk(KERN_ERR "Failed to allocate APB timer devices\n");
 		return;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	for (i = 0; i < apbt_num_timers_used; i++) {
 		adev = &per_cpu(cpu_apbt_dev, i);
 		adev->num = i;
 		adev->cpu = i;
 		p_mtmr = sfi_get_mtmr(i);
+<<<<<<< HEAD
+		if (p_mtmr)
+			adev->irq = p_mtmr->irq;
+		else
+			printk(KERN_ERR "Failed to get timer for cpu %d\n", i);
+		snprintf(adev->name, sizeof(adev->name) - 1, "apbt%d", i);
+=======
 		if (p_mtmr) {
 			adev->tick = p_mtmr->freq_hz;
 			adev->irq = p_mtmr->irq;
@@ -627,6 +794,7 @@ void __init apbt_time_init(void)
 			printk(KERN_ERR "Failed to get timer for cpu %d\n", i);
 		adev->count = 0;
 		sprintf(adev->name, "apbt%d", i);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 #endif
 
@@ -638,6 +806,10 @@ out_noapbt:
 	panic("failed to enable APB timer\n");
 }
 
+<<<<<<< HEAD
+/* called before apb_timer_enable, use early map */
+unsigned long apbt_quick_calibrate(void)
+=======
 static inline void apbt_disable(int n)
 {
 	if (is_apbt_capable()) {
@@ -649,6 +821,7 @@ static inline void apbt_disable(int n)
 
 /* called before apb_timer_enable, use early map */
 unsigned long apbt_quick_calibrate()
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int i, scale;
 	u64 old, new;
@@ -657,6 +830,15 @@ unsigned long apbt_quick_calibrate()
 	u32 loop, shift;
 
 	apbt_set_mapping();
+<<<<<<< HEAD
+	dw_apb_clocksource_start(clocksource_apbt);
+
+	/* check if the timer can count down, otherwise return */
+	old = dw_apb_clocksource_read(clocksource_apbt);
+	i = 10000;
+	while (--i) {
+		if (old != dw_apb_clocksource_read(clocksource_apbt))
+=======
 	apbt_start_counter(phy_cs_timer_id);
 
 	/* check if the timer can count down, otherwise return */
@@ -664,24 +846,38 @@ unsigned long apbt_quick_calibrate()
 	i = 10000;
 	while (--i) {
 		if (old != apbt_read_clocksource(&clocksource_apbt))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 	}
 	if (!i)
 		goto failed;
 
 	/* count 16 ms */
+<<<<<<< HEAD
+	loop = (apbt_freq / 1000) << 4;
+
+	/* restart the timer to ensure it won't get to 0 in the calibration */
+	dw_apb_clocksource_start(clocksource_apbt);
+
+	old = dw_apb_clocksource_read(clocksource_apbt);
+=======
 	loop = (apbt_freq * 1000) << 4;
 
 	/* restart the timer to ensure it won't get to 0 in the calibration */
 	apbt_start_counter(phy_cs_timer_id);
 
 	old = apbt_read_clocksource(&clocksource_apbt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	old += loop;
 
 	t1 = __native_read_tsc();
 
 	do {
+<<<<<<< HEAD
+		new = dw_apb_clocksource_read(clocksource_apbt);
+=======
 		new = apbt_read_clocksource(&clocksource_apbt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} while (new < old);
 
 	t2 = __native_read_tsc();
@@ -693,7 +889,11 @@ unsigned long apbt_quick_calibrate()
 		return 0;
 	}
 	scale = (int)div_u64((t2 - t1), loop >> shift);
+<<<<<<< HEAD
+	khz = (scale * (apbt_freq / 1000)) >> shift;
+=======
 	khz = (scale * apbt_freq * 1000) >> shift;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	printk(KERN_INFO "TSC freq calculated by APB timer is %lu khz\n", khz);
 	return khz;
 failed:

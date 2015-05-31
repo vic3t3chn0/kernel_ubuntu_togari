@@ -263,6 +263,12 @@ static void flatten_tree(struct node *tree, struct emitter *emit,
 	struct node *child;
 	int seen_name_prop = 0;
 
+<<<<<<< HEAD
+	if (tree->deleted)
+		return;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	emit->beginnode(etarget, tree->labels);
 
 	if (vi->flags & FTF_FULLPATH)
@@ -697,7 +703,10 @@ static struct reserve_info *flat_read_mem_reserve(struct inbuf *inb)
 {
 	struct reserve_info *reservelist = NULL;
 	struct reserve_info *new;
+<<<<<<< HEAD
+=======
 	const char *p;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct fdt_reserve_entry re;
 
 	/*
@@ -706,7 +715,10 @@ static struct reserve_info *flat_read_mem_reserve(struct inbuf *inb)
 	 *
 	 * First pass, count entries.
 	 */
+<<<<<<< HEAD
+=======
 	p = inb->ptr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	while (1) {
 		flat_read_chunk(inb, &re, sizeof(re));
 		re.address  = fdt64_to_cpu(re.address);

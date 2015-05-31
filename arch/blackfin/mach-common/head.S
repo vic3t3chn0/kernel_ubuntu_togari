@@ -85,17 +85,35 @@ ENTRY(__start)
 	SSYNC;
 
 	/* in case of double faults, save a few things */
+<<<<<<< HEAD
+	p1.l = _initial_pda;
+	p1.h = _initial_pda;
+	r4 = RETX;
+=======
 	p0.l = _init_retx;
 	p0.h = _init_retx;
 	R0 = RETX;
 	[P0] = R0;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_DEBUG_DOUBLEFAULT
 	/* Only save these if we are storing them,
 	 * This happens here, since L1 gets clobbered
 	 * below
 	 */
 	GET_PDA(p0, r0);
+<<<<<<< HEAD
+	r0 = [p0 + PDA_DF_RETX];
+	r1 = [p0 + PDA_DF_DCPLB];
+	r2 = [p0 + PDA_DF_ICPLB];
+	r3 = [p0 + PDA_DF_SEQSTAT];
+	[p1 + PDA_INIT_DF_RETX] = r0;
+	[p1 + PDA_INIT_DF_DCPLB] = r1;
+	[p1 + PDA_INIT_DF_ICPLB] = r2;
+	[p1 + PDA_INIT_DF_SEQSTAT] = r3;
+#endif
+	[p1 + PDA_INIT_RETX] = r4;
+=======
 	r5 = [p0 + PDA_DF_RETX];
 	p1.l = _init_saved_retx;
 	p1.h = _init_saved_retx;
@@ -116,6 +134,7 @@ ENTRY(__start)
 	p1.h = _init_saved_seqstat;
 	[p1] = r5;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Initialize stack pointer */
 	sp.l = _init_thread_union + THREAD_SIZE;

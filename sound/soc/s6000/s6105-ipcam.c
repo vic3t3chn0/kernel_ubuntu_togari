@@ -187,6 +187,10 @@ static struct snd_soc_dai_link s6105_dai = {
 /* s6105 audio machine driver */
 static struct snd_soc_card snd_soc_card_s6105 = {
 	.name = "Stretch IP Camera",
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.dai_link = &s6105_dai,
 	.num_links = 1,
 };

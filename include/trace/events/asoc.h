@@ -9,6 +9,10 @@
 
 struct snd_soc_jack;
 struct snd_soc_codec;
+<<<<<<< HEAD
+struct snd_soc_platform;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct snd_soc_card;
 struct snd_soc_dapm_widget;
 
@@ -59,6 +63,53 @@ DEFINE_EVENT(snd_soc_reg, snd_soc_reg_read,
 
 );
 
+<<<<<<< HEAD
+DECLARE_EVENT_CLASS(snd_soc_preg,
+
+	TP_PROTO(struct snd_soc_platform *platform, unsigned int reg,
+		 unsigned int val),
+
+	TP_ARGS(platform, reg, val),
+
+	TP_STRUCT__entry(
+		__string(	name,		platform->name	)
+		__field(	int,		id		)
+		__field(	unsigned int,	reg		)
+		__field(	unsigned int,	val		)
+	),
+
+	TP_fast_assign(
+		__assign_str(name, platform->name);
+		__entry->id = platform->id;
+		__entry->reg = reg;
+		__entry->val = val;
+	),
+
+	TP_printk("platform=%s.%d reg=%x val=%x", __get_str(name),
+		  (int)__entry->id, (unsigned int)__entry->reg,
+		  (unsigned int)__entry->val)
+);
+
+DEFINE_EVENT(snd_soc_preg, snd_soc_preg_write,
+
+	TP_PROTO(struct snd_soc_platform *platform, unsigned int reg,
+		 unsigned int val),
+
+	TP_ARGS(platform, reg, val)
+
+);
+
+DEFINE_EVENT(snd_soc_preg, snd_soc_preg_read,
+
+	TP_PROTO(struct snd_soc_platform *platform, unsigned int reg,
+		 unsigned int val),
+
+	TP_ARGS(platform, reg, val)
+
+);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 DECLARE_EVENT_CLASS(snd_soc_card,
 
 	TP_PROTO(struct snd_soc_card *card, int val),
@@ -171,6 +222,34 @@ DEFINE_EVENT(snd_soc_dapm_widget, snd_soc_dapm_widget_event_done,
 
 );
 
+<<<<<<< HEAD
+TRACE_EVENT(snd_soc_dapm_walk_done,
+
+	TP_PROTO(struct snd_soc_card *card),
+
+	TP_ARGS(card),
+
+	TP_STRUCT__entry(
+		__string(	name,	card->name		)
+		__field(	int,	power_checks		)
+		__field(	int,	path_checks		)
+		__field(	int,	neighbour_checks	)
+	),
+
+	TP_fast_assign(
+		__assign_str(name, card->name);
+		__entry->power_checks = card->dapm_stats.power_checks;
+		__entry->path_checks = card->dapm_stats.path_checks;
+		__entry->neighbour_checks = card->dapm_stats.neighbour_checks;
+	),
+
+	TP_printk("%s: checks %d power, %d path, %d neighbour",
+		  __get_str(name), (int)__entry->power_checks,
+		  (int)__entry->path_checks, (int)__entry->neighbour_checks)
+);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 TRACE_EVENT(snd_soc_jack_irq,
 
 	TP_PROTO(const char *name),

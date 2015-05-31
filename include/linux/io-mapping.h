@@ -20,6 +20,10 @@
 
 #include <linux/types.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
+#include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/io.h>
 #include <asm/page.h>
 
@@ -27,7 +31,11 @@
  * The io_mapping mechanism provides an abstraction for mapping
  * individual pages from an io device to the CPU in an efficient fashion.
  *
+<<<<<<< HEAD
+ * See Documentation/io-mapping.txt
+=======
  * See Documentation/io_mapping.txt
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifdef CONFIG_HAVE_ATOMIC_IOMAP

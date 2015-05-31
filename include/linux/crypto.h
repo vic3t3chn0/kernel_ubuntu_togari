@@ -7,27 +7,44 @@
  *
  * Portions derived from Cryptoapi, by Alexander Kjeldaas <astor@fast.no>
  * and Nettle, by Niels Möller.
+<<<<<<< HEAD
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 2 of the License, or (at your option) 
+=======
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 2 of the License, or (at your option)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * any later version.
  *
  */
 #ifndef _LINUX_CRYPTO_H
 #define _LINUX_CRYPTO_H
 
+<<<<<<< HEAD
+#include <linux/atomic.h>
+#include <linux/kernel.h>
+#include <linux/list.h>
+#include <linux/bug.h>
+=======
 #include <asm/atomic.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/list.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <linux/string.h>
 #include <linux/uaccess.h>
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 #include <linux/err.h>
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Algorithm masks and types.
  */
@@ -75,6 +92,19 @@
 #define CRYPTO_ALG_TESTED		0x00000400
 
 /*
+<<<<<<< HEAD
+ * Set if the algorithm is an instance that is build from templates.
+ */
+#define CRYPTO_ALG_INSTANCE		0x00000800
+
+/* Set this bit if the algorithm provided is hardware accelerated but
+ * not available to userspace via instruction set or so.
+ */
+#define CRYPTO_ALG_KERN_DRIVER_ONLY	0x00001000
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Transform masks and values (for crt_flags).
  */
 #define CRYPTO_TFM_REQ_MASK		0x000fff00
@@ -84,10 +114,17 @@
 #define CRYPTO_TFM_REQ_MAY_SLEEP	0x00000200
 #define CRYPTO_TFM_REQ_MAY_BACKLOG	0x00000400
 #define CRYPTO_TFM_RES_WEAK_KEY		0x00100000
+<<<<<<< HEAD
+#define CRYPTO_TFM_RES_BAD_KEY_LEN   	0x00200000
+#define CRYPTO_TFM_RES_BAD_KEY_SCHED 	0x00400000
+#define CRYPTO_TFM_RES_BAD_BLOCK_LEN 	0x00800000
+#define CRYPTO_TFM_RES_BAD_FLAGS 	0x01000000
+=======
 #define CRYPTO_TFM_RES_BAD_KEY_LEN	0x00200000
 #define CRYPTO_TFM_RES_BAD_KEY_SCHED	0x00400000
 #define CRYPTO_TFM_RES_BAD_BLOCK_LEN	0x00800000
 #define CRYPTO_TFM_RES_BAD_FLAGS	0x01000000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Miscellaneous stuff.
@@ -106,10 +143,13 @@
 
 #define CRYPTO_MINALIGN_ATTR __attribute__ ((__aligned__(CRYPTO_MINALIGN)))
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 bool in_fips_err(void);
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct scatterlist;
 struct crypto_ablkcipher;
 struct crypto_async_request;
@@ -303,7 +343,11 @@ struct crypto_alg {
 	int (*cra_init)(struct crypto_tfm *tfm);
 	void (*cra_exit)(struct crypto_tfm *tfm);
 	void (*cra_destroy)(struct crypto_alg *alg);
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct module *cra_module;
 };
 
@@ -312,6 +356,11 @@ struct crypto_alg {
  */
 int crypto_register_alg(struct crypto_alg *alg);
 int crypto_unregister_alg(struct crypto_alg *alg);
+<<<<<<< HEAD
+int crypto_register_algs(struct crypto_alg *algs, int count);
+int crypto_unregister_algs(struct crypto_alg *algs, int count);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Algorithm query interface.
@@ -408,7 +457,11 @@ struct rng_tfm {
 struct crypto_tfm {
 
 	u32 crt_flags;
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	union {
 		struct ablkcipher_tfm ablkcipher;
 		struct aead_tfm aead;
@@ -420,7 +473,11 @@ struct crypto_tfm {
 	} crt_u;
 
 	void (*exit)(struct crypto_tfm *tfm);
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct crypto_alg *__crt_alg;
 
 	void *__crt_ctx[] CRYPTO_MINALIGN_ATTR;
@@ -480,10 +537,17 @@ struct crypto_attr_u32 {
 	u32 num;
 };
 
+<<<<<<< HEAD
+/* 
+ * Transform user interface.
+ */
+ 
+=======
 /*
  * Transform user interface.
  */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct crypto_tfm *crypto_alloc_base(const char *alg_name, u32 type, u32 mask);
 void crypto_destroy_tfm(void *mem, struct crypto_tfm *tfm);
 
@@ -512,11 +576,14 @@ static inline int crypto_tfm_alg_priority(struct crypto_tfm *tfm)
 	return tfm->__crt_alg->cra_priority;
 }
 
+<<<<<<< HEAD
+=======
 static inline const char *crypto_tfm_alg_modname(struct crypto_tfm *tfm)
 {
 	return module_name(tfm->__crt_alg->cra_module);
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline u32 crypto_tfm_alg_type(struct crypto_tfm *tfm)
 {
 	return tfm->__crt_alg->cra_flags & CRYPTO_ALG_TYPE_MASK;
@@ -661,11 +728,14 @@ static inline int crypto_ablkcipher_encrypt(struct ablkcipher_request *req)
 {
 	struct ablkcipher_tfm *crt =
 		crypto_ablkcipher_crt(crypto_ablkcipher_reqtfm(req));
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crt->encrypt(req);
 }
 
@@ -673,12 +743,15 @@ static inline int crypto_ablkcipher_decrypt(struct ablkcipher_request *req)
 {
 	struct ablkcipher_tfm *crt =
 		crypto_ablkcipher_crt(crypto_ablkcipher_reqtfm(req));
+<<<<<<< HEAD
+=======
 
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crt->decrypt(req);
 }
 
@@ -705,11 +778,14 @@ static inline struct ablkcipher_request *ablkcipher_request_alloc(
 {
 	struct ablkcipher_request *req;
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return NULL;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	req = kmalloc(sizeof(struct ablkcipher_request) +
 		      crypto_ablkcipher_reqsize(tfm), gfp);
 
@@ -818,21 +894,27 @@ static inline struct crypto_aead *crypto_aead_reqtfm(struct aead_request *req)
 
 static inline int crypto_aead_encrypt(struct aead_request *req)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_aead_crt(crypto_aead_reqtfm(req))->encrypt(req);
 }
 
 static inline int crypto_aead_decrypt(struct aead_request *req)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_aead_crt(crypto_aead_reqtfm(req))->decrypt(req);
 }
 
@@ -852,11 +934,14 @@ static inline struct aead_request *aead_request_alloc(struct crypto_aead *tfm,
 {
 	struct aead_request *req;
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return NULL;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	req = kmalloc(sizeof(*req) + crypto_aead_reqsize(tfm), gfp);
 
 	if (likely(req))
@@ -1005,11 +1090,14 @@ static inline int crypto_blkcipher_encrypt(struct blkcipher_desc *desc,
 					   struct scatterlist *src,
 					   unsigned int nbytes)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	desc->info = crypto_blkcipher_crt(desc->tfm)->iv;
 	return crypto_blkcipher_crt(desc->tfm)->encrypt(desc, dst, src, nbytes);
 }
@@ -1019,11 +1107,14 @@ static inline int crypto_blkcipher_encrypt_iv(struct blkcipher_desc *desc,
 					      struct scatterlist *src,
 					      unsigned int nbytes)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_blkcipher_crt(desc->tfm)->encrypt(desc, dst, src, nbytes);
 }
 
@@ -1032,11 +1123,14 @@ static inline int crypto_blkcipher_decrypt(struct blkcipher_desc *desc,
 					   struct scatterlist *src,
 					   unsigned int nbytes)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	desc->info = crypto_blkcipher_crt(desc->tfm)->iv;
 	return crypto_blkcipher_crt(desc->tfm)->decrypt(desc, dst, src, nbytes);
 }
@@ -1046,11 +1140,14 @@ static inline int crypto_blkcipher_decrypt_iv(struct blkcipher_desc *desc,
 					      struct scatterlist *src,
 					      unsigned int nbytes)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_blkcipher_crt(desc->tfm)->decrypt(desc, dst, src, nbytes);
 }
 
@@ -1148,11 +1245,14 @@ static inline int crypto_cipher_setkey(struct crypto_cipher *tfm,
 static inline void crypto_cipher_encrypt_one(struct crypto_cipher *tfm,
 					     u8 *dst, const u8 *src)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	crypto_cipher_crt(tfm)->cit_encrypt_one(crypto_cipher_tfm(tfm),
 						dst, src);
 }
@@ -1160,11 +1260,14 @@ static inline void crypto_cipher_encrypt_one(struct crypto_cipher *tfm,
 static inline void crypto_cipher_decrypt_one(struct crypto_cipher *tfm,
 					     u8 *dst, const u8 *src)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	crypto_cipher_crt(tfm)->cit_decrypt_one(crypto_cipher_tfm(tfm),
 						dst, src);
 }
@@ -1249,11 +1352,14 @@ static inline void crypto_hash_clear_flags(struct crypto_hash *tfm, u32 flags)
 
 static inline int crypto_hash_init(struct hash_desc *desc)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_hash_crt(desc->tfm)->init(desc);
 }
 
@@ -1261,21 +1367,27 @@ static inline int crypto_hash_update(struct hash_desc *desc,
 				     struct scatterlist *sg,
 				     unsigned int nbytes)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_hash_crt(desc->tfm)->update(desc, sg, nbytes);
 }
 
 static inline int crypto_hash_final(struct hash_desc *desc, u8 *out)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_hash_crt(desc->tfm)->final(desc, out);
 }
 
@@ -1283,11 +1395,14 @@ static inline int crypto_hash_digest(struct hash_desc *desc,
 				     struct scatterlist *sg,
 				     unsigned int nbytes, u8 *out)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_hash_crt(desc->tfm)->digest(desc, sg, nbytes, out);
 }
 
@@ -1352,11 +1467,14 @@ static inline int crypto_comp_compress(struct crypto_comp *tfm,
                                        const u8 *src, unsigned int slen,
                                        u8 *dst, unsigned int *dlen)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_comp_crt(tfm)->cot_compress(crypto_comp_tfm(tfm),
 						  src, slen, dst, dlen);
 }
@@ -1365,13 +1483,20 @@ static inline int crypto_comp_decompress(struct crypto_comp *tfm,
                                          const u8 *src, unsigned int slen,
                                          u8 *dst, unsigned int *dlen)
 {
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_CRYPTO_FIPS
 	if (unlikely(in_fips_err()))
 		return -EACCES;
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return crypto_comp_crt(tfm)->cot_decompress(crypto_comp_tfm(tfm),
 						    src, slen, dst, dlen);
 }
 
 #endif	/* _LINUX_CRYPTO_H */
+<<<<<<< HEAD
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

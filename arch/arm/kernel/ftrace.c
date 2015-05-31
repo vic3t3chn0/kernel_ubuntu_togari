@@ -16,10 +16,20 @@
 #include <linux/uaccess.h>
 
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
+#include <asm/opcodes.h>
+#include <asm/ftrace.h>
+
+#include "insn.h"
+
+#ifdef CONFIG_THUMB2_KERNEL
+#define	NOP		0xf85deb04	/* pop.w {lr} */
+=======
 #include <asm/ftrace.h>
 
 #ifdef CONFIG_THUMB2_KERNEL
 #define	NOP		0xeb04f85d	/* pop.w {lr} */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 #define	NOP		0xe8bd4000	/* pop {lr} */
 #endif
@@ -60,6 +70,33 @@ static unsigned long adjust_address(struct dyn_ftrace *rec, unsigned long addr)
 }
 #endif
 
+<<<<<<< HEAD
+static unsigned long ftrace_call_replace(unsigned long pc, unsigned long addr)
+{
+	return arm_gen_branch_link(pc, addr);
+}
+
+static int ftrace_modify_code(unsigned long pc, unsigned long old,
+			      unsigned long new, bool validate)
+{
+	unsigned long replaced;
+
+	if (IS_ENABLED(CONFIG_THUMB2_KERNEL)) {
+		old = __opcode_to_mem_thumb32(old);
+		new = __opcode_to_mem_thumb32(new);
+	} else {
+		old = __opcode_to_mem_arm(old);
+		new = __opcode_to_mem_arm(new);
+	}
+
+	if (validate) {
+		if (probe_kernel_read(&replaced, (void *)pc, MCOUNT_INSN_SIZE))
+			return -EFAULT;
+
+		if (replaced != old)
+			return -EINVAL;
+	}
+=======
 #ifdef CONFIG_THUMB2_KERNEL
 static unsigned long ftrace_gen_branch(unsigned long pc, unsigned long addr,
 				       bool link)
@@ -130,6 +167,7 @@ static int ftrace_modify_code(unsigned long pc, unsigned long old,
 
 	if (replaced != old)
 		return -EINVAL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (probe_kernel_write((void *)pc, &new, MCOUNT_INSN_SIZE))
 		return -EPERM;
@@ -141,23 +179,39 @@ static int ftrace_modify_code(unsigned long pc, unsigned long old,
 
 int ftrace_update_ftrace_func(ftrace_func_t func)
 {
+<<<<<<< HEAD
+	unsigned long pc;
+=======
 	unsigned long pc, old;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long new;
 	int ret;
 
 	pc = (unsigned long)&ftrace_call;
+<<<<<<< HEAD
+	new = ftrace_call_replace(pc, (unsigned long)func);
+
+	ret = ftrace_modify_code(pc, 0, new, false);
+=======
 	memcpy(&old, &ftrace_call, MCOUNT_INSN_SIZE);
 	new = ftrace_call_replace(pc, (unsigned long)func);
 
 	ret = ftrace_modify_code(pc, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_OLD_MCOUNT
 	if (!ret) {
 		pc = (unsigned long)&ftrace_call_old;
+<<<<<<< HEAD
+		new = ftrace_call_replace(pc, (unsigned long)func);
+
+		ret = ftrace_modify_code(pc, 0, new, false);
+=======
 		memcpy(&old, &ftrace_call_old, MCOUNT_INSN_SIZE);
 		new = ftrace_call_replace(pc, (unsigned long)func);
 
 		ret = ftrace_modify_code(pc, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 #endif
 
@@ -172,7 +226,11 @@ int ftrace_make_call(struct dyn_ftrace *rec, unsigned long addr)
 	old = ftrace_nop_replace(rec);
 	new = ftrace_call_replace(ip, adjust_address(rec, addr));
 
+<<<<<<< HEAD
+	return ftrace_modify_code(rec->ip, old, new, true);
+=======
 	return ftrace_modify_code(rec->ip, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 int ftrace_make_nop(struct module *mod,
@@ -185,7 +243,11 @@ int ftrace_make_nop(struct module *mod,
 
 	old = ftrace_call_replace(ip, adjust_address(rec, addr));
 	new = ftrace_nop_replace(rec);
+<<<<<<< HEAD
+	ret = ftrace_modify_code(ip, old, new, true);
+=======
 	ret = ftrace_modify_code(ip, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_OLD_MCOUNT
 	if (ret == -EINVAL && addr == MCOUNT_ADDR) {
@@ -193,7 +255,11 @@ int ftrace_make_nop(struct module *mod,
 
 		old = ftrace_call_replace(ip, adjust_address(rec, addr));
 		new = ftrace_nop_replace(rec);
+<<<<<<< HEAD
+		ret = ftrace_modify_code(ip, old, new, true);
+=======
 		ret = ftrace_modify_code(ip, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 #endif
 
@@ -249,12 +315,20 @@ static int __ftrace_modify_caller(unsigned long *callsite,
 {
 	unsigned long caller_fn = (unsigned long) func;
 	unsigned long pc = (unsigned long) callsite;
+<<<<<<< HEAD
+	unsigned long branch = arm_gen_branch(pc, caller_fn);
+=======
 	unsigned long branch = ftrace_gen_branch(pc, caller_fn, false);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long nop = 0xe1a00000;	/* mov r0, r0 */
 	unsigned long old = enable ? nop : branch;
 	unsigned long new = enable ? branch : nop;
 
+<<<<<<< HEAD
+	return ftrace_modify_code(pc, old, new, true);
+=======
 	return ftrace_modify_code(pc, old, new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int ftrace_modify_graph_caller(bool enable)

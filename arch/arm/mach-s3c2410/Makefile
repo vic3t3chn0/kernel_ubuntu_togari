@@ -9,6 +9,11 @@ obj-m				:=
 obj-n				:=
 obj-				:=
 
+<<<<<<< HEAD
+obj-$(CONFIG_S3C2410_CPUFREQ)	+= cpu-freq.o
+obj-$(CONFIG_S3C2410_PLLTABLE)	+= pll.o
+
+=======
 obj-$(CONFIG_CPU_S3C2410)	+= s3c2410.o
 obj-$(CONFIG_CPU_S3C2410_DMA)	+= dma.o
 obj-$(CONFIG_CPU_S3C2410_DMA)	+= dma.o
@@ -39,3 +44,4 @@ obj-$(CONFIG_SIMTEC_NOR)	+= nor-simtec.o
 # machine additions
 
 obj-$(CONFIG_MACH_BAST_IDE)	+= bast-ide.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

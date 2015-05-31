@@ -1,5 +1,9 @@
 #include <linux/syscalls.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/fs.h>
 #include <linux/file.h>
 #include <linux/mount.h>
@@ -7,6 +11,10 @@
 #include <linux/statfs.h>
 #include <linux/security.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
+#include "internal.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static int flags_by_mnt(int mnt_flags)
 {
@@ -45,7 +53,11 @@ static int calculate_f_flags(struct vfsmount *mnt)
 		flags_by_sb(mnt->mnt_sb->s_flags);
 }
 
+<<<<<<< HEAD
+static int statfs_by_dentry(struct dentry *dentry, struct kstatfs *buf)
+=======
 int statfs_by_dentry(struct dentry *dentry, struct kstatfs *buf)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int retval;
 
@@ -86,7 +98,11 @@ int user_statfs(const char __user *pathname, struct kstatfs *st)
 
 int fd_statfs(int fd, struct kstatfs *st)
 {
+<<<<<<< HEAD
+	struct file *file = fget(fd);
+=======
 	struct file *file = fget_raw(fd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int error = -EBADF;
 	if (file) {
 		error = vfs_statfs(&file->f_path, st);
@@ -205,6 +221,25 @@ SYSCALL_DEFINE3(fstatfs64, unsigned int, fd, size_t, sz, struct statfs64 __user 
 	return error;
 }
 
+<<<<<<< HEAD
+int vfs_ustat(dev_t dev, struct kstatfs *sbuf)
+{
+	struct super_block *s = user_get_super(dev);
+	int err;
+	if (!s)
+		return -EINVAL;
+
+	err = statfs_by_dentry(s->s_root, sbuf);
+	drop_super(s);
+	return err;
+}
+
+SYSCALL_DEFINE2(ustat, unsigned, dev, struct ustat __user *, ubuf)
+{
+	struct ustat tmp;
+	struct kstatfs sbuf;
+	int err = vfs_ustat(new_decode_dev(dev), &sbuf);
+=======
 SYSCALL_DEFINE2(ustat, unsigned, dev, struct ustat __user *, ubuf)
 {
 	struct super_block *s;
@@ -218,6 +253,7 @@ SYSCALL_DEFINE2(ustat, unsigned, dev, struct ustat __user *, ubuf)
 
 	err = statfs_by_dentry(s->s_root, &sbuf);
 	drop_super(s);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err)
 		return err;
 

@@ -2,6 +2,10 @@
 #include <asm/thread_info.h>
 #include <asm/cache.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+#include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 OUTPUT_FORMAT("elf64-alpha")
 OUTPUT_ARCH(alpha)
@@ -25,6 +29,10 @@ SECTIONS
 		*(.fixup)
 		*(.gnu.warning)
 	} :kernel
+<<<<<<< HEAD
+	swapper_pg_dir = SWAPPER_PGD;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	_etext = .;	/* End of text section */
 
 	NOTES :kernel :note

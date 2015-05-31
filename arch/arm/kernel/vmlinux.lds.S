@@ -4,15 +4,37 @@
  */
 
 #include <asm-generic/vmlinux.lds.h>
+<<<<<<< HEAD
+#include <asm/cache.h>
+#include <asm/thread_info.h>
+#include <asm/memory.h>
+#include <asm/page.h>
+#ifdef CONFIG_STRICT_MEMORY_RWX
+#include <asm/pgtable.h>
+#endif
+
+#define PROC_INFO							\
+	. = ALIGN(4);							\
+=======
 #include <asm/thread_info.h>
 #include <asm/memory.h>
 #include <asm/page.h>
 	
 #define PROC_INFO							\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	VMLINUX_SYMBOL(__proc_info_begin) = .;				\
 	*(.proc.info.init)						\
 	VMLINUX_SYMBOL(__proc_info_end) = .;
 
+<<<<<<< HEAD
+#define IDMAP_TEXT							\
+	ALIGN_FUNCTION();						\
+	VMLINUX_SYMBOL(__idmap_text_start) = .;				\
+	*(.idmap.text)							\
+	VMLINUX_SYMBOL(__idmap_text_end) = .;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_HOTPLUG_CPU
 #define ARM_CPU_DISCARD(x)
 #define ARM_CPU_KEEP(x)		x
@@ -21,10 +43,20 @@
 #define ARM_CPU_KEEP(x)
 #endif
 
+<<<<<<< HEAD
+#if (defined(CONFIG_SMP_ON_UP) && !defined(CONFIG_DEBUG_SPINLOCK)) || \
+	defined(CONFIG_GENERIC_BUG)
+#define ARM_EXIT_KEEP(x)	x
+#define ARM_EXIT_DISCARD(x)
+#else
+#define ARM_EXIT_KEEP(x)
+#define ARM_EXIT_DISCARD(x)	x
+=======
 #if defined(CONFIG_SMP_ON_UP) && !defined(CONFIG_DEBUG_SPINLOCK)
 #define ARM_EXIT_KEEP(x)	x
 #else
 #define ARM_EXIT_KEEP(x)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 OUTPUT_ARCH(arm)
@@ -38,6 +70,14 @@ jiffies = jiffies_64 + 4;
 
 SECTIONS
 {
+<<<<<<< HEAD
+	/*
+	 * XXX: The linker does not define how output sections are
+	 * assigned to input sections when there are multiple statements
+	 * matching the same input section name.  There is no documented
+	 * order of matching.
+	 *
+=======
 #ifdef CONFIG_XIP_KERNEL
 	. = XIP_VIRT_ADDR(CONFIG_XIP_PHYS_ADDR);
 #else
@@ -90,6 +130,7 @@ SECTIONS
 #endif
 
 	/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	 * unwind exit sections must be discarded before the rest of the
 	 * unwind sections get included.
 	 */
@@ -98,6 +139,12 @@ SECTIONS
 		*(.ARM.extab.exit.text)
 		ARM_CPU_DISCARD(*(.ARM.exidx.cpuexit.text))
 		ARM_CPU_DISCARD(*(.ARM.extab.cpuexit.text))
+<<<<<<< HEAD
+		ARM_EXIT_DISCARD(EXIT_TEXT)
+		ARM_EXIT_DISCARD(EXIT_DATA)
+		EXIT_CALL
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef CONFIG_HOTPLUG
 		*(.ARM.exidx.devexit.text)
 		*(.ARM.extab.devexit.text)
@@ -106,10 +153,35 @@ SECTIONS
 		*(.fixup)
 		*(__ex_table)
 #endif
+<<<<<<< HEAD
+#ifndef CONFIG_SMP_ON_UP
+		*(.alt.smp.init)
+#endif
+		*(.discard)
+		*(.discard.*)
+	}
+
+#ifdef CONFIG_XIP_KERNEL
+	. = XIP_VIRT_ADDR(CONFIG_XIP_PHYS_ADDR);
+#else
+	. = PAGE_OFFSET + TEXT_OFFSET;
+#endif
+	.head.text : {
+		_text = .;
+		HEAD_TEXT
+	}
+#ifdef CONFIG_STRICT_MEMORY_RWX
+	. = ALIGN(1<<SECTION_SHIFT);
+#endif
+
+	.text : {			/* Real text segment		*/
+		_stext = .;		/* Text and read-only data	*/
+=======
 	}
 
 	.text : {			/* Real text segment		*/
 		_text = .;		/* Text and read-only data	*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			__exception_text_start = .;
 			*(.exception.text)
 			__exception_text_end = .;
@@ -118,12 +190,19 @@ SECTIONS
 			SCHED_TEXT
 			LOCK_TEXT
 			KPROBES_TEXT
+<<<<<<< HEAD
+			IDMAP_TEXT
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_MMU
 			*(.fixup)
 #endif
 			*(.gnu.warning)
+<<<<<<< HEAD
+=======
 			*(.rodata)
 			*(.rodata.*)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			*(.glue_7)
 			*(.glue_7t)
 		. = ALIGN(4);
@@ -131,6 +210,12 @@ SECTIONS
 			ARM_CPU_KEEP(PROC_INFO)
 	}
 
+<<<<<<< HEAD
+#ifdef CONFIG_STRICT_MEMORY_RWX
+	. = ALIGN(1<<SECTION_SHIFT);
+#endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	RO_DATA(PAGE_SIZE)
 
 #ifdef CONFIG_ARM_UNWIND
@@ -152,10 +237,97 @@ SECTIONS
 
 	_etext = .;			/* End of text and rodata section */
 
+<<<<<<< HEAD
+#ifndef CONFIG_XIP_KERNEL
+#ifdef CONFIG_STRICT_MEMORY_RWX
+	. = ALIGN(1<<SECTION_SHIFT);
+#else
+	. = ALIGN(PAGE_SIZE);
+#endif
+	__init_begin = .;
+#endif
+	/*
+	 * The vectors and stubs are relocatable code, and the
+	 * only thing that matters is their relative offsets
+	 */
+	__vectors_start = .;
+	.vectors 0 : AT(__vectors_start) {
+		*(.vectors)
+	}
+	. = __vectors_start + SIZEOF(.vectors);
+	__vectors_end = .;
+
+	__stubs_start = .;
+	.stubs 0x1000 : AT(__stubs_start) {
+		*(.stubs)
+	}
+	. = __stubs_start + SIZEOF(.stubs);
+	__stubs_end = .;
+
+	INIT_TEXT_SECTION(8)
+	.exit.text : {
+		ARM_EXIT_KEEP(EXIT_TEXT)
+	}
+	.init.proc.info : {
+		ARM_CPU_DISCARD(PROC_INFO)
+	}
+#ifdef CONFIG_STRICT_MEMORY_RWX
+	. = ALIGN(1<<SECTION_SHIFT);
+#endif
+	.init.arch.info : {
+		__arch_info_begin = .;
+		*(.arch.info.init)
+		__arch_info_end = .;
+	}
+	.init.tagtable : {
+		__tagtable_begin = .;
+		*(.taglist.init)
+		__tagtable_end = .;
+	}
+#ifdef CONFIG_SMP_ON_UP
+	.init.smpalt : {
+		__smpalt_begin = .;
+		*(.alt.smp.init)
+		__smpalt_end = .;
+	}
+#endif
+	.init.pv_table : {
+		__pv_table_begin = .;
+		*(.pv_table)
+		__pv_table_end = .;
+	}
+	.init.data : {
+#ifndef CONFIG_XIP_KERNEL
+		INIT_DATA
+#endif
+		INIT_SETUP(16)
+		INIT_CALLS
+		CON_INITCALL
+		COMPAT_EXPORTS
+		SECURITY_INITCALL
+		INIT_RAM_FS
+	}
+#ifndef CONFIG_XIP_KERNEL
+	.exit.data : {
+		ARM_EXIT_KEEP(EXIT_DATA)
+	}
+#endif
+
+#if !defined(CONFIG_SMP) && !defined(CONFIG_XIP_KERNEL)
+	. = ALIGN(THREAD_SIZE);
+#endif
+	PERCPU_SECTION(L1_CACHE_BYTES)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_XIP_KERNEL
 	__data_loc = ALIGN(4);		/* location in binary */
 	. = PAGE_OFFSET + TEXT_OFFSET;
 #else
+<<<<<<< HEAD
+	__init_end = .;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	. = ALIGN(THREAD_SIZE);
 	__data_loc = .;
 #endif
@@ -180,13 +352,22 @@ SECTIONS
 #endif
 
 		NOSAVE_DATA
+<<<<<<< HEAD
+		CACHELINE_ALIGNED_DATA(L1_CACHE_BYTES)
+		READ_MOSTLY_DATA(L1_CACHE_BYTES)
+=======
 		CACHELINE_ALIGNED_DATA(32)
 		READ_MOSTLY_DATA(32)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/*
 		 * The exception fixup table (might need resorting at runtime)
 		 */
+<<<<<<< HEAD
+		. = ALIGN(4);
+=======
 		. = ALIGN(32);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__start___ex_table = .;
 #ifdef CONFIG_MMU
 		*(__ex_table)
@@ -267,6 +448,8 @@ SECTIONS
 
 	STABS_DEBUG
 	.comment 0 : { *(.comment) }
+<<<<<<< HEAD
+=======
 
 	/* Default discards */
 	DISCARDS
@@ -276,6 +459,7 @@ SECTIONS
 		*(.alt.smp.init)
 	}
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*

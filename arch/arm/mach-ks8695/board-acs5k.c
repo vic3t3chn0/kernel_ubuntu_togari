@@ -10,7 +10,11 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+#include <linux/gpio.h>
+=======
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/interrupt.h>
@@ -34,7 +38,11 @@
 #include <asm/mach/irq.h>
 
 #include <mach/devices.h>
+<<<<<<< HEAD
+#include <mach/gpio-ks8695.h>
+=======
 #include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "generic.h"
 
@@ -223,9 +231,17 @@ static void __init acs5k_init(void)
 
 MACHINE_START(ACS5K, "Brivo Systems LLC ACS-5000 Master board")
 	/* Maintainer: Simtec Electronics. */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
 	.boot_params	= KS8695_SDRAM_PA + 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_io		= ks8695_map_io,
 	.init_irq	= ks8695_init_irq,
 	.init_machine	= acs5k_init,
 	.timer		= &ks8695_timer,
+<<<<<<< HEAD
+	.restart	= ks8695_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

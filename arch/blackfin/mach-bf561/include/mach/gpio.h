@@ -58,9 +58,15 @@
 #define GPIO_PF46	46
 #define GPIO_PF47	47
 
+<<<<<<< HEAD
+#define PORT_FIO0 GPIO_PF0
+#define PORT_FIO1 GPIO_PF16
+#define PORT_FIO2 GPIO_PF32
+=======
 #define PORT_FIO0 GPIO_0
 #define PORT_FIO1 GPIO_16
 #define PORT_FIO2 GPIO_32
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach-common/ports-f.h>
 

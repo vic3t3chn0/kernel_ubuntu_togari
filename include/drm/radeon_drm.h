@@ -908,6 +908,10 @@ struct drm_radeon_gem_va {
 #define RADEON_CHUNK_ID_RELOCS	0x01
 #define RADEON_CHUNK_ID_IB	0x02
 #define RADEON_CHUNK_ID_FLAGS	0x03
+<<<<<<< HEAD
+#define RADEON_CHUNK_ID_CONST_IB	0x04
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* The first dword of RADEON_CHUNK_ID_FLAGS is a uint32 of these flags: */
 #define RADEON_CS_KEEP_TILING_FLAGS 0x01
@@ -962,6 +966,11 @@ struct drm_radeon_cs {
 #define RADEON_INFO_VA_START		0x0e
 /* maximum size of ib using the virtual memory cs */
 #define RADEON_INFO_IB_VM_MAX_SIZE	0x0f
+<<<<<<< HEAD
+/* max pipes - needed for compute shaders */
+#define RADEON_INFO_MAX_PIPES		0x10
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct drm_radeon_info {
 	uint32_t		request;

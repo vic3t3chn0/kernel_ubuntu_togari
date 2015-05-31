@@ -71,6 +71,10 @@ static void  __attribute__ ((noreturn)) usage(void)
 	fprintf(stderr, "\t\t\tasm - assembler source\n");
 	fprintf(stderr, "\t-V <output version>\n");
 	fprintf(stderr, "\t\tBlob version to produce, defaults to %d (relevant for dtb\n\t\tand asm output only)\n", DEFAULT_FDT_VERSION);
+<<<<<<< HEAD
+	fprintf(stderr, "\t-d <output dependency file>\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fprintf(stderr, "\t-R <number>\n");
 	fprintf(stderr, "\t\tMake space for <number> reserve map entries (relevant for \n\t\tdtb and asm output only)\n");
 	fprintf(stderr, "\t-S <bytes>\n");
@@ -81,6 +85,11 @@ static void  __attribute__ ((noreturn)) usage(void)
 	fprintf(stderr, "\t\tSet the physical boot cpu\n");
 	fprintf(stderr, "\t-f\n");
 	fprintf(stderr, "\t\tForce - try to produce output even if the input tree has errors\n");
+<<<<<<< HEAD
+	fprintf(stderr, "\t-i\n");
+	fprintf(stderr, "\t\tAdd a path to search for include files\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fprintf(stderr, "\t-s\n");
 	fprintf(stderr, "\t\tSort nodes and properties before outputting (only useful for\n\t\tcomparing trees)\n");
 	fprintf(stderr, "\t-v\n");
@@ -90,6 +99,12 @@ static void  __attribute__ ((noreturn)) usage(void)
 	fprintf(stderr, "\t\t\tlegacy - \"linux,phandle\" properties only\n");
 	fprintf(stderr, "\t\t\tepapr - \"phandle\" properties only\n");
 	fprintf(stderr, "\t\t\tboth - Both \"linux,phandle\" and \"phandle\" properties\n");
+<<<<<<< HEAD
+	fprintf(stderr, "\t-W [no-]<checkname>\n");
+	fprintf(stderr, "\t-E [no-]<checkname>\n");
+	fprintf(stderr, "\t\t\tenable or disable warnings and errors\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	exit(3);
 }
 
@@ -99,7 +114,12 @@ int main(int argc, char *argv[])
 	const char *inform = "dts";
 	const char *outform = "dts";
 	const char *outname = "-";
+<<<<<<< HEAD
+	const char *depname = NULL;
+	int force = 0, sort = 0;
+=======
 	int force = 0, check = 0, sort = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	const char *arg;
 	int opt;
 	FILE *outf = NULL;
@@ -111,7 +131,12 @@ int main(int argc, char *argv[])
 	minsize    = 0;
 	padsize    = 0;
 
+<<<<<<< HEAD
+	while ((opt = getopt(argc, argv, "hI:O:o:V:d:R:S:p:fqb:i:vH:sW:E:"))
+			!= EOF) {
+=======
 	while ((opt = getopt(argc, argv, "hI:O:o:V:R:S:p:fcqb:vH:s")) != EOF) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (opt) {
 		case 'I':
 			inform = optarg;
@@ -125,6 +150,12 @@ int main(int argc, char *argv[])
 		case 'V':
 			outversion = strtol(optarg, NULL, 0);
 			break;
+<<<<<<< HEAD
+		case 'd':
+			depname = optarg;
+			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case 'R':
 			reservenum = strtol(optarg, NULL, 0);
 			break;
@@ -137,15 +168,24 @@ int main(int argc, char *argv[])
 		case 'f':
 			force = 1;
 			break;
+<<<<<<< HEAD
+=======
 		case 'c':
 			check = 1;
 			break;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case 'q':
 			quiet++;
 			break;
 		case 'b':
 			cmdline_boot_cpuid = strtoll(optarg, NULL, 0);
 			break;
+<<<<<<< HEAD
+		case 'i':
+			srcfile_add_search_path(optarg);
+			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case 'v':
 			printf("Version: %s\n", DTC_VERSION);
 			exit(0);
@@ -165,6 +205,17 @@ int main(int argc, char *argv[])
 			sort = 1;
 			break;
 
+<<<<<<< HEAD
+		case 'W':
+			parse_checks_option(true, false, optarg);
+			break;
+
+		case 'E':
+			parse_checks_option(false, true, optarg);
+			break;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case 'h':
 		default:
 			usage();
@@ -185,8 +236,18 @@ int main(int argc, char *argv[])
 	if (minsize)
 		fprintf(stderr, "DTC: Use of \"-S\" is deprecated; it will be removed soon, use \"-p\" instead\n");
 
+<<<<<<< HEAD
+	if (depname) {
+		depfile = fopen(depname, "w");
+		if (!depfile)
+			die("Couldn't open dependency file %s: %s\n", depname,
+			    strerror(errno));
+		fprintf(depfile, "%s:", outname);
+	}
+=======
 	fprintf(stderr, "DTC: %s->%s  on file \"%s\"\n",
 		inform, outform, arg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (streq(inform, "dts"))
 		bi = dt_from_source(arg);
@@ -197,6 +258,14 @@ int main(int argc, char *argv[])
 	else
 		die("Unknown input format \"%s\"\n", inform);
 
+<<<<<<< HEAD
+	if (depfile) {
+		fputc('\n', depfile);
+		fclose(depfile);
+	}
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (cmdline_boot_cpuid != -1)
 		bi->boot_cpuid_phys = cmdline_boot_cpuid;
 

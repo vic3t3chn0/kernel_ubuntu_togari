@@ -10,6 +10,10 @@
  */
 
 #include <linux/sched.h>
+<<<<<<< HEAD
+#include <linux/stat.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <linux/pci.h>
 

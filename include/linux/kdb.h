@@ -16,7 +16,11 @@
 #ifdef	CONFIG_KGDB_KDB
 #include <linux/init.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
+#include <linux/atomic.h>
+=======
 #include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define KDB_POLL_FUNC_MAX	5
 extern int kdb_poll_idx;
@@ -114,12 +118,18 @@ typedef enum {
 } kdb_reason_t;
 
 extern int kdb_trap_printk;
+<<<<<<< HEAD
+extern __printf(1, 0) int vkdb_printf(const char *fmt, va_list args);
+extern __printf(1, 2) int kdb_printf(const char *, ...);
+typedef __printf(1, 2) int (*kdb_printf_t)(const char *, ...);
+=======
 extern int vkdb_printf(const char *fmt, va_list args)
 	    __attribute__ ((format (printf, 1, 0)));
 extern int kdb_printf(const char *, ...)
 	    __attribute__ ((format (printf, 1, 2)));
 typedef int (*kdb_printf_t)(const char *, ...)
 	     __attribute__ ((format (printf, 1, 2)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern void kdb_init(int level);
 

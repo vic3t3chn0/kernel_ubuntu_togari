@@ -33,6 +33,14 @@ extern void show_ipi_list(struct seq_file *, int);
 asmlinkage void do_IPI(int ipinr, struct pt_regs *regs);
 
 /*
+<<<<<<< HEAD
+ * Called from C code, this handles an IPI.
+ */
+void handle_IPI(int ipinr, struct pt_regs *regs);
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Setup the set of possible CPUs (via set_cpu_possible)
  */
 extern void smp_init_cpus(void);
@@ -88,11 +96,48 @@ extern void platform_cpu_enable(unsigned int cpu);
 extern void arch_send_call_function_single_ipi(int cpu);
 extern void arch_send_call_function_ipi_mask(const struct cpumask *mask);
 
+<<<<<<< HEAD
+extern void smp_send_all_cpu_backtrace(void);
+
+struct smp_operations {
+#ifdef CONFIG_SMP
+/*
+ * Setup the set of possible CPUs (via set_cpu_possible)
+ */
+void (*smp_init_cpus)(void);
+/*
+ * Initialize cpu_possible map, and enable coherency
+ */
+void (*smp_prepare_cpus)(unsigned int max_cpus);
+
+/*
+ * Perform platform specific initialisation of the specified CPU.
+ */
+void (*smp_secondary_init)(unsigned int cpu);
+/*
+ * Boot a secondary CPU, and assign it the specified idle task.
+ * This also gives us the initial stack to use for this CPU.
+ */
+int  (*smp_boot_secondary)(unsigned int cpu, struct task_struct *idle);
+#ifdef CONFIG_HOTPLUG_CPU
+int  (*cpu_kill)(unsigned int cpu);
+void (*cpu_die)(unsigned int cpu);
+int  (*cpu_disable)(unsigned int cpu);
+#endif
+#endif
+};
+
+/*
+ * set platform specific SMP operations
+ */
+extern void smp_set_ops(struct smp_operations *);
+=======
 /*
  * show local interrupt info
  */
 extern void show_local_irqs(struct seq_file *, int);
 
 extern void smp_send_all_cpu_backtrace(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* ifndef __ASM_ARM_SMP_H */

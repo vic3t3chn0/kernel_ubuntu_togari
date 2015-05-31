@@ -9,12 +9,21 @@
 
 #define JUMP_LABEL_NOP_SIZE 5
 
+<<<<<<< HEAD
+#define STATIC_KEY_INITIAL_NOP ".byte 0xe9 \n\t .long 0\n\t"
+
+static __always_inline bool arch_static_branch(struct static_key *key)
+{
+	asm goto("1:"
+		STATIC_KEY_INITIAL_NOP
+=======
 #define JUMP_LABEL_INITIAL_NOP ".byte 0xe9 \n\t .long 0\n\t"
 
 static __always_inline bool arch_static_branch(struct jump_label_key *key)
 {
 	asm goto("1:"
 		JUMP_LABEL_INITIAL_NOP
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		".pushsection __jump_table,  \"aw\" \n\t"
 		_ASM_ALIGN "\n\t"
 		_ASM_PTR "1b, %l[l_yes], %c0 \n\t"

@@ -22,6 +22,10 @@
 #include <linux/slab.h>
 #include <linux/time.h>
 #include <linux/string.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/minors.h>
 #include <sound/info.h>

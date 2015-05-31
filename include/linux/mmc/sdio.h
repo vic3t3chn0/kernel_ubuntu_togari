@@ -9,8 +9,13 @@
  * your option) any later version.
  */
 
+<<<<<<< HEAD
+#ifndef LINUX_MMC_SDIO_H
+#define LINUX_MMC_SDIO_H
+=======
 #ifndef MMC_SDIO_H
 #define MMC_SDIO_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* SDIO commands                         type  argument     response */
 #define SD_IO_SEND_OP_COND          5 /* bcr  [23:0] OCR         R4  */
@@ -100,6 +105,10 @@
 
 #define  SDIO_BUS_WIDTH_1BIT	0x00
 #define  SDIO_BUS_WIDTH_4BIT	0x02
+<<<<<<< HEAD
+#define  SDIO_BUS_WIDTH_8BIT  	0x03
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define  SDIO_BUS_ECSI		0x20	/* Enable continuous SPI interrupt */
 #define  SDIO_BUS_SCSI		0x40	/* Support continuous SPI interrupt */
 
@@ -161,6 +170,13 @@
 #define  SDIO_DTSx_SET_TYPE_A	(1 << SDIO_DRIVE_DTSx_SHIFT)
 #define  SDIO_DTSx_SET_TYPE_C	(2 << SDIO_DRIVE_DTSx_SHIFT)
 #define  SDIO_DTSx_SET_TYPE_D	(3 << SDIO_DRIVE_DTSx_SHIFT)
+<<<<<<< HEAD
+
+#define SDIO_CCCR_INTERRUPT_EXTENSION	0x16
+#define	SDIO_SUPPORT_ASYNC_INTR		(1<<0)
+#define	SDIO_ENABLE_ASYNC_INTR		(1<<1)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Function Basic Registers (FBR)
  */
@@ -188,5 +204,9 @@
 
 #define SDIO_FBR_BLKSIZE	0x10	/* block size (2 bytes) */
 
+<<<<<<< HEAD
+#endif /* LINUX_MMC_SDIO_H */
+=======
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

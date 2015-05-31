@@ -57,7 +57,11 @@ static inline void *kmap_high_get(struct page *page)
 #ifdef CONFIG_HIGHMEM
 extern void *kmap(struct page *page);
 extern void kunmap(struct page *page);
+<<<<<<< HEAD
+extern void *kmap_atomic(struct page *page);
+=======
 extern void *__kmap_atomic(struct page *page);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void __kunmap_atomic(void *kvaddr);
 extern void *kmap_atomic_pfn(unsigned long pfn);
 extern struct page *kmap_atomic_to_page(const void *ptr);

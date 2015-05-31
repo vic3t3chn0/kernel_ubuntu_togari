@@ -1,8 +1,14 @@
 #ifndef __CEPH_DECODE_H
 #define __CEPH_DECODE_H
 
+<<<<<<< HEAD
+#include <linux/bug.h>
+#include <linux/time.h>
+#include <asm/unaligned.h>
+=======
 #include <asm/unaligned.h>
 #include <linux/time.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "types.h"
 

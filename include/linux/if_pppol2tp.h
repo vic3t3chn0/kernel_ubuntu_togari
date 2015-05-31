@@ -39,7 +39,11 @@ struct pppol2tp_addr {
  * bits. So we need a different sockaddr structure.
  */
 struct pppol2tpv3_addr {
+<<<<<<< HEAD
+	__kernel_pid_t	pid;		/* pid that owns the fd.
+=======
 	pid_t	pid;			/* pid that owns the fd.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					 * 0 => current */
 	int	fd;			/* FD of UDP or IP socket to use */
 

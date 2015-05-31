@@ -11,17 +11,29 @@
  *   NON INFRINGEMENT.  See the GNU General Public License for
  *   more details.
  *
+<<<<<<< HEAD
+ * Do not include directly; use <linux/atomic.h>.
+=======
  * Do not include directly; use <asm/atomic.h>.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef _ASM_TILE_ATOMIC_32_H
 #define _ASM_TILE_ATOMIC_32_H
 
+<<<<<<< HEAD
+#include <asm/barrier.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <arch/chip.h>
 
 #ifndef __ASSEMBLY__
 
+<<<<<<< HEAD
+/* Tile-specific routines to support <linux/atomic.h>. */
+=======
 /* Tile-specific routines to support <asm/atomic.h>. */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int _atomic_xchg(atomic_t *v, int n);
 int _atomic_xchg_add(atomic_t *v, int i);
 int _atomic_xchg_add_unless(atomic_t *v, int a, int u);
@@ -81,18 +93,31 @@ static inline int atomic_add_return(int i, atomic_t *v)
 }
 
 /**
+<<<<<<< HEAD
+ * __atomic_add_unless - add unless the number is already a given value
+=======
  * atomic_add_unless - add unless the number is already a given value
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @v: pointer of type atomic_t
  * @a: the amount to add to v...
  * @u: ...unless v is equal to u.
  *
  * Atomically adds @a to @v, so long as @v was not already @u.
+<<<<<<< HEAD
+ * Returns the old value of @v.
+ */
+static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+{
+	smp_mb();  /* barrier for proper semantics */
+	return _atomic_xchg_add_unless(v, a, u);
+=======
  * Returns non-zero if @v was not @u, and zero otherwise.
  */
 static inline int atomic_add_unless(atomic_t *v, int a, int u)
 {
 	smp_mb();  /* barrier for proper semantics */
 	return _atomic_xchg_add_unless(v, a, u) != u;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**

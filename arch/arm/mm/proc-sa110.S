@@ -62,6 +62,10 @@ ENTRY(cpu_sa110_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
+	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ENTRY(cpu_sa110_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0		@ invalidate I,D caches
@@ -74,6 +78,11 @@ ENTRY(cpu_sa110_reset)
 	bic	ip, ip, #0x1100			@ ...i...s........
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
+ENDPROC(cpu_sa110_reset)
+	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * cpu_sa110_do_idle(type)

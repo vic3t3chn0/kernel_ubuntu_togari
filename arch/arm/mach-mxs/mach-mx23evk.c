@@ -15,7 +15,10 @@
 #include <linux/delay.h>
 #include <linux/platform_device.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
+=======
 #include <linux/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
@@ -167,6 +170,10 @@ static void __init mx23evk_init(void)
 		gpio_set_value(MX23EVK_BL_ENABLE, 1);
 
 	mx23_add_mxsfb(&mx23evk_mxsfb_pdata);
+<<<<<<< HEAD
+	mx23_add_rtc_stmp3xxx();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __init mx23evk_timer_init(void)
@@ -182,6 +189,12 @@ MACHINE_START(MX23EVK, "Freescale MX23 EVK")
 	/* Maintainer: Freescale Semiconductor, Inc. */
 	.map_io		= mx23_map_io,
 	.init_irq	= mx23_init_irq,
+<<<<<<< HEAD
+	.timer		= &mx23evk_timer,
+	.init_machine	= mx23evk_init,
+	.restart	= mxs_restart,
+=======
 	.init_machine	= mx23evk_init,
 	.timer		= &mx23evk_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

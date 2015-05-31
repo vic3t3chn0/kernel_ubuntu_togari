@@ -21,12 +21,15 @@
    SOFTWARE IS DISCLAIMED.
 */
 
+<<<<<<< HEAD
+=======
 #ifdef CONFIG_BT_MGMT
 #include "mgmt_mgmt.h"
 #elif defined(CONFIG_BT_TIZEN)
 #include "tizen/mgmt.h"
 #else
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define MGMT_INDEX_NONE			0xFFFF
 
 struct mgmt_hdr {
@@ -66,6 +69,10 @@ struct mgmt_rp_read_info {
 	__u8 hci_ver;
 	__u16 hci_rev;
 	__u8 name[MGMT_MAX_NAME_LENGTH];
+<<<<<<< HEAD
+	__u8 le_white_list_size;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __packed;
 
 struct mgmt_mode {
@@ -96,6 +103,11 @@ struct mgmt_cp_set_dev_class {
 	__u8 major;
 	__u8 minor;
 } __packed;
+<<<<<<< HEAD
+#define MGMT_MAJOR_CLASS_MASK		0x1F
+#define MGMT_MAJOR_CLASS_LIMITED	0x20
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define MGMT_OP_SET_SERVICE_CACHE	0x000C
 struct mgmt_cp_set_service_cache {
@@ -104,11 +116,21 @@ struct mgmt_cp_set_service_cache {
 
 struct mgmt_key_info {
 	bdaddr_t bdaddr;
+<<<<<<< HEAD
+	u8 addr_type;
+	u8 key_type;
+	u8 val[16];
+	u8 pin_len;
+	u8 auth;
+	u8 dlen;
+	u8 data[10];
+=======
 	u8 type;
 	u8 val[16];
 	u8 pin_len;
 	u8 dlen;
 	u8 data[0];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __packed;
 
 #define MGMT_OP_LOAD_KEYS		0x000D
@@ -207,6 +229,77 @@ struct mgmt_cp_remove_remote_oob_data {
 
 #define MGMT_OP_STOP_DISCOVERY		0x001C
 
+<<<<<<< HEAD
+#define MGMT_OP_USER_PASSKEY_REPLY	0x001D
+struct mgmt_cp_user_passkey_reply {
+	bdaddr_t bdaddr;
+	__le32 passkey;
+} __packed;
+
+#define MGMT_OP_RESOLVE_NAME		0x001E
+struct mgmt_cp_resolve_name {
+	bdaddr_t bdaddr;
+} __packed;
+
+#define MGMT_OP_SET_LIMIT_DISCOVERABLE	0x001F
+
+#define MGMT_OP_SET_CONNECTION_PARAMS	0x0020
+struct mgmt_cp_set_connection_params {
+	bdaddr_t bdaddr;
+	__le16 interval_min;
+	__le16 interval_max;
+	__le16 slave_latency;
+	__le16 timeout_multiplier;
+} __packed;
+
+#define MGMT_OP_ENCRYPT_LINK		0x0021
+struct mgmt_cp_encrypt_link {
+	bdaddr_t bdaddr;
+	__u8 enable;
+} __packed;
+
+#define MGMT_OP_SET_RSSI_REPORTER		0x0022
+struct mgmt_cp_set_rssi_reporter {
+	bdaddr_t	bdaddr;
+	__s8		rssi_threshold;
+	__le16	interval;
+	__u8		updateOnThreshExceed;
+} __packed;
+
+#define MGMT_OP_UNSET_RSSI_REPORTER		0x0023
+struct mgmt_cp_unset_rssi_reporter {
+	bdaddr_t	bdaddr;
+} __packed;
+
+#define MGMT_OP_CANCEL_RESOLVE_NAME	0x0024
+struct mgmt_cp_cancel_resolve_name {
+	bdaddr_t bdaddr;
+} __packed;
+
+#define MGMT_OP_LE_READ_WHITE_LIST_SIZE	0xE000
+
+#define MGMT_OP_LE_CLEAR_WHITE_LIST	0xE001
+
+#define MGMT_OP_LE_ADD_DEV_WHITE_LIST	0xE002
+struct mgmt_cp_le_add_dev_white_list {
+	__u8 addr_type;
+	bdaddr_t bdaddr;
+} __packed;
+
+#define MGMT_OP_LE_REMOVE_DEV_WHITE_LIST	0xE003
+struct mgmt_cp_le_remove_dev_white_list {
+	__u8 addr_type;
+	bdaddr_t bdaddr;
+} __packed;
+
+#define MGMT_OP_LE_CREATE_CONN_WHITE_LIST	0xE004
+
+#define MGMT_OP_LE_CANCEL_CREATE_CONN_WHITE_LIST	0xE005
+
+#define MGMT_OP_LE_CANCEL_CREATE_CONN	0xE006
+struct mgmt_cp_le_cancel_create_conn {
+	bdaddr_t	bdaddr;
+=======
 #define MGMT_OP_BLOCK_DEVICE		0x001D
 struct mgmt_cp_block_device {
 	bdaddr_t bdaddr;
@@ -221,6 +314,7 @@ struct mgmt_cp_unblock_device {
 struct mgmt_rp_le_test_end {
 	__u8 status;
 	__u16 num_pkts;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __packed;
 
 #define MGMT_EV_CMD_COMPLETE		0x0001
@@ -261,11 +355,19 @@ struct mgmt_ev_new_key {
 #define MGMT_EV_CONNECTED		0x000B
 struct mgmt_ev_connected {
 	bdaddr_t bdaddr;
+<<<<<<< HEAD
+	__u8 le;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __packed;
 
 #define MGMT_EV_DISCONNECTED		0x000C
 struct mgmt_ev_disconnected {
 	bdaddr_t bdaddr;
+<<<<<<< HEAD
+	__u8     reason;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __packed;
 
 #define MGMT_EV_CONNECT_FAILED		0x000D
@@ -283,7 +385,12 @@ struct mgmt_ev_pin_code_request {
 #define MGMT_EV_USER_CONFIRM_REQUEST	0x000F
 struct mgmt_ev_user_confirm_request {
 	bdaddr_t bdaddr;
+<<<<<<< HEAD
+	__u8 auto_confirm;
+	__u8 event;
+=======
 	__u8 confirm_hint;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__le32 value;
 } __packed;
 
@@ -303,15 +410,72 @@ struct mgmt_ev_device_found {
 	bdaddr_t bdaddr;
 	__u8 dev_class[3];
 	__s8 rssi;
+<<<<<<< HEAD
+	__u8 le;
+	__u8 type;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__u8 eir[HCI_MAX_EIR_LENGTH];
 } __packed;
 
 #define MGMT_EV_REMOTE_NAME		0x0013
 struct mgmt_ev_remote_name {
 	bdaddr_t bdaddr;
+<<<<<<< HEAD
+	__u8 status;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__u8 name[MGMT_MAX_NAME_LENGTH];
 } __packed;
 
 #define MGMT_EV_DISCOVERING		0x0014
 
+<<<<<<< HEAD
+#define MGMT_EV_USER_PASSKEY_REQUEST	0x0015
+struct mgmt_ev_user_passkey_request {
+	bdaddr_t bdaddr;
+} __packed;
+
+#define MGMT_EV_ENCRYPT_CHANGE		0x0016
+struct mgmt_ev_encrypt_change {
+	bdaddr_t bdaddr;
+	__u8 status;
+} __packed;
+
+
+#define MGMT_EV_REMOTE_CLASS		0x0017
+struct mgmt_ev_remote_class {
+	bdaddr_t bdaddr;
+	__u8 dev_class[3];
+} __packed;
+
+#define MGMT_EV_REMOTE_VERSION		0x0018
+struct mgmt_ev_remote_version {
+	bdaddr_t bdaddr;
+	__u8	lmp_ver;
+	__u16	manufacturer;
+	__u16	lmp_subver;
+} __packed;
+
+#define MGMT_EV_REMOTE_FEATURES		0x0019
+struct mgmt_ev_remote_features {
+	bdaddr_t bdaddr;
+	uint8_t features[8];
+} __packed;
+
+#define MGMT_EV_RSSI_UPDATE		0x0020
+struct mgmt_ev_rssi_update {
+	bdaddr_t	bdaddr;
+	__s8			rssi;
+} __packed;
+
+#define MGMT_EV_LE_CONN_PARAMS		0xF000
+struct mgmt_ev_le_conn_params {
+	bdaddr_t bdaddr;
+	__u16 interval;
+	__u16 latency;
+	__u16 timeout;
+} __packed;
+=======
 #endif /*BT_MGMT*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

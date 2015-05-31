@@ -15,7 +15,11 @@
 
 #ifndef CONFIG_DEBUG_DC21285_PORT
 	/* For NetWinder debugging */
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
 		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mov	\rp, #0x000003f8
 		orr	\rv, \rp, #0xff000000	@ virtual
 		orr	\rp, \rp, #0x7c000000	@ physical
@@ -31,7 +35,11 @@
 		.equ	dc21285_high, ARMCSR_BASE & 0xff000000
 		.equ	dc21285_low,  ARMCSR_BASE & 0x00ffffff
 
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
 		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.if	dc21285_low
 		mov	\rp, #dc21285_low
 		.else

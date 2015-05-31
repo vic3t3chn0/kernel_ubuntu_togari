@@ -4,7 +4,11 @@
  * This file provides the necessary glue to tie NetLabel into the SELinux
  * subsystem.
  *
+<<<<<<< HEAD
+ * Author: Paul Moore <paul@paul-moore.com>
+=======
  * Author: Paul Moore <paul.moore@hp.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  */
 

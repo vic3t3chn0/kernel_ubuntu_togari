@@ -8,8 +8,14 @@
 #ifndef LINUX_MMC_CORE_H
 #define LINUX_MMC_CORE_H
 
+<<<<<<< HEAD
+#ifdef __KERNEL__
+#include <linux/interrupt.h>
+#include <linux/completion.h>
+=======
 #include <linux/interrupt.h>
 #include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct request;
 struct mmc_data;
@@ -20,8 +26,15 @@ struct mmc_command {
 	u32			arg;
 #define MMC_CMD23_ARG_REL_WR	(1 << 31)
 #define MMC_CMD23_ARG_PACKED	((0 << 31) | (1 << 30))
+<<<<<<< HEAD
+#define MMC_CMD23_ARG_TAG_REQ	(1 << 29)
 	u32			resp[4];
 	unsigned int		flags;		/* expected response type */
+#endif /* __KERNEL__ */
+=======
+	u32			resp[4];
+	unsigned int		flags;		/* expected response type */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define MMC_RSP_PRESENT	(1 << 0)
 #define MMC_RSP_136	(1 << 1)		/* 136 bit response */
 #define MMC_RSP_CRC	(1 << 2)		/* expect valid crc */
@@ -54,6 +67,10 @@ struct mmc_command {
 #define MMC_RSP_R6	(MMC_RSP_PRESENT|MMC_RSP_CRC|MMC_RSP_OPCODE)
 #define MMC_RSP_R7	(MMC_RSP_PRESENT|MMC_RSP_CRC|MMC_RSP_OPCODE)
 
+<<<<<<< HEAD
+#ifdef __KERNEL__
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define mmc_resp_type(cmd)	((cmd)->flags & (MMC_RSP_PRESENT|MMC_RSP_136|MMC_RSP_CRC|MMC_RSP_BUSY|MMC_RSP_OPCODE))
 
 /*
@@ -95,6 +112,11 @@ struct mmc_command {
  */
 
 	unsigned int		cmd_timeout_ms;	/* in milliseconds */
+<<<<<<< HEAD
+	/* Set this flag only for commands which can be HPIed */
+	bool			ignore_timeout;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	struct mmc_data		*data;		/* data segment associated with cmd */
 	struct mmc_request	*mrq;		/* associated request */
@@ -120,8 +142,15 @@ struct mmc_data {
 	unsigned int		sg_len;		/* size of scatter list */
 	struct scatterlist	*sg;		/* I/O scatter list */
 	s32			host_cookie;	/* host private data */
+<<<<<<< HEAD
+	bool			fault_injected; /* fault injected */
 };
 
+struct mmc_host;
+=======
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct mmc_request {
 	struct mmc_command	*sbc;		/* SET_BLOCK_COUNT for multiblock */
 	struct mmc_command	*cmd;
@@ -130,12 +159,24 @@ struct mmc_request {
 
 	struct completion	completion;
 	void			(*done)(struct mmc_request *);/* completion function */
+<<<<<<< HEAD
+	struct mmc_host		*host;
+};
+
+struct mmc_card;
+struct mmc_async_req;
+
+extern int mmc_stop_bkops(struct mmc_card *);
+extern int mmc_read_bkops_status(struct mmc_card *);
+extern bool mmc_card_is_prog_state(struct mmc_card *);
+=======
 };
 
 struct mmc_host;
 struct mmc_card;
 struct mmc_async_req;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct mmc_async_req *mmc_start_req(struct mmc_host *,
 					   struct mmc_async_req *, int *);
 extern int mmc_interrupt_hpi(struct mmc_card *);
@@ -144,10 +185,23 @@ extern int mmc_wait_for_cmd(struct mmc_host *, struct mmc_command *, int);
 extern int mmc_app_cmd(struct mmc_host *, struct mmc_card *);
 extern int mmc_wait_for_app_cmd(struct mmc_host *, struct mmc_card *,
 	struct mmc_command *, int);
+<<<<<<< HEAD
+extern void mmc_start_bkops(struct mmc_card *card, bool from_exception);
+extern void mmc_start_delayed_bkops(struct mmc_card *card);
+extern void mmc_start_idle_time_bkops(struct work_struct *work);
+extern void mmc_bkops_completion_polling(struct work_struct *work);
+extern int __mmc_switch(struct mmc_card *, u8, u8, u8, unsigned int, bool,
+			bool);
+extern int mmc_switch(struct mmc_card *, u8, u8, u8, unsigned int);
+extern int mmc_switch_ignore_timeout(struct mmc_card *, u8, u8, u8,
+				     unsigned int);
+extern int mmc_send_ext_csd(struct mmc_card *card, u8 *ext_csd);
+=======
 extern int mmc_switch(struct mmc_card *, u8, u8, u8, unsigned int);
 extern int mmc_send_ext_csd(struct mmc_card *card, u8 *ext_csd);
 extern int mmc_start_movi_smart(struct mmc_card *card);
 extern int mmc_start_movi_operation(struct mmc_card *card);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define MMC_ERASE_ARG		0x00000000
 #define MMC_SECURE_ERASE_ARG	0x80000000
@@ -171,6 +225,11 @@ extern int mmc_erase_group_aligned(struct mmc_card *card, unsigned int from,
 extern unsigned int mmc_calc_max_discard(struct mmc_card *card);
 
 extern int mmc_set_blocklen(struct mmc_card *card, unsigned int blocklen);
+<<<<<<< HEAD
+extern int mmc_set_blockcount(struct mmc_card *card, unsigned int blockcount,
+			      bool is_rel_write);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int mmc_hw_reset(struct mmc_host *host);
 extern int mmc_hw_reset_check(struct mmc_host *host);
 extern int mmc_can_reset(struct mmc_card *card);
@@ -180,13 +239,25 @@ extern unsigned int mmc_align_data_size(struct mmc_card *, unsigned int);
 
 extern int __mmc_claim_host(struct mmc_host *host, atomic_t *abort);
 extern void mmc_release_host(struct mmc_host *host);
+<<<<<<< HEAD
+extern int mmc_try_claim_host(struct mmc_host *host);
+extern void mmc_set_ios(struct mmc_host *host);
+=======
 extern void mmc_do_release_host(struct mmc_host *host);
 extern int mmc_try_claim_host(struct mmc_host *host);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int mmc_flush_cache(struct mmc_card *);
 
 extern int mmc_detect_card_removed(struct mmc_host *host);
 
+<<<<<<< HEAD
+extern void mmc_blk_init_bkops_statistics(struct mmc_card *card);
+extern void mmc_rpm_hold(struct mmc_host *host, struct device *dev);
+extern void mmc_rpm_release(struct mmc_host *host, struct device *dev);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  *	mmc_claim_host - exclusively claim a host
  *	@host: mmc host to claim
@@ -200,4 +271,9 @@ static inline void mmc_claim_host(struct mmc_host *host)
 
 extern u32 mmc_vddrange_to_ocrmask(int vdd_min, int vdd_max);
 
+<<<<<<< HEAD
+#endif /* __KERNEL__ */
+#endif /* LINUX_MMC_CORE_H */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

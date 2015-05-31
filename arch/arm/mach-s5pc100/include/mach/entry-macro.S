@@ -12,6 +12,12 @@
  * warranty of any kind, whether express or implied.
 */
 
+<<<<<<< HEAD
+	.macro	get_irqnr_preamble, base, tmp
+	.endm
+
+	.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
+=======
 #include <asm/hardware/vic.h>
 #include <mach/map.h>
 #include <plat/irqs.h>
@@ -47,4 +53,5 @@
 
 	clzne	\irqstat, \irqstat
 	subne	\irqnr, \irqnr, \irqstat
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.endm

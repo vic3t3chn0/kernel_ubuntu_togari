@@ -1,6 +1,11 @@
 #ifndef __ASMCRIS_ARCH_ELF_H
 #define __ASMCRIS_ARCH_ELF_H
 
+<<<<<<< HEAD
+#include <arch/system.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ELF_MACH EF_CRIS_VARIANT_ANY_V0_V10
 
 /*

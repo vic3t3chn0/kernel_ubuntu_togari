@@ -12,6 +12,10 @@
  *
  */
 
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/soc.h>
 
 static struct snd_soc_card smdk2443;
@@ -29,6 +33,10 @@ static struct snd_soc_dai_link smdk2443_dai[] = {
 
 static struct snd_soc_card smdk2443 = {
 	.name = "SMDK2443",
+<<<<<<< HEAD
+	.owner = THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.dai_link = smdk2443_dai,
 	.num_links = ARRAY_SIZE(smdk2443_dai),
 };

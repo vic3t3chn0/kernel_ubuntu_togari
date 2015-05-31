@@ -28,7 +28,11 @@ typedef unsigned int mmc_pm_flag_t;
 #define MMC_PM_WAKE_SDIO_IRQ	(1 << 1)	/* wake up host system on SDIO IRQ assertion */
 #define MMC_PM_IGNORE_PM_NOTIFY	(1 << 2)	/* ignore mmc pm notify */
 
+<<<<<<< HEAD
+#endif /* LINUX_MMC_PM_H */
+=======
 /* ignore mmc suspend.resume for BCM WIFI */
 #define MMC_PM_IGNORE_SUSPEND_RESUME	(1 << 30)
 
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

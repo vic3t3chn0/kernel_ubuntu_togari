@@ -51,6 +51,8 @@ static void qube_raq_galileo_early_fixup(struct pci_dev *dev)
 DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_MARVELL, PCI_DEVICE_ID_MARVELL_GT64111,
 	 qube_raq_galileo_early_fixup);
 
+<<<<<<< HEAD
+=======
 static void __devinit cobalt_legacy_ide_resource_fixup(struct pci_dev *dev,
 						       struct resource *res)
 {
@@ -112,6 +114,7 @@ static void __devinit cobalt_legacy_ide_fixup(struct pci_dev *dev)
 DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_VIA, PCI_DEVICE_ID_VIA_82C586_1,
 	  cobalt_legacy_ide_fixup);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void qube_raq_via_bmIDE_fixup(struct pci_dev *dev)
 {
 	unsigned short cfgword;

@@ -30,6 +30,10 @@
 
 #include <video/platform_lcd.h>
 
+<<<<<<< HEAD
+#include <asm/hardware/vic.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 #include <asm/mach/irq.h>
@@ -45,13 +49,21 @@
 #include <plat/fb.h>
 #include <plat/regs-fb-v4.h>
 
+<<<<<<< HEAD
+=======
 #include <mach/s3c6410.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/clock.h>
 #include <plat/devs.h>
 #include <plat/cpu.h>
 #include <mach/regs-gpio.h>
 #include <mach/regs-modem.h>
 
+<<<<<<< HEAD
+#include "common.h"
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* DM9000 */
 #define ANW6410_PA_DM9000	(0x18000000)
 
@@ -233,10 +245,21 @@ static void __init anw6410_machine_init(void)
 
 MACHINE_START(ANW6410, "A&W6410")
 	/* Maintainer: Kwangwoo Lee <kwangwoo.lee@gmail.com> */
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+
+	.init_irq	= s3c6410_init_irq,
+	.handle_irq	= vic_handle_irq,
+	.map_io		= anw6410_map_io,
+	.init_machine	= anw6410_machine_init,
+	.timer		= &s3c24xx_timer,
+	.restart	= s3c64xx_restart,
+=======
 	.boot_params	= S3C64XX_PA_SDRAM + 0x100,
 
 	.init_irq	= s3c6410_init_irq,
 	.map_io		= anw6410_map_io,
 	.init_machine	= anw6410_machine_init,
 	.timer		= &s3c24xx_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

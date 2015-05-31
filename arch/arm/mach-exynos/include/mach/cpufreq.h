@@ -3,17 +3,24 @@
  * Copyright (c) 2010 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
  *
+<<<<<<< HEAD
+ * EXYNOS - CPUFreq support
+=======
  * EXYNOS4 - CPUFreq support
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
 */
 
+<<<<<<< HEAD
+=======
 /* CPU frequency level index for using cpufreq lock API
  * This should be same with cpufreq_frequency_table
 */
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum cpufreq_level_index {
 	L0, L1, L2, L3, L4,
 	L5, L6, L7, L8, L9,
@@ -22,6 +29,8 @@ enum cpufreq_level_index {
 	L20,
 };
 
+<<<<<<< HEAD
+=======
 enum busfreq_level_request {
 	BUS_L0,		/* MEM 400MHz BUS 266MHz */
 	BUS_L1,		/* MEM 400MHz BUS 200MHz */
@@ -100,18 +109,29 @@ struct dvfs_qos_info {
 };
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct exynos_dvfs_info {
 	unsigned long	mpll_freq_khz;
 	unsigned int	pll_safe_idx;
 	unsigned int	pm_lock_idx;
 	unsigned int	max_support_idx;
 	unsigned int	min_support_idx;
+<<<<<<< HEAD
+=======
 	unsigned int	gov_support_freq;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct clk	*cpu_clk;
 	unsigned int	*volt_table;
 	struct cpufreq_frequency_table	*freq_table;
 	void (*set_freq)(unsigned int, unsigned int);
 	bool (*need_apll_change)(unsigned int, unsigned int);
+<<<<<<< HEAD
+};
+
+extern int exynos4210_cpufreq_init(struct exynos_dvfs_info *);
+extern int exynos4x12_cpufreq_init(struct exynos_dvfs_info *);
+extern int exynos5250_cpufreq_init(struct exynos_dvfs_info *);
+=======
 
 #ifdef CONFIG_SLP
 	struct dvfs_qos_info *cpu_dma_latency;
@@ -154,3 +174,4 @@ extern int exynos5250_cpufreq_init(struct exynos_dvfs_info *);
 /* These function and variables should be removed in EVT1 */
 void exynos5250_set_arm_abbg(unsigned int arm_volt, unsigned int int_volt);
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

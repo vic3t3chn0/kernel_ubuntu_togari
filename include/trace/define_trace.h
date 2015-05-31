@@ -21,6 +21,8 @@
 #undef CREATE_TRACE_POINTS
 
 #include <linux/stringify.h>
+<<<<<<< HEAD
+=======
 /*
  * module.h includes tracepoints, and because ftrace.h
  * pulls in module.h:
@@ -31,6 +33,7 @@
  * by module.h may break the build.
  */
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #undef TRACE_EVENT
 #define TRACE_EVENT(name, proto, args, tstruct, assign, print)	\

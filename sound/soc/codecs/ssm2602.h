@@ -116,6 +116,14 @@
 
 #define SSM2602_CACHEREGNUM 	10
 
+<<<<<<< HEAD
+enum ssm2602_clk {
+	SSM2602_SYSCLK,
+	SSM2602_CLK_CLKOUT,
+	SSM2602_CLK_XTO
+};
+=======
 #define SSM2602_SYSCLK	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

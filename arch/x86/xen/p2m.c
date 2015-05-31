@@ -161,7 +161,13 @@
 #include <asm/xen/page.h>
 #include <asm/xen/hypercall.h>
 #include <asm/xen/hypervisor.h>
+<<<<<<< HEAD
+#include <xen/grant_table.h>
 
+#include "multicalls.h"
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "xen-ops.h"
 
 static void __init m2p_override_init(void);
@@ -676,14 +682,22 @@ static unsigned long mfn_hash(unsigned long mfn)
 }
 
 /* Add an MFN override for a particular page */
+<<<<<<< HEAD
+int m2p_add_override(unsigned long mfn, struct page *page,
+		struct gnttab_map_grant_ref *kmap_op)
+=======
 int m2p_add_override(unsigned long mfn, struct page *page, bool clear_pte)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	unsigned long flags;
 	unsigned long pfn;
 	unsigned long uninitialized_var(address);
 	unsigned level;
 	pte_t *ptep = NULL;
+<<<<<<< HEAD
+=======
 	int ret = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	pfn = page_to_pfn(page);
 	if (!PageHighMem(page)) {
@@ -693,20 +707,45 @@ int m2p_add_override(unsigned long mfn, struct page *page, bool clear_pte)
 					"m2p_add_override: pfn %lx not mapped", pfn))
 			return -EINVAL;
 	}
+<<<<<<< HEAD
+	WARN_ON(PagePrivate(page));
+	SetPagePrivate(page);
+	set_page_private(page, mfn);
+=======
 
 	page->private = mfn;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	page->index = pfn_to_mfn(pfn);
 
 	if (unlikely(!set_phys_to_machine(pfn, FOREIGN_FRAME(mfn))))
 		return -ENOMEM;
 
+<<<<<<< HEAD
+	if (kmap_op != NULL) {
+		if (!PageHighMem(page)) {
+			struct multicall_space mcs =
+				xen_mc_entry(sizeof(*kmap_op));
+
+			MULTI_grant_table_op(mcs.mc,
+					GNTTABOP_map_grant_ref, kmap_op, 1);
+
+			xen_mc_issue(PARAVIRT_LAZY_MMU);
+		}
+		/* let's use dev_bus_addr to record the old mfn instead */
+		kmap_op->dev_bus_addr = page->index;
+		page->index = (unsigned long) kmap_op;
+	}
+=======
 	if (clear_pte && !PageHighMem(page))
 		/* Just zap old mapping for now */
 		pte_clear(&init_mm, address, ptep);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spin_lock_irqsave(&m2p_override_lock, flags);
 	list_add(&page->lru,  &m2p_overrides[mfn_hash(mfn)]);
 	spin_unlock_irqrestore(&m2p_override_lock, flags);
 
+<<<<<<< HEAD
+=======
 	/* p2m(m2p(mfn)) == mfn: the mfn is already present somewhere in
 	 * this domain. Set the FOREIGN_FRAME_BIT in the p2m for the other
 	 * pfn so that the following mfn_to_pfn(mfn) calls will return the
@@ -725,6 +764,7 @@ int m2p_add_override(unsigned long mfn, struct page *page, bool clear_pte)
 	if (ret == 0 && get_phys_to_machine(pfn) == mfn)
 		set_phys_to_machine(pfn, FOREIGN_FRAME(mfn));
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 EXPORT_SYMBOL_GPL(m2p_add_override);
@@ -736,7 +776,10 @@ int m2p_remove_override(struct page *page, bool clear_pte)
 	unsigned long uninitialized_var(address);
 	unsigned level;
 	pte_t *ptep = NULL;
+<<<<<<< HEAD
+=======
 	int ret = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	pfn = page_to_pfn(page);
 	mfn = get_phys_to_machine(pfn);
@@ -755,6 +798,58 @@ int m2p_remove_override(struct page *page, bool clear_pte)
 	spin_lock_irqsave(&m2p_override_lock, flags);
 	list_del(&page->lru);
 	spin_unlock_irqrestore(&m2p_override_lock, flags);
+<<<<<<< HEAD
+	WARN_ON(!PagePrivate(page));
+	ClearPagePrivate(page);
+
+	if (clear_pte) {
+		struct gnttab_map_grant_ref *map_op =
+			(struct gnttab_map_grant_ref *) page->index;
+		set_phys_to_machine(pfn, map_op->dev_bus_addr);
+		if (!PageHighMem(page)) {
+			struct multicall_space mcs;
+			struct gnttab_unmap_grant_ref *unmap_op;
+
+			/*
+			 * It might be that we queued all the m2p grant table
+			 * hypercalls in a multicall, then m2p_remove_override
+			 * get called before the multicall has actually been
+			 * issued. In this case handle is going to -1 because
+			 * it hasn't been modified yet.
+			 */
+			if (map_op->handle == -1)
+				xen_mc_flush();
+			/*
+			 * Now if map_op->handle is negative it means that the
+			 * hypercall actually returned an error.
+			 */
+			if (map_op->handle == GNTST_general_error) {
+				printk(KERN_WARNING "m2p_remove_override: "
+						"pfn %lx mfn %lx, failed to modify kernel mappings",
+						pfn, mfn);
+				return -1;
+			}
+
+			mcs = xen_mc_entry(
+					sizeof(struct gnttab_unmap_grant_ref));
+			unmap_op = mcs.args;
+			unmap_op->host_addr = map_op->host_addr;
+			unmap_op->handle = map_op->handle;
+			unmap_op->dev_bus_addr = 0;
+
+			MULTI_grant_table_op(mcs.mc,
+					GNTTABOP_unmap_grant_ref, unmap_op, 1);
+
+			xen_mc_issue(PARAVIRT_LAZY_MMU);
+
+			set_pte_at(&init_mm, address, ptep,
+					pfn_pte(pfn, PAGE_KERNEL));
+			__flush_tlb_single(address);
+			map_op->host_addr = 0;
+		}
+	} else
+		set_phys_to_machine(pfn, page->index);
+=======
 	set_phys_to_machine(pfn, page->index);
 
 	if (clear_pte && !PageHighMem(page))
@@ -778,6 +873,7 @@ int m2p_remove_override(struct page *page, bool clear_pte)
 	if (ret == 0 && get_phys_to_machine(pfn) == FOREIGN_FRAME(mfn) &&
 			m2p_find_override(mfn) == NULL)
 		set_phys_to_machine(pfn, mfn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }
@@ -794,7 +890,11 @@ struct page *m2p_find_override(unsigned long mfn)
 	spin_lock_irqsave(&m2p_override_lock, flags);
 
 	list_for_each_entry(p, bucket, lru) {
+<<<<<<< HEAD
+		if (page_private(p) == mfn) {
+=======
 		if (p->private == mfn) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			ret = p;
 			break;
 		}
@@ -818,6 +918,14 @@ unsigned long m2p_find_override_pfn(unsigned long mfn, unsigned long pfn)
 EXPORT_SYMBOL_GPL(m2p_find_override_pfn);
 
 #ifdef CONFIG_XEN_DEBUG_FS
+<<<<<<< HEAD
+#include <linux/debugfs.h>
+#include "debugfs.h"
+static int p2m_dump_show(struct seq_file *m, void *v)
+{
+	static const char * const level_name[] = { "top", "middle",
+						"entry", "abnormal", "error"};
+=======
 
 int p2m_dump_show(struct seq_file *m, void *v)
 {
@@ -825,10 +933,19 @@ int p2m_dump_show(struct seq_file *m, void *v)
 						"entry", "abnormal" };
 	static const char * const type_name[] = { "identity", "missing",
 						"pfn", "abnormal"};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define TYPE_IDENTITY 0
 #define TYPE_MISSING 1
 #define TYPE_PFN 2
 #define TYPE_UNKNOWN 3
+<<<<<<< HEAD
+	static const char * const type_name[] = {
+				[TYPE_IDENTITY] = "identity",
+				[TYPE_MISSING] = "missing",
+				[TYPE_PFN] = "pfn",
+				[TYPE_UNKNOWN] = "abnormal"};
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long pfn, prev_pfn_type = 0, prev_pfn_level = 0;
 	unsigned int uninitialized_var(prev_level);
 	unsigned int uninitialized_var(prev_type);
@@ -892,4 +1009,36 @@ int p2m_dump_show(struct seq_file *m, void *v)
 #undef TYPE_PFN
 #undef TYPE_UNKNOWN
 }
+<<<<<<< HEAD
+
+static int p2m_dump_open(struct inode *inode, struct file *filp)
+{
+	return single_open(filp, p2m_dump_show, NULL);
+}
+
+static const struct file_operations p2m_dump_fops = {
+	.open		= p2m_dump_open,
+	.read		= seq_read,
+	.llseek		= seq_lseek,
+	.release	= single_release,
+};
+
+static struct dentry *d_mmu_debug;
+
+static int __init xen_p2m_debugfs(void)
+{
+	struct dentry *d_xen = xen_init_debugfs();
+
+	if (d_xen == NULL)
+		return -ENOMEM;
+
+	d_mmu_debug = debugfs_create_dir("mmu", d_xen);
+
+	debugfs_create_file("p2m", 0600, d_mmu_debug, NULL, &p2m_dump_fops);
+	return 0;
+}
+fs_initcall(xen_p2m_debugfs);
+#endif /* CONFIG_XEN_DEBUG_FS */
+=======
 #endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

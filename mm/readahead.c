@@ -11,7 +11,11 @@
 #include <linux/fs.h>
 #include <linux/gfp.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
+#include <linux/export.h>
+=======
 #include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/blkdev.h>
 #include <linux/backing-dev.h>
 #include <linux/task_io_accounting_ops.h>
@@ -184,6 +188,12 @@ __do_page_cache_readahead(struct address_space *mapping, struct file *filp,
 		if (!page)
 			break;
 		page->index = page_offset;
+<<<<<<< HEAD
+
+		page->flags |= (1L << PG_readahead);
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		list_add(&page->lru, &page_pool);
 		if (page_idx == nr_to_read - lookahead_size)
 			SetPageReadahead(page);
@@ -261,6 +271,11 @@ unsigned long ra_submit(struct file_ra_state *ra,
 
 /*
  * Set the initial window size, round to next power of 2 and square
+<<<<<<< HEAD
+ * Small size is not dependant on max value - only a one-page read is regarded
+ * as small.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * for small size, x 4 for medium, and x 2 for large
  * for 128k (32 page) max ra
  * 1-8 page = 32k initial, > 8 page = 128k initial
@@ -269,7 +284,11 @@ static unsigned long get_init_ra_size(unsigned long size, unsigned long max)
 {
 	unsigned long newsize = roundup_pow_of_two(size);
 
+<<<<<<< HEAD
+	if (newsize <= 1)
+=======
 	if (newsize <= max / 32)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		newsize = newsize * 4;
 	else if (newsize <= max / 4)
 		newsize = newsize * 2;

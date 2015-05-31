@@ -33,6 +33,8 @@
 #ifndef _AU1000_PSC_H_
 #define _AU1000_PSC_H_
 
+<<<<<<< HEAD
+=======
 /* The PSC base addresses.  */
 #ifdef CONFIG_SOC_AU1550
 #define PSC0_BASE_ADDR		0xb1a00000
@@ -46,6 +48,7 @@
 #define PSC1_BASE_ADDR		0xb1b00000
 #endif
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * The PSC select and control registers are common to all protocols.
  */
@@ -80,6 +83,8 @@
 #define PSC_AC97GPO_OFFSET	0x00000028
 #define PSC_AC97GPI_OFFSET	0x0000002c
 
+<<<<<<< HEAD
+=======
 #define AC97_PSC_SEL		(AC97_PSC_BASE + PSC_SEL_OFFSET)
 #define AC97_PSC_CTRL		(AC97_PSC_BASE + PSC_CTRL_OFFSET)
 #define PSC_AC97CFG		(AC97_PSC_BASE + PSC_AC97CFG_OFFSET)
@@ -93,6 +98,7 @@
 #define PSC_AC97GPO		(AC97_PSC_BASE + PSC_AC97GPO_OFFSET)
 #define PSC_AC97GPI		(AC97_PSC_BASE + PSC_AC97GPI_OFFSET)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* AC97 Config Register. */
 #define PSC_AC97CFG_RT_MASK	(3 << 30)
 #define PSC_AC97CFG_RT_FIFO1	(0 << 30)
@@ -394,6 +400,8 @@ typedef struct	psc_spi {
 #define PSC_SPITXRX_LC		(1 << 29)
 #define PSC_SPITXRX_SR		(1 << 28)
 
+<<<<<<< HEAD
+=======
 /* PSC in SMBus (I2C) Mode. */
 typedef struct	psc_smb {
 	u32	psc_sel;
@@ -407,6 +415,7 @@ typedef struct	psc_smb {
 	u32	psc_smbtmr;
 } psc_smb_t;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* SMBus Config Register. */
 #define PSC_SMBCFG_RT_MASK	(3 << 30)
 #define PSC_SMBCFG_RT_FIFO1	(0 << 30)

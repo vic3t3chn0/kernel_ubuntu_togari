@@ -18,6 +18,10 @@
 #include <mach/map.h>
 #include <mach/dma.h>
 #include <mach/irqs.h>
+<<<<<<< HEAD
+#include <mach/regs-audss.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static const char *rclksrc[] = {
 	[0] = "busclk",
@@ -49,12 +53,19 @@ static struct s3c_audio_pdata i2sv5_pdata = {
 	.cfg_gpio = s5pv210_cfg_i2s,
 	.type = {
 		.i2s = {
+<<<<<<< HEAD
+			.quirks = QUIRK_PRI_6CHAN | QUIRK_SEC_DAI
+					 | QUIRK_NEED_RSTCLR,
+			.src_clk = rclksrc,
+			.idma_addr = S5PV210_AUDSS_INT_MEM,
+=======
 			.quirks = QUIRK_PRI_6CHAN
 #ifdef CONFIG_SND_SOC_SAMSUNG_I2S_SEC
 				| QUIRK_SEC_DAI
 #endif
 				| QUIRK_NEED_RSTCLR,
 			.src_clk = rclksrc,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		},
 	},
 };

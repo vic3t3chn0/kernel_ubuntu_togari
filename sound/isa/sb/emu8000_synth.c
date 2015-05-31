@@ -22,6 +22,10 @@
 
 #include "emu8000_local.h"
 #include <linux/init.h>
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/initval.h>
 
 MODULE_AUTHOR("Takashi Iwai, Steve Ratcliffe");

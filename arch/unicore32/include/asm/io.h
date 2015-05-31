@@ -16,7 +16,10 @@
 
 #include <asm/byteorder.h>
 #include <asm/memory.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define PCI_IOBASE	PKUNITY_PCILIO_BASE
 #include <asm-generic/io.h>
@@ -32,11 +35,20 @@ extern void __uc32_iounmap(volatile void __iomem *addr);
  * ioremap and friends.
  *
  * ioremap takes a PCI memory address, as specified in
+<<<<<<< HEAD
+ * Documentation/io-mapping.txt.
+=======
  * Documentation/IO-mapping.txt.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  */
 #define ioremap(cookie, size)		__uc32_ioremap(cookie, size)
 #define ioremap_cached(cookie, size)	__uc32_ioremap_cached(cookie, size)
+<<<<<<< HEAD
+#define ioremap_nocache(cookie, size)	__uc32_ioremap(cookie, size)
+#define iounmap(cookie)			__uc32_iounmap(cookie)
+
+=======
 #define iounmap(cookie)			__uc32_iounmap(cookie)
 
 /*
@@ -46,6 +58,7 @@ extern void __uc32_iounmap(volatile void __iomem *addr);
 #undef xlate_dev_mem_ptr
 #define xlate_dev_mem_ptr(p)	__va(p)
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define HAVE_ARCH_PIO_SIZE
 #define PIO_OFFSET		(unsigned int)(PCI_IOBASE)
 #define PIO_MASK		(unsigned int)(IO_SPACE_LIMIT)

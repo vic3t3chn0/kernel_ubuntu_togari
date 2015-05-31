@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# arch/arm/plat-samsung/Makefile
+=======
 # arch/arm/plat-s3c64xx/Makefile
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #
 # Copyright 2009 Simtec Electronics
 #
@@ -15,6 +19,11 @@ obj-y				+= init.o cpu.o
 obj-$(CONFIG_ARCH_USES_GETTIMEOFFSET)   += time.o
 obj-y				+= clock.o
 obj-y				+= pwm-clock.o
+<<<<<<< HEAD
+
+obj-$(CONFIG_SAMSUNG_CLKSRC)	+= clock-clksrc.o
+
+=======
 obj-y				+= gpio.o
 obj-y				+= gpio-config.o
 obj-y				+= dev-asocdma.o
@@ -22,6 +31,7 @@ obj-y				+= dev-asocdma.o
 obj-$(CONFIG_SAMSUNG_CLKSRC)	+= clock-clksrc.o
 
 obj-$(CONFIG_SAMSUNG_IRQ_UART)	+= irq-uart.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 obj-$(CONFIG_SAMSUNG_IRQ_VIC_TIMER) += irq-vic-timer.o
 
 # ADC
@@ -32,6 +42,11 @@ obj-$(CONFIG_S3C_ADC)	+= adc.o
 
 obj-y				+= platformdata.o
 
+<<<<<<< HEAD
+obj-y				+= devs.o
+obj-y				+= dev-uart.o
+
+=======
 obj-$(CONFIG_S3C_DEV_HSMMC)	+= dev-hsmmc.o
 obj-$(CONFIG_S3C_DEV_HSMMC1)	+= dev-hsmmc1.o
 obj-$(CONFIG_S3C_DEV_HSMMC2)	+= dev-hsmmc2.o
@@ -62,15 +77,22 @@ obj-$(CONFIG_SAMSUNG_DEV_TS)	+= dev-ts.o
 obj-$(CONFIG_SAMSUNG_DEV_TS1)	+= dev-ts1.o
 obj-$(CONFIG_SAMSUNG_DEV_KEYPAD)	+= dev-keypad.o
 obj-$(CONFIG_HAVE_PWM)	+= dev-pwm.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 obj-$(CONFIG_SAMSUNG_DEV_BACKLIGHT)	+= dev-backlight.o
 
 # DMA support
 
+<<<<<<< HEAD
+obj-$(CONFIG_S3C_DMA)		+= dma.o s3c-dma-ops.o
+
+obj-$(CONFIG_SAMSUNG_DMADEV)	+= dma-ops.o
+=======
 obj-$(CONFIG_S3C_DMA)		+= dma.o
 
 obj-$(CONFIG_S3C_PL330_DMA)	+= s3c-pl330.o
 
 obj-$(CONFIG_DMA_M2M_TEST)	+= dma_m2m_test.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 # PM support
 

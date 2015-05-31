@@ -41,7 +41,11 @@ module_param_string(ksym, ksym_name, KSYM_NAME_LEN, S_IRUGO);
 MODULE_PARM_DESC(ksym, "Kernel symbol to monitor; this module will report any"
 			" write operations on the kernel symbol");
 
+<<<<<<< HEAD
+static void sample_hbp_handler(struct perf_event *bp,
+=======
 static void sample_hbp_handler(struct perf_event *bp, int nmi,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			       struct perf_sample_data *data,
 			       struct pt_regs *regs)
 {
@@ -60,7 +64,11 @@ static int __init hw_break_module_init(void)
 	attr.bp_len = HW_BREAKPOINT_LEN_4;
 	attr.bp_type = HW_BREAKPOINT_W | HW_BREAKPOINT_R;
 
+<<<<<<< HEAD
+	sample_hbp = register_wide_hw_breakpoint(&attr, sample_hbp_handler, NULL);
+=======
 	sample_hbp = register_wide_hw_breakpoint(&attr, sample_hbp_handler);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (IS_ERR((void __force *)sample_hbp)) {
 		ret = PTR_ERR((void __force *)sample_hbp);
 		goto fail;

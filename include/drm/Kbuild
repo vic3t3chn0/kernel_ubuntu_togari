@@ -13,3 +13,7 @@ header-y += savage_drm.h
 header-y += sis_drm.h
 header-y += via_drm.h
 header-y += vmwgfx_drm.h
+<<<<<<< HEAD
+header-y += kgsl_drm.h
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

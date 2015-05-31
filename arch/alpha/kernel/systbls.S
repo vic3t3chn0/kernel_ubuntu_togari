@@ -360,7 +360,11 @@ sys_call_table:
 	.quad sys_newuname
 	.quad sys_nanosleep			/* 340 */
 	.quad sys_mremap
+<<<<<<< HEAD
+	.quad sys_ni_syscall			/* old nfsservctl */
+=======
 	.quad sys_nfsservctl
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.quad sys_setresuid
 	.quad sys_getresuid
 	.quad sys_pciconfig_read		/* 345 */
@@ -520,6 +524,11 @@ sys_call_table:
 	.quad sys_clock_adjtime
 	.quad sys_syncfs			/* 500 */
 	.quad sys_setns
+<<<<<<< HEAD
+	.quad sys_accept4
+	.quad sys_sendmmsg
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	.size sys_call_table, . - sys_call_table
 	.type sys_call_table, @object

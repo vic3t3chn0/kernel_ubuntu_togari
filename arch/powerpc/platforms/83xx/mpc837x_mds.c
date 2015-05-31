@@ -79,6 +79,16 @@ out:
  */
 static void __init mpc837x_mds_setup_arch(void)
 {
+<<<<<<< HEAD
+	if (ppc_md.progress)
+		ppc_md.progress("mpc837x_mds_setup_arch()", 0);
+
+	mpc83xx_setup_pci();
+	mpc837xmds_usb_cfg();
+}
+
+machine_device_initcall(mpc837x_mds, mpc83xx_declare_of_platform_devices);
+=======
 #ifdef CONFIG_PCI
 	struct device_node *np;
 #endif
@@ -127,6 +137,7 @@ static void __init mpc837x_mds_init_IRQ(void)
 	 */
 	ipic_set_default_priority();
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Called very early, MMU is off, device-tree isn't unflattened
@@ -142,7 +153,11 @@ define_machine(mpc837x_mds) {
 	.name			= "MPC837x MDS",
 	.probe			= mpc837x_mds_probe,
 	.setup_arch		= mpc837x_mds_setup_arch,
+<<<<<<< HEAD
+	.init_IRQ		= mpc83xx_ipic_init_IRQ,
+=======
 	.init_IRQ		= mpc837x_mds_init_IRQ,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.get_irq		= ipic_get_irq,
 	.restart		= mpc83xx_restart,
 	.time_init		= mpc83xx_time_init,

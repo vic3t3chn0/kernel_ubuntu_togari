@@ -14,7 +14,11 @@
 #include <linux/amba/serial.h>
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
+		.macro	addruart, rp, rv, tmp
+=======
 		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mov	\rp, #SPEAR_DBG_UART_BASE		@ Physical base
 		mov	\rv, #VA_SPEAR_DBG_UART_BASE		@ Virtual base
 		.endm

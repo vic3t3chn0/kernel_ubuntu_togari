@@ -14,7 +14,10 @@
  * improvements to the Coda project. Contact Peter Braam <coda@cs.cmu.edu>.
  */
 
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/signal.h>
 #include <linux/sched.h>
 #include <linux/types.h>

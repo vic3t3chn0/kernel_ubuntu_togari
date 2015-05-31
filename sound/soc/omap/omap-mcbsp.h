@@ -3,7 +3,11 @@
  *
  * Copyright (C) 2008 Nokia Corporation
  *
+<<<<<<< HEAD
+ * Contact: Jarkko Nikula <jarkko.nikula@bitmer.com>
+=======
  * Contact: Jarkko Nikula <jhnikula@gmail.com>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *          Peter Ujfalusi <peter.ujfalusi@ti.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -59,6 +63,10 @@ enum omap_mcbsp_div {
 #define NUM_LINKS	5
 #endif
 
+<<<<<<< HEAD
+int omap_mcbsp_st_add_controls(struct snd_soc_pcm_runtime *rtd);
+=======
 int omap_mcbsp_st_add_controls(struct snd_soc_codec *codec, int mcbsp_id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

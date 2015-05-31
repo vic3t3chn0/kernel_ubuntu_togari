@@ -10,6 +10,10 @@
  * for more details.
  */
 
+<<<<<<< HEAD
+#include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/clk.h>
 #include <linux/err.h>
 #include <linux/platform_device.h>
@@ -280,8 +284,21 @@ static struct omap_mbox mbox_iva_info = {
 	.ops	= &omap2_mbox_ops,
 	.priv	= &omap2_mbox_iva_priv,
 };
+<<<<<<< HEAD
+#endif
+
+#ifdef CONFIG_ARCH_OMAP2
+struct omap_mbox *omap2_mboxes[] = {
+	&mbox_dsp_info,
+#ifdef CONFIG_SOC_OMAP2420
+	&mbox_iva_info,
+#endif
+	NULL
+};
+=======
 
 struct omap_mbox *omap2_mboxes[] = { &mbox_dsp_info, &mbox_iva_info, NULL };
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #if defined(CONFIG_ARCH_OMAP4)

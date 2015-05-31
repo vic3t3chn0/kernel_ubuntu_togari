@@ -24,6 +24,10 @@
 #include <linux/i2c/pca953x.h>
 #include <linux/can/platform/ti_hecc.h>
 #include <linux/davinci_emac.h>
+<<<<<<< HEAD
+#include <linux/mmc/host.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/hardware.h>
 #include <mach/am35xx.h>
@@ -32,6 +36,18 @@
 #include <asm/mach/map.h>
 
 #include <plat/board.h>
+<<<<<<< HEAD
+#include "common.h"
+#include <plat/usb.h>
+#include <video/omapdss.h>
+#include <video/omap-panel-generic-dpi.h>
+#include <video/omap-panel-dvi.h>
+
+#include "am35xx-emac.h"
+#include "mux.h"
+#include "control.h"
+#include "hsmmc.h"
+=======
 #include <plat/common.h>
 #include <plat/usb.h>
 #include <video/omapdss.h>
@@ -153,6 +169,7 @@ static void am3517_evm_ethernet_init(struct emac_platform_data *pdata)
 }
 
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define LCD_PANEL_PWR		176
 #define LCD_PANEL_BKLIGHT_PWR	182
@@ -333,8 +350,12 @@ static void am3517_evm_panel_disable_dvi(struct omap_dss_device *dssdev)
 	dvi_enabled = 0;
 }
 
+<<<<<<< HEAD
+static struct panel_dvi_platform_data dvi_panel = {
+=======
 static struct panel_generic_dpi_data dvi_panel = {
 	.name			= "generic",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.platform_enable	= am3517_evm_panel_enable_dvi,
 	.platform_disable	= am3517_evm_panel_disable_dvi,
 };
@@ -342,7 +363,11 @@ static struct panel_generic_dpi_data dvi_panel = {
 static struct omap_dss_device am3517_evm_dvi_device = {
 	.type			= OMAP_DISPLAY_TYPE_DPI,
 	.name			= "dvi",
+<<<<<<< HEAD
+	.driver_name		= "dvi",
+=======
 	.driver_name		= "generic_dpi_panel",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.data			= &dvi_panel,
 	.phy.dpi.data_lines	= 24,
 };
@@ -362,11 +387,14 @@ static struct omap_dss_board_info am3517_evm_dss_data = {
 /*
  * Board initialization
  */
+<<<<<<< HEAD
+=======
 static void __init am3517_evm_init_early(void)
 {
 	omap2_init_common_infrastructure();
 	omap2_init_common_devices(NULL, NULL);
 }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct omap_musb_board_data musb_board_data = {
 	.interface_type         = MUSB_INTERFACE_ULPI,
@@ -460,6 +488,26 @@ static void am3517_evm_hecc_init(struct ti_hecc_platform_data *pdata)
 static struct omap_board_config_kernel am3517_evm_config[] __initdata = {
 };
 
+<<<<<<< HEAD
+static struct omap2_hsmmc_info mmc[] = {
+	{
+		.mmc		= 1,
+		.caps		= MMC_CAP_4_BIT_DATA,
+		.gpio_cd	= 127,
+		.gpio_wp	= 126,
+	},
+	{
+		.mmc		= 2,
+		.caps		= MMC_CAP_4_BIT_DATA,
+		.gpio_cd	= 128,
+		.gpio_wp	= 129,
+	},
+	{}      /* Terminator */
+};
+
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __init am3517_evm_init(void)
 {
 	omap_board_config = am3517_evm_config;
@@ -469,6 +517,10 @@ static void __init am3517_evm_init(void)
 	am3517_evm_i2c_init();
 	omap_display_init(&am3517_evm_dss_data);
 	omap_serial_init();
+<<<<<<< HEAD
+	omap_sdrc_init(NULL, NULL);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Configure GPIO for EHCI port */
 	omap_mux_init_gpio(57, OMAP_PIN_OUTPUT);
@@ -483,6 +535,27 @@ static void __init am3517_evm_init(void)
 	i2c_register_board_info(1, am3517evm_i2c1_boardinfo,
 				ARRAY_SIZE(am3517evm_i2c1_boardinfo));
 	/*Ethernet*/
+<<<<<<< HEAD
+	am35xx_emac_init(AM35XX_DEFAULT_MDIO_FREQUENCY, 1);
+
+	/* MUSB */
+	am3517_evm_musb_init();
+
+	/* MMC init function */
+	omap_hsmmc_init(mmc);
+}
+
+MACHINE_START(OMAP3517EVM, "OMAP3517/AM3517 EVM")
+	.atag_offset	= 0x100,
+	.reserve	= omap_reserve,
+	.map_io		= omap3_map_io,
+	.init_early	= am35xx_init_early,
+	.init_irq	= omap3_init_irq,
+	.handle_irq	= omap3_intc_handle_irq,
+	.init_machine	= am3517_evm_init,
+	.timer		= &omap3_timer,
+	.restart	= omap_prcm_restart,
+=======
 	am3517_evm_ethernet_init(&am3517_evm_emac_pdata);
 
 	/* MUSB */
@@ -497,4 +570,5 @@ MACHINE_START(OMAP3517EVM, "OMAP3517/AM3517 EVM")
 	.init_irq	= omap_init_irq,
 	.init_machine	= am3517_evm_init,
 	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

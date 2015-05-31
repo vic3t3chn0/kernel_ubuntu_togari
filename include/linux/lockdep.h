@@ -343,6 +343,11 @@ extern void lockdep_trace_alloc(gfp_t mask);
 
 #define lockdep_assert_held(l)	WARN_ON(debug_locks && !lockdep_is_held(l))
 
+<<<<<<< HEAD
+#define lockdep_recursing(tsk)	((tsk)->lockdep_recursion)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else /* !LOCKDEP */
 
 static inline void lockdep_off(void)
@@ -392,6 +397,11 @@ struct lock_class_key { };
 
 #define lockdep_assert_held(l)			do { } while (0)
 
+<<<<<<< HEAD
+#define lockdep_recursing(tsk)			(0)
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* !LOCKDEP */
 
 #ifdef CONFIG_LOCK_STAT
@@ -548,7 +558,11 @@ do {									\
 #endif
 
 #ifdef CONFIG_PROVE_RCU
+<<<<<<< HEAD
+void lockdep_rcu_suspicious(const char *file, const int line, const char *s);
+=======
 extern void lockdep_rcu_dereference(const char *file, const int line);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif /* __LINUX_LOCKDEP_H */

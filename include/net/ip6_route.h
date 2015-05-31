@@ -70,6 +70,11 @@ extern void			ip6_route_input(struct sk_buff *skb);
 extern struct dst_entry *	ip6_route_output(struct net *net,
 						 const struct sock *sk,
 						 struct flowi6 *fl6);
+<<<<<<< HEAD
+extern struct dst_entry *	ip6_route_lookup(struct net *net,
+						 struct flowi6 *fl6, int flags);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int			ip6_route_init(void);
 extern void			ip6_route_cleanup(void);
@@ -95,14 +100,22 @@ extern struct rt6_info		*rt6_lookup(struct net *net,
 
 extern struct dst_entry *icmp6_dst_alloc(struct net_device *dev,
 					 struct neighbour *neigh,
+<<<<<<< HEAD
+					 struct flowi6 *fl6);
+=======
 					 const struct in6_addr *addr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int icmp6_dst_gc(void);
 
 extern void fib6_force_start_gc(struct net *net);
 
 extern struct rt6_info *addrconf_dst_alloc(struct inet6_dev *idev,
 					   const struct in6_addr *addr,
+<<<<<<< HEAD
+					   bool anycast);
+=======
 					   int anycast);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int			ip6_dst_hoplimit(struct dst_entry *dst);
 

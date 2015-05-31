@@ -93,7 +93,11 @@
 
 static u32 ndisc_hash(const void *pkey,
 		      const struct net_device *dev,
+<<<<<<< HEAD
+		      __u32 *hash_rnd);
+=======
 		      __u32 rnd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int ndisc_constructor(struct neighbour *neigh);
 static void ndisc_solicit(struct neighbour *neigh, struct sk_buff *skb);
 static void ndisc_error_report(struct neighbour *neigh, struct sk_buff *skb);
@@ -107,8 +111,11 @@ static const struct neigh_ops ndisc_generic_ops = {
 	.error_report =		ndisc_error_report,
 	.output =		neigh_resolve_output,
 	.connected_output =	neigh_connected_output,
+<<<<<<< HEAD
+=======
 	.hh_output =		dev_queue_xmit,
 	.queue_xmit =		dev_queue_xmit,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static const struct neigh_ops ndisc_hh_ops = {
@@ -117,22 +124,33 @@ static const struct neigh_ops ndisc_hh_ops = {
 	.error_report =		ndisc_error_report,
 	.output =		neigh_resolve_output,
 	.connected_output =	neigh_resolve_output,
+<<<<<<< HEAD
+=======
 	.hh_output =		dev_queue_xmit,
 	.queue_xmit =		dev_queue_xmit,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 
 static const struct neigh_ops ndisc_direct_ops = {
 	.family =		AF_INET6,
+<<<<<<< HEAD
+	.output =		neigh_direct_output,
+	.connected_output =	neigh_direct_output,
+=======
 	.output =		dev_queue_xmit,
 	.connected_output =	dev_queue_xmit,
 	.hh_output =		dev_queue_xmit,
 	.queue_xmit =		dev_queue_xmit,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct neigh_table nd_tbl = {
 	.family =	AF_INET6,
+<<<<<<< HEAD
+=======
 	.entry_size =	sizeof(struct neighbour) + sizeof(struct in6_addr),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.key_len =	sizeof(struct in6_addr),
 	.hash =		ndisc_hash,
 	.constructor =	ndisc_constructor,
@@ -147,7 +165,11 @@ struct neigh_table nd_tbl = {
 		.gc_staletime		= 60 * HZ,
 		.reachable_time		= ND_REACHABLE_TIME,
 		.delay_probe_time	= 5 * HZ,
+<<<<<<< HEAD
+		.queue_len_bytes	= 64*1024,
+=======
 		.queue_len		= 3,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.ucast_probes		= 3,
 		.mcast_probes		= 3,
 		.anycast_delay		= 1 * HZ,
@@ -356,6 +378,11 @@ EXPORT_SYMBOL(ndisc_mc_map);
 
 static u32 ndisc_hash(const void *pkey,
 		      const struct net_device *dev,
+<<<<<<< HEAD
+		      __u32 *hash_rnd)
+{
+	return ndisc_hashfn(pkey, dev, hash_rnd);
+=======
 		      __u32 hash_rnd)
 {
 	const u32 *p32 = pkey;
@@ -366,6 +393,7 @@ static u32 ndisc_hash(const void *pkey,
 		addr_hash ^= *p32++;
 
 	return jhash_2words(addr_hash, dev->ifindex, hash_rnd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int ndisc_constructor(struct neighbour *neigh)
@@ -376,23 +404,35 @@ static int ndisc_constructor(struct neighbour *neigh)
 	struct neigh_parms *parms;
 	int is_multicast = ipv6_addr_is_multicast(addr);
 
+<<<<<<< HEAD
+	in6_dev = in6_dev_get(dev);
+	if (in6_dev == NULL) {
+=======
 	rcu_read_lock();
 	in6_dev = in6_dev_get(dev);
 	if (in6_dev == NULL) {
 		rcu_read_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EINVAL;
 	}
 
 	parms = in6_dev->nd_parms;
 	__neigh_parms_put(neigh->parms);
 	neigh->parms = neigh_parms_clone(parms);
+<<<<<<< HEAD
+=======
 	rcu_read_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	neigh->type = is_multicast ? RTN_MULTICAST : RTN_UNICAST;
 	if (!dev->header_ops) {
 		neigh->nud_state = NUD_NOARP;
 		neigh->ops = &ndisc_direct_ops;
+<<<<<<< HEAD
+		neigh->output = neigh_direct_output;
+=======
 		neigh->output = neigh->ops->queue_xmit;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else {
 		if (is_multicast) {
 			neigh->nud_state = NUD_NOARP;
@@ -455,7 +495,14 @@ struct sk_buff *ndisc_build_skb(struct net_device *dev,
 	struct sock *sk = net->ipv6.ndisc_sk;
 	struct sk_buff *skb;
 	struct icmp6hdr *hdr;
+<<<<<<< HEAD
+	int hlen = LL_RESERVED_SPACE(dev);
+	int tlen = dev->needed_tailroom;
 	int len;
+	int err;
+=======
+	int len;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u8 *opt;
 
 	if (!dev->addr_len)
@@ -465,6 +512,20 @@ struct sk_buff *ndisc_build_skb(struct net_device *dev,
 	if (llinfo)
 		len += ndisc_opt_addr_space(dev);
 
+<<<<<<< HEAD
+	skb = sock_alloc_send_skb(sk,
+				  (MAX_HEADER + sizeof(struct ipv6hdr) +
+				   len + hlen + tlen),
+				  1, &err);
+	if (!skb) {
+		ND_PRINTK0(KERN_ERR
+			   "ICMPv6 ND: %s() failed to allocate an skb, err=%d.\n",
+			   __func__, err);
+		return NULL;
+	}
+
+	skb_reserve(skb, hlen);
+=======
 	skb = alloc_skb((MAX_HEADER + sizeof(struct ipv6hdr) +
 			 len + LL_ALLOCATED_SPACE(dev)), GFP_ATOMIC);
 	if (!skb) {
@@ -475,6 +536,7 @@ struct sk_buff *ndisc_build_skb(struct net_device *dev,
 	}
 
 	skb_reserve(skb, LL_RESERVED_SPACE(dev));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ip6_nd_hdr(sk, skb, dev, saddr, daddr, IPPROTO_ICMPV6, len);
 
 	skb->transport_header = skb->tail;
@@ -485,7 +547,11 @@ struct sk_buff *ndisc_build_skb(struct net_device *dev,
 
 	opt = skb_transport_header(skb) + sizeof(struct icmp6hdr);
 	if (target) {
+<<<<<<< HEAD
+		*(struct in6_addr *)opt = *target;
+=======
 		ipv6_addr_copy((struct in6_addr *)opt, target);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		opt += sizeof(*target);
 	}
 
@@ -498,11 +564,14 @@ struct sk_buff *ndisc_build_skb(struct net_device *dev,
 					   csum_partial(hdr,
 							len, 0));
 
+<<<<<<< HEAD
+=======
 	/* Manually assign socket ownership as we avoid calling
 	 * sock_alloc_send_pskb() to bypass wmem buffer limits
 	 */
 	skb_set_owner_w(skb, sk);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return skb;
 }
 
@@ -526,6 +595,9 @@ void ndisc_send_skb(struct sk_buff *skb,
 	type = icmp6h->icmp6_type;
 
 	icmpv6_flow_init(sk, &fl6, type, saddr, daddr, dev->ifindex);
+<<<<<<< HEAD
+	dst = icmp6_dst_alloc(dev, neigh, &fl6);
+=======
 
 	dst = icmp6_dst_alloc(dev, neigh, daddr);
 	if (!dst) {
@@ -534,6 +606,7 @@ void ndisc_send_skb(struct sk_buff *skb,
 	}
 
 	dst = xfrm_lookup(net, dst, flowi6_to_flowi(&fl6), NULL, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (IS_ERR(dst)) {
 		kfree_skb(skb);
 		return;
@@ -541,7 +614,12 @@ void ndisc_send_skb(struct sk_buff *skb,
 
 	skb_dst_set(skb, dst);
 
+<<<<<<< HEAD
+	rcu_read_lock();
+	idev = __in6_dev_get(dst->dev);
+=======
 	idev = in6_dev_get(dst->dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	IP6_UPD_PO_STATS(net, idev, IPSTATS_MIB_OUT, skb->len);
 
 	err = NF_HOOK(NFPROTO_IPV6, NF_INET_LOCAL_OUT, skb, NULL, dst->dev,
@@ -551,8 +629,12 @@ void ndisc_send_skb(struct sk_buff *skb,
 		ICMP6_INC_STATS(net, idev, ICMP6_MIB_OUTMSGS);
 	}
 
+<<<<<<< HEAD
+	rcu_read_unlock();
+=======
 	if (likely(idev != NULL))
 		in6_dev_put(idev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 EXPORT_SYMBOL(ndisc_send_skb);
@@ -617,7 +699,11 @@ static void ndisc_send_unsol_na(struct net_device *dev)
 {
 	struct inet6_dev *idev;
 	struct inet6_ifaddr *ifa;
+<<<<<<< HEAD
+	struct in6_addr mcaddr;
+=======
 	struct in6_addr mcaddr = IN6ADDR_LINKLOCAL_ALLNODES_INIT;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	idev = in6_dev_get(dev);
 	if (!idev)
@@ -625,6 +711,10 @@ static void ndisc_send_unsol_na(struct net_device *dev)
 
 	read_lock_bh(&idev->lock);
 	list_for_each_entry(ifa, &idev->addr_list, if_list) {
+<<<<<<< HEAD
+		addrconf_addr_solict_mult(&ifa->addr, &mcaddr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ndisc_send_na(dev, NULL, &mcaddr, &ifa->addr,
 			      /*router=*/ !!idev->cnf.forwarding,
 			      /*solicited=*/ false, /*override=*/ true,
@@ -1046,7 +1136,11 @@ static void ndisc_recv_rs(struct sk_buff *skb)
 	if (skb->len < sizeof(*rs_msg))
 		return;
 
+<<<<<<< HEAD
+	idev = __in6_dev_get(skb->dev);
+=======
 	idev = in6_dev_get(skb->dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!idev) {
 		if (net_ratelimit())
 			ND_PRINTK1("ICMP6 RS: can't find in6 device\n");
@@ -1087,7 +1181,11 @@ static void ndisc_recv_rs(struct sk_buff *skb)
 		neigh_release(neigh);
 	}
 out:
+<<<<<<< HEAD
+	return;
+=======
 	in6_dev_put(idev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void ndisc_ra_useropt(struct sk_buff *ra, struct nd_opt_hdr *opt)
@@ -1186,7 +1284,11 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 	 *	set the RA_RECV flag in the interface
 	 */
 
+<<<<<<< HEAD
+	in6_dev = __in6_dev_get(skb->dev);
+=======
 	in6_dev = in6_dev_get(skb->dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (in6_dev == NULL) {
 		ND_PRINTK0(KERN_ERR
 			   "ICMPv6 RA: can't find inet6 device for %s.\n",
@@ -1195,7 +1297,10 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 	}
 
 	if (!ndisc_parse_options(opt, optlen, &ndopts)) {
+<<<<<<< HEAD
+=======
 		in6_dev_put(in6_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ND_PRINTK2(KERN_WARNING
 			   "ICMP6 RA: invalid ND options\n");
 		return;
@@ -1232,6 +1337,12 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 	if (!in6_dev->cnf.accept_ra_defrtr)
 		goto skip_defrtr;
 
+<<<<<<< HEAD
+	if (ipv6_chk_addr(dev_net(in6_dev->dev), &ipv6_hdr(skb)->saddr, NULL, 0))
+		goto skip_defrtr;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	lifetime = ntohs(ra_msg->icmph.icmp6_rt_lifetime);
 
 #ifdef CONFIG_IPV6_ROUTER_PREF
@@ -1244,11 +1355,25 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 
 	rt = rt6_get_dflt_router(&ipv6_hdr(skb)->saddr, skb->dev);
 
+<<<<<<< HEAD
+	if (rt) {
+		neigh = dst_neigh_lookup(&rt->dst, &ipv6_hdr(skb)->saddr);
+		if (!neigh) {
+			ND_PRINTK0(KERN_ERR
+				   "ICMPv6 RA: %s() got default router without neighbour.\n",
+				   __func__);
+			dst_release(&rt->dst);
+			return;
+		}
+	}
+	if (rt && lifetime == 0) {
+=======
 	if (rt)
 		neigh = dst_get_neighbour(&rt->dst);
 
 	if (rt && lifetime == 0) {
 		neigh_clone(neigh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ip6_del_rt(rt);
 		rt = NULL;
 	}
@@ -1262,17 +1387,27 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 			ND_PRINTK0(KERN_ERR
 				   "ICMPv6 RA: %s() failed to add default route.\n",
 				   __func__);
+<<<<<<< HEAD
+			return;
+		}
+
+		neigh = dst_neigh_lookup(&rt->dst, &ipv6_hdr(skb)->saddr);
+=======
 			in6_dev_put(in6_dev);
 			return;
 		}
 
 		neigh = dst_get_neighbour(&rt->dst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (neigh == NULL) {
 			ND_PRINTK0(KERN_ERR
 				   "ICMPv6 RA: %s() got default router without neighbour.\n",
 				   __func__);
 			dst_release(&rt->dst);
+<<<<<<< HEAD
+=======
 			in6_dev_put(in6_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			return;
 		}
 		neigh->flags |= NTF_ROUTER;
@@ -1281,8 +1416,12 @@ static void ndisc_router_discovery(struct sk_buff *skb)
 	}
 
 	if (rt)
+<<<<<<< HEAD
+		rt6_set_expires(rt, jiffies + (HZ * lifetime));
+=======
 		rt->rt6i_expires = jiffies + (HZ * lifetime);
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (ra_msg->icmph.icmp6_hop_limit) {
 		in6_dev->cnf.hop_limit = ra_msg->icmph.icmp6_hop_limit;
 		if (rt)
@@ -1356,6 +1495,12 @@ skip_linkparms:
 		goto out;
 
 #ifdef CONFIG_IPV6_ROUTE_INFO
+<<<<<<< HEAD
+	if (ipv6_chk_addr(dev_net(in6_dev->dev), &ipv6_hdr(skb)->saddr, NULL, 0))
+		goto skip_routeinfo;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (in6_dev->cnf.accept_ra_rtr_pref && ndopts.nd_opts_ri) {
 		struct nd_opt_hdr *p;
 		for (p = ndopts.nd_opts_ri;
@@ -1373,6 +1518,11 @@ skip_linkparms:
 				      &ipv6_hdr(skb)->saddr);
 		}
 	}
+<<<<<<< HEAD
+
+skip_routeinfo:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #ifdef CONFIG_IPV6_NDISC_NODETYPE
@@ -1386,7 +1536,13 @@ skip_linkparms:
 		for (p = ndopts.nd_opts_pi;
 		     p;
 		     p = ndisc_next_option(p, ndopts.nd_opts_pi_end)) {
+<<<<<<< HEAD
+			addrconf_prefix_rcv(skb->dev, (u8 *)p,
+					    (p->nd_opt_len) << 3,
+					    ndopts.nd_opts_src_lladdr != NULL);
+=======
 			addrconf_prefix_rcv(skb->dev, (u8*)p, (p->nd_opt_len) << 3);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	}
 
@@ -1427,9 +1583,14 @@ skip_linkparms:
 out:
 	if (rt)
 		dst_release(&rt->dst);
+<<<<<<< HEAD
+	if (neigh)
+		neigh_release(neigh);
+=======
 	else if (neigh)
 		neigh_release(neigh);
 	in6_dev_put(in6_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void ndisc_redirect_rcv(struct sk_buff *skb)
@@ -1488,6 +1649,13 @@ static void ndisc_redirect_rcv(struct sk_buff *skb)
 		return;
 	}
 
+<<<<<<< HEAD
+	in6_dev = __in6_dev_get(skb->dev);
+	if (!in6_dev)
+		return;
+	if (in6_dev->cnf.forwarding || !in6_dev->cnf.accept_redirects)
+		return;
+=======
 	in6_dev = in6_dev_get(skb->dev);
 	if (!in6_dev)
 		return;
@@ -1495,6 +1663,7 @@ static void ndisc_redirect_rcv(struct sk_buff *skb)
 		in6_dev_put(in6_dev);
 		return;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* RFC2461 8.1:
 	 *	The IP source address of the Redirect MUST be the same as the current
@@ -1504,7 +1673,10 @@ static void ndisc_redirect_rcv(struct sk_buff *skb)
 	if (!ndisc_parse_options((u8*)(dest + 1), optlen, &ndopts)) {
 		ND_PRINTK2(KERN_WARNING
 			   "ICMPv6 Redirect: invalid ND options\n");
+<<<<<<< HEAD
+=======
 		in6_dev_put(in6_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return;
 	}
 	if (ndopts.nd_opts_tgt_lladdr) {
@@ -1513,7 +1685,10 @@ static void ndisc_redirect_rcv(struct sk_buff *skb)
 		if (!lladdr) {
 			ND_PRINTK2(KERN_WARNING
 				   "ICMPv6 Redirect: invalid link-layer address length\n");
+<<<<<<< HEAD
+=======
 			in6_dev_put(in6_dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			return;
 		}
 	}
@@ -1525,11 +1700,17 @@ static void ndisc_redirect_rcv(struct sk_buff *skb)
 			     on_link);
 		neigh_release(neigh);
 	}
+<<<<<<< HEAD
+}
+
+void ndisc_send_redirect(struct sk_buff *skb, const struct in6_addr *target)
+=======
 	in6_dev_put(in6_dev);
 }
 
 void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 			 const struct in6_addr *target)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct net_device *dev = skb->dev;
 	struct net *net = dev_net(dev);
@@ -1544,6 +1725,10 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 	struct inet6_dev *idev;
 	struct flowi6 fl6;
 	u8 *opt;
+<<<<<<< HEAD
+	int hlen, tlen;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int rd_len;
 	int err;
 	u8 ha_buf[MAX_ADDR_LEN], *ha = NULL;
@@ -1566,9 +1751,16 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 			 &saddr_buf, &ipv6_hdr(skb)->saddr, dev->ifindex);
 
 	dst = ip6_route_output(net, NULL, &fl6);
+<<<<<<< HEAD
+	if (dst->error) {
+		dst_release(dst);
+		return;
+	}
+=======
 	if (dst == NULL)
 		return;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dst = xfrm_lookup(net, dst, flowi6_to_flowi(&fl6), NULL, 0);
 	if (IS_ERR(dst))
 		return;
@@ -1582,10 +1774,24 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 	}
 	if (!rt->rt6i_peer)
 		rt6_bind_peer(rt, 1);
+<<<<<<< HEAD
+	if (!inet_peer_xrlim_allow(rt->rt6i_peer, 1*HZ))
+		goto release;
+
+	if (dev->addr_len) {
+		struct neighbour *neigh = dst_neigh_lookup(skb_dst(skb), target);
+		if (!neigh) {
+			ND_PRINTK2(KERN_WARNING
+				   "ICMPv6 Redirect: no neigh for target address\n");
+			goto release;
+		}
+
+=======
 	if (inet_peer_xrlim_allow(rt->rt6i_peer, 1*HZ))
 		goto release;
 
 	if (dev->addr_len) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		read_lock_bh(&neigh->lock);
 		if (neigh->nud_state & NUD_VALID) {
 			memcpy(ha_buf, neigh->ha, dev->addr_len);
@@ -1594,6 +1800,11 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 			len += ndisc_opt_addr_space(dev);
 		} else
 			read_unlock_bh(&neigh->lock);
+<<<<<<< HEAD
+
+		neigh_release(neigh);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	rd_len = min_t(unsigned int,
@@ -1601,9 +1812,17 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 	rd_len &= ~0x7;
 	len += rd_len;
 
+<<<<<<< HEAD
+	hlen = LL_RESERVED_SPACE(dev);
+	tlen = dev->needed_tailroom;
+	buff = sock_alloc_send_skb(sk,
+				   (MAX_HEADER + sizeof(struct ipv6hdr) +
+				    len + hlen + tlen),
+=======
 	buff = sock_alloc_send_skb(sk,
 				   (MAX_HEADER + sizeof(struct ipv6hdr) +
 				    len + LL_ALLOCATED_SPACE(dev)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				   1, &err);
 	if (buff == NULL) {
 		ND_PRINTK0(KERN_ERR
@@ -1612,7 +1831,11 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 		goto release;
 	}
 
+<<<<<<< HEAD
+	skb_reserve(buff, hlen);
+=======
 	skb_reserve(buff, LL_RESERVED_SPACE(dev));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ip6_nd_hdr(sk, buff, dev, &saddr_buf, &ipv6_hdr(skb)->saddr,
 		   IPPROTO_ICMPV6, len);
 
@@ -1628,9 +1851,15 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 	 */
 
 	addrp = (struct in6_addr *)(icmph + 1);
+<<<<<<< HEAD
+	*addrp = *target;
+	addrp++;
+	*addrp = ipv6_hdr(skb)->daddr;
+=======
 	ipv6_addr_copy(addrp, target);
 	addrp++;
 	ipv6_addr_copy(addrp, &ipv6_hdr(skb)->daddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	opt = (u8*) (addrp + 1);
 
@@ -1658,7 +1887,12 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 					     csum_partial(icmph, len, 0));
 
 	skb_dst_set(buff, dst);
+<<<<<<< HEAD
+	rcu_read_lock();
+	idev = __in6_dev_get(dst->dev);
+=======
 	idev = in6_dev_get(dst->dev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	IP6_UPD_PO_STATS(net, idev, IPSTATS_MIB_OUT, skb->len);
 	err = NF_HOOK(NFPROTO_IPV6, NF_INET_LOCAL_OUT, buff, NULL, dst->dev,
 		      dst_output);
@@ -1667,8 +1901,12 @@ void ndisc_send_redirect(struct sk_buff *skb, struct neighbour *neigh,
 		ICMP6_INC_STATS(net, idev, ICMP6_MIB_OUTMSGS);
 	}
 
+<<<<<<< HEAD
+	rcu_read_unlock();
+=======
 	if (likely(idev != NULL))
 		in6_dev_put(idev);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return;
 
 release:

@@ -9,6 +9,9 @@ obj-m				:=
 obj-n				:=
 obj-				:=
 
+<<<<<<< HEAD
+obj-$(CONFIG_S3C2412_CPUFREQ)	+= cpu-freq.o
+=======
 obj-$(CONFIG_CPU_S3C2412)	+= s3c2412.o
 obj-$(CONFIG_CPU_S3C2412)	+= irq.o
 obj-$(CONFIG_CPU_S3C2412)	+= clock.o
@@ -23,3 +26,4 @@ obj-$(CONFIG_S3C2412_CPUFREQ)	+= cpu-freq.o
 obj-$(CONFIG_MACH_JIVE)		+= mach-jive.o
 obj-$(CONFIG_MACH_SMDK2413)	+= mach-smdk2413.o
 obj-$(CONFIG_MACH_VSTMS)	+= mach-vstms.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

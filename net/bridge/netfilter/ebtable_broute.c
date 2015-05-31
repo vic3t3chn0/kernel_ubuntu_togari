@@ -87,14 +87,22 @@ static int __init ebtable_broute_init(void)
 	if (ret < 0)
 		return ret;
 	/* see br_input.c */
+<<<<<<< HEAD
+	RCU_INIT_POINTER(br_should_route_hook,
+=======
 	rcu_assign_pointer(br_should_route_hook,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			   (br_should_route_hook_t *)ebt_broute);
 	return 0;
 }
 
 static void __exit ebtable_broute_fini(void)
 {
+<<<<<<< HEAD
+	RCU_INIT_POINTER(br_should_route_hook, NULL);
+=======
 	rcu_assign_pointer(br_should_route_hook, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	synchronize_net();
 	unregister_pernet_subsys(&broute_net_ops);
 }

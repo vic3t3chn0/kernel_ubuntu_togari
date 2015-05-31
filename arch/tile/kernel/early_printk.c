@@ -16,6 +16,10 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/string.h>
+<<<<<<< HEAD
+#include <linux/irqflags.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/setup.h>
 #include <hv/hypervisor.h>
 

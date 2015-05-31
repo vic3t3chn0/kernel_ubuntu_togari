@@ -5,20 +5,32 @@
  *  Copyright (C) 1998 Phil Blundell
  */
 #include <linux/clockchips.h>
+<<<<<<< HEAD
+#include <linux/i8253.h>
+#include <linux/init.h>
+#include <linux/interrupt.h>
+#include <linux/irq.h>
+=======
 #include <linux/clocksource.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/irq.h>
 #include <linux/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/spinlock.h>
 #include <linux/timex.h>
 
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
 #include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach/time.h>
 
 #include "common.h"
 
+<<<<<<< HEAD
+=======
 DEFINE_RAW_SPINLOCK(i8253_lock);
 
 static void pit_set_mode(enum clock_event_mode mode,
@@ -63,6 +75,7 @@ static struct clock_event_device pit_ce = {
 	.shift		= 32,
 };
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static irqreturn_t pit_timer_interrupt(int irq, void *dev_id)
 {
 	struct clock_event_device *ce = dev_id;
@@ -74,11 +87,21 @@ static struct irqaction pit_timer_irq = {
 	.name		= "pit",
 	.handler	= pit_timer_interrupt,
 	.flags		= IRQF_DISABLED | IRQF_TIMER | IRQF_IRQPOLL,
+<<<<<<< HEAD
+	.dev_id		= &i8253_clockevent,
+=======
 	.dev_id		= &pit_ce,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static void __init isa_timer_init(void)
 {
+<<<<<<< HEAD
+	clocksource_i8253_init();
+
+	setup_irq(i8253_clockevent.irq, &pit_timer_irq);
+	clockevent_i8253_init(false);
+=======
 	pit_ce.cpumask = cpumask_of(smp_processor_id());
 	pit_ce.mult = div_sc(PIT_TICK_RATE, NSEC_PER_SEC, pit_ce.shift);
 	pit_ce.max_delta_ns = clockevent_delta2ns(0x7fff, &pit_ce);
@@ -88,6 +111,7 @@ static void __init isa_timer_init(void)
 
 	setup_irq(pit_ce.irq, &pit_timer_irq);
 	clockevents_register_device(&pit_ce);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 struct sys_timer isa_timer = {

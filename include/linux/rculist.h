@@ -183,7 +183,11 @@ static inline void list_splice_init_rcu(struct list_head *list,
 	struct list_head *last = list->prev;
 	struct list_head *at = head->next;
 
+<<<<<<< HEAD
+	if (list_empty(list))
+=======
 	if (list_empty(head))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return;
 
 	/* "first" and "last" tracking list, so initialize it. */
@@ -242,6 +246,8 @@ static inline void list_splice_init_rcu(struct list_head *list,
 	list_entry_rcu((ptr)->next, type, member)
 
 /**
+<<<<<<< HEAD
+=======
  * list_first_or_null_rcu - get the first element from a list
  * @ptr:        the list head to take the element from.
  * @type:       the type of the struct this is embedded in.
@@ -260,6 +266,7 @@ static inline void list_splice_init_rcu(struct list_head *list,
 	})
 
 /**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * list_for_each_entry_rcu	-	iterate over rcu list of given type
  * @pos:	the type * to use as a loop cursor.
  * @head:	the head for your list.

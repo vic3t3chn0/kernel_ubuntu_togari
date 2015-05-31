@@ -1,5 +1,10 @@
 # S/390 __udiv_qrnnd
 
+<<<<<<< HEAD
+#include <linux/linkage.h>
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # r2 : &__r
 # r3 : upper half of 64 bit word n
 # r4 : lower half of 64 bit word n
@@ -8,8 +13,12 @@
 # the quotient q is to be returned
 
 	.text
+<<<<<<< HEAD
+ENTRY(__udiv_qrnnd)
+=======
 	.globl __udiv_qrnnd
 __udiv_qrnnd:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	st    %r2,24(%r15)	  # store pointer to reminder for later
 	lr    %r0,%r3		  # reload n
 	lr    %r1,%r4

@@ -65,6 +65,11 @@
  *		2 of the License, or (at your option) any later version.
  */
 
+<<<<<<< HEAD
+#define pr_fmt(fmt) "IPv4: " fmt
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/err.h>
 #include <linux/errno.h>
 #include <linux/types.h>
@@ -89,7 +94,10 @@
 #include <linux/slab.h>
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/inet.h>
 #include <linux/igmp.h>
@@ -153,12 +161,20 @@ void inet_sock_destruct(struct sock *sk)
 	sk_mem_reclaim(sk);
 
 	if (sk->sk_type == SOCK_STREAM && sk->sk_state != TCP_CLOSE) {
+<<<<<<< HEAD
+		WARN(1, "Attempt to release TCP socket in state %d %p\n",
+=======
 		pr_err("Attempt to release TCP socket in state %d %p\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       sk->sk_state, sk);
 		return;
 	}
 	if (!sock_flag(sk, SOCK_DEAD)) {
+<<<<<<< HEAD
+		WARN(1, "Attempt to release alive inet socket %p\n", sk);
+=======
 		pr_err("Attempt to release alive inet socket %p\n", sk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return;
 	}
 
@@ -239,12 +255,17 @@ EXPORT_SYMBOL(inet_listen);
 u32 inet_ehash_secret __read_mostly;
 EXPORT_SYMBOL(inet_ehash_secret);
 
+<<<<<<< HEAD
+/*
+ * inet_ehash_secret must be set exactly once
+=======
 u32 ipv6_hash_secret __read_mostly;
 EXPORT_SYMBOL(ipv6_hash_secret);
 
 /*
  * inet_ehash_secret must be set exactly once, and to a non nul value
  * ipv6_hash_secret must be set exactly once.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 void build_ehash_secret(void)
 {
@@ -254,8 +275,12 @@ void build_ehash_secret(void)
 		get_random_bytes(&rnd, sizeof(rnd));
 	} while (rnd == 0);
 
+<<<<<<< HEAD
+	cmpxchg(&inet_ehash_secret, 0, rnd);
+=======
 	if (cmpxchg(&inet_ehash_secret, 0, rnd) == 0)
 		get_random_bytes(&ipv6_hash_secret, sizeof(ipv6_hash_secret));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(build_ehash_secret);
 
@@ -403,6 +428,10 @@ lookup_protocol:
 	inet->mc_all	= 1;
 	inet->mc_index	= 0;
 	inet->mc_list	= NULL;
+<<<<<<< HEAD
+	inet->rcv_tos	= 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	sk_refcnt_debug_inc(sk);
 
@@ -488,8 +517,18 @@ int inet_bind(struct socket *sock, struct sockaddr *uaddr, int addr_len)
 		goto out;
 
 	if (addr->sin_family != AF_INET) {
+<<<<<<< HEAD
+		/* Compatibility games : accept AF_UNSPEC (mapped to AF_INET)
+		 * only if s_addr is INADDR_ANY.
+		 */
+		err = -EAFNOSUPPORT;
+		if (addr->sin_family != AF_UNSPEC ||
+		    addr->sin_addr.s_addr != htonl(INADDR_ANY))
+			goto out;
+=======
 		err = -EAFNOSUPPORT;
 		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	chk_addr_ret = inet_addr_type(sock_net(sk), addr->sin_addr.s_addr);
@@ -911,7 +950,11 @@ int inet_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg)
 EXPORT_SYMBOL(inet_ioctl);
 
 #ifdef CONFIG_COMPAT
+<<<<<<< HEAD
+static int inet_compat_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg)
+=======
 int inet_compat_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct sock *sk = sock->sk;
 	int err = -ENOIOCTLCMD;
@@ -1102,6 +1145,13 @@ out:
 	return;
 
 out_permanent:
+<<<<<<< HEAD
+	pr_err("Attempt to override permanent protocol %d\n", protocol);
+	goto out;
+
+out_illegal:
+	pr_err("Ignoring attempt to register invalid socket type %d\n",
+=======
 	printk(KERN_ERR "Attempt to override permanent protocol %d.\n",
 	       protocol);
 	goto out;
@@ -1109,6 +1159,7 @@ out_permanent:
 out_illegal:
 	printk(KERN_ERR
 	       "Ignoring attempt to register invalid socket type %d.\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	       p->type);
 	goto out;
 }
@@ -1117,8 +1168,12 @@ EXPORT_SYMBOL(inet_register_protosw);
 void inet_unregister_protosw(struct inet_protosw *p)
 {
 	if (INET_PROTOSW_PERMANENT & p->flags) {
+<<<<<<< HEAD
+		pr_err("Attempt to unregister permanent protocol %d\n",
+=======
 		printk(KERN_ERR
 		       "Attempt to unregister permanent protocol %d.\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       p->protocol);
 	} else {
 		spin_lock_bh(&inetsw_lock);
@@ -1167,8 +1222,13 @@ static int inet_sk_reselect_saddr(struct sock *sk)
 		return 0;
 
 	if (sysctl_ip_dynaddr > 1) {
+<<<<<<< HEAD
+		pr_info("%s(): shifting inet->saddr from %pI4 to %pI4\n",
+			__func__, &old_saddr, &new_saddr);
+=======
 		printk(KERN_INFO "%s(): shifting inet->saddr from %pI4 to %pI4\n",
 		       __func__, &old_saddr, &new_saddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	inet->inet_saddr = inet->inet_rcv_saddr = new_saddr;
@@ -1268,7 +1328,12 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
+static struct sk_buff *inet_gso_segment(struct sk_buff *skb,
+	netdev_features_t features)
+=======
 static struct sk_buff *inet_gso_segment(struct sk_buff *skb, u32 features)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct sk_buff *segs = ERR_PTR(-EINVAL);
 	struct iphdr *iph;
@@ -1463,11 +1528,19 @@ EXPORT_SYMBOL_GPL(inet_ctl_sock_create);
 unsigned long snmp_fold_field(void __percpu *mib[], int offt)
 {
 	unsigned long res = 0;
+<<<<<<< HEAD
+	int i, j;
+
+	for_each_possible_cpu(i) {
+		for (j = 0; j < SNMP_ARRAY_SZ; j++)
+			res += *(((unsigned long *) per_cpu_ptr(mib[j], i)) + offt);
+=======
 	int i;
 
 	for_each_possible_cpu(i) {
 		res += *(((unsigned long *) per_cpu_ptr(mib[0], i)) + offt);
 		res += *(((unsigned long *) per_cpu_ptr(mib[1], i)) + offt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	return res;
 }
@@ -1481,6 +1554,21 @@ u64 snmp_fold_field64(void __percpu *mib[], int offt, size_t syncp_offset)
 	int cpu;
 
 	for_each_possible_cpu(cpu) {
+<<<<<<< HEAD
+		void *bhptr;
+		struct u64_stats_sync *syncp;
+		u64 v;
+		unsigned int start;
+
+		bhptr = per_cpu_ptr(mib[0], cpu);
+		syncp = (struct u64_stats_sync *)(bhptr + syncp_offset);
+		do {
+			start = u64_stats_fetch_begin_bh(syncp);
+			v = *(((u64 *) bhptr) + offt);
+		} while (u64_stats_fetch_retry_bh(syncp, start));
+
+		res += v;
+=======
 		void *bhptr, *userptr;
 		struct u64_stats_sync *syncp;
 		u64 v_bh, v_user;
@@ -1503,6 +1591,7 @@ u64 snmp_fold_field64(void __percpu *mib[], int offt, size_t syncp_offset)
 		} while (u64_stats_fetch_retry(syncp, start));
 
 		res += v_bh + v_user;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	return res;
 }
@@ -1514,6 +1603,30 @@ int snmp_mib_init(void __percpu *ptr[2], size_t mibsize, size_t align)
 	BUG_ON(ptr == NULL);
 	ptr[0] = __alloc_percpu(mibsize, align);
 	if (!ptr[0])
+<<<<<<< HEAD
+		return -ENOMEM;
+#if SNMP_ARRAY_SZ == 2
+	ptr[1] = __alloc_percpu(mibsize, align);
+	if (!ptr[1]) {
+		free_percpu(ptr[0]);
+		ptr[0] = NULL;
+		return -ENOMEM;
+	}
+#endif
+	return 0;
+}
+EXPORT_SYMBOL_GPL(snmp_mib_init);
+
+void snmp_mib_free(void __percpu *ptr[SNMP_ARRAY_SZ])
+{
+	int i;
+
+	BUG_ON(ptr == NULL);
+	for (i = 0; i < SNMP_ARRAY_SZ; i++) {
+		free_percpu(ptr[i]);
+		ptr[i] = NULL;
+	}
+=======
 		goto err0;
 	ptr[1] = __alloc_percpu(mibsize, align);
 	if (!ptr[1])
@@ -1533,6 +1646,7 @@ void snmp_mib_free(void __percpu *ptr[2])
 	free_percpu(ptr[0]);
 	free_percpu(ptr[1]);
 	ptr[0] = ptr[1] = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL_GPL(snmp_mib_free);
 
@@ -1565,7 +1679,11 @@ static const struct net_protocol udp_protocol = {
 
 static const struct net_protocol icmp_protocol = {
 	.handler =	icmp_rcv,
+<<<<<<< HEAD
+	.err_handler =	ping_v4_err,
+=======
 	.err_handler =	ping_err,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.no_policy =	1,
 	.netns_ok =	1,
 };
@@ -1596,9 +1714,15 @@ static __net_init int ipv4_mib_init_net(struct net *net)
 			  sizeof(struct icmp_mib),
 			  __alignof__(struct icmp_mib)) < 0)
 		goto err_icmp_mib;
+<<<<<<< HEAD
+	net->mib.icmpmsg_statistics = kzalloc(sizeof(struct icmpmsg_mib),
+					      GFP_KERNEL);
+	if (!net->mib.icmpmsg_statistics)
+=======
 	if (snmp_mib_init((void __percpu **)net->mib.icmpmsg_statistics,
 			  sizeof(struct icmpmsg_mib),
 			  __alignof__(struct icmpmsg_mib)) < 0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto err_icmpmsg_mib;
 
 	tcp_mib_init(net);
@@ -1622,7 +1746,11 @@ err_tcp_mib:
 
 static __net_exit void ipv4_mib_exit_net(struct net *net)
 {
+<<<<<<< HEAD
+	kfree(net->mib.icmpmsg_statistics);
+=======
 	snmp_mib_free((void __percpu **)net->mib.icmpmsg_statistics);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	snmp_mib_free((void __percpu **)net->mib.icmp_statistics);
 	snmp_mib_free((void __percpu **)net->mib.udplite_statistics);
 	snmp_mib_free((void __percpu **)net->mib.udp_statistics);
@@ -1695,11 +1823,26 @@ static int __init inet_init(void)
 	ip_static_sysctl_init();
 #endif
 
+<<<<<<< HEAD
+	tcp_prot.sysctl_mem = init_net.ipv4.sysctl_tcp_mem;
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 *	Add all the base protocols.
 	 */
 
 	if (inet_add_protocol(&icmp_protocol, IPPROTO_ICMP) < 0)
+<<<<<<< HEAD
+		pr_crit("%s: Cannot add ICMP protocol\n", __func__);
+	if (inet_add_protocol(&udp_protocol, IPPROTO_UDP) < 0)
+		pr_crit("%s: Cannot add UDP protocol\n", __func__);
+	if (inet_add_protocol(&tcp_protocol, IPPROTO_TCP) < 0)
+		pr_crit("%s: Cannot add TCP protocol\n", __func__);
+#ifdef CONFIG_IP_MULTICAST
+	if (inet_add_protocol(&igmp_protocol, IPPROTO_IGMP) < 0)
+		pr_crit("%s: Cannot add IGMP protocol\n", __func__);
+=======
 		printk(KERN_CRIT "inet_init: Cannot add ICMP protocol\n");
 	if (inet_add_protocol(&udp_protocol, IPPROTO_UDP) < 0)
 		printk(KERN_CRIT "inet_init: Cannot add UDP protocol\n");
@@ -1708,6 +1851,7 @@ static int __init inet_init(void)
 #ifdef CONFIG_IP_MULTICAST
 	if (inet_add_protocol(&igmp_protocol, IPPROTO_IGMP) < 0)
 		printk(KERN_CRIT "inet_init: Cannot add IGMP protocol\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	/* Register the socket-side information for inet_create. */
@@ -1754,14 +1898,22 @@ static int __init inet_init(void)
 	 */
 #if defined(CONFIG_IP_MROUTE)
 	if (ip_mr_init())
+<<<<<<< HEAD
+		pr_crit("%s: Cannot init ipv4 mroute\n", __func__);
+=======
 		printk(KERN_CRIT "inet_init: Cannot init ipv4 mroute\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	/*
 	 *	Initialise per-cpu ipv4 mibs
 	 */
 
 	if (init_ipv4_mibs())
+<<<<<<< HEAD
+		pr_crit("%s: Cannot init ipv4 mibs\n", __func__);
+=======
 		printk(KERN_CRIT "inet_init: Cannot init ipv4 mibs\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	ipv4_proc_init();
 

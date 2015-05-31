@@ -56,7 +56,10 @@ struct pt_regs {
 #define instruction_pointer(regs)	((regs)->iaoq[0] & ~3)
 #define user_stack_pointer(regs)	((regs)->gr[30])
 unsigned long profile_pc(struct pt_regs *);
+<<<<<<< HEAD
+=======
 extern void show_regs(struct pt_regs *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 #endif /* __KERNEL__ */

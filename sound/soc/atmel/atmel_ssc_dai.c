@@ -402,7 +402,11 @@ static int atmel_ssc_hw_params(struct snd_pcm_substream *substream,
 	if ((ssc_p->daifmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_I2S
 		&& bits > 16) {
 		printk(KERN_WARNING
+<<<<<<< HEAD
+				"atmel_ssc_dai: sample size %d "
+=======
 				"atmel_ssc_dai: sample size %d"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				"is too large for I2S\n", bits);
 		return -EINVAL;
 	}
@@ -719,7 +723,11 @@ static int atmel_ssc_remove(struct snd_soc_dai *dai)
 #define ATMEL_SSC_FORMATS (SNDRV_PCM_FMTBIT_S8     | SNDRV_PCM_FMTBIT_S16_LE |\
 			  SNDRV_PCM_FMTBIT_S24_LE | SNDRV_PCM_FMTBIT_S32_LE)
 
+<<<<<<< HEAD
+static const struct snd_soc_dai_ops atmel_ssc_dai_ops = {
+=======
 static struct snd_soc_dai_ops atmel_ssc_dai_ops = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.startup	= atmel_ssc_startup,
 	.shutdown	= atmel_ssc_shutdown,
 	.prepare	= atmel_ssc_prepare,
@@ -838,10 +846,15 @@ int atmel_ssc_set_audio(int ssc_id)
 	}
 
 	ssc_pdev = platform_device_alloc("atmel-ssc-dai", ssc_id);
+<<<<<<< HEAD
+	if (!ssc_pdev)
+		return -ENOMEM;
+=======
 	if (!ssc_pdev) {
 		ssc_free(ssc);
 		return -ENOMEM;
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* If we can grab the SSC briefly to parent the DAI device off it */
 	ssc = ssc_request(ssc_id);
@@ -861,6 +874,9 @@ int atmel_ssc_set_audio(int ssc_id)
 }
 EXPORT_SYMBOL_GPL(atmel_ssc_set_audio);
 
+<<<<<<< HEAD
+module_platform_driver(asoc_ssc_driver);
+=======
 static int __init snd_atmel_ssc_init(void)
 {
 	return platform_driver_register(&asoc_ssc_driver);
@@ -872,6 +888,7 @@ static void __exit snd_atmel_ssc_exit(void)
 	platform_driver_unregister(&asoc_ssc_driver);
 }
 module_exit(snd_atmel_ssc_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Module information */
 MODULE_AUTHOR("Sedji Gaouaou, sedji.gaouaou@atmel.com, www.atmel.com");

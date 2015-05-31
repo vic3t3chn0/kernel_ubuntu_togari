@@ -35,6 +35,10 @@
 #include <asm/uaccess.h>
 #include <asm/param.h>
 #include <asm/page.h>
+<<<<<<< HEAD
+#include <asm/exec.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs);
 static int load_elf_library(struct file *);
@@ -81,9 +85,13 @@ static int set_brk(unsigned long start, unsigned long end)
 	end = ELF_PAGEALIGN(end);
 	if (end > start) {
 		unsigned long addr;
+<<<<<<< HEAD
+		addr = vm_brk(start, end - start);
+=======
 		down_write(&current->mm->mmap_sem);
 		addr = do_brk(start, end - start);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (BAD_ADDR(addr))
 			return addr;
 	}
@@ -133,6 +141,8 @@ static int padzero(unsigned long elf_bss)
 #define ELF_BASE_PLATFORM NULL
 #endif
 
+<<<<<<< HEAD
+=======
 /*
  * Use get_random_int() to implement AT_RANDOM while avoiding depletion
  * of the entropy pool.
@@ -152,6 +162,7 @@ static void get_atrandom_bytes(unsigned char *buf, size_t nbytes)
 	}
 }
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int
 create_elf_tables(struct linux_binprm *bprm, struct elfhdr *exec,
 		unsigned long load_addr, unsigned long interp_load_addr)
@@ -213,7 +224,11 @@ create_elf_tables(struct linux_binprm *bprm, struct elfhdr *exec,
 	/*
 	 * Generate 16 random bytes for userspace PRNG seeding.
 	 */
+<<<<<<< HEAD
+	get_random_bytes(k_rand_bytes, sizeof(k_rand_bytes));
+=======
 	get_atrandom_bytes(k_rand_bytes, sizeof(k_rand_bytes));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u_rand_bytes = (elf_addr_t __user *)
 		       STACK_ALLOC(p, sizeof(k_rand_bytes));
 	if (__copy_to_user(u_rand_bytes, k_rand_bytes, sizeof(k_rand_bytes)))
@@ -532,9 +547,13 @@ static unsigned long load_elf_interp(struct elfhdr *interp_elf_ex,
 		elf_bss = ELF_PAGESTART(elf_bss + ELF_MIN_ALIGN - 1);
 
 		/* Map the last of the bss segment */
+<<<<<<< HEAD
+		error = vm_brk(elf_bss, last_bss - elf_bss);
+=======
 		down_write(&current->mm->mmap_sem);
 		error = do_brk(elf_bss, last_bss - elf_bss);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (BAD_ADDR(error))
 			goto out_close;
 	}
@@ -687,8 +706,12 @@ static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 			 * mm->dumpable = 0 regardless of the interpreter's
 			 * permissions.
 			 */
+<<<<<<< HEAD
+			would_dump(bprm, interpreter);
+=======
 			if (file_permission(interpreter, MAY_READ) < 0)
 				bprm->interp_flags |= BINPRM_FLAGS_ENFORCE_NONDUMP;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 			retval = kernel_read(interpreter, 0, bprm->buf,
 					     BINPRM_BUF_SIZE);
@@ -732,7 +755,10 @@ static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 		goto out_free_dentry;
 
 	/* OK, This is the point of no return */
+<<<<<<< HEAD
+=======
 	current->flags &= ~PF_FORKNOEXEC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	current->mm->def_flags = def_flags;
 
 	/* Do this immediately, since STACK_TOP as used in setup_arg_pages
@@ -814,7 +840,11 @@ static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 			 * default mmap base, as well as whatever program they
 			 * might try to exec.  This is because the brk will
 			 * follow the loader, and is not movable.  */
+<<<<<<< HEAD
+#ifdef CONFIG_ARCH_BINFMT_ELF_RANDOMIZE_PIE
+=======
 #if defined(CONFIG_X86) || defined(CONFIG_ARM)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			/* Memory randomization might have been switched off
 			 * in runtime via sysctl.
 			 * If that is the case, retain the original non-zero
@@ -954,7 +984,10 @@ static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 #endif /* ARCH_HAS_SETUP_ADDITIONAL_PAGES */
 
 	install_exec_creds(bprm);
+<<<<<<< HEAD
+=======
 	current->flags &= ~PF_FORKNOEXEC;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	retval = create_elf_tables(bprm, &loc->elf_ex,
 			  load_addr, interp_load_addr);
 	if (retval < 0) {
@@ -983,10 +1016,15 @@ static int load_elf_binary(struct linux_binprm *bprm, struct pt_regs *regs)
 		   and some applications "depend" upon this behavior.
 		   Since we do not have the power to recompile these, we
 		   emulate the SVr4 behavior. Sigh. */
+<<<<<<< HEAD
+		error = vm_mmap(NULL, 0, PAGE_SIZE, PROT_READ | PROT_EXEC,
+				MAP_FIXED | MAP_PRIVATE, 0);
+=======
 		down_write(&current->mm->mmap_sem);
 		error = do_mmap(NULL, 0, PAGE_SIZE, PROT_READ | PROT_EXEC,
 				MAP_FIXED | MAP_PRIVATE, 0);
 		up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 #ifdef ELF_PLAT_INIT
@@ -1071,8 +1109,12 @@ static int load_elf_library(struct file *file)
 		eppnt++;
 
 	/* Now use mmap to map the library into memory. */
+<<<<<<< HEAD
+	error = vm_mmap(file,
+=======
 	down_write(&current->mm->mmap_sem);
 	error = do_mmap(file,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			ELF_PAGESTART(eppnt->p_vaddr),
 			(eppnt->p_filesz +
 			 ELF_PAGEOFFSET(eppnt->p_vaddr)),
@@ -1080,7 +1122,10 @@ static int load_elf_library(struct file *file)
 			MAP_FIXED | MAP_PRIVATE | MAP_DENYWRITE,
 			(eppnt->p_offset -
 			 ELF_PAGEOFFSET(eppnt->p_vaddr)));
+<<<<<<< HEAD
+=======
 	up_write(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (error != ELF_PAGESTART(eppnt->p_vaddr))
 		goto out_free_ph;
 
@@ -1093,11 +1138,16 @@ static int load_elf_library(struct file *file)
 	len = ELF_PAGESTART(eppnt->p_filesz + eppnt->p_vaddr +
 			    ELF_MIN_ALIGN - 1);
 	bss = eppnt->p_memsz + eppnt->p_vaddr;
+<<<<<<< HEAD
+	if (bss > len)
+		vm_brk(len, bss - len);
+=======
 	if (bss > len) {
 		down_write(&current->mm->mmap_sem);
 		do_brk(len, bss - len);
 		up_write(&current->mm->mmap_sem);
 	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	error = 0;
 
 out_free_ph:
@@ -1115,6 +1165,32 @@ out:
  */
 
 /*
+<<<<<<< HEAD
+ * The purpose of always_dump_vma() is to make sure that special kernel mappings
+ * that are useful for post-mortem analysis are included in every core dump.
+ * In that way we ensure that the core dump is fully interpretable later
+ * without matching up the same kernel and hardware config to see what PC values
+ * meant. These special mappings include - vDSO, vsyscall, and other
+ * architecture specific mappings
+ */
+static bool always_dump_vma(struct vm_area_struct *vma)
+{
+	/* Any vsyscall mappings? */
+	if (vma == get_gate_vma(vma->vm_mm))
+		return true;
+	/*
+	 * arch_vma_name() returns non-NULL for special architecture mappings,
+	 * such as vDSO sections.
+	 */
+	if (arch_vma_name(vma))
+		return true;
+
+	return false;
+}
+
+/*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Decide what to dump of a segment, part, all or none.
  */
 static unsigned long vma_dump_size(struct vm_area_struct *vma,
@@ -1122,10 +1198,20 @@ static unsigned long vma_dump_size(struct vm_area_struct *vma,
 {
 #define FILTER(type)	(mm_flags & (1UL << MMF_DUMP_##type))
 
+<<<<<<< HEAD
+	/* always dump the vdso and vsyscall sections */
+	if (always_dump_vma(vma))
+		goto whole;
+
+	if (vma->vm_flags & VM_NODUMP)
+		return 0;
+
+=======
 	/* The vma can be set up to tell us the answer directly.  */
 	if (vma->vm_flags & VM_ALWAYSDUMP)
 		goto whole;
 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Hugetlb memory check */
 	if (vma->vm_flags & VM_HUGETLB) {
 		if ((vma->vm_flags & VM_SHARED) && FILTER(HUGETLB_SHARED))
@@ -1410,6 +1496,25 @@ static void do_thread_regset_writeback(struct task_struct *task,
 		regset->writeback(task, regset, 1);
 }
 
+<<<<<<< HEAD
+#ifndef PR_REG_SIZE
+#define PR_REG_SIZE(S) sizeof(S)
+#endif
+
+#ifndef PRSTATUS_SIZE
+#define PRSTATUS_SIZE(S) sizeof(S)
+#endif
+
+#ifndef PR_REG_PTR
+#define PR_REG_PTR(S) (&((S)->pr_reg))
+#endif
+
+#ifndef SET_PR_FPVALID
+#define SET_PR_FPVALID(S, V) ((S)->pr_fpvalid = (V))
+#endif
+
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int fill_thread_core_info(struct elf_thread_core_info *t,
 				 const struct user_regset_view *view,
 				 long signr, size_t *total)
@@ -1424,11 +1529,19 @@ static int fill_thread_core_info(struct elf_thread_core_info *t,
 	 */
 	fill_prstatus(&t->prstatus, t->task, signr);
 	(void) view->regsets[0].get(t->task, &view->regsets[0],
+<<<<<<< HEAD
+				    0, PR_REG_SIZE(t->prstatus.pr_reg),
+				    PR_REG_PTR(&t->prstatus), NULL);
+
+	fill_note(&t->notes[0], "CORE", NT_PRSTATUS,
+		  PRSTATUS_SIZE(t->prstatus), &t->prstatus);
+=======
 				    0, sizeof(t->prstatus.pr_reg),
 				    &t->prstatus.pr_reg, NULL);
 
 	fill_note(&t->notes[0], "CORE", NT_PRSTATUS,
 		  sizeof(t->prstatus), &t->prstatus);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	*total += notesize(&t->notes[0]);
 
 	do_thread_regset_writeback(t->task, &view->regsets[0]);
@@ -1458,7 +1571,11 @@ static int fill_thread_core_info(struct elf_thread_core_info *t,
 						  regset->core_note_type,
 						  size, data);
 				else {
+<<<<<<< HEAD
+					SET_PR_FPVALID(&t->prstatus, 1);
+=======
 					t->prstatus.pr_fpvalid = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					fill_note(&t->notes[i], "CORE",
 						  NT_PRFPREG, size, data);
 				}
@@ -1688,6 +1805,32 @@ static int elf_note_info_init(struct elf_note_info *info)
 		return 0;
 	info->psinfo = kmalloc(sizeof(*info->psinfo), GFP_KERNEL);
 	if (!info->psinfo)
+<<<<<<< HEAD
+		goto notes_free;
+	info->prstatus = kmalloc(sizeof(*info->prstatus), GFP_KERNEL);
+	if (!info->prstatus)
+		goto psinfo_free;
+	info->fpu = kmalloc(sizeof(*info->fpu), GFP_KERNEL);
+	if (!info->fpu)
+		goto prstatus_free;
+#ifdef ELF_CORE_COPY_XFPREGS
+	info->xfpu = kmalloc(sizeof(*info->xfpu), GFP_KERNEL);
+	if (!info->xfpu)
+		goto fpu_free;
+#endif
+	return 1;
+#ifdef ELF_CORE_COPY_XFPREGS
+ fpu_free:
+	kfree(info->fpu);
+#endif
+ prstatus_free:
+	kfree(info->prstatus);
+ psinfo_free:
+	kfree(info->psinfo);
+ notes_free:
+	kfree(info->notes);
+	return 0;
+=======
 		return 0;
 	info->prstatus = kmalloc(sizeof(*info->prstatus), GFP_KERNEL);
 	if (!info->prstatus)
@@ -1701,6 +1844,7 @@ static int elf_note_info_init(struct elf_note_info *info)
 		return 0;
 #endif
 	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int fill_note_info(struct elfhdr *elf, int phdrs,
@@ -2086,7 +2230,12 @@ out:
 
 static int __init init_elf_binfmt(void)
 {
+<<<<<<< HEAD
+	register_binfmt(&elf_format);
+	return 0;
+=======
 	return register_binfmt(&elf_format);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __exit exit_elf_binfmt(void)

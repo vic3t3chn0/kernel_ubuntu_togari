@@ -81,12 +81,21 @@ struct ipt_ip {
 	unsigned char iniface_mask[IFNAMSIZ], outiface_mask[IFNAMSIZ];
 
 	/* Protocol, 0 = ANY */
+<<<<<<< HEAD
+	__u16 proto;
+
+	/* Flags word */
+	__u8 flags;
+	/* Inverse flags */
+	__u8 invflags;
+=======
 	u_int16_t proto;
 
 	/* Flags word */
 	u_int8_t flags;
 	/* Inverse flags */
 	u_int8_t invflags;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Values for "flag" field in struct ipt_ip (general ip structure). */
@@ -114,9 +123,15 @@ struct ipt_entry {
 	unsigned int nfcache;
 
 	/* Size of ipt_entry + matches */
+<<<<<<< HEAD
+	__u16 target_offset;
+	/* Size of ipt_entry + matches + target */
+	__u16 next_offset;
+=======
 	u_int16_t target_offset;
 	/* Size of ipt_entry + matches + target */
 	u_int16_t next_offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Back pointer */
 	unsigned int comefrom;
@@ -149,9 +164,15 @@ struct ipt_entry {
 
 /* ICMP matching stuff */
 struct ipt_icmp {
+<<<<<<< HEAD
+	__u8 type;				/* type to match */
+	__u8 code[2];				/* range of code */
+	__u8 invflags;				/* Inverse flags */
+=======
 	u_int8_t type;				/* type to match */
 	u_int8_t code[2];			/* range of code */
 	u_int8_t invflags;			/* Inverse flags */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Values for "inv" field for struct ipt_icmp. */
@@ -288,8 +309,13 @@ extern unsigned int ipt_do_table(struct sk_buff *skb,
 struct compat_ipt_entry {
 	struct ipt_ip ip;
 	compat_uint_t nfcache;
+<<<<<<< HEAD
+	__u16 target_offset;
+	__u16 next_offset;
+=======
 	u_int16_t target_offset;
 	u_int16_t next_offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	compat_uint_t comefrom;
 	struct compat_xt_counters counters;
 	unsigned char elems[0];

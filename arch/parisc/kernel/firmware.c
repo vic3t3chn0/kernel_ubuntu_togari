@@ -67,7 +67,10 @@
 #include <asm/page.h>
 #include <asm/pdc.h>
 #include <asm/pdcpat.h>
+<<<<<<< HEAD
+=======
 #include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/processor.h>	/* for boot_cpu_data */
 
 static DEFINE_SPINLOCK(pdc_lock);

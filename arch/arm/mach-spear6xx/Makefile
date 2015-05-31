@@ -4,9 +4,12 @@
 
 # common files
 obj-y	+= clock.o spear6xx.o
+<<<<<<< HEAD
+=======
 
 # spear600 specific files
 obj-$(CONFIG_MACH_SPEAR600) += spear600.o
 
 # spear600 boards files
 obj-$(CONFIG_BOARD_SPEAR600_EVB) += spear600_evb.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

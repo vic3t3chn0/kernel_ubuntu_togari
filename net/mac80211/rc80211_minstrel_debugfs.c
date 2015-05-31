@@ -50,7 +50,10 @@
 #include <linux/debugfs.h>
 #include <linux/ieee80211.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/mac80211.h>
 #include "rc80211_minstrel.h"
 

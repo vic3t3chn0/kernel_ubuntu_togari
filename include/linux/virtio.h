@@ -15,7 +15,10 @@
  * @callback: the function to call when buffers are consumed (can be NULL).
  * @name: the name of this virtqueue (mainly for debugging)
  * @vdev: the virtio device this queue was created for.
+<<<<<<< HEAD
  * @vq_ops: the operations for this virtqueue (see below).
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @priv: a pointer for the virtqueue implementation to use.
  */
 struct virtqueue {
@@ -23,18 +26,27 @@ struct virtqueue {
 	void (*callback)(struct virtqueue *vq);
 	const char *name;
 	struct virtio_device *vdev;
+<<<<<<< HEAD
 	struct virtqueue_ops *vq_ops;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void *priv;
 };
 
 /**
+<<<<<<< HEAD
  * virtqueue_ops - operations for virtqueue abstraction layer
  * @add_buf: expose buffer to other end
+=======
+ * operations for virtqueue
+ * virtqueue_add_buf: expose buffer to other end
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	vq: the struct virtqueue we're talking about.
  *	sg: the description of the buffer(s).
  *	out_num: the number of sg readable by other side
  *	in_num: the number of sg which are writable (after readable ones)
  *	data: the token identifying the buffer.
+<<<<<<< HEAD
  *	Returns remaining capacity of queue (sg segments) or a negative error.
  * @kick: update after add_buf
  *	vq: the struct virtqueue
@@ -48,17 +60,38 @@ struct virtqueue {
  *	Note that this is not necessarily synchronous, hence unreliable and only
  *	useful as an optimization.
  * @enable_cb: restart callbacks after disable_cb.
+=======
+ *	gfp: how to do memory allocations (if necessary).
+ *      Returns remaining capacity of queue (sg segments) or a negative error.
+ * virtqueue_kick: update after add_buf
+ *	vq: the struct virtqueue
+ *	After one or more add_buf calls, invoke this to kick the other side.
+ * virtqueue_get_buf: get the next used buffer
+ *	vq: the struct virtqueue we're talking about.
+ *	len: the length written into the buffer
+ *	Returns NULL or the "data" token handed to add_buf.
+ * virtqueue_disable_cb: disable callbacks
+ *	vq: the struct virtqueue we're talking about.
+ *	Note that this is not necessarily synchronous, hence unreliable and only
+ *	useful as an optimization.
+ * virtqueue_enable_cb: restart callbacks after disable_cb.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	vq: the struct virtqueue we're talking about.
  *	This re-enables callbacks; it returns "false" if there are pending
  *	buffers in the queue, to detect a possible race between the driver
  *	checking for more work, and enabling callbacks.
+<<<<<<< HEAD
  * @enable_cb_delayed: restart callbacks after disable_cb.
+=======
+ * virtqueue_enable_cb_delayed: restart callbacks after disable_cb.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *	vq: the struct virtqueue we're talking about.
  *	This re-enables callbacks but hints to the other side to delay
  *	interrupts until most of the available buffers have been processed;
  *	it returns "false" if there are many pending buffers in the queue,
  *	to detect a possible race between the driver checking for more work,
  *	and enabling callbacks.
+<<<<<<< HEAD
  *	Caller must ensure we don't call this with other virtqueue
  *	operations at the same time (except where noted).
  * @detach_unused_buf: detach first unused buffer
@@ -252,6 +285,50 @@ static inline unsigned int virtqueue_get_impl_size(struct virtqueue *vq)
 {
 	return vq->vq_ops->get_impl_size(vq);
 }
+=======
+ * virtqueue_detach_unused_buf: detach first unused buffer
+ * 	vq: the struct virtqueue we're talking about.
+ * 	Returns NULL or the "data" token handed to add_buf
+ *
+ * Locking rules are straightforward: the driver is responsible for
+ * locking.  No two operations may be invoked simultaneously, with the exception
+ * of virtqueue_disable_cb.
+ *
+ * All operations can be called in any context.
+ */
+
+int virtqueue_add_buf_gfp(struct virtqueue *vq,
+			  struct scatterlist sg[],
+			  unsigned int out_num,
+			  unsigned int in_num,
+			  void *data,
+			  gfp_t gfp);
+
+static inline int virtqueue_add_buf(struct virtqueue *vq,
+				    struct scatterlist sg[],
+				    unsigned int out_num,
+				    unsigned int in_num,
+				    void *data)
+{
+	return virtqueue_add_buf_gfp(vq, sg, out_num, in_num, data, GFP_ATOMIC);
+}
+
+void virtqueue_kick(struct virtqueue *vq);
+
+void *virtqueue_get_buf(struct virtqueue *vq, unsigned int *len);
+
+void virtqueue_disable_cb(struct virtqueue *vq);
+
+bool virtqueue_enable_cb(struct virtqueue *vq);
+
+unsigned virtqueue_enable_cb_prepare(struct virtqueue *vq);
+
+bool virtqueue_poll(struct virtqueue *vq, unsigned);
+
+bool virtqueue_enable_cb_delayed(struct virtqueue *vq);
+
+void *virtqueue_detach_unused_buf(struct virtqueue *vq);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * virtio_device - representation of a device using virtio
@@ -282,10 +359,17 @@ void unregister_virtio_device(struct virtio_device *dev);
  * virtio_driver - operations for a virtio I/O driver
  * @driver: underlying device driver (populate name and owner).
  * @id_table: the ids serviced by this driver.
+<<<<<<< HEAD
  * @feature_table: an array of feature numbers supported by this driver.
  * @feature_table_size: number of entries in the feature table array.
  * @probe: the function to call when a device is found.  Returns 0 or -errno.
  * @remove: the function to call when a device is removed.
+=======
+ * @feature_table: an array of feature numbers supported by this device.
+ * @feature_table_size: number of entries in the feature table array.
+ * @probe: the function to call when a device is found.  Returns 0 or -errno.
+ * @remove: the function when a device is removed.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @config_changed: optional function to call when the device configuration
  *    changes; may be called in interrupt context.
  */
@@ -297,10 +381,13 @@ struct virtio_driver {
 	int (*probe)(struct virtio_device *dev);
 	void (*remove)(struct virtio_device *dev);
 	void (*config_changed)(struct virtio_device *dev);
+<<<<<<< HEAD
 #ifdef CONFIG_PM
 	int (*freeze)(struct virtio_device *dev);
 	int (*restore)(struct virtio_device *dev);
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 int register_virtio_driver(struct virtio_driver *drv);

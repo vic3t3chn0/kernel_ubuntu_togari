@@ -417,10 +417,13 @@ ENTRY(phys_base)
 ENTRY(idt_table)
 	.skip IDT_ENTRIES * 16
 
+<<<<<<< HEAD
 	.align L1_CACHE_BYTES
 ENTRY(nmi_idt_table)
 	.skip IDT_ENTRIES * 16
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__PAGE_ALIGNED_BSS
 	.align PAGE_SIZE
 ENTRY(empty_zero_page)

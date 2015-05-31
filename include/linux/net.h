@@ -206,7 +206,10 @@ struct proto_ops {
 				      int offset, size_t size, int flags);
 	ssize_t 	(*splice_read)(struct socket *sock,  loff_t *ppos,
 				       struct pipe_inode_info *pipe, size_t len, unsigned int flags);
+<<<<<<< HEAD
 	void		(*set_peek_off)(struct sock *sk, int val);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #define DECLARE_SOCKADDR(type, dst, src)	\

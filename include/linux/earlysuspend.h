@@ -53,4 +53,7 @@ void unregister_early_suspend(struct early_suspend *handler);
 #endif
 
 #endif
+<<<<<<< HEAD
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -107,13 +107,21 @@ static int __init sh5pci_init(void)
 	u32 uval;
 
         if (request_irq(IRQ_ERR, pcish5_err_irq,
+<<<<<<< HEAD
                         0, "PCI Error",NULL) < 0) {
+=======
+                        IRQF_DISABLED, "PCI Error",NULL) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
                 printk(KERN_ERR "PCISH5: Cannot hook PCI_PERR interrupt\n");
                 return -EINVAL;
         }
 
         if (request_irq(IRQ_SERR, pcish5_serr_irq,
+<<<<<<< HEAD
                         0, "PCI SERR interrupt", NULL) < 0) {
+=======
+                        IRQF_DISABLED, "PCI SERR interrupt", NULL) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
                 printk(KERN_ERR "PCISH5: Cannot hook PCI_SERR interrupt\n");
                 return -EINVAL;
         }

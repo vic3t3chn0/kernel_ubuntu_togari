@@ -65,6 +65,10 @@ struct sk_buff *tipc_cfg_do_cmd(u32 orig_node, u16 cmd,
 				const void *req_tlv_area, int req_tlv_space,
 				int headroom);
 
+<<<<<<< HEAD
+=======
+void tipc_cfg_link_event(u32 addr, char *name, int up);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int  tipc_cfg_init(void);
 void tipc_cfg_stop(void);
 

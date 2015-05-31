@@ -32,6 +32,14 @@ asmlinkage void trap(void);
 asmlinkage void bad_interrupt(void);
 asmlinkage void inthandler(void);
 
+<<<<<<< HEAD
+=======
+extern void *_ramvec[];
+
+/* The number of spurious interrupts */
+volatile unsigned int num_spurious;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void intc_irq_unmask(struct irq_data *d)
 {
 	pquicc->intr_cimr |= (1 << d->irq);
@@ -58,8 +66,14 @@ static struct irq_chip intc_irq_chip = {
  * This function should be called during kernel startup to initialize
  * the vector table.
  */
+<<<<<<< HEAD
 void __init trap_init(void)
 {
+=======
+void init_IRQ(void)
+{
+	int i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int vba = (CPM_VECTOR_BASE<<4);
 
 	/* set up the vectors */
@@ -124,11 +138,14 @@ void __init trap_init(void)
 
 	/* turn off all CPM interrupts */
 	pquicc->intr_cimr = 0x00000000;
+<<<<<<< HEAD
 }
 
 void init_IRQ(void)
 {
 	int i;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	for (i = 0; (i < NR_IRQS); i++) {
 		irq_set_chip(i, &intc_irq_chip);

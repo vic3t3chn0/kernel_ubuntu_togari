@@ -195,7 +195,11 @@ static int tcf_ipt_cleanup(struct tc_action *a, int bind)
 	return tcf_ipt_release(ipt, bind);
 }
 
+<<<<<<< HEAD
 static int tcf_ipt(struct sk_buff *skb, const struct tc_action *a,
+=======
+static int tcf_ipt(struct sk_buff *skb, struct tc_action *a,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		   struct tcf_result *res)
 {
 	int ret = 0, result = 0;

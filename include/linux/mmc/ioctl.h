@@ -1,8 +1,11 @@
 #ifndef LINUX_MMC_IOCTL_H
 #define LINUX_MMC_IOCTL_H
+<<<<<<< HEAD
 
 #include <linux/types.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct mmc_ioc_cmd {
 	/* Implies direction of data.  true = write, false = read */
 	int write_flag;
@@ -47,6 +50,7 @@ struct mmc_ioc_cmd {
 
 #define MMC_IOC_CMD _IOWR(MMC_BLOCK_MAJOR, 0, struct mmc_ioc_cmd)
 
+<<<<<<< HEAD
 /**
  * There are four request types that are applicable for rpmb accesses- two
  * under read category and two under write. They are
@@ -101,11 +105,18 @@ struct mmc_ioc_rpmb {
  */
 #define MMC_IOC_RPMB_CMD _IOWR(MMC_BLOCK_MAJOR, 0, struct mmc_ioc_rpmb)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Since this ioctl is only meant to enhance (and not replace) normal access
  * to the mmc bus device, an upper data transfer limit of MMC_IOC_MAX_BYTES
  * is enforced per ioctl call.  For larger data transfers, use the normal
  * block device operations.
  */
+<<<<<<< HEAD
 #define MMC_IOC_MAX_BYTES  (512L * 256)
 #endif /* LINUX_MMC_IOCTL_H */
+=======
+#define MMC_IOC_MAX_BYTES  (512L * 512)
+#endif  /* LINUX_MMC_IOCTL_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -1,10 +1,14 @@
 #ifndef _UTIL_H
 #define _UTIL_H
 
+<<<<<<< HEAD
 #include <stdarg.h>
 
 /*
  * Copyright 2011 The Chromium Authors, All Rights Reserved.
+=======
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Copyright 2008 Jon Loeliger, Freescale Semiconductor, Inc.
  *
  * This program is free software; you can redistribute it and/or
@@ -56,6 +60,7 @@ static inline void *xrealloc(void *p, size_t len)
 extern char *xstrdup(const char *s);
 extern char *join_path(const char *path, const char *name);
 
+<<<<<<< HEAD
 /**
  * Check a string of a given length to see if it is all printable and
  * has a valid terminator.
@@ -150,4 +155,6 @@ int utilfdt_decode_type(const char *fmt, int *type, int *size);
 	"\tOptional modifier prefix:\n" \
 	"\t\thh or b=byte, h=2 byte, l=4 byte (default)\n";
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _UTIL_H */

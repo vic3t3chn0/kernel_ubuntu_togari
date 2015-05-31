@@ -10,7 +10,10 @@
 #include <linux/types.h>
 #include <linux/slab.h>
 #include <linux/pci.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/sn/addrs.h>
 #include <asm/sn/geo.h>
 #include <asm/sn/pcibr_provider.h>
@@ -127,11 +130,19 @@ pcibr_bus_fixup(struct pcibus_bussoft *prom_bussoft, struct pci_controller *cont
 	 * Allocate kernel bus soft and copy from prom.
 	 */
 
+<<<<<<< HEAD
 	soft = kmemdup(prom_bussoft, sizeof(struct pcibus_info), GFP_KERNEL);
+=======
+	soft = kmalloc(sizeof(struct pcibus_info), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!soft) {
 		return NULL;
 	}
 
+<<<<<<< HEAD
+=======
+	memcpy(soft, prom_bussoft, sizeof(struct pcibus_info));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	soft->pbi_buscommon.bs_base = (unsigned long)
 		ioremap(REGION_OFFSET(soft->pbi_buscommon.bs_base),
 			sizeof(struct pic));
@@ -146,7 +157,10 @@ pcibr_bus_fixup(struct pcibus_bussoft *prom_bussoft, struct pci_controller *cont
 		printk(KERN_WARNING
 		       "pcibr cannot allocate interrupt for error handler\n");
 	}
+<<<<<<< HEAD
 	irq_set_handler(SGI_PCIASIC_ERROR, handle_level_irq);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sn_set_err_irq_affinity(SGI_PCIASIC_ERROR);
 
 	/* 

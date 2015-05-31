@@ -21,7 +21,10 @@
 
 #include <asm/ptrace.h>
 #include <asm/smp.h>
+<<<<<<< HEAD
 #include <asm/mce.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "proto.h"
 #include "pci_impl.h"

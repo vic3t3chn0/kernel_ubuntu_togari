@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* linux/arch/arm/mach-exynos4/dev-ahci.c
+=======
+/* linux/arch/arm/mach-exynos/dev-ahci.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -242,8 +246,13 @@ static struct resource exynos4_ahci_resource[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start	= EXYNOS4_IRQ_SATA,
 		.end	= EXYNOS4_IRQ_SATA,
+=======
+		.start	= IRQ_SATA,
+		.end	= IRQ_SATA,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags	= IORESOURCE_IRQ,
 	},
 };

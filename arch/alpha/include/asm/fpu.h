@@ -1,8 +1,11 @@
 #ifndef __ASM_ALPHA_FPU_H
 #define __ASM_ALPHA_FPU_H
 
+<<<<<<< HEAD
 #include <asm/special_insns.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Alpha floating-point control register defines:
  */

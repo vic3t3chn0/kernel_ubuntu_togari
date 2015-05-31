@@ -10,7 +10,11 @@
 #include <linux/init.h>
 #include <linux/percpu.h>
 #include <linux/nmi.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kprobes.h>
 #include <linux/kernel_stat.h>
 #include <linux/reboot.h>
@@ -22,7 +26,10 @@
 #include <asm/perf_event.h>
 #include <asm/ptrace.h>
 #include <asm/pcr.h>
+<<<<<<< HEAD
 #include <asm/perfctr.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "kstack.h"
 

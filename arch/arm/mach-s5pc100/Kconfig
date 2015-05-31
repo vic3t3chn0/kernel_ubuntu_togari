@@ -10,7 +10,11 @@ if ARCH_S5PC100
 config CPU_S5PC100
 	bool
 	select S5P_EXT_INT
+<<<<<<< HEAD
 	select SAMSUNG_DMADEV
+=======
+	select S3C_PL330_DMA
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  Enable S5PC100 CPU support
 
@@ -45,11 +49,14 @@ config S5PC100_SETUP_SDHCI_GPIO
 	help
 	  Common setup code for SDHCI gpio.
 
+<<<<<<< HEAD
 config S5PC100_SETUP_SPI
 	bool
 	help
 	  Common setup code for SPI GPIO configurations.
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config MACH_SMDKC100
 	bool "SMDKC100"
 	select CPU_S5PC100

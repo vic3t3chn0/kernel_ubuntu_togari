@@ -20,7 +20,10 @@
 #include <linux/init.h>
 #include <linux/kmod.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/net_namespace.h>
 #include <net/sock.h>
 #include <net/sch_generic.h>
@@ -366,10 +369,17 @@ static struct tc_action_ops *tc_lookup_action_id(u32 type)
 }
 #endif
 
+<<<<<<< HEAD
 int tcf_action_exec(struct sk_buff *skb, const struct tc_action *act,
 		    struct tcf_result *res)
 {
 	const struct tc_action *a;
+=======
+int tcf_action_exec(struct sk_buff *skb, struct tc_action *act,
+		    struct tcf_result *res)
+{
+	struct tc_action *a;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = -1;
 
 	if (skb->tc_verd & TC_NCLS) {

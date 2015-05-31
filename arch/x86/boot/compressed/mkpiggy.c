@@ -29,7 +29,18 @@
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
+<<<<<<< HEAD
 #include <tools/le_byteshift.h>
+=======
+
+static uint32_t getle32(const void *p)
+{
+	const uint8_t *cp = p;
+
+	return (uint32_t)cp[0] + ((uint32_t)cp[1] << 8) +
+		((uint32_t)cp[2] << 16) + ((uint32_t)cp[3] << 24);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int main(int argc, char *argv[])
 {
@@ -62,7 +73,11 @@ int main(int argc, char *argv[])
 	}
 
 	ilen = ftell(f);
+<<<<<<< HEAD
 	olen = get_unaligned_le32(&olen);
+=======
+	olen = getle32(&olen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	fclose(f);
 
 	/*

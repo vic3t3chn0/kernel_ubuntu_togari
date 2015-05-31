@@ -24,7 +24,10 @@
 #include <linux/err.h>
 #include <linux/clk.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/hardware.h>
 #include <mach/cpufreq.h>
@@ -95,7 +98,11 @@ static int davinci_target(struct cpufreq_policy *policy,
 	if (freqs.old == freqs.new)
 		return ret;
 
+<<<<<<< HEAD
 	dev_dbg(cpufreq.dev, "transition: %u --> %u\n", freqs.old, freqs.new);
+=======
+	dev_dbg(&cpufreq.dev, "transition: %u --> %u\n", freqs.old, freqs.new);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	ret = cpufreq_frequency_table_target(policy, pdata->freq_table,
 						freqs.new, relation, &idx);

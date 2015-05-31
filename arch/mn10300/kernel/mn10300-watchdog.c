@@ -18,7 +18,12 @@
 #include <linux/kernel_stat.h>
 #include <linux/nmi.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/system.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/intctl-regs.h>
 #include <asm/rtc-regs.h>
 #include <asm/div64.h>

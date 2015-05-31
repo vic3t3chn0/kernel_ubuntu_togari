@@ -441,11 +441,18 @@ static inline int ocfs2_mknod_credits(struct super_block *sb, int is_dir,
 #define OCFS2_SIMPLE_DIR_EXTEND_CREDITS (2)
 
 /* file update (nlink, etc) + directory mtime/ctime + dir entry block + quota
+<<<<<<< HEAD
  * update on dir + index leaf + dx root update for free list +
  * previous dirblock update in the free list */
 static inline int ocfs2_link_credits(struct super_block *sb)
 {
 	return 2*OCFS2_INODE_UPDATE_CREDITS + 4 +
+=======
+ * update on dir + index leaf + dx root update for free list */
+static inline int ocfs2_link_credits(struct super_block *sb)
+{
+	return 2*OCFS2_INODE_UPDATE_CREDITS + 3 +
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	       ocfs2_quota_trans_credits(sb);
 }
 

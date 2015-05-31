@@ -17,9 +17,12 @@ extern void wsp_init_irq(void);
 extern int wsp_ics_alloc_irq(struct device_node *dn, int num);
 extern void wsp_ics_free_irq(struct device_node *dn, unsigned int irq);
 
+<<<<<<< HEAD
 #ifdef CONFIG_PCI_MSI
 extern void wsp_ics_set_msi_chip(unsigned int irq);
 extern void wsp_ics_set_std_chip(unsigned int irq);
 #endif /* CONFIG_PCI_MSI */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ICS_H */

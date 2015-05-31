@@ -8,7 +8,10 @@
  * is licensed "as is" without any warranty of any kind, whether express
  * or implied.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/clk.h>
 
@@ -20,7 +23,11 @@
 #include <mach/common.h>
 #include <mach/time.h>
 #include <mach/da8xx.h>
+<<<<<<< HEAD
 #include <mach/gpio-davinci.h>
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "clock.h"
 #include "mux.h"
@@ -1201,6 +1208,10 @@ static struct davinci_soc_info davinci_soc_info_da830 = {
 	.gpio_irq		= IRQ_DA8XX_GPIO0,
 	.serial_dev		= &da8xx_serial_device,
 	.emac_pdata		= &da8xx_emac_pdata,
+<<<<<<< HEAD
+=======
+	.reset_device		= &da8xx_wdt_device,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 void __init da830_init(void)

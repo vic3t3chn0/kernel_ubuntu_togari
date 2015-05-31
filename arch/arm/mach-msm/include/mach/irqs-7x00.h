@@ -1,6 +1,10 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2009-2010, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Author: Brian Swetland <swetland@google.com>
  */
 
@@ -71,7 +75,11 @@
 #define NR_MSM_IRQS 64
 #define NR_GPIO_IRQS 122
 #define NR_BOARD_IRQS 64
+<<<<<<< HEAD
 #define NR_SIRC_IRQS 0
 
 #define INT_ADSP_A11_SMSM    INT_ADSP_A11
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

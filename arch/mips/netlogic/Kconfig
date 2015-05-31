@@ -1,2 +1,8 @@
 config NLM_COMMON
 	bool
+<<<<<<< HEAD
+=======
+
+config NLM_XLR
+	bool
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

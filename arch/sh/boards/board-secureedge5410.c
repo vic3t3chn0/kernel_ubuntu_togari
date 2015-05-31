@@ -41,7 +41,12 @@ static int __init eraseconfig_init(void)
 	printk("SnapGear: EraseConfig init\n");
 
 	/* Setup "EraseConfig" switch on external IRQ 0 */
+<<<<<<< HEAD
 	if (request_irq(irq, eraseconfig_interrupt, 0, "Erase Config", NULL))
+=======
+	if (request_irq(irq, eraseconfig_interrupt, IRQF_DISABLED,
+				"Erase Config", NULL))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		printk("SnapGear: failed to register IRQ%d for Reset witch\n",
 				irq);
 	else

@@ -19,7 +19,10 @@
  */
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/i8253.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/kernel_stat.h>
 #include <linux/sched.h>
@@ -32,10 +35,17 @@
 #include <asm/mipsregs.h>
 #include <asm/mipsmtregs.h>
 #include <asm/hardirq.h>
+<<<<<<< HEAD
 #include <asm/irq.h>
 #include <asm/div64.h>
 #include <asm/cpu.h>
 #include <asm/setup.h>
+=======
+#include <asm/i8253.h>
+#include <asm/irq.h>
+#include <asm/div64.h>
+#include <asm/cpu.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/time.h>
 #include <asm/mc146818-time.h>
 #include <asm/msc01_ic.h>

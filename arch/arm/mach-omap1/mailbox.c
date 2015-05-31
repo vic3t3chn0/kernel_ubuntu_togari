@@ -9,7 +9,10 @@
  * for more details.
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/interrupt.h>
 #include <linux/platform_device.h>
 #include <linux/io.h>

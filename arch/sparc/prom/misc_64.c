@@ -15,6 +15,10 @@
 
 #include <asm/openprom.h>
 #include <asm/oplib.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/ldc.h>
 
 static int prom_service_exists(const char *service_name)

@@ -90,7 +90,11 @@ struct alpha_machine_vector
 	void (*kill_arch)(int);
 
 	u8 (*pci_swizzle)(struct pci_dev *, u8 *);
+<<<<<<< HEAD
 	int (*pci_map_irq)(const struct pci_dev *, u8, u8);
+=======
+	int (*pci_map_irq)(struct pci_dev *, u8, u8);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct pci_ops *pci_ops;
 
 	struct _alpha_agp_info *(*agp_info)(void);

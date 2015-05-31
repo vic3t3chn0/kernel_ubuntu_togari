@@ -27,6 +27,10 @@
 
 #include <linux/linkage.h>
 #include <asm/assembler.h>
+<<<<<<< HEAD
+=======
+#include <mach/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <plat/omap24xx.h>
 

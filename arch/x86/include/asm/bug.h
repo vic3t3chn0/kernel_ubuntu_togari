@@ -36,8 +36,11 @@ do {								\
 #endif /* !CONFIG_BUG */
 
 #include <asm-generic/bug.h>
+<<<<<<< HEAD
 
 
 extern void show_regs_common(void);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_X86_BUG_H */

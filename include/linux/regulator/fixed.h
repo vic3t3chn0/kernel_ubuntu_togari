@@ -48,6 +48,7 @@ struct fixed_voltage_config {
 	struct regulator_init_data *init_data;
 };
 
+<<<<<<< HEAD
 struct regulator_consumer_supply;
 
 #if IS_ENABLED(CONFIG_REGULATOR)
@@ -61,4 +62,6 @@ static inline struct platform_device *regulator_register_fixed(int id,
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

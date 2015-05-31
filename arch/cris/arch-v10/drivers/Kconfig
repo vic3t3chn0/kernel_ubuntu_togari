@@ -3,8 +3,12 @@ if ETRAX_ARCH_V10
 config ETRAX_ETHERNET
 	bool "Ethernet support"
 	depends on ETRAX_ARCH_V10
+<<<<<<< HEAD
 	select ETHERNET
 	select NET_CORE
+=======
+	select NET_ETHERNET
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select MII
 	help
 	  This option enables the ETRAX 100LX built-in 10/100Mbit Ethernet

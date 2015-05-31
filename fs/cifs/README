@@ -745,6 +745,7 @@ installed and something like the following lines should be added to the
 create cifs.spnego * * /usr/local/sbin/cifs.upcall %k
 create dns_resolver * * /usr/local/sbin/cifs.upcall %k
 
+<<<<<<< HEAD
 CIFS kernel module parameters
 =============================
 These module parameters can be specified or modified either during the time of
@@ -755,4 +756,6 @@ i.e. echo "value" > /sys/module/cifs/parameters/<param>
 
 1. enable_oplocks - Enable or disable oplocks. Oplocks are enabled by default.
 		    [Y/y/1]. To disable use any of [N/n/0].
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 

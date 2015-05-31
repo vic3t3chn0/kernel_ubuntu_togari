@@ -22,7 +22,11 @@
  */
 struct rw_semaphore {
 	__s32			activity;
+<<<<<<< HEAD
 	raw_spinlock_t		wait_lock;
+=======
+	spinlock_t		wait_lock;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct list_head	wait_list;
 #ifdef CONFIG_DEBUG_LOCK_ALLOC
 	struct lockdep_map dep_map;

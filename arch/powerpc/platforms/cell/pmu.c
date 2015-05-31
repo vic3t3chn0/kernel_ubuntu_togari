@@ -24,7 +24,10 @@
 
 #include <linux/interrupt.h>
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/io.h>
 #include <asm/irq_regs.h>
 #include <asm/machdep.h>
@@ -392,7 +395,11 @@ static int __init cbe_init_pm_irq(void)
 		}
 
 		rc = request_irq(irq, cbe_pm_irq,
+<<<<<<< HEAD
 				 0, "cbe-pmu-0", NULL);
+=======
+				 IRQF_DISABLED, "cbe-pmu-0", NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (rc) {
 			printk("ERROR: Request for irq on node %d failed\n",
 			       node);

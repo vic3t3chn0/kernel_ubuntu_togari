@@ -1,6 +1,10 @@
 /*
  * Copyright (C) 2007 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
+=======
+ * Copyright (c) 2008-2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Author: Brian Swetland <swetland@google.com>
  *
  * This software is licensed under the terms of the GNU General Public
@@ -17,6 +21,7 @@
 #ifndef __ASM_ARCH_MSM_IRQS_H
 #define __ASM_ARCH_MSM_IRQS_H
 
+<<<<<<< HEAD
 /*
  * 0-15:  STI/SGI (software triggered/generated interrupts)
  * 16-31: PPI (private peripheral interrupts)
@@ -78,12 +83,18 @@
 #elif defined(CONFIG_ARCH_MSM9625)
 #include "irqs-9625.h"
 #elif defined(CONFIG_ARCH_MSM7X30)
+=======
+#define MSM_IRQ_BIT(irq)     (1 << ((irq) & 31))
+
+#if defined(CONFIG_ARCH_MSM7X30)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "irqs-7x30.h"
 #elif defined(CONFIG_ARCH_QSD8X50)
 #include "irqs-8x50.h"
 #include "sirc.h"
 #elif defined(CONFIG_ARCH_MSM8X60)
 #include "irqs-8x60.h"
+<<<<<<< HEAD
 #elif defined(CONFIG_ARCH_MSM7X01A) || defined(CONFIG_ARCH_MSM7X25) \
 	|| defined(CONFIG_ARCH_MSM7X27) || defined(CONFIG_ARCH_MSM8625)
 #include "irqs-8625.h"
@@ -119,10 +130,20 @@
 #define NR_GPIO_IRQS 76
 #define NR_BOARD_IRQS 0
 
+=======
+#elif defined(CONFIG_ARCH_MSM8960)
+/* TODO: Make these not generic. */
+#include "irqs-8960.h"
+#elif defined(CONFIG_ARCH_MSM_ARM11)
+#include "irqs-7x00.h"
+#else
+#error "Unknown architecture specification"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #define NR_IRQS (NR_MSM_IRQS + NR_GPIO_IRQS + NR_BOARD_IRQS)
 #define MSM_GPIO_TO_INT(n) (NR_MSM_IRQS + (n))
+<<<<<<< HEAD
 #define FIRST_GPIO_IRQ MSM_GPIO_TO_INT(0)
 #define MSM_INT_TO_REG(base, irq) (base + irq / 32)
 
@@ -134,3 +155,8 @@
 #endif
 
 #endif
+=======
+#define MSM_INT_TO_REG(base, irq) (base + irq / 32)
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

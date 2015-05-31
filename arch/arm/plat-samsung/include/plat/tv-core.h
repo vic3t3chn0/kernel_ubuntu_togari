@@ -34,6 +34,7 @@ static inline void s5p_mixer_setname(char *name)
 #endif
 }
 
+<<<<<<< HEAD
 static inline void s5p_sdo_setname(char *name)
 {
 #ifdef CONFIG_S5P_DEV_TV
@@ -41,4 +42,6 @@ static inline void s5p_sdo_setname(char *name)
 #endif
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __SAMSUNG_PLAT_TV_H */

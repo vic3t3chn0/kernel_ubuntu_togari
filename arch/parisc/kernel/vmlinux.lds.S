@@ -50,8 +50,15 @@ SECTIONS
 	. = KERNEL_BINARY_TEXT_START;
 
 	_text = .;		/* Text and read-only data */
+<<<<<<< HEAD
 	.text ALIGN(16) : {
 		HEAD_TEXT
+=======
+	.head ALIGN(16) : {
+		HEAD_TEXT
+	} = 0
+	.text ALIGN(16) : {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		TEXT_TEXT
 		SCHED_TEXT
 		LOCK_TEXT
@@ -65,7 +72,11 @@ SECTIONS
 		*(.fixup)
 		*(.lock.text)		/* out-of-line lock text */
 		*(.gnu.warning)
+<<<<<<< HEAD
 	} = 0
+=======
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* End of text section */
 	_etext = .;
 

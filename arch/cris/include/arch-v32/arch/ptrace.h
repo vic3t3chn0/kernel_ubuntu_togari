@@ -111,6 +111,10 @@ struct switch_stack {
 #define arch_has_single_step() (1)
 #define user_mode(regs) (((regs)->ccs & (1 << (U_CCS_BITNR + CCS_SHIFT))) != 0)
 #define instruction_pointer(regs) ((regs)->erp)
+<<<<<<< HEAD
+=======
+extern void show_regs(struct pt_regs *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define profile_pc(regs) instruction_pointer(regs)
 
 #endif  /*  __KERNEL__  */

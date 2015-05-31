@@ -22,7 +22,11 @@
 #include <linux/module.h>
 #include <linux/interrupt.h>
 #include <linux/ioport.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/syscore_ops.h>
 
 #include <asm/irq.h>
@@ -533,7 +537,11 @@ void __init s3c24xx_init_irq(void)
 	int i;
 
 #ifdef CONFIG_FIQ
+<<<<<<< HEAD
 	init_FIQ(FIQ_START);
+=======
+	init_FIQ();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	irqdbf("s3c2410_init_irq: clearing interrupt status flags\n");

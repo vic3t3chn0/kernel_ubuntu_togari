@@ -20,7 +20,10 @@
  */
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/mm.h>
 #include <linux/module.h>
@@ -38,6 +41,10 @@
 #include <asm/mach/irq.h>
 
 #include <mach/board.h>
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/cpu.h>
 
 #include "generic.h"
@@ -49,7 +56,11 @@ static void __init ecb_at91init_early(void)
 	at91rm9200_set_type(ARCH_REVISON_9200_PQFP);
 
 	/* Initialize processor: 18.432 MHz crystal */
+<<<<<<< HEAD
 	at91_initialize(18432000);
+=======
+	at91rm9200_initialize(18432000);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Setup the LEDs */
 	at91_init_leds(AT91_PIN_PC7, AT91_PIN_PC7);
@@ -64,23 +75,38 @@ static void __init ecb_at91init_early(void)
 	at91_set_serial_console(0);
 }
 
+<<<<<<< HEAD
 static struct macb_platform_data __initdata ecb_at91eth_data = {
+=======
+static void __init ecb_at91init_irq(void)
+{
+	at91rm9200_init_interrupts(NULL);
+}
+
+static struct at91_eth_data __initdata ecb_at91eth_data = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.phy_irq_pin	= AT91_PIN_PC4,
 	.is_rmii	= 0,
 };
 
 static struct at91_usbh_data __initdata ecb_at91usbh_data = {
 	.ports		= 1,
+<<<<<<< HEAD
 	.vbus_pin	= {-EINVAL, -EINVAL},
 	.overcurrent_pin= {-EINVAL, -EINVAL},
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct at91_mmc_data __initdata ecb_at91mmc_data = {
 	.slot_b		= 0,
 	.wire4		= 1,
+<<<<<<< HEAD
 	.det_pin	= -EINVAL,
 	.wp_pin		= -EINVAL,
 	.vcc_pin	= -EINVAL,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 
@@ -173,8 +199,14 @@ static void __init ecb_at91board_init(void)
 MACHINE_START(ECBAT91, "emQbit's ECB_AT91")
 	/* Maintainer: emQbit.com */
 	.timer		= &at91rm9200_timer,
+<<<<<<< HEAD
 	.map_io		= at91_map_io,
 	.init_early	= ecb_at91init_early,
 	.init_irq	= at91_init_irq_default,
+=======
+	.map_io		= at91rm9200_map_io,
+	.init_early	= ecb_at91init_early,
+	.init_irq	= ecb_at91init_irq,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_machine	= ecb_at91board_init,
 MACHINE_END

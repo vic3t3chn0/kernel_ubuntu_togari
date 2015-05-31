@@ -48,6 +48,7 @@ DEFINE_EVENT(cpu, cpu_frequency,
 	TP_ARGS(frequency, cpu_id)
 );
 
+<<<<<<< HEAD
 TRACE_EVENT(cpu_frequency_switch_start,
 
 	TP_PROTO(unsigned int start_freq, unsigned int end_freq,
@@ -90,6 +91,8 @@ TRACE_EVENT(cpu_frequency_switch_end,
 	TP_printk("cpu_id=%lu", (unsigned long)__entry->cpu_id)
 );
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 TRACE_EVENT(machine_suspend,
 
 	TP_PROTO(unsigned int state),
@@ -107,6 +110,7 @@ TRACE_EVENT(machine_suspend,
 	TP_printk("state=%lu", (unsigned long)__entry->state)
 );
 
+<<<<<<< HEAD
 DECLARE_EVENT_CLASS(wakeup_source,
 
 	TP_PROTO(const char *name, unsigned int state),
@@ -141,6 +145,9 @@ DEFINE_EVENT(wakeup_source, wakeup_source_deactivate,
 	TP_ARGS(name, state)
 );
 
+=======
+/* This code will be removed after deprecation time exceeded (2.6.41) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_EVENT_POWER_TRACING_DEPRECATED
 
 /*
@@ -226,8 +233,11 @@ enum {
    events get removed */
 static inline void trace_power_start(u64 type, u64 state, u64 cpuid) {};
 static inline void trace_power_end(u64 cpuid) {};
+<<<<<<< HEAD
 static inline void trace_power_start_rcuidle(u64 type, u64 state, u64 cpuid) {};
 static inline void trace_power_end_rcuidle(u64 cpuid) {};
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void trace_power_frequency(u64 type, u64 state, u64 cpuid) {};
 #endif /* _PWR_EVENT_AVOID_DOUBLE_DEFINING_DEPRECATED */
 
@@ -280,6 +290,7 @@ DEFINE_EVENT(clock, clock_set_rate,
 	TP_ARGS(name, state, cpu_id)
 );
 
+<<<<<<< HEAD
 TRACE_EVENT(clock_set_parent,
 
 	TP_PROTO(const char *name, const char *parent_name),
@@ -299,6 +310,8 @@ TRACE_EVENT(clock_set_parent,
 	TP_printk("%s parent=%s", __get_str(name), __get_str(parent_name))
 );
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * The power domain events are used for power domains transitions
  */

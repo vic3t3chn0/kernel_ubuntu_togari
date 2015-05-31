@@ -21,8 +21,11 @@
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "internal.h"
 
@@ -46,7 +49,11 @@ static int hash_walk_next(struct crypto_hash_walk *walk)
 	unsigned int nbytes = min(walk->entrylen,
 				  ((unsigned int)(PAGE_SIZE)) - offset);
 
+<<<<<<< HEAD
 	walk->data = kmap_atomic(walk->pg);
+=======
+	walk->data = crypto_kmap(walk->pg, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	walk->data += offset;
 
 	if (offset & alignmask) {
@@ -80,6 +87,14 @@ int crypto_hash_walk_done(struct crypto_hash_walk *walk, int err)
 	unsigned int alignmask = walk->alignmask;
 	unsigned int nbytes = walk->entrylen;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	walk->data -= walk->offset;
 
 	if (nbytes && walk->offset & alignmask && !err) {
@@ -93,7 +108,11 @@ int crypto_hash_walk_done(struct crypto_hash_walk *walk, int err)
 		return nbytes;
 	}
 
+<<<<<<< HEAD
 	kunmap_atomic(walk->data);
+=======
+	crypto_kunmap(walk->data, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	crypto_yield(walk->flags);
 
 	if (err)
@@ -117,6 +136,14 @@ EXPORT_SYMBOL_GPL(crypto_hash_walk_done);
 int crypto_hash_walk_first(struct ahash_request *req,
 			   struct crypto_hash_walk *walk)
 {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	walk->total = req->nbytes;
 
 	if (!walk->total)
@@ -134,6 +161,14 @@ int crypto_hash_walk_first_compat(struct hash_desc *hdesc,
 				  struct crypto_hash_walk *walk,
 				  struct scatterlist *sg, unsigned int len)
 {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	walk->total = len;
 
 	if (!walk->total)
@@ -252,6 +287,14 @@ static int crypto_ahash_op(struct ahash_request *req,
 	struct crypto_ahash *tfm = crypto_ahash_reqtfm(req);
 	unsigned long alignmask = crypto_ahash_alignmask(tfm);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if ((unsigned long)req->result & alignmask)
 		return ahash_op_unaligned(req, op);
 
@@ -368,6 +411,14 @@ static int crypto_ahash_init_tfm(struct crypto_tfm *tfm)
 	struct crypto_ahash *hash = __crypto_ahash_cast(tfm);
 	struct ahash_alg *alg = crypto_ahash_alg(hash);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	hash->setkey = ahash_nosetkey;
 	hash->export = ahash_no_export;
 	hash->import = ahash_no_import;
@@ -399,6 +450,7 @@ static unsigned int crypto_ahash_extsize(struct crypto_alg *alg)
 	return sizeof(struct crypto_shash *);
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_NET
 static int crypto_ahash_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -424,6 +476,8 @@ static int crypto_ahash_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void crypto_ahash_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_ahash_show(struct seq_file *m, struct crypto_alg *alg)
@@ -442,7 +496,10 @@ const struct crypto_type crypto_ahash_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_ahash_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_ahash_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.maskclear = ~CRYPTO_ALG_TYPE_MASK,
 	.maskset = CRYPTO_ALG_TYPE_AHASH_MASK,
 	.type = CRYPTO_ALG_TYPE_AHASH,
@@ -496,6 +553,14 @@ int ahash_register_instance(struct crypto_template *tmpl,
 {
 	int err;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_CRYPTO_FIPS
+	if (unlikely(in_fips_err()))
+		return -EACCES;
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	err = ahash_prepare_alg(&inst->alg);
 	if (err)
 		return err;

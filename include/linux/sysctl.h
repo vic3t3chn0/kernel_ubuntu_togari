@@ -153,8 +153,11 @@ enum
 	KERN_MAX_LOCK_DEPTH=74, /* int: rtmutex's maximum lock depth */
 	KERN_NMI_WATCHDOG=75, /* int: enable/disable nmi watchdog */
 	KERN_PANIC_ON_NMI=76, /* int: whether we will panic on an unrecovered */
+<<<<<<< HEAD
 	KERN_BOOT_REASON = 77, /* int: identify reason system was booted */
 	KERN_COLD_BOOT = 78, /* int: identify if system cold booted */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 
@@ -437,7 +440,11 @@ enum {
 	NET_IPV4_ROUTE_MAX_SIZE=5,
 	NET_IPV4_ROUTE_GC_MIN_INTERVAL=6,
 	NET_IPV4_ROUTE_GC_TIMEOUT=7,
+<<<<<<< HEAD
 	NET_IPV4_ROUTE_GC_INTERVAL=8, /* obsolete since 2.6.38 */
+=======
+	NET_IPV4_ROUTE_GC_INTERVAL=8,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	NET_IPV4_ROUTE_REDIRECT_LOAD=9,
 	NET_IPV4_ROUTE_REDIRECT_NUMBER=10,
 	NET_IPV4_ROUTE_REDIRECT_SILENCE=11,
@@ -933,15 +940,44 @@ enum
 #ifdef __KERNEL__
 #include <linux/list.h>
 #include <linux/rcupdate.h>
+<<<<<<< HEAD
 #include <linux/wait.h>
 #include <linux/rbtree.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* For the /proc/sys support */
 struct ctl_table;
 struct nsproxy;
 struct ctl_table_root;
+<<<<<<< HEAD
 struct ctl_table_header;
 struct ctl_dir;
+=======
+
+struct ctl_table_set {
+	struct list_head list;
+	struct ctl_table_set *parent;
+	int (*is_seen)(struct ctl_table_set *);
+};
+
+extern void setup_sysctl_set(struct ctl_table_set *p,
+	struct ctl_table_set *parent,
+	int (*is_seen)(struct ctl_table_set *));
+
+struct ctl_table_header;
+
+extern void sysctl_head_get(struct ctl_table_header *);
+extern void sysctl_head_put(struct ctl_table_header *);
+extern int sysctl_is_seen(struct ctl_table_header *);
+extern struct ctl_table_header *sysctl_head_grab(struct ctl_table_header *);
+extern struct ctl_table_header *sysctl_head_next(struct ctl_table_header *prev);
+extern struct ctl_table_header *__sysctl_head_next(struct nsproxy *namespaces,
+						struct ctl_table_header *prev);
+extern void sysctl_head_finish(struct ctl_table_header *prev);
+extern int sysctl_perm(struct ctl_table_root *root,
+		struct ctl_table *table, int op);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 typedef struct ctl_table ctl_table;
 
@@ -994,6 +1030,7 @@ extern int proc_do_large_bitmap(struct ctl_table *, int,
  * cover common cases.
  */
 
+<<<<<<< HEAD
 /* Support for userspace poll() to watch for changes */
 struct ctl_table_poll {
 	atomic_t event;
@@ -1012,23 +1049,42 @@ static inline void *proc_sys_poll_event(struct ctl_table_poll *poll)
 #define DEFINE_CTL_TABLE_POLL(name)					\
 	struct ctl_table_poll name = __CTL_TABLE_POLL_INITIALIZER(name)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* A sysctl table is an array of struct ctl_table: */
 struct ctl_table 
 {
 	const char *procname;		/* Text ID for /proc/sys, or zero */
 	void *data;
 	int maxlen;
+<<<<<<< HEAD
 	umode_t mode;
 	struct ctl_table *child;	/* Deprecated */
 	proc_handler *proc_handler;	/* Callback for text formatting */
 	struct ctl_table_poll *poll;
+=======
+	mode_t mode;
+	struct ctl_table *child;
+	struct ctl_table *parent;	/* Automatically set */
+	proc_handler *proc_handler;	/* Callback for text formatting */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void *extra1;
 	void *extra2;
 };
 
+<<<<<<< HEAD
 struct ctl_node {
 	struct rb_node node;
 	struct ctl_table_header *header;
+=======
+struct ctl_table_root {
+	struct list_head root_list;
+	struct ctl_table_set default_set;
+	struct ctl_table_set *(*lookup)(struct ctl_table_root *root,
+					   struct nsproxy *namespaces);
+	int (*permissions)(struct ctl_table_root *root,
+			struct nsproxy *namespaces, struct ctl_table *table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* struct ctl_table_header is used to maintain dynamic lists of
@@ -1038,9 +1094,15 @@ struct ctl_table_header
 	union {
 		struct {
 			struct ctl_table *ctl_table;
+<<<<<<< HEAD
 			int used;
 			int count;
 			int nreg;
+=======
+			struct list_head ctl_entry;
+			int used;
+			int count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		};
 		struct rcu_head rcu;
 	};
@@ -1048,6 +1110,7 @@ struct ctl_table_header
 	struct ctl_table *ctl_table_arg;
 	struct ctl_table_root *root;
 	struct ctl_table_set *set;
+<<<<<<< HEAD
 	struct ctl_dir *parent;
 	struct ctl_node *node;
 };
@@ -1069,6 +1132,11 @@ struct ctl_table_root {
 					   struct nsproxy *namespaces);
 	int (*permissions)(struct ctl_table_root *root,
 			struct nsproxy *namespaces, struct ctl_table *table);
+=======
+	struct ctl_table *attached_by;
+	struct ctl_table *attached_to;
+	struct ctl_table_header *parent;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* struct ctl_path describes where in the hierarchy a table is added */
@@ -1076,6 +1144,7 @@ struct ctl_path {
 	const char *procname;
 };
 
+<<<<<<< HEAD
 #ifdef CONFIG_SYSCTL
 
 void proc_sys_poll_notify(struct ctl_table_poll *poll);
@@ -1093,11 +1162,18 @@ struct ctl_table_header *__register_sysctl_paths(
 	struct ctl_table_set *set,
 	const struct ctl_path *path, struct ctl_table *table);
 struct ctl_table_header *register_sysctl(const char *path, struct ctl_table *table);
+=======
+void register_sysctl_root(struct ctl_table_root *root);
+struct ctl_table_header *__register_sysctl_paths(
+	struct ctl_table_root *root, struct nsproxy *namespaces,
+	const struct ctl_path *path, struct ctl_table *table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct ctl_table_header *register_sysctl_table(struct ctl_table * table);
 struct ctl_table_header *register_sysctl_paths(const struct ctl_path *path,
 						struct ctl_table *table);
 
 void unregister_sysctl_table(struct ctl_table_header * table);
+<<<<<<< HEAD
 
 extern int sysctl_init(void);
 #else /* CONFIG_SYSCTL */
@@ -1123,6 +1199,9 @@ static inline void setup_sysctl_set(struct ctl_table_set *p,
 }
 
 #endif /* CONFIG_SYSCTL */
+=======
+int sysctl_check_table(struct nsproxy *namespaces, struct ctl_table *table);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __KERNEL__ */
 

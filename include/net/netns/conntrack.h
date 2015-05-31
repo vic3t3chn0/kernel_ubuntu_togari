@@ -3,7 +3,11 @@
 
 #include <linux/list.h>
 #include <linux/list_nulls.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct ctl_table_header;
 struct nf_conntrack_ecache;
@@ -18,8 +22,11 @@ struct netns_ct {
 	struct hlist_nulls_head	unconfirmed;
 	struct hlist_nulls_head	dying;
 	struct ip_conntrack_stat __percpu *stat;
+<<<<<<< HEAD
 	struct nf_ct_event_notifier __rcu *nf_conntrack_event_cb;
 	struct nf_exp_event_notifier __rcu *nf_expect_event_cb;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int			sysctl_events;
 	unsigned int		sysctl_events_retry_timeout;
 	int			sysctl_acct;

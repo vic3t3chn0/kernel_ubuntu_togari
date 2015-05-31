@@ -17,12 +17,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/module.h>
 #include <linux/spinlock.h>
 #include <linux/io.h>
 #include <linux/kernel.h>
 #include <mach/hardware.h>
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/iomux-mx3.h>
 
 /*

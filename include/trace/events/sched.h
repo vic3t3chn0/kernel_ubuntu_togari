@@ -6,7 +6,10 @@
 
 #include <linux/sched.h>
 #include <linux/tracepoint.h>
+<<<<<<< HEAD
 #include <linux/binfmts.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Tracepoint for calling kthread_stop, performed to end a kthread:
@@ -51,6 +54,7 @@ TRACE_EVENT(sched_kthread_stop_ret,
 );
 
 /*
+<<<<<<< HEAD
  * Tracepoint for task enqueue/dequeue:
  */
 TRACE_EVENT(sched_enq_deq_task,
@@ -89,6 +93,8 @@ TRACE_EVENT(sched_enq_deq_task,
 );
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Tracepoint for waking up a task:
  */
 DECLARE_EVENT_CLASS(sched_wakeup_template,
@@ -139,7 +145,11 @@ static inline long __trace_sched_switch_state(struct task_struct *p)
 	 * For all intents and purposes a preempted task is a running task.
 	 */
 	if (task_thread_info(p)->preempt_count & PREEMPT_ACTIVE)
+<<<<<<< HEAD
 		state = TASK_RUNNING | TASK_STATE_MAX;
+=======
+		state = TASK_RUNNING;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	return state;
@@ -176,6 +186,7 @@ TRACE_EVENT(sched_switch,
 		__entry->next_prio	= next->prio;
 	),
 
+<<<<<<< HEAD
 	TP_printk("prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d",
 		__entry->prev_comm, __entry->prev_pid, __entry->prev_prio,
 		__entry->prev_state & (TASK_STATE_MAX-1) ?
@@ -184,6 +195,15 @@ TRACE_EVENT(sched_switch,
 				{ 16, "Z" }, { 32, "X" }, { 64, "x" },
 				{ 128, "W" }) : "R",
 		__entry->prev_state & TASK_STATE_MAX ? "+" : "",
+=======
+	TP_printk("prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s ==> next_comm=%s next_pid=%d next_prio=%d",
+		__entry->prev_comm, __entry->prev_pid, __entry->prev_prio,
+		__entry->prev_state ?
+		  __print_flags(__entry->prev_state, "|",
+				{ 1, "S"} , { 2, "D" }, { 4, "T" }, { 8, "t" },
+				{ 16, "Z" }, { 32, "X" }, { 64, "x" },
+				{ 128, "W" }) : "R",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__entry->next_comm, __entry->next_pid, __entry->next_prio)
 );
 
@@ -217,6 +237,7 @@ TRACE_EVENT(sched_migrate_task,
 		  __entry->orig_cpu, __entry->dest_cpu)
 );
 
+<<<<<<< HEAD
 /*
  * Tracepoint for a CPU going offline/online:
  */
@@ -292,6 +313,8 @@ TRACE_EVENT(sched_load_balance,
 		  __entry->balance_interval)
 );
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 DECLARE_EVENT_CLASS(sched_process_template,
 
 	TP_PROTO(struct task_struct *p),
@@ -390,6 +413,7 @@ TRACE_EVENT(sched_process_fork,
 );
 
 /*
+<<<<<<< HEAD
  * Tracepoint for exec:
  */
 TRACE_EVENT(sched_process_exec,
@@ -416,6 +440,8 @@ TRACE_EVENT(sched_process_exec,
 );
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * XXX the below sched_stat tracepoints only apply to SCHED_OTHER/BATCH/IDLE
  *     adding sched_stat support to SCHED_FIFO/RR would be welcome.
  */
@@ -471,6 +497,7 @@ DEFINE_EVENT(sched_stat_template, sched_stat_iowait,
 	     TP_ARGS(tsk, delay));
 
 /*
+<<<<<<< HEAD
  * Tracepoint for accounting blocked time (time the task is in uninterruptible).
  */
 DEFINE_EVENT(sched_stat_template, sched_stat_blocked,
@@ -478,6 +505,8 @@ DEFINE_EVENT(sched_stat_template, sched_stat_blocked,
 	     TP_ARGS(tsk, delay));
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Tracepoint for accounting runtime (time the task is executing
  * on a CPU).
  */

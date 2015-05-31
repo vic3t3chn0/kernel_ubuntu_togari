@@ -15,4 +15,12 @@
 #include <asm-generic/int-l64.h>
 #endif
 
+<<<<<<< HEAD
+=======
+#ifndef __ASSEMBLY__
+
+typedef unsigned int umode_t;
+
+#endif /* __ASSEMBLY__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ALPHA_TYPES_H */

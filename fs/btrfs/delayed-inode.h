@@ -25,7 +25,11 @@
 #include <linux/mutex.h>
 #include <linux/list.h>
 #include <linux/wait.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "ctree.h"
 

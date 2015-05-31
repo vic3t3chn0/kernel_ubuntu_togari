@@ -16,6 +16,10 @@
 #define __ARCH_PXA_MTD_XIP_H__
 
 #include <mach/regs-ost.h>
+<<<<<<< HEAD
+=======
+#include <mach/regs-intc.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define xip_irqpending()	(ICIP & ICMR)
 

@@ -10,7 +10,11 @@
 #include <linux/bitops.h>
 #include <linux/lockdep.h>
 #include <linux/threads.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct workqueue_struct;
 
@@ -255,7 +259,11 @@ enum {
 	WQ_HIGHPRI		= 1 << 4, /* high priority */
 	WQ_CPU_INTENSIVE	= 1 << 5, /* cpu instensive workqueue */
 
+<<<<<<< HEAD
 	WQ_DRAINING		= 1 << 6, /* internal: workqueue is draining */
+=======
+	WQ_DYING		= 1 << 6, /* internal: workqueue is dying */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	WQ_RESCUER		= 1 << 7, /* internal: workqueue has rescuer */
 
 	WQ_MAX_ACTIVE		= 512,	  /* I like 512, better ideas? */
@@ -301,6 +309,7 @@ extern struct workqueue_struct *system_freezable_wq;
 extern struct workqueue_struct *system_nrt_freezable_wq;
 
 extern struct workqueue_struct *
+<<<<<<< HEAD
 __alloc_workqueue_key(const char *fmt, unsigned int flags, int max_active,
 	struct lock_class_key *key, const char *lock_name, ...) __printf(1, 6);
 
@@ -322,10 +331,18 @@ __alloc_workqueue_key(const char *fmt, unsigned int flags, int max_active,
  */
 #ifdef CONFIG_LOCKDEP
 #define alloc_workqueue(fmt, flags, max_active, args...)	\
+=======
+__alloc_workqueue_key(const char *name, unsigned int flags, int max_active,
+		      struct lock_class_key *key, const char *lock_name);
+
+#ifdef CONFIG_LOCKDEP
+#define alloc_workqueue(name, flags, max_active)		\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ({								\
 	static struct lock_class_key __key;			\
 	const char *__lock_name;				\
 								\
+<<<<<<< HEAD
 	if (__builtin_constant_p(fmt))				\
 		__lock_name = (fmt);				\
 	else							\
@@ -338,13 +355,31 @@ __alloc_workqueue_key(const char *fmt, unsigned int flags, int max_active,
 #define alloc_workqueue(fmt, flags, max_active, args...)	\
 	__alloc_workqueue_key((fmt), (flags), (max_active),	\
 			      NULL, NULL, ##args)
+=======
+	if (__builtin_constant_p(name))				\
+		__lock_name = (name);				\
+	else							\
+		__lock_name = #name;				\
+								\
+	__alloc_workqueue_key((name), (flags), (max_active),	\
+			      &__key, __lock_name);		\
+})
+#else
+#define alloc_workqueue(name, flags, max_active)		\
+	__alloc_workqueue_key((name), (flags), (max_active), NULL, NULL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 /**
  * alloc_ordered_workqueue - allocate an ordered workqueue
+<<<<<<< HEAD
  * @fmt: printf format for the name of the workqueue
  * @flags: WQ_* flags (only WQ_FREEZABLE and WQ_MEM_RECLAIM are meaningful)
  * @args: args for @fmt
+=======
+ * @name: name of the workqueue
+ * @flags: WQ_* flags (only WQ_FREEZABLE and WQ_MEM_RECLAIM are meaningful)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Allocate an ordered workqueue.  An ordered workqueue executes at
  * most one work item at any given time in the queued order.  They are
@@ -353,8 +388,16 @@ __alloc_workqueue_key(const char *fmt, unsigned int flags, int max_active,
  * RETURNS:
  * Pointer to the allocated workqueue on success, %NULL on failure.
  */
+<<<<<<< HEAD
 #define alloc_ordered_workqueue(fmt, flags, args...)		\
 	alloc_workqueue(fmt, WQ_UNBOUND | (flags), 1, ##args)
+=======
+static inline struct workqueue_struct *
+alloc_ordered_workqueue(const char *name, unsigned int flags)
+{
+	return alloc_workqueue(name, WQ_UNBOUND | flags, 1);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define create_workqueue(name)					\
 	alloc_workqueue((name), WQ_MEM_RECLAIM, 1)
@@ -366,6 +409,13 @@ __alloc_workqueue_key(const char *fmt, unsigned int flags, int max_active,
 extern void destroy_workqueue(struct workqueue_struct *wq);
 
 extern int queue_work(struct workqueue_struct *wq, struct work_struct *work);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_WORKQUEUE_FRONT
+extern int queue_work_front(struct workqueue_struct *wq,
+			struct work_struct *work);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int queue_work_on(int cpu, struct workqueue_struct *wq,
 			struct work_struct *work);
 extern int queue_delayed_work(struct workqueue_struct *wq,
@@ -374,7 +424,10 @@ extern int queue_delayed_work_on(int cpu, struct workqueue_struct *wq,
 			struct delayed_work *work, unsigned long delay);
 
 extern void flush_workqueue(struct workqueue_struct *wq);
+<<<<<<< HEAD
 extern void drain_workqueue(struct workqueue_struct *wq);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void flush_scheduled_work(void);
 
 extern int schedule_work(struct work_struct *work);
@@ -432,6 +485,24 @@ static inline bool __cancel_delayed_work(struct delayed_work *work)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+/* Obsolete. use cancel_delayed_work_sync() */
+static inline __deprecated
+void cancel_rearming_delayed_workqueue(struct workqueue_struct *wq,
+					struct delayed_work *work)
+{
+	cancel_delayed_work_sync(work);
+}
+
+/* Obsolete. use cancel_delayed_work_sync() */
+static inline __deprecated
+void cancel_rearming_delayed_work(struct delayed_work *work)
+{
+	cancel_delayed_work_sync(work);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef CONFIG_SMP
 static inline long work_on_cpu(unsigned int cpu, long (*fn)(void *), void *arg)
 {

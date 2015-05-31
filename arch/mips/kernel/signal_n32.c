@@ -35,6 +35,10 @@
 #include <asm/sim.h>
 #include <asm/uaccess.h>
 #include <asm/ucontext.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/fpu.h>
 #include <asm/cpu-features.h>
 #include <asm/war.h>
@@ -93,8 +97,16 @@ asmlinkage int sysn32_rt_sigsuspend(nabi_no_regargs struct pt_regs regs)
 	sigset_from_compat(&newset, &uset);
 	sigdelsetmask(&newset, ~_BLOCKABLE);
 
+<<<<<<< HEAD
 	current->saved_sigmask = current->blocked;
 	set_current_blocked(&newset);
+=======
+	spin_lock_irq(&current->sighand->siglock);
+	current->saved_sigmask = current->blocked;
+	current->blocked = newset;
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	current->state = TASK_INTERRUPTIBLE;
 	schedule();
@@ -118,7 +130,14 @@ asmlinkage void sysn32_rt_sigreturn(nabi_no_regargs struct pt_regs regs)
 		goto badframe;
 
 	sigdelsetmask(&set, ~_BLOCKABLE);
+<<<<<<< HEAD
 	set_current_blocked(&set);
+=======
+	spin_lock_irq(&current->sighand->siglock);
+	current->blocked = set;
+	recalc_sigpending();
+	spin_unlock_irq(&current->sighand->siglock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	sig = restore_sigcontext(&regs, &frame->rs_uc.uc_mcontext);
 	if (sig < 0)

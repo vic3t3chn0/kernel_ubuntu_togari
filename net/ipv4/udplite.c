@@ -10,10 +10,13 @@
  *		as published by the Free Software Foundation; either version
  *		2 of the License, or (at your option) any later version.
  */
+<<<<<<< HEAD
 
 #define pr_fmt(fmt) "UDPLite: " fmt
 
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "udp_impl.h"
 
 struct udp_table 	udplite_table __read_mostly;
@@ -75,6 +78,7 @@ static struct inet_protosw udplite4_protosw = {
 };
 
 #ifdef CONFIG_PROC_FS
+<<<<<<< HEAD
 
 static const struct file_operations udplite_afinfo_seq_fops = {
 	.owner    = THIS_MODULE,
@@ -84,11 +88,19 @@ static const struct file_operations udplite_afinfo_seq_fops = {
 	.release  = seq_release_net
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct udp_seq_afinfo udplite4_seq_afinfo = {
 	.name		= "udplite",
 	.family		= AF_INET,
 	.udp_table 	= &udplite_table,
+<<<<<<< HEAD
 	.seq_fops	= &udplite_afinfo_seq_fops,
+=======
+	.seq_fops	= {
+		.owner	=	THIS_MODULE,
+	},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.seq_ops	= {
 		.show		= udp4_seq_show,
 	},
@@ -132,11 +144,19 @@ void __init udplite4_register(void)
 	inet_register_protosw(&udplite4_protosw);
 
 	if (udplite4_proc_init())
+<<<<<<< HEAD
 		pr_err("%s: Cannot register /proc!\n", __func__);
+=======
+		printk(KERN_ERR "%s: Cannot register /proc!\n", __func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return;
 
 out_unregister_proto:
 	proto_unregister(&udplite_prot);
 out_register_err:
+<<<<<<< HEAD
 	pr_crit("%s: Cannot add UDP-Lite protocol\n", __func__);
+=======
+	printk(KERN_CRIT "%s: Cannot add UDP-Lite protocol.\n", __func__);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }

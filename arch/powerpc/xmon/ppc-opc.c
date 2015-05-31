@@ -22,7 +22,10 @@
 
 #include <linux/stddef.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "nonstdio.h"
 #include "ppc.h"
 

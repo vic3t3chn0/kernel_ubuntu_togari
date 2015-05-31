@@ -33,6 +33,10 @@
 #include <pthread.h>
 #include <fcntl.h>
 #include <unistd.h>
+<<<<<<< HEAD
+=======
+#include <ctype.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <errno.h>
 
 #include "../perf.h"

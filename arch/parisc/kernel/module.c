@@ -540,6 +540,21 @@ static Elf_Addr get_stub(struct module *me, unsigned long value, long addend,
 	return (Elf_Addr)stub;
 }
 
+<<<<<<< HEAD
+=======
+int apply_relocate(Elf_Shdr *sechdrs,
+		   const char *strtab,
+		   unsigned int symindex,
+		   unsigned int relsec,
+		   struct module *me)
+{
+	/* parisc should not need this ... */
+	printk(KERN_ERR "module %s: RELOCATION unsupported\n",
+	       me->name);
+	return -ENOEXEC;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef CONFIG_64BIT
 int apply_relocate_add(Elf_Shdr *sechdrs,
 		       const char *strtab,

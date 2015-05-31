@@ -31,6 +31,7 @@
 
 #define OMAP_MMC_MAX_SLOTS	2
 
+<<<<<<< HEAD
 /*
  * struct omap_mmc_dev_attr.flags possibilities
  *
@@ -49,6 +50,9 @@
  */
 #define OMAP_HSMMC_SUPPORTS_DUAL_VOLT		BIT(0)
 #define OMAP_HSMMC_BROKEN_MULTIBLOCK_READ	BIT(1)
+=======
+#define OMAP_HSMMC_SUPPORTS_DUAL_VOLT	BIT(1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct omap_mmc_dev_attr {
 	u8 flags;
@@ -96,7 +100,10 @@ struct omap_mmc_platform_data {
 		 */
 		u8  wires;	/* Used for the MMC driver on omap1 and 2420 */
 		u32 caps;	/* Used for the MMC driver on 2430 and later */
+<<<<<<< HEAD
 		u32 pm_caps;	/* PM capabilities of the mmc */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/*
 		 * nomux means "standard" muxing is wrong on this board, and
@@ -137,6 +144,11 @@ struct omap_mmc_platform_data {
 		int (*set_power)(struct device *dev, int slot,
 				 int power_on, int vdd);
 		int (*get_ro)(struct device *dev, int slot);
+<<<<<<< HEAD
+=======
+		int (*set_sleep)(struct device *dev, int slot, int sleep,
+				 int vdd, int cardsleep);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		void (*remux)(struct device *dev, int slot, int power_on);
 		/* Call back before enabling / disabling regulators */
 		void (*before_set_reg)(struct device *dev, int slot,

@@ -26,6 +26,10 @@
 #include <linux/fs.h>
 #include <linux/gfp.h>
 #include <linux/list.h>
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/syscalls.h>
 
 #include <asm/uaccess.h>
@@ -122,7 +126,11 @@ static struct spu_context *coredump_next_context(int *fd)
 	struct spu_context *ctx = NULL;
 
 	for (; *fd < fdt->max_fds; (*fd)++) {
+<<<<<<< HEAD
 		if (!fd_is_open(*fd, fdt))
+=======
+		if (!FD_ISSET(*fd, fdt->open_fds))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 
 		file = fcheck(*fd);

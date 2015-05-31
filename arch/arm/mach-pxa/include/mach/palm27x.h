@@ -34,7 +34,11 @@ extern struct pxafb_mode_info palm_320x320_new_lcd_mode;
 extern void __init palm27x_lcd_init(int power,
 					struct pxafb_mode_info *mode);
 #else
+<<<<<<< HEAD
 #define palm27x_lcd_init(power, mode)	do {} while (0)
+=======
+static inline void palm27x_lcd_init(int power, struct pxafb_mode_info *mode) {}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #if	defined(CONFIG_USB_PXA27X) || \

@@ -68,7 +68,11 @@ long jfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		unsigned int oldflags;
 		int err;
 
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 
@@ -120,7 +124,11 @@ long jfs_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		inode->i_ctime = CURRENT_TIME_SEC;
 		mark_inode_dirty(inode);
 setflags_out:
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 	default:

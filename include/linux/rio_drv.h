@@ -17,6 +17,10 @@
 #include <linux/ioport.h>
 #include <linux/list.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/string.h>
 #include <linux/rio.h>
 

@@ -6,7 +6,10 @@
 #define _XT_CONNTRACK_H
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/netfilter.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/netfilter/nf_conntrack_tuple_common.h>
 
 #define XT_CONNTRACK_STATE_BIT(ctinfo) (1 << ((ctinfo)%IP_CT_IS_REPLY+1))

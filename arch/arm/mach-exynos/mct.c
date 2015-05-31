@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* linux/arch/arm/mach-exynos4/mct.c
+=======
+/* linux/arch/arm/mach-exynos/mct.c
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
@@ -20,6 +24,7 @@
 #include <linux/delay.h>
 #include <linux/percpu.h>
 
+<<<<<<< HEAD
 #include <asm/hardware/gic.h>
 #include <asm/localtimer.h>
 
@@ -37,6 +42,24 @@ enum {
 	MCT_INT_PPI
 };
 
+=======
+#include <plat/cpu.h>
+
+#include <mach/map.h>
+#include <mach/regs-mct.h>
+
+#include <asm/mach/time.h>
+#include <asm/hardware/gic.h>
+
+#define TICK_BASE_CNT 1
+
+enum {
+	MCT_INT_PPI,
+	MCT_INT_SPI
+};
+
+static unsigned long clk_cnt_per_tick;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static unsigned long clk_rate;
 static unsigned int mct_int_type;
 
@@ -46,6 +69,11 @@ struct mct_clock_event_device {
 	char name[10];
 };
 
+<<<<<<< HEAD
+=======
+struct mct_clock_event_device mct_tick[NR_CPUS];
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void exynos4_mct_write(unsigned int value, void *addr)
 {
 	void __iomem *stat_addr;
@@ -88,7 +116,11 @@ static void exynos4_mct_write(unsigned int value, void *addr)
 			break;
 		case (u32) EXYNOS4_MCT_G_COMP0_ADD_INCR:
 			stat_addr = EXYNOS4_MCT_G_WSTAT;
+<<<<<<< HEAD
 			mask = 1 << 2;		/* G_COMP0_ADD_INCR w status */
+=======
+			mask = 1 << 2;		/* G_COMP0_ADD_INCR write status */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 		case (u32) EXYNOS4_MCT_G_CNT_L:
 			stat_addr = EXYNOS4_MCT_G_CNT_WSTAT;
@@ -103,7 +135,22 @@ static void exynos4_mct_write(unsigned int value, void *addr)
 		}
 	}
 
+<<<<<<< HEAD
 	/* Wait maximum 1 ms until written values are applied */
+=======
+	/* Wait until written values are applied */
+	for (i = 0; i < 0x1000; i++)
+		if (__raw_readl(stat_addr) & mask) {
+			__raw_writel(mask, stat_addr);
+			return;
+		}
+
+	/* Workaround: Try again if fail */
+	__raw_writel(value, addr);
+
+	printk(KERN_ERR "[%s]value=%d addr=0x%X\n", __func__, value, (u32)addr);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	for (i = 0; i < loops_per_jiffy / 1000 * HZ; i++)
 		if (__raw_readl(stat_addr) & mask) {
 			__raw_writel(mask, stat_addr);
@@ -126,7 +173,11 @@ static void exynos4_mct_frc_start(u32 hi, u32 lo)
 	exynos4_mct_write(reg, EXYNOS4_MCT_G_TCON);
 }
 
+<<<<<<< HEAD
 static cycle_t exynos4_frc_read(struct clocksource *cs)
+=======
+static cycle_t notrace exynos4_frc_read(struct clocksource *cs)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	unsigned int lo, hi;
 	u32 hi2 = __raw_readl(EXYNOS4_MCT_G_CNT_U);
@@ -140,9 +191,22 @@ static cycle_t exynos4_frc_read(struct clocksource *cs)
 	return ((cycle_t)hi << 32) | lo;
 }
 
+<<<<<<< HEAD
 static void exynos4_frc_resume(struct clocksource *cs)
 {
 	exynos4_mct_frc_start(0, 0);
+=======
+cycle_t suspended_frc_count;
+
+static void exynos4_frc_suspend(struct clocksource *cs)
+{
+	suspended_frc_count = cs->read(cs);
+}
+
+static void exynos4_frc_resume(struct clocksource *cs)
+{
+	exynos4_mct_frc_start(suspended_frc_count >> 32, suspended_frc_count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 struct clocksource mct_frc = {
@@ -150,7 +214,13 @@ struct clocksource mct_frc = {
 	.rating		= 400,
 	.read		= exynos4_frc_read,
 	.mask		= CLOCKSOURCE_MASK(64),
+<<<<<<< HEAD
 	.flags		= CLOCK_SOURCE_IS_CONTINUOUS,
+=======
+	.flags		= CLOCK_SOURCE_IS_CONTINUOUS |
+			  CLOCK_SOURCE_SCHED_CLOCK,
+	.suspend	= exynos4_frc_suspend,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.resume		= exynos4_frc_resume,
 };
 
@@ -207,14 +277,21 @@ static int exynos4_comp_set_next_event(unsigned long cycles,
 static void exynos4_comp_set_mode(enum clock_event_mode mode,
 				  struct clock_event_device *evt)
 {
+<<<<<<< HEAD
 	unsigned long cycles_per_jiffy;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	exynos4_mct_comp0_stop();
 
 	switch (mode) {
 	case CLOCK_EVT_MODE_PERIODIC:
+<<<<<<< HEAD
 		cycles_per_jiffy =
 			(((unsigned long long) NSEC_PER_SEC / HZ * evt->mult) >> evt->shift);
 		exynos4_mct_comp0_start(mode, cycles_per_jiffy);
+=======
+		exynos4_mct_comp0_start(mode, clk_cnt_per_tick);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 
 	case CLOCK_EVT_MODE_ONESHOT:
@@ -253,6 +330,11 @@ static struct irqaction mct_comp_event_irq = {
 
 static void exynos4_clockevent_init(void)
 {
+<<<<<<< HEAD
+=======
+	clk_cnt_per_tick = clk_rate / HZ;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	clockevents_calc_mult_shift(&mct_comp_device, clk_rate, 5);
 	mct_comp_device.max_delta_ns =
 		clockevent_delta2ns(0xffffffff, &mct_comp_device);
@@ -261,6 +343,7 @@ static void exynos4_clockevent_init(void)
 	mct_comp_device.cpumask = cpumask_of(0);
 	clockevents_register_device(&mct_comp_device);
 
+<<<<<<< HEAD
 	if (soc_is_exynos5250())
 		setup_irq(EXYNOS5_IRQ_MCT_G0, &mct_comp_event_irq);
 	else
@@ -271,6 +354,12 @@ static void exynos4_clockevent_init(void)
 
 static DEFINE_PER_CPU(struct mct_clock_event_device, percpu_mct_tick);
 
+=======
+	setup_irq(IRQ_MCT_G0, &mct_comp_event_irq);
+}
+
+#ifdef CONFIG_LOCAL_TIMERS
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Clock event handling */
 static void exynos4_mct_tick_stop(struct mct_clock_event_device *mevt)
 {
@@ -309,9 +398,16 @@ static void exynos4_mct_tick_start(unsigned long cycles,
 static int exynos4_tick_set_next_event(unsigned long cycles,
 				       struct clock_event_device *evt)
 {
+<<<<<<< HEAD
 	struct mct_clock_event_device *mevt = this_cpu_ptr(&percpu_mct_tick);
 
 	exynos4_mct_tick_start(cycles, mevt);
+=======
+	struct mct_clock_event_device *mevt = &mct_tick[smp_processor_id()];
+
+	if (cpu_online(smp_processor_id()))
+		exynos4_mct_tick_start(cycles, mevt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }
@@ -319,27 +415,47 @@ static int exynos4_tick_set_next_event(unsigned long cycles,
 static inline void exynos4_tick_set_mode(enum clock_event_mode mode,
 					 struct clock_event_device *evt)
 {
+<<<<<<< HEAD
 	struct mct_clock_event_device *mevt = this_cpu_ptr(&percpu_mct_tick);
 	unsigned long cycles_per_jiffy;
+=======
+	struct mct_clock_event_device *mevt = &mct_tick[smp_processor_id()];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	exynos4_mct_tick_stop(mevt);
 
 	switch (mode) {
 	case CLOCK_EVT_MODE_PERIODIC:
+<<<<<<< HEAD
 		cycles_per_jiffy =
 			(((unsigned long long) NSEC_PER_SEC / HZ * evt->mult) >> evt->shift);
 		exynos4_mct_tick_start(cycles_per_jiffy, mevt);
+=======
+		exynos4_mct_tick_start(clk_cnt_per_tick / (TICK_BASE_CNT + 1)
+					, mevt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 
 	case CLOCK_EVT_MODE_ONESHOT:
 	case CLOCK_EVT_MODE_UNUSED:
 	case CLOCK_EVT_MODE_SHUTDOWN:
+<<<<<<< HEAD
 	case CLOCK_EVT_MODE_RESUME:
+=======
+		break;
+
+	case CLOCK_EVT_MODE_RESUME:
+		exynos4_mct_write(TICK_BASE_CNT, mevt->base + MCT_L_TCNTB_OFFSET);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	}
 }
 
+<<<<<<< HEAD
 static int exynos4_mct_tick_clear(struct mct_clock_event_device *mevt)
+=======
+static inline int exynos4_mct_tick_clear(struct mct_clock_event_device *mevt)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct clock_event_device *evt = mevt->evt;
 
@@ -351,9 +467,20 @@ static int exynos4_mct_tick_clear(struct mct_clock_event_device *mevt)
 	if (evt->mode != CLOCK_EVT_MODE_PERIODIC)
 		exynos4_mct_tick_stop(mevt);
 
+<<<<<<< HEAD
 	/* Clear the MCT tick interrupt */
 	if (__raw_readl(mevt->base + MCT_L_INT_CSTAT_OFFSET) & 1) {
 		exynos4_mct_write(0x1, mevt->base + MCT_L_INT_CSTAT_OFFSET);
+=======
+	/*
+	 * Clear the MCT tick interrupt.
+	 * Because of the limitation of MCT hardware,
+	 * it should be cleared twice.
+	 */
+	if (__raw_readl(mevt->base + MCT_L_INT_CSTAT_OFFSET) & 1) {
+		exynos4_mct_write(0x1, mevt->base + MCT_L_INT_CSTAT_OFFSET);
+		exynos4_mct_write(0x1, mevt->base + MCT_L_INT_CSTAT_OFFSET);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 1;
 	} else {
 		return 0;
@@ -384,6 +511,7 @@ static struct irqaction mct_tick1_event_irq = {
 	.handler	= exynos4_mct_tick_isr,
 };
 
+<<<<<<< HEAD
 static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 {
 	struct mct_clock_event_device *mevt;
@@ -396,6 +524,18 @@ static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 	sprintf(mevt->name, "mct_tick%d", cpu);
 
 	evt->name = mevt->name;
+=======
+static void exynos4_mct_tick_init(struct clock_event_device *evt)
+{
+	unsigned int cpu = smp_processor_id();
+
+	mct_tick[cpu].evt = evt;
+
+	mct_tick[cpu].base = EXYNOS4_MCT_L_BASE(cpu);
+	sprintf(mct_tick[cpu].name, "mct_tick%d", cpu);
+
+	evt->name = mct_tick[cpu].name;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	evt->cpumask = cpumask_of(cpu);
 	evt->set_next_event = exynos4_tick_set_next_event;
 	evt->set_mode = exynos4_tick_set_mode;
@@ -410,6 +550,7 @@ static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 
 	clockevents_register_device(evt);
 
+<<<<<<< HEAD
 	exynos4_mct_write(TICK_BASE_CNT, mevt->base + MCT_L_TCNTB_OFFSET);
 
 	if (mct_int_type == MCT_INT_SPI) {
@@ -426,10 +567,33 @@ static int __cpuinit exynos4_local_timer_setup(struct clock_event_device *evt)
 	} else {
 		enable_percpu_irq(EXYNOS_IRQ_MCT_LOCALTIMER, 0);
 	}
+=======
+	exynos4_mct_write(TICK_BASE_CNT, mct_tick[cpu].base + MCT_L_TCNTB_OFFSET);
+
+	if (mct_int_type == MCT_INT_SPI) {
+		if (cpu == 0) {
+			mct_tick0_event_irq.dev_id = &mct_tick[cpu];
+			setup_irq(IRQ_MCT_L0, &mct_tick0_event_irq);
+		} else {
+			mct_tick1_event_irq.dev_id = &mct_tick[cpu];
+			setup_irq(IRQ_MCT_L1, &mct_tick1_event_irq);
+			irq_set_affinity(IRQ_MCT_L1, cpumask_of(1));
+		}
+	} else {
+		gic_enable_ppi(IRQ_PPI_MCT_L);
+	}
+}
+
+/* Setup the local clock events for a CPU */
+int __cpuinit local_timer_setup(struct clock_event_device *evt)
+{
+	exynos4_mct_tick_init(evt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }
 
+<<<<<<< HEAD
 static void exynos4_local_timer_stop(struct clock_event_device *evt)
 {
 	unsigned int cpu = smp_processor_id();
@@ -447,6 +611,16 @@ static struct local_timer_ops exynos4_mct_tick_ops __cpuinitdata = {
 	.setup	= exynos4_local_timer_setup,
 	.stop	= exynos4_local_timer_stop,
 };
+=======
+int local_timer_ack(void)
+{
+	unsigned int cpu = smp_processor_id();
+	struct mct_clock_event_device *mevt = &mct_tick[cpu];
+
+	return exynos4_mct_tick_clear(mevt);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* CONFIG_LOCAL_TIMERS */
 
 static void __init exynos4_timer_resources(void)
@@ -455,6 +629,7 @@ static void __init exynos4_timer_resources(void)
 	mct_clk = clk_get(NULL, "xtal");
 
 	clk_rate = clk_get_rate(mct_clk);
+<<<<<<< HEAD
 
 #ifdef CONFIG_LOCAL_TIMERS
 	if (mct_int_type == MCT_INT_PPI) {
@@ -469,11 +644,18 @@ static void __init exynos4_timer_resources(void)
 
 	local_timer_register(&exynos4_mct_tick_ops);
 #endif /* CONFIG_LOCAL_TIMERS */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __init exynos4_timer_init(void)
 {
+<<<<<<< HEAD
 	if (soc_is_exynos4210())
+=======
+	if (soc_is_exynos4210() ||
+	    (soc_is_exynos5250() && samsung_rev() >= EXYNOS5250_REV_1_0))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mct_int_type = MCT_INT_SPI;
 	else
 		mct_int_type = MCT_INT_PPI;

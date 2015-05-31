@@ -9,6 +9,10 @@
  *  it under the terms of the GNU General Public License version 2 as
  *  published by the Free Software Foundation.
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/io.h>
@@ -18,8 +22,13 @@
 
 #include <linux/serial_core.h>
 #include <linux/serial_reg.h>
+<<<<<<< HEAD
 
 #include <mach/gpio-pnx4008.h>
+=======
+#include <mach/gpio.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/clock.h>
 
 #define UART_3		0

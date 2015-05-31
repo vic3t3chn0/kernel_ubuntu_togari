@@ -162,7 +162,11 @@ msi_irq_allocated:
 		msg.address_hi = (0 + CVMX_NPEI_PCIE_MSI_RCV) >> 32;
 		break;
 	default:
+<<<<<<< HEAD
 		panic("arch_setup_msi_irq: Invalid octeon_dma_bar_type");
+=======
+		panic("arch_setup_msi_irq: Invalid octeon_dma_bar_type\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	msg.data = irq - OCTEON_IRQ_MSI_BIT0;
 

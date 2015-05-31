@@ -51,6 +51,10 @@
 #define VERSION "0.409"
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/bitops.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
@@ -71,7 +75,10 @@
 #include <linux/init.h>
 #include <linux/list.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/net_namespace.h>
 #include <net/ip.h>
 #include <net/protocol.h>
@@ -109,10 +116,16 @@ struct leaf {
 
 struct leaf_info {
 	struct hlist_node hlist;
+<<<<<<< HEAD
 	int plen;
 	u32 mask_plen; /* ntohl(inet_make_mask(plen)) */
 	struct list_head falh;
 	struct rcu_head rcu;
+=======
+	struct rcu_head rcu;
+	int plen;
+	struct list_head falh;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct tnode {
@@ -451,7 +464,10 @@ static struct leaf_info *leaf_info_new(int plen)
 	struct leaf_info *li = kmalloc(sizeof(struct leaf_info),  GFP_KERNEL);
 	if (li) {
 		li->plen = plen;
+<<<<<<< HEAD
 		li->mask_plen = ntohl(inet_make_mask(plen));
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		INIT_LIST_HEAD(&li->falh);
 	}
 	return li;
@@ -1168,8 +1184,14 @@ static struct list_head *fib_insert_node(struct trie *t, u32 key, int plen)
 	}
 
 	if (tp && tp->pos + tp->bits > 32)
+<<<<<<< HEAD
 		pr_warn("fib_trie tp=%p pos=%d, bits=%d, key=%0x plen=%d\n",
 			tp, tp->pos, tp->bits, key, plen);
+=======
+		pr_warning("fib_trie"
+			   " tp=%p pos=%d, bits=%d, key=%0x plen=%d\n",
+			   tp, tp->pos, tp->bits, key, plen);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Rebalance the trie */
 
@@ -1359,8 +1381,15 @@ static int check_leaf(struct fib_table *tb, struct trie *t, struct leaf *l,
 
 	hlist_for_each_entry_rcu(li, node, hhead, hlist) {
 		struct fib_alias *fa;
+<<<<<<< HEAD
 
 		if (l->key != (key & li->mask_plen))
+=======
+		int plen = li->plen;
+		__be32 mask = inet_make_mask(plen);
+
+		if (l->key != (key & ntohl(mask)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			continue;
 
 		list_for_each_entry_rcu(fa, &li->falh, fa_list) {
@@ -1394,7 +1423,11 @@ static int check_leaf(struct fib_table *tb, struct trie *t, struct leaf *l,
 #ifdef CONFIG_IP_FIB_TRIE_STATS
 				t->stats.semantic_match_passed++;
 #endif
+<<<<<<< HEAD
 				res->prefixlen = li->plen;
+=======
+				res->prefixlen = plen;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				res->nh_sel = nhsel;
 				res->type = fa->fa_type;
 				res->scope = fa->fa_info->fib_scope;
@@ -1402,7 +1435,11 @@ static int check_leaf(struct fib_table *tb, struct trie *t, struct leaf *l,
 				res->table = tb;
 				res->fa_head = &li->falh;
 				if (!(fib_flags & FIB_LOOKUP_NOREF))
+<<<<<<< HEAD
 					atomic_inc(&fi->fib_clntref);
+=======
+					atomic_inc(&res->fi->fib_clntref);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				return 0;
 			}
 		}
@@ -1606,7 +1643,10 @@ found:
 	rcu_read_unlock();
 	return ret;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(fib_table_lookup);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Remove the leaf and return parent.
@@ -1622,7 +1662,11 @@ static void trie_leaf_remove(struct trie *t, struct leaf *l)
 		put_child(t, (struct tnode *)tp, cindex, NULL);
 		trie_rebalance(t, tp);
 	} else
+<<<<<<< HEAD
 		RCU_INIT_POINTER(t->trie, NULL);
+=======
+		rcu_assign_pointer(t->trie, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	free_leaf(l);
 }

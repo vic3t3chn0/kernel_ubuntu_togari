@@ -1,9 +1,13 @@
 #ifndef __ASM_LINKAGE_H
 #define __ASM_LINKAGE_H
 
+<<<<<<< HEAD
 #include <linux/stringify.h>
 
 #define __ALIGN .align 4, 0x07
 #define __ALIGN_STR __stringify(__ALIGN)
+=======
+/* Nothing to see here... */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

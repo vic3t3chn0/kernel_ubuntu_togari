@@ -42,7 +42,11 @@ MODULE_AUTHOR("Sébastien Hinderer <Sebastien.Hinderer@ens-lyon.org>");
 MODULE_DESCRIPTION("A power_off handler for Iris devices from EuroBraille");
 MODULE_SUPPORTED_DEVICE("Eurobraille/Iris");
 
+<<<<<<< HEAD
 static bool force;
+=======
+static int force;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Set to one to force poweroff handler installation.");

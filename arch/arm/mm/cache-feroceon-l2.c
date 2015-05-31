@@ -15,7 +15,10 @@
 #include <linux/init.h>
 #include <linux/highmem.h>
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
 #include <asm/cp15.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/cache-feroceon-l2.h>
 
 /*
@@ -343,6 +346,10 @@ void __init feroceon_l2_init(int __l2_wt_override)
 	outer_cache.inv_range = feroceon_l2_inv_range;
 	outer_cache.clean_range = feroceon_l2_clean_range;
 	outer_cache.flush_range = feroceon_l2_flush_range;
+<<<<<<< HEAD
+=======
+	outer_cache.inv_all = l2_inv_all;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	enable_l2();
 

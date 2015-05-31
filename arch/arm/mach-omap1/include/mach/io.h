@@ -1,5 +1,6 @@
 /*
  * arch/arm/mach-omap1/include/mach/io.h
+<<<<<<< HEAD
  *
  * IO definitions for TI OMAP processors and boards
  *
@@ -43,3 +44,8 @@
 #define __io(a)		__typesafe_io(a)
 
 #endif
+=======
+ */
+
+#include <plat/io.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -33,9 +33,15 @@
 #include <asm/io.h>
 #include <asm/sal.h>
 #include <asm/machvec.h>
+<<<<<<< HEAD
 #include <asm/processor.h>
 #include <asm/vga.h>
 #include <asm/setup.h>
+=======
+#include <asm/system.h>
+#include <asm/processor.h>
+#include <asm/vga.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/sn/arch.h>
 #include <asm/sn/addrs.h>
 #include <asm/sn/pda.h>

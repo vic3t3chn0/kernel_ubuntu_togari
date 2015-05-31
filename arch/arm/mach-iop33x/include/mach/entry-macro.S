@@ -9,6 +9,12 @@
  */
 #include <mach/iop33x.h>
 
+<<<<<<< HEAD
+=======
+	.macro	disable_fiq
+	.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.macro get_irqnr_preamble, base, tmp
 	mrc	p15, 0, \tmp, c15, c1, 0
 	orr	\tmp, \tmp, #(1 << 6)

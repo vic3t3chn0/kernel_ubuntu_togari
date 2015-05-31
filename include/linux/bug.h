@@ -11,6 +11,7 @@ enum bug_trap_type {
 
 struct pt_regs;
 
+<<<<<<< HEAD
 #ifdef __CHECKER__
 #define BUILD_BUG_ON_NOT_POWER_OF_2(n)
 #define BUILD_BUG_ON_ZERO(e) (0)
@@ -72,6 +73,8 @@ extern int __build_bug_on_failed;
 
 #endif	/* __CHECKER__ */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_GENERIC_BUG
 #include <asm-generic/bug.h>
 
@@ -96,10 +99,13 @@ static inline enum bug_trap_type report_bug(unsigned long bug_addr,
 }
 
 #endif	/* CONFIG_GENERIC_BUG */
+<<<<<<< HEAD
 
 #ifdef CONFIG_PANIC_ON_DATA_CORRUPTION
 #define PANIC_CORRUPTION 1
 #else
 #define PANIC_CORRUPTION 0
 #endif  /* CONFIG_PANIC_ON_DATA_CORRUPTION */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* _LINUX_BUG_H */

@@ -24,8 +24,11 @@
 #include <linux/module.h>
 #include <linux/seq_file.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <crypto/compress.h>
 #include <crypto/internal/compress.h>
@@ -48,6 +51,7 @@ static int crypto_pcomp_init_tfm(struct crypto_tfm *tfm)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_NET
 static int crypto_pcomp_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -70,6 +74,8 @@ static int crypto_pcomp_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void crypto_pcomp_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_pcomp_show(struct seq_file *m, struct crypto_alg *alg)
@@ -84,7 +90,10 @@ static const struct crypto_type crypto_pcomp_type = {
 #ifdef CONFIG_PROC_FS
 	.show		= crypto_pcomp_show,
 #endif
+<<<<<<< HEAD
 	.report		= crypto_pcomp_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.maskclear	= ~CRYPTO_ALG_TYPE_MASK,
 	.maskset	= CRYPTO_ALG_TYPE_MASK,
 	.type		= CRYPTO_ALG_TYPE_PCOMPRESS,

@@ -9,13 +9,20 @@
  * 2 of the License, or (at your option) any later version.
 */
 
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/platform_device.h>
 
 #include <mach/board.h>
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /* ------------------------------------------------------------------------- */

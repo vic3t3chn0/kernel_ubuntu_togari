@@ -19,7 +19,11 @@
  *  Copyright (c) Russ Anderson
  */
 
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/uv/bios.h>
 #include <asm/uv/uv.h>
 

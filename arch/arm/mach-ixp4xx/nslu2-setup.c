@@ -16,7 +16,11 @@
  * Maintainers: http://www.nslu2-linux.org/
  *
  */
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/if_ether.h>
 #include <linux/irq.h>
 #include <linux/serial.h>
@@ -30,6 +34,10 @@
 #include <asm/mach/arch.h>
 #include <asm/mach/flash.h>
 #include <asm/mach/time.h>
+<<<<<<< HEAD
+=======
+#include <asm/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define NSLU2_SDA_PIN		7
 #define NSLU2_SCL_PIN		6
@@ -299,6 +307,7 @@ static void __init nslu2_init(void)
 
 MACHINE_START(NSLU2, "Linksys NSLU2")
 	/* Maintainer: www.nslu2-linux.org */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.map_io		= ixp4xx_map_io,
 	.init_early	= ixp4xx_init_early,
@@ -309,4 +318,11 @@ MACHINE_START(NSLU2, "Linksys NSLU2")
 	.dma_zone_size	= SZ_64M,
 #endif
 	.restart	= ixp4xx_restart,
+=======
+	.boot_params	= 0x00000100,
+	.map_io		= ixp4xx_map_io,
+	.init_irq	= ixp4xx_init_irq,
+	.timer          = &nslu2_timer,
+	.init_machine	= nslu2_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

@@ -19,7 +19,10 @@
 # 3) Check for leaked CONFIG_ symbols
 
 use strict;
+<<<<<<< HEAD
 use File::Basename;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 my ($dir, $arch, @files) = @ARGV;
 
@@ -100,6 +103,7 @@ sub check_asm_types
 }
 
 my $linux_types;
+<<<<<<< HEAD
 my %import_stack = ();
 sub check_include_typesh
 {
@@ -133,6 +137,8 @@ sub check_include_typesh
 	delete $import_stack{$import_path};
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 sub check_sizetypes
 {
 	if ($filename =~ /types.h|int-l64.h|int-ll64.h/o) {
@@ -147,9 +153,12 @@ sub check_sizetypes
 		$linux_types = 1;
 		return;
 	}
+<<<<<<< HEAD
 	if (my $included = ($line =~ /^\s*#\s*include\s+[<"](\S+)[>"]/)[0]) {
 		check_include_typesh($included);
 	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if ($line =~ m/__[us](8|16|32|64)\b/) {
 		printf STDERR "$filename:$lineno: " .
 		              "found __[us]{8,16,32,64} type " .
@@ -159,3 +168,7 @@ sub check_sizetypes
 		#$ret = 1;
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

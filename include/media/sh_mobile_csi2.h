@@ -11,8 +11,11 @@
 #ifndef SH_MIPI_CSI
 #define SH_MIPI_CSI
 
+<<<<<<< HEAD
 #include <linux/list.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum sh_csi2_phy {
 	SH_CSI2_PHY_MAIN,
 	SH_CSI2_PHY_SUB,
@@ -35,14 +38,25 @@ struct sh_csi2_client_config {
 	struct platform_device *pdev;	/* client platform device */
 };
 
+<<<<<<< HEAD
 struct v4l2_device;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct sh_csi2_pdata {
 	enum sh_csi2_type type;
 	unsigned int flags;
 	struct sh_csi2_client_config *clients;
 	int num_clients;
+<<<<<<< HEAD
 	struct v4l2_device *v4l2_dev;
 };
 
+=======
+};
+
+struct device;
+struct v4l2_device;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

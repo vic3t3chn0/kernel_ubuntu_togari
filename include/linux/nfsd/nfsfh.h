@@ -14,6 +14,7 @@
 #ifndef _LINUX_NFSD_FH_H
 #define _LINUX_NFSD_FH_H
 
+<<<<<<< HEAD
 #include <linux/types.h>
 #include <linux/nfs.h>
 #include <linux/nfs2.h>
@@ -22,6 +23,13 @@
 #ifdef __KERNEL__
 # include <linux/sunrpc/svc.h>
 #endif
+=======
+# include <linux/types.h>
+#ifdef __KERNEL__
+# include <linux/sunrpc/svc.h>
+#endif
+#include <linux/nfsd/const.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * This is the old "dentry style" Linux NFSv2 file handle.

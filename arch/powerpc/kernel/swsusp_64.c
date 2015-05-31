@@ -6,9 +6,15 @@
  * GPLv2
  */
 
+<<<<<<< HEAD
 #include <asm/iommu.h>
 #include <linux/irq.h>
 #include <linux/sched.h>
+=======
+#include <asm/system.h>
+#include <asm/iommu.h>
+#include <linux/irq.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/interrupt.h>
 
 void do_after_copyback(void)

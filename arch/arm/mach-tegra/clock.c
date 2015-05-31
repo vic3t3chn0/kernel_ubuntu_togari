@@ -387,13 +387,18 @@ EXPORT_SYMBOL(tegra_clk_init_from_table);
 
 void tegra_periph_reset_deassert(struct clk *c)
 {
+<<<<<<< HEAD
 	BUG_ON(!c->ops->reset);
 	c->ops->reset(c, false);
+=======
+	tegra2_periph_reset_deassert(c);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(tegra_periph_reset_deassert);
 
 void tegra_periph_reset_assert(struct clk *c)
 {
+<<<<<<< HEAD
 	BUG_ON(!c->ops->reset);
 	c->ops->reset(c, true);
 }
@@ -419,6 +424,29 @@ out:
 	spin_unlock_irqrestore(&c->spinlock, flags);
 
 	return ret;
+=======
+	tegra2_periph_reset_assert(c);
+}
+EXPORT_SYMBOL(tegra_periph_reset_assert);
+
+void __init tegra_init_clock(void)
+{
+	tegra2_init_clocks();
+}
+
+/*
+ * The SDMMC controllers have extra bits in the clock source register that
+ * adjust the delay between the clock and data to compenstate for delays
+ * on the PCB.
+ */
+void tegra_sdmmc_tap_delay(struct clk *c, int delay)
+{
+	unsigned long flags;
+
+	spin_lock_irqsave(&c->spinlock, flags);
+	tegra2_sdmmc_tap_delay(c, delay);
+	spin_unlock_irqrestore(&c->spinlock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #ifdef CONFIG_DEBUG_FS
@@ -590,7 +618,11 @@ static const struct file_operations possible_parents_fops = {
 
 static int clk_debugfs_register_one(struct clk *c)
 {
+<<<<<<< HEAD
 	struct dentry *d;
+=======
+	struct dentry *d, *child, *child_tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	d = debugfs_create_dir(c->name, clk_debugfs_root);
 	if (!d)
@@ -619,7 +651,14 @@ static int clk_debugfs_register_one(struct clk *c)
 	return 0;
 
 err_out:
+<<<<<<< HEAD
 	debugfs_remove_recursive(c->dent);
+=======
+	d = c->dent;
+	list_for_each_entry_safe(child, child_tmp, &d->d_subdirs, d_u.d_child)
+		debugfs_remove(child);
+	debugfs_remove(c->dent);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return -ENOMEM;
 }
 

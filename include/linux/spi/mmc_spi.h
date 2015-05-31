@@ -1,10 +1,17 @@
 #ifndef __LINUX_SPI_MMC_SPI_H
 #define __LINUX_SPI_MMC_SPI_H
 
+<<<<<<< HEAD
 #include <linux/spi/spi.h>
 #include <linux/interrupt.h>
 
 struct device;
+=======
+#include <linux/device.h>
+#include <linux/spi/spi.h>
+#include <linux/interrupt.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct mmc_host;
 
 /* Put this in platform_data of a device being used to manage an MMC/SD

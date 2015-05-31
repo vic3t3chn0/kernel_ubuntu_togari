@@ -32,12 +32,19 @@
 #include <linux/spinlock.h>
 #include <net/sock.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/fcntl.h>
 #include <linux/mm.h>
 #include <linux/interrupt.h>
 #include <linux/init.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static ax25_route *ax25_route_list;
 static DEFINE_RWLOCK(ax25_route_lock);

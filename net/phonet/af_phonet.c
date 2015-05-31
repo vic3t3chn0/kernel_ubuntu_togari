@@ -68,8 +68,15 @@ static int pn_socket_create(struct net *net, struct socket *sock, int protocol,
 	struct phonet_protocol *pnp;
 	int err;
 
+<<<<<<< HEAD
 	if (!capable(CAP_SYS_ADMIN))
 		return -EPERM;
+=======
+#if !defined(CONFIG_SAMSUNG_PHONE_SVNET)
+	if (!capable(CAP_SYS_ADMIN))
+		return -EPERM;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (protocol == 0) {
 		/* Default protocol selection */
@@ -491,7 +498,11 @@ void phonet_proto_unregister(unsigned int protocol, struct phonet_protocol *pp)
 {
 	mutex_lock(&proto_tab_lock);
 	BUG_ON(proto_tab[protocol] != pp);
+<<<<<<< HEAD
 	RCU_INIT_POINTER(proto_tab[protocol], NULL);
+=======
+	rcu_assign_pointer(proto_tab[protocol], NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mutex_unlock(&proto_tab_lock);
 	synchronize_rcu();
 	proto_unregister(pp->prot);

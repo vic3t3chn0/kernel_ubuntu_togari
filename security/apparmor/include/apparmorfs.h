@@ -15,6 +15,7 @@
 #ifndef __AA_APPARMORFS_H
 #define __AA_APPARMORFS_H
 
+<<<<<<< HEAD
 enum aa_fs_type {
 	AA_FS_TYPE_BOOLEAN,
 	AA_FS_TYPE_STRING,
@@ -59,6 +60,8 @@ extern const struct file_operations aa_fs_seq_file_ops;
 #define AA_FS_DIR(_name, _value) \
 	{ .name = (_name), .v_type = AA_FS_TYPE_DIR, .v.files = (_value) }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void __init aa_destroy_aafs(void);
 
 #endif /* __AA_APPARMORFS_H */

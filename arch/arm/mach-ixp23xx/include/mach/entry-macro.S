@@ -2,9 +2,21 @@
  * arch/arm/mach-ixp23xx/include/mach/entry-macro.S
  */
 
+<<<<<<< HEAD
 		.macro  get_irqnr_preamble, base, tmp
 		.endm
 
+=======
+		.macro	disable_fiq
+		.endm
+
+		.macro  get_irqnr_preamble, base, tmp
+		.endm
+
+		.macro  arch_ret_to_user, tmp1, tmp2
+		.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
 		ldr	\irqnr, =(IXP23XX_INTC_VIRT + IXP23XX_INTR_IRQ_ENC_ST_OFFSET)
 		ldr	\irqnr, [\irqnr]	@ get interrupt number

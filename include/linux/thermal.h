@@ -37,19 +37,26 @@ enum thermal_device_mode {
 	THERMAL_DEVICE_ENABLED,
 };
 
+<<<<<<< HEAD
 enum thermal_trip_activation_mode {
 	THERMAL_TRIP_ACTIVATION_DISABLED = 0,
 	THERMAL_TRIP_ACTIVATION_ENABLED,
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum thermal_trip_type {
 	THERMAL_TRIP_ACTIVE = 0,
 	THERMAL_TRIP_PASSIVE,
 	THERMAL_TRIP_HOT,
 	THERMAL_TRIP_CRITICAL,
+<<<<<<< HEAD
 	THERMAL_TRIP_CONFIGURABLE_HI,
 	THERMAL_TRIP_CONFIGURABLE_LOW,
 	THERMAL_TRIP_CRITICAL_LOW,
+=======
+	THERMAL_TRIP_STATE_ACTIVE,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct thermal_zone_device_ops {
@@ -64,12 +71,17 @@ struct thermal_zone_device_ops {
 		enum thermal_device_mode);
 	int (*get_trip_type) (struct thermal_zone_device *, int,
 		enum thermal_trip_type *);
+<<<<<<< HEAD
 	int (*activate_trip_type) (struct thermal_zone_device *, int,
 		enum thermal_trip_activation_mode);
 	int (*get_trip_temp) (struct thermal_zone_device *, int,
 			      unsigned long *);
 	int (*set_trip_temp) (struct thermal_zone_device *, int,
 			      long);
+=======
+	int (*get_trip_temp) (struct thermal_zone_device *, int,
+			      unsigned long *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int (*get_crit_temp) (struct thermal_zone_device *, unsigned long *);
 	int (*notify) (struct thermal_zone_device *, int,
 		       enum thermal_trip_type);
@@ -97,6 +109,7 @@ struct thermal_cooling_device {
 				((long)t-2732+5)/10 : ((long)t-2732-5)/10)
 #define CELSIUS_TO_KELVIN(t)	((t)*10+2732)
 
+<<<<<<< HEAD
 struct sensor_threshold {
 	long temp;
 	enum thermal_trip_type trip;
@@ -118,6 +131,23 @@ struct sensor_info {
 	struct mutex lock;
 	struct work_struct work;
 };
+=======
+#if defined(CONFIG_THERMAL_HWMON)
+/* thermal zone devices with the same type share one hwmon device */
+struct thermal_hwmon_device {
+	char type[THERMAL_NAME_LENGTH];
+	struct device *device;
+	int count;
+	struct list_head tz_list;
+	struct list_head node;
+};
+
+struct thermal_hwmon_attr {
+	struct device_attribute attr;
+	char name[16];
+};
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct thermal_zone_device {
 	int id;
@@ -138,13 +168,26 @@ struct thermal_zone_device {
 	struct mutex lock;	/* protect cooling devices list */
 	struct list_head node;
 	struct delayed_work poll_queue;
+<<<<<<< HEAD
 	struct sensor_threshold tz_threshold[2];
 	struct sensor_info sensor;
+=======
+#if defined(CONFIG_THERMAL_HWMON)
+	struct list_head hwmon_node;
+	struct thermal_hwmon_device *hwmon;
+	struct thermal_hwmon_attr temp_input;	/* hwmon sys attr */
+	struct thermal_hwmon_attr temp_crit;	/* hwmon sys attr */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 /* Adding event notification support elements */
 #define THERMAL_GENL_FAMILY_NAME                "thermal_event"
 #define THERMAL_GENL_VERSION                    0x01
+<<<<<<< HEAD
 #define THERMAL_GENL_MCAST_GROUP_NAME           "thermal_mc_group"
+=======
+#define THERMAL_GENL_MCAST_GROUP_NAME           "thermal_mc_grp"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 enum events {
 	THERMAL_AUX0,
@@ -187,6 +230,7 @@ struct thermal_cooling_device *thermal_cooling_device_register(char *, void *,
 		const struct thermal_cooling_device_ops *);
 void thermal_cooling_device_unregister(struct thermal_cooling_device *);
 
+<<<<<<< HEAD
 int sensor_get_id(char *name);
 int sensor_set_trip(uint32_t sensor_id, struct sensor_threshold *threshold);
 int sensor_cancel_trip(uint32_t sensor_id, struct sensor_threshold *threshold);
@@ -199,6 +243,12 @@ int thermal_sensor_trip(struct thermal_zone_device *tz,
 extern int thermal_generate_netlink_event(u32 orig, enum events event);
 #else
 static inline int thermal_generate_netlink_event(u32 orig, enum events event)
+=======
+#ifdef CONFIG_NET
+extern int generate_netlink_event(u32 orig, enum events event);
+#else
+static inline int generate_netlink_event(u32 orig, enum events event)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }

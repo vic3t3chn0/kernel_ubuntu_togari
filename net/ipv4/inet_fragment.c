@@ -21,6 +21,10 @@
 #include <linux/rtnetlink.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
+#include <net/sock.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/inet_frag.h>
 
 static void inet_frag_secret_rebuild(unsigned long dummy)
@@ -271,6 +275,10 @@ struct inet_frag_queue *inet_frag_find(struct netns_frags *nf,
 {
 	struct inet_frag_queue *q;
 	struct hlist_node *n;
+<<<<<<< HEAD
+=======
+	int depth = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	hlist_for_each_entry(q, n, &f->hash[hash], list) {
 		if (q->net == nf && f->match(q, key)) {
@@ -278,9 +286,34 @@ struct inet_frag_queue *inet_frag_find(struct netns_frags *nf,
 			read_unlock(&f->lock);
 			return q;
 		}
+<<<<<<< HEAD
 	}
 	read_unlock(&f->lock);
 
 	return inet_frag_create(nf, f, key);
 }
 EXPORT_SYMBOL(inet_frag_find);
+=======
+		depth++;
+	}
+	read_unlock(&f->lock);
+
+	if (depth <= INETFRAGS_MAXDEPTH)
+		return inet_frag_create(nf, f, key);
+	else
+		return ERR_PTR(-ENOBUFS);
+}
+EXPORT_SYMBOL(inet_frag_find);
+
+void inet_frag_maybe_warn_overflow(struct inet_frag_queue *q,
+				   const char *prefix)
+{
+	static const char msg[] = "inet_frag_find: Fragment hash bucket"
+		" list length grew over limit " __stringify(INETFRAGS_MAXDEPTH)
+		". Dropping fragment.\n";
+
+	if (PTR_ERR(q) == -ENOBUFS)
+		LIMIT_NETDEBUG(KERN_WARNING "%s%s", prefix, msg);
+}
+EXPORT_SYMBOL(inet_frag_maybe_warn_overflow);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

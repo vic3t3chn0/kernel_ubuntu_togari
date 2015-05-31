@@ -11,8 +11,15 @@
 #include <asm/unistd.h>
 #include "aio.h"
 #include "init.h"
+<<<<<<< HEAD
 #include "kern_util.h"
 #include "os.h"
+=======
+#include "kern_constants.h"
+#include "kern_util.h"
+#include "os.h"
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct aio_thread_req {
 	enum aio_type type;

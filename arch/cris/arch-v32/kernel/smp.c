@@ -7,7 +7,11 @@
 #include <asm/mmu_context.h>
 #include <hwregs/asm/mmu_defs_asm.h>
 #include <hwregs/supp_reg.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/err.h>
 #include <linux/init.h>

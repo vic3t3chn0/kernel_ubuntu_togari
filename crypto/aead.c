@@ -21,8 +21,11 @@
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "internal.h"
 
@@ -111,6 +114,7 @@ static int crypto_init_aead_ops(struct crypto_tfm *tfm, u32 type, u32 mask)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_NET
 static int crypto_aead_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -140,6 +144,8 @@ static int crypto_aead_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void crypto_aead_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_aead_show(struct seq_file *m, struct crypto_alg *alg)
@@ -161,7 +167,10 @@ const struct crypto_type crypto_aead_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_aead_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_aead_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 EXPORT_SYMBOL_GPL(crypto_aead_type);
 
@@ -197,6 +206,7 @@ static int crypto_init_nivaead_ops(struct crypto_tfm *tfm, u32 type, u32 mask)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_NET
 static int crypto_nivaead_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -226,6 +236,8 @@ static int crypto_nivaead_report(struct sk_buff *skb, struct crypto_alg *alg)
 #endif
 
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void crypto_nivaead_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_nivaead_show(struct seq_file *m, struct crypto_alg *alg)
@@ -247,7 +259,10 @@ const struct crypto_type crypto_nivaead_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_nivaead_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_nivaead_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 EXPORT_SYMBOL_GPL(crypto_nivaead_type);
 
@@ -470,7 +485,12 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
 struct crypto_alg *crypto_lookup_aead(const char *name, u32 type, u32 mask)
+=======
+static struct crypto_alg *crypto_lookup_aead(const char *name, u32 type,
+					     u32 mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct crypto_alg *alg;
 
@@ -502,7 +522,10 @@ struct crypto_alg *crypto_lookup_aead(const char *name, u32 type, u32 mask)
 
 	return ERR_PTR(crypto_nivaead_default(alg, type, mask));
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(crypto_lookup_aead);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int crypto_grab_aead(struct crypto_aead_spawn *spawn, const char *name,
 		     u32 type, u32 mask)

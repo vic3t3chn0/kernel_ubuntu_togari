@@ -114,7 +114,11 @@ int ncp_dirhandle_alloc(struct ncp_server *, __u8 vol, __le32 dirent, __u8 *dirh
 int ncp_dirhandle_free(struct ncp_server *, __u8 dirhandle);
 
 int ncp_create_new(struct inode *dir, struct dentry *dentry,
+<<<<<<< HEAD
                           umode_t mode, dev_t rdev, __le32 attributes);
+=======
+                          int mode, dev_t rdev, __le32 attributes);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline int ncp_is_nfs_extras(struct ncp_server* server, unsigned int volnum) {
 #ifdef CONFIG_NCPFS_NFS_NS

@@ -236,7 +236,11 @@ void ftrace_likely_update(struct ftrace_branch_data *f, int val, int expect);
 
 /*
  * Rather then using noinline to prevent stack consumption, use
+<<<<<<< HEAD
  * noinline_for_stack instead.  For documentation reasons.
+=======
+ * noinline_for_stack instead.  For documentaiton reasons.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 #define noinline_for_stack noinline
 
@@ -293,9 +297,13 @@ void ftrace_likely_update(struct ftrace_branch_data *f, int val, int expect);
 #ifndef __compiletime_error
 # define __compiletime_error(message)
 #endif
+<<<<<<< HEAD
 #ifndef __linktime_error
 # define __linktime_error(message)
 #endif
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Prevent the compiler from merging or refetching accesses.  The compiler
  * is also forbidden from reordering successive instances of ACCESS_ONCE(),

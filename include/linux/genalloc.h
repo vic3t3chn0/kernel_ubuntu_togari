@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * Basic general purpose allocator for managing special purpose
  * memory, for example, memory that is not managed by the regular
  * kmalloc/kfree interface.  Uses for this includes on-device special
@@ -21,6 +22,12 @@
  * the allocator can NOT be used in NMI handler.  So code uses the
  * allocator in NMI handler should depend on
  * CONFIG_ARCH_HAVE_NMI_SAFE_CMPXCHG.
+=======
+ * Basic general purpose allocator for managing special purpose memory
+ * not managed by the regular kmalloc/kfree interface.
+ * Uses for this includes on-device special memory, uncached memory
+ * etc.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This source code is licensed under the GNU General Public License,
  * Version 2.  See the file COPYING for more details.
@@ -29,6 +36,7 @@
 
 #ifndef __GENALLOC_H__
 #define __GENALLOC_H__
+<<<<<<< HEAD
 /*
  *  General purpose special memory pool descriptor.
  */
@@ -53,6 +61,15 @@ struct gen_pool_chunk {
 extern struct gen_pool *gen_pool_create(int, int);
 extern phys_addr_t gen_pool_virt_to_phys(struct gen_pool *pool, u64);
 extern int gen_pool_add_virt(struct gen_pool *, u64, phys_addr_t,
+=======
+
+struct gen_pool;
+
+struct gen_pool *__must_check gen_pool_create(unsigned order, int nid);
+
+extern phys_addr_t gen_pool_virt_to_phys(struct gen_pool *pool, unsigned long);
+extern int gen_pool_add_virt(struct gen_pool *, unsigned long, phys_addr_t,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			     size_t, int);
 /**
  * gen_pool_add - add a new chunk of special memory to the pool
@@ -66,11 +83,16 @@ extern int gen_pool_add_virt(struct gen_pool *, u64, phys_addr_t,
  *
  * Returns 0 on success or a -ve errno on failure.
  */
+<<<<<<< HEAD
 static inline int gen_pool_add(struct gen_pool *pool, u64 addr,
+=======
+static inline int gen_pool_add(struct gen_pool *pool, unsigned long addr,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			       size_t size, int nid)
 {
 	return gen_pool_add_virt(pool, addr, -1, size, nid);
 }
+<<<<<<< HEAD
 extern void gen_pool_destroy(struct gen_pool *);
 extern void gen_pool_free(struct gen_pool *, u64, size_t);
 extern void gen_pool_for_each_chunk(struct gen_pool *,
@@ -86,14 +108,37 @@ gen_pool_alloc_aligned(struct gen_pool *pool, size_t size,
  * gen_pool_alloc() - allocate special memory from the pool
  * @pool:       Pool to allocate from.
  * @size:       Number of bytes to allocate from the pool.
+=======
+
+void gen_pool_destroy(struct gen_pool *pool);
+
+unsigned long __must_check
+gen_pool_alloc_aligned(struct gen_pool *pool, size_t size,
+		       unsigned alignment_order);
+
+/**
+ * gen_pool_alloc() - allocate special memory from the pool
+ * @pool:	Pool to allocate from.
+ * @size:	Number of bytes to allocate from the pool.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Allocate the requested number of bytes from the specified pool.
  * Uses a first-fit algorithm.
  */
+<<<<<<< HEAD
 static inline u64 __must_check
 gen_pool_alloc(struct gen_pool *pool, size_t size)
 {
         return gen_pool_alloc_aligned(pool, size, 0);
 }
 
+=======
+static inline unsigned long __must_check
+gen_pool_alloc(struct gen_pool *pool, size_t size)
+{
+	return gen_pool_alloc_aligned(pool, size, 0);
+}
+
+void gen_pool_free(struct gen_pool *pool, unsigned long addr, size_t size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __GENALLOC_H__ */

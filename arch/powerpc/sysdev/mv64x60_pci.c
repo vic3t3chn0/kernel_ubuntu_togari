@@ -12,7 +12,10 @@
 #include <linux/stddef.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/stat.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/pci.h>
 
 #include <asm/prom.h>

@@ -29,7 +29,11 @@
 #include <linux/pagemap.h>
 #include <linux/err.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mman.h>
 #include <asm/mmu.h>
 #include <asm/spu.h>

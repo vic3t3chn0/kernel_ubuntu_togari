@@ -9,7 +9,10 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/io.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/syscore_ops.h>
 
 #include <mach/pxa2xx-regs.h>

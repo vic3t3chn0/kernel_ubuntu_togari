@@ -25,7 +25,10 @@
 #include <asm/setup.h>
 #include <asm/sizes.h>
 #include <asm/tlb.h>
+<<<<<<< HEAD
 #include <asm/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/map.h>
 

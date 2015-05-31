@@ -13,7 +13,10 @@
  */
 #include <linux/netdevice.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/net_namespace.h>
 #include <net/llc.h>
 #include <net/llc_pdu.h>

@@ -183,7 +183,11 @@ static inline void income_lcd_init(void) {}
 /******************************************************************************
  * Backlight
  ******************************************************************************/
+<<<<<<< HEAD
 #if defined(CONFIG_BACKLIGHT_PWM) || defined(CONFIG_BACKLIGHT_PWM_MODULE)
+=======
+#if defined(CONFIG_BACKLIGHT_PWM) || defined(CONFIG_BACKLIGHT_PWM__MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct platform_pwm_backlight_data income_backlight_data = {
 	.pwm_id		= 0,
 	.max_brightness	= 0x3ff,

@@ -117,10 +117,17 @@ enum rfkill_user_states {
 #include <linux/kernel.h>
 #include <linux/list.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/leds.h>
 #include <linux/err.h>
 
 struct device;
+=======
+#include <linux/device.h>
+#include <linux/leds.h>
+#include <linux/err.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* this is opaque */
 struct rfkill;
 
@@ -199,11 +206,16 @@ void rfkill_pause_polling(struct rfkill *rfkill);
  * NOTE: not necessary for suspend/resume -- in that case the
  * core stops polling anyway
  */
+<<<<<<< HEAD
 #ifdef CONFIG_RFKILL_PM
 void rfkill_resume_polling(struct rfkill *rfkill);
 #else
 static inline void rfkill_resume_polling(struct rfkill *rfkill) { }
 #endif
+=======
+void rfkill_resume_polling(struct rfkill *rfkill);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * rfkill_unregister - Unregister a rfkill structure.

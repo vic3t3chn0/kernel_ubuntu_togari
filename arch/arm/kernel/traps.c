@@ -21,21 +21,35 @@
 #include <linux/kdebug.h>
 #include <linux/module.h>
 #include <linux/kexec.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/delay.h>
 #include <linux/init.h>
 #include <linux/sched.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
 #include <asm/cacheflush.h>
 #include <asm/exception.h>
+=======
+#include <asm/atomic.h>
+#include <asm/cacheflush.h>
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/unistd.h>
 #include <asm/traps.h>
 #include <asm/unwind.h>
 #include <asm/tls.h>
+<<<<<<< HEAD
 #include <asm/system_misc.h>
 
 #include <trace/events/exception.h>
+=======
+
+#include "signal.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static const char *handler[]= { "prefetch abort", "data abort", "address exception", "interrupt" };
 
@@ -227,11 +241,14 @@ void show_stack(struct task_struct *tsk, unsigned long *sp)
 #else
 #define S_SMP ""
 #endif
+<<<<<<< HEAD
 #ifdef CONFIG_THUMB2_KERNEL
 #define S_ISA " THUMB2"
 #else
 #define S_ISA " ARM"
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static int __die(const char *str, int err, struct thread_info *thread, struct pt_regs *regs)
 {
@@ -239,8 +256,13 @@ static int __die(const char *str, int err, struct thread_info *thread, struct pt
 	static int die_counter;
 	int ret;
 
+<<<<<<< HEAD
 	printk(KERN_EMERG "Internal error: %s: %x [#%d]" S_PREEMPT S_SMP
 	       S_ISA "\n", str, err, ++die_counter);
+=======
+	printk(KERN_EMERG "Internal error: %s: %x [#%d]" S_PREEMPT S_SMP "\n",
+	       str, err, ++die_counter);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* trap and error numbers are mostly meaningless on ARM */
 	ret = notify_die(DIE_OOPS, str, regs, err, tsk->thread.trap_no, SIGSEGV);
@@ -262,7 +284,11 @@ static int __die(const char *str, int err, struct thread_info *thread, struct pt
 	return ret;
 }
 
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(die_lock);
+=======
+static DEFINE_SPINLOCK(die_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * This function is protected against re-entrancy.
@@ -271,6 +297,7 @@ void die(const char *str, struct pt_regs *regs, int err)
 {
 	struct thread_info *thread = current_thread_info();
 	int ret;
+<<<<<<< HEAD
 	enum bug_trap_type bug_type = BUG_TRAP_TYPE_NONE;
 
 	oops_enter();
@@ -282,6 +309,14 @@ void die(const char *str, struct pt_regs *regs, int err)
 		bug_type = report_bug(regs->ARM_pc, regs);
 	if (bug_type != BUG_TRAP_TYPE_NONE)
 		str = "Oops - BUG";
+=======
+
+	oops_enter();
+
+	spin_lock_irq(&die_lock);
+	console_verbose();
+	bust_spinlocks(1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ret = __die(str, err, thread, regs);
 
 	if (regs && kexec_should_crash(thread->task))
@@ -289,7 +324,11 @@ void die(const char *str, struct pt_regs *regs, int err)
 
 	bust_spinlocks(0);
 	add_taint(TAINT_DIE);
+<<<<<<< HEAD
 	raw_spin_unlock_irq(&die_lock);
+=======
+	spin_unlock_irq(&die_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	oops_exit();
 
 	if (in_interrupt())
@@ -313,6 +352,7 @@ void arm_notify_die(const char *str, struct pt_regs *regs,
 	}
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_GENERIC_BUG
 
 int is_valid_bugaddr(unsigned long pc)
@@ -333,23 +373,39 @@ int is_valid_bugaddr(unsigned long pc)
 
 static LIST_HEAD(undef_hook);
 static DEFINE_RAW_SPINLOCK(undef_lock);
+=======
+static LIST_HEAD(undef_hook);
+static DEFINE_SPINLOCK(undef_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void register_undef_hook(struct undef_hook *hook)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&undef_lock, flags);
 	list_add(&hook->node, &undef_hook);
 	raw_spin_unlock_irqrestore(&undef_lock, flags);
+=======
+	spin_lock_irqsave(&undef_lock, flags);
+	list_add(&hook->node, &undef_hook);
+	spin_unlock_irqrestore(&undef_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void unregister_undef_hook(struct undef_hook *hook)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&undef_lock, flags);
 	list_del(&hook->node);
 	raw_spin_unlock_irqrestore(&undef_lock, flags);
+=======
+	spin_lock_irqsave(&undef_lock, flags);
+	list_del(&hook->node);
+	spin_unlock_irqrestore(&undef_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int call_undef_hook(struct pt_regs *regs, unsigned int instr)
@@ -358,12 +414,20 @@ static int call_undef_hook(struct pt_regs *regs, unsigned int instr)
 	unsigned long flags;
 	int (*fn)(struct pt_regs *regs, unsigned int instr) = NULL;
 
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&undef_lock, flags);
+=======
+	spin_lock_irqsave(&undef_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	list_for_each_entry(hook, &undef_hook, node)
 		if ((instr & hook->instr_mask) == hook->instr_val &&
 		    (regs->ARM_cpsr & hook->cpsr_mask) == hook->cpsr_val)
 			fn = hook->fn;
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&undef_lock, flags);
+=======
+	spin_unlock_irqrestore(&undef_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return fn ? fn(regs, instr) : 1;
 }
@@ -385,6 +449,7 @@ asmlinkage void __exception do_undefinstr(struct pt_regs *regs)
 	pc = (void __user *)instruction_pointer(regs);
 
 	if (processor_mode(regs) == SVC_MODE) {
+<<<<<<< HEAD
 #ifdef CONFIG_THUMB2_KERNEL
 		if (thumb_mode(regs)) {
 			instr = ((u16 *)pc)[0];
@@ -403,6 +468,11 @@ asmlinkage void __exception do_undefinstr(struct pt_regs *regs)
 			instr <<= 16;
 			instr |= instr2;
 		}
+=======
+		instr = *(u32 *) pc;
+	} else if (thumb_mode(regs)) {
+		get_user(instr, (u16 __user *)pc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else {
 		get_user(instr, (u32 __user *)pc);
 	}
@@ -410,8 +480,11 @@ asmlinkage void __exception do_undefinstr(struct pt_regs *regs)
 	if (call_undef_hook(regs, instr) == 0)
 		return;
 
+<<<<<<< HEAD
 	trace_undef_instr(regs, (void *)pc);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_DEBUG_USER
 	if (user_debug & UDBG_UNDEFINED) {
 		printk(KERN_INFO "%s (%d): undefined instruction: pc=%p\n",
@@ -564,7 +637,11 @@ asmlinkage int arm_syscall(int no, struct pt_regs *regs)
 		return regs->ARM_r0;
 
 	case NR(set_tls):
+<<<<<<< HEAD
 		thread->tp_value[0] = regs->ARM_r0;
+=======
+		thread->tp_value = regs->ARM_r0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (tls_emu)
 			return 0;
 		if (has_tls_reg) {
@@ -682,7 +759,11 @@ static int get_tp_trap(struct pt_regs *regs, unsigned int instr)
 	int reg = (instr >> 12) & 15;
 	if (reg == 15)
 		return 1;
+<<<<<<< HEAD
 	regs->uregs[reg] = current_thread_info()->tp_value[0];
+=======
+	regs->uregs[reg] = current_thread_info()->tp_value;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	regs->ARM_pc += 4;
 	return 0;
 }
@@ -740,6 +821,19 @@ baddataabort(int code, unsigned long instr, struct pt_regs *regs)
 	arm_notify_die("unknown data abort code", regs, &info, instr, 0);
 }
 
+<<<<<<< HEAD
+=======
+void __attribute__((noreturn)) __bug(const char *file, int line)
+{
+	printk(KERN_CRIT"kernel BUG at %s:%d!\n", file, line);
+	*(int *)0 = 0;
+
+	/* Avoid "noreturn function does return" */
+	for (;;);
+}
+EXPORT_SYMBOL(__bug);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __readwrite_bug(const char *fn)
 {
 	printk("%s called, but not implemented\n", fn);
@@ -783,6 +877,7 @@ void __init trap_init(void)
 	return;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_KUSER_HELPERS
 static void __init kuser_init(void *vectors)
 {
@@ -791,11 +886,16 @@ static void __init kuser_init(void *vectors)
 
 	memcpy(vectors + 0x1000 - kuser_sz, __kuser_helper_start, kuser_sz);
 
+=======
+static void __init kuser_get_tls_init(unsigned long vectors)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * vectors + 0xfe0 = __kuser_get_tls
 	 * vectors + 0xfe8 = hardware TLS instruction at 0xffff0fe8
 	 */
 	if (tls_emu || has_tls_reg)
+<<<<<<< HEAD
 		memcpy(vectors + 0xfe0, vectors + 0xfe8, 4);
 }
 #else
@@ -821,6 +921,22 @@ void __init early_trap_init(void *vectors_base)
 	 */
 	for (i = 0; i < PAGE_SIZE / sizeof(u32); i++)
 		((u32 *)vectors_base)[i] = 0xe7fddef1;
+=======
+		memcpy((void *)vectors + 0xfe0, (void *)vectors + 0xfe8, 4);
+}
+
+void __init early_trap_init(void)
+{
+#if defined(CONFIG_CPU_USE_DOMAINS)
+	unsigned long vectors = CONFIG_VECTORS_BASE;
+#else
+	unsigned long vectors = (unsigned long)vectors_page;
+#endif
+	extern char __stubs_start[], __stubs_end[];
+	extern char __vectors_start[], __vectors_end[];
+	extern char __kuser_helper_start[], __kuser_helper_end[];
+	int kuser_sz = __kuser_helper_end - __kuser_helper_start;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Copy the vectors, stubs and kuser helpers (in entry-armv.S)
@@ -828,10 +944,31 @@ void __init early_trap_init(void *vectors_base)
 	 * are visible to the instruction stream.
 	 */
 	memcpy((void *)vectors, __vectors_start, __vectors_end - __vectors_start);
+<<<<<<< HEAD
 	memcpy((void *)vectors + 0x1000, __stubs_start, __stubs_end - __stubs_start);
 
 	kuser_init(vectors_base);
 
 	flush_icache_range(vectors, vectors + PAGE_SIZE * 2);
+=======
+	memcpy((void *)vectors + 0x200, __stubs_start, __stubs_end - __stubs_start);
+	memcpy((void *)vectors + 0x1000 - kuser_sz, __kuser_helper_start, kuser_sz);
+
+	/*
+	 * Do processor specific fixups for the kuser helpers
+	 */
+	kuser_get_tls_init(vectors);
+
+	/*
+	 * Copy signal return handlers into the vector page, and
+	 * set sigreturn to be a pointer to these.
+	 */
+	memcpy((void *)(vectors + KERN_SIGRETURN_CODE - CONFIG_VECTORS_BASE),
+	       sigreturn_codes, sizeof(sigreturn_codes));
+	memcpy((void *)(vectors + KERN_RESTART_CODE - CONFIG_VECTORS_BASE),
+	       syscall_restart_code, sizeof(syscall_restart_code));
+
+	flush_icache_range(vectors, vectors + PAGE_SIZE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	modify_domain(DOMAIN_USER, DOMAIN_CLIENT);
 }

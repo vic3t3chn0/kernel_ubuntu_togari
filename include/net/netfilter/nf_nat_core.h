@@ -20,7 +20,11 @@ extern int nf_nat_icmp_reply_translation(struct nf_conn *ct,
 static inline int nf_nat_initialized(struct nf_conn *ct,
 				     enum nf_nat_manip_type manip)
 {
+<<<<<<< HEAD
 	if (manip == NF_NAT_MANIP_SRC)
+=======
+	if (manip == IP_NAT_MANIP_SRC)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return ct->status & IPS_SRC_NAT_DONE;
 	else
 		return ct->status & IPS_DST_NAT_DONE;

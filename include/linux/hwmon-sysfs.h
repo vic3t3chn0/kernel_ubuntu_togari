@@ -20,8 +20,11 @@
 #ifndef _LINUX_HWMON_SYSFS_H
 #define _LINUX_HWMON_SYSFS_H
 
+<<<<<<< HEAD
 #include <linux/device.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct sensor_device_attribute{
 	struct device_attribute dev_attr;
 	int index;

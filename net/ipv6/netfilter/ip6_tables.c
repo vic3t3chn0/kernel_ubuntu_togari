@@ -78,6 +78,22 @@ EXPORT_SYMBOL_GPL(ip6t_alloc_initial_table);
 
    Hence the start of any table is given by get_table() below.  */
 
+<<<<<<< HEAD
+=======
+/* Check for an extension */
+int
+ip6t_ext_hdr(u8 nexthdr)
+{
+	return  (nexthdr == IPPROTO_HOPOPTS)   ||
+		(nexthdr == IPPROTO_ROUTING)   ||
+		(nexthdr == IPPROTO_FRAGMENT)  ||
+		(nexthdr == IPPROTO_ESP)       ||
+		(nexthdr == IPPROTO_AH)        ||
+		(nexthdr == IPPROTO_NONE)      ||
+		(nexthdr == IPPROTO_DSTOPTS);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Returns whether matches rule or not. */
 /* Performance critical - called for every packet */
 static inline bool
@@ -349,11 +365,14 @@ ip6t_do_table(struct sk_buff *skb,
 	local_bh_disable();
 	addend = xt_write_recseq_begin();
 	private = table->private;
+<<<<<<< HEAD
 	/*
 	 * Ensure we load private-> members after we've fetched the base
 	 * pointer.
 	 */
 	smp_read_barrier_depends();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	cpu        = smp_processor_id();
 	table_base = private->entries[cpu];
 	jumpstack  = (struct ip6t_entry **)private->jumpstack[cpu];
@@ -2360,6 +2379,10 @@ int ipv6_find_hdr(const struct sk_buff *skb, unsigned int *offset,
 EXPORT_SYMBOL(ip6t_register_table);
 EXPORT_SYMBOL(ip6t_unregister_table);
 EXPORT_SYMBOL(ip6t_do_table);
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(ip6t_ext_hdr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 EXPORT_SYMBOL(ipv6_find_hdr);
 
 module_init(ip6_tables_init);

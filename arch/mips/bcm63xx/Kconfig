@@ -20,10 +20,13 @@ config BCM63XX_CPU_6348
 config BCM63XX_CPU_6358
 	bool "support 6358 CPU"
 	select HW_HAS_PCI
+<<<<<<< HEAD
 
 config BCM63XX_CPU_6368
 	bool "support 6368 CPU"
 	select HW_HAS_PCI
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 endmenu
 
 source "arch/mips/bcm63xx/boards/Kconfig"

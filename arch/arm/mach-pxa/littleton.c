@@ -124,8 +124,13 @@ static struct resource smc91x_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	[1] = {
+<<<<<<< HEAD
 		.start	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO90)),
 		.end	= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO90)),
+=======
+		.start	= IRQ_GPIO(mfp_to_gpio(MFP_PIN_GPIO90)),
+		.end	= IRQ_GPIO(mfp_to_gpio(MFP_PIN_GPIO90)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.flags	= IORESOURCE_IRQ | IORESOURCE_IRQ_LOWEDGE,
 	}
 };
@@ -325,9 +330,14 @@ static struct mtd_partition littleton_nand_partitions[] = {
 
 static struct pxa3xx_nand_platform_data littleton_nand_info = {
 	.enable_arbiter	= 1,
+<<<<<<< HEAD
 	.num_cs		= 1,
 	.parts[0]	= littleton_nand_partitions,
 	.nr_parts[0]	= ARRAY_SIZE(littleton_nand_partitions),
+=======
+	.parts		= littleton_nand_partitions,
+	.nr_parts	= ARRAY_SIZE(littleton_nand_partitions),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static void __init littleton_init_nand(void)
@@ -396,7 +406,11 @@ static struct i2c_board_info littleton_i2c_info[] = {
 		.type		= "da9034",
 		.addr		= 0x34,
 		.platform_data	= &littleton_da9034_info,
+<<<<<<< HEAD
 		.irq		= PXA_GPIO_TO_IRQ(mfp_to_gpio(MFP_PIN_GPIO18)),
+=======
+		.irq		= gpio_to_irq(mfp_to_gpio(MFP_PIN_GPIO18)),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[1] = {
 		.type		= "max7320",
@@ -438,6 +452,7 @@ static void __init littleton_init(void)
 }
 
 MACHINE_START(LITTLETON, "Marvell Form Factor Development Platform (aka Littleton)")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.map_io		= pxa3xx_map_io,
 	.nr_irqs	= LITTLETON_NR_IRQS,
@@ -446,4 +461,12 @@ MACHINE_START(LITTLETON, "Marvell Form Factor Development Platform (aka Littleto
 	.timer		= &pxa_timer,
 	.init_machine	= littleton_init,
 	.restart	= pxa_restart,
+=======
+	.boot_params	= 0xa0000100,
+	.map_io		= pxa3xx_map_io,
+	.nr_irqs	= LITTLETON_NR_IRQS,
+	.init_irq	= pxa3xx_init_irq,
+	.timer		= &pxa_timer,
+	.init_machine	= littleton_init,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

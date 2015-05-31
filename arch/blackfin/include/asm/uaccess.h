@@ -195,17 +195,28 @@ static inline unsigned long __must_check
 copy_from_user(void *to, const void __user *from, unsigned long n)
 {
 	if (access_ok(VERIFY_READ, from, n))
+<<<<<<< HEAD
 		memcpy(to, (const void __force *)from, n);
+=======
+		memcpy(to, from, n);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		return n;
 	return 0;
 }
 
 static inline unsigned long __must_check
+<<<<<<< HEAD
 copy_to_user(void __user *to, const void *from, unsigned long n)
 {
 	if (access_ok(VERIFY_WRITE, to, n))
 		memcpy((void __force *)to, from, n);
+=======
+copy_to_user(void *to, const void __user *from, unsigned long n)
+{
+	if (access_ok(VERIFY_WRITE, to, n))
+		memcpy(to, from, n);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		return n;
 	return 0;

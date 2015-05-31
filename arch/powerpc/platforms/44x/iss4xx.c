@@ -71,7 +71,12 @@ static void __init iss4xx_init_irq(void)
 		/* The MPIC driver will get everything it needs from the
 		 * device-tree, just pass 0 to all arguments
 		 */
+<<<<<<< HEAD
 		struct mpic *mpic = mpic_alloc(np, 0, MPIC_NO_RESET, 0, 0, " MPIC     ");
+=======
+		struct mpic *mpic = mpic_alloc(np, 0, MPIC_PRIMARY, 0, 0,
+					       " MPIC     ");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		BUG_ON(mpic == NULL);
 		mpic_init(mpic);
 		ppc_md.get_irq = mpic_get_irq;

@@ -26,7 +26,10 @@
 */
 
 #include <linux/module.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/kernel.h>
 #include <linux/sched.h>
@@ -57,8 +60,13 @@
 
 #define VERSION "1.3"
 
+<<<<<<< HEAD
 static bool compress_src = 1;
 static bool compress_dst = 1;
+=======
+static int compress_src = 1;
+static int compress_dst = 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static LIST_HEAD(bnep_session_list);
 static DECLARE_RWSEM(bnep_session_sem);
@@ -493,10 +501,14 @@ static int bnep_session(void *arg)
 		/* RX */
 		while ((skb = skb_dequeue(&sk->sk_receive_queue))) {
 			skb_orphan(skb);
+<<<<<<< HEAD
 			if (!skb_linearize(skb))
 				bnep_rx_frame(s, skb);
 			else
 				kfree_skb(skb);
+=======
+			bnep_rx_frame(s, skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 
 		if (sk->sk_state != BT_CONNECTED)
@@ -510,7 +522,11 @@ static int bnep_session(void *arg)
 
 		schedule();
 	}
+<<<<<<< HEAD
 	set_current_state(TASK_RUNNING);
+=======
+	__set_current_state(TASK_RUNNING);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	remove_wait_queue(sk_sleep(sk), &wait);
 
 	/* Cleanup session */

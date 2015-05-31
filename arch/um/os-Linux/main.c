@@ -12,6 +12,10 @@
 #include <sys/resource.h>
 #include "as-layout.h"
 #include "init.h"
+<<<<<<< HEAD
+=======
+#include "kern_constants.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "kern_util.h"
 #include "os.h"
 #include "um_malloc.h"
@@ -20,8 +24,11 @@
 #define STACKSIZE (8 * 1024 * 1024)
 #define THREAD_NAME_LEN (256)
 
+<<<<<<< HEAD
 long elf_aux_hwcap;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void set_stklim(void)
 {
 	struct rlimit lim;
@@ -144,9 +151,13 @@ int __init main(int argc, char **argv, char **envp)
 	install_fatal_handler(SIGINT);
 	install_fatal_handler(SIGTERM);
 
+<<<<<<< HEAD
 #ifdef CONFIG_ARCH_REUSE_HOST_VSYSCALL_AREA
 	scan_elf_aux(envp);
 #endif
+=======
+	scan_elf_aux(envp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	do_uml_initcalls();
 	ret = linux_main(argc, argv);

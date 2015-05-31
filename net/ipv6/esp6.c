@@ -411,6 +411,7 @@ static u32 esp6_get_mtu(struct xfrm_state *x, int mtu)
 	struct esp_data *esp = x->data;
 	u32 blksize = ALIGN(crypto_aead_blocksize(esp->aead), 4);
 	u32 align = max_t(u32, blksize, esp->padlen);
+<<<<<<< HEAD
 	u32 rem;
 
 	mtu -= x->props.header_len + crypto_aead_authsize(esp->aead);
@@ -424,6 +425,17 @@ static u32 esp6_get_mtu(struct xfrm_state *x, int mtu)
 	}
 
 	return mtu - 2;
+=======
+	unsigned int net_adj;
+
+	if (x->props.mode != XFRM_MODE_TUNNEL)
+		net_adj = sizeof(struct ipv6hdr);
+	else
+		net_adj = 0;
+
+	return ((mtu - x->props.header_len - crypto_aead_authsize(esp->aead) -
+		 net_adj) & ~(align - 1)) + (net_adj - 2);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void esp6_err(struct sk_buff *skb, struct inet6_skb_parm *opt,

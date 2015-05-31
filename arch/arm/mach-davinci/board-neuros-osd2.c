@@ -30,6 +30,10 @@
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 
+<<<<<<< HEAD
+=======
+#include <mach/dm644x.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <mach/common.h>
 #include <mach/i2c.h>
 #include <mach/serial.h>
@@ -38,9 +42,13 @@
 #include <mach/mmc.h>
 #include <mach/usb.h>
 
+<<<<<<< HEAD
 #include "davinci.h"
 
 #define NEUROS_OSD2_PHY_ID		"davinci_mdio-0:01"
+=======
+#define NEUROS_OSD2_PHY_ID		"0:01"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define LXT971_PHY_ID			0x001378e2
 #define LXT971_PHY_MASK			0xfffffff0
 
@@ -88,7 +96,11 @@ static struct davinci_nand_pdata davinci_ntosd2_nandflash_data = {
 	.parts		= davinci_ntosd2_nandflash_partition,
 	.nr_parts	= ARRAY_SIZE(davinci_ntosd2_nandflash_partition),
 	.ecc_mode	= NAND_ECC_HW,
+<<<<<<< HEAD
 	.bbt_options	= NAND_BBT_USE_FLASH,
+=======
+	.options	= NAND_USE_FLASH_BBT,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct resource davinci_ntosd2_nandflash_resource[] = {
@@ -273,11 +285,18 @@ static __init void davinci_ntosd2_init(void)
 
 MACHINE_START(NEUROS_OSD2, "Neuros OSD2")
 	/* Maintainer: Neuros Technologies <neuros@groups.google.com> */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+	.boot_params	= (DAVINCI_DDR_BASE + 0x100),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_io		 = davinci_ntosd2_map_io,
 	.init_irq	= davinci_irq_init,
 	.timer		= &davinci_timer,
 	.init_machine = davinci_ntosd2_init,
+<<<<<<< HEAD
 	.dma_zone_size	= SZ_128M,
 	.restart	= davinci_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

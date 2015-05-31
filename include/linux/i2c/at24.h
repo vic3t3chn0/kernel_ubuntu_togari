@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * at24.h - platform_data for the at24 (generic eeprom) driver
  * (C) Copyright 2008 by Pengutronix
@@ -5,12 +6,15 @@
  * same license as the driver
  */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef _LINUX_AT24_H
 #define _LINUX_AT24_H
 
 #include <linux/types.h>
 #include <linux/memory.h>
 
+<<<<<<< HEAD
 /**
  * struct at24_platform_data - data to set up at24 (generic eeprom) driver
  * @byte_len: size of eeprom in byte
@@ -19,10 +23,19 @@
  * @setup: an optional callback invoked after eeprom is probed; enables kernel
 	code to access eeprom via memory_accessor, see example
  * @context: optional parameter passed to setup()
+=======
+/*
+ * As seen through Linux I2C, differences between the most common types of I2C
+ * memory include:
+ * - How much memory is available (usually specified in bit)?
+ * - What write page size does it support?
+ * - Special flags (16 bit addresses, read_only, world readable...)?
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * If you set up a custom eeprom type, please double-check the parameters.
  * Especially page_size needs extra care, as you risk data loss if your value
  * is bigger than what the chip actually supports!
+<<<<<<< HEAD
  *
  * An example in pseudo code for a setup() callback:
  *
@@ -37,6 +50,8 @@
  * }
  *
  * This function pointer and context can now be set up in at24_platform_data.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 struct at24_platform_data {

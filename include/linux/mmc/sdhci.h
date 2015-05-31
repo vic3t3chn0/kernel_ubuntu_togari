@@ -8,14 +8,20 @@
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
  */
+<<<<<<< HEAD
 #ifndef LINUX_MMC_SDHCI_H
 #define LINUX_MMC_SDHCI_H
+=======
+#ifndef __SDHCI_H
+#define __SDHCI_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <linux/scatterlist.h>
 #include <linux/compiler.h>
 #include <linux/types.h>
 #include <linux/io.h>
 #include <linux/mmc/host.h>
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
 
 struct sdhci_next {
@@ -27,6 +33,8 @@ enum sdhci_power_policy {
 	SDHCI_PERFORMANCE_MODE,
 	SDHCI_POWER_SAVE_MODE,
 };
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct sdhci_host {
 	/* Data set by hardware interface driver */
@@ -99,6 +107,7 @@ struct sdhci_host {
 /* The read-only detection via SDHCI_PRESENT_STATE register is unstable */
 #define SDHCI_QUIRK_UNSTABLE_RO_DETECT			(1<<31)
 
+<<<<<<< HEAD
 	unsigned int quirks2;	/* More deviations from spec. */
 
 #define SDHCI_QUIRK2_HOST_OFF_CARD_ON			(1<<0)
@@ -160,12 +169,18 @@ struct sdhci_host {
  */
 #define SDHCI_QUIRK2_DIVIDE_TOUT_BY_4 (1 << 9)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int irq;		/* Device IRQ */
 	void __iomem *ioaddr;	/* Mapped address */
 
 	const struct sdhci_ops *ops;	/* Low level hw interface */
 
 	struct regulator *vmmc;	/* Power regulator */
+<<<<<<< HEAD
+=======
+	char *vmmc_name;	/* Power regulator's name */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Internal data */
 	struct mmc_host *mmc;	/* MMC structure */
@@ -187,10 +202,13 @@ struct sdhci_host {
 #define SDHCI_NEEDS_RETUNING	(1<<5)	/* Host needs retuning */
 #define SDHCI_AUTO_CMD12	(1<<6)	/* Auto CMD12 support */
 #define SDHCI_AUTO_CMD23	(1<<7)	/* Auto CMD23 support */
+<<<<<<< HEAD
 #define SDHCI_PV_ENABLED	(1<<8)	/* Preset value enabled */
 #define SDHCI_SDIO_IRQ_ENABLED	(1<<9)	/* SDIO irq enabled */
 #define SDHCI_HS200_NEEDS_TUNING (1<<10)	/* HS200 needs tuning */
 #define SDHCI_HS400_NEEDS_TUNING (1<<11)	/* HS400 needs tuning */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	unsigned int version;	/* SDHCI spec. version */
 
@@ -201,8 +219,11 @@ struct sdhci_host {
 	unsigned int clock;	/* Current clock (MHz) */
 	u8 pwr;			/* Current voltage */
 
+<<<<<<< HEAD
 	bool runtime_suspended;	/* Host is runtime suspended */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct mmc_request *mrq;	/* Current request */
 	struct mmc_command *cmd;	/* Current command */
 	struct mmc_data *data;	/* Current data request */
@@ -216,10 +237,13 @@ struct sdhci_host {
 	u8 *adma_desc;		/* ADMA descriptor table */
 	u8 *align_buffer;	/* Bounce buffer */
 
+<<<<<<< HEAD
 	unsigned int adma_desc_sz; /* ADMA descriptor table size */
 	unsigned int align_buf_sz; /* Bounce buffer size */
 	unsigned int adma_max_desc; /* Max ADMA descriptos (max sg segments) */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dma_addr_t adma_addr;	/* Mapped ADMA descr. table */
 	dma_addr_t align_addr;	/* Mapped bounce buffer */
 
@@ -242,6 +266,7 @@ struct sdhci_host {
 #define SDHCI_TUNING_MODE_1	0
 	struct timer_list	tuning_timer;	/* Timer for tuning */
 
+<<<<<<< HEAD
 	unsigned int cpu_dma_latency_us;
 	struct pm_qos_request pm_qos_req_dma;
 	unsigned int pm_qos_timeout_us;         /* timeout for PM QoS request */
@@ -256,3 +281,8 @@ struct sdhci_host {
 	unsigned long private[0] ____cacheline_aligned;
 };
 #endif /* LINUX_MMC_SDHCI_H */
+=======
+	unsigned long private[0] ____cacheline_aligned;
+};
+#endif /* __SDHCI_H */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

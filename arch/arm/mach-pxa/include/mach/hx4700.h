@@ -15,7 +15,11 @@
 #include <linux/gpio.h>
 #include <linux/mfd/asic3.h>
 
+<<<<<<< HEAD
 #define HX4700_ASIC3_GPIO_BASE	PXA_NR_BUILTIN_GPIO
+=======
+#define HX4700_ASIC3_GPIO_BASE	NR_BUILTIN_GPIO
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define HX4700_EGPIO_BASE	(HX4700_ASIC3_GPIO_BASE + ASIC3_NUM_GPIOS)
 #define HX4700_NR_IRQS		(IRQ_BOARD_START + 70)
 

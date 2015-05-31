@@ -114,15 +114,22 @@ config KMETER1
 
 endif
 
+<<<<<<< HEAD
 # used for usb & gpio
 config PPC_MPC831x
 	bool
 	select ARCH_WANT_OPTIONAL_GPIOLIB
+=======
+# used for usb
+config PPC_MPC831x
+	bool
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 # used for math-emu
 config PPC_MPC832x
 	bool
 
+<<<<<<< HEAD
 # used for usb & gpio
 config PPC_MPC834x
 	bool
@@ -132,3 +139,12 @@ config PPC_MPC834x
 config PPC_MPC837x
 	bool
 	select ARCH_WANT_OPTIONAL_GPIOLIB
+=======
+# used for usb
+config PPC_MPC834x
+	bool
+
+# used for usb
+config PPC_MPC837x
+	bool
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

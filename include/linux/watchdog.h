@@ -53,6 +53,7 @@ struct watchdog_info {
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
 #include <linux/bitops.h>
 
 struct watchdog_ops;
@@ -150,6 +151,14 @@ static inline void *watchdog_get_drvdata(struct watchdog_device *wdd)
 extern int watchdog_register_device(struct watchdog_device *);
 extern void watchdog_unregister_device(struct watchdog_device *);
 
+=======
+#ifdef CONFIG_WATCHDOG_NOWAYOUT
+#define WATCHDOG_NOWAYOUT	1
+#else
+#define WATCHDOG_NOWAYOUT	0
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* __KERNEL__ */
 
 #endif  /* ifndef _LINUX_WATCHDOG_H */

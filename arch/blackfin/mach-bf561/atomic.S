@@ -72,6 +72,7 @@ ENTRY(_get_core_lock_noflush)
 	SSYNC(r2);
 	jump .Lretry_corelock_noflush
 .Ldone_corelock_noflush:
+<<<<<<< HEAD
 	/*
 	 * SMP kgdb runs into dead loop without NOP here, when one core
 	 * single steps over get_core_lock_noflush and the other executes
@@ -79,6 +80,8 @@ ENTRY(_get_core_lock_noflush)
 	 */
 	nop;
 	CSYNC(r2);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	rts;
 ENDPROC(_get_core_lock_noflush)
 

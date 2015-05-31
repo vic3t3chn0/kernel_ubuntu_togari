@@ -38,4 +38,11 @@
 
 #include <asm-generic/irq.h>
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NMI_WATCHDOG
+# define ARCH_HAS_NMI_WATCHDOG
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif				/* _BFIN_IRQ_H_ */

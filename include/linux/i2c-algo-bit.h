@@ -15,8 +15,12 @@
 
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
+<<<<<<< HEAD
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301 USA.							     */
+=======
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.                */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* ------------------------------------------------------------------------- */
 
 /* With some changes from Kyösti Mälkki <kmalkki@cc.hut.fi> and even
@@ -50,6 +54,9 @@ struct i2c_algo_bit_data {
 
 int i2c_bit_add_bus(struct i2c_adapter *);
 int i2c_bit_add_numbered_bus(struct i2c_adapter *);
+<<<<<<< HEAD
 extern const struct i2c_algorithm i2c_bit_algo;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* _LINUX_I2C_ALGO_BIT_H */

@@ -17,8 +17,11 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_AD193X if SND_SOC_I2C_AND_SPI
 	select SND_SOC_AD1980 if SND_SOC_AC97_BUS
 	select SND_SOC_AD73311
+<<<<<<< HEAD
 	select SND_SOC_ADAU1373 if I2C
 	select SND_SOC_ADAV80X
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_ADS117X
 	select SND_SOC_AK4104 if SPI_MASTER
 	select SND_SOC_AK4535 if I2C
@@ -26,43 +29,69 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_AK4642 if I2C
 	select SND_SOC_AK4671 if I2C
 	select SND_SOC_ALC5623 if I2C
+<<<<<<< HEAD
 	select SND_SOC_ALC5632 if I2C
 	select SND_SOC_CQ0093VC if MFD_DAVINCI_VOICECODEC
 	select SND_SOC_CS42L51 if I2C
 	select SND_SOC_CS42L73 if I2C
+=======
+	select SND_SOC_CQ0093VC if MFD_DAVINCI_VOICECODEC
+	select SND_SOC_CS42L51 if I2C
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_CS4270 if I2C
 	select SND_SOC_CS4271 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_CX20442
 	select SND_SOC_DA7210 if I2C
 	select SND_SOC_DFBMCS320
+<<<<<<< HEAD
 	select SND_SOC_JZ4740_CODEC
+=======
+	select SND_SOC_JZ4740_CODEC if SOC_JZ4740
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_LM4857 if I2C
 	select SND_SOC_MAX98088 if I2C
 	select SND_SOC_MAX98095 if I2C
 	select SND_SOC_MAX9850 if I2C
 	select SND_SOC_MAX9877 if I2C
 	select SND_SOC_PCM3008
+<<<<<<< HEAD
 	select SND_SOC_RT5631 if I2C
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_SGTL5000 if I2C
 	select SND_SOC_SN95031 if INTEL_SCU_IPC
 	select SND_SOC_SPDIF
 	select SND_SOC_SSM2602 if SND_SOC_I2C_AND_SPI
+<<<<<<< HEAD
 	select SND_SOC_STA32X if I2C
 	select SND_SOC_STAC9766 if SND_SOC_AC97_BUS
 	select SND_SOC_TLV320AIC23 if I2C
 	select SND_SOC_TLV320AIC26 if SPI_MASTER
 	select SND_SOC_TLV320AIC32X4 if I2C
+=======
+	select SND_SOC_STAC9766 if SND_SOC_AC97_BUS
+	select SND_SOC_TLV320AIC23 if I2C
+	select SND_SOC_TLV320AIC26 if SPI_MASTER
+	select SND_SOC_TVL320AIC32X4 if I2C
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_TLV320AIC3X if I2C
 	select SND_SOC_TPA6130A2 if I2C
 	select SND_SOC_TLV320DAC33 if I2C
 	select SND_SOC_TWL4030 if TWL4030_CORE
+<<<<<<< HEAD
 	select SND_SOC_TWL6040 if TWL6040_CORE
+=======
+	select SND_SOC_TWL6040 if TWL4030_CORE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_UDA134X
 	select SND_SOC_UDA1380 if I2C
 	select SND_SOC_WL1273 if MFD_WL1273_CORE
 	select SND_SOC_WM1250_EV1 if I2C
 	select SND_SOC_WM2000 if I2C
+<<<<<<< HEAD
 	select SND_SOC_WM5100 if I2C
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_WM8350 if MFD_WM8350
 	select SND_SOC_WM8400 if MFD_WM8400
 	select SND_SOC_WM8510 if SND_SOC_I2C_AND_SPI
@@ -78,11 +107,18 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_WM8753 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_WM8770 if SPI_MASTER
 	select SND_SOC_WM8776 if SND_SOC_I2C_AND_SPI
+<<<<<<< HEAD
 	select SND_SOC_WM8782
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_WM8804 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_WM8900 if I2C
 	select SND_SOC_WM8903 if I2C
 	select SND_SOC_WM8904 if I2C
+<<<<<<< HEAD
+=======
+	select SND_SOC_WM8915 if I2C
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_WM8940 if I2C
 	select SND_SOC_WM8955 if I2C
 	select SND_SOC_WM8960 if I2C
@@ -91,7 +127,10 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_WM8971 if I2C
 	select SND_SOC_WM8974 if I2C
 	select SND_SOC_WM8978 if I2C
+<<<<<<< HEAD
 	select SND_SOC_WM8983 if SND_SOC_I2C_AND_SPI
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_WM8985 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_WM8988 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_WM8990 if I2C
@@ -99,13 +138,20 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_WM8993 if I2C
 	select SND_SOC_WM8994 if MFD_WM8994
 	select SND_SOC_WM8995 if SND_SOC_I2C_AND_SPI
+<<<<<<< HEAD
 	select SND_SOC_WM8996 if I2C
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select SND_SOC_WM9081 if I2C
 	select SND_SOC_WM9090 if I2C
 	select SND_SOC_WM9705 if SND_SOC_AC97_BUS
 	select SND_SOC_WM9712 if SND_SOC_AC97_BUS
 	select SND_SOC_WM9713 if SND_SOC_AC97_BUS
+<<<<<<< HEAD
 	select SND_SOC_TIMPANI if MARIMBA_CORE
+=======
+	select SND_SOC_MC1N2 if I2C
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
         help
           Normally ASoC codec drivers are only built if a machine driver which
           uses them is also built since they are only usable with a machine
@@ -140,6 +186,7 @@ config SND_SOC_AD1980
 
 config SND_SOC_AD73311
 	tristate
+<<<<<<< HEAD
 
 config SND_SOC_ADAU1701
 	select SND_SOC_SIGMADSP
@@ -151,6 +198,9 @@ config SND_SOC_ADAU1373
 config SND_SOC_ADAV80X
 	tristate
 
+=======
+	
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_ADS117X
 	tristate
 
@@ -171,8 +221,11 @@ config SND_SOC_AK4671
 
 config SND_SOC_ALC5623
        tristate
+<<<<<<< HEAD
 config SND_SOC_ALC5632
 	tristate
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config SND_SOC_CQ0093VC
 	tristate
@@ -180,9 +233,12 @@ config SND_SOC_CQ0093VC
 config SND_SOC_CS42L51
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_CS42L73
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # Cirrus Logic CS4270 Codec
 config SND_SOC_CS4270
 	tristate
@@ -228,17 +284,23 @@ config SND_SOC_MAX9850
 config SND_SOC_PCM3008
        tristate
 
+<<<<<<< HEAD
 config SND_SOC_RT5631
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #Freescale sgtl5000 codec
 config SND_SOC_SGTL5000
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_SIGMADSP
 	tristate
 	select CRC32
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_SN95031
 	tristate
 
@@ -248,9 +310,12 @@ config SND_SOC_SPDIF
 config SND_SOC_SSM2602
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_STA32X
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_STAC9766
 	tristate
 
@@ -261,7 +326,11 @@ config SND_SOC_TLV320AIC26
 	tristate "TI TLV320AIC26 Codec support" if SND_SOC_OF_SIMPLE
 	depends on SPI
 
+<<<<<<< HEAD
 config SND_SOC_TLV320AIC32X4
+=======
+config SND_SOC_TVL320AIC32X4
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tristate
 
 config SND_SOC_TLV320AIC3X
@@ -271,7 +340,11 @@ config SND_SOC_TLV320DAC33
 	tristate
 
 config SND_SOC_TWL4030
+<<<<<<< HEAD
 	select MFD_TWL4030_AUDIO
+=======
+	select TWL4030_CODEC
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tristate
 
 config SND_SOC_TWL6040
@@ -283,6 +356,7 @@ config SND_SOC_UDA134X
 config SND_SOC_UDA1380
         tristate
 
+<<<<<<< HEAD
 config SND_SOC_WCD9304
 	tristate
 
@@ -301,12 +375,15 @@ config SND_SOC_WCD9306
 config SND_SOC_MSM8X10_WCD
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WL1273
 	tristate
 
 config SND_SOC_WM1250_EV1
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_WM2000
 	tristate
 
@@ -316,6 +393,8 @@ config SND_SOC_WM2200
 config SND_SOC_WM5100
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WM8350
 	tristate
 
@@ -361,9 +440,12 @@ config SND_SOC_WM8770
 config SND_SOC_WM8776
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_WM8782
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WM8804
 	tristate
 
@@ -376,6 +458,12 @@ config SND_SOC_WM8903
 config SND_SOC_WM8904
 	tristate
 
+<<<<<<< HEAD
+=======
+config SND_SOC_WM8915
+	tristate
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WM8940
         tristate
 
@@ -400,9 +488,12 @@ config SND_SOC_WM8974
 config SND_SOC_WM8978
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_WM8983
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WM8985
 	tristate
 
@@ -424,6 +515,7 @@ config SND_SOC_WM8994
 config SND_SOC_WM8995
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_WM8996
 	tristate
 
@@ -433,6 +525,11 @@ config SND_SOC_WM9081
 config SND_SOC_WM9090
 	tristate
 
+=======
+config SND_SOC_WM9081
+	tristate
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_SOC_WM9705
 	tristate
 
@@ -452,6 +549,7 @@ config SND_SOC_MAX9877
 config SND_SOC_TPA6130A2
 	tristate
 
+<<<<<<< HEAD
 config SND_SOC_MSM_STUB
 	tristate
 
@@ -461,3 +559,24 @@ config SND_SOC_MSM_HDMI_CODEC_RX
 	help
 	HDMI audio drivers should be built only if the platform
         supports hdmi panel.
+=======
+config SND_SOC_WM2000
+	tristate
+
+config SND_SOC_WM9090
+	tristate
+
+config SND_WOLFSON_SOUND_CONTROL
+	bool "Sound control based on Boeffla sound"
+	default y if SND_SOC_WM8994=y
+	depends on SND_SOC_WM8994
+
+config SND_BOEFFLA
+	bool "Boeffla Sound Engine (AndiP71)"
+	default n if SND_SOC_WM8994=y
+	depends on SND_SOC_WM8994
+	help
+		Include the Boeffla Sound Engine by AndiP71
+
+source "sound/soc/codecs/mc1n2/Kconfig"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

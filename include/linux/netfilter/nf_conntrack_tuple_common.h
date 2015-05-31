@@ -7,6 +7,7 @@ enum ip_conntrack_dir {
 	IP_CT_DIR_MAX
 };
 
+<<<<<<< HEAD
 /* The protocol-specific manipulable parts of the tuple: always in
  * network order
  */
@@ -34,6 +35,8 @@ union nf_conntrack_man_proto {
 	} gre;
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define CTINFO2DIR(ctinfo) ((ctinfo) >= IP_CT_IS_REPLY ? IP_CT_DIR_REPLY : IP_CT_DIR_ORIGINAL)
 
 #endif /* _NF_CONNTRACK_TUPLE_COMMON_H */

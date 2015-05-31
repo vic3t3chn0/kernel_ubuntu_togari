@@ -21,10 +21,15 @@
 #include <linux/clk.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include <plat/hardware.h>
 #include <plat/clock.h>
 
 #include "iomap.h"
+=======
+#include <plat/clock.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "clock.h"
 #include "clock2xxx.h"
 #include "cm2xxx_3xxx.h"

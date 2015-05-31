@@ -23,8 +23,11 @@
 #ifndef ASM_ARM_HARDWARE_SERIAL_AMBA_H
 #define ASM_ARM_HARDWARE_SERIAL_AMBA_H
 
+<<<<<<< HEAD
 #include <linux/types.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* -------------------------------------------------------------------------------
  *  From AMBA UART (PL010) Block Specification
  * -------------------------------------------------------------------------------

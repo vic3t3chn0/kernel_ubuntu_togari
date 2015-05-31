@@ -50,11 +50,29 @@ long arch_ptrace(struct task_struct *child, long request,
 	void __user *vp = p;
 
 	switch (request) {
+<<<<<<< HEAD
+=======
+	/* read word at location addr. */
+	case PTRACE_PEEKTEXT:
+	case PTRACE_PEEKDATA:
+		ret = generic_ptrace_peekdata(child, addr, data);
+		break;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* read the word at location addr in the USER area. */
 	case PTRACE_PEEKUSR:
 		ret = peek_user(child, addr, data);
 		break;
 
+<<<<<<< HEAD
+=======
+	/* write the word at location addr. */
+	case PTRACE_POKETEXT:
+	case PTRACE_POKEDATA:
+		ret = generic_ptrace_pokedata(child, addr, data);
+		break;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* write the word at location addr in the USER area */
 	case PTRACE_POKEUSR:
 		ret = poke_user(child, addr, data);
@@ -95,6 +113,19 @@ long arch_ptrace(struct task_struct *child, long request,
 		break;
 	}
 #endif
+<<<<<<< HEAD
+=======
+#ifdef PTRACE_GETFPREGS
+	case PTRACE_GETFPREGS: /* Get the child FPU state. */
+		ret = get_fpregs(vp, child);
+		break;
+#endif
+#ifdef PTRACE_SETFPREGS
+	case PTRACE_SETFPREGS: /* Set the child FPU state. */
+		ret = set_fpregs(vp, child);
+		break;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case PTRACE_GET_THREAD_AREA:
 		ret = ptrace_get_thread_area(child, addr, vp);
 		break;
@@ -132,6 +163,15 @@ long arch_ptrace(struct task_struct *child, long request,
 		break;
 	}
 #endif
+<<<<<<< HEAD
+=======
+#ifdef PTRACE_ARCH_PRCTL
+	case PTRACE_ARCH_PRCTL:
+		/* XXX Calls ptrace on the host - needs some SMP thinking */
+		ret = arch_prctl(child, data, (void __user *) addr);
+		break;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	default:
 		ret = ptrace_request(child, request, addr, data);
 		if (ret == -EIO)
@@ -167,6 +207,7 @@ void syscall_trace(struct uml_pt_regs *regs, int entryexit)
 	int is_singlestep = (current->ptrace & PT_DTRACE) && entryexit;
 	int tracesysgood;
 
+<<<<<<< HEAD
 	if (!entryexit)
 		audit_syscall_entry(HOST_AUDIT_ARCH,
 				    UPT_SYSCALL_NR(regs),
@@ -176,6 +217,19 @@ void syscall_trace(struct uml_pt_regs *regs, int entryexit)
 				    UPT_SYSCALL_ARG4(regs));
 	else
 		audit_syscall_exit(regs);
+=======
+	if (unlikely(current->audit_context)) {
+		if (!entryexit)
+			audit_syscall_entry(HOST_AUDIT_ARCH,
+					    UPT_SYSCALL_NR(regs),
+					    UPT_SYSCALL_ARG1(regs),
+					    UPT_SYSCALL_ARG2(regs),
+					    UPT_SYSCALL_ARG3(regs),
+					    UPT_SYSCALL_ARG4(regs));
+		else audit_syscall_exit(AUDITSC_RESULT(UPT_SYSCALL_RET(regs)),
+					UPT_SYSCALL_RET(regs));
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Fake a debug trap */
 	if (is_singlestep)

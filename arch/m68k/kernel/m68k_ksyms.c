@@ -14,7 +14,11 @@ EXPORT_SYMBOL(__ashrdi3);
 EXPORT_SYMBOL(__lshrdi3);
 EXPORT_SYMBOL(__muldi3);
 
+<<<<<<< HEAD
 #if defined(CONFIG_CPU_HAS_NO_MULDIV64)
+=======
+#if defined(CONFIG_M68000) || defined(CONFIG_COLDFIRE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Simpler 68k and ColdFire parts also need a few other gcc functions.
  */

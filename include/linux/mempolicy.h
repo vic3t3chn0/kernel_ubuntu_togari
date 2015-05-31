@@ -137,6 +137,7 @@ static inline void mpol_cond_put(struct mempolicy *pol)
 		__mpol_put(pol);
 }
 
+<<<<<<< HEAD
 extern struct mempolicy *__mpol_cond_copy(struct mempolicy *tompol,
 					  struct mempolicy *frompol);
 static inline struct mempolicy *mpol_cond_copy(struct mempolicy *tompol,
@@ -147,6 +148,8 @@ static inline struct mempolicy *mpol_cond_copy(struct mempolicy *tompol,
 	return __mpol_cond_copy(tompol, frompol);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct mempolicy *__mpol_dup(struct mempolicy *pol);
 static inline struct mempolicy *mpol_dup(struct mempolicy *pol)
 {
@@ -164,11 +167,19 @@ static inline void mpol_get(struct mempolicy *pol)
 		atomic_inc(&pol->refcnt);
 }
 
+<<<<<<< HEAD
 extern bool __mpol_equal(struct mempolicy *a, struct mempolicy *b);
 static inline bool mpol_equal(struct mempolicy *a, struct mempolicy *b)
 {
 	if (a == b)
 		return true;
+=======
+extern int __mpol_equal(struct mempolicy *a, struct mempolicy *b);
+static inline int mpol_equal(struct mempolicy *a, struct mempolicy *b)
+{
+	if (a == b)
+		return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return __mpol_equal(a, b);
 }
 
@@ -188,7 +199,11 @@ struct sp_node {
 
 struct shared_policy {
 	struct rb_root root;
+<<<<<<< HEAD
 	spinlock_t lock;
+=======
+	struct mutex mutex;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 void mpol_shared_policy_init(struct shared_policy *sp, struct mempolicy *mpol);
@@ -257,9 +272,15 @@ static inline int vma_migratable(struct vm_area_struct *vma)
 
 struct mempolicy {};
 
+<<<<<<< HEAD
 static inline bool mpol_equal(struct mempolicy *a, struct mempolicy *b)
 {
 	return true;
+=======
+static inline int mpol_equal(struct mempolicy *a, struct mempolicy *b)
+{
+	return 1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline void mpol_put(struct mempolicy *p)
@@ -270,12 +291,15 @@ static inline void mpol_cond_put(struct mempolicy *pol)
 {
 }
 
+<<<<<<< HEAD
 static inline struct mempolicy *mpol_cond_copy(struct mempolicy *to,
 						struct mempolicy *from)
 {
 	return from;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void mpol_get(struct mempolicy *pol)
 {
 }

@@ -49,6 +49,10 @@ struct iop_adma_device {
 /**
  * struct iop_adma_chan - internal representation of an ADMA device
  * @pending: allows batching of hardware operations
+<<<<<<< HEAD
+=======
+ * @completed_cookie: identifier for the most recently completed operation
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @lock: serializes enqueue/dequeue operations to the slot pool
  * @mmr_base: memory mapped register base
  * @chain: device chain view of the descriptors
@@ -61,6 +65,10 @@ struct iop_adma_device {
  */
 struct iop_adma_chan {
 	int pending;
+<<<<<<< HEAD
+=======
+	dma_cookie_t completed_cookie;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spinlock_t lock; /* protects the descriptor slot pool */
 	void __iomem *mmr_base;
 	struct list_head chain;

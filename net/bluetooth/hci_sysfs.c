@@ -5,8 +5,11 @@
 #include <linux/init.h>
 #include <linux/debugfs.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <net/bluetooth/bluetooth.h>
 #include <net/bluetooth/hci_core.h>
@@ -513,6 +516,38 @@ static const struct file_operations uuids_fops = {
 	.release	= single_release,
 };
 
+<<<<<<< HEAD
+=======
+static int auto_accept_delay_set(void *data, u64 val)
+{
+	struct hci_dev *hdev = data;
+
+	hci_dev_lock_bh(hdev);
+
+	hdev->auto_accept_delay = val;
+
+	hci_dev_unlock_bh(hdev);
+
+	return 0;
+}
+
+static int auto_accept_delay_get(void *data, u64 *val)
+{
+	struct hci_dev *hdev = data;
+
+	hci_dev_lock_bh(hdev);
+
+	*val = hdev->auto_accept_delay;
+
+	hci_dev_unlock_bh(hdev);
+
+	return 0;
+}
+
+DEFINE_SIMPLE_ATTRIBUTE(auto_accept_delay_fops, auto_accept_delay_get,
+					auto_accept_delay_set, "%llu\n");
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int hci_register_sysfs(struct hci_dev *hdev)
 {
 	struct device *dev = &hdev->dev;
@@ -547,6 +582,11 @@ int hci_register_sysfs(struct hci_dev *hdev)
 
 	debugfs_create_file("uuids", 0444, hdev->debugfs, hdev, &uuids_fops);
 
+<<<<<<< HEAD
+=======
+	debugfs_create_file("auto_accept_delay", 0444, hdev->debugfs, hdev,
+						&auto_accept_delay_fops);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 

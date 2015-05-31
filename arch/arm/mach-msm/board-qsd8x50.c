@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2009-2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -9,12 +13,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+<<<<<<< HEAD
+=======
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #include <linux/kernel.h>
 #include <linux/irq.h>
 #include <linux/gpio.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/android_pmem.h>
 #include <linux/bootmem.h>
 #include <linux/i2c.h>
@@ -23,12 +35,19 @@
 #include <linux/bma150.h>
 #include <linux/power_supply.h>
 #include <linux/clk.h>
+=======
+#include <linux/delay.h>
+#include <linux/usb/msm_hsusb.h>
+#include <linux/err.h>
+#include <linux/clkdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/io.h>
 #include <asm/setup.h>
 
+<<<<<<< HEAD
 #include <asm/mach/mmc.h>
 #include <mach/vreg.h>
 #include <mach/mpp.h>
@@ -2081,6 +2100,89 @@ static void msm_sdcc_setup_gpio(int dev_id, unsigned int enable)
 		msm_gpios_disable_free(curr->cfg_data, curr->size);
 	}
 }
+=======
+#include <mach/board.h>
+#include <mach/irqs.h>
+#include <mach/sirc.h>
+#include <mach/gpio.h>
+#include <mach/vreg.h>
+#include <mach/mmc.h>
+
+#include "devices.h"
+
+extern struct sys_timer msm_timer;
+
+static const resource_size_t qsd8x50_surf_smc91x_base __initdata = 0x70000300;
+static const unsigned        qsd8x50_surf_smc91x_gpio __initdata = 156;
+
+/* Leave smc91x resources empty here, as we'll fill them in
+ * at run-time: they vary from board to board, and the true
+ * configuration won't be known until boot.
+ */
+static struct resource smc91x_resources[] = {
+	[0] = {
+		.flags = IORESOURCE_MEM,
+	},
+	[1] = {
+		.flags = IORESOURCE_IRQ,
+	},
+};
+
+static struct platform_device smc91x_device = {
+	.name           = "smc91x",
+	.id             = 0,
+	.num_resources  = ARRAY_SIZE(smc91x_resources),
+	.resource       = smc91x_resources,
+};
+
+static int __init msm_init_smc91x(void)
+{
+	if (machine_is_qsd8x50_surf()) {
+		smc91x_resources[0].start = qsd8x50_surf_smc91x_base;
+		smc91x_resources[0].end   = qsd8x50_surf_smc91x_base + 0xff;
+		smc91x_resources[1].start =
+			gpio_to_irq(qsd8x50_surf_smc91x_gpio);
+		smc91x_resources[1].end   =
+			gpio_to_irq(qsd8x50_surf_smc91x_gpio);
+		platform_device_register(&smc91x_device);
+	}
+
+	return 0;
+}
+module_init(msm_init_smc91x);
+
+static int hsusb_phy_init_seq[] = {
+	0x08, 0x31,	/* Increase HS Driver Amplitude */
+	0x20, 0x32,	/* Enable and set Pre-Emphasis Depth to 10% */
+	-1
+};
+
+static struct msm_otg_platform_data msm_otg_pdata = {
+	.phy_init_seq		= hsusb_phy_init_seq,
+	.mode                   = USB_PERIPHERAL,
+	.otg_control		= OTG_PHY_CONTROL,
+};
+
+static struct platform_device *devices[] __initdata = {
+	&msm_device_uart3,
+	&msm_device_smd,
+	&msm_device_otg,
+	&msm_device_hsusb,
+	&msm_device_hsusb_host,
+};
+
+static struct msm_mmc_gpio sdc1_gpio_cfg[] = {
+	{51, "sdc1_dat_3"},
+	{52, "sdc1_dat_2"},
+	{53, "sdc1_dat_1"},
+	{54, "sdc1_dat_0"},
+	{55, "sdc1_cmd"},
+	{56, "sdc1_clk"}
+};
+
+static struct vreg *vreg_mmc;
+static unsigned long vreg_sts;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static uint32_t msm_sdcc_setup_power(struct device *dv, unsigned int vdd)
 {
@@ -2088,7 +2190,10 @@ static uint32_t msm_sdcc_setup_power(struct device *dv, unsigned int vdd)
 	struct platform_device *pdev;
 
 	pdev = container_of(dv, struct platform_device, dev);
+<<<<<<< HEAD
 	msm_sdcc_setup_gpio(pdev->id, !!vdd);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (vdd == 0) {
 		if (!vreg_sts)
@@ -2099,24 +2204,41 @@ static uint32_t msm_sdcc_setup_power(struct device *dv, unsigned int vdd)
 		if (!vreg_sts) {
 			rc = vreg_disable(vreg_mmc);
 			if (rc)
+<<<<<<< HEAD
 				printk(KERN_ERR "%s: return val: %d \n",
 					__func__, rc);
+=======
+				pr_err("vreg_mmc disable failed for slot "
+						"%d: %d\n", pdev->id, rc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		return 0;
 	}
 
 	if (!vreg_sts) {
+<<<<<<< HEAD
 		rc = vreg_set_level(vreg_mmc, PMIC_VREG_GP6_LEVEL);
 		if (!rc)
 			rc = vreg_enable(vreg_mmc);
 		if (rc)
 			printk(KERN_ERR "%s: return val: %d \n",
 					__func__, rc);
+=======
+		rc = vreg_set_level(vreg_mmc, 2900);
+		if (rc)
+			pr_err("vreg_mmc set level failed for slot %d: %d\n",
+					pdev->id, rc);
+		rc = vreg_enable(vreg_mmc);
+		if (rc)
+			pr_err("vreg_mmc enable failed for slot %d: %d\n",
+					pdev->id, rc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	set_bit(pdev->id, &vreg_sts);
 	return 0;
 }
 
+<<<<<<< HEAD
 #endif
 #if (defined(CONFIG_MMC_MSM_SDC1_SUPPORT)\
 	|| defined(CONFIG_MMC_MSM_SDC2_SUPPORT)\
@@ -2527,14 +2649,68 @@ static void __init qsd8x50_map_io(void)
 
 MACHINE_START(QSD8X50_SURF, "QCT QSD8X50 SURF")
 	.atag_offset = 0x100,
+=======
+static struct msm_mmc_gpio_data sdc1_gpio = {
+	.gpio = sdc1_gpio_cfg,
+	.size = ARRAY_SIZE(sdc1_gpio_cfg),
+};
+
+static struct msm_mmc_platform_data qsd8x50_sdc1_data = {
+	.ocr_mask	= MMC_VDD_27_28 | MMC_VDD_28_29,
+	.translate_vdd	= msm_sdcc_setup_power,
+	.gpio_data = &sdc1_gpio,
+};
+
+static void __init qsd8x50_init_mmc(void)
+{
+	vreg_mmc = vreg_get(NULL, "gp5");
+
+	if (IS_ERR(vreg_mmc)) {
+		pr_err("vreg get for vreg_mmc failed (%ld)\n",
+				PTR_ERR(vreg_mmc));
+		return;
+	}
+
+	msm_add_sdcc(1, &qsd8x50_sdc1_data, 0, 0);
+}
+
+static void __init qsd8x50_map_io(void)
+{
+	msm_map_qsd8x50_io();
+	msm_clock_init(msm_clocks_8x50, msm_num_clocks_8x50);
+}
+
+static void __init qsd8x50_init_irq(void)
+{
+	msm_init_irq();
+	msm_init_sirc();
+}
+
+static void __init qsd8x50_init(void)
+{
+	msm_device_otg.dev.platform_data = &msm_otg_pdata;
+	msm_device_hsusb.dev.parent = &msm_device_otg.dev;
+	msm_device_hsusb_host.dev.parent = &msm_device_otg.dev;
+	platform_add_devices(devices, ARRAY_SIZE(devices));
+	qsd8x50_init_mmc();
+}
+
+MACHINE_START(QSD8X50_SURF, "QCT QSD8X50 SURF")
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_io = qsd8x50_map_io,
 	.init_irq = qsd8x50_init_irq,
 	.init_machine = qsd8x50_init,
 	.timer = &msm_timer,
 MACHINE_END
 
+<<<<<<< HEAD
 MACHINE_START(QSD8X50_FFA, "QCT QSD8X50 FFA")
 	.atag_offset = 0x100,
+=======
+MACHINE_START(QSD8X50A_ST1_5, "QCT QSD8X50A ST1.5")
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_io = qsd8x50_map_io,
 	.init_irq = qsd8x50_init_irq,
 	.init_machine = qsd8x50_init,

@@ -17,8 +17,13 @@
 #include <linux/mtd/physmap.h>
 #include <linux/fb.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/sh_eth.h>
 #include <mach/sh7763rdp.h>
+=======
+#include <mach/sh7763rdp.h>
+#include <asm/sh_eth.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/sh7760fb.h>
 
 /* NOR Flash */

@@ -87,8 +87,12 @@
  */
 #define __pure				__attribute__((pure))
 #define __aligned(x)			__attribute__((aligned(x)))
+<<<<<<< HEAD
 #define __printf(a, b)			__attribute__((format(printf, a, b)))
 #define __scanf(a, b)			__attribute__((format(scanf, a, b)))
+=======
+#define __printf(a,b)			__attribute__((format(printf,a,b)))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define  noinline			__attribute__((noinline))
 #define __attribute_const__		__attribute__((__const__))
 #define __maybe_unused			__attribute__((unused))

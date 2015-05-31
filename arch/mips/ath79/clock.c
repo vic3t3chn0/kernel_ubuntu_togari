@@ -110,6 +110,7 @@ static void __init ar913x_clocks_init(void)
 	ath79_uart_clk.rate = ath79_ahb_clk.rate;
 }
 
+<<<<<<< HEAD
 static void __init ar933x_clocks_init(void)
 {
 	u32 clock_ctrl;
@@ -163,6 +164,8 @@ static void __init ar933x_clocks_init(void)
 	ath79_uart_clk.rate = ath79_ref_clk.rate;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init ath79_clocks_init(void)
 {
 	if (soc_is_ar71xx())
@@ -171,8 +174,11 @@ void __init ath79_clocks_init(void)
 		ar724x_clocks_init();
 	else if (soc_is_ar913x())
 		ar913x_clocks_init();
+<<<<<<< HEAD
 	else if (soc_is_ar933x())
 		ar933x_clocks_init();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else
 		BUG();
 

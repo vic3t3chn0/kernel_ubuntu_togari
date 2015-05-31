@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /* linux/arch/arm/mach-s5pv210/dma.c
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com
  *
+=======
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Copyright (C) 2010 Samsung Electronics Co. Ltd.
  *	Jaswinder Singh <jassi.brar@samsung.com>
  *
@@ -21,16 +25,23 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 #include <linux/amba/bus.h>
 #include <linux/amba/pl330.h>
 
 #include <asm/irq.h>
+=======
+#include <linux/platform_device.h>
+#include <linux/dma-mapping.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/devs.h>
 #include <plat/irqs.h>
 
 #include <mach/map.h>
 #include <mach/irqs.h>
+<<<<<<< HEAD
 #include <mach/dma.h>
 
 static u8 pdma0_peri[] = {
@@ -124,6 +135,211 @@ static int __init s5pv210_dma_init(void)
 	dma_cap_set(DMA_SLAVE, s5pv210_pdma1_pdata.cap_mask);
 	dma_cap_set(DMA_CYCLIC, s5pv210_pdma1_pdata.cap_mask);
 	amba_device_register(&s5pv210_pdma1_device, &iomem_resource);
+=======
+
+#include <plat/s3c-pl330-pdata.h>
+
+static u64 dma_dmamask = DMA_BIT_MASK(32);
+
+static struct resource s5pv210_mdma_resource[] = {
+	[0] = {
+		.start  = S5PV210_PA_MDMA,
+		.end    = S5PV210_PA_MDMA + SZ_4K,
+		.flags	= IORESOURCE_MEM,
+	},
+	[1] = {
+		.start	= IRQ_MDMA,
+		.end	= IRQ_MDMA,
+		.flags	= IORESOURCE_IRQ,
+	},
+};
+
+static struct s3c_pl330_platdata s5pv210_mdma_pdata = {
+	.peri = {
+		/* The DMAC can have max 8 channel so there
+		 * can be 8 M<->M requests served at any time.
+		 */
+		[0] = DMACH_MTOM_0,
+		[1] = DMACH_MTOM_1,
+		[2] = DMACH_MTOM_2,
+		[3] = DMACH_MTOM_3,
+		[4] = DMACH_MTOM_4,
+		[5] = DMACH_MTOM_5,
+		[6] = DMACH_MTOM_6,
+		[7] = DMACH_MTOM_7,
+		[8] = DMACH_MAX,
+		[9] = DMACH_MAX,
+		[10] = DMACH_MAX,
+		[11] = DMACH_MAX,
+		[12] = DMACH_MAX,
+		[13] = DMACH_MAX,
+		[14] = DMACH_MAX,
+		[15] = DMACH_MAX,
+		[16] = DMACH_MAX,
+		[17] = DMACH_MAX,
+		[18] = DMACH_MAX,
+		[19] = DMACH_MAX,
+		[20] = DMACH_MAX,
+		[21] = DMACH_MAX,
+		[22] = DMACH_MAX,
+		[23] = DMACH_MAX,
+		[24] = DMACH_MAX,
+		[25] = DMACH_MAX,
+		[26] = DMACH_MAX,
+		[27] = DMACH_MAX,
+		[28] = DMACH_MAX,
+		[29] = DMACH_MAX,
+		[30] = DMACH_MAX,
+		[31] = DMACH_MAX,
+	},
+};
+
+struct platform_device s5pv210_device_mdma = {
+	.name		= "s3c-pl330",
+	.id		= 0,
+	.num_resources	= ARRAY_SIZE(s5pv210_mdma_resource),
+	.resource	= s5pv210_mdma_resource,
+	.dev		= {
+		.dma_mask = &dma_dmamask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+		.platform_data = &s5pv210_mdma_pdata,
+	},
+};
+
+static struct resource s5pv210_pdma0_resource[] = {
+	[0] = {
+		.start  = S5PV210_PA_PDMA0,
+		.end    = S5PV210_PA_PDMA0 + SZ_4K,
+		.flags = IORESOURCE_MEM,
+	},
+	[1] = {
+		.start	= IRQ_PDMA0,
+		.end	= IRQ_PDMA0,
+		.flags	= IORESOURCE_IRQ,
+	},
+};
+
+static struct s3c_pl330_platdata s5pv210_pdma0_pdata = {
+	.peri = {
+		[0] = DMACH_UART0_RX,
+		[1] = DMACH_UART0_TX,
+		[2] = DMACH_UART1_RX,
+		[3] = DMACH_UART1_TX,
+		[4] = DMACH_UART2_RX,
+		[5] = DMACH_UART2_TX,
+		[6] = DMACH_UART3_RX,
+		[7] = DMACH_UART3_TX,
+		[8] = DMACH_MAX,
+		[9] = DMACH_I2S0_RX,
+		[10] = DMACH_I2S0_TX,
+		[11] = DMACH_I2S0S_TX,
+		[12] = DMACH_I2S1_RX,
+		[13] = DMACH_I2S1_TX,
+		[14] = DMACH_MAX,
+		[15] = DMACH_MAX,
+		[16] = DMACH_SPI0_RX,
+		[17] = DMACH_SPI0_TX,
+		[18] = DMACH_SPI1_RX,
+		[19] = DMACH_SPI1_TX,
+		[20] = DMACH_MAX,
+		[21] = DMACH_MAX,
+		[22] = DMACH_AC97_MICIN,
+		[23] = DMACH_AC97_PCMIN,
+		[24] = DMACH_AC97_PCMOUT,
+		[25] = DMACH_MAX,
+		[26] = DMACH_PWM,
+		[27] = DMACH_SPDIF,
+		[28] = DMACH_MAX,
+		[29] = DMACH_MAX,
+		[30] = DMACH_MAX,
+		[31] = DMACH_MAX,
+	},
+};
+
+struct platform_device s5pv210_device_pdma0 = {
+	.name		= "s3c-pl330",
+	.id		= 1,
+	.num_resources	= ARRAY_SIZE(s5pv210_pdma0_resource),
+	.resource	= s5pv210_pdma0_resource,
+	.dev		= {
+		.dma_mask = &dma_dmamask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+		.platform_data = &s5pv210_pdma0_pdata,
+	},
+};
+
+static struct resource s5pv210_pdma1_resource[] = {
+	[0] = {
+		.start  = S5PV210_PA_PDMA1,
+		.end    = S5PV210_PA_PDMA1 + SZ_4K,
+		.flags = IORESOURCE_MEM,
+	},
+	[1] = {
+		.start	= IRQ_PDMA1,
+		.end	= IRQ_PDMA1,
+		.flags	= IORESOURCE_IRQ,
+	},
+};
+
+static struct s3c_pl330_platdata s5pv210_pdma1_pdata = {
+	.peri = {
+		[0] = DMACH_UART0_RX,
+		[1] = DMACH_UART0_TX,
+		[2] = DMACH_UART1_RX,
+		[3] = DMACH_UART1_TX,
+		[4] = DMACH_UART2_RX,
+		[5] = DMACH_UART2_TX,
+		[6] = DMACH_UART3_RX,
+		[7] = DMACH_UART3_TX,
+		[8] = DMACH_MAX,
+		[9] = DMACH_I2S0_RX,
+		[10] = DMACH_I2S0_TX,
+		[11] = DMACH_I2S0S_TX,
+		[12] = DMACH_I2S1_RX,
+		[13] = DMACH_I2S1_TX,
+		[14] = DMACH_I2S2_RX,
+		[15] = DMACH_I2S2_TX,
+		[16] = DMACH_SPI0_RX,
+		[17] = DMACH_SPI0_TX,
+		[18] = DMACH_SPI1_RX,
+		[19] = DMACH_SPI1_TX,
+		[20] = DMACH_MAX,
+		[21] = DMACH_MAX,
+		[22] = DMACH_PCM0_RX,
+		[23] = DMACH_PCM0_TX,
+		[24] = DMACH_PCM1_RX,
+		[25] = DMACH_PCM1_TX,
+		[26] = DMACH_MSM_REQ0,
+		[27] = DMACH_MSM_REQ1,
+		[28] = DMACH_MSM_REQ2,
+		[29] = DMACH_MSM_REQ3,
+		[30] = DMACH_PCM2_RX,
+		[31] = DMACH_PCM2_TX,
+	},
+};
+
+struct platform_device s5pv210_device_pdma1 = {
+	.name		= "s3c-pl330",
+	.id		= 2,
+	.num_resources	= ARRAY_SIZE(s5pv210_pdma1_resource),
+	.resource	= s5pv210_pdma1_resource,
+	.dev		= {
+		.dma_mask = &dma_dmamask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+		.platform_data = &s5pv210_pdma1_pdata,
+	},
+};
+
+static struct platform_device *s5pv210_dmacs[] __initdata = {
+	&s5pv210_device_mdma,
+	&s5pv210_device_pdma0,
+	&s5pv210_device_pdma1,
+};
+
+static int __init s5pv210_dma_init(void)
+{
+	platform_add_devices(s5pv210_dmacs, ARRAY_SIZE(s5pv210_dmacs));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }

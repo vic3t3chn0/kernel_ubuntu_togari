@@ -28,8 +28,11 @@
 #include <mach/hardware.h>
 #include <asm-generic/gpio.h>
 
+<<<<<<< HEAD
 #define __ARM_GPIOLIB_COMPLEX
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IOP3XX_N_GPIOS	8
 
 static inline int gpio_get_value(unsigned gpio)

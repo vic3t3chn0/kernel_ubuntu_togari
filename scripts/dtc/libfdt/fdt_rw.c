@@ -289,6 +289,7 @@ int fdt_setprop(void *fdt, int nodeoffset, const char *name,
 	return 0;
 }
 
+<<<<<<< HEAD
 int fdt_appendprop(void *fdt, int nodeoffset, const char *name,
 		   const void *val, int len)
 {
@@ -316,6 +317,8 @@ int fdt_appendprop(void *fdt, int nodeoffset, const char *name,
 	return 0;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int fdt_delprop(void *fdt, int nodeoffset, const char *name)
 {
 	struct fdt_property *prop;
@@ -433,8 +436,11 @@ int fdt_open_into(const void *fdt, void *buf, int bufsize)
 		struct_size = 0;
 		while (fdt_next_tag(fdt, struct_size, &struct_size) != FDT_END)
 			;
+<<<<<<< HEAD
 		if (struct_size < 0)
 			return struct_size;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	if (!_fdt_blocks_misordered(fdt, mem_rsv_size, struct_size)) {

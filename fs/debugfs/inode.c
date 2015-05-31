@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  *  inode.c - part of debugfs, a tiny little debug file system
+=======
+ *  file.c - part of debugfs, a tiny little debug file system
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  *  Copyright (C) 2004 Greg Kroah-Hartman <greg@kroah.com>
  *  Copyright (C) 2004 IBM Inc.
@@ -23,6 +27,7 @@
 #include <linux/debugfs.h>
 #include <linux/fsnotify.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/seq_file.h>
 #include <linux/parser.h>
 #include <linux/magic.h>
@@ -30,11 +35,20 @@
 
 #define DEBUGFS_DEFAULT_MODE	0755
 
+=======
+#include <linux/magic.h>
+#include <linux/slab.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct vfsmount *debugfs_mount;
 static int debugfs_mount_count;
 static bool debugfs_registered;
 
+<<<<<<< HEAD
 static struct inode *debugfs_get_inode(struct super_block *sb, umode_t mode, dev_t dev,
+=======
+static struct inode *debugfs_get_inode(struct super_block *sb, int mode, dev_t dev,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				       void *data, const struct file_operations *fops)
 
 {
@@ -73,7 +87,11 @@ static struct inode *debugfs_get_inode(struct super_block *sb, umode_t mode, dev
 
 /* SMP-safe */
 static int debugfs_mknod(struct inode *dir, struct dentry *dentry,
+<<<<<<< HEAD
 			 umode_t mode, dev_t dev, void *data,
+=======
+			 int mode, dev_t dev, void *data,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			 const struct file_operations *fops)
 {
 	struct inode *inode;
@@ -91,7 +109,11 @@ static int debugfs_mknod(struct inode *dir, struct dentry *dentry,
 	return error;
 }
 
+<<<<<<< HEAD
 static int debugfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode,
+=======
+static int debugfs_mkdir(struct inode *dir, struct dentry *dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			 void *data, const struct file_operations *fops)
 {
 	int res;
@@ -105,14 +127,22 @@ static int debugfs_mkdir(struct inode *dir, struct dentry *dentry, umode_t mode,
 	return res;
 }
 
+<<<<<<< HEAD
 static int debugfs_link(struct inode *dir, struct dentry *dentry, umode_t mode,
+=======
+static int debugfs_link(struct inode *dir, struct dentry *dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			void *data, const struct file_operations *fops)
 {
 	mode = (mode & S_IALLUGO) | S_IFLNK;
 	return debugfs_mknod(dir, dentry, mode, 0, data, fops);
 }
 
+<<<<<<< HEAD
 static int debugfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
+=======
+static int debugfs_create(struct inode *dir, struct dentry *dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			  void *data, const struct file_operations *fops)
 {
 	int res;
@@ -129,6 +159,7 @@ static inline int debugfs_positive(struct dentry *dentry)
 	return dentry->d_inode && !d_unhashed(dentry);
 }
 
+<<<<<<< HEAD
 struct debugfs_mount_opts {
 	uid_t uid;
 	gid_t gid;
@@ -277,6 +308,13 @@ fail:
 	kfree(fsi);
 	sb->s_fs_info = NULL;
 	return err;
+=======
+static int debug_fill_super(struct super_block *sb, void *data, int silent)
+{
+	static struct tree_descr debug_files[] = {{""}};
+
+	return simple_fill_super(sb, DEBUGFS_MAGIC, debug_files);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static struct dentry *debug_mount(struct file_system_type *fs_type,
@@ -293,7 +331,11 @@ static struct file_system_type debug_fs_type = {
 	.kill_sb =	kill_litter_super,
 };
 
+<<<<<<< HEAD
 static int debugfs_create_by_name(const char *name, umode_t mode,
+=======
+static int debugfs_create_by_name(const char *name, mode_t mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				  struct dentry *parent,
 				  struct dentry **dentry,
 				  void *data,
@@ -307,7 +349,11 @@ static int debugfs_create_by_name(const char *name, umode_t mode,
 	 * have around.
 	 */
 	if (!parent)
+<<<<<<< HEAD
 		parent = debugfs_mount->mnt_root;
+=======
+		parent = debugfs_mount->mnt_sb->s_root;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	*dentry = NULL;
 	mutex_lock(&parent->d_inode->i_mutex);
@@ -361,7 +407,11 @@ static int debugfs_create_by_name(const char *name, umode_t mode,
  * If debugfs is not enabled in the kernel, the value -%ENODEV will be
  * returned.
  */
+<<<<<<< HEAD
 struct dentry *debugfs_create_file(const char *name, umode_t mode,
+=======
+struct dentry *debugfs_create_file(const char *name, mode_t mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				   struct dentry *parent, void *data,
 				   const struct file_operations *fops)
 {

@@ -34,7 +34,10 @@ extern struct boot_info *the_boot_info;
 extern int treesource_error;
 
 static unsigned long long eval_literal(const char *s, int base, int bits);
+<<<<<<< HEAD
 static unsigned char eval_char_literal(const char *s);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 %}
 
 %union {
@@ -45,21 +48,30 @@ static unsigned char eval_char_literal(const char *s);
 	uint8_t byte;
 	struct data data;
 
+<<<<<<< HEAD
 	struct {
 		struct data	data;
 		int		bits;
 	} array;
 
+=======
+	uint64_t addr;
+	cell_t cell;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct property *prop;
 	struct property *proplist;
 	struct node *node;
 	struct node *nodelist;
 	struct reserve_info *re;
+<<<<<<< HEAD
 	uint64_t integer;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 %token DT_V1
 %token DT_MEMRESERVE
+<<<<<<< HEAD
 %token DT_LSHIFT DT_RSHIFT DT_LE DT_GE DT_EQ DT_NE DT_AND DT_OR
 %token DT_BITS
 %token DT_DEL_PROP
@@ -67,6 +79,10 @@ static unsigned char eval_char_literal(const char *s);
 %token <propnodename> DT_PROPNODENAME
 %token <literal> DT_LITERAL
 %token <literal> DT_CHAR_LITERAL
+=======
+%token <propnodename> DT_PROPNODENAME
+%token <literal> DT_LITERAL
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 %token <cbase> DT_BASE
 %token <byte> DT_BYTE
 %token <data> DT_STRING
@@ -78,7 +94,13 @@ static unsigned char eval_char_literal(const char *s);
 %type <data> propdataprefix
 %type <re> memreserve
 %type <re> memreserves
+<<<<<<< HEAD
 %type <array> arrayprefix
+=======
+%type <addr> addr
+%type <data> celllist
+%type <cell> cellval
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 %type <data> bytestring
 %type <prop> propdef
 %type <proplist> proplist
@@ -88,6 +110,7 @@ static unsigned char eval_char_literal(const char *s);
 %type <node> subnode
 %type <nodelist> subnodes
 
+<<<<<<< HEAD
 %type <integer> integer_prim
 %type <integer> integer_unary
 %type <integer> integer_mul
@@ -103,6 +126,8 @@ static unsigned char eval_char_literal(const char *s);
 %type <integer> integer_trinary
 %type <integer> integer_expr
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 %%
 
 sourcefile:
@@ -125,7 +150,11 @@ memreserves:
 	;
 
 memreserve:
+<<<<<<< HEAD
 	  DT_MEMRESERVE integer_prim integer_prim ';'
+=======
+	  DT_MEMRESERVE addr addr ';'
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		{
 			$$ = build_reserve_entry($2, $3);
 		}
@@ -136,6 +165,16 @@ memreserve:
 		}
 	;
 
+<<<<<<< HEAD
+=======
+addr:
+	  DT_LITERAL
+		{
+			$$ = eval_literal($1, 0, 64);
+		}
+	  ;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 devicetree:
 	  '/' nodedef
 		{
@@ -155,6 +194,7 @@ devicetree:
 				print_error("label or path, '%s', not found", $2);
 			$$ = $1;
 		}
+<<<<<<< HEAD
 	| devicetree DT_DEL_NODE DT_REF ';'
 		{
 			struct node *target = get_node_by_ref($1, $3);
@@ -166,6 +206,8 @@ devicetree:
 
 			$$ = $1;
 		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	;
 
 nodedef:
@@ -195,10 +237,13 @@ propdef:
 		{
 			$$ = build_property($1, empty_data);
 		}
+<<<<<<< HEAD
 	| DT_DEL_PROP DT_PROPNODENAME ';'
 		{
 			$$ = build_property_delete($2);
 		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	| DT_LABEL propdef
 		{
 			add_label(&$2->labels, $1);
@@ -211,9 +256,15 @@ propdata:
 		{
 			$$ = data_merge($1, $2);
 		}
+<<<<<<< HEAD
 	| propdataprefix arrayprefix '>'
 		{
 			$$ = data_merge($1, $2.data);
+=======
+	| propdataprefix '<' celllist '>'
+		{
+			$$ = data_merge($1, $3);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	| propdataprefix '[' bytestring ']'
 		{
@@ -223,7 +274,11 @@ propdata:
 		{
 			$$ = data_add_marker($1, REF_PATH, $2);
 		}
+<<<<<<< HEAD
 	| propdataprefix DT_INCBIN '(' DT_STRING ',' integer_prim ',' integer_prim ')'
+=======
+	| propdataprefix DT_INCBIN '(' DT_STRING ',' addr ',' addr ')'
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		{
 			FILE *f = srcfile_relative_open($4.val, NULL);
 			struct data d;
@@ -271,6 +326,7 @@ propdataprefix:
 		}
 	;
 
+<<<<<<< HEAD
 arrayprefix:
 	DT_BITS DT_LITERAL '<'
 		{
@@ -419,6 +475,33 @@ integer_unary:
 	| '-' integer_unary { $$ = -$2; }
 	| '~' integer_unary { $$ = ~$2; }
 	| '!' integer_unary { $$ = !$2; }
+=======
+celllist:
+	  /* empty */
+		{
+			$$ = empty_data;
+		}
+	| celllist cellval
+		{
+			$$ = data_append_cell($1, $2);
+		}
+	| celllist DT_REF
+		{
+			$$ = data_append_cell(data_add_marker($1, REF_PHANDLE,
+							      $2), -1);
+		}
+	| celllist DT_LABEL
+		{
+			$$ = data_add_marker($1, LABEL, $2);
+		}
+	;
+
+cellval:
+	  DT_LITERAL
+		{
+			$$ = eval_literal($1, 0, 32);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	;
 
 bytestring:
@@ -457,10 +540,13 @@ subnode:
 		{
 			$$ = name_node($2, $1);
 		}
+<<<<<<< HEAD
 	| DT_DEL_NODE DT_PROPNODENAME ';'
 		{
 			$$ = name_node(build_node_delete(), $2);
 		}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	| DT_LABEL subnode
 		{
 			add_label(&$2->labels, $1);
@@ -492,18 +578,25 @@ static unsigned long long eval_literal(const char *s, int base, int bits)
 
 	errno = 0;
 	val = strtoull(s, &e, base);
+<<<<<<< HEAD
 	if (*e) {
 		size_t uls = strspn(e, "UL");
 		if (e[uls])
 			print_error("bad characters in literal");
 	}
 	if ((errno == ERANGE)
+=======
+	if (*e)
+		print_error("bad characters in literal");
+	else if ((errno == ERANGE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		 || ((bits < 64) && (val >= (1ULL << bits))))
 		print_error("literal out of range");
 	else if (errno != 0)
 		print_error("bad literal");
 	return val;
 }
+<<<<<<< HEAD
 
 static unsigned char eval_char_literal(const char *s)
 {
@@ -530,3 +623,5 @@ static unsigned char eval_char_literal(const char *s)
 
 	return c;
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

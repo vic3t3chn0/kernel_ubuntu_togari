@@ -103,7 +103,11 @@ TRACE_EVENT(kvm_gtlb_write,
  *                         Book3S trace points                           *
  *************************************************************************/
 
+<<<<<<< HEAD
 #ifdef CONFIG_KVM_BOOK3S_PR
+=======
+#ifdef CONFIG_PPC_BOOK3S
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 TRACE_EVENT(kvm_book3s_exit,
 	TP_PROTO(unsigned int exit_nr, struct kvm_vcpu *vcpu),
@@ -118,14 +122,21 @@ TRACE_EVENT(kvm_book3s_exit,
 	),
 
 	TP_fast_assign(
+<<<<<<< HEAD
 		struct kvmppc_book3s_shadow_vcpu *svcpu;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__entry->exit_nr	= exit_nr;
 		__entry->pc		= kvmppc_get_pc(vcpu);
 		__entry->dar		= kvmppc_get_fault_dar(vcpu);
 		__entry->msr		= vcpu->arch.shared->msr;
+<<<<<<< HEAD
 		svcpu = svcpu_get(vcpu);
 		__entry->srr1		= svcpu->shadow_srr1;
 		svcpu_put(svcpu);
+=======
+		__entry->srr1		= to_svcpu(vcpu)->shadow_srr1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	),
 
 	TP_printk("exit=0x%x | pc=0x%lx | msr=0x%lx | dar=0x%lx | srr1=0x%lx",
@@ -255,7 +266,11 @@ TRACE_EVENT(kvm_book3s_mmu_flush,
 	),
 
 	TP_fast_assign(
+<<<<<<< HEAD
 		__entry->count		= to_book3s(vcpu)->hpte_cache_count;
+=======
+		__entry->count		= vcpu->arch.hpte_cache_count;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		__entry->p1		= p1;
 		__entry->p2		= p2;
 		__entry->type		= type;
@@ -340,6 +355,7 @@ TRACE_EVENT(kvm_book3s_slbmte,
 
 #endif /* CONFIG_PPC_BOOK3S */
 
+<<<<<<< HEAD
 
 /*************************************************************************
  *                         Book3E trace points                           *
@@ -397,6 +413,8 @@ TRACE_EVENT(kvm_booke206_gtlb_write,
 
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _TRACE_KVM_H */
 
 /* This part must be outside protection */

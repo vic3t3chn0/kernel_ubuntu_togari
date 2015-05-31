@@ -165,6 +165,7 @@ static struct of_pdt_ops prom_olpc_ops __initdata = {
 	.pkg2path = olpc_dt_pkg2path,
 };
 
+<<<<<<< HEAD
 static phandle __init olpc_dt_finddevice(const char *path)
 {
 	phandle node;
@@ -266,6 +267,8 @@ void __init olpc_dt_fixup(void)
 	}
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __init olpc_dt_build_devicetree(void)
 {
 	phandle root;
@@ -273,8 +276,11 @@ void __init olpc_dt_build_devicetree(void)
 	if (!olpc_ofw_is_installed())
 		return;
 
+<<<<<<< HEAD
 	olpc_dt_fixup();
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	root = olpc_dt_getsibling(0);
 	if (!root) {
 		pr_err("PROM: unable to get root node from OFW!\n");

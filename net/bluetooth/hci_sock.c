@@ -1,6 +1,10 @@
 /*
    BlueZ - Bluetooth protocol stack for Linux
+<<<<<<< HEAD
    Copyright (c) 2000-2001, 2011, The Linux Foundation. All rights reserved.
+=======
+   Copyright (C) 2000-2001 Qualcomm Incorporated
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
    Written 2000,2001 by Maxim Krasnyansky <maxk@qualcomm.com>
 
@@ -49,7 +53,11 @@
 #include <net/bluetooth/bluetooth.h>
 #include <net/bluetooth/hci_core.h>
 
+<<<<<<< HEAD
 static bool enable_mgmt = 1;
+=======
+static int enable_mgmt;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* ----- HCI socket interface ----- */
 
@@ -180,6 +188,7 @@ static int hci_sock_release(struct socket *sock)
 	return 0;
 }
 
+<<<<<<< HEAD
 struct bdaddr_list *hci_blacklist_lookup(struct hci_dev *hdev, bdaddr_t *bdaddr)
 {
 	struct list_head *p;
@@ -200,10 +209,16 @@ static int hci_blacklist_add(struct hci_dev *hdev, void __user *arg)
 {
 	bdaddr_t bdaddr;
 	struct bdaddr_list *entry;
+=======
+static int hci_sock_blacklist_add(struct hci_dev *hdev, void __user *arg)
+{
+	bdaddr_t bdaddr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (copy_from_user(&bdaddr, arg, sizeof(bdaddr)))
 		return -EFAULT;
 
+<<<<<<< HEAD
 	if (bacmp(&bdaddr, BDADDR_ANY) == 0)
 		return -EBADF;
 
@@ -241,10 +256,19 @@ static int hci_blacklist_del(struct hci_dev *hdev, void __user *arg)
 {
 	bdaddr_t bdaddr;
 	struct bdaddr_list *entry;
+=======
+	return hci_blacklist_add(hdev, &bdaddr);
+}
+
+static int hci_sock_blacklist_del(struct hci_dev *hdev, void __user *arg)
+{
+	bdaddr_t bdaddr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (copy_from_user(&bdaddr, arg, sizeof(bdaddr)))
 		return -EFAULT;
 
+<<<<<<< HEAD
 	if (bacmp(&bdaddr, BDADDR_ANY) == 0)
 		return hci_blacklist_clear(hdev);
 
@@ -256,6 +280,9 @@ static int hci_blacklist_del(struct hci_dev *hdev, void __user *arg)
 	kfree(entry);
 
 	return 0;
+=======
+	return hci_blacklist_del(hdev, &bdaddr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /* Ioctls that require bound socket */
@@ -290,15 +317,23 @@ static inline int hci_sock_bound_ioctl(struct sock *sk, unsigned int cmd, unsign
 	case HCIBLOCKADDR:
 		if (!capable(CAP_NET_ADMIN))
 			return -EACCES;
+<<<<<<< HEAD
 		return hci_blacklist_add(hdev, (void __user *) arg);
+=======
+		return hci_sock_blacklist_add(hdev, (void __user *) arg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	case HCIUNBLOCKADDR:
 		if (!capable(CAP_NET_ADMIN))
 			return -EACCES;
+<<<<<<< HEAD
 		return hci_blacklist_del(hdev, (void __user *) arg);
 
 	case HCISETAUTHINFO:
 		return hci_set_auth_info(hdev, (void __user *) arg);
+=======
+		return hci_sock_blacklist_del(hdev, (void __user *) arg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	default:
 		if (hdev->ioctl)
@@ -328,12 +363,16 @@ static int hci_sock_ioctl(struct socket *sock, unsigned int cmd, unsigned long a
 	case HCIDEVUP:
 		if (!capable(CAP_NET_ADMIN))
 			return -EACCES;
+<<<<<<< HEAD
 
 		err =  hci_dev_open(arg);
 		if (!err || err == -EALREADY)
 			return 0;
 		else
 			return err;
+=======
+		return hci_dev_open(arg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	case HCIDEVDOWN:
 		if (!capable(CAP_NET_ADMIN))
@@ -440,6 +479,10 @@ static int hci_sock_getname(struct socket *sock, struct sockaddr *addr, int *add
 	*addr_len = sizeof(*haddr);
 	haddr->hci_family = AF_BLUETOOTH;
 	haddr->hci_dev    = hdev->id;
+<<<<<<< HEAD
+=======
+	haddr->hci_channel= 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	release_sock(sk);
 	return 0;
@@ -523,7 +566,10 @@ static int hci_sock_sendmsg(struct kiocb *iocb, struct socket *sock,
 	struct sock *sk = sock->sk;
 	struct hci_dev *hdev;
 	struct sk_buff *skb;
+<<<<<<< HEAD
 	int reserve = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err;
 
 	BT_DBG("sock %p sk %p", sock, sk);
@@ -561,6 +607,7 @@ static int hci_sock_sendmsg(struct kiocb *iocb, struct socket *sock,
 		goto done;
 	}
 
+<<<<<<< HEAD
 	/* Allocate extra headroom for Qualcomm PAL */
 	if (hdev->dev_type == HCI_AMP && hdev->manufacturer == 0x001d)
 		reserve = BT_SKB_RESERVE_80211;
@@ -573,6 +620,12 @@ static int hci_sock_sendmsg(struct kiocb *iocb, struct socket *sock,
 	if (reserve)
 		skb_reserve(skb, reserve);
 
+=======
+	skb = bt_skb_send_alloc(sk, len, msg->msg_flags & MSG_DONTWAIT, &err);
+	if (!skb)
+		goto done;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (memcpy_fromiovec(skb_put(skb, len), msg->msg_iov, len)) {
 		err = -EFAULT;
 		goto drop;
@@ -661,6 +714,10 @@ static int hci_sock_setsockopt(struct socket *sock, int level, int optname, char
 		{
 			struct hci_filter *f = &hci_pi(sk)->filter;
 
+<<<<<<< HEAD
+=======
+			memset(&uf, 0, sizeof(uf));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			uf.type_mask = f->type_mask;
 			uf.opcode    = f->opcode;
 			uf.event_mask[0] = *((u32 *) f->event_mask + 0);

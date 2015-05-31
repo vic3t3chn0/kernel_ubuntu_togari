@@ -27,7 +27,10 @@
 #include <asm/processor.h>
 #include <asm/ucontext.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 #include <arch/system.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define DEBUG_SIG 0
 

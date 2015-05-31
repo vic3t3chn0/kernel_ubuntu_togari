@@ -23,6 +23,10 @@
 #include <linux/io.h>
 
 #include <asm/leds.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define LED_STATE_ENABLED	1
 #define LED_STATE_CLAIMED	2
@@ -35,7 +39,11 @@ static char led_state;
 static short hw_led_state;
 static short saved_state;
 
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(leds_lock);
+=======
+static DEFINE_SPINLOCK(leds_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 short sequoia_read(int addr) {
   outw(addr,0x24);
@@ -51,7 +59,11 @@ static void sequoia_leds_event(led_event_t evt)
 {
 	unsigned long flags;
 
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&leds_lock, flags);
+=======
+	spin_lock_irqsave(&leds_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	hw_led_state = sequoia_read(0x09);
 
@@ -143,7 +155,11 @@ static void sequoia_leds_event(led_event_t evt)
 	if  (led_state & LED_STATE_ENABLED)
 		sequoia_write(hw_led_state,0x09);
 
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&leds_lock, flags);
+=======
+	spin_unlock_irqrestore(&leds_lock, flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int __init leds_init(void)

@@ -24,6 +24,10 @@
 #include <linux/profile.h>
 #include <linux/smp.h>
 #include <asm/tlbflush.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/bitops.h>
 #include <asm/processor.h>
 #include <asm/bug.h>

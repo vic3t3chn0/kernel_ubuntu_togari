@@ -23,7 +23,10 @@
 #include <linux/fs.h>
 #include <linux/root_dev.h>
 #include <linux/console.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/bootmem.h>
 
 #include <asm/machdep.h>
@@ -193,12 +196,19 @@ static int ps3_set_dabr(unsigned long dabr)
 
 static void __init ps3_setup_arch(void)
 {
+<<<<<<< HEAD
 	u64 tmp;
 
 	DBG(" -> %s:%d\n", __func__, __LINE__);
 
 	lv1_get_version_info(&ps3_firmware_version.raw, &tmp);
 
+=======
+
+	DBG(" -> %s:%d\n", __func__, __LINE__);
+
+	lv1_get_version_info(&ps3_firmware_version.raw);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	printk(KERN_INFO "PS3 firmware version %u.%u.%u\n",
 	       ps3_firmware_version.major, ps3_firmware_version.minor,
 	       ps3_firmware_version.rev);

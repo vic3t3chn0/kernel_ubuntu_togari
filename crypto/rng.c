@@ -12,7 +12,11 @@
  *
  */
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <crypto/internal/rng.h>
 #include <linux/err.h>
 #include <linux/module.h>
@@ -21,8 +25,11 @@
 #include <linux/seq_file.h>
 #include <linux/slab.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/cryptouser.h>
 #include <net/netlink.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static DEFINE_MUTEX(crypto_default_rng_lock);
 struct crypto_rng *crypto_default_rng;
@@ -60,6 +67,7 @@ static int crypto_init_rng_ops(struct crypto_tfm *tfm, u32 type, u32 mask)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_NET
 static int crypto_rng_report(struct sk_buff *skb, struct crypto_alg *alg)
 {
@@ -84,6 +92,8 @@ static int crypto_rng_report(struct sk_buff *skb, struct crypto_alg *alg)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void crypto_rng_show(struct seq_file *m, struct crypto_alg *alg)
 	__attribute__ ((unused));
 static void crypto_rng_show(struct seq_file *m, struct crypto_alg *alg)
@@ -104,7 +114,10 @@ const struct crypto_type crypto_rng_type = {
 #ifdef CONFIG_PROC_FS
 	.show = crypto_rng_show,
 #endif
+<<<<<<< HEAD
 	.report = crypto_rng_report,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 EXPORT_SYMBOL_GPL(crypto_rng_type);
 

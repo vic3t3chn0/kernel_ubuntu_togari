@@ -39,6 +39,9 @@
 #define RIO_DID_IDTCPS1616		0x0379
 #define RIO_DID_IDTVPS1616		0x0377
 #define RIO_DID_IDTSPS1616		0x0378
+<<<<<<< HEAD
 #define RIO_DID_TSI721			0x80ab
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif				/* LINUX_RIO_IDS_H */

@@ -9,8 +9,11 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/slab.h>
@@ -19,13 +22,19 @@
 #include <linux/fs.h>
 #include <linux/err.h>
 #include <linux/mount.h>
+<<<<<<< HEAD
 #include <linux/parser.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/jffs2.h>
 #include <linux/pagemap.h>
 #include <linux/mtd/super.h>
 #include <linux/ctype.h>
 #include <linux/namei.h>
+<<<<<<< HEAD
 #include <linux/seq_file.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/exportfs.h>
 #include "compr.h"
 #include "nodelist.h"
@@ -47,6 +56,10 @@ static struct inode *jffs2_alloc_inode(struct super_block *sb)
 static void jffs2_i_callback(struct rcu_head *head)
 {
 	struct inode *inode = container_of(head, struct inode, i_rcu);
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&inode->i_dentry);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kmem_cache_free(jffs2_inode_cachep, JFFS2_INODE_INFO(inode));
 }
 
@@ -71,13 +84,18 @@ static void jffs2_write_super(struct super_block *sb)
 	sb->s_dirt = 0;
 
 	if (!(sb->s_flags & MS_RDONLY)) {
+<<<<<<< HEAD
 		jffs2_dbg(1, "%s()\n", __func__);
+=======
+		D1(printk(KERN_DEBUG "jffs2_write_super()\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		jffs2_flush_wbuf_gc(c, 0);
 	}
 
 	unlock_super(sb);
 }
 
+<<<<<<< HEAD
 static const char *jffs2_compr_name(unsigned int compr)
 {
 	switch (compr) {
@@ -109,6 +127,8 @@ static int jffs2_show_options(struct seq_file *s, struct dentry *root)
 	return 0;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int jffs2_sync_fs(struct super_block *sb, int wait)
 {
 	struct jffs2_sb_info *c = JFFS2_SB_INFO(sb);
@@ -167,6 +187,7 @@ static const struct export_operations jffs2_export_ops = {
 	.fh_to_parent = jffs2_fh_to_parent,
 };
 
+<<<<<<< HEAD
 /*
  * JFFS2 mount options.
  *
@@ -246,6 +267,8 @@ static int jffs2_remount_fs(struct super_block *sb, int *flags, char *data)
 	return jffs2_do_remount_fs(sb, flags, data);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static const struct super_operations jffs2_super_operations =
 {
 	.alloc_inode =	jffs2_alloc_inode,
@@ -256,7 +279,10 @@ static const struct super_operations jffs2_super_operations =
 	.remount_fs =	jffs2_remount_fs,
 	.evict_inode =	jffs2_evict_inode,
 	.dirty_inode =	jffs2_dirty_inode,
+<<<<<<< HEAD
 	.show_options =	jffs2_show_options,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.sync_fs =	jffs2_sync_fs,
 };
 
@@ -268,9 +294,15 @@ static int jffs2_fill_super(struct super_block *sb, void *data, int silent)
 	struct jffs2_sb_info *c;
 	int ret;
 
+<<<<<<< HEAD
 	jffs2_dbg(1, "jffs2_get_sb_mtd():"
 		  " New superblock for device %d (\"%s\")\n",
 		  sb->s_mtd->index, sb->s_mtd->name);
+=======
+	D1(printk(KERN_DEBUG "jffs2_get_sb_mtd():"
+		  " New superblock for device %d (\"%s\")\n",
+		  sb->s_mtd->index, sb->s_mtd->name));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	c = kzalloc(sizeof(*c), GFP_KERNEL);
 	if (!c)
@@ -280,12 +312,15 @@ static int jffs2_fill_super(struct super_block *sb, void *data, int silent)
 	c->os_priv = sb;
 	sb->s_fs_info = c;
 
+<<<<<<< HEAD
 	ret = jffs2_parse_options(c, data);
 	if (ret) {
 		kfree(c);
 		return -EINVAL;
 	}
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Initialize JFFS2 superblock locks, the further initialization will
 	 * be done later */
 	mutex_init(&c->alloc_sem);
@@ -317,7 +352,11 @@ static void jffs2_put_super (struct super_block *sb)
 {
 	struct jffs2_sb_info *c = JFFS2_SB_INFO(sb);
 
+<<<<<<< HEAD
 	jffs2_dbg(2, "%s()\n", __func__);
+=======
+	D2(printk(KERN_DEBUG "jffs2: jffs2_put_super()\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (sb->s_dirt)
 		jffs2_write_super(sb);
@@ -337,8 +376,15 @@ static void jffs2_put_super (struct super_block *sb)
 	jffs2_flash_cleanup(c);
 	kfree(c->inocache_list);
 	jffs2_clear_xattr_subsystem(c);
+<<<<<<< HEAD
 	mtd_sync(c->mtd);
 	jffs2_dbg(1, "%s(): returning\n", __func__);
+=======
+	if (c->mtd->sync)
+		c->mtd->sync(c->mtd);
+
+	D1(printk(KERN_DEBUG "jffs2_put_super returning\n"));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void jffs2_kill_sb(struct super_block *sb)
@@ -373,7 +419,11 @@ static int __init init_jffs2_fs(void)
 	BUILD_BUG_ON(sizeof(struct jffs2_raw_inode) != 68);
 	BUILD_BUG_ON(sizeof(struct jffs2_raw_summary) != 32);
 
+<<<<<<< HEAD
 	pr_info("version 2.2."
+=======
+	printk(KERN_INFO "JFFS2 version 2.2."
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_JFFS2_FS_WRITEBUFFER
 	       " (NAND)"
 #endif
@@ -388,22 +438,38 @@ static int __init init_jffs2_fs(void)
 						SLAB_MEM_SPREAD),
 					     jffs2_i_init_once);
 	if (!jffs2_inode_cachep) {
+<<<<<<< HEAD
 		pr_err("error: Failed to initialise inode cache\n");
+=======
+		printk(KERN_ERR "JFFS2 error: Failed to initialise inode cache\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -ENOMEM;
 	}
 	ret = jffs2_compressors_init();
 	if (ret) {
+<<<<<<< HEAD
 		pr_err("error: Failed to initialise compressors\n");
+=======
+		printk(KERN_ERR "JFFS2 error: Failed to initialise compressors\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out;
 	}
 	ret = jffs2_create_slab_caches();
 	if (ret) {
+<<<<<<< HEAD
 		pr_err("error: Failed to initialise slab caches\n");
+=======
+		printk(KERN_ERR "JFFS2 error: Failed to initialise slab caches\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_compressors;
 	}
 	ret = register_filesystem(&jffs2_fs_type);
 	if (ret) {
+<<<<<<< HEAD
 		pr_err("error: Failed to register filesystem\n");
+=======
+		printk(KERN_ERR "JFFS2 error: Failed to register filesystem\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out_slab;
 	}
 	return 0;

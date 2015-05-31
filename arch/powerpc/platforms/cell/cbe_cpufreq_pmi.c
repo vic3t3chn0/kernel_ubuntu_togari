@@ -23,7 +23,10 @@
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/timer.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/of_platform.h>
 
 #include <asm/processor.h>

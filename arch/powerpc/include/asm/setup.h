@@ -3,6 +3,7 @@
 
 #include <asm-generic/setup.h>
 
+<<<<<<< HEAD
 #ifndef __ASSEMBLY__
 extern void ppc_printk_progress(char *s, unsigned short hex);
 
@@ -29,4 +30,6 @@ extern void reloc_got2(unsigned long);
 
 #endif /* !__ASSEMBLY__ */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* _ASM_POWERPC_SETUP_H */

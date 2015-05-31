@@ -81,10 +81,14 @@ struct k_itimer {
 			unsigned long incr;
 			unsigned long expires;
 		} mmtimer;
+<<<<<<< HEAD
 		struct {
 			struct alarm alarmtimer;
 			ktime_t interval;
 		} alarm;
+=======
+		struct alarm alarmtimer;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		struct rcu_head rcu;
 	} it;
 };

@@ -12,8 +12,15 @@
 #include <termios.h>
 #include <sys/stat.h>
 #include "chan_user.h"
+<<<<<<< HEAD
 #include "os.h"
 #include "um_malloc.h"
+=======
+#include "kern_constants.h"
+#include "os.h"
+#include "um_malloc.h"
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct pty_chan {
 	void (*announce)(char *dev_name, int dev);

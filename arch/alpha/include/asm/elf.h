@@ -2,7 +2,10 @@
 #define __ASM_ALPHA_ELF_H
 
 #include <asm/auxvec.h>
+<<<<<<< HEAD
 #include <asm/special_insns.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Special values for the st_other field in the symbol table.  */
 

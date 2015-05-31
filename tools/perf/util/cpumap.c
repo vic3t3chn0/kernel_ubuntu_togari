@@ -166,6 +166,7 @@ out:
 	return cpus;
 }
 
+<<<<<<< HEAD
 size_t cpu_map__fprintf(struct cpu_map *map, FILE *fp)
 {
 	int i;
@@ -177,6 +178,8 @@ size_t cpu_map__fprintf(struct cpu_map *map, FILE *fp)
 	return printed + fprintf(fp, "\n");
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct cpu_map *cpu_map__dummy_new(void)
 {
 	struct cpu_map *cpus = malloc(sizeof(*cpus) + sizeof(int));

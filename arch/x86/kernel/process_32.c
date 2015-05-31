@@ -9,6 +9,10 @@
  * This file handles the architecture-dependent parts of process handling..
  */
 
+<<<<<<< HEAD
+=======
+#include <linux/stackprotector.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/cpu.h>
 #include <linux/errno.h>
 #include <linux/sched.h>
@@ -30,6 +34,10 @@
 #include <linux/kallsyms.h>
 #include <linux/ptrace.h>
 #include <linux/personality.h>
+<<<<<<< HEAD
+=======
+#include <linux/tick.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/percpu.h>
 #include <linux/prctl.h>
 #include <linux/ftrace.h>
@@ -38,10 +46,17 @@
 #include <linux/kdebug.h>
 
 #include <asm/pgtable.h>
+<<<<<<< HEAD
 #include <asm/ldt.h>
 #include <asm/processor.h>
 #include <asm/i387.h>
 #include <asm/fpu-internal.h>
+=======
+#include <asm/system.h>
+#include <asm/ldt.h>
+#include <asm/processor.h>
+#include <asm/i387.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/desc.h>
 #ifdef CONFIG_MATH_EMULATION
 #include <asm/math_emu.h>
@@ -54,7 +69,10 @@
 #include <asm/idle.h>
 #include <asm/syscalls.h>
 #include <asm/debugreg.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 asmlinkage void ret_from_fork(void) __asm__("ret_from_fork");
 
@@ -66,6 +84,61 @@ unsigned long thread_saved_pc(struct task_struct *tsk)
 	return ((unsigned long *)tsk->thread.sp)[3];
 }
 
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_SMP
+static inline void play_dead(void)
+{
+	BUG();
+}
+#endif
+
+/*
+ * The idle thread. There's no useful work to be
+ * done, so just try to conserve power and have a
+ * low exit latency (ie sit in a loop waiting for
+ * somebody to say that they'd like to reschedule)
+ */
+void cpu_idle(void)
+{
+	int cpu = smp_processor_id();
+
+	/*
+	 * If we're the non-boot CPU, nothing set the stack canary up
+	 * for us.  CPU0 already has it initialized but no harm in
+	 * doing it again.  This is a good place for updating it, as
+	 * we wont ever return from this function (so the invalid
+	 * canaries already on the stack wont ever trigger).
+	 */
+	boot_init_stack_canary();
+
+	current_thread_info()->status |= TS_POLLING;
+
+	/* endless idle loop with no priority at all */
+	while (1) {
+		tick_nohz_stop_sched_tick(1);
+		while (!need_resched()) {
+
+			check_pgt_cache();
+			rmb();
+
+			if (cpu_is_offline(cpu))
+				play_dead();
+
+			local_irq_disable();
+			/* Don't trace irqs off for idle */
+			stop_critical_timings();
+			pm_idle();
+			start_critical_timings();
+		}
+		tick_nohz_restart_sched_tick();
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+	}
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void __show_regs(struct pt_regs *regs, int all)
 {
 	unsigned long cr0 = 0L, cr2 = 0L, cr3 = 0L, cr4 = 0L;
@@ -155,7 +228,10 @@ int copy_thread(unsigned long clone_flags, unsigned long sp,
 
 	task_user_gs(p) = get_user_gs(regs);
 
+<<<<<<< HEAD
 	p->fpu_counter = 0;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	p->thread.io_bitmap_ptr = NULL;
 	tsk = current;
 	err = -ENOMEM;
@@ -208,7 +284,11 @@ EXPORT_SYMBOL_GPL(start_thread);
 
 
 /*
+<<<<<<< HEAD
  *	switch_to(x,y) should switch tasks from x to y.
+=======
+ *	switch_to(x,yn) should switch tasks from x to y.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * We fsave/fwait so that an exception goes off at the right time
  * (as a call from the fsave or fwait in effect) rather than to
@@ -245,7 +325,11 @@ __switch_to(struct task_struct *prev_p, struct task_struct *next_p)
 
 	/* never put a printk in __switch_to... printk() calls wake_up*() indirectly */
 
+<<<<<<< HEAD
 	fpu = switch_fpu_prepare(prev_p, next_p, cpu);
+=======
+	fpu = switch_fpu_prepare(prev_p, next_p);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Reload esp0.

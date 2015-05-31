@@ -29,6 +29,10 @@
 
 #include <asm/bootinfo.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/pgtable.h>
 #include <asm/amigahw.h>
 #include <asm/amigaints.h>
@@ -510,7 +514,12 @@ static unsigned long amiga_gettimeoffset(void)
 	return ticks + offset;
 }
 
+<<<<<<< HEAD
 static void amiga_reset(void)  __noreturn;
+=======
+static NORET_TYPE void amiga_reset(void)
+    ATTRIB_NORET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void amiga_reset(void)
 {

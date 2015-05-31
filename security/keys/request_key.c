@@ -91,7 +91,11 @@ static void umh_keys_cleanup(struct subprocess_info *info)
  * Call a usermode helper with a specific session keyring.
  */
 static int call_usermodehelper_keys(char *path, char **argv, char **envp,
+<<<<<<< HEAD
 					struct key *session_keyring, int wait)
+=======
+			 struct key *session_keyring, enum umh_wait wait)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	gfp_t gfp_mask = (wait == UMH_NO_WAIT) ? GFP_ATOMIC : GFP_KERNEL;
 	struct subprocess_info *info =

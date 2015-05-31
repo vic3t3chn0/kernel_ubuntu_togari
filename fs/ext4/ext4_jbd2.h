@@ -104,6 +104,7 @@
 #define EXT4_MAXQUOTAS_INIT_BLOCKS(sb) (MAXQUOTAS*EXT4_QUOTA_INIT_BLOCKS(sb))
 #define EXT4_MAXQUOTAS_DEL_BLOCKS(sb) (MAXQUOTAS*EXT4_QUOTA_DEL_BLOCKS(sb))
 
+<<<<<<< HEAD
 /**
  *   struct ext4_journal_cb_entry - Base structure for callback information.
  *
@@ -176,6 +177,8 @@ static inline void ext4_journal_callback_del(handle_t *handle,
 	spin_unlock(&sbi->s_md_lock);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int
 ext4_mark_iloc_dirty(handle_t *handle,
 		     struct inode *inode,

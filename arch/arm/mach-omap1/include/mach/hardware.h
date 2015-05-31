@@ -2,6 +2,7 @@
  * arch/arm/mach-omap1/include/mach/hardware.h
  */
 
+<<<<<<< HEAD
 #ifndef __MACH_HARDWARE_H
 #define __MACH_HARDWARE_H
 
@@ -38,4 +39,6 @@ static inline u32 omap_cs3_phys(void)
 #endif
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/hardware.h>

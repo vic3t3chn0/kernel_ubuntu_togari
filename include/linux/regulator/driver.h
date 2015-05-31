@@ -2,7 +2,10 @@
  * driver.h -- SoC Regulator driver support.
  *
  * Copyright (C) 2007, 2008 Wolfson Microelectronics PLC.
+<<<<<<< HEAD
  * Copyright (C) 2013 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Author: Liam Girdwood <lrg@slimlogic.co.uk>
  *
@@ -17,7 +20,10 @@
 #define __LINUX_REGULATOR_DRIVER_H_
 
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/notifier.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/regulator/consumer.h>
 
 struct regulator_dev;
@@ -71,8 +77,11 @@ enum regulator_status {
  *               The function provides the from and to voltage selector, the
  *               function should return the worst case.
  *
+<<<<<<< HEAD
  * @register_ocp_notification: Register the notification for ocp.
  *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @set_suspend_voltage: Set the voltage for the regulator when the system
  *                       is suspended.
  * @set_suspend_enable: Mark the regulator as enabled when the system is
@@ -107,7 +116,11 @@ struct regulator_ops {
 	int (*disable) (struct regulator_dev *);
 	int (*is_enabled) (struct regulator_dev *);
 
+<<<<<<< HEAD
 	/* get/set regulator operating mode (defined in consumer.h) */
+=======
+	/* get/set regulator operating mode (defined in regulator.h) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int (*set_mode) (struct regulator_dev *, unsigned int mode);
 	unsigned int (*get_mode) (struct regulator_dev *);
 
@@ -128,10 +141,13 @@ struct regulator_ops {
 	unsigned int (*get_optimum_mode) (struct regulator_dev *, int input_uV,
 					  int output_uV, int load_uA);
 
+<<<<<<< HEAD
 	/* register ocp notification */
 	int (*register_ocp_notification) (struct regulator_dev *,
 			struct regulator_ocp_notification *notification);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* the operations below are for configuration of regulator state when
 	 * its parent PMIC enters a global STANDBY/HIBERNATE state */
 
@@ -142,7 +158,11 @@ struct regulator_ops {
 	int (*set_suspend_enable) (struct regulator_dev *);
 	int (*set_suspend_disable) (struct regulator_dev *);
 
+<<<<<<< HEAD
 	/* set regulator suspend operating mode (defined in consumer.h) */
+=======
+	/* set regulator suspend operating mode (defined in regulator.h) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int (*set_suspend_mode) (struct regulator_dev *, unsigned int mode);
 };
 
@@ -161,7 +181,10 @@ enum regulator_type {
  * this type.
  *
  * @name: Identifying name for the regulator.
+<<<<<<< HEAD
  * @supply_name: Identifying the regulator supply
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @id: Numerical identifier for the regulator.
  * @n_voltages: Number of selectors available for ops.list_voltage().
  * @ops: Regulator operations table.
@@ -171,7 +194,10 @@ enum regulator_type {
  */
 struct regulator_desc {
 	const char *name;
+<<<<<<< HEAD
 	const char *supply_name;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int id;
 	unsigned n_voltages;
 	struct regulator_ops *ops;
@@ -198,15 +224,24 @@ struct regulator_dev {
 
 	/* lists we belong to */
 	struct list_head list; /* list of all regulators */
+<<<<<<< HEAD
 
 	/* lists we own */
 	struct list_head consumer_list; /* consumers we supply */
+=======
+	struct list_head slist; /* list of supplied regulators */
+
+	/* lists we own */
+	struct list_head consumer_list; /* consumers we supply */
+	struct list_head supply_list; /* regulators we supply */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	struct blocking_notifier_head notifier;
 	struct mutex mutex; /* consumer lock */
 	struct module *owner;
 	struct device dev;
 	struct regulation_constraints *constraints;
+<<<<<<< HEAD
 	struct regulator *supply;	/* for tree */
 
 	struct delayed_work disable_work;
@@ -215,11 +250,24 @@ struct regulator_dev {
 	void *reg_data;		/* regulator_dev data */
 
 	struct dentry *debugfs;
+=======
+	struct regulator_dev *supply;	/* for tree */
+
+	void *reg_data;		/* regulator_dev data */
+
+#ifdef CONFIG_DEBUG_FS
+	struct dentry *debugfs;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct regulator_dev *regulator_register(struct regulator_desc *regulator_desc,
 	struct device *dev, const struct regulator_init_data *init_data,
+<<<<<<< HEAD
 	void *driver_data, struct device_node *of_node);
+=======
+	void *driver_data);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void regulator_unregister(struct regulator_dev *rdev);
 
 int regulator_notifier_call_chain(struct regulator_dev *rdev,

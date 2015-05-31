@@ -1,6 +1,7 @@
 /*
  * Access vector cache interface for object managers.
  *
+<<<<<<< HEAD
  * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * Author : Stephen Smalley, <sds@epoch.ncsc.mil>
@@ -11,6 +12,10 @@
  * of the License, or (at your option) any later version.
  */
 
+=======
+ * Author : Stephen Smalley, <sds@epoch.ncsc.mil>
+ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef _SELINUX_AVC_H_
 #define _SELINUX_AVC_H_
 
@@ -23,6 +28,10 @@
 #include <linux/audit.h>
 #include <linux/lsm_audit.h>
 #include <linux/in6.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "flask.h"
 #include "av_permissions.h"
 #include "security.h"
@@ -55,6 +64,7 @@ struct avc_cache_stats {
 };
 
 /*
+<<<<<<< HEAD
  * We only need this data after we have decided to send an audit message.
  */
 struct selinux_late_audit_data {
@@ -83,6 +93,8 @@ struct selinux_audit_data {
 };
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * AVC operations
  */
 

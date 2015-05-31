@@ -169,7 +169,11 @@ enum bug_trap_type report_bug(unsigned long bugaddr, struct pt_regs *regs)
 		return BUG_TRAP_TYPE_WARN;
 	}
 
+<<<<<<< HEAD
 	printk(KERN_DEFAULT "------------[ cut here ]------------\n");
+=======
+	printk(KERN_EMERG "------------[ cut here ]------------\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (file)
 		printk(KERN_CRIT "kernel BUG at %s:%u!\n",

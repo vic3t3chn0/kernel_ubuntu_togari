@@ -24,6 +24,10 @@
 #include <mach/hardware.h>
 #include <asm/leds.h>
 #include <asm/mach-types.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define LED_STATE_ENABLED	1
 #define LED_STATE_CLAIMED	2

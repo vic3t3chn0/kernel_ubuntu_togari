@@ -17,7 +17,11 @@
  */
 
 #include <stdarg.h>
+<<<<<<< HEAD
 #include <linux/module.h>	/* for KSYM_SYMBOL_LEN */
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/types.h>
 #include <linux/string.h>
 #include <linux/ctype.h>
@@ -31,7 +35,24 @@
 #include <asm/div64.h>
 #include <asm/sections.h>	/* for dereference_function_descriptor() */
 
+<<<<<<< HEAD
 #include "kstrtox.h"
+=======
+/* Works only for digits and letters, but small and fast */
+#define TOLOWER(x) ((x) | 0x20)
+
+static unsigned int simple_guess_base(const char *cp)
+{
+	if (cp[0] == '0') {
+		if (TOLOWER(cp[1]) == 'x' && isxdigit(cp[2]))
+			return 16;
+		else
+			return 8;
+	} else {
+		return 10;
+	}
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * simple_strtoull - convert a string to an unsigned long long
@@ -41,6 +62,7 @@
  */
 unsigned long long simple_strtoull(const char *cp, char **endp, unsigned int base)
 {
+<<<<<<< HEAD
 	unsigned long long result;
 	unsigned int rv;
 
@@ -49,6 +71,25 @@ unsigned long long simple_strtoull(const char *cp, char **endp, unsigned int bas
 	/* FIXME */
 	cp += (rv & ~KSTRTOX_OVERFLOW);
 
+=======
+	unsigned long long result = 0;
+
+	if (!base)
+		base = simple_guess_base(cp);
+
+	if (base == 16 && cp[0] == '0' && TOLOWER(cp[1]) == 'x')
+		cp += 2;
+
+	while (isxdigit(*cp)) {
+		unsigned int value;
+
+		value = isdigit(*cp) ? *cp - '0' : TOLOWER(*cp) - 'a' + 10;
+		if (value >= base)
+			break;
+		result = result * base + value;
+		cp++;
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (endp)
 		*endp = (char *)cp;
 
@@ -212,6 +253,7 @@ char *put_dec(char *buf, unsigned long long num)
 	}
 }
 
+<<<<<<< HEAD
 /*
  * Convert passed number to decimal string.
  * Returns the length of string.  On buffer overflow, returns 0.
@@ -232,6 +274,8 @@ int num_to_str(char *buf, int size, unsigned long long num)
 	return  len;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ZEROPAD	1		/* pad with zero */
 #define SIGN	2		/* unsigned/signed long */
 #define PLUS	4		/* show plus */
@@ -436,7 +480,11 @@ char *symbol_string(char *buf, char *end, void *ptr,
 	else if (ext != 'f' && ext != 's')
 		sprint_symbol(sym, value);
 	else
+<<<<<<< HEAD
 		sprint_symbol_no_offset(sym, value);
+=======
+		kallsyms_lookup(value, NULL, NULL, NULL, sym);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return string(buf, end, sym, spec);
 #else
@@ -567,7 +615,11 @@ char *mac_address_string(char *buf, char *end, u8 *addr,
 	}
 
 	for (i = 0; i < 6; i++) {
+<<<<<<< HEAD
 		p = hex_byte_pack(p, addr[i]);
+=======
+		p = pack_hex_byte(p, addr[i]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (fmt[0] == 'M' && i != 5)
 			*p++ = separator;
 	}
@@ -687,6 +739,7 @@ char *ip6_compressed_string(char *p, const char *addr)
 		lo = word & 0xff;
 		if (hi) {
 			if (hi > 0x0f)
+<<<<<<< HEAD
 				p = hex_byte_pack(p, hi);
 			else
 				*p++ = hex_asc_lo(hi);
@@ -694,6 +747,15 @@ char *ip6_compressed_string(char *p, const char *addr)
 		}
 		else if (lo > 0x0f)
 			p = hex_byte_pack(p, lo);
+=======
+				p = pack_hex_byte(p, hi);
+			else
+				*p++ = hex_asc_lo(hi);
+			p = pack_hex_byte(p, lo);
+		}
+		else if (lo > 0x0f)
+			p = pack_hex_byte(p, lo);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		else
 			*p++ = hex_asc_lo(lo);
 		needcolon = true;
@@ -715,8 +777,13 @@ char *ip6_string(char *p, const char *addr, const char *fmt)
 	int i;
 
 	for (i = 0; i < 8; i++) {
+<<<<<<< HEAD
 		p = hex_byte_pack(p, *addr++);
 		p = hex_byte_pack(p, *addr++);
+=======
+		p = pack_hex_byte(p, *addr++);
+		p = pack_hex_byte(p, *addr++);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (fmt[0] == 'I' && i != 7)
 			*p++ = ':';
 	}
@@ -774,7 +841,11 @@ char *uuid_string(char *buf, char *end, const u8 *addr,
 	}
 
 	for (i = 0; i < 16; i++) {
+<<<<<<< HEAD
 		p = hex_byte_pack(p, addr[index[i]]);
+=======
+		p = pack_hex_byte(p, addr[index[i]]);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (i) {
 		case 3:
 		case 5:
@@ -797,6 +868,7 @@ char *uuid_string(char *buf, char *end, const u8 *addr,
 	return string(buf, end, uuid, spec);
 }
 
+<<<<<<< HEAD
 static
 char *netdev_feature_string(char *buf, char *end, const u8 *addr,
 		      struct printf_spec spec)
@@ -809,6 +881,8 @@ char *netdev_feature_string(char *buf, char *end, const u8 *addr,
 	return number(buf, end, *(const netdev_features_t *)addr, spec);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int kptr_restrict __read_mostly;
 
 /*
@@ -856,8 +930,11 @@ int kptr_restrict __read_mostly;
  *       Do not use this feature without some mechanism to verify the
  *       correctness of the format string and va_list arguments.
  * - 'K' For a kernel pointer that should be hidden from unprivileged users
+<<<<<<< HEAD
  * - 'NF' For a netdev_features_t
  * - 'a' For a phys_addr_t type and its derivative types (passed by reference)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Note: The difference between 'S' and 'F' is that on ia64 and ppc64
  * function pointers are really function descriptors, which contain a
@@ -912,6 +989,7 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
 	case 'U':
 		return uuid_string(buf, end, ptr, spec, fmt);
 	case 'V':
+<<<<<<< HEAD
 		{
 			va_list va;
 
@@ -921,6 +999,11 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
 			va_end(va);
 			return buf;
 		}
+=======
+		return buf + vsnprintf(buf, end > buf ? end - buf : 0,
+				       ((struct va_format *)ptr)->fmt,
+				       *(((struct va_format *)ptr)->va));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case 'K':
 		/*
 		 * %pK cannot be used in IRQ context because its test
@@ -936,6 +1019,7 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
 		       has_capability_noaudit(current, CAP_SYSLOG))))
 			ptr = NULL;
 		break;
+<<<<<<< HEAD
 	case 'N':
 		switch (fmt[1]) {
 		case 'F':
@@ -948,6 +1032,8 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
 		spec.base = 16;
 		return number(buf, end,
 			      (unsigned long long) *((phys_addr_t *)ptr), spec);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	spec.flags |= SMALL;
 	if (spec.field_width == -1) {
@@ -1066,8 +1152,13 @@ precision:
 qualifier:
 	/* get the conversion qualifier */
 	spec->qualifier = -1;
+<<<<<<< HEAD
 	if (*fmt == 'h' || _tolower(*fmt) == 'l' ||
 	    _tolower(*fmt) == 'z' || *fmt == 't') {
+=======
+	if (*fmt == 'h' || TOLOWER(*fmt) == 'l' ||
+	    TOLOWER(*fmt) == 'z' || *fmt == 't') {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		spec->qualifier = *fmt++;
 		if (unlikely(spec->qualifier == *fmt)) {
 			if (spec->qualifier == 'l') {
@@ -1134,7 +1225,11 @@ qualifier:
 			spec->type = FORMAT_TYPE_LONG;
 		else
 			spec->type = FORMAT_TYPE_ULONG;
+<<<<<<< HEAD
 	} else if (_tolower(spec->qualifier) == 'z') {
+=======
+	} else if (TOLOWER(spec->qualifier) == 'z') {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		spec->type = FORMAT_TYPE_SIZE_T;
 	} else if (spec->qualifier == 't') {
 		spec->type = FORMAT_TYPE_PTRDIFF;
@@ -1179,7 +1274,12 @@ qualifier:
  * %pi4 print an IPv4 address with leading zeros
  * %pI6 print an IPv6 address with colons
  * %pi6 print an IPv6 address without colons
+<<<<<<< HEAD
  * %pI6c print an IPv6 address as specified by RFC 5952
+=======
+ * %pI6c print an IPv6 address as specified by
+ *   http://tools.ietf.org/html/draft-ietf-6man-text-addr-representation-00
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * %pU[bBlL] print a UUID/GUID in big or little endian using lower or upper
  *   case.
  * %n is ignored
@@ -1292,7 +1392,11 @@ int vsnprintf(char *buf, size_t size, const char *fmt, va_list args)
 			if (qualifier == 'l') {
 				long *ip = va_arg(args, long *);
 				*ip = (str - buf);
+<<<<<<< HEAD
 			} else if (_tolower(qualifier) == 'z') {
+=======
+			} else if (TOLOWER(qualifier) == 'z') {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				size_t *ip = va_arg(args, size_t *);
 				*ip = (str - buf);
 			} else {
@@ -1579,7 +1683,11 @@ do {									\
 			void *skip_arg;
 			if (qualifier == 'l')
 				skip_arg = va_arg(args, long *);
+<<<<<<< HEAD
 			else if (_tolower(qualifier) == 'z')
+=======
+			else if (TOLOWER(qualifier) == 'z')
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				skip_arg = va_arg(args, size_t *);
 			else
 				skip_arg = va_arg(args, int *);
@@ -1885,8 +1993,13 @@ int vsscanf(const char *buf, const char *fmt, va_list args)
 
 		/* get conversion qualifier */
 		qualifier = -1;
+<<<<<<< HEAD
 		if (*fmt == 'h' || _tolower(*fmt) == 'l' ||
 		    _tolower(*fmt) == 'z') {
+=======
+		if (*fmt == 'h' || TOLOWER(*fmt) == 'l' ||
+		    TOLOWER(*fmt) == 'z') {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			qualifier = *fmt++;
 			if (unlikely(qualifier == *fmt)) {
 				if (qualifier == 'h') {

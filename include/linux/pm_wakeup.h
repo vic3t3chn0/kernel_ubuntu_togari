@@ -33,6 +33,7 @@
  *
  * @total_time: Total time this wakeup source has been active.
  * @max_time: Maximum time this wakeup source has been continuously active.
+<<<<<<< HEAD
  * @last_time: Monotonic clock when the wakeup source's was touched last time.
  * @prevent_sleep_time: Total time this source has been preventing autosleep.
  * @event_count: Number of signaled wakeup events.
@@ -45,6 +46,17 @@
  */
 struct wakeup_source {
 	const char 		*name;
+=======
+ * @last_time: Monotonic clock when the wakeup source's was activated last time.
+ * @event_count: Number of signaled wakeup events.
+ * @active_count: Number of times the wakeup sorce was activated.
+ * @relax_count: Number of times the wakeup sorce was deactivated.
+ * @hit_count: Number of times the wakeup sorce might abort system suspend.
+ * @active: Status of the wakeup source.
+ */
+struct wakeup_source {
+	char 			*name;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct list_head	entry;
 	spinlock_t		lock;
 	struct timer_list	timer;
@@ -52,6 +64,7 @@ struct wakeup_source {
 	ktime_t total_time;
 	ktime_t max_time;
 	ktime_t last_time;
+<<<<<<< HEAD
 	ktime_t start_prevent_time;
 	ktime_t prevent_sleep_time;
 	unsigned long		event_count;
@@ -61,6 +74,13 @@ struct wakeup_source {
 	unsigned long		wakeup_count;
 	bool			active:1;
 	bool			autosleep_enabled:1;
+=======
+	unsigned long		event_count;
+	unsigned long		active_count;
+	unsigned long		relax_count;
+	unsigned long		hit_count;
+	unsigned int		active:1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #ifdef CONFIG_PM_SLEEP
@@ -80,9 +100,13 @@ static inline bool device_may_wakeup(struct device *dev)
 }
 
 /* drivers/base/power/wakeup.c */
+<<<<<<< HEAD
 extern void wakeup_source_prepare(struct wakeup_source *ws, const char *name);
 extern struct wakeup_source *wakeup_source_create(const char *name);
 extern void wakeup_source_drop(struct wakeup_source *ws);
+=======
+extern struct wakeup_source *wakeup_source_create(const char *name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void wakeup_source_destroy(struct wakeup_source *ws);
 extern void wakeup_source_add(struct wakeup_source *ws);
 extern void wakeup_source_remove(struct wakeup_source *ws);
@@ -112,16 +136,22 @@ static inline bool device_can_wakeup(struct device *dev)
 	return dev->power.can_wakeup;
 }
 
+<<<<<<< HEAD
 static inline void wakeup_source_prepare(struct wakeup_source *ws,
 					 const char *name) {}
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline struct wakeup_source *wakeup_source_create(const char *name)
 {
 	return NULL;
 }
 
+<<<<<<< HEAD
 static inline void wakeup_source_drop(struct wakeup_source *ws) {}
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void wakeup_source_destroy(struct wakeup_source *ws) {}
 
 static inline void wakeup_source_add(struct wakeup_source *ws) {}
@@ -179,6 +209,7 @@ static inline void pm_wakeup_event(struct device *dev, unsigned int msec) {}
 
 #endif /* !CONFIG_PM_SLEEP */
 
+<<<<<<< HEAD
 static inline void wakeup_source_init(struct wakeup_source *ws,
 				      const char *name)
 {
@@ -192,4 +223,6 @@ static inline void wakeup_source_trash(struct wakeup_source *ws)
 	wakeup_source_drop(ws);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _LINUX_PM_WAKEUP_H */

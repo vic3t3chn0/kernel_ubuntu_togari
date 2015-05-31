@@ -4,6 +4,10 @@
  * initial bootloader stuff..
  */
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	.set noreorder
 	.globl	__start

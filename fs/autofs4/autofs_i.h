@@ -39,6 +39,7 @@
 
 /* #define DEBUG */
 
+<<<<<<< HEAD
 #define DPRINTK(fmt, ...)				\
 	pr_debug("pid %d: %s: " fmt "\n",		\
 		current->pid, __func__, ##__VA_ARGS__)
@@ -50,6 +51,29 @@
 #define AUTOFS_ERROR(fmt, ...)				\
 	printk(KERN_ERR "pid %d: %s: " fmt "\n",	\
 		current->pid, __func__, ##__VA_ARGS__)
+=======
+#ifdef DEBUG
+#define DPRINTK(fmt, args...)				\
+do {							\
+	printk(KERN_DEBUG "pid %d: %s: " fmt "\n",	\
+		current->pid, __func__, ##args);	\
+} while (0)
+#else
+#define DPRINTK(fmt, args...) do {} while (0)
+#endif
+
+#define AUTOFS_WARN(fmt, args...)			\
+do {							\
+	printk(KERN_WARNING "pid %d: %s: " fmt "\n",	\
+		current->pid, __func__, ##args);	\
+} while (0)
+
+#define AUTOFS_ERROR(fmt, args...)			\
+do {							\
+	printk(KERN_ERR "pid %d: %s: " fmt "\n",	\
+		current->pid, __func__, ##args);	\
+} while (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Unified info structure.  This is pointed to by both the dentry and
    inode structures.  Each file in the filesystem has an instance of this
@@ -116,7 +140,10 @@ struct autofs_sb_info {
 	int needs_reghost;
 	struct super_block *sb;
 	struct mutex wq_mutex;
+<<<<<<< HEAD
 	struct mutex pipe_mutex;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spinlock_t fs_lock;
 	struct autofs_wait_queue *queues; /* Wait queue pointer */
 	spinlock_t lookup_lock;
@@ -156,7 +183,11 @@ static inline int autofs4_ispending(struct dentry *dentry)
 	return 0;
 }
 
+<<<<<<< HEAD
 struct inode *autofs4_get_inode(struct super_block *, umode_t);
+=======
+struct inode *autofs4_get_inode(struct super_block *, mode_t);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void autofs4_free_ino(struct autofs_info *);
 
 /* Expiration */

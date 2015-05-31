@@ -14,6 +14,10 @@
 #include <linux/pagemap.h>
 
 #include <asm/cacheflush.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/tlbflush.h>
 
 void flush_cache_mm(struct mm_struct *mm)

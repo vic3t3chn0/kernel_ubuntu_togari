@@ -62,10 +62,13 @@
 #define MADV_HUGEPAGE	67		/* Worth backing with hugepages */
 #define MADV_NOHUGEPAGE	68		/* Not worth backing with hugepages */
 
+<<<<<<< HEAD
 #define MADV_DONTDUMP   69		/* Explicity exclude from the core dump,
 					   overrides the coredump filter bits */
 #define MADV_DODUMP	70		/* Clear the MADV_NODUMP flag */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* compatibility flags */
 #define MAP_FILE	0
 #define MAP_VARIABLE	0

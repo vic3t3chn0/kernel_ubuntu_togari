@@ -60,7 +60,10 @@ int main(int argc, char *argv[])
 	uint8_t exptbl[256], invtbl[256];
 
 	printf("#include <linux/raid/pq.h>\n");
+<<<<<<< HEAD
 	printf("#include <linux/export.h>\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Compute multiplication table */
 	printf("\nconst u8  __attribute__((aligned(256)))\n"

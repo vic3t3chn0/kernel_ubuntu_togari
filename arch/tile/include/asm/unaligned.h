@@ -21,6 +21,7 @@
 #define get_unaligned	__get_unaligned_le
 #define put_unaligned	__put_unaligned_le
 
+<<<<<<< HEAD
 /*
  * Is the kernel doing fixups of unaligned accesses?  If <0, no kernel
  * intervention occurs and SIGBUS is delivered with no data address
@@ -36,4 +37,6 @@ extern int unaligned_printk;
 /* Number of unaligned fixups performed */
 extern unsigned int unaligned_fixup_count;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_TILE_UNALIGNED_H */

@@ -145,14 +145,32 @@ void gfs2_trans_add_bh(struct gfs2_glock *gl, struct buffer_head *bh, int meta)
 	struct gfs2_sbd *sdp = gl->gl_sbd;
 	struct gfs2_bufdata *bd;
 
+<<<<<<< HEAD
+=======
+	lock_buffer(bh);
+	gfs2_log_lock(sdp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	bd = bh->b_private;
 	if (bd)
 		gfs2_assert(sdp, bd->bd_gl == gl);
 	else {
+<<<<<<< HEAD
 		gfs2_attach_bufdata(gl, bh, meta);
 		bd = bh->b_private;
 	}
 	lops_add(sdp, &bd->bd_le);
+=======
+		gfs2_log_unlock(sdp);
+		unlock_buffer(bh);
+		gfs2_attach_bufdata(gl, bh, meta);
+		bd = bh->b_private;
+		lock_buffer(bh);
+		gfs2_log_lock(sdp);
+	}
+	lops_add(sdp, &bd->bd_le);
+	gfs2_log_unlock(sdp);
+	unlock_buffer(bh);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void gfs2_trans_add_revoke(struct gfs2_sbd *sdp, struct gfs2_bufdata *bd)
@@ -185,3 +203,11 @@ void gfs2_trans_add_unrevoke(struct gfs2_sbd *sdp, u64 blkno, unsigned int len)
 	gfs2_log_unlock(sdp);
 }
 
+<<<<<<< HEAD
+=======
+void gfs2_trans_add_rg(struct gfs2_rgrpd *rgd)
+{
+	lops_add(rgd->rd_sbd, &rgd->rd_le);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

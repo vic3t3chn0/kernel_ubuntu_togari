@@ -27,10 +27,16 @@
 #include <linux/interrupt.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include <plat/dma.h>
 
 #include <mach/hardware.h>
 #include <mach/lcdc.h>
+=======
+#include <mach/hardware.h>
+#include <mach/lcdc.h>
+#include <plat/dma.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int omap_lcd_dma_running(void)
 {
@@ -118,7 +124,11 @@ EXPORT_SYMBOL(omap_set_lcd_dma_b1_mirror);
 void omap_set_lcd_dma_b1_vxres(unsigned long vxres)
 {
 	if (cpu_is_omap15xx()) {
+<<<<<<< HEAD
 		printk(KERN_ERR "DMA virtual resolution is not supported "
+=======
+		printk(KERN_ERR "DMA virtual resulotion is not supported "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				"in 1510 mode\n");
 		BUG();
 	}

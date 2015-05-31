@@ -80,6 +80,7 @@ const char *fdt_string(const void *fdt, int stroffset)
 	return (const char *)fdt + fdt_off_dt_strings(fdt) + stroffset;
 }
 
+<<<<<<< HEAD
 static int _fdt_string_eq(const void *fdt, int stroffset,
 			  const char *s, int len)
 {
@@ -88,6 +89,8 @@ static int _fdt_string_eq(const void *fdt, int stroffset,
 	return (strlen(p) == len) && (memcmp(p, s, len) == 0);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int fdt_get_mem_rsv(const void *fdt, int n, uint64_t *address, uint64_t *size)
 {
 	FDT_CHECK_HEADER(fdt);
@@ -105,6 +108,7 @@ int fdt_num_mem_rsv(const void *fdt)
 	return i;
 }
 
+<<<<<<< HEAD
 static int _nextprop(const void *fdt, int offset)
 {
 	uint32_t tag;
@@ -129,6 +133,8 @@ static int _nextprop(const void *fdt, int offset)
 	return -FDT_ERR_NOTFOUND;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int fdt_subnode_offset_namelen(const void *fdt, int offset,
 			       const char *name, int namelen)
 {
@@ -136,6 +142,7 @@ int fdt_subnode_offset_namelen(const void *fdt, int offset,
 
 	FDT_CHECK_HEADER(fdt);
 
+<<<<<<< HEAD
 	for (depth = 0;
 	     (offset >= 0) && (depth >= 0);
 	     offset = fdt_next_node(fdt, offset, &depth))
@@ -146,6 +153,22 @@ int fdt_subnode_offset_namelen(const void *fdt, int offset,
 	if (depth < 0)
 		return -FDT_ERR_NOTFOUND;
 	return offset; /* error */
+=======
+	for (depth = 0, offset = fdt_next_node(fdt, offset, &depth);
+	     (offset >= 0) && (depth > 0);
+	     offset = fdt_next_node(fdt, offset, &depth)) {
+		if (depth < 0)
+			return -FDT_ERR_NOTFOUND;
+		else if ((depth == 1)
+			 && _fdt_nodename_eq(fdt, offset, name, namelen))
+			return offset;
+	}
+
+	if (offset < 0)
+		return offset; /* error */
+	else
+		return -FDT_ERR_NOTFOUND;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 int fdt_subnode_offset(const void *fdt, int parentoffset,
@@ -162,6 +185,7 @@ int fdt_path_offset(const void *fdt, const char *path)
 
 	FDT_CHECK_HEADER(fdt);
 
+<<<<<<< HEAD
 	/* see if we have an alias */
 	if (*path != '/') {
 		const char *q = strchr(path, '/');
@@ -176,6 +200,10 @@ int fdt_path_offset(const void *fdt, const char *path)
 
 		p = q;
 	}
+=======
+	if (*path != '/')
+		return -FDT_ERR_BADPATH;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	while (*p) {
 		const char *q;
@@ -218,6 +246,7 @@ const char *fdt_get_name(const void *fdt, int nodeoffset, int *len)
 	return NULL;
 }
 
+<<<<<<< HEAD
 int fdt_first_property_offset(const void *fdt, int nodeoffset)
 {
 	int offset;
@@ -295,12 +324,84 @@ const void *fdt_getprop_namelen(const void *fdt, int nodeoffset,
 	const struct fdt_property *prop;
 
 	prop = fdt_get_property_namelen(fdt, nodeoffset, name, namelen, lenp);
+=======
+const struct fdt_property *fdt_get_property(const void *fdt,
+					    int nodeoffset,
+					    const char *name, int *lenp)
+{
+	uint32_t tag;
+	const struct fdt_property *prop;
+	int namestroff;
+	int offset, nextoffset;
+	int err;
+
+	if (((err = fdt_check_header(fdt)) != 0)
+	    || ((err = _fdt_check_node_offset(fdt, nodeoffset)) < 0))
+			goto fail;
+
+	nextoffset = err;
+	do {
+		offset = nextoffset;
+
+		tag = fdt_next_tag(fdt, offset, &nextoffset);
+		switch (tag) {
+		case FDT_END:
+			err = -FDT_ERR_TRUNCATED;
+			goto fail;
+
+		case FDT_BEGIN_NODE:
+		case FDT_END_NODE:
+		case FDT_NOP:
+			break;
+
+		case FDT_PROP:
+			err = -FDT_ERR_BADSTRUCTURE;
+			prop = fdt_offset_ptr(fdt, offset, sizeof(*prop));
+			if (! prop)
+				goto fail;
+			namestroff = fdt32_to_cpu(prop->nameoff);
+			if (strcmp(fdt_string(fdt, namestroff), name) == 0) {
+				/* Found it! */
+				int len = fdt32_to_cpu(prop->len);
+				prop = fdt_offset_ptr(fdt, offset,
+						      sizeof(*prop)+len);
+				if (! prop)
+					goto fail;
+
+				if (lenp)
+					*lenp = len;
+
+				return prop;
+			}
+			break;
+
+		default:
+			err = -FDT_ERR_BADSTRUCTURE;
+			goto fail;
+		}
+	} while ((tag != FDT_BEGIN_NODE) && (tag != FDT_END_NODE));
+
+	err = -FDT_ERR_NOTFOUND;
+ fail:
+	if (lenp)
+		*lenp = err;
+	return NULL;
+}
+
+const void *fdt_getprop(const void *fdt, int nodeoffset,
+		  const char *name, int *lenp)
+{
+	const struct fdt_property *prop;
+
+	prop = fdt_get_property(fdt, nodeoffset, name, lenp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (! prop)
 		return NULL;
 
 	return prop->data;
 }
 
+<<<<<<< HEAD
 const void *fdt_getprop_by_offset(const void *fdt, int offset,
 				  const char **namep, int *lenp)
 {
@@ -320,11 +421,14 @@ const void *fdt_getprop(const void *fdt, int nodeoffset,
 	return fdt_getprop_namelen(fdt, nodeoffset, name, strlen(name), lenp);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 uint32_t fdt_get_phandle(const void *fdt, int nodeoffset)
 {
 	const uint32_t *php;
 	int len;
 
+<<<<<<< HEAD
 	/* FIXME: This is a bit sub-optimal, since we potentially scan
 	 * over all the properties twice. */
 	php = fdt_getprop(fdt, nodeoffset, "phandle", &len);
@@ -333,10 +437,16 @@ uint32_t fdt_get_phandle(const void *fdt, int nodeoffset)
 		if (!php || (len != sizeof(*php)))
 			return 0;
 	}
+=======
+	php = fdt_getprop(fdt, nodeoffset, "linux,phandle", &len);
+	if (!php || (len != sizeof(*php)))
+		return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return fdt32_to_cpu(*php);
 }
 
+<<<<<<< HEAD
 const char *fdt_get_alias_namelen(const void *fdt,
 				  const char *name, int namelen)
 {
@@ -354,6 +464,8 @@ const char *fdt_get_alias(const void *fdt, const char *name)
 	return fdt_get_alias_namelen(fdt, name, strlen(name));
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int fdt_get_path(const void *fdt, int nodeoffset, char *buf, int buflen)
 {
 	int pdepth = 0, p = 0;
@@ -368,6 +480,12 @@ int fdt_get_path(const void *fdt, int nodeoffset, char *buf, int buflen)
 	for (offset = 0, depth = 0;
 	     (offset >= 0) && (offset <= nodeoffset);
 	     offset = fdt_next_node(fdt, offset, &depth)) {
+<<<<<<< HEAD
+=======
+		if (pdepth < depth)
+			continue; /* overflowed buffer */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		while (pdepth > depth) {
 			do {
 				p--;
@@ -375,6 +493,7 @@ int fdt_get_path(const void *fdt, int nodeoffset, char *buf, int buflen)
 			pdepth--;
 		}
 
+<<<<<<< HEAD
 		if (pdepth >= depth) {
 			name = fdt_get_name(fdt, offset, &namelen);
 			if (!name)
@@ -385,6 +504,16 @@ int fdt_get_path(const void *fdt, int nodeoffset, char *buf, int buflen)
 				buf[p++] = '/';
 				pdepth++;
 			}
+=======
+		name = fdt_get_name(fdt, offset, &namelen);
+		if (!name)
+			return namelen;
+		if ((p + namelen + 1) <= buflen) {
+			memcpy(buf + p, name, namelen);
+			p += namelen;
+			buf[p++] = '/';
+			pdepth++;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 
 		if (offset == nodeoffset) {
@@ -394,7 +523,11 @@ int fdt_get_path(const void *fdt, int nodeoffset, char *buf, int buflen)
 			if (p > 1) /* special case so that root path is "/", not "" */
 				p--;
 			buf[p] = '\0';
+<<<<<<< HEAD
 			return 0;
+=======
+			return p;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	}
 
@@ -492,6 +625,7 @@ int fdt_node_offset_by_prop_value(const void *fdt, int startoffset,
 
 int fdt_node_offset_by_phandle(const void *fdt, uint32_t phandle)
 {
+<<<<<<< HEAD
 	int offset;
 
 	if ((phandle == 0) || (phandle == -1))
@@ -517,6 +651,16 @@ int fdt_node_offset_by_phandle(const void *fdt, uint32_t phandle)
 
 static int _fdt_stringlist_contains(const char *strlist, int listlen,
 				    const char *str)
+=======
+	if ((phandle == 0) || (phandle == -1))
+		return -FDT_ERR_BADPHANDLE;
+	phandle = cpu_to_fdt32(phandle);
+	return fdt_node_offset_by_prop_value(fdt, -1, "linux,phandle",
+					     &phandle, sizeof(phandle));
+}
+
+static int _stringlist_contains(const char *strlist, int listlen, const char *str)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int len = strlen(str);
 	const char *p;
@@ -542,7 +686,11 @@ int fdt_node_check_compatible(const void *fdt, int nodeoffset,
 	prop = fdt_getprop(fdt, nodeoffset, "compatible", &len);
 	if (!prop)
 		return len;
+<<<<<<< HEAD
 	if (_fdt_stringlist_contains(prop, len, compatible))
+=======
+	if (_stringlist_contains(prop, len, compatible))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 0;
 	else
 		return 1;

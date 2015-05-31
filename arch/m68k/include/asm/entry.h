@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef __M68K_ENTRY_H
 #define __M68K_ENTRY_H
 
@@ -260,3 +261,10 @@
 #endif
 
 #endif /* __M68K_ENTRY_H */
+=======
+#ifdef __uClinux__
+#include "entry_no.h"
+#else
+#include "entry_mm.h"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

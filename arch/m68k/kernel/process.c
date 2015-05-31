@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  *  linux/arch/m68k/kernel/process.c
  *
@@ -375,3 +376,10 @@ unsigned long get_wchan(struct task_struct *p)
 	} while (count++ < 16);
 	return 0;
 }
+=======
+#ifdef CONFIG_MMU
+#include "process_mm.c"
+#else
+#include "process_no.c"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

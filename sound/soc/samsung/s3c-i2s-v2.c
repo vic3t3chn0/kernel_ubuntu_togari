@@ -16,7 +16,10 @@
  * option) any later version.
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/delay.h>
 #include <linux/clk.h>
 #include <linux/io.h>
@@ -660,7 +663,11 @@ int s3c_i2sv2_probe(struct snd_soc_dai *dai,
 	if (IS_ERR(i2s->iis_pclk)) {
 		dev_err(dev, "failed to get iis_clock\n");
 		iounmap(i2s->regs);
+<<<<<<< HEAD
 		return -ENOENT;
+=======
+		return PTR_ERR(i2s->iis_pclk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	clk_enable(i2s->iis_pclk);

@@ -11,7 +11,10 @@
 #include <asm/machvec.h>
 #include <asm/dma.h>
 #include <asm/perf_event.h>
+<<<<<<< HEAD
 #include <asm/mce.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "proto.h"
 #include "irq_impl.h"

@@ -20,6 +20,7 @@ static int set_x2apic_phys_mode(char *arg)
 }
 early_param("x2apic_phys", set_x2apic_phys_mode);
 
+<<<<<<< HEAD
 static int x2apic_acpi_madt_oem_check(char *oem_id, char *oem_table_id)
 {
 	if (x2apic_phys)
@@ -32,6 +33,21 @@ static int x2apic_acpi_madt_oem_check(char *oem_id, char *oem_table_id)
 	}
 	else
 		return 0;
+=======
+static bool x2apic_fadt_phys(void)
+{
+	if ((acpi_gbl_FADT.header.revision >= FADT2_REVISION_ID) &&
+		(acpi_gbl_FADT.flags & ACPI_FADT_APIC_PHYSICAL)) {
+		printk(KERN_DEBUG "System requires x2apic physical mode\n");
+		return true;
+	}
+	return false;
+}
+
+static int x2apic_acpi_madt_oem_check(char *oem_id, char *oem_table_id)
+{
+	return x2apic_enabled() && (x2apic_phys || x2apic_fadt_phys());
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void
@@ -114,7 +130,11 @@ static void init_x2apic_ldr(void)
 
 static int x2apic_phys_probe(void)
 {
+<<<<<<< HEAD
 	if (x2apic_mode && x2apic_phys)
+=======
+	if (x2apic_mode && (x2apic_phys || x2apic_fadt_phys()))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return 1;
 
 	return apic == &apic_x2apic_phys;
@@ -125,7 +145,10 @@ static struct apic apic_x2apic_phys = {
 	.name				= "physical x2apic",
 	.probe				= x2apic_phys_probe,
 	.acpi_madt_oem_check		= x2apic_acpi_madt_oem_check,
+<<<<<<< HEAD
 	.apic_id_valid			= x2apic_apic_id_valid,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.apic_id_registered		= x2apic_apic_id_registered,
 
 	.irq_delivery_mode		= dest_Fixed,

@@ -28,6 +28,11 @@
 # define __IA64_UL(x)		((unsigned long)(x))
 # define __IA64_UL_CONST(x)	x##UL
 
+<<<<<<< HEAD
+=======
+typedef unsigned int umode_t;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * These aren't exported outside the kernel to avoid name space clashes
  */

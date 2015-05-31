@@ -35,7 +35,11 @@
  *	in any case.
  */
 
+<<<<<<< HEAD
 int verify_iovec(struct msghdr *m, struct iovec *iov, struct sockaddr_storage *address, int mode)
+=======
+int verify_iovec(struct msghdr *m, struct iovec *iov, struct sockaddr *address, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int size, ct, err;
 

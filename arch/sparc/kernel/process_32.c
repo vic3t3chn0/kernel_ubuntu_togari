@@ -28,6 +28,10 @@
 #include <asm/auxio.h>
 #include <asm/oplib.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/page.h>
 #include <asm/pgalloc.h>
 #include <asm/pgtable.h>
@@ -37,7 +41,10 @@
 #include <asm/elf.h>
 #include <asm/prom.h>
 #include <asm/unistd.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* 
  * Power management idle function 
@@ -113,7 +120,13 @@ void cpu_idle(void)
 			while (!need_resched())
 				cpu_relax();
 		}
+<<<<<<< HEAD
 		schedule_preempt_disabled();
+=======
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		check_pgt_cache();
 	}
 }
@@ -136,7 +149,13 @@ void cpu_idle(void)
 			while (!need_resched())
 				cpu_relax();
 		}
+<<<<<<< HEAD
 		schedule_preempt_disabled();
+=======
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		check_pgt_cache();
 	}
 }
@@ -376,7 +395,12 @@ void flush_thread(void)
 #endif
 	}
 
+<<<<<<< HEAD
 	/* This task is no longer a kernel thread. */
+=======
+	/* Now, this task is no longer a kernel thread. */
+	current->thread.current_ds = USER_DS;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (current->thread.flags & SPARC_FLAG_KTHREAD) {
 		current->thread.flags &= ~SPARC_FLAG_KTHREAD;
 

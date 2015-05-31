@@ -42,6 +42,7 @@ extern struct ppc64_caches ppc64_caches;
 #endif /* __powerpc64__ && ! __ASSEMBLY__ */
 
 #if !defined(__ASSEMBLY__)
+<<<<<<< HEAD
 
 #define __read_mostly __attribute__((__section__(".data..read_mostly")))
 
@@ -61,5 +62,10 @@ extern void cacheable_memzero(void *p, unsigned int nb);
 extern void *cacheable_memcpy(void *, const void *, unsigned int);
 
 #endif /* !__ASSEMBLY__ */
+=======
+#define __read_mostly __attribute__((__section__(".data..read_mostly")))
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __KERNEL__ */
 #endif /* _ASM_POWERPC_CACHE_H */

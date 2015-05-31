@@ -23,8 +23,14 @@
 #include <linux/gfp.h>
 #include <asm/page.h>
 #include <asm/pal.h>
+<<<<<<< HEAD
 #include <asm/pgtable.h>
 #include <linux/atomic.h>
+=======
+#include <asm/system.h>
+#include <asm/pgtable.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/tlbflush.h>
 #include <asm/sn/arch.h>
 

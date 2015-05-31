@@ -41,8 +41,11 @@ __mutex_fastpath_lock(atomic_t *count, void (*fail_fn)(atomic_t *))
 	__res |= __ex_flag;
 	if (unlikely(__res != 0))
 		fail_fn(count);
+<<<<<<< HEAD
 	else
 		smp_rmb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline int
@@ -63,9 +66,12 @@ __mutex_fastpath_lock_retval(atomic_t *count, int (*fail_fn)(atomic_t *))
 	__res |= __ex_flag;
 	if (unlikely(__res != 0))
 		__res = fail_fn(count);
+<<<<<<< HEAD
 	else
 		smp_rmb();
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return __res;
 }
 
@@ -79,7 +85,10 @@ __mutex_fastpath_unlock(atomic_t *count, void (*fail_fn)(atomic_t *))
 {
 	int __ex_flag, __res, __orig;
 
+<<<<<<< HEAD
 	smp_wmb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__asm__ (
 
 		"ldrex	%0, [%3]	\n\t"
@@ -125,8 +134,11 @@ __mutex_fastpath_trylock(atomic_t *count, int (*fail_fn)(atomic_t *))
 		: "=&r" (__orig), "=&r" (__res), "=&r" (__ex_flag)
 		: "r" (&count->counter)
 		: "cc", "memory" );
+<<<<<<< HEAD
 	if (__orig)
 		smp_rmb();
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return __orig;
 }

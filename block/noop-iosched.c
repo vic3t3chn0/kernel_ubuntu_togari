@@ -94,7 +94,13 @@ static struct elevator_type elevator_noop = {
 
 static int __init noop_init(void)
 {
+<<<<<<< HEAD
 	return elv_register(&elevator_noop);
+=======
+	elv_register(&elevator_noop);
+
+	return 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __exit noop_exit(void)
@@ -102,7 +108,15 @@ static void __exit noop_exit(void)
 	elv_unregister(&elevator_noop);
 }
 
+<<<<<<< HEAD
 module_init(noop_init);
+=======
+#ifdef CONFIG_FAST_RESUME
+beforeresume_initcall(noop_init);
+#else
+module_init(noop_init);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 module_exit(noop_exit);
 
 

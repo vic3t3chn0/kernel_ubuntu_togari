@@ -23,7 +23,11 @@ OUTPUT_ARCH(sh)
 ENTRY(_start)
 SECTIONS
 {
+<<<<<<< HEAD
 	. = PAGE_OFFSET + MEMORY_OFFSET + PHYSICAL_OFFSET + CONFIG_ZERO_PAGE_OFFSET;
+=======
+	. = PAGE_OFFSET + MEMORY_OFFSET + CONFIG_ZERO_PAGE_OFFSET;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	_text = .;		/* Text and read-only data */
 

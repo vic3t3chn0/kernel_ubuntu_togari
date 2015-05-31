@@ -29,6 +29,7 @@ ENTRY(cpu_arm7_dcache_clean_area)
 /*
  * Function: arm6_7_data_abort ()
  *
+<<<<<<< HEAD
  * Params  : r2 = pt_regs
  *	   : r4 = aborted context pc
  *	   : r5 = aborted context psr
@@ -36,12 +37,25 @@ ENTRY(cpu_arm7_dcache_clean_area)
  * Purpose : obtain information about current aborted instruction
  *
  * Returns : r4-r5, r10-r11, r13 preserved
+=======
+ * Params  : r2 = address of aborted instruction
+ *	   : sp = pointer to registers
+ *
+ * Purpose : obtain information about current aborted instruction
+ *
+ * Returns : r0 = address of abort
+ *	   : r1 = FSR
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 ENTRY(cpu_arm7_data_abort)
 	mrc	p15, 0, r1, c5, c0, 0		@ get FSR
 	mrc	p15, 0, r0, c6, c0, 0		@ get FAR
+<<<<<<< HEAD
 	ldr	r8, [r4]			@ read arm instruction
+=======
+	ldr	r8, [r2]			@ read arm instruction
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tst	r8, #1 << 20			@ L = 0 -> write?
 	orreq	r1, r1, #1 << 11		@ yes.
 	and	r7, r8, #15 << 24
@@ -49,7 +63,11 @@ ENTRY(cpu_arm7_data_abort)
 	nop
 
 /* 0 */	b	.data_unknown
+<<<<<<< HEAD
 /* 1 */	b	do_DataAbort			@ swp
+=======
+/* 1 */	mov	pc, lr				@ swp
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* 2 */	b	.data_unknown
 /* 3 */	b	.data_unknown
 /* 4 */	b	.data_arm_lateldrpostconst	@ ldr	rd, [rn], #m
@@ -60,6 +78,7 @@ ENTRY(cpu_arm7_data_abort)
 /* 9 */	b	.data_arm_ldmstm		@ ldm*b	rn, <rlist>
 /* a */	b	.data_unknown
 /* b */	b	.data_unknown
+<<<<<<< HEAD
 /* c */	b	do_DataAbort			@ ldc	rd, [rn], #m	@ Same as ldr	rd, [rn], #m
 /* d */	b	do_DataAbort			@ ldc	rd, [rn, #m]
 /* e */	b	.data_unknown
@@ -68,15 +87,32 @@ ENTRY(cpu_arm7_data_abort)
 	mov	r0, r4
 	mov	r1, r8
 	b	baddataabort
+=======
+/* c */	mov	pc, lr				@ ldc	rd, [rn], #m	@ Same as ldr	rd, [rn], #m
+/* d */	mov	pc, lr				@ ldc	rd, [rn, #m]
+/* e */	b	.data_unknown
+/* f */
+.data_unknown:	@ Part of jumptable
+	mov	r0, r2
+	mov	r1, r8
+	mov	r2, sp
+	bl	baddataabort
+	b	ret_from_exception
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 ENTRY(cpu_arm6_data_abort)
 	mrc	p15, 0, r1, c5, c0, 0		@ get FSR
 	mrc	p15, 0, r0, c6, c0, 0		@ get FAR
+<<<<<<< HEAD
 	ldr	r8, [r4]			@ read arm instruction
+=======
+	ldr	r8, [r2]			@ read arm instruction
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	tst	r8, #1 << 20			@ L = 0 -> write?
 	orreq	r1, r1, #1 << 11		@ yes.
 	and	r7, r8, #14 << 24
 	teq	r7, #8 << 24			@ was it ldm/stm
+<<<<<<< HEAD
 	bne	do_DataAbort
 
 .data_arm_ldmstm:
@@ -133,12 +169,74 @@ ENTRY(cpu_arm6_data_abort)
 	ldr	r6, [r2, r7, lsl #2]		@ Get register 'Rm'
 	mov	r9, r8, lsr #7			@ get shift count
 	ands	r9, r9, #31
+=======
+	movne	pc, lr
+
+.data_arm_ldmstm:
+	tst	r8, #1 << 21			@ check writeback bit
+	moveq	pc, lr				@ no writeback -> no fixup
+	mov	r7, #0x11
+	orr	r7, r7, #0x1100
+	and	r6, r8, r7
+	and	r2, r8, r7, lsl #1
+	add	r6, r6, r2, lsr #1
+	and	r2, r8, r7, lsl #2
+	add	r6, r6, r2, lsr #2
+	and	r2, r8, r7, lsl #3
+	add	r6, r6, r2, lsr #3
+	add	r6, r6, r6, lsr #8
+	add	r6, r6, r6, lsr #4
+	and	r6, r6, #15			@ r6 = no. of registers to transfer.
+	and	r5, r8, #15 << 16		@ Extract 'n' from instruction
+	ldr	r7, [sp, r5, lsr #14]		@ Get register 'Rn'
+	tst	r8, #1 << 23			@ Check U bit
+	subne	r7, r7, r6, lsl #2		@ Undo increment
+	addeq	r7, r7, r6, lsl #2		@ Undo decrement
+	str	r7, [sp, r5, lsr #14]		@ Put register 'Rn'
+	mov	pc, lr
+
+.data_arm_apply_r6_and_rn:
+	and	r5, r8, #15 << 16		@ Extract 'n' from instruction
+	ldr	r7, [sp, r5, lsr #14]		@ Get register 'Rn'
+	tst	r8, #1 << 23			@ Check U bit
+	subne	r7, r7, r6			@ Undo incrmenet
+	addeq	r7, r7, r6			@ Undo decrement
+	str	r7, [sp, r5, lsr #14]		@ Put register 'Rn'
+	mov	pc, lr
+
+.data_arm_lateldrpreconst:
+	tst	r8, #1 << 21			@ check writeback bit
+	moveq	pc, lr				@ no writeback -> no fixup
+.data_arm_lateldrpostconst:
+	movs	r2, r8, lsl #20			@ Get offset
+	moveq	pc, lr				@ zero -> no fixup
+	and	r5, r8, #15 << 16		@ Extract 'n' from instruction
+	ldr	r7, [sp, r5, lsr #14]		@ Get register 'Rn'
+	tst	r8, #1 << 23			@ Check U bit
+	subne	r7, r7, r2, lsr #20		@ Undo increment
+	addeq	r7, r7, r2, lsr #20		@ Undo decrement
+	str	r7, [sp, r5, lsr #14]		@ Put register 'Rn'
+	mov	pc, lr
+
+.data_arm_lateldrprereg:
+	tst	r8, #1 << 21			@ check writeback bit
+	moveq	pc, lr				@ no writeback -> no fixup
+.data_arm_lateldrpostreg:
+	and	r7, r8, #15			@ Extract 'm' from instruction
+	ldr	r6, [sp, r7, lsl #2]		@ Get register 'Rm'
+	mov	r5, r8, lsr #7			@ get shift count
+	ands	r5, r5, #31
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	and	r7, r8, #0x70			@ get shift type
 	orreq	r7, r7, #8			@ shift count = 0
 	add	pc, pc, r7
 	nop
 
+<<<<<<< HEAD
 	mov	r6, r6, lsl r9			@ 0: LSL #!0
+=======
+	mov	r6, r6, lsl r5			@ 0: LSL #!0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b	.data_arm_apply_r6_and_rn
 	b	.data_arm_apply_r6_and_rn	@ 1: LSL #0
 	nop
@@ -146,7 +244,11 @@ ENTRY(cpu_arm6_data_abort)
 	nop
 	b	.data_unknown			@ 3: MUL?
 	nop
+<<<<<<< HEAD
 	mov	r6, r6, lsr r9			@ 4: LSR #!0
+=======
+	mov	r6, r6, lsr r5			@ 4: LSR #!0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b	.data_arm_apply_r6_and_rn
 	mov	r6, r6, lsr #32			@ 5: LSR #32
 	b	.data_arm_apply_r6_and_rn
@@ -154,7 +256,11 @@ ENTRY(cpu_arm6_data_abort)
 	nop
 	b	.data_unknown			@ 7: MUL?
 	nop
+<<<<<<< HEAD
 	mov	r6, r6, asr r9			@ 8: ASR #!0
+=======
+	mov	r6, r6, asr r5			@ 8: ASR #!0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b	.data_arm_apply_r6_and_rn
 	mov	r6, r6, asr #32			@ 9: ASR #32
 	b	.data_arm_apply_r6_and_rn
@@ -162,7 +268,11 @@ ENTRY(cpu_arm6_data_abort)
 	nop
 	b	.data_unknown			@ B: MUL?
 	nop
+<<<<<<< HEAD
 	mov	r6, r6, ror r9			@ C: ROR #!0
+=======
+	mov	r6, r6, ror r5			@ C: ROR #!0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	b	.data_arm_apply_r6_and_rn
 	mov	r6, r6, rrx			@ D: RRX
 	b	.data_arm_apply_r6_and_rn
@@ -225,7 +335,10 @@ ENTRY(cpu_arm7_set_pte_ext)
  * Params  : r0 = address to jump to
  * Notes   : This sets up everything for a reset
  */
+<<<<<<< HEAD
 		.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ENTRY(cpu_arm6_reset)
 ENTRY(cpu_arm7_reset)
 		mov	r1, #0
@@ -236,9 +349,12 @@ ENTRY(cpu_arm7_reset)
 		mov	r1, #0x30
 		mcr	p15, 0, r1, c1, c0, 0		@ turn off MMU etc
 		mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_arm6_reset)
 ENDPROC(cpu_arm7_reset)
 		.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		__CPUINIT
 

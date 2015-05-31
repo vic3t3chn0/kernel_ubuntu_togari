@@ -302,7 +302,11 @@ static int ieee802154_rcv(struct sk_buff *skb, struct net_device *dev,
 	struct packet_type *pt, struct net_device *orig_dev)
 {
 	if (!netif_running(dev))
+<<<<<<< HEAD
 		goto drop;
+=======
+		return -ENODEV;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	pr_debug("got frame, type %d, dev %p\n", dev->type, dev);
 #ifdef DEBUG
 	print_hex_dump_bytes("ieee802154_rcv ", DUMP_PREFIX_NONE, skb->data, skb->len);

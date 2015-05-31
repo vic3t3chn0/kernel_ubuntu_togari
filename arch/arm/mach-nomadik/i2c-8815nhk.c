@@ -3,8 +3,13 @@
 #include <linux/i2c.h>
 #include <linux/i2c-algo-bit.h>
 #include <linux/i2c-gpio.h>
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include <plat/gpio-nomadik.h>
+=======
+#include <linux/gpio.h>
+#include <linux/platform_device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * There are two busses in the 8815NHK.

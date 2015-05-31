@@ -4,6 +4,10 @@
 
 #include <linux/console.h>
 #include <linux/init.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <hwregs/reg_rdwr.h>
 #include <hwregs/reg_map.h>
 #include <hwregs/ser_defs.h>

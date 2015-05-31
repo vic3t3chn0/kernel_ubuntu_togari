@@ -3,7 +3,10 @@
 #
 
 obj-$(CONFIG_IA32_EMULATION) := ia32entry.o sys_ia32.o ia32_signal.o
+<<<<<<< HEAD
 obj-$(CONFIG_IA32_EMULATION) += nosyscall.o syscall_ia32.o
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 sysv-$(CONFIG_SYSVIPC) := ipc32.o
 obj-$(CONFIG_IA32_EMULATION) += $(sysv-y)

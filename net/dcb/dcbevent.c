@@ -19,7 +19,10 @@
 
 #include <linux/rtnetlink.h>
 #include <linux/notifier.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static ATOMIC_NOTIFIER_HEAD(dcbevent_notif_chain);
 

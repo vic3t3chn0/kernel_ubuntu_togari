@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 /*
  * Copyright (c) 2010-2012 Samsung Electronics Co., Ltd.
+=======
+/* linux/arch/arm/mach-exynos/include/mach/irqs.h
+ *
+ * Copyright (c) 2010-2011 Samsung Electronics Co., Ltd.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *		http://www.samsung.com
  *
  * EXYNOS - IRQ definitions
@@ -14,6 +20,7 @@
 
 #include <plat/irqs.h>
 
+<<<<<<< HEAD
 /* PPI: Private Peripheral Interrupt */
 
 #define IRQ_PPI(x)			(x + 16)
@@ -463,5 +470,28 @@
 /* Set the default NR_IRQS */
 
 #define NR_IRQS				(IRQ_TIMER_BASE + IRQ_TIMER_COUNT)
+=======
+/* SGI: Software Generated Interrupt */
+
+#define IRQ_SGI(x)		S5P_IRQ(x)
+
+/* PPI: Private Peripheral Interrupt */
+
+#define IRQ_PPI(x)		S5P_IRQ(x+16)
+
+#define IRQ_PPI_MCT_L		IRQ_PPI(12)
+
+/* SPI: Shared Peripheral Interrupt */
+
+#define IRQ_SPI(x)		S5P_IRQ(x+32)
+
+#if defined(CONFIG_ARCH_EXYNOS4)
+#include "irqs-exynos4.h"
+#elif defined(CONFIG_ARCH_EXYNOS5)
+#include "irqs-exynos5.h"
+#else
+#error "ARCH_EXYNOS* is not defined"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __ASM_ARCH_IRQS_H */

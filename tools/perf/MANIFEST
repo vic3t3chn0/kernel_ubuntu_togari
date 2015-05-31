@@ -1,5 +1,8 @@
 tools/perf
+<<<<<<< HEAD
 include/linux/const.h
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 include/linux/perf_event.h
 include/linux/rbtree.h
 include/linux/list.h
@@ -9,7 +12,10 @@ lib/rbtree.c
 include/linux/swab.h
 arch/*/include/asm/unistd*.h
 arch/*/lib/memcpy*.S
+<<<<<<< HEAD
 arch/*/lib/memset*.S
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 include/linux/poison.h
 include/linux/magic.h
 include/linux/hw_breakpoint.h

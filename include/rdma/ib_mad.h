@@ -77,6 +77,7 @@
 
 #define IB_MGMT_MAX_METHODS			128
 
+<<<<<<< HEAD
 /* MAD Status field bit masks */
 #define IB_MGMT_MAD_STATUS_SUCCESS			0x0000
 #define IB_MGMT_MAD_STATUS_BUSY				0x0001
@@ -86,6 +87,8 @@
 #define IB_MGMT_MAD_STATUS_UNSUPPORTED_METHOD_ATTRIB	0x000c
 #define IB_MGMT_MAD_STATUS_INVALID_ATTRIB_VALUE		0x001c
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* RMPP information */
 #define IB_MGMT_RMPP_VERSION			1
 

@@ -8,6 +8,10 @@
 #include <asm/unistd.h>
 #include <sys/time.h>
 #include "as-layout.h"
+<<<<<<< HEAD
+=======
+#include "kern_constants.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "ptrace_user.h"
 #include "stub-data.h"
 #include "sysdep/stub.h"

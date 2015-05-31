@@ -9,9 +9,21 @@
  */
 #include <mach/hardware.h>
 
+<<<<<<< HEAD
 		.macro  get_irqnr_preamble, base, tmp
 		.endm
 
+=======
+		.macro	disable_fiq
+		.endm
+
+		.macro  get_irqnr_preamble, base, tmp
+		.endm
+
+		.macro  arch_ret_to_user, tmp1, tmp2
+		.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
 		ldr	\irqstat, =(IXP4XX_INTC_BASE_VIRT+IXP4XX_ICIP_OFFSET)
 		ldr	\irqstat, [\irqstat]		@ get interrupts

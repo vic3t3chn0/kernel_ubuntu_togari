@@ -8,7 +8,10 @@
  */
 #include <linux/fb.h>
 #include <linux/pci.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int fb_is_primary_device(struct fb_info *info)
 {

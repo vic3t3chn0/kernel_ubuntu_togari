@@ -12,12 +12,24 @@
 
 #include <plat/dma-core.h>
 
+<<<<<<< HEAD
 extern struct bus_type dma_subsys;
+=======
+extern struct sysdev_class dma_sysclass;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct s3c2410_dma_chan s3c2410_chans[S3C_DMA_CHANNELS];
 
 #define DMA_CH_VALID		(1<<31)
 #define DMA_CH_NEVER		(1<<30)
 
+<<<<<<< HEAD
+=======
+struct s3c24xx_dma_addr {
+	unsigned long		from;
+	unsigned long		to;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* struct s3c24xx_dma_map
  *
  * this holds the mapping information for the channel selected
@@ -26,6 +38,10 @@ extern struct s3c2410_dma_chan s3c2410_chans[S3C_DMA_CHANNELS];
 
 struct s3c24xx_dma_map {
 	const char		*name;
+<<<<<<< HEAD
+=======
+	struct s3c24xx_dma_addr  hw_addr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	unsigned long		 channels[S3C_DMA_CHANNELS];
 	unsigned long		 channels_rx[S3C_DMA_CHANNELS];
@@ -41,7 +57,11 @@ struct s3c24xx_dma_selection {
 
 	void	(*direction)(struct s3c2410_dma_chan *chan,
 			     struct s3c24xx_dma_map *map,
+<<<<<<< HEAD
 			     enum dma_data_direction dir);
+=======
+			     enum s3c2410_dmasrc dir);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 extern int s3c24xx_dma_init_map(struct s3c24xx_dma_selection *sel);

@@ -17,8 +17,11 @@ struct twofish_ctx {
 	u32 s[4][256], w[8], k[32];
 };
 
+<<<<<<< HEAD
 int __twofish_setkey(struct twofish_ctx *ctx, const u8 *key,
 		     unsigned int key_len, u32 *flags);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int twofish_setkey(struct crypto_tfm *tfm, const u8 *key, unsigned int key_len);
 
 #endif

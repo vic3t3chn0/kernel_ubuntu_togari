@@ -15,6 +15,12 @@
 	.macro  get_irqnr_preamble, base, tmp
 	.endm
 
+<<<<<<< HEAD
+=======
+	.macro  arch_ret_to_user, tmp1, tmp2
+	.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
 
 		mov	\base, #AIC_BA
@@ -24,3 +30,11 @@
 		cmp	\irqnr, #0
 
 	.endm
+<<<<<<< HEAD
+=======
+
+	/* currently don't need an disable_fiq macro */
+
+	.macro	disable_fiq
+	.endm
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

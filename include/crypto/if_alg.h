@@ -16,7 +16,10 @@
 #include <linux/compiler.h>
 #include <linux/completion.h>
 #include <linux/if_alg.h>
+<<<<<<< HEAD
 #include <linux/scatterlist.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/types.h>
 #include <net/sock.h>
 

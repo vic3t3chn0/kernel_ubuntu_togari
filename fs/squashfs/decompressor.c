@@ -52,12 +52,15 @@ static const struct squashfs_decompressor squashfs_xz_comp_ops = {
 };
 #endif
 
+<<<<<<< HEAD
 #ifndef CONFIG_SQUASHFS_ZLIB
 static const struct squashfs_decompressor squashfs_zlib_comp_ops = {
 	NULL, NULL, NULL, ZLIB_COMPRESSION, "zlib", 0
 };
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static const struct squashfs_decompressor squashfs_unknown_comp_ops = {
 	NULL, NULL, NULL, 0, "unknown", 0
 };

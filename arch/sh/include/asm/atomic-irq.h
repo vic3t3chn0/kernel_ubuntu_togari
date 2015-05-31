@@ -1,8 +1,11 @@
 #ifndef __ASM_SH_ATOMIC_IRQ_H
 #define __ASM_SH_ATOMIC_IRQ_H
 
+<<<<<<< HEAD
 #include <linux/irqflags.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * To get proper branch prediction for the main line, we must branch
  * forward to code at the end of this object's .text section, then

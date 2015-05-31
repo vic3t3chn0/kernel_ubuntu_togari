@@ -72,7 +72,11 @@ static void s3c_pm_run_sysram(run_fn_t fn, u32 *arg)
 
 static u32 *s3c_pm_countram(struct resource *res, u32 *val)
 {
+<<<<<<< HEAD
 	u32 size = (u32)resource_size(res);
+=======
+	u32 size = (u32)(res->end - res->start)+1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	size += CHECK_CHUNKSIZE-1;
 	size /= CHECK_CHUNKSIZE;

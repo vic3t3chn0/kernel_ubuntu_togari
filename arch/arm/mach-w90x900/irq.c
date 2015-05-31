@@ -19,7 +19,11 @@
 #include <linux/interrupt.h>
 #include <linux/ioport.h>
 #include <linux/ptrace.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/io.h>
 
 #include <asm/irq.h>
@@ -28,8 +32,11 @@
 #include <mach/hardware.h>
 #include <mach/regs-irq.h>
 
+<<<<<<< HEAD
 #include "nuc9xx.h"
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct group_irq {
 	unsigned long		gpen;
 	unsigned int		enabled;

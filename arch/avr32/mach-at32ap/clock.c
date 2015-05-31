@@ -13,7 +13,10 @@
  */
 #include <linux/clk.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/device.h>
 #include <linux/string.h>
 #include <linux/list.h>

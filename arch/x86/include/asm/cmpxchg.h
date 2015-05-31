@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef ASM_X86_CMPXCHG_H
 #define ASM_X86_CMPXCHG_H
 
@@ -137,11 +138,14 @@ extern void __add_wrong_size(void)
 #define __cmpxchg_local(ptr, old, new, size)				\
 	__raw_cmpxchg((ptr), (old), (new), (size), "")
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_X86_32
 # include "cmpxchg_32.h"
 #else
 # include "cmpxchg_64.h"
 #endif
+<<<<<<< HEAD
 
 #ifdef __HAVE_ARCH_CMPXCHG
 #define cmpxchg(ptr, old, new)						\
@@ -231,3 +235,5 @@ extern void __add_wrong_size(void)
 	__cmpxchg_double(, p1, p2, o1, o2, n1, n2)
 
 #endif	/* ASM_X86_CMPXCHG_H */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

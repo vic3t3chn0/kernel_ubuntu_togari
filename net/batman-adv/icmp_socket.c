@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2007-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2007-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Marek Lindner
  *
@@ -46,7 +50,11 @@ static int bat_socket_open(struct inode *inode, struct file *file)
 
 	nonseekable_open(inode, file);
 
+<<<<<<< HEAD
 	socket_client = kmalloc(sizeof(*socket_client), GFP_KERNEL);
+=======
+	socket_client = kmalloc(sizeof(struct socket_client), GFP_KERNEL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!socket_client)
 		return -ENOMEM;
@@ -59,7 +67,12 @@ static int bat_socket_open(struct inode *inode, struct file *file)
 	}
 
 	if (i == ARRAY_SIZE(socket_client_hash)) {
+<<<<<<< HEAD
 		pr_err("Error - can't add another packet client: maximum number of clients reached\n");
+=======
+		pr_err("Error - can't add another packet client: "
+		       "maximum number of clients reached\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		kfree(socket_client);
 		return -EXFULL;
 	}
@@ -161,7 +174,12 @@ static ssize_t bat_socket_write(struct file *file, const char __user *buff,
 
 	if (len < sizeof(struct icmp_packet)) {
 		bat_dbg(DBG_BATMAN, bat_priv,
+<<<<<<< HEAD
 			"Error - can't send packet from char device: invalid packet size\n");
+=======
+			"Error - can't send packet from char device: "
+			"invalid packet size\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -EINVAL;
 	}
 
@@ -184,30 +202,57 @@ static ssize_t bat_socket_write(struct file *file, const char __user *buff,
 	skb_reserve(skb, sizeof(struct ethhdr));
 	icmp_packet = (struct icmp_packet_rr *)skb_put(skb, packet_len);
 
+<<<<<<< HEAD
 	if (copy_from_user(icmp_packet, buff, packet_len)) {
+=======
+	if (!access_ok(VERIFY_READ, buff, packet_len)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len = -EFAULT;
 		goto free_skb;
 	}
 
+<<<<<<< HEAD
 	if (icmp_packet->header.packet_type != BAT_ICMP) {
 		bat_dbg(DBG_BATMAN, bat_priv,
 			"Error - can't send packet from char device: got bogus packet type (expected: BAT_ICMP)\n");
+=======
+	if (__copy_from_user(icmp_packet, buff, packet_len)) {
+		len = -EFAULT;
+		goto free_skb;
+	}
+
+	if (icmp_packet->packet_type != BAT_ICMP) {
+		bat_dbg(DBG_BATMAN, bat_priv,
+			"Error - can't send packet from char device: "
+			"got bogus packet type (expected: BAT_ICMP)\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len = -EINVAL;
 		goto free_skb;
 	}
 
 	if (icmp_packet->msg_type != ECHO_REQUEST) {
 		bat_dbg(DBG_BATMAN, bat_priv,
+<<<<<<< HEAD
 			"Error - can't send packet from char device: got bogus message type (expected: ECHO_REQUEST)\n");
+=======
+			"Error - can't send packet from char device: "
+			"got bogus message type (expected: ECHO_REQUEST)\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		len = -EINVAL;
 		goto free_skb;
 	}
 
 	icmp_packet->uid = socket_client->index;
 
+<<<<<<< HEAD
 	if (icmp_packet->header.version != COMPAT_VERSION) {
 		icmp_packet->msg_type = PARAMETER_PROBLEM;
 		icmp_packet->header.version = COMPAT_VERSION;
+=======
+	if (icmp_packet->version != COMPAT_VERSION) {
+		icmp_packet->msg_type = PARAMETER_PROBLEM;
+		icmp_packet->ttl = COMPAT_VERSION;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		bat_socket_add_packet(socket_client, icmp_packet, packet_len);
 		goto free_skb;
 	}
@@ -300,7 +345,11 @@ static void bat_socket_add_packet(struct socket_client *socket_client,
 {
 	struct socket_packet *socket_packet;
 
+<<<<<<< HEAD
 	socket_packet = kmalloc(sizeof(*socket_packet), GFP_ATOMIC);
+=======
+	socket_packet = kmalloc(sizeof(struct socket_packet), GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!socket_packet)
 		return;

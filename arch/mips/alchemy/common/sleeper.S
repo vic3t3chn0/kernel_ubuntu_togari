@@ -153,6 +153,7 @@ LEAF(alchemy_sleep_au1550)
 
 END(alchemy_sleep_au1550)
 
+<<<<<<< HEAD
 /* sleepcode for Au1300 memory controller type */
 LEAF(alchemy_sleep_au1300)
 
@@ -226,6 +227,8 @@ LEAF(alchemy_sleep_au1300)
 
 END(alchemy_sleep_au1300)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* This is where we return upon wakeup.
 	 * Reload all of the registers and return.

@@ -70,6 +70,7 @@ struct aa_ext {
 static void audit_cb(struct audit_buffer *ab, void *va)
 {
 	struct common_audit_data *sa = va;
+<<<<<<< HEAD
 	if (sa->aad->iface.target) {
 		struct aa_profile *name = sa->aad->iface.target;
 		audit_log_format(ab, " name=");
@@ -77,6 +78,15 @@ static void audit_cb(struct audit_buffer *ab, void *va)
 	}
 	if (sa->aad->iface.pos)
 		audit_log_format(ab, " offset=%ld", sa->aad->iface.pos);
+=======
+	if (sa->aad.iface.target) {
+		struct aa_profile *name = sa->aad.iface.target;
+		audit_log_format(ab, " name=");
+		audit_log_untrustedstring(ab, name->base.hname);
+	}
+	if (sa->aad.iface.pos)
+		audit_log_format(ab, " offset=%ld", sa->aad.iface.pos);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /**
@@ -84,7 +94,11 @@ static void audit_cb(struct audit_buffer *ab, void *va)
  * @new: profile if it has been allocated (MAYBE NULL)
  * @name: name of the profile being manipulated (MAYBE NULL)
  * @info: any extra info about the failure (MAYBE NULL)
+<<<<<<< HEAD
  * @e: buffer position info
+=======
+ * @e: buffer position info (NOT NULL)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @error: error code
  *
  * Returns: %0 or error
@@ -94,6 +108,7 @@ static int audit_iface(struct aa_profile *new, const char *name,
 {
 	struct aa_profile *profile = __aa_current_profile();
 	struct common_audit_data sa;
+<<<<<<< HEAD
 	struct apparmor_audit_data aad = {0,};
 	COMMON_AUDIT_DATA_INIT(&sa, NONE);
 	sa.aad = &aad;
@@ -103,6 +118,14 @@ static int audit_iface(struct aa_profile *new, const char *name,
 	aad.name = name;
 	aad.info = info;
 	aad.error = error;
+=======
+	COMMON_AUDIT_DATA_INIT(&sa, NONE);
+	sa.aad.iface.pos = e->pos - e->start;
+	sa.aad.iface.target = new;
+	sa.aad.name = name;
+	sa.aad.info = info;
+	sa.aad.error = error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return aa_audit(AUDIT_APPARMOR_STATUS, profile, GFP_KERNEL, &sa,
 			audit_cb);
@@ -384,11 +407,19 @@ static bool unpack_trans_table(struct aa_ext *e, struct aa_profile *profile)
 		profile->file.trans.size = size;
 		for (i = 0; i < size; i++) {
 			char *str;
+<<<<<<< HEAD
 			int c, j, size2 = unpack_strdup(e, &str, NULL);
 			/* unpack_strdup verifies that the last character is
 			 * null termination byte.
 			 */
 			if (!size2)
+=======
+			int c, j, size = unpack_strdup(e, &str, NULL);
+			/* unpack_strdup verifies that the last character is
+			 * null termination byte.
+			 */
+			if (!size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				goto fail;
 			profile->file.trans.table[i] = str;
 			/* verify that name doesn't start with space */
@@ -396,7 +427,11 @@ static bool unpack_trans_table(struct aa_ext *e, struct aa_profile *profile)
 				goto fail;
 
 			/* count internal #  of internal \0 */
+<<<<<<< HEAD
 			for (c = j = 0; j < size2 - 2; j++) {
+=======
+			for (c = j = 0; j < size - 2; j++) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				if (!str[j])
 					c++;
 			}
@@ -443,11 +478,19 @@ static bool unpack_rlimits(struct aa_ext *e, struct aa_profile *profile)
 		if (size > RLIM_NLIMITS)
 			goto fail;
 		for (i = 0; i < size; i++) {
+<<<<<<< HEAD
 			u64 tmp2 = 0;
 			int a = aa_map_resource(i);
 			if (!unpack_u64(e, &tmp2, NULL))
 				goto fail;
 			profile->rlimits.limits[a].rlim_max = tmp2;
+=======
+			u64 tmp = 0;
+			int a = aa_map_resource(i);
+			if (!unpack_u64(e, &tmp, NULL))
+				goto fail;
+			profile->rlimits.limits[a].rlim_max = tmp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		if (!unpack_nameX(e, AA_ARRAYEND, NULL))
 			goto fail;
@@ -471,7 +514,11 @@ static struct aa_profile *unpack_profile(struct aa_ext *e)
 {
 	struct aa_profile *profile = NULL;
 	const char *name = NULL;
+<<<<<<< HEAD
 	int i, error = -EPROTO;
+=======
+	int error = -EPROTO;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kernel_cap_t tmpcap;
 	u32 tmp;
 
@@ -557,13 +604,17 @@ static struct aa_profile *unpack_profile(struct aa_ext *e)
 			goto fail;
 		if (!unpack_u32(e, &(profile->caps.extended.cap[1]), NULL))
 			goto fail;
+<<<<<<< HEAD
 		if (!unpack_nameX(e, AA_STRUCTEND, NULL))
 			goto fail;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	if (!unpack_rlimits(e, profile))
 		goto fail;
 
+<<<<<<< HEAD
 	if (unpack_nameX(e, AA_STRUCT, "policydb")) {
 		/* generic policy dfa - optional and may be NULL */
 		profile->policy.dfa = unpack_dfa(e);
@@ -586,6 +637,8 @@ static struct aa_profile *unpack_profile(struct aa_ext *e)
 			goto fail;
 	}
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* get file rules */
 	profile->file.dfa = unpack_dfa(e);
 	if (IS_ERR(profile->file.dfa)) {

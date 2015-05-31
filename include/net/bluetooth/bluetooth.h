@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 /*
    BlueZ - Bluetooth protocol stack for Linux
    Copyright (c) 2000-2001, 2010-2013 The Linux Foundation. All rights reserved.
+=======
+/* 
+   BlueZ - Bluetooth protocol stack for Linux
+   Copyright (C) 2000-2001 Qualcomm Incorporated
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
    Written 2000,2001 by Maxim Krasnyansky <maxk@qualcomm.com>
 
@@ -12,6 +18,7 @@
    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS.
    IN NO EVENT SHALL THE COPYRIGHT HOLDER(S) AND AUTHOR(S) BE LIABLE FOR ANY
+<<<<<<< HEAD
    CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES
    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
    ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
@@ -26,6 +33,26 @@
 #define __BLUETOOTH_H
 
 #include <linux/types.h>
+=======
+   CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES 
+   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN 
+   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF 
+   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+   ALL LIABILITY, INCLUDING LIABILITY FOR INFRINGEMENT OF ANY PATENTS, 
+   COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS, RELATING TO USE OF THIS 
+   SOFTWARE IS DISCLAIMED.
+*/
+#ifdef CONFIG_BT_MGMT
+#include "bluetooth_mgmt.h"
+#elif defined(CONFIG_BT_TIZEN)
+#include "tizen/bluetooth.h"
+#else
+#ifndef __BLUETOOTH_H
+#define __BLUETOOTH_H
+
+#include <asm/types.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/byteorder.h>
 #include <linux/list.h>
 #include <linux/poll.h>
@@ -38,7 +65,10 @@
 
 /* Reserv for core and drivers use */
 #define BT_SKB_RESERVE	8
+<<<<<<< HEAD
 #define BT_SKB_RESERVE_80211	32
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define BTPROTO_L2CAP	0
 #define BTPROTO_HCI	1
@@ -63,15 +93,27 @@ struct bt_security {
 #define BT_SECURITY_LOW		1
 #define BT_SECURITY_MEDIUM	2
 #define BT_SECURITY_HIGH	3
+<<<<<<< HEAD
 #define BT_SECURITY_VERY_HIGH	4
 
 #define BT_DEFER_SETUP	7
 #define BT_FLUSHABLE	8
 
+=======
+
+#define BT_DEFER_SETUP	7
+
+#define BT_FLUSHABLE	8
+
+#define BT_FLUSHABLE_OFF	0
+#define BT_FLUSHABLE_ON		1
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define BT_POWER	9
 struct bt_power {
 	__u8 force_active;
 };
+<<<<<<< HEAD
 
 #define BT_AMP_POLICY          10
 
@@ -125,6 +167,17 @@ struct bt_power {
 #define BT_INFO(fmt, arg...) printk(KERN_INFO "Bluetooth: " fmt "\n" , ## arg)
 #define BT_ERR(fmt, arg...)  printk(KERN_ERR "%s: " fmt "\n" , __func__ , ## arg)
 #define BT_DBG(fmt, arg...)  pr_debug("%s: " fmt "\n" , __func__ , ## arg)
+=======
+#define BT_POWER_FORCE_ACTIVE_OFF 0
+#define BT_POWER_FORCE_ACTIVE_ON  1
+
+__attribute__((format (printf, 2, 3)))
+int bt_printk(const char *level, const char *fmt, ...);
+
+#define BT_INFO(fmt, arg...)   bt_printk(KERN_INFO, pr_fmt(fmt), ##arg)
+#define BT_ERR(fmt, arg...)    bt_printk(KERN_ERR, pr_fmt(fmt), ##arg)
+#define BT_DBG(fmt, arg...)    pr_debug(fmt "\n", ##arg)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Connection and socket states */
 enum {
@@ -144,8 +197,13 @@ typedef struct {
 	__u8 b[6];
 } __packed bdaddr_t;
 
+<<<<<<< HEAD
 #define BDADDR_ANY   (&(bdaddr_t) {{0, 0, 0, 0, 0, 0} })
 #define BDADDR_LOCAL (&(bdaddr_t) {{0, 0, 0, 0xff, 0xff, 0xff} })
+=======
+#define BDADDR_ANY   (&(bdaddr_t) {{0, 0, 0, 0, 0, 0}})
+#define BDADDR_LOCAL (&(bdaddr_t) {{0, 0, 0, 0xff, 0xff, 0xff}})
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Copy, swap, convert BD Address */
 static inline int bacmp(bdaddr_t *ba1, bdaddr_t *ba2)
@@ -165,6 +223,7 @@ bdaddr_t *strtoba(char *str);
 
 #define bt_sk(__sk) ((struct bt_sock *) __sk)
 
+<<<<<<< HEAD
 struct bt_le_params {
 	__u8  prohibit_remote_chg;
 	__u8  filter_policy;
@@ -179,6 +238,8 @@ struct bt_le_params {
 	__u16 conn_timeout;
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct bt_sock {
 	struct sock sk;
 	bdaddr_t    src;
@@ -186,7 +247,10 @@ struct bt_sock {
 	struct list_head accept_q;
 	struct sock *parent;
 	u32 defer_setup;
+<<<<<<< HEAD
 	struct bt_le_params le_params;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct bt_sock_list {
@@ -202,7 +266,11 @@ int  bt_sock_recvmsg(struct kiocb *iocb, struct socket *sock,
 				struct msghdr *msg, size_t len, int flags);
 int  bt_sock_stream_recvmsg(struct kiocb *iocb, struct socket *sock,
 			struct msghdr *msg, size_t len, int flags);
+<<<<<<< HEAD
 uint bt_sock_poll(struct file *file, struct socket *sock, poll_table *wait);
+=======
+uint bt_sock_poll(struct file * file, struct socket *sock, poll_table *wait);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int  bt_sock_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg);
 int  bt_sock_wait_state(struct sock *sk, int state, unsigned long timeo);
 
@@ -211,6 +279,7 @@ void bt_accept_unlink(struct sock *sk);
 struct sock *bt_accept_dequeue(struct sock *parent, struct socket *newsock);
 
 /* Skb helpers */
+<<<<<<< HEAD
 struct bt_l2cap_control {
 	__u8  frame_type;
 	__u8  final;
@@ -222,14 +291,24 @@ struct bt_l2cap_control {
 	__u8  fcs;
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct bt_skb_cb {
 	__u8 pkt_type;
 	__u8 incoming;
 	__u16 expect;
+<<<<<<< HEAD
 	__u8 retries;
 	__u8 force_active;
 	unsigned short channel;
 	struct bt_l2cap_control control;
+=======
+	__u8 tx_seq;
+	__u8 retries;
+	__u8 sar;
+	unsigned short channel;
+	__u8 force_active;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 #define bt_cb(skb) ((struct bt_skb_cb *)((skb)->cb))
 
@@ -237,8 +316,12 @@ static inline struct sk_buff *bt_skb_alloc(unsigned int len, gfp_t how)
 {
 	struct sk_buff *skb;
 
+<<<<<<< HEAD
 	skb = alloc_skb(len + BT_SKB_RESERVE, how);
 	if (skb) {
+=======
+	if ((skb = alloc_skb(len + BT_SKB_RESERVE, how))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		skb_reserve(skb, BT_SKB_RESERVE);
 		bt_cb(skb)->incoming  = 0;
 	}
@@ -251,8 +334,12 @@ static inline struct sk_buff *bt_skb_send_alloc(struct sock *sk,
 	struct sk_buff *skb;
 
 	release_sock(sk);
+<<<<<<< HEAD
 	skb = sock_alloc_send_skb(sk, len + BT_SKB_RESERVE, nb, err);
 	if (skb) {
+=======
+	if ((skb = sock_alloc_send_skb(sk, len + BT_SKB_RESERVE, nb, err))) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		skb_reserve(skb, BT_SKB_RESERVE);
 		bt_cb(skb)->incoming  = 0;
 	}
@@ -277,7 +364,11 @@ out:
 	return NULL;
 }
 
+<<<<<<< HEAD
 int bt_err(__u16 code);
+=======
+int bt_to_errno(__u16 code);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int hci_sock_init(void);
 extern void hci_sock_cleanup(void);
@@ -287,6 +378,7 @@ extern void bt_sysfs_cleanup(void);
 
 extern struct dentry *bt_debugfs;
 
+<<<<<<< HEAD
 int l2cap_init(void);
 void l2cap_exit(void);
 
@@ -294,3 +386,36 @@ int sco_init(void);
 void sco_exit(void);
 
 #endif /* __BLUETOOTH_H */
+=======
+#ifdef CONFIG_BT_L2CAP
+int l2cap_init(void);
+void l2cap_exit(void);
+#else
+static inline int l2cap_init(void)
+{
+	return 0;
+}
+
+static inline void l2cap_exit(void)
+{
+}
+#endif
+
+#ifdef CONFIG_BT_SCO
+int sco_init(void);
+void sco_exit(void);
+#else
+static inline int sco_init(void)
+{
+	return 0;
+}
+
+static inline void sco_exit(void)
+{
+}
+#endif
+
+#endif /* __BLUETOOTH_H */
+
+#endif /*BT_MGMT*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

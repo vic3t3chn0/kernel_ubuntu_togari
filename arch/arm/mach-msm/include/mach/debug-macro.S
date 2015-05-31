@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*
+=======
+/* arch/arm/mach-msm7200/include/mach/debug-macro.S
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (C) 2007 Google, Inc.
  * Author: Brian Swetland <swetland@google.com>
@@ -18,6 +22,7 @@
 
 #include <mach/hardware.h>
 #include <mach/msm_iomap.h>
+<<<<<<< HEAD
 #include <mach/msm_serial_hsl_regs.h>
 
 #ifdef MSM_DEBUG_UART_PHYS
@@ -67,6 +72,30 @@
 #else
 
 	.macro  addruart, rp, rv
+=======
+
+#if defined(CONFIG_HAS_MSM_DEBUG_UART_PHYS) && !defined(CONFIG_MSM_DEBUG_UART_NONE)
+	.macro	addruart, rp, rv
+	ldr	\rp, =MSM_DEBUG_UART_PHYS
+	ldr	\rv, =MSM_DEBUG_UART_BASE
+	.endm
+
+	.macro	senduart,rd,rx
+	teq	\rx, #0
+	strne	\rd, [\rx, #0x0C]
+	.endm
+
+	.macro	waituart,rd,rx
+	@ wait for TX_READY
+1001:	ldr	\rd, [\rx, #0x08]
+	tst	\rd, #0x04
+	beq	1001b
+	.endm
+#else
+	.macro  addruart, rp, rv
+	mov	\rv, #0xff000000
+	orr	\rv, \rv, #0x00f00000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.endm
 
 	.macro	senduart,rd,rx

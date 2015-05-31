@@ -18,12 +18,18 @@
 #include "ext4_jbd2.h"
 #include "ext4.h"
 
+<<<<<<< HEAD
 #define MAX_32_NUM ((((unsigned long long) 1) << 32) - 1)
 
 long ext4_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 	struct inode *inode = filp->f_dentry->d_inode;
 	struct super_block *sb = inode->i_sb;
+=======
+long ext4_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+{
+	struct inode *inode = filp->f_dentry->d_inode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct ext4_inode_info *ei = EXT4_I(inode);
 	unsigned int flags;
 
@@ -38,7 +44,11 @@ long ext4_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		handle_t *handle = NULL;
 		int err, migrate = 0;
 		struct ext4_iloc iloc;
+<<<<<<< HEAD
 		unsigned int oldflags;
+=======
+		unsigned int oldflags, mask, i;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		unsigned int jflag;
 
 		if (!inode_owner_or_capable(inode))
@@ -47,7 +57,11 @@ long ext4_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (get_user(flags, (int __user *) arg))
 			return -EFAULT;
 
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 
@@ -115,9 +129,20 @@ long ext4_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		if (err)
 			goto flags_err;
 
+<<<<<<< HEAD
 		flags = flags & EXT4_FL_USER_MODIFIABLE;
 		flags |= oldflags & ~EXT4_FL_USER_MODIFIABLE;
 		ei->i_flags = flags;
+=======
+		for (i = 0, mask = 1; i < 32; i++, mask <<= 1) {
+			if (!(mask & EXT4_FL_USER_MODIFIABLE))
+				continue;
+			if (mask & flags)
+				ext4_set_inode_flag(inode, i);
+			else
+				ext4_clear_inode_flag(inode, i);
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		ext4_set_inode_flags(inode);
 		inode->i_ctime = ext4_current_time(inode);
@@ -136,7 +161,11 @@ flags_err:
 			err = ext4_ext_migrate(inode);
 flags_out:
 		mutex_unlock(&inode->i_mutex);
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 	case EXT4_IOC_GETVERSION:
@@ -152,7 +181,11 @@ flags_out:
 		if (!inode_owner_or_capable(inode))
 			return -EPERM;
 
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 		if (get_user(generation, (int __user *) arg)) {
@@ -160,11 +193,18 @@ flags_out:
 			goto setversion_out;
 		}
 
+<<<<<<< HEAD
 		mutex_lock(&inode->i_mutex);
 		handle = ext4_journal_start(inode, 1);
 		if (IS_ERR(handle)) {
 			err = PTR_ERR(handle);
 			goto unlock_out;
+=======
+		handle = ext4_journal_start(inode, 1);
+		if (IS_ERR(handle)) {
+			err = PTR_ERR(handle);
+			goto setversion_out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 		err = ext4_reserve_inode_write(handle, inode, &iloc);
 		if (err == 0) {
@@ -173,6 +213,7 @@ flags_out:
 			err = ext4_mark_iloc_dirty(handle, inode, &iloc);
 		}
 		ext4_journal_stop(handle);
+<<<<<<< HEAD
 
 unlock_out:
 		mutex_unlock(&inode->i_mutex);
@@ -204,6 +245,50 @@ setversion_out:
 		err = mnt_want_write_file(filp);
 		if (err)
 			goto group_extend_out;
+=======
+setversion_out:
+		mnt_drop_write(filp->f_path.mnt);
+		return err;
+	}
+#ifdef CONFIG_JBD2_DEBUG
+	case EXT4_IOC_WAIT_FOR_READONLY:
+		/*
+		 * This is racy - by the time we're woken up and running,
+		 * the superblock could be released.  And the module could
+		 * have been unloaded.  So sue me.
+		 *
+		 * Returns 1 if it slept, else zero.
+		 */
+		{
+			struct super_block *sb = inode->i_sb;
+			DECLARE_WAITQUEUE(wait, current);
+			int ret = 0;
+
+			set_current_state(TASK_INTERRUPTIBLE);
+			add_wait_queue(&EXT4_SB(sb)->ro_wait_queue, &wait);
+			if (timer_pending(&EXT4_SB(sb)->turn_ro_timer)) {
+				schedule();
+				ret = 1;
+			}
+			remove_wait_queue(&EXT4_SB(sb)->ro_wait_queue, &wait);
+			return ret;
+		}
+#endif
+	case EXT4_IOC_GROUP_EXTEND: {
+		ext4_fsblk_t n_blocks_count;
+		struct super_block *sb = inode->i_sb;
+		int err, err2=0;
+
+		if (!capable(CAP_SYS_RESOURCE))
+			return -EPERM;
+
+		if (get_user(n_blocks_count, (__u32 __user *)arg))
+			return -EFAULT;
+
+		err = mnt_want_write(filp->f_path.mnt);
+		if (err)
+			return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		err = ext4_group_extend(sb, EXT4_SB(sb)->s_es, n_blocks_count);
 		if (EXT4_SB(sb)->s_journal) {
@@ -213,9 +298,14 @@ setversion_out:
 		}
 		if (err == 0)
 			err = err2;
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
 group_extend_out:
 		ext4_resize_end(sb);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 
@@ -242,6 +332,7 @@ group_extend_out:
 			goto mext_out;
 		}
 
+<<<<<<< HEAD
 		if (EXT4_HAS_RO_COMPAT_FEATURE(sb,
 			       EXT4_FEATURE_RO_COMPAT_BIGALLOC)) {
 			ext4_msg(sb, KERN_ERR,
@@ -250,13 +341,22 @@ group_extend_out:
 		}
 
 		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			goto mext_out;
 
 		err = ext4_move_extents(filp, donor_filp, me.orig_start,
 					me.donor_start, me.len, &me.moved_len);
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
 		mnt_drop_write(filp->f_path.mnt);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+		if (me.moved_len > 0)
+			file_remove_suid(donor_filp);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		if (copy_to_user((struct move_extent __user *)arg,
 				 &me, sizeof(me)))
@@ -268,6 +368,7 @@ mext_out:
 
 	case EXT4_IOC_GROUP_ADD: {
 		struct ext4_new_group_data input;
+<<<<<<< HEAD
 		int err, err2=0;
 
 		err = ext4_resize_begin(sb);
@@ -291,6 +392,21 @@ mext_out:
 		err = mnt_want_write_file(filp);
 		if (err)
 			goto group_add_out;
+=======
+		struct super_block *sb = inode->i_sb;
+		int err, err2=0;
+
+		if (!capable(CAP_SYS_RESOURCE))
+			return -EPERM;
+
+		if (copy_from_user(&input, (struct ext4_new_group_input __user *)arg,
+				sizeof(input)))
+			return -EFAULT;
+
+		err = mnt_want_write(filp->f_path.mnt);
+		if (err)
+			return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		err = ext4_group_add(sb, &input);
 		if (EXT4_SB(sb)->s_journal) {
@@ -300,9 +416,14 @@ mext_out:
 		}
 		if (err == 0)
 			err = err2;
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
 group_add_out:
 		ext4_resize_end(sb);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 
@@ -312,7 +433,11 @@ group_add_out:
 		if (!inode_owner_or_capable(inode))
 			return -EACCES;
 
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (err)
 			return err;
 		/*
@@ -324,7 +449,11 @@ group_add_out:
 		mutex_lock(&(inode->i_mutex));
 		err = ext4_ext_migrate(inode);
 		mutex_unlock(&(inode->i_mutex));
+<<<<<<< HEAD
 		mnt_drop_write_file(filp);
+=======
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 
@@ -334,6 +463,7 @@ group_add_out:
 		if (!inode_owner_or_capable(inode))
 			return -EACCES;
 
+<<<<<<< HEAD
 		err = mnt_want_write_file(filp);
 		if (err)
 			return err;
@@ -393,11 +523,22 @@ group_add_out:
 		mnt_drop_write(filp->f_path.mnt);
 resizefs_out:
 		ext4_resize_end(sb);
+=======
+		err = mnt_want_write(filp->f_path.mnt);
+		if (err)
+			return err;
+		err = ext4_alloc_da_blocks(inode);
+		mnt_drop_write(filp->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 
 	case FITRIM:
 	{
+<<<<<<< HEAD
+=======
+		struct super_block *sb = inode->i_sb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		struct request_queue *q = bdev_get_queue(sb->s_bdev);
 		struct fstrim_range range;
 		int ret = 0;
@@ -408,6 +549,7 @@ resizefs_out:
 		if (!blk_queue_discard(q))
 			return -EOPNOTSUPP;
 
+<<<<<<< HEAD
 		if (EXT4_HAS_RO_COMPAT_FEATURE(sb,
 			       EXT4_FEATURE_RO_COMPAT_BIGALLOC)) {
 			ext4_msg(sb, KERN_ERR,
@@ -416,6 +558,9 @@ resizefs_out:
 		}
 
 		if (copy_from_user(&range, (struct fstrim_range __user *)arg,
+=======
+		if (copy_from_user(&range, (struct fstrim_range *)arg,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		    sizeof(range)))
 			return -EFAULT;
 
@@ -425,7 +570,11 @@ resizefs_out:
 		if (ret < 0)
 			return ret;
 
+<<<<<<< HEAD
 		if (copy_to_user((struct fstrim_range __user *)arg, &range,
+=======
+		if (copy_to_user((struct fstrim_range *)arg, &range,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		    sizeof(range)))
 			return -EFAULT;
 
@@ -463,6 +612,14 @@ long ext4_compat_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	case EXT4_IOC32_SETVERSION_OLD:
 		cmd = EXT4_IOC_SETVERSION_OLD;
 		break;
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_JBD2_DEBUG
+	case EXT4_IOC32_WAIT_FOR_READONLY:
+		cmd = EXT4_IOC_WAIT_FOR_READONLY;
+		break;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case EXT4_IOC32_GETRSVSZ:
 		cmd = EXT4_IOC_GETRSVSZ;
 		break;
@@ -494,7 +651,10 @@ long ext4_compat_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 	}
 	case EXT4_IOC_MOVE_EXT:
 	case FITRIM:
+<<<<<<< HEAD
 	case EXT4_IOC_RESIZE_FS:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	default:
 		return -ENOIOCTLCMD;

@@ -245,7 +245,11 @@ static int __init mxs_clocksource_init(struct clk *timer_clk)
 
 void __init mxs_timer_init(struct clk *timer_clk, int irq)
 {
+<<<<<<< HEAD
 	clk_prepare_enable(timer_clk);
+=======
+	clk_enable(timer_clk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Initialize timers to a known state

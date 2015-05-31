@@ -16,7 +16,10 @@
 #include <linux/fs.h>
 #include <arch/svinto.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <arch/system.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_ETRAX_GPIO
 void etrax_gpio_wake_up_check(void); /* drivers/gpio.c */

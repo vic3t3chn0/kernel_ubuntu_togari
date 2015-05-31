@@ -74,7 +74,11 @@ int fdt_check_header(const void *fdt)
 	return 0;
 }
 
+<<<<<<< HEAD
 const void *fdt_offset_ptr(const void *fdt, int offset, unsigned int len)
+=======
+const void *fdt_offset_ptr(const void *fdt, int offset, int len)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	const char *p;
 
@@ -90,6 +94,7 @@ const void *fdt_offset_ptr(const void *fdt, int offset, unsigned int len)
 	return p;
 }
 
+<<<<<<< HEAD
 uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
 {
 	const uint32_t *tagp, *lenp;
@@ -100,17 +105,34 @@ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
 	*nextoffset = -FDT_ERR_TRUNCATED;
 	tagp = fdt_offset_ptr(fdt, offset, FDT_TAGSIZE);
 	if (!tagp)
+=======
+uint32_t fdt_next_tag(const void *fdt, int offset, int *nextoffset)
+{
+	const uint32_t *tagp, *lenp;
+	uint32_t tag;
+	const char *p;
+
+	if (offset % FDT_TAGSIZE)
+		return -1;
+
+	tagp = fdt_offset_ptr(fdt, offset, FDT_TAGSIZE);
+	if (! tagp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return FDT_END; /* premature end */
 	tag = fdt32_to_cpu(*tagp);
 	offset += FDT_TAGSIZE;
 
+<<<<<<< HEAD
 	*nextoffset = -FDT_ERR_BADSTRUCTURE;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	switch (tag) {
 	case FDT_BEGIN_NODE:
 		/* skip name */
 		do {
 			p = fdt_offset_ptr(fdt, offset++, 1);
 		} while (p && (*p != '\0'));
+<<<<<<< HEAD
 		if (!p)
 			return FDT_END; /* premature end */
 		break;
@@ -137,6 +159,23 @@ uint32_t fdt_next_tag(const void *fdt, int startoffset, int *nextoffset)
 		return FDT_END; /* premature end */
 
 	*nextoffset = FDT_TAGALIGN(offset);
+=======
+		if (! p)
+			return FDT_END;
+		break;
+	case FDT_PROP:
+		lenp = fdt_offset_ptr(fdt, offset, sizeof(*lenp));
+		if (! lenp)
+			return FDT_END;
+		/* skip name offset, length and value */
+		offset += 2*FDT_TAGSIZE + fdt32_to_cpu(*lenp);
+		break;
+	}
+
+	if (nextoffset)
+		*nextoffset = FDT_TAGALIGN(offset);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return tag;
 }
 
@@ -149,6 +188,7 @@ int _fdt_check_node_offset(const void *fdt, int offset)
 	return offset;
 }
 
+<<<<<<< HEAD
 int _fdt_check_prop_offset(const void *fdt, int offset)
 {
 	if ((offset < 0) || (offset % FDT_TAGSIZE)
@@ -158,6 +198,8 @@ int _fdt_check_prop_offset(const void *fdt, int offset)
 	return offset;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int fdt_next_node(const void *fdt, int offset, int *depth)
 {
 	int nextoffset = 0;
@@ -182,6 +224,7 @@ int fdt_next_node(const void *fdt, int offset, int *depth)
 			break;
 
 		case FDT_END_NODE:
+<<<<<<< HEAD
 			if (depth && ((--(*depth)) < 0))
 				return nextoffset;
 			break;
@@ -192,6 +235,17 @@ int fdt_next_node(const void *fdt, int offset, int *depth)
 				return -FDT_ERR_NOTFOUND;
 			else
 				return nextoffset;
+=======
+			if (depth)
+				(*depth)--;
+			break;
+
+		case FDT_END:
+			return -FDT_ERR_NOTFOUND;
+
+		default:
+			return -FDT_ERR_BADSTRUCTURE;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	} while (tag != FDT_BEGIN_NODE);
 

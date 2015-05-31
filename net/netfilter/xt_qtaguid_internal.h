@@ -180,6 +180,7 @@ struct data_counters {
 };
 
 static inline uint64_t dc_sum_bytes(struct data_counters *counters,
+<<<<<<< HEAD
 				    int set,
 				    enum ifs_tx_rx direction)
 {
@@ -198,6 +199,25 @@ static inline uint64_t dc_sum_packets(struct data_counters *counters,
 }
 
 
+=======
+            int set,
+            enum ifs_tx_rx direction)
+{
+  return counters->bpc[set][direction][IFS_TCP].bytes
+    + counters->bpc[set][direction][IFS_UDP].bytes
+    + counters->bpc[set][direction][IFS_PROTO_OTHER].bytes;
+}
+
+static inline uint64_t dc_sum_packets(struct data_counters *counters,
+              int set,
+              enum ifs_tx_rx direction)
+{
+  return counters->bpc[set][direction][IFS_TCP].packets
+    + counters->bpc[set][direction][IFS_UDP].packets
+    + counters->bpc[set][direction][IFS_PROTO_OTHER].packets;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Generic X based nodes used as a base for rb_tree ops */
 struct tag_node {
 	struct rb_node node;

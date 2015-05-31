@@ -18,7 +18,10 @@
 #include <net/sock.h>
 
 #include "br_private.h"
+<<<<<<< HEAD
 #include "br_private_stp.h"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline size_t br_nlmsg_size(void)
 {
@@ -189,6 +192,7 @@ static int br_rtm_setlink(struct sk_buff *skb,  struct nlmsghdr *nlh, void *arg)
 
 	p->state = new_state;
 	br_log_state(p);
+<<<<<<< HEAD
 
 	spin_lock_bh(&p->br->lock);
 	br_port_state_selection(p->br);
@@ -196,6 +200,8 @@ static int br_rtm_setlink(struct sk_buff *skb,  struct nlmsghdr *nlh, void *arg)
 
 	br_ifinfo_notify(RTM_NEWLINK, p);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 
@@ -211,7 +217,11 @@ static int br_validate(struct nlattr *tb[], struct nlattr *data[])
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct rtnl_link_ops br_link_ops __read_mostly = {
+=======
+struct rtnl_link_ops br_link_ops __read_mostly = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.kind		= "bridge",
 	.priv_size	= sizeof(struct net_bridge),
 	.setup		= br_dev_setup,

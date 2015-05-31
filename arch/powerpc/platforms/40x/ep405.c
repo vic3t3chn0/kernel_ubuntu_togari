@@ -100,7 +100,11 @@ static void __init ep405_setup_arch(void)
 	/* Find & init the BCSR CPLD */
 	ep405_init_bcsr();
 
+<<<<<<< HEAD
 	pci_set_flags(PCI_REASSIGN_ALL_RSRC);
+=======
+	ppc_pci_set_flags(PPC_PCI_REASSIGN_ALL_RSRC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int __init ep405_probe(void)

@@ -192,6 +192,7 @@ enum {
  *    NLA_NUL_STRING       Maximum length of string (excluding NUL)
  *    NLA_FLAG             Unused
  *    NLA_BINARY           Maximum length of attribute payload
+<<<<<<< HEAD
  *    NLA_NESTED           Don't use `len' field -- length verification is
  *                         done by checking len of nested header (or empty)
  *    NLA_NESTED_COMPAT    Minimum length of structure payload
@@ -201,6 +202,10 @@ enum {
  *                         given type fits, using it verifies minimum length
  *                         just like "All other"
  *    All other            Minimum length of attribute payload
+=======
+ *    NLA_NESTED_COMPAT    Exact length of structure payload
+ *    All other            Exact length of attribute payload
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Example:
  * static const struct nla_policy my_policy[ATTR_MAX+1] = {
@@ -441,6 +446,44 @@ static inline int nlmsg_report(const struct nlmsghdr *nlh)
 	nla_for_each_attr(pos, nlmsg_attrdata(nlh, hdrlen), \
 			  nlmsg_attrlen(nlh, hdrlen), rem)
 
+<<<<<<< HEAD
+=======
+#if 0
+/* FIXME: Enable once all users have been converted */
+
+/**
+ * __nlmsg_put - Add a new netlink message to an skb
+ * @skb: socket buffer to store message in
+ * @pid: netlink process id
+ * @seq: sequence number of message
+ * @type: message type
+ * @payload: length of message payload
+ * @flags: message flags
+ *
+ * The caller is responsible to ensure that the skb provides enough
+ * tailroom for both the netlink header and payload.
+ */
+static inline struct nlmsghdr *__nlmsg_put(struct sk_buff *skb, u32 pid,
+					   u32 seq, int type, int payload,
+					   int flags)
+{
+	struct nlmsghdr *nlh;
+
+	nlh = (struct nlmsghdr *) skb_put(skb, nlmsg_total_size(payload));
+	nlh->nlmsg_type = type;
+	nlh->nlmsg_len = nlmsg_msg_size(payload);
+	nlh->nlmsg_flags = flags;
+	nlh->nlmsg_pid = pid;
+	nlh->nlmsg_seq = seq;
+
+	memset((unsigned char *) nlmsg_data(nlh) + payload, 0,
+	       nlmsg_padlen(payload));
+
+	return nlh;
+}
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * nlmsg_put - Add a new netlink message to an skb
  * @skb: socket buffer to store message in

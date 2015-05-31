@@ -280,7 +280,11 @@ static inline unsigned long srmmu_hwprobe(unsigned long vaddr)
 	return retval;
 }
 #else
+<<<<<<< HEAD
 #define srmmu_hwprobe(addr) srmmu_swprobe(addr, 0)
+=======
+#define srmmu_hwprobe(addr) (srmmu_swprobe(addr, 0) & SRMMU_PTE_PMASK)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 static inline int

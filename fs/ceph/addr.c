@@ -87,7 +87,11 @@ static int ceph_set_page_dirty(struct page *page)
 	snapc = ceph_get_snap_context(ci->i_snap_realm->cached_context);
 
 	/* dirty the head */
+<<<<<<< HEAD
 	spin_lock(&ci->i_ceph_lock);
+=======
+	spin_lock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (ci->i_head_snapc == NULL)
 		ci->i_head_snapc = ceph_get_snap_context(snapc);
 	++ci->i_wrbuffer_ref_head;
@@ -100,7 +104,11 @@ static int ceph_set_page_dirty(struct page *page)
 	     ci->i_wrbuffer_ref-1, ci->i_wrbuffer_ref_head-1,
 	     ci->i_wrbuffer_ref, ci->i_wrbuffer_ref_head,
 	     snapc, snapc->seq, snapc->num_snaps);
+<<<<<<< HEAD
 	spin_unlock(&ci->i_ceph_lock);
+=======
+	spin_unlock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* now adjust page */
 	spin_lock_irq(&mapping->tree_lock);
@@ -228,6 +236,7 @@ static int ceph_readpage(struct file *filp, struct page *page)
 }
 
 /*
+<<<<<<< HEAD
  * Finish an async read(ahead) op.
  */
 static void finish_read(struct ceph_osd_request *req, struct ceph_msg *msg)
@@ -377,6 +386,104 @@ static int ceph_readpages(struct file *file, struct address_space *mapping,
 	}
 out:
 	dout("readpages %p file %p ret %d\n", inode, file, rc);
+=======
+ * Build a vector of contiguous pages from the provided page list.
+ */
+static struct page **page_vector_from_list(struct list_head *page_list,
+					   unsigned *nr_pages)
+{
+	struct page **pages;
+	struct page *page;
+	int next_index, contig_pages = 0;
+
+	/* build page vector */
+	pages = kmalloc(sizeof(*pages) * *nr_pages, GFP_NOFS);
+	if (!pages)
+		return ERR_PTR(-ENOMEM);
+
+	BUG_ON(list_empty(page_list));
+	next_index = list_entry(page_list->prev, struct page, lru)->index;
+	list_for_each_entry_reverse(page, page_list, lru) {
+		if (page->index == next_index) {
+			dout("readpages page %d %p\n", contig_pages, page);
+			pages[contig_pages] = page;
+			contig_pages++;
+			next_index++;
+		} else {
+			break;
+		}
+	}
+	*nr_pages = contig_pages;
+	return pages;
+}
+
+/*
+ * Read multiple pages.  Leave pages we don't read + unlock in page_list;
+ * the caller (VM) cleans them up.
+ */
+static int ceph_readpages(struct file *file, struct address_space *mapping,
+			  struct list_head *page_list, unsigned nr_pages)
+{
+	struct inode *inode = file->f_dentry->d_inode;
+	struct ceph_inode_info *ci = ceph_inode(inode);
+	struct ceph_osd_client *osdc =
+		&ceph_inode_to_client(inode)->client->osdc;
+	int rc = 0;
+	struct page **pages;
+	loff_t offset;
+	u64 len;
+
+	dout("readpages %p file %p nr_pages %d\n",
+	     inode, file, nr_pages);
+
+	pages = page_vector_from_list(page_list, &nr_pages);
+	if (IS_ERR(pages))
+		return PTR_ERR(pages);
+
+	/* guess read extent */
+	offset = pages[0]->index << PAGE_CACHE_SHIFT;
+	len = nr_pages << PAGE_CACHE_SHIFT;
+	rc = ceph_osdc_readpages(osdc, ceph_vino(inode), &ci->i_layout,
+				 offset, &len,
+				 ci->i_truncate_seq, ci->i_truncate_size,
+				 pages, nr_pages, 0);
+	if (rc == -ENOENT)
+		rc = 0;
+	if (rc < 0)
+		goto out;
+
+	for (; !list_empty(page_list) && len > 0;
+	     rc -= PAGE_CACHE_SIZE, len -= PAGE_CACHE_SIZE) {
+		struct page *page =
+			list_entry(page_list->prev, struct page, lru);
+
+		list_del(&page->lru);
+
+		if (rc < (int)PAGE_CACHE_SIZE) {
+			/* zero (remainder of) page */
+			int s = rc < 0 ? 0 : rc;
+			zero_user_segment(page, s, PAGE_CACHE_SIZE);
+		}
+
+		if (add_to_page_cache_lru(page, mapping, page->index,
+					  GFP_NOFS)) {
+			page_cache_release(page);
+			dout("readpages %p add_to_page_cache failed %p\n",
+			     inode, page);
+			continue;
+		}
+		dout("readpages %p adding %p idx %lu\n", inode, page,
+		     page->index);
+		flush_dcache_page(page);
+		SetPageUptodate(page);
+		unlock_page(page);
+		page_cache_release(page);
+	}
+	rc = 0;
+
+out:
+	kfree(pages);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return rc;
 }
 
@@ -391,7 +498,11 @@ static struct ceph_snap_context *get_oldest_context(struct inode *inode,
 	struct ceph_snap_context *snapc = NULL;
 	struct ceph_cap_snap *capsnap = NULL;
 
+<<<<<<< HEAD
 	spin_lock(&ci->i_ceph_lock);
+=======
+	spin_lock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	list_for_each_entry(capsnap, &ci->i_cap_snaps, ci_item) {
 		dout(" cap_snap %p snapc %p has %d dirty pages\n", capsnap,
 		     capsnap->context, capsnap->dirty_pages);
@@ -407,7 +518,11 @@ static struct ceph_snap_context *get_oldest_context(struct inode *inode,
 		dout(" head snapc %p has %d dirty pages\n",
 		     snapc, ci->i_wrbuffer_ref_head);
 	}
+<<<<<<< HEAD
 	spin_unlock(&ci->i_ceph_lock);
+=======
+	spin_unlock(&inode->i_lock);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return snapc;
 }
 

@@ -78,6 +78,7 @@ config NET_KEY_MIGRATE
 
 	  If unsure, say N.
 
+<<<<<<< HEAD
 config XFRM_RFC_4868_TRUNCATION
 	bool "Use truncation length of RFC4868 for HMAC-SHA-256"
 	depends on XFRM
@@ -87,3 +88,5 @@ config XFRM_RFC_4868_TRUNCATION
 	  RFC4868 fixed it to 128bit.
 
 	  If unsure, say N.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

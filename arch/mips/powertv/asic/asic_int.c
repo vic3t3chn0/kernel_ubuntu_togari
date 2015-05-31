@@ -34,7 +34,10 @@
 #include <asm/irq_cpu.h>
 #include <linux/io.h>
 #include <asm/irq_regs.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mips-boards/generic.h>
 
 #include <asm/mach-powertv/asic_regs.h>

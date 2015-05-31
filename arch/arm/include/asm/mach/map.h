@@ -9,9 +9,12 @@
  *
  *  Page table mapping constructs and function prototypes
  */
+<<<<<<< HEAD
 #ifndef __ASM_MACH_MAP_H
 #define __ASM_MACH_MAP_H
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/io.h>
 
 struct map_desc {
@@ -32,12 +35,19 @@ struct map_desc {
 #define MT_MEMORY_NONCACHED	11
 #define MT_MEMORY_DTCM		12
 #define MT_MEMORY_ITCM		13
+<<<<<<< HEAD
 #define MT_MEMORY_SO		14
 #define MT_MEMORY_R		15
 #define MT_MEMORY_RW		16
 #define MT_MEMORY_RX		17
 #define MT_MEMORY_DMA_READY	18
 #define MT_DEVICE_USER_ACCESSIBLE	19
+=======
+#ifdef CONFIG_DMA_CMA
+#define MT_MEMORY_SO		14
+#define MT_MEMORY_DMA_READY	15
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_MMU
 extern void iotable_init(struct map_desc *, int);
@@ -49,6 +59,7 @@ extern const struct mem_type *get_mem_type(unsigned int type);
  */
 extern int ioremap_page(unsigned long virt, unsigned long phys,
 			const struct mem_type *mtype);
+<<<<<<< HEAD
 
 extern int ioremap_pages(unsigned long virt, unsigned long phys,
 			unsigned long size, const struct mem_type *mtype);
@@ -57,3 +68,8 @@ extern int ioremap_pages(unsigned long virt, unsigned long phys,
 #endif
 
 #endif
+=======
+#else
+#define iotable_init(map,num)	do { } while (0)
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

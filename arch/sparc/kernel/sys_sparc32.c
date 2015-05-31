@@ -23,6 +23,10 @@
 #include <linux/uio.h>
 #include <linux/nfs_fs.h>
 #include <linux/quota.h>
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/poll.h>
 #include <linux/personality.h>
 #include <linux/stat.h>

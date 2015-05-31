@@ -53,6 +53,7 @@ unsigned long clk_get_rate(struct clk *clk)
 }
 EXPORT_SYMBOL(clk_get_rate);
 
+<<<<<<< HEAD
 int clk_set_rate(struct clk *clk, unsigned long rate)
 {
 	unsigned long flags;
@@ -68,6 +69,8 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
 }
 EXPORT_SYMBOL(clk_set_rate);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void clk_dummy_enable(struct clk *clk)
 {
 }

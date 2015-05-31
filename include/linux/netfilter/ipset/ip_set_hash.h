@@ -11,10 +11,13 @@ enum {
 	IPSET_ERR_INVALID_PROTO,
 	/* Protocol missing but must be specified */
 	IPSET_ERR_MISSING_PROTO,
+<<<<<<< HEAD
 	/* Range not supported */
 	IPSET_ERR_HASH_RANGE_UNSUPPORTED,
 	/* Invalid range */
 	IPSET_ERR_HASH_RANGE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #ifdef __KERNEL__

@@ -69,6 +69,7 @@
 
 #define SO_RXQ_OVFL             40
 
+<<<<<<< HEAD
 #define SO_WIFI_STATUS		41
 #define SCM_WIFI_STATUS		SO_WIFI_STATUS
 #define SO_PEEK_OFF		42
@@ -76,9 +77,16 @@
 /* Instruct lower device to use last 4-bytes of skb data as FCS */
 #define SO_NOFCS		43
 
+=======
+#ifdef __KERNEL__
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* O_NONBLOCK clashes with the bits used for socket types.  Therefore we
  * have to define SOCK_NONBLOCK to a different value here.
  */
 #define SOCK_NONBLOCK	0x40000000
+<<<<<<< HEAD
+=======
+#endif /* __KERNEL__ */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* _ASM_SOCKET_H */

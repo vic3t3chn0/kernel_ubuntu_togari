@@ -38,7 +38,10 @@
 #include <asm/pgalloc.h>
 #include <asm/processor.h>
 #include <asm/sal.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/tlbflush.h>
 #include <asm/uaccess.h>
 #include <asm/unwind.h>
@@ -331,7 +334,13 @@ cpu_idle (void)
 			normal_xtp();
 #endif
 		}
+<<<<<<< HEAD
 		schedule_preempt_disabled();
+=======
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		check_pgt_cache();
 		if (cpu_is_offline(cpu))
 			play_dead();

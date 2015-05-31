@@ -38,6 +38,7 @@
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
 /*
  * Enable dprintk() debugging support for nfs client.
  */
@@ -45,6 +46,8 @@
 # define NFS_DEBUG
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/in.h>
 #include <linux/mm.h>
 #include <linux/pagemap.h>
@@ -92,7 +95,11 @@ struct nfs_lock_context {
 struct nfs4_state;
 struct nfs_open_context {
 	struct nfs_lock_context lock_context;
+<<<<<<< HEAD
 	struct dentry *dentry;
+=======
+	struct path path;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct rpc_cred *cred;
 	struct nfs4_state *state;
 	fmode_t mode;
@@ -156,6 +163,10 @@ struct nfs_inode {
 	unsigned long		read_cache_jiffies;
 	unsigned long		attrtimeo;
 	unsigned long		attrtimeo_timestamp;
+<<<<<<< HEAD
+=======
+	__u64			change_attr;		/* v4 only */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	unsigned long		attr_gencount;
 	/* "Generation counter" for the attribute cache. This is
@@ -178,9 +189,19 @@ struct nfs_inode {
 	 */
 	__be32			cookieverf[2];
 
+<<<<<<< HEAD
 	unsigned long		npages;
 	unsigned long		ncommit;
 	struct list_head	commit_list;
+=======
+	/*
+	 * This is the list of dirty unwritten pages.
+	 */
+	struct radix_tree_root	nfs_page_tree;
+
+	unsigned long		npages;
+	unsigned long		ncommit;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Open contexts for shared mmap writes */
 	struct list_head	open_files;
@@ -232,7 +253,10 @@ struct nfs_inode {
 #define NFS_INO_COMMIT		(7)		/* inode is committing unstable writes */
 #define NFS_INO_PNFS_COMMIT	(8)		/* use pnfs code for commit */
 #define NFS_INO_LAYOUTCOMMIT	(9)		/* layoutcommit required */
+<<<<<<< HEAD
 #define NFS_INO_LAYOUTCOMMITTING (10)		/* layoutcommit inflight */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline struct nfs_inode *NFS_I(const struct inode *inode)
 {
@@ -264,11 +288,14 @@ static inline const struct nfs_rpc_ops *NFS_PROTO(const struct inode *inode)
 	return NFS_SERVER(inode)->nfs_client->rpc_ops;
 }
 
+<<<<<<< HEAD
 static inline __be32 *NFS_COOKIEVERF(const struct inode *inode)
 {
 	return NFS_I(inode)->cookieverf;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline unsigned NFS_MINATTRTIMEO(const struct inode *inode)
 {
 	struct nfs_server *nfss = NFS_SERVER(inode);
@@ -364,7 +391,11 @@ extern int nfs_refresh_inode(struct inode *, struct nfs_fattr *);
 extern int nfs_post_op_update_inode(struct inode *inode, struct nfs_fattr *fattr);
 extern int nfs_post_op_update_inode_force_wcc(struct inode *inode, struct nfs_fattr *fattr);
 extern int nfs_getattr(struct vfsmount *, struct dentry *, struct kstat *);
+<<<<<<< HEAD
 extern int nfs_permission(struct inode *, int);
+=======
+extern int nfs_permission(struct inode *, int, unsigned int);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int nfs_open(struct inode *, struct file *);
 extern int nfs_release(struct inode *, struct file *);
 extern int nfs_attribute_timeout(struct inode *inode);
@@ -376,7 +407,11 @@ extern void nfs_setattr_update_inode(struct inode *inode, struct iattr *attr);
 extern struct nfs_open_context *get_nfs_open_context(struct nfs_open_context *ctx);
 extern void put_nfs_open_context(struct nfs_open_context *ctx);
 extern struct nfs_open_context *nfs_find_open_context(struct inode *inode, struct rpc_cred *cred, fmode_t mode);
+<<<<<<< HEAD
 extern struct nfs_open_context *alloc_nfs_open_context(struct dentry *dentry, fmode_t f_mode);
+=======
+extern struct nfs_open_context *alloc_nfs_open_context(struct path *path, struct rpc_cred *cred, fmode_t f_mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void nfs_file_set_open_context(struct file *filp, struct nfs_open_context *ctx);
 extern struct nfs_lock_context *nfs_get_lock_context(struct nfs_open_context *ctx);
 extern void nfs_put_lock_context(struct nfs_lock_context *l_ctx);
@@ -398,6 +433,7 @@ static inline void nfs_free_fhandle(const struct nfs_fh *fh)
 	kfree(fh);
 }
 
+<<<<<<< HEAD
 #ifdef NFS_DEBUG
 extern u32 _nfs_display_fhandle_hash(const struct nfs_fh *fh);
 static inline u32 nfs_display_fhandle_hash(const struct nfs_fh *fh)
@@ -421,6 +457,8 @@ static inline void nfs_display_fhandle(const struct nfs_fh *fh,
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * linux/fs/nfs/nfsroot.c
  */
@@ -598,12 +636,20 @@ extern struct posix_acl *nfs3_proc_getacl(struct inode *inode, int type);
 extern int nfs3_proc_setacl(struct inode *inode, int type,
 			    struct posix_acl *acl);
 extern int nfs3_proc_set_default_acl(struct inode *dir, struct inode *inode,
+<<<<<<< HEAD
 		umode_t mode);
+=======
+		mode_t mode);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void nfs3_forget_cached_acls(struct inode *inode);
 #else
 static inline int nfs3_proc_set_default_acl(struct inode *dir,
 					    struct inode *inode,
+<<<<<<< HEAD
 					    umode_t mode)
+=======
+					    mode_t mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -658,6 +704,7 @@ nfs_fileid_to_ino_t(u64 fileid)
 
 #ifdef __KERNEL__
 
+<<<<<<< HEAD
 # undef ifdebug
 # ifdef NFS_DEBUG
 #  define ifdebug(fac)		if (unlikely(nfs_debug & NFSDBG_##fac))
@@ -665,6 +712,21 @@ nfs_fileid_to_ino_t(u64 fileid)
 # else
 #  define ifdebug(fac)		if (0)
 #  define NFS_IFDEBUG(x)
+=======
+/*
+ * Enable debugging support for nfs client.
+ * Requires RPC_DEBUG.
+ */
+#ifdef RPC_DEBUG
+# define NFS_DEBUG
+#endif
+
+# undef ifdebug
+# ifdef NFS_DEBUG
+#  define ifdebug(fac)		if (unlikely(nfs_debug & NFSDBG_##fac))
+# else
+#  define ifdebug(fac)		if (0)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # endif
 #endif /* __KERNEL */
 

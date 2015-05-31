@@ -24,6 +24,10 @@
 #include <asm/etraxgpio.h>
 #include <arch/svinto.h>
 #include <asm/io.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/irq.h>
 #include <arch/io_interface_mux.h>
 

@@ -11,8 +11,12 @@
 #include <linux/interrupt.h>
 #include <linux/debug_locks.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/bug.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void __raw_spin_lock_init(raw_spinlock_t *lock, const char *name,
 			  struct lock_class_key *key)
@@ -50,21 +54,36 @@ void __rwlock_init(rwlock_t *lock, const char *name,
 
 EXPORT_SYMBOL(__rwlock_init);
 
+<<<<<<< HEAD
 static void spin_dump(raw_spinlock_t *lock, const char *msg)
 {
 	struct task_struct *owner = NULL;
 
+=======
+static void spin_bug(raw_spinlock_t *lock, const char *msg)
+{
+	struct task_struct *owner = NULL;
+
+	if (!debug_locks_off())
+		return;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (lock->owner && lock->owner != SPINLOCK_OWNER_INIT)
 		owner = lock->owner;
 	printk(KERN_EMERG "BUG: spinlock %s on CPU#%d, %s/%d\n",
 		msg, raw_smp_processor_id(),
 		current->comm, task_pid_nr(current));
+<<<<<<< HEAD
 	printk(KERN_EMERG " lock: %pS, .magic: %08x, .owner: %s/%d, "
+=======
+	printk(KERN_EMERG " lock: %p, .magic: %08x, .owner: %s/%d, "
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			".owner_cpu: %d\n",
 		lock, lock->magic,
 		owner ? owner->comm : "<none>",
 		owner ? task_pid_nr(owner) : -1,
 		lock->owner_cpu);
+<<<<<<< HEAD
 	BUG_ON(PANIC_CORRUPTION);
 	dump_stack();
 }
@@ -77,6 +96,11 @@ static void spin_bug(raw_spinlock_t *lock, const char *msg)
 	spin_dump(lock, msg);
 }
 
+=======
+	dump_stack();
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define SPIN_BUG_ON(cond, lock, msg) if (unlikely(cond)) spin_bug(lock, msg)
 
 static inline void
@@ -108,6 +132,7 @@ static inline void debug_spin_unlock(raw_spinlock_t *lock)
 static void __spin_lock_debug(raw_spinlock_t *lock)
 {
 	u64 i;
+<<<<<<< HEAD
 	u64 loops = (loops_per_jiffy * HZ);
 
 	for (i = 0; i < loops; i++) {
@@ -130,6 +155,30 @@ static void __spin_lock_debug(raw_spinlock_t *lock)
 	 * progress.
 	 */
 	arch_spin_lock(&lock->raw_lock);
+=======
+	u64 loops = loops_per_jiffy * HZ;
+	int print_once = 1;
+
+	for (;;) {
+		for (i = 0; i < loops; i++) {
+			if (arch_spin_trylock(&lock->raw_lock))
+				return;
+			__delay(1);
+		}
+		/* lockup suspected: */
+		if (print_once) {
+			print_once = 0;
+			printk(KERN_EMERG "BUG: spinlock lockup on CPU#%d, "
+					"%s/%d, %p\n",
+				raw_smp_processor_id(), current->comm,
+				task_pid_nr(current), lock);
+			dump_stack();
+#ifdef CONFIG_SMP
+			trigger_all_cpu_backtrace();
+#endif
+		}
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void do_raw_spin_lock(raw_spinlock_t *lock)

@@ -65,6 +65,7 @@ int main(void)
 endef
 endif
 
+<<<<<<< HEAD
 ifndef NO_GTK2
 define SOURCE_GTK2
 #pragma GCC diagnostic ignored \"-Wstrict-prototypes\"
@@ -80,6 +81,8 @@ int main(int argc, char *argv[])
 endef
 endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ifndef NO_LIBPERL
 define SOURCE_PERL_EMBED
 #include <EXTERN.h>

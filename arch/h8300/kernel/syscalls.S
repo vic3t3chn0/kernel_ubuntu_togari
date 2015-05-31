@@ -183,7 +183,11 @@ SYMBOL_NAME_LABEL(sys_call_table)
 	.long SYMBOL_NAME(sys_ni_syscall)	/* for vm86 */
 	.long SYMBOL_NAME(sys_ni_syscall)	/* sys_query_module */
 	.long SYMBOL_NAME(sys_poll)
+<<<<<<< HEAD
 	.long SYMBOL_NAME(sys_ni_syscall)	/* old nfsservctl */
+=======
+	.long SYMBOL_NAME(sys_nfsservctl)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.long SYMBOL_NAME(sys_setresgid16)	/* 170 */
 	.long SYMBOL_NAME(sys_getresgid16)
 	.long SYMBOL_NAME(sys_prctl)

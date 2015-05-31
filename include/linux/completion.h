@@ -77,7 +77,10 @@ static inline void init_completion(struct completion *x)
 }
 
 extern void wait_for_completion(struct completion *);
+<<<<<<< HEAD
 extern void wait_for_completion_io(struct completion *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int wait_for_completion_interruptible(struct completion *x);
 extern int wait_for_completion_killable(struct completion *x);
 extern unsigned long wait_for_completion_timeout(struct completion *x,

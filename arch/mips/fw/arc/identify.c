@@ -11,7 +11,10 @@
  *
  * Copyright (C) 1996 David S. Miller (davem@davemloft.net)
  */
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/types.h>

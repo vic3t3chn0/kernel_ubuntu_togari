@@ -20,7 +20,11 @@
 #include <linux/clk.h>
 #include <linux/err.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sysfs.h>
 #include <linux/slab.h>
 

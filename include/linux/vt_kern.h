@@ -131,13 +131,22 @@ void vt_event_post(unsigned int event, unsigned int old, unsigned int new);
 int vt_waitactive(int n);
 void change_console(struct vc_data *new_vc);
 void reset_vc(struct vc_data *vc);
+<<<<<<< HEAD
+=======
+extern int do_unbind_con_driver(const struct consw *csw, int first, int last,
+			     int deflt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int unbind_con_driver(const struct consw *csw, int first, int last,
 			     int deflt);
 int vty_init(const struct file_operations *console_fops);
 
 static inline bool vt_force_oops_output(struct vc_data *vc)
 {
+<<<<<<< HEAD
 	if (oops_in_progress && vc->vc_panic_force_write  && panic_timeout >= 0)
+=======
+	if (oops_in_progress && vc->vc_panic_force_write)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return true;
 	return false;
 }
@@ -167,6 +176,7 @@ extern int unregister_vt_notifier(struct notifier_block *nb);
 
 extern void hide_boot_cursor(bool hide);
 
+<<<<<<< HEAD
 /* keyboard  provided interfaces */
 extern int vt_do_diacrit(unsigned int cmd, void __user *up, int eperm);
 extern int vt_do_kdskbmode(int console, unsigned int arg);
@@ -193,4 +203,6 @@ extern void vt_kbd_con_start(int console);
 extern void vt_kbd_con_stop(int console);
 
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _VT_KERN_H */

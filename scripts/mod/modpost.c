@@ -37,8 +37,11 @@ static int all_versions = 0;
 static int external_module = 0;
 /* Warn about section mismatch in vmlinux if set to 1 */
 static int vmlinux_section_warnings = 1;
+<<<<<<< HEAD
 /* Exit with an error when there is a section mismatch if set to 1 */
 static int section_error_on_mismatch;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Only warn about unresolved symbols */
 static int warn_unresolved = 0;
 /* How a symbol is exported */
@@ -1499,6 +1502,7 @@ static int addend_386_rel(struct elf_info *elf, Elf_Shdr *sechdr, Elf_Rela *r)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifndef R_ARM_CALL
 #define R_ARM_CALL	28
 #endif
@@ -1506,6 +1510,8 @@ static int addend_386_rel(struct elf_info *elf, Elf_Shdr *sechdr, Elf_Rela *r)
 #define R_ARM_JUMP24	29
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int addend_arm_rel(struct elf_info *elf, Elf_Shdr *sechdr, Elf_Rela *r)
 {
 	unsigned int r_typ = ELF_R_TYPE(r->r_info);
@@ -1517,8 +1523,11 @@ static int addend_arm_rel(struct elf_info *elf, Elf_Shdr *sechdr, Elf_Rela *r)
 		              (elf->symtab_start + ELF_R_SYM(r->r_info));
 		break;
 	case R_ARM_PC24:
+<<<<<<< HEAD
 	case R_ARM_CALL:
 	case R_ARM_JUMP24:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		/* From ARM ABI: ((S + A) | T) - P */
 		r->r_addend = (int)(long)(elf->hdr +
 		              sechdr->sh_offset +
@@ -1863,12 +1872,15 @@ static void add_header(struct buffer *b, struct module *mod)
 	buf_printf(b, "};\n");
 }
 
+<<<<<<< HEAD
 static void add_intree_flag(struct buffer *b, int is_intree)
 {
 	if (is_intree)
 		buf_printf(b, "\nMODULE_INFO(intree, \"Y\");\n");
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void add_staging_flag(struct buffer *b, const char *name)
 {
 	static const char *staging_dir = "drivers/staging";
@@ -2115,7 +2127,11 @@ int main(int argc, char **argv)
 	struct ext_sym_list *extsym_iter;
 	struct ext_sym_list *extsym_start = NULL;
 
+<<<<<<< HEAD
 	while ((opt = getopt(argc, argv, "i:I:e:cmsSo:awM:K:E")) != -1) {
+=======
+	while ((opt = getopt(argc, argv, "i:I:e:cmsSo:awM:K:")) != -1) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (opt) {
 		case 'i':
 			kernel_read = optarg;
@@ -2153,9 +2169,12 @@ int main(int argc, char **argv)
 		case 'w':
 			warn_unresolved = 1;
 			break;
+<<<<<<< HEAD
 		case 'E':
 			section_error_on_mismatch = 1;
 			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		default:
 			exit(1);
 		}
@@ -2192,7 +2211,10 @@ int main(int argc, char **argv)
 		buf.pos = 0;
 
 		add_header(&buf, mod);
+<<<<<<< HEAD
 		add_intree_flag(&buf, !external_module);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		add_staging_flag(&buf, mod->name);
 		err |= add_versions(&buf, mod);
 		add_depends(&buf, mod, modules);
@@ -2205,6 +2227,7 @@ int main(int argc, char **argv)
 
 	if (dump_write)
 		write_dump(dump_write);
+<<<<<<< HEAD
 
 	if (sec_mismatch_count && !sec_mismatch_verbose) {
 		merror(
@@ -2222,6 +2245,13 @@ int main(int argc, char **argv)
 		"build with:\n'make CONFIG_NO_ERROR_ON_MISMATCH=y'\n"
 		"(NOTE: This is not recommended)\n");
 	}
+=======
+	if (sec_mismatch_count && !sec_mismatch_verbose)
+		warn("modpost: Found %d section mismatch(es).\n"
+		     "To see full details build your kernel with:\n"
+		     "'make CONFIG_DEBUG_SECTION_MISMATCH=y'\n",
+		     sec_mismatch_count);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return err;
 }

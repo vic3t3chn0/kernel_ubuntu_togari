@@ -7,9 +7,17 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/wait.h>
+<<<<<<< HEAD
 #include "net_user.h"
 #include "os.h"
 #include "slirp.h"
+=======
+#include "kern_constants.h"
+#include "net_user.h"
+#include "os.h"
+#include "slirp.h"
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static int slirp_user_init(void *data, void *dev)
 {

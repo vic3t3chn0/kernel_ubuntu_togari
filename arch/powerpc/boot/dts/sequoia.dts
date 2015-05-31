@@ -110,6 +110,7 @@
 			dcr-reg = <0x010 0x002>;
 		};
 
+<<<<<<< HEAD
 		CRYPTO: crypto@e0100000 {
 			compatible = "amcc,ppc440epx-crypto","amcc,ppc4xx-crypto";
 			reg = <0 0xE0100000 0x80400>;
@@ -122,6 +123,8 @@
 			reg = <0 0xE0120000 0x150>;
 		};
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		DMA0: dma {
 			compatible = "ibm,dma-440epx", "ibm,dma-4xx";
 			dcr-reg = <0x100 0x027>;

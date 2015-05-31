@@ -1,5 +1,9 @@
 include include/asm-generic/Kbuild.asm
 
+<<<<<<< HEAD
 header-y += cachectl.h
 header-y += sgidefs.h
 header-y += sysmips.h
+=======
+header-y += cachectl.h sgidefs.h sysmips.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

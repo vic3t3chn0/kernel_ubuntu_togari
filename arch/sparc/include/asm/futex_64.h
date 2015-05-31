@@ -4,6 +4,10 @@
 #include <linux/futex.h>
 #include <linux/uaccess.h>
 #include <asm/errno.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define __futex_cas_op(insn, ret, oldval, uaddr, oparg)	\
 	__asm__ __volatile__(				\

@@ -1,6 +1,10 @@
 #!/bin/sh
 # Needed for systems without gettext
+<<<<<<< HEAD
 $* -xc -o /dev/null - > /dev/null 2>&1 << EOF
+=======
+$* -x c -o /dev/null - > /dev/null 2>&1 << EOF
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <libintl.h>
 int main()
 {

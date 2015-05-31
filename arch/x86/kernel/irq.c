@@ -9,7 +9,10 @@
 #include <linux/smp.h>
 #include <linux/ftrace.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/apic.h>
 #include <asm/io_apic.h>
@@ -74,10 +77,13 @@ int arch_show_interrupts(struct seq_file *p, int prec)
 	for_each_online_cpu(j)
 		seq_printf(p, "%10u ", irq_stats(j)->apic_irq_work_irqs);
 	seq_printf(p, "  IRQ work interrupts\n");
+<<<<<<< HEAD
 	seq_printf(p, "%*s: ", prec, "RTR");
 	for_each_online_cpu(j)
 		seq_printf(p, "%10u ", irq_stats(j)->icr_read_retry_count);
 	seq_printf(p, "  APIC ICR read retries\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	if (x86_platform_ipi_callback) {
 		seq_printf(p, "%*s: ", prec, "PLT");
@@ -140,7 +146,10 @@ u64 arch_irq_stat_cpu(unsigned int cpu)
 	sum += irq_stats(cpu)->irq_spurious_count;
 	sum += irq_stats(cpu)->apic_perf_irqs;
 	sum += irq_stats(cpu)->apic_irq_work_irqs;
+<<<<<<< HEAD
 	sum += irq_stats(cpu)->icr_read_retry_count;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	if (x86_platform_ipi_callback)
 		sum += irq_stats(cpu)->x86_platform_ipis;
@@ -165,10 +174,13 @@ u64 arch_irq_stat_cpu(unsigned int cpu)
 u64 arch_irq_stat(void)
 {
 	u64 sum = atomic_read(&irq_err_count);
+<<<<<<< HEAD
 
 #ifdef CONFIG_X86_IO_APIC
 	sum += atomic_read(&irq_mis_count);
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return sum;
 }
 
@@ -186,8 +198,13 @@ unsigned int __irq_entry do_IRQ(struct pt_regs *regs)
 	unsigned vector = ~regs->orig_ax;
 	unsigned irq;
 
+<<<<<<< HEAD
 	irq_enter();
 	exit_idle();
+=======
+	exit_idle();
+	irq_enter();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	irq = __this_cpu_read(vector_irq[vector]);
 
@@ -214,10 +231,17 @@ void smp_x86_platform_ipi(struct pt_regs *regs)
 
 	ack_APIC_irq();
 
+<<<<<<< HEAD
 	irq_enter();
 
 	exit_idle();
 
+=======
+	exit_idle();
+
+	irq_enter();
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	inc_irq_stat(x86_platform_ipis);
 
 	if (x86_platform_ipi_callback)
@@ -282,6 +306,7 @@ void fixup_irqs(void)
 		else if (!(warned++))
 			set_affinity = 0;
 
+<<<<<<< HEAD
 		/*
 		 * We unmask if the irq was not marked masked by the
 		 * core code. That respects the lazy irq disable
@@ -289,6 +314,10 @@ void fixup_irqs(void)
 		 */
 		if (!irqd_can_move_in_process_context(data) &&
 		    !irqd_irq_masked(data) && chip->irq_unmask)
+=======
+		if (!irqd_can_move_in_process_context(data) &&
+		    !irqd_irq_disabled(data) && chip->irq_unmask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			chip->irq_unmask(data);
 
 		raw_spin_unlock(&desc->lock);

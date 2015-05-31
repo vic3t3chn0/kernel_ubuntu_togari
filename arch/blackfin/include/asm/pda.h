@@ -54,6 +54,7 @@ struct blackfin_pda {			/* Per-processor Data Area */
 #endif
 };
 
+<<<<<<< HEAD
 struct blackfin_initial_pda {
 	void *retx;
 #ifdef CONFIG_DEBUG_DOUBLEFAULT
@@ -64,6 +65,8 @@ struct blackfin_initial_pda {
 #endif
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct blackfin_pda cpu_pda[];
 
 #endif	/* __ASSEMBLY__ */

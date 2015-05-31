@@ -19,6 +19,7 @@ int __bitmap_weight(const unsigned long *bitmap, int bits)
 
 	return w;
 }
+<<<<<<< HEAD
 
 void __bitmap_or(unsigned long *dst, const unsigned long *bitmap1,
 		 const unsigned long *bitmap2, int bits)
@@ -29,3 +30,5 @@ void __bitmap_or(unsigned long *dst, const unsigned long *bitmap1,
 	for (k = 0; k < nr; k++)
 		dst[k] = bitmap1[k] | bitmap2[k];
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

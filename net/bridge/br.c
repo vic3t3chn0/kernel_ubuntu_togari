@@ -62,7 +62,11 @@ static int __init br_init(void)
 
 	brioctl_set(br_ioctl_deviceless_stub);
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_ATM_LANE)
+=======
+#if defined(CONFIG_ATM_LANE) || defined(CONFIG_ATM_LANE_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	br_fdb_test_addr_hook = br_fdb_test_addr;
 #endif
 
@@ -93,7 +97,11 @@ static void __exit br_deinit(void)
 	rcu_barrier(); /* Wait for completion of call_rcu()'s */
 
 	br_netfilter_fini();
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_ATM_LANE)
+=======
+#if defined(CONFIG_ATM_LANE) || defined(CONFIG_ATM_LANE_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	br_fdb_test_addr_hook = NULL;
 #endif
 

@@ -32,6 +32,7 @@
 
 	__HEAD
 ENTRY(startup_32)
+<<<<<<< HEAD
 #ifdef CONFIG_EFI_STUB
 	jmp	preferred_addr
 
@@ -62,6 +63,8 @@ ENTRY(startup_32)
 
 preferred_addr:
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	cld
 	/*
 	 * Test KEEP_SEGMENTS flag to see if the bootloader is asking

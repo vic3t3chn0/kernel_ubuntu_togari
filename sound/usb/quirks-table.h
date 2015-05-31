@@ -39,6 +39,7 @@
 	.idProduct = prod, \
 	.bInterfaceClass = USB_CLASS_VENDOR_SPEC
 
+<<<<<<< HEAD
 /* FTDI devices */
 {
 	USB_DEVICE(0x0403, 0xb8d8),
@@ -50,6 +51,8 @@
 	}
 },
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Creative/Toshiba Multimedia Center SB-0500 */
 {
 	USB_DEVICE(0x041e, 0x3048),
@@ -269,6 +272,7 @@ YAMAHA_DEVICE(0x105a, NULL),
 YAMAHA_DEVICE(0x105b, NULL),
 YAMAHA_DEVICE(0x105c, NULL),
 YAMAHA_DEVICE(0x105d, NULL),
+<<<<<<< HEAD
 {
 	USB_DEVICE(0x0499, 0x1503),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
@@ -295,6 +299,8 @@ YAMAHA_DEVICE(0x105d, NULL),
 		}
 	}
 },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 YAMAHA_DEVICE(0x2000, "DGP-7"),
 YAMAHA_DEVICE(0x2001, "DGP-5"),
 YAMAHA_DEVICE(0x2002, NULL),
@@ -1618,6 +1624,7 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 {
+<<<<<<< HEAD
 	/* Edirol UM-3G */
 	USB_DEVICE_VENDOR_SPEC(0x0582, 0x0108),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
@@ -1626,6 +1633,8 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 {
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Boss JS-8 Jam Station  */
 	USB_DEVICE(0x0582, 0x0109),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
@@ -1658,7 +1667,11 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
 		/* .vendor_name = "Roland", */
 		/* .product_name = "A-PRO", */
+<<<<<<< HEAD
 		.ifnum = 1,
+=======
+		.ifnum = 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.type = QUIRK_MIDI_FIXED_ENDPOINT,
 		.data = & (const struct snd_usb_midi_endpoint_info) {
 			.out_cables = 0x0003,
@@ -1667,6 +1680,7 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 {
+<<<<<<< HEAD
 	/* Roland GAIA SH-01 */
 	USB_DEVICE(0x0582, 0x0111),
 	.driver_info = (unsigned long) &(const struct snd_usb_audio_quirk) {
@@ -1698,6 +1712,8 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 {
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	USB_DEVICE(0x0582, 0x0113),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
 		/* .vendor_name = "BOSS", */
@@ -1753,6 +1769,7 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 		}
 	}
 },
+<<<<<<< HEAD
 {
 	/* Added support for Roland UM-ONE which differs from UM-1 */
 	USB_DEVICE(0x0582, 0x012a),
@@ -1831,6 +1848,8 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 		}
 	}
 },
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Guillemot devices */
 {
@@ -2370,6 +2389,7 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 
+<<<<<<< HEAD
 {
 	USB_DEVICE_VENDOR_SPEC(0x0944, 0x0201),
 	.driver_info = (unsigned long) & (const struct snd_usb_audio_quirk) {
@@ -2380,6 +2400,8 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* AKAI devices */
 {
 	USB_DEVICE(0x09e8, 0x0062),
@@ -2551,12 +2573,15 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	.idProduct = 0x1020,
 },
 
+<<<<<<< HEAD
 /* KeithMcMillen Stringport */
 {
 	USB_DEVICE(0x1f38, 0x0001),
 	.bInterfaceClass = USB_CLASS_AUDIO,
 },
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Miditech devices */
 {
 	USB_DEVICE(0x4752, 0x0011),
@@ -2751,6 +2776,62 @@ YAMAHA_DEVICE(0x7010, "UB99"),
 	}
 },
 
+<<<<<<< HEAD
+=======
+/* Microsoft XboxLive Headset/Xbox Communicator */
+{
+	USB_DEVICE(0x045e, 0x0283),
+	.bInterfaceClass = USB_CLASS_PER_INTERFACE,
+	.driver_info = (unsigned long) &(const struct snd_usb_audio_quirk) {
+		.vendor_name = "Microsoft",
+		.product_name = "XboxLive Headset/Xbox Communicator",
+		.ifnum = QUIRK_ANY_INTERFACE,
+		.type = QUIRK_COMPOSITE,
+		.data = &(const struct snd_usb_audio_quirk[]) {
+			{
+				/* playback */
+				.ifnum = 0,
+				.type = QUIRK_AUDIO_FIXED_ENDPOINT,
+				.data = &(const struct audioformat) {
+					.formats = SNDRV_PCM_FMTBIT_S16_LE,
+					.channels = 1,
+					.iface = 0,
+					.altsetting = 0,
+					.altset_idx = 0,
+					.attributes = 0,
+					.endpoint = 0x04,
+					.ep_attr = 0x05,
+					.rates = SNDRV_PCM_RATE_CONTINUOUS,
+					.rate_min = 22050,
+					.rate_max = 22050
+				}
+			},
+			{
+				/* capture */
+				.ifnum = 1,
+				.type = QUIRK_AUDIO_FIXED_ENDPOINT,
+				.data = &(const struct audioformat) {
+					.formats = SNDRV_PCM_FMTBIT_S16_LE,
+					.channels = 1,
+					.iface = 1,
+					.altsetting = 0,
+					.altset_idx = 0,
+					.attributes = 0,
+					.endpoint = 0x85,
+					.ep_attr = 0x05,
+					.rates = SNDRV_PCM_RATE_CONTINUOUS,
+					.rate_min = 16000,
+					.rate_max = 16000
+				}
+			},
+			{
+				.ifnum = -1
+			}
+		}
+	}
+},
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/*
 	 * Some USB MIDI devices don't have an audio control interface,

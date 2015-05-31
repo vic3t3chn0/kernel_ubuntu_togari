@@ -12,9 +12,12 @@ config MXS_HAVE_PLATFORM_FLEXCAN
 	select HAVE_CAN_FLEXCAN if CAN
 	bool
 
+<<<<<<< HEAD
 config MXS_HAVE_PLATFORM_GPMI_NAND
 	bool
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config MXS_HAVE_PLATFORM_MXS_I2C
 	bool
 
@@ -26,9 +29,12 @@ config MXS_HAVE_PLATFORM_MXS_PWM
 
 config MXS_HAVE_PLATFORM_MXSFB
 	bool
+<<<<<<< HEAD
 
 config MXS_HAVE_PLATFORM_MXS_SAIF
 	bool
 
 config MXS_HAVE_PLATFORM_RTC_STMP3XXX
 	bool
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -5,6 +5,27 @@
  * 'tty.h' defines some structures used by tty_io.c and some defines.
  */
 
+<<<<<<< HEAD
+=======
+#ifdef __KERNEL__
+#include <linux/fs.h>
+#include <linux/major.h>
+#include <linux/termios.h>
+#include <linux/workqueue.h>
+#include <linux/tty_driver.h>
+#include <linux/tty_ldisc.h>
+#include <linux/mutex.h>
+
+#include <asm/system.h>
+
+
+/*
+ * (Note: the *_driver.minor_start values 1, 64, 128, 192 are
+ * hardcoded at present.)
+ */
+#define NR_UNIX98_PTY_DEFAULT	4096      /* Default maximum for Unix98 ptys */
+#define NR_UNIX98_PTY_MAX	(1 << MINORBITS) /* Absolute limit */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define NR_LDISCS		30
 
 /* line disciplines */
@@ -34,6 +55,7 @@
 #define N_TI_WL		22	/* for TI's WL BT, FM, GPS combo chips */
 #define N_TRACESINK	23	/* Trace data routing for MIPI P1149.7 */
 #define N_TRACEROUTER	24	/* Trace data routing for MIPI P1149.7 */
+<<<<<<< HEAD
 #define N_SMUX		25	/* Serial MUX */
 
 #ifdef __KERNEL__
@@ -54,6 +76,8 @@
 #define NR_UNIX98_PTY_DEFAULT	4096      /* Default maximum for Unix98 ptys */
 #define NR_UNIX98_PTY_RESERVE	1024	  /* Default reserve for main devpts */
 #define NR_UNIX98_PTY_MAX	(1 << MINORBITS) /* Absolute limit */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * This character is the same as _POSIX_VDISABLE: it cannot be used as
@@ -220,7 +244,11 @@ struct tty_port_operations {
 	/* Called on the final put of a port */
 	void (*destruct)(struct tty_port *port);
 };
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct tty_port {
 	struct tty_struct	*tty;		/* Back pointer */
 	const struct tty_port_operations *ops;	/* Port operations */
@@ -296,7 +324,15 @@ struct tty_struct {
 	void *driver_data;
 	struct list_head tty_files;
 
+<<<<<<< HEAD
 #define N_TTY_BUF_SIZE 4096
+=======
+#ifdef CONFIG_MDM_HSIC_PM
+#define N_TTY_BUF_SIZE 16384
+#else
+#define N_TTY_BUF_SIZE 4096
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * The following is data for the N_TTY line discipline.  For
@@ -481,11 +517,18 @@ extern void free_tty_struct(struct tty_struct *tty);
 extern void initialize_tty_struct(struct tty_struct *tty,
 		struct tty_driver *driver, int idx);
 extern void deinitialize_tty_struct(struct tty_struct *tty);
+<<<<<<< HEAD
 extern struct tty_struct *tty_init_dev(struct tty_driver *driver, int idx);
 extern int tty_release(struct inode *inode, struct file *filp);
 extern int tty_init_termios(struct tty_struct *tty);
 extern int tty_standard_install(struct tty_driver *driver,
 		struct tty_struct *tty);
+=======
+extern struct tty_struct *tty_init_dev(struct tty_driver *driver, int idx,
+								int first_ok);
+extern int tty_release(struct inode *inode, struct file *filp);
+extern int tty_init_termios(struct tty_struct *tty);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern struct tty_struct *tty_pair_get_tty(struct tty_struct *tty);
 extern struct tty_struct *tty_pair_get_pty(struct tty_struct *tty);
@@ -585,8 +628,11 @@ extern int __init tty_init(void);
 /* tty_ioctl.c */
 extern int n_tty_ioctl_helper(struct tty_struct *tty, struct file *file,
 		       unsigned int cmd, unsigned long arg);
+<<<<<<< HEAD
 extern long n_tty_compat_ioctl_helper(struct tty_struct *tty, struct file *file,
 		       unsigned int cmd, unsigned long arg);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* serial.c */
 
@@ -608,6 +654,7 @@ extern long vt_compat_ioctl(struct tty_struct *tty,
 /* functions for preparation of BKL removal */
 extern void __lockfunc tty_lock(void) __acquires(tty_lock);
 extern void __lockfunc tty_unlock(void) __releases(tty_lock);
+<<<<<<< HEAD
 
 /*
  * this shall be called only from where BTM is held (like close)
@@ -626,6 +673,10 @@ static inline void tty_wait_until_sent_from_close(struct tty_struct *tty,
 	tty_wait_until_sent(tty, timeout);
 	tty_lock();
 }
+=======
+extern struct task_struct *__big_tty_mutex_owner;
+#define tty_locked()		(current == __big_tty_mutex_owner)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * wait_event_interruptible_tty -- wait for a condition with the tty lock held

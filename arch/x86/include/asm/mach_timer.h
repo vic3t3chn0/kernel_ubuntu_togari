@@ -15,7 +15,11 @@
 
 #define CALIBRATE_TIME_MSEC 30 /* 30 msecs */
 #define CALIBRATE_LATCH	\
+<<<<<<< HEAD
 	((PIT_TICK_RATE * CALIBRATE_TIME_MSEC + 1000/2)/1000)
+=======
+	((CLOCK_TICK_RATE * CALIBRATE_TIME_MSEC + 1000/2)/1000)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline void mach_prepare_counter(void)
 {

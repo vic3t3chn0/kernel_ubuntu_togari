@@ -16,6 +16,10 @@
 #include <asm/mman.h>
 #include <asm/page.h>
 #include <asm/processor.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/types.h>
 
 #define IA64_MAX_PHYS_BITS	50	/* max. number of physical address bits (architected) */

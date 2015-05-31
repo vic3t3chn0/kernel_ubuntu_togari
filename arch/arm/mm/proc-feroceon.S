@@ -98,7 +98,10 @@ ENTRY(cpu_feroceon_proc_fin)
  * loc: location to jump to for soft reset
  */
 	.align	5
+<<<<<<< HEAD
 	.pushsection	.idmap.text, "ax"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ENTRY(cpu_feroceon_reset)
 	mov	ip, #0
 	mcr	p15, 0, ip, c7, c7, 0		@ invalidate I,D caches
@@ -111,8 +114,11 @@ ENTRY(cpu_feroceon_reset)
 	bic	ip, ip, #0x1100			@ ...i...s........
 	mcr	p15, 0, ip, c1, c0, 0		@ ctrl register
 	mov	pc, r0
+<<<<<<< HEAD
 ENDPROC(cpu_feroceon_reset)
 	.popsection
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * cpu_feroceon_do_idle()
@@ -414,9 +420,12 @@ ENTRY(feroceon_dma_unmap_area)
 	mov	pc, lr
 ENDPROC(feroceon_dma_unmap_area)
 
+<<<<<<< HEAD
 	.globl	feroceon_flush_kern_cache_louis
 	.equ	feroceon_flush_kern_cache_louis, feroceon_flush_kern_cache_all
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	@ define struct cpu_cache_fns (see <asm/cacheflush.h> and proc-macros.S)
 	define_cache_functions feroceon
 

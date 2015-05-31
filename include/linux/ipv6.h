@@ -172,7 +172,10 @@ struct ipv6_devconf {
 	__s32		disable_ipv6;
 	__s32		accept_dad;
 	__s32		force_tllao;
+<<<<<<< HEAD
 	__s32		accept_ra_prefix_route;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void		*sysctl;
 };
 
@@ -214,7 +217,10 @@ enum {
 	DEVCONF_DISABLE_IPV6,
 	DEVCONF_ACCEPT_DAD,
 	DEVCONF_FORCE_TLLAO,
+<<<<<<< HEAD
 	DEVCONF_ACCEPT_RA_PREFIX_ROUTE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	DEVCONF_MAX
 };
 
@@ -235,11 +241,14 @@ static inline struct ipv6hdr *ipipv6_hdr(const struct sk_buff *skb)
 	return (struct ipv6hdr *)skb_transport_header(skb);
 }
 
+<<<<<<< HEAD
 static inline __u8 ipv6_tclass(const struct ipv6hdr *iph)
 {
 	return (ntohl(*(__be32 *)iph) >> 20) & 0xff;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* 
    This structure contains results of exthdrs parsing
    as offsets from skb->nh.
@@ -262,6 +271,10 @@ struct inet6_skb_parm {
 #define IP6SKB_XFRM_TRANSFORMED	1
 #define IP6SKB_FORWARDED	2
 #define IP6SKB_REROUTED		4
+<<<<<<< HEAD
+=======
+#define IP6SKB_FRAGMENTED      16
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #define IP6CB(skb)	((struct inet6_skb_parm*)((skb)->cb))
@@ -331,7 +344,10 @@ struct ipv6_pinfo {
 				__unused_2:6;
 	__s16			mcast_hops:9;
 #endif
+<<<<<<< HEAD
 	int			ucast_oif;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int			mcast_oif;
 
 	/* pktoption flags */
@@ -368,7 +384,11 @@ struct ipv6_pinfo {
 				dontfrag:1;
 	__u8			min_hopcount;
 	__u8			tclass;
+<<<<<<< HEAD
 	__u8			rcv_tclass;
+=======
+	__u8			padding;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	__u32			dst_cookie;
 
@@ -412,7 +432,11 @@ struct tcp6_sock {
 
 extern int inet6_sk_rebuild_header(struct sock *sk);
 
+<<<<<<< HEAD
 #if IS_ENABLED(CONFIG_IPV6)
+=======
+#if defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline struct ipv6_pinfo * inet6_sk(const struct sock *__sk)
 {
 	return inet_sk(__sk)->pinet6;
@@ -523,7 +547,11 @@ static inline struct raw6_sock *raw6_sk(const struct sock *sk)
 #define inet6_rcv_saddr(__sk)	NULL
 #define tcp_twsk_ipv6only(__sk)		0
 #define inet_v6_ipv6only(__sk)		0
+<<<<<<< HEAD
 #endif /* IS_ENABLED(CONFIG_IPV6) */
+=======
+#endif /* defined(CONFIG_IPV6) || defined(CONFIG_IPV6_MODULE) */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define INET6_MATCH(__sk, __net, __hash, __saddr, __daddr, __ports, __dif)\
 	(((__sk)->sk_hash == (__hash)) && sock_net((__sk)) == (__net)	&& \

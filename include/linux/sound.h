@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 #ifndef _LINUX_SOUND_H
 #define _LINUX_SOUND_H
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Minor numbers for the sound driver.
@@ -44,5 +47,8 @@ extern void unregister_sound_mixer(int unit);
 extern void unregister_sound_midi(int unit);
 extern void unregister_sound_dsp(int unit);
 #endif /* __KERNEL__ */
+<<<<<<< HEAD
 
 #endif /* _LINUX_SOUND_H */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

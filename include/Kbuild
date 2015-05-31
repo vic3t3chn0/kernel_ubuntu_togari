@@ -10,4 +10,7 @@ header-y += video/
 header-y += drm/
 header-y += xen/
 header-y += scsi/
+<<<<<<< HEAD
 header-y += media/
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

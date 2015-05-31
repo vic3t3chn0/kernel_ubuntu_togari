@@ -29,6 +29,7 @@ config ARCH_LPC32XX_UART6_SELECT
 
 endmenu
 
+<<<<<<< HEAD
 menu "LPC32XX chip components"
 
 config ARCH_LPC32XX_IRAM_FOR_NET
@@ -54,5 +55,7 @@ config ARCH_LPC32XX_MII_SUPPORT
 
 endmenu
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 endif
 

@@ -194,7 +194,11 @@ static int find_autofs_mount(const char *pathname,
 		return err;
 	err = -ENOENT;
 	while (path.dentry == path.mnt->mnt_root) {
+<<<<<<< HEAD
 		if (path.dentry->d_sb->s_magic == AUTOFS_SUPER_MAGIC) {
+=======
+		if (path.mnt->mnt_sb->s_magic == AUTOFS_SUPER_MAGIC) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			if (test(&path, data)) {
 				path_get(&path);
 				if (!err) /* already found some */
@@ -212,7 +216,11 @@ static int find_autofs_mount(const char *pathname,
 
 static int test_by_dev(struct path *path, void *p)
 {
+<<<<<<< HEAD
 	return path->dentry->d_sb->s_dev == *(dev_t *)p;
+=======
+	return path->mnt->mnt_sb->s_dev == *(dev_t *)p;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int test_by_type(struct path *path, void *p)
@@ -538,11 +546,19 @@ static int autofs_dev_ioctl_ismountpoint(struct file *fp,
 			err = find_autofs_mount(name, &path, test_by_type, &type);
 		if (err)
 			goto out;
+<<<<<<< HEAD
 		devid = new_encode_dev(path.dentry->d_sb->s_dev);
 		err = 0;
 		if (path.mnt->mnt_root == path.dentry) {
 			err = 1;
 			magic = path.dentry->d_sb->s_magic;
+=======
+		devid = new_encode_dev(path.mnt->mnt_sb->s_dev);
+		err = 0;
+		if (path.mnt->mnt_root == path.dentry) {
+			err = 1;
+			magic = path.mnt->mnt_sb->s_magic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		}
 	} else {
 		dev_t dev = sbi->sb->s_dev;
@@ -556,7 +572,11 @@ static int autofs_dev_ioctl_ismountpoint(struct file *fp,
 		err = have_submounts(path.dentry);
 
 		if (follow_down_one(&path))
+<<<<<<< HEAD
 			magic = path.dentry->d_sb->s_magic;
+=======
+			magic = path.mnt->mnt_sb->s_magic;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	param->ismountpoint.out.devid = devid;

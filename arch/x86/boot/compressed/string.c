@@ -1,4 +1,5 @@
 #include "misc.h"
+<<<<<<< HEAD
 
 int memcmp(const void *s1, const void *s2, size_t len)
 {
@@ -8,4 +9,6 @@ int memcmp(const void *s1, const void *s2, size_t len)
 	return diff;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "../string.c"

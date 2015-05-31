@@ -26,7 +26,10 @@
 #include <linux/bootmem.h>
 #include <linux/initrd.h>
 #include <linux/ioport.h>
+<<<<<<< HEAD
 #include <linux/memblock.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/mm.h>
 #include <linux/seq_file.h>
 #include <linux/screen_info.h>
@@ -55,8 +58,12 @@ static void __init bootmem_init(void)
 	/* Initialize the boot-time allocator with low memory only. */
 	bootmap_size = init_bootmem_node(NODE_DATA(0), start_pfn,
 					 min_low_pfn, max_low_pfn);
+<<<<<<< HEAD
 	memblock_add_node(PFN_PHYS(min_low_pfn),
 			  PFN_PHYS(max_low_pfn - min_low_pfn), 0);
+=======
+	add_active_range(0, min_low_pfn, max_low_pfn);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	free_bootmem(PFN_PHYS(start_pfn),
 		     (max_low_pfn - start_pfn) << PAGE_SHIFT);

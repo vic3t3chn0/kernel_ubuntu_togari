@@ -284,7 +284,10 @@ struct vio_dev {
 };
 
 struct vio_driver {
+<<<<<<< HEAD
 	const char			*name;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct list_head		node;
 	const struct vio_device_id	*id_table;
 	int (*probe)(struct vio_dev *dev, const struct vio_device_id *id);
@@ -372,6 +375,7 @@ do {	if (vio->debug & VIO_DEBUG_##TYPE) \
 		       vio->vdev->channel_id, ## a); \
 } while (0)
 
+<<<<<<< HEAD
 extern int __vio_register_driver(struct vio_driver *drv, struct module *owner,
 				 const char *mod_name);
 /*
@@ -379,6 +383,9 @@ extern int __vio_register_driver(struct vio_driver *drv, struct module *owner,
  */
 #define vio_register_driver(driver)		\
 	__vio_register_driver(driver, THIS_MODULE, KBUILD_MODNAME)
+=======
+extern int vio_register_driver(struct vio_driver *drv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void vio_unregister_driver(struct vio_driver *drv);
 
 static inline struct vio_driver *to_vio_driver(struct device_driver *drv)

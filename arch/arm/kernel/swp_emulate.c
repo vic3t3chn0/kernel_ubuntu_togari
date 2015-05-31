@@ -25,7 +25,10 @@
 #include <linux/syscalls.h>
 #include <linux/perf_event.h>
 
+<<<<<<< HEAD
 #include <asm/opcodes.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/traps.h>
 #include <asm/uaccess.h>
 
@@ -109,10 +112,18 @@ static void set_segfault(struct pt_regs *regs, unsigned long addr)
 {
 	siginfo_t info;
 
+<<<<<<< HEAD
+=======
+	down_read(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (find_vma(current->mm, addr) == NULL)
 		info.si_code = SEGV_MAPERR;
 	else
 		info.si_code = SEGV_ACCERR;
+<<<<<<< HEAD
+=======
+	up_read(&current->mm->mmap_sem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	info.si_signo = SIGSEGV;
 	info.si_errno = 0;
@@ -174,6 +185,7 @@ static int emulate_swpX(unsigned int address, unsigned int *data,
 	return res;
 }
 
+<<<<<<< HEAD
 static int check_condition(struct pt_regs *regs, unsigned int insn)
 {
 	unsigned int base_cond, neg, cond = 0;
@@ -225,6 +237,8 @@ static int check_condition(struct pt_regs *regs, unsigned int insn)
 	return cond && !neg;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * swp_handler logs the id of calling process, dissects the instruction, sanity
  * checks the memory location, calls emulate_swpX for the actual operation and
@@ -235,6 +249,7 @@ static int swp_handler(struct pt_regs *regs, unsigned int instr)
 	unsigned int address, destreg, data, type;
 	unsigned int res = 0;
 
+<<<<<<< HEAD
 	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, regs, regs->ARM_pc);
 
 	res = arm_check_condition(instr, regs->ARM_cpsr);
@@ -251,6 +266,9 @@ static int swp_handler(struct pt_regs *regs, unsigned int instr)
 	default:
 		return -EINVAL;
 	}
+=======
+	perf_sw_event(PERF_COUNT_SW_EMULATION_FAULTS, 1, 0, regs, regs->ARM_pc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (current->pid != previous_pid) {
 		pr_debug("\"%s\" (%ld) uses deprecated SWP{B} instruction\n",
@@ -258,12 +276,15 @@ static int swp_handler(struct pt_regs *regs, unsigned int instr)
 		previous_pid = current->pid;
 	}
 
+<<<<<<< HEAD
 	/* Ignore the instruction if it fails its condition code check */
 	if (!check_condition(regs, instr)) {
 		regs->ARM_pc += 4;
 		return 0;
 	}
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	address = regs->uregs[EXTRACT_REG_NUM(instr, RN_OFFSET)];
 	data	= regs->uregs[EXTRACT_REG_NUM(instr, RT2_OFFSET)];
 	destreg = EXTRACT_REG_NUM(instr, RT_OFFSET);

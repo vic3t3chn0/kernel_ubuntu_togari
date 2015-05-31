@@ -9,8 +9,11 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) "IPv4: " fmt
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/capability.h>
 #include <linux/module.h>
 #include <linux/slab.h>
@@ -360,7 +363,10 @@ int ip_options_compile(struct net *net,
 				}
 				switch (optptr[3]&0xF) {
 				      case IPOPT_TS_TSONLY:
+<<<<<<< HEAD
 					opt->ts = optptr - iph;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					if (skb)
 						timeptr = &optptr[optptr[2]-1];
 					opt->ts_needtime = 1;
@@ -371,7 +377,10 @@ int ip_options_compile(struct net *net,
 						pp_ptr = optptr + 2;
 						goto error;
 					}
+<<<<<<< HEAD
 					opt->ts = optptr - iph;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					if (rt)  {
 						memcpy(&optptr[optptr[2]-1], &rt->rt_spec_dst, 4);
 						timeptr = &optptr[optptr[2]+3];
@@ -385,7 +394,10 @@ int ip_options_compile(struct net *net,
 						pp_ptr = optptr + 2;
 						goto error;
 					}
+<<<<<<< HEAD
 					opt->ts = optptr - iph;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					{
 						__be32 addr;
 						memcpy(&addr, &optptr[optptr[2]-1], 4);
@@ -418,12 +430,19 @@ int ip_options_compile(struct net *net,
 					pp_ptr = optptr + 3;
 					goto error;
 				}
+<<<<<<< HEAD
 				opt->ts = optptr - iph;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				if (skb) {
 					optptr[3] = (optptr[3]&0xF)|((overflow+1)<<4);
 					opt->is_changed = 1;
 				}
 			}
+<<<<<<< HEAD
+=======
+			opt->ts = optptr - iph;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			break;
 		      case IPOPT_RA:
 			if (optlen < 4) {
@@ -579,7 +598,11 @@ void ip_forward_options(struct sk_buff *skb)
 			ip_rt_get_source(&optptr[srrptr-1], skb, rt);
 			optptr[2] = srrptr+4;
 		} else if (net_ratelimit())
+<<<<<<< HEAD
 			pr_crit("%s(): Argh! Destination lost!\n", __func__);
+=======
+			printk(KERN_CRIT "ip_forward(): Argh! Destination lost!\n");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (opt->ts_needaddr) {
 			optptr = raw + opt->ts;
 			ip_rt_get_source(&optptr[optptr[2]-9], skb, rt);

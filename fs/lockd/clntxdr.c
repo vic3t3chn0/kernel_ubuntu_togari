@@ -223,7 +223,11 @@ static void encode_nlm_stat(struct xdr_stream *xdr,
 {
 	__be32 *p;
 
+<<<<<<< HEAD
 	BUG_ON(be32_to_cpu(stat) > NLM_LCK_DENIED_GRACE_PERIOD);
+=======
+	WARN_ON_ONCE(be32_to_cpu(stat) > NLM_LCK_DENIED_GRACE_PERIOD);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	p = xdr_reserve_space(xdr, 4);
 	*p = stat;
 }
@@ -596,19 +600,31 @@ static struct rpc_procinfo	nlm_procedures[] = {
 	PROC(GRANTED_RES,	res,		norep),
 };
 
+<<<<<<< HEAD
 static const struct rpc_version	nlm_version1 = {
+=======
+static struct rpc_version	nlm_version1 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.number		= 1,
 		.nrprocs	= ARRAY_SIZE(nlm_procedures),
 		.procs		= nlm_procedures,
 };
 
+<<<<<<< HEAD
 static const struct rpc_version	nlm_version3 = {
+=======
+static struct rpc_version	nlm_version3 = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.number		= 3,
 		.nrprocs	= ARRAY_SIZE(nlm_procedures),
 		.procs		= nlm_procedures,
 };
 
+<<<<<<< HEAD
 static const struct rpc_version	*nlm_versions[] = {
+=======
+static struct rpc_version	*nlm_versions[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	[1] = &nlm_version1,
 	[3] = &nlm_version3,
 #ifdef CONFIG_LOCKD_V4
@@ -618,7 +634,11 @@ static const struct rpc_version	*nlm_versions[] = {
 
 static struct rpc_stat		nlm_rpc_stats;
 
+<<<<<<< HEAD
 const struct rpc_program	nlm_program = {
+=======
+struct rpc_program		nlm_program = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.name		= "lockd",
 		.number		= NLM_PROGRAM,
 		.nrvers		= ARRAY_SIZE(nlm_versions),

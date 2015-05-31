@@ -2,8 +2,13 @@
  * SDIO Classes, Interface Types, Manufacturer IDs, etc.
  */
 
+<<<<<<< HEAD
 #ifndef LINUX_MMC_SDIO_IDS_H
 #define LINUX_MMC_SDIO_IDS_H
+=======
+#ifndef MMC_SDIO_IDS_H
+#define MMC_SDIO_IDS_H
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Standard SDIO Function Interfaces
@@ -44,4 +49,8 @@
 #define SDIO_DEVICE_ID_SIANO_NOVA_A0		0x1100
 #define SDIO_DEVICE_ID_SIANO_STELLAR 		0x5347
 
+<<<<<<< HEAD
 #endif /* LINUX_MMC_SDIO_IDS_H */
+=======
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

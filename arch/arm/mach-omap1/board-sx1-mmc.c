@@ -12,11 +12,18 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 #include <linux/gpio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/platform_device.h>
 
 #include <mach/hardware.h>
 #include <plat/mmc.h>
+<<<<<<< HEAD
+=======
+#include <mach/gpio.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/board-sx1.h>
 
 #if defined(CONFIG_MMC_OMAP) || defined(CONFIG_MMC_OMAP_MODULE)

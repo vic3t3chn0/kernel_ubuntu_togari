@@ -18,9 +18,20 @@
 
 unsigned int __machine_arch_type;
 
+<<<<<<< HEAD
 #include <linux/compiler.h>	/* for inline */
 #include <linux/types.h>
 #include <linux/linkage.h>
+=======
+#define _LINUX_STRING_H_
+
+#include <linux/compiler.h>	/* for inline */
+#include <linux/types.h>	/* for size_t */
+#include <linux/stddef.h>	/* for NULL */
+#include <linux/linkage.h>
+#include <asm/string.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void putstr(const char *ptr);
 extern void error(char *x);
@@ -96,6 +107,44 @@ static void putstr(const char *ptr)
 	flush();
 }
 
+<<<<<<< HEAD
+=======
+
+void *memcpy(void *__dest, __const void *__src, size_t __n)
+{
+	int i = 0;
+	unsigned char *d = (unsigned char *)__dest, *s = (unsigned char *)__src;
+
+	for (i = __n >> 3; i > 0; i--) {
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+	}
+
+	if (__n & 1 << 2) {
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+		*d++ = *s++;
+	}
+
+	if (__n & 1 << 1) {
+		*d++ = *s++;
+		*d++ = *s++;
+	}
+
+	if (__n & 1)
+		*d++ = *s++;
+
+	return __dest;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * gzip declarations
  */

@@ -75,14 +75,22 @@ static unsigned int help(struct sk_buff *skb,
 
 static void __exit nf_nat_irc_fini(void)
 {
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_irc_hook, NULL);
+=======
+	rcu_assign_pointer(nf_nat_irc_hook, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	synchronize_rcu();
 }
 
 static int __init nf_nat_irc_init(void)
 {
 	BUG_ON(nf_nat_irc_hook != NULL);
+<<<<<<< HEAD
 	RCU_INIT_POINTER(nf_nat_irc_hook, help);
+=======
+	rcu_assign_pointer(nf_nat_irc_hook, help);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 

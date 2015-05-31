@@ -155,7 +155,10 @@ SECTIONS
 		SECURITY_INITCALL
 		INIT_RAM_FS
 
+<<<<<<< HEAD
 		. = ALIGN(PAGE_SIZE);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		___per_cpu_load = .;
 		PERCPU_INPUT(32)
 

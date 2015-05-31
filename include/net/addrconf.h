@@ -81,6 +81,12 @@ extern int			ipv6_dev_get_saddr(struct net *net,
 					       const struct in6_addr *daddr,
 					       unsigned int srcprefs,
 					       struct in6_addr *saddr);
+<<<<<<< HEAD
+=======
+extern int			__ipv6_get_lladdr(struct inet6_dev *idev,
+						  struct in6_addr *addr,
+						  unsigned char banned_flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int			ipv6_get_lladdr(struct net_device *dev,
 						struct in6_addr *addr,
 						unsigned char banned_flags);
@@ -151,8 +157,12 @@ extern int ipv6_chk_mcast_addr(struct net_device *dev,
 			       const struct in6_addr *src_addr);
 extern int ipv6_is_mld(struct sk_buff *skb, int nexthdr);
 
+<<<<<<< HEAD
 extern void addrconf_prefix_rcv(struct net_device *dev,
 				u8 *opt, int len, bool sllao);
+=======
+extern void addrconf_prefix_rcv(struct net_device *dev, u8 *opt, int len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  *	anycast prototypes (anycast.c)
@@ -160,6 +170,10 @@ extern void addrconf_prefix_rcv(struct net_device *dev,
 extern int ipv6_sock_ac_join(struct sock *sk,int ifindex, const struct in6_addr *addr);
 extern int ipv6_sock_ac_drop(struct sock *sk,int ifindex, const struct in6_addr *addr);
 extern void ipv6_sock_ac_close(struct sock *sk);
+<<<<<<< HEAD
+=======
+extern int inet6_ac_check(struct sock *sk, const struct in6_addr *addr, int ifindex);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int ipv6_dev_ac_inc(struct net_device *dev, const struct in6_addr *addr);
 extern int __ipv6_dev_ac_dec(struct inet6_dev *idev, const struct in6_addr *addr);

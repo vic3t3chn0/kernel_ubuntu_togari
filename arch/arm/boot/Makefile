@@ -11,6 +11,12 @@
 # Copyright (C) 1995-2002 Russell King
 #
 
+<<<<<<< HEAD
+=======
+MKIMAGE         := $(srctree)/scripts/mkuboot.sh
+MKFIPS          := $(srctree)/scripts/mk_fipsbinary.sh
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ifneq ($(MACHINE),)
 include $(srctree)/$(MACHINE)/Makefile.boot
 endif
@@ -27,6 +33,7 @@ export ZRELADDR INITRD_PHYS PARAMS_PHYS
 
 targets := Image zImage xipImage bootpImage uImage
 
+<<<<<<< HEAD
 DTB_NAMES := $(subst $\",,$(CONFIG_BUILD_ARM_APPENDED_DTB_IMAGE_NAMES))
 ifneq ($(DTB_NAMES),)
 DTB_LIST := $(addsuffix .dtb,$(DTB_NAMES))
@@ -35,6 +42,8 @@ DTB_LIST := $(dtb-y)
 endif
 DTB_OBJS := $(addprefix $(obj)/,$(DTB_LIST))
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ifeq ($(CONFIG_XIP_KERNEL),y)
 
 $(obj)/xipImage: vmlinux FORCE
@@ -61,14 +70,21 @@ $(obj)/compressed/vmlinux: $(obj)/Image FORCE
 
 $(obj)/zImage:	$(obj)/compressed/vmlinux FORCE
 	$(call if_changed,objcopy)
+<<<<<<< HEAD
 	@echo '  Kernel: $@ is ready'
 
 $(obj)/zImage-dtb:	$(obj)/zImage $(DTB_OBJS) FORCE
 	$(call if_changed,cat)
+=======
+ifeq ($(CONFIG_CRYPTO_FIPS),y)
+	$(MKFIPS) $(obj)/zImage
+endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	@echo '  Kernel: $@ is ready'
 
 endif
 
+<<<<<<< HEAD
 targets += $(DTB_LIST)
 
 # Rule to build device tree blobs
@@ -99,6 +115,22 @@ fi
 
 $(obj)/uImage:	$(obj)/zImage FORCE
 	@$(check_for_multiple_loadaddr)
+=======
+quiet_cmd_uimage = UIMAGE  $@
+      cmd_uimage = $(CONFIG_SHELL) $(MKIMAGE) -A arm -O linux -T kernel \
+		   -C none -a $(LOADADDR) -e $(STARTADDR) \
+		   -n 'Linux-$(KERNELRELEASE)' -d $< $@
+
+ifeq ($(CONFIG_ZBOOT_ROM),y)
+$(obj)/uImage: LOADADDR=$(CONFIG_ZBOOT_ROM_TEXT)
+else
+$(obj)/uImage: LOADADDR=$(ZRELADDR)
+endif
+
+$(obj)/uImage: STARTADDR=$(LOADADDR)
+
+$(obj)/uImage:	$(obj)/zImage FORCE
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	$(call if_changed,uimage)
 	@echo '  Image $@ is ready'
 

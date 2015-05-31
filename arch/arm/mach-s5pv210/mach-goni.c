@@ -25,10 +25,15 @@
 #include <linux/gpio_keys.h>
 #include <linux/input.h>
 #include <linux/gpio.h>
+<<<<<<< HEAD
 #include <linux/mmc/host.h>
 #include <linux/interrupt.h>
 
 #include <asm/hardware/vic.h>
+=======
+#include <linux/interrupt.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
 #include <asm/setup.h>
@@ -39,6 +44,10 @@
 
 #include <plat/gpio-cfg.h>
 #include <plat/regs-serial.h>
+<<<<<<< HEAD
+=======
+#include <plat/s5pv210.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/devs.h>
 #include <plat/cpu.h>
 #include <plat/fb.h>
@@ -47,6 +56,7 @@
 #include <plat/sdhci.h>
 #include <plat/clock.h>
 #include <plat/s5p-time.h>
+<<<<<<< HEAD
 #include <plat/mfc.h>
 #include <plat/regs-fb-v4.h>
 #include <plat/camport.h>
@@ -56,6 +66,9 @@
 #include <media/noon010pc30.h>
 
 #include "common.h"
+=======
+#include <plat/regs-fb-v4.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* Following are default values for UCON, ULCON and UFCON UART registers */
 #define GONI_UCON_DEFAULT	(S3C2410_UCON_TXILEVEL |	\
@@ -230,12 +243,17 @@ static void __init goni_radio_init(void)
 	i2c1_devs[0].irq = gpio_to_irq(gpio);
 
 	gpio = S5PV210_GPJ2(5);			/* XMSMDATA_5 */
+<<<<<<< HEAD
 	gpio_request_one(gpio, GPIOF_OUT_INIT_HIGH, "FM_RST");
 }
 
 static u8 read_chg(void)
 {
 	return gpio_get_value(S5PV210_GPJ0(5));
+=======
+	gpio_request(gpio, "FM_RST");
+	gpio_direction_output(gpio, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /* TSP */
@@ -249,7 +267,10 @@ static struct mxt_platform_data qt602240_platform_data = {
 	.voltage	= 2800000,              /* 2.8V */
 	.orient		= MXT_DIAGONAL,
 	.irqflags	= IRQF_TRIGGER_FALLING,
+<<<<<<< HEAD
 	.read_chg	= &read_chg,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct s3c2410_platform_i2c i2c2_data __initdata = {
@@ -272,7 +293,12 @@ static void __init goni_tsp_init(void)
 	int gpio;
 
 	gpio = S5PV210_GPJ1(3);		/* XMSMADDR_11 */
+<<<<<<< HEAD
 	gpio_request_one(gpio, GPIOF_OUT_INIT_HIGH, "TSP_LDO_ON");
+=======
+	gpio_request(gpio, "TSP_LDO_ON");
+	gpio_direction_output(gpio, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	gpio_export(gpio, 0);
 
 	gpio = S5PV210_GPJ0(5);		/* XMSMADDR_5 */
@@ -284,6 +310,7 @@ static void __init goni_tsp_init(void)
 	i2c2_devs[0].irq = gpio_to_irq(gpio);
 }
 
+<<<<<<< HEAD
 static void goni_camera_init(void)
 {
 	s5pv210_fimc_setup_gpio(S5P_CAMPORT_A);
@@ -292,6 +319,8 @@ static void goni_camera_init(void)
 	s5p_gpio_set_drvstr(S5PV210_GPE1(3), S5P_GPIO_DRVSTR_LV4);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* MAX8998 regulators */
 #if defined(CONFIG_REGULATOR_MAX8998) || defined(CONFIG_REGULATOR_MAX8998_MODULE)
 
@@ -305,7 +334,10 @@ static struct regulator_consumer_supply goni_ldo5_consumers[] = {
 
 static struct regulator_consumer_supply goni_ldo8_consumers[] = {
 	REGULATOR_SUPPLY("vusb_d", "s3c-hsotg"),
+<<<<<<< HEAD
 	REGULATOR_SUPPLY("vdd33a_dac", "s5p-sdo"),
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct regulator_consumer_supply goni_ldo11_consumers[] = {
@@ -496,10 +528,13 @@ static struct regulator_consumer_supply buck1_consumer =
 static struct regulator_consumer_supply buck2_consumer =
 	REGULATOR_SUPPLY("vddint", NULL);
 
+<<<<<<< HEAD
 static struct regulator_consumer_supply buck3_consumer =
 	REGULATOR_SUPPLY("vdet", "s5p-sdo");
 
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct regulator_init_data goni_buck1_data = {
 	.constraints	= {
 		.name		= "VARM_1.2V",
@@ -536,8 +571,11 @@ static struct regulator_init_data goni_buck3_data = {
 			.enabled = 1,
 		},
 	},
+<<<<<<< HEAD
 	.num_consumer_supplies	= 1,
 	.consumer_supplies	= &buck3_consumer,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct regulator_init_data goni_buck4_data = {
@@ -681,8 +719,13 @@ static struct wm8994_pdata wm8994_platform_data = {
 	.gpio_defaults[8] = 0x0100,
 	.gpio_defaults[9] = 0x0100,
 	.gpio_defaults[10] = 0x0100,
+<<<<<<< HEAD
 	.ldo[0]	= { S5PV210_MP03(6), &wm8994_ldo1_data },	/* XM0FRNB_2 */
 	.ldo[1]	= { 0, &wm8994_ldo2_data },
+=======
+	.ldo[0]	= { S5PV210_MP03(6), NULL, &wm8994_ldo1_data },	/* XM0FRNB_2 */
+	.ldo[1]	= { 0, NULL, &wm8994_ldo2_data },
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* GPIO I2C PMIC */
@@ -772,7 +815,10 @@ static void __init goni_pmic_init(void)
 /* MoviNAND */
 static struct s3c_sdhci_platdata goni_hsmmc0_data __initdata = {
 	.max_width		= 4,
+<<<<<<< HEAD
 	.host_caps2		= MMC_CAP2_BROKEN_VOLTAGE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.cd_type		= S3C_SDHCI_CD_PERMANENT,
 };
 
@@ -829,6 +875,7 @@ static void goni_setup_sdhci(void)
 	s3c_sdhci2_set_platdata(&goni_hsmmc2_data);
 };
 
+<<<<<<< HEAD
 static struct noon010pc30_platform_data noon010pc30_pldata = {
 	.clk_rate	= 16000000UL,
 	.gpio_nreset	= S5PV210_GPB(2), /* CAM_CIF_NRST */
@@ -857,6 +904,8 @@ static struct s5p_platform_fimc goni_fimc_md_platdata __initdata = {
 	.num_clients	= ARRAY_SIZE(goni_camera_sensors),
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct platform_device *goni_devices[] __initdata = {
 	&s3c_device_fb,
 	&s5p_device_onenand,
@@ -865,16 +914,22 @@ static struct platform_device *goni_devices[] __initdata = {
 	&goni_i2c_gpio5,
 	&mmc2_fixed_voltage,
 	&goni_device_gpiokeys,
+<<<<<<< HEAD
 	&s5p_device_mfc,
 	&s5p_device_mfc_l,
 	&s5p_device_mfc_r,
 	&s5p_device_mixer,
 	&s5p_device_sdo,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&s3c_device_i2c0,
 	&s5p_device_fimc0,
 	&s5p_device_fimc1,
 	&s5p_device_fimc2,
+<<<<<<< HEAD
 	&s5p_device_fimc_md,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&s3c_device_hsmmc0,
 	&s3c_device_hsmmc1,
 	&s3c_device_hsmmc2,
@@ -898,17 +953,24 @@ static void __init goni_sound_init(void)
 
 static void __init goni_map_io(void)
 {
+<<<<<<< HEAD
 	s5pv210_init_io(NULL, 0);
+=======
+	s5p_init_io(NULL, 0, S5P_VA_CHIPID);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	s3c24xx_init_clocks(24000000);
 	s3c24xx_init_uarts(goni_uartcfgs, ARRAY_SIZE(goni_uartcfgs));
 	s5p_set_timer_source(S5P_PWM3, S5P_PWM4);
 }
 
+<<<<<<< HEAD
 static void __init goni_reserve(void)
 {
 	s5p_mfc_reserve_mem(0x43000000, 8 << 20, 0x51000000, 8 << 20);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __init goni_machine_init(void)
 {
 	/* Radio: call before I2C 1 registeration */
@@ -943,12 +1005,15 @@ static void __init goni_machine_init(void)
 	/* FB */
 	s3c_fb_set_platdata(&goni_lcd_pdata);
 
+<<<<<<< HEAD
 	/* FIMC */
 	s3c_set_platdata(&goni_fimc_md_platdata, sizeof(goni_fimc_md_platdata),
 			 &s5p_device_fimc_md);
 
 	goni_camera_init();
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* SPI */
 	spi_register_board_info(spi_board_info, ARRAY_SIZE(spi_board_info));
 
@@ -962,6 +1027,7 @@ static void __init goni_machine_init(void)
 
 MACHINE_START(GONI, "GONI")
 	/* Maintainers: Kyungmin Park <kyungmin.park@samsung.com> */
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.init_irq	= s5pv210_init_irq,
 	.handle_irq	= vic_handle_irq,
@@ -970,4 +1036,11 @@ MACHINE_START(GONI, "GONI")
 	.timer		= &s5p_timer,
 	.reserve	= &goni_reserve,
 	.restart	= s5pv210_restart,
+=======
+	.boot_params	= S5P_PA_SDRAM + 0x100,
+	.init_irq	= s5pv210_init_irq,
+	.map_io		= goni_map_io,
+	.init_machine	= goni_machine_init,
+	.timer		= &s5p_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

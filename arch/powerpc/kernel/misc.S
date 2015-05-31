@@ -5,6 +5,10 @@
  * Largely rewritten by Cort Dougan (cort@cs.nmt.edu)
  * and Paul Mackerras.
  *
+<<<<<<< HEAD
+=======
+ * Adapted for iSeries by Mike Corrigan (mikejc@us.ibm.com)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * PPC64 updates by Dave Engebretsen (engebret@us.ibm.com)
  *
  * setjmp/longjmp code by Paul Mackerras.

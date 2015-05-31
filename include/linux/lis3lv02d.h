@@ -113,6 +113,10 @@ struct lis3lv02d_platform_data {
 	s8 axis_x;
 	s8 axis_y;
 	s8 axis_z;
+<<<<<<< HEAD
+=======
+#define LIS3_USE_REGULATOR_CTRL 0x01
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define LIS3_USE_BLOCK_READ	0x02
 	u16 driver_features;
 	int default_rate;

@@ -62,6 +62,7 @@
 
 #define SO_RXQ_OVFL             40
 
+<<<<<<< HEAD
 #define SO_WIFI_STATUS		41
 #define SCM_WIFI_STATUS		SO_WIFI_STATUS
 #define SO_PEEK_OFF		42
@@ -69,4 +70,6 @@
 /* Instruct lower device to use last 4-bytes of skb data as FCS */
 #define SO_NOFCS		43
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASM_AVR32_SOCKET_H */

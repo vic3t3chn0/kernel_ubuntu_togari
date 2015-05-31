@@ -46,7 +46,11 @@
 #include <net/xfrm.h>
 #include <net/checksum.h>
 #include <net/udp.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "avc.h"
 #include "objsec.h"
@@ -310,7 +314,11 @@ int selinux_xfrm_policy_clone(struct xfrm_sec_ctx *old_ctx,
 
 	if (old_ctx) {
 		new_ctx = kmalloc(sizeof(*old_ctx) + old_ctx->ctx_len,
+<<<<<<< HEAD
 				  GFP_KERNEL);
+=======
+				  GFP_ATOMIC);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!new_ctx)
 			return -ENOMEM;
 

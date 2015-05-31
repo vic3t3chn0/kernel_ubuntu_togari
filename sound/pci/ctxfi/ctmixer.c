@@ -86,7 +86,13 @@ enum CTALSA_MIXER_CTL {
 	MIXER_LINEIN_C_S,
 	MIXER_MIC_C_S,
 	MIXER_SPDIFI_C_S,
+<<<<<<< HEAD
 	MIXER_SPDIFO_P_S,
+=======
+	MIXER_LINEIN_P_S,
+	MIXER_SPDIFO_P_S,
+	MIXER_SPDIFI_P_S,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	MIXER_WAVEF_P_S,
 	MIXER_WAVER_P_S,
 	MIXER_WAVEC_P_S,
@@ -135,11 +141,19 @@ ct_kcontrol_init_table[NUM_CTALSA_MIXERS] = {
 	},
 	[MIXER_LINEIN_P] = {
 		.ctl = 1,
+<<<<<<< HEAD
 		.name = "Line Playback Volume",
 	},
 	[MIXER_LINEIN_C] = {
 		.ctl = 1,
 		.name = "Line Capture Volume",
+=======
+		.name = "Line-in Playback Volume",
+	},
+	[MIXER_LINEIN_C] = {
+		.ctl = 1,
+		.name = "Line-in Capture Volume",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[MIXER_MIC_P] = {
 		.ctl = 1,
@@ -151,6 +165,7 @@ ct_kcontrol_init_table[NUM_CTALSA_MIXERS] = {
 	},
 	[MIXER_SPDIFI_P] = {
 		.ctl = 1,
+<<<<<<< HEAD
 		.name = "IEC958 Playback Volume",
 	},
 	[MIXER_SPDIFI_C] = {
@@ -160,6 +175,17 @@ ct_kcontrol_init_table[NUM_CTALSA_MIXERS] = {
 	[MIXER_SPDIFO_P] = {
 		.ctl = 1,
 		.name = "Digital Playback Volume",
+=======
+		.name = "S/PDIF-in Playback Volume",
+	},
+	[MIXER_SPDIFI_C] = {
+		.ctl = 1,
+		.name = "S/PDIF-in Capture Volume",
+	},
+	[MIXER_SPDIFO_P] = {
+		.ctl = 1,
+		.name = "S/PDIF-out Playback Volume",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[MIXER_WAVEF_P] = {
 		.ctl = 1,
@@ -177,13 +203,21 @@ ct_kcontrol_init_table[NUM_CTALSA_MIXERS] = {
 		.ctl = 1,
 		.name = "Surround Playback Volume",
 	},
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	[MIXER_PCM_C_S] = {
 		.ctl = 1,
 		.name = "PCM Capture Switch",
 	},
 	[MIXER_LINEIN_C_S] = {
 		.ctl = 1,
+<<<<<<< HEAD
 		.name = "Line Capture Switch",
+=======
+		.name = "Line-in Capture Switch",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[MIXER_MIC_C_S] = {
 		.ctl = 1,
@@ -191,11 +225,27 @@ ct_kcontrol_init_table[NUM_CTALSA_MIXERS] = {
 	},
 	[MIXER_SPDIFI_C_S] = {
 		.ctl = 1,
+<<<<<<< HEAD
 		.name = "IEC958 Capture Switch",
 	},
 	[MIXER_SPDIFO_P_S] = {
 		.ctl = 1,
 		.name = "Digital Playback Switch",
+=======
+		.name = "S/PDIF-in Capture Switch",
+	},
+	[MIXER_LINEIN_P_S] = {
+		.ctl = 1,
+		.name = "Line-in Playback Switch",
+	},
+	[MIXER_SPDIFO_P_S] = {
+		.ctl = 1,
+		.name = "S/PDIF-out Playback Switch",
+	},
+	[MIXER_SPDIFI_P_S] = {
+		.ctl = 1,
+		.name = "S/PDIF-in Playback Switch",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[MIXER_WAVEF_P_S] = {
 		.ctl = 1,
@@ -225,8 +275,11 @@ ct_mixer_recording_select(struct ct_mixer *mixer, enum CT_AMIXER_CTL type);
 static void
 ct_mixer_recording_unselect(struct ct_mixer *mixer, enum CT_AMIXER_CTL type);
 
+<<<<<<< HEAD
 /* FIXME: this static looks like it would fail if more than one card was */
 /* installed. */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct snd_kcontrol *kctls[2] = {NULL};
 
 static enum CT_AMIXER_CTL get_amixer_index(enum CTALSA_MIXER_CTL alsa_index)
@@ -411,6 +464,7 @@ static struct snd_kcontrol_new vol_ctl = {
 	.tlv		= { .p =  ct_vol_db_scale },
 };
 
+<<<<<<< HEAD
 static int output_switch_info(struct snd_kcontrol *kcontrol,
 			      struct snd_ctl_elem_info *info)
 {
@@ -482,6 +536,8 @@ static struct snd_kcontrol_new mic_source_ctl = {
 	.put = mic_source_switch_put,
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void
 do_line_mic_switch(struct ct_atc *atc, enum CTALSA_MIXER_CTL type)
 {
@@ -527,7 +583,10 @@ do_digit_io_switch(struct ct_atc *atc, int state)
 static void do_switch(struct ct_atc *atc, enum CTALSA_MIXER_CTL type, int state)
 {
 	struct ct_mixer *mixer = atc->mixer;
+<<<<<<< HEAD
 	struct capabilities cap = atc->capabilities(atc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Do changes in mixer. */
 	if ((SWH_CAPTURE_START <= type) && (SWH_CAPTURE_END >= type)) {
@@ -540,6 +599,7 @@ static void do_switch(struct ct_atc *atc, enum CTALSA_MIXER_CTL type, int state)
 		}
 	}
 	/* Do changes out of mixer. */
+<<<<<<< HEAD
 	if (!cap.dedicated_mic &&
 	    (MIXER_LINEIN_C_S == type || MIXER_MIC_C_S == type)) {
 		if (state)
@@ -551,6 +611,10 @@ static void do_switch(struct ct_atc *atc, enum CTALSA_MIXER_CTL type, int state)
 		atc->mic_unmute(atc, state);
 	else if (MIXER_SPDIFI_C_S == type)
 		atc->spdif_in_unmute(atc, state);
+=======
+	if (state && (MIXER_LINEIN_C_S == type || MIXER_MIC_C_S == type))
+		do_line_mic_switch(atc, type);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else if (MIXER_WAVEF_P_S == type)
 		atc->line_front_unmute(atc, state);
 	else if (MIXER_WAVES_P_S == type)
@@ -559,8 +623,17 @@ static void do_switch(struct ct_atc *atc, enum CTALSA_MIXER_CTL type, int state)
 		atc->line_clfe_unmute(atc, state);
 	else if (MIXER_WAVER_P_S == type)
 		atc->line_rear_unmute(atc, state);
+<<<<<<< HEAD
 	else if (MIXER_SPDIFO_P_S == type)
 		atc->spdif_out_unmute(atc, state);
+=======
+	else if (MIXER_LINEIN_P_S == type)
+		atc->line_in_unmute(atc, state);
+	else if (MIXER_SPDIFO_P_S == type)
+		atc->spdif_out_unmute(atc, state);
+	else if (MIXER_SPDIFI_P_S == type)
+		atc->spdif_in_unmute(atc, state);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	else if (MIXER_DIGITAL_IO_S == type)
 		do_digit_io_switch(atc, state);
 
@@ -739,7 +812,10 @@ static int ct_mixer_kcontrols_create(struct ct_mixer *mixer)
 {
 	enum CTALSA_MIXER_CTL type;
 	struct ct_atc *atc = mixer->atc;
+<<<<<<< HEAD
 	struct capabilities cap = atc->capabilities(atc);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err;
 
 	/* Create snd kcontrol instances on demand */
@@ -753,8 +829,13 @@ static int ct_mixer_kcontrols_create(struct ct_mixer *mixer)
 		}
 	}
 
+<<<<<<< HEAD
 	ct_kcontrol_init_table[MIXER_DIGITAL_IO_S].ctl = cap.digit_io_switch;
 
+=======
+	ct_kcontrol_init_table[MIXER_DIGITAL_IO_S].ctl =
+					atc->have_digit_io_switch(atc);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	for (type = SWH_MIXER_START; type <= SWH_MIXER_END; type++) {
 		if (ct_kcontrol_init_table[type].ctl) {
 			swh_ctl.name = ct_kcontrol_init_table[type].name;
@@ -777,6 +858,7 @@ static int ct_mixer_kcontrols_create(struct ct_mixer *mixer)
 	if (err)
 		return err;
 
+<<<<<<< HEAD
 	if (cap.output_switch) {
 		err = ct_mixer_kcontrol_new(mixer, &output_ctl);
 		if (err)
@@ -788,6 +870,8 @@ static int ct_mixer_kcontrols_create(struct ct_mixer *mixer)
 		if (err)
 			return err;
 	}
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	atc->line_front_unmute(atc, 1);
 	set_switch_state(mixer, MIXER_WAVEF_P_S, 1);
 	atc->line_surround_unmute(atc, 0);
@@ -799,12 +883,22 @@ static int ct_mixer_kcontrols_create(struct ct_mixer *mixer)
 	atc->spdif_out_unmute(atc, 0);
 	set_switch_state(mixer, MIXER_SPDIFO_P_S, 0);
 	atc->line_in_unmute(atc, 0);
+<<<<<<< HEAD
 	if (cap.dedicated_mic)
 		atc->mic_unmute(atc, 0);
 	atc->spdif_in_unmute(atc, 0);
 	set_switch_state(mixer, MIXER_PCM_C_S, 0);
 	set_switch_state(mixer, MIXER_LINEIN_C_S, 0);
 	set_switch_state(mixer, MIXER_SPDIFI_C_S, 0);
+=======
+	set_switch_state(mixer, MIXER_LINEIN_P_S, 0);
+	atc->spdif_in_unmute(atc, 0);
+	set_switch_state(mixer, MIXER_SPDIFI_P_S, 0);
+
+	set_switch_state(mixer, MIXER_PCM_C_S, 1);
+	set_switch_state(mixer, MIXER_LINEIN_C_S, 1);
+	set_switch_state(mixer, MIXER_SPDIFI_C_S, 1);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return 0;
 }

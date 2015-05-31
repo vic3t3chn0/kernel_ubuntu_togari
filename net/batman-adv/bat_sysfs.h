@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2010-2012 B.A.T.M.A.N. contributors:
+=======
+ * Copyright (C) 2010-2011 B.A.T.M.A.N. contributors:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Marek Lindner
  *
@@ -38,7 +42,10 @@ int sysfs_add_meshif(struct net_device *dev);
 void sysfs_del_meshif(struct net_device *dev);
 int sysfs_add_hardif(struct kobject **hardif_obj, struct net_device *dev);
 void sysfs_del_hardif(struct kobject **hardif_obj);
+<<<<<<< HEAD
 int throw_uevent(struct bat_priv *bat_priv, enum uev_type type,
 		 enum uev_action action, const char *data);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* _NET_BATMAN_ADV_SYSFS_H_ */

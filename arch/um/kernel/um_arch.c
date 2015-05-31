@@ -102,8 +102,11 @@ const struct seq_operations cpuinfo_op = {
 
 /* Set in linux_main */
 unsigned long uml_physmem;
+<<<<<<< HEAD
 EXPORT_SYMBOL(uml_physmem);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned long uml_reserved; /* Also modified in mem_init */
 unsigned long start_vm;
 unsigned long end_vm;

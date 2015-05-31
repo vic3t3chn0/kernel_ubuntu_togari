@@ -13,8 +13,11 @@
 
 #include <linux/smp.h>
 
+<<<<<<< HEAD
 extern int spin_retry;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline int
 _raw_compare_and_swap(volatile unsigned int *lock,
 		      unsigned int old, unsigned int new)

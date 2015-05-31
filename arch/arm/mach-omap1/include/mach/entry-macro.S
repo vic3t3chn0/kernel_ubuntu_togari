@@ -9,15 +9,31 @@
  * License version 2. This program is licensed "as is" without any
  * warranty of any kind, whether express or implied.
  */
+<<<<<<< HEAD
 
 #include <mach/hardware.h>
 #include <mach/irqs.h>
 
 #include "../../iomap.h"
+=======
+#include <mach/hardware.h>
+#include <mach/io.h>
+#include <mach/irqs.h>
+#include <asm/hardware/gic.h>
+
+ 		.macro	disable_fiq
+		.endm
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		.macro  get_irqnr_preamble, base, tmp
 		.endm
 
+<<<<<<< HEAD
+=======
+		.macro  arch_ret_to_user, tmp1, tmp2
+		.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.macro	get_irqnr_and_base, irqnr, irqstat, base, tmp
 		ldr	\base, =OMAP1_IO_ADDRESS(OMAP_IH1_BASE)
 		ldr	\irqnr, [\base, #IRQ_ITR_REG_OFFSET]

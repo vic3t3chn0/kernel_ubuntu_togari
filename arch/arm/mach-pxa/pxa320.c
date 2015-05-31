@@ -16,7 +16,10 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/io.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/pxa320.h>
 

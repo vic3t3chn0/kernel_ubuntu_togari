@@ -19,7 +19,10 @@
 
 #include "opl4_local.h"
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/info.h>
 
 #ifdef CONFIG_PROC_FS

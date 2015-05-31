@@ -24,7 +24,10 @@
 #include <asm/sections.h>
 #include <asm/exceptions.h>
 #include <asm/unwind.h>
+<<<<<<< HEAD
 #include <asm/switch_to.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct stack_trace;
 

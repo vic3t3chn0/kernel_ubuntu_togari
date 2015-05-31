@@ -3,7 +3,11 @@
 /*
  *	head.S -- common startup code for ColdFire CPUs.
  *
+<<<<<<< HEAD
  *	(C) Copyright 1999-2011, Greg Ungerer <gerg@snapgear.com>.
+=======
+ *	(C) Copyright 1999-2010, Greg Ungerer <gerg@snapgear.com>.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 /*****************************************************************************/
@@ -13,7 +17,10 @@
 #include <asm/asm-offsets.h>
 #include <asm/coldfire.h>
 #include <asm/mcfsim.h>
+<<<<<<< HEAD
 #include <asm/mcfmmu.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/thread_info.h>
 
 /*****************************************************************************/
@@ -136,6 +143,7 @@ _init_sp:
 
 __HEAD
 
+<<<<<<< HEAD
 #ifdef CONFIG_MMU
 _start0:
 	jmp	_start
@@ -144,6 +152,8 @@ _start0:
 .equ	.,_start0+0x1000
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  *	This is the codes first entry point. This is where it all
  *	begins...
@@ -152,6 +162,7 @@ _start0:
 _start:
 	nop					/* filler */
 	movew	#0x2700, %sr			/* no interrupts */
+<<<<<<< HEAD
 	movel	#CACHE_INIT,%d0			/* disable cache */
 	movec	%d0,%CACR
 	nop
@@ -162,6 +173,11 @@ _start:
 	movel	#CONFIG_MBAR+1,%d0		/* configured MBAR address */
 	movec	%d0,%MBAR			/* set it */
 #endif
+=======
+#if defined(CONFIG_UBOOT)
+	movel	%sp,_init_sp			/* save initial stack pointer */
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 *	Do any platform or board specific setup now. Most boards
@@ -192,6 +208,12 @@ _start:
 	 *	it is very similar. Define the exact settings in the headers
 	 *	then the code here is the same for all.
 	 */
+<<<<<<< HEAD
+=======
+	movel	#CACHE_INIT,%d0			/* invalidate whole cache */
+	movec	%d0,%CACR
+	nop
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	movel	#ACR0_MODE,%d0			/* set RAM region for caching */
 	movec	%d0,%ACR0
 	movel	#ACR1_MODE,%d0			/* anything else to cache? */
@@ -206,6 +228,7 @@ _start:
 	movec	%d0,%CACR
 	nop
 
+<<<<<<< HEAD
 #ifdef CONFIG_MMU
 	/*
 	 *	Identity mapping for the kernel region.
@@ -226,6 +249,8 @@ _start:
 _vstart:
 #endif /* CONFIG_MMU */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_ROMFS_FS
 	/*
 	 *	Move ROM filesystem above bss :-)
@@ -271,6 +296,7 @@ _clear_bss:
 	lea	init_thread_union,%a0
 	lea	THREAD_SIZE(%a0),%sp
 
+<<<<<<< HEAD
 #ifdef CONFIG_MMU
 .global m68k_cputype
 .global m68k_mmutype
@@ -287,6 +313,8 @@ _clear_bss:
 	lea	init_task,%a2			/* Set "current" init task */
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 *	Assember start up done, start code proper.
 	 */

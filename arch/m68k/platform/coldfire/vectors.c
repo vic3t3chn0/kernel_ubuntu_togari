@@ -33,13 +33,30 @@ asmlinkage void dbginterrupt_c(struct frame *fp)
 
 /***************************************************************************/
 
+<<<<<<< HEAD
+=======
+extern e_vector	*_ramvec;
+
+void set_evector(int vecnum, void (*handler)(void))
+{
+	if (vecnum >= 0 && vecnum <= 255)
+		_ramvec[vecnum] = handler;
+}
+
+/***************************************************************************/
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Assembler routines */
 asmlinkage void buserr(void);
 asmlinkage void trap(void);
 asmlinkage void system_call(void);
 asmlinkage void inthandler(void);
 
+<<<<<<< HEAD
 void __init trap_init(void)
+=======
+void __init init_vectors(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int i;
 

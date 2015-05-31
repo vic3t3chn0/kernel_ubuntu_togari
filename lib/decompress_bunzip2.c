@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/* vi: set sw = 4 ts = 4: */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*	Small bzip2 deflate implementation, by Rob Landley (rob@landley.net).
 
 	Based on bzip2 decompression code by Julian R Seward (jseward@acm.org),
@@ -690,7 +694,11 @@ STATIC int INIT bunzip2(unsigned char *buf, int len,
 		outbuf = malloc(BZIP2_IOBUF_SIZE);
 
 	if (!outbuf) {
+<<<<<<< HEAD
 		error("Could not allocate output buffer");
+=======
+		error("Could not allocate output bufer");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return RETVAL_OUT_OF_MEMORY;
 	}
 	if (buf)
@@ -698,7 +706,11 @@ STATIC int INIT bunzip2(unsigned char *buf, int len,
 	else
 		inbuf = malloc(BZIP2_IOBUF_SIZE);
 	if (!inbuf) {
+<<<<<<< HEAD
 		error("Could not allocate input buffer");
+=======
+		error("Could not allocate input bufer");
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		i = RETVAL_OUT_OF_MEMORY;
 		goto exit_0;
 	}

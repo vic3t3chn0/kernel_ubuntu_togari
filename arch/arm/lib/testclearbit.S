@@ -12,4 +12,10 @@
 #include "bitops.h"
                 .text
 
+<<<<<<< HEAD
 testop	_test_and_clear_bit, bicne, strne
+=======
+ENTRY(_test_and_clear_bit)
+	testop	bicne, strne
+ENDPROC(_test_and_clear_bit)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

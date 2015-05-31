@@ -1,7 +1,10 @@
 config PPC_CHRP
 	bool "Common Hardware Reference Platform (CHRP) based machines"
 	depends on 6xx
+<<<<<<< HEAD
 	select HAVE_PCSPKR_PLATFORM
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	select MPIC
 	select PPC_I8259
 	select PPC_INDIRECT_PCI

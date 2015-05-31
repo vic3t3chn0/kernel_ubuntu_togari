@@ -14,7 +14,11 @@
 #include <linux/spinlock.h>
 #include <linux/wait.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <cpu/dma.h>
 #include <asm-generic/dma.h>
 
@@ -91,7 +95,11 @@ struct dma_channel {
 
 	wait_queue_head_t wait_queue;
 
+<<<<<<< HEAD
 	struct device dev;
+=======
+	struct sys_device dev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void *priv_data;
 };
 

@@ -5,8 +5,12 @@
  */
 
 #include <linux/ctype.h>
+<<<<<<< HEAD
 #include <linux/compiler.h>
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 const unsigned char _ctype[] = {
 _C,_C,_C,_C,_C,_C,_C,_C,				/* 0-7 */

@@ -22,7 +22,11 @@
 #include <linux/linkage.h>
 #include <asm/assembler.h>
 #include <mach/psc.h>
+<<<<<<< HEAD
 #include <mach/ddr2.h>
+=======
+#include <mach/memory.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include "clock.h"
 

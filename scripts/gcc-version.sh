@@ -22,10 +22,17 @@ if [ ${#compiler} -eq 0 ]; then
 	exit 1
 fi
 
+<<<<<<< HEAD
 MAJOR=$(echo __GNUC__ | $compiler -E -xc - | tail -n 1)
 MINOR=$(echo __GNUC_MINOR__ | $compiler -E -xc - | tail -n 1)
 if [ "x$with_patchlevel" != "x" ] ; then
 	PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -xc - | tail -n 1)
+=======
+MAJOR=$(echo __GNUC__ | $compiler -E -x c - | tail -n 1)
+MINOR=$(echo __GNUC_MINOR__ | $compiler -E -x c - | tail -n 1)
+if [ "x$with_patchlevel" != "x" ] ; then
+	PATCHLEVEL=$(echo __GNUC_PATCHLEVEL__ | $compiler -E -x c - | tail -n 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	printf "%02d%02d%02d\\n" $MAJOR $MINOR $PATCHLEVEL
 else
 	printf "%02d%02d\\n" $MAJOR $MINOR

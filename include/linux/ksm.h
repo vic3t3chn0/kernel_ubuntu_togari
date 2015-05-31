@@ -22,6 +22,7 @@ struct page *ksm_does_need_to_copy(struct page *page,
 #ifdef CONFIG_KSM
 int ksm_madvise(struct vm_area_struct *vma, unsigned long start,
 		unsigned long end, int advice, unsigned long *vm_flags);
+<<<<<<< HEAD
 int __ksm_enter(struct mm_struct *mm);
 void __ksm_exit(struct mm_struct *mm);
 
@@ -38,6 +39,8 @@ static inline void ksm_exit(struct mm_struct *mm)
 		__ksm_exit(mm);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * A KSM page is one of those write-protected "shared pages" or "merged pages"
  * which KSM maps into multiple mms, wherever identical anonymous page content
@@ -90,6 +93,37 @@ int rmap_walk_ksm(struct page *page, int (*rmap_one)(struct page *,
 		  struct vm_area_struct *, unsigned long, void *), void *arg);
 void ksm_migrate_page(struct page *newpage, struct page *oldpage);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_KSM_LEGACY
+int __ksm_enter(struct mm_struct *mm);
+void __ksm_exit(struct mm_struct *mm);
+static inline int ksm_fork(struct mm_struct *mm, struct mm_struct *oldmm)
+{
+  if (test_bit(MMF_VM_MERGEABLE, &oldmm->flags))
+    return __ksm_enter(mm);
+  return 0;
+}
+
+static inline void ksm_exit(struct mm_struct *mm)
+{
+  if (test_bit(MMF_VM_MERGEABLE, &mm->flags))
+    __ksm_exit(mm);
+}
+
+#elif defined(CONFIG_UKSM)
+static inline int ksm_fork(struct mm_struct *mm, struct mm_struct *oldmm)
+{
+  return 0;
+}
+
+static inline void ksm_exit(struct mm_struct *mm)
+{
+}
+#endif /* !CONFIG_UKSM */
+
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else  /* !CONFIG_KSM */
 
 static inline int ksm_fork(struct mm_struct *mm, struct mm_struct *oldmm)
@@ -142,4 +176,9 @@ static inline void ksm_migrate_page(struct page *newpage, struct page *oldpage)
 #endif /* CONFIG_MMU */
 #endif /* !CONFIG_KSM */
 
+<<<<<<< HEAD
+=======
+#include <linux/uksm.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __LINUX_KSM_H */

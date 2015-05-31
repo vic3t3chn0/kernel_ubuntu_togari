@@ -19,6 +19,10 @@
 #include <asm/cpu-info.h>
 #include <asm/mipsregs.h>
 #include <asm/prefetch.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Return current * instruction pointer ("program counter").
@@ -355,12 +359,15 @@ unsigned long get_wchan(struct task_struct *p);
 #define ARCH_HAS_PREFETCHW
 #define prefetchw(x) __builtin_prefetch((x), 1, 1)
 
+<<<<<<< HEAD
 /*
  * See Documentation/scheduler/sched-arch.txt; prevents deadlock on SMP
  * systems.
  */
 #define __ARCH_WANT_UNLOCKED_CTXSW
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif /* _ASM_PROCESSOR_H */

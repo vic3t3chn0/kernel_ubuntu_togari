@@ -10,6 +10,7 @@
  */
 #include <linux/init.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/clk.h>
 #include <linux/cpufreq.h>
 #include <linux/delay.h>
@@ -36,6 +37,24 @@ static unsigned long twd_timer_rate;
 static struct clock_event_device __percpu **twd_evt;
 static int twd_ppi;
 
+=======
+#include <linux/delay.h>
+#include <linux/device.h>
+#include <linux/smp.h>
+#include <linux/jiffies.h>
+#include <linux/clockchips.h>
+#include <linux/irq.h>
+#include <linux/io.h>
+
+#include <asm/smp_twd.h>
+#include <asm/hardware/gic.h>
+
+/* set up by the platform code */
+void __iomem *twd_base;
+
+static unsigned long twd_timer_rate;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void twd_set_mode(enum clock_event_mode mode,
 			struct clock_event_device *clk)
 {
@@ -80,7 +99,11 @@ static int twd_set_next_event(unsigned long evt,
  * If a local timer interrupt has occurred, acknowledge and return 1.
  * Otherwise, return 0.
  */
+<<<<<<< HEAD
 static int twd_timer_ack(void)
+=======
+int twd_timer_ack(void)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	if (__raw_readl(twd_base + TWD_TIMER_INTSTAT)) {
 		__raw_writel(1, twd_base + TWD_TIMER_INTSTAT);
@@ -90,6 +113,7 @@ static int twd_timer_ack(void)
 	return 0;
 }
 
+<<<<<<< HEAD
 static void twd_timer_stop(struct clock_event_device *clk)
 {
 	twd_set_mode(CLOCK_EVT_MODE_UNUSED, clk);
@@ -142,6 +166,8 @@ core_initcall(twd_cpufreq_init);
 
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __cpuinit twd_calibrate_rate(void)
 {
 	unsigned long count;
@@ -181,6 +207,7 @@ static void __cpuinit twd_calibrate_rate(void)
 	}
 }
 
+<<<<<<< HEAD
 static irqreturn_t twd_handler(int irq, void *dev_id)
 {
 	struct clock_event_device *evt = *(struct clock_event_device **)dev_id;
@@ -238,6 +265,14 @@ static int __cpuinit twd_timer_setup(struct clock_event_device *clk)
 		twd_calibrate_rate();
 
 	__raw_writel(0, twd_base + TWD_TIMER_CONTROL);
+=======
+/*
+ * Setup the local clock events for a CPU.
+ */
+void __cpuinit twd_timer_setup(struct clock_event_device *clk)
+{
+	twd_calibrate_rate();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	clk->name = "local_timer";
 	clk->features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT |
@@ -245,6 +280,7 @@ static int __cpuinit twd_timer_setup(struct clock_event_device *clk)
 	clk->rating = 350;
 	clk->set_mode = twd_set_mode;
 	clk->set_next_event = twd_set_next_event;
+<<<<<<< HEAD
 	clk->irq = twd_ppi;
 
 	this_cpu_clk = __this_cpu_ptr(twd_evt);
@@ -345,3 +381,15 @@ out:
 	WARN(err, "twd_local_timer_of_register failed (%d)\n", err);
 }
 #endif
+=======
+	clk->shift = 20;
+	clk->mult = div_sc(twd_timer_rate, NSEC_PER_SEC, clk->shift);
+	clk->max_delta_ns = clockevent_delta2ns(0xffffffff, clk);
+	clk->min_delta_ns = clockevent_delta2ns(0xf, clk);
+
+	/* Make sure our local interrupt controller has this enabled */
+	gic_enable_ppi(clk->irq);
+
+	clockevents_register_device(clk);
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -47,6 +47,7 @@ static inline bool __attribute_const__ cpu_is_u5500(void)
 }
 
 /*
+<<<<<<< HEAD
  * 5500 revisions
  */
 
@@ -71,6 +72,8 @@ static inline bool __attribute_const__ cpu_is_u5500v21(void)
 }
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * 8500 revisions
  */
 

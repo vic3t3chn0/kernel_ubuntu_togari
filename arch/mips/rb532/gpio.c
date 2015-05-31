@@ -29,7 +29,10 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/spinlock.h>
 #include <linux/platform_device.h>
 #include <linux/gpio.h>

@@ -29,12 +29,19 @@ struct outer_cache_fns {
 	void (*flush_range)(unsigned long, unsigned long);
 	void (*flush_all)(void);
 	void (*inv_all)(void);
+<<<<<<< HEAD
+=======
+	void (*clean_all)(void);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void (*disable)(void);
 #ifdef CONFIG_OUTER_CACHE_SYNC
 	void (*sync)(void);
 #endif
 	void (*set_debug)(unsigned long);
+<<<<<<< HEAD
 	void (*resume)(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #ifdef CONFIG_OUTER_CACHE
@@ -69,6 +76,7 @@ static inline void outer_inv_all(void)
 		outer_cache.inv_all();
 }
 
+<<<<<<< HEAD
 static inline void outer_disable(void)
 {
 	if (outer_cache.disable)
@@ -79,6 +87,18 @@ static inline void outer_resume(void)
 {
 	if (outer_cache.resume)
 		outer_cache.resume();
+=======
+static inline void outer_clean_all(void)
+{
+	if (outer_cache.clean_all)
+		outer_cache.clean_all();
+}
+
+static inline void outer_disable(void)
+{
+	if (outer_cache.disable)
+		outer_cache.disable();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #else
@@ -91,8 +111,13 @@ static inline void outer_flush_range(phys_addr_t start, phys_addr_t end)
 { }
 static inline void outer_flush_all(void) { }
 static inline void outer_inv_all(void) { }
+<<<<<<< HEAD
 static inline void outer_disable(void) { }
 static inline void outer_resume(void) { }
+=======
+static inline void outer_clean_all(void) { }
+static inline void outer_disable(void) { }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif
 

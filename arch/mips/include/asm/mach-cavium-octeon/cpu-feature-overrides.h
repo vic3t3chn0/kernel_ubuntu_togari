@@ -54,6 +54,10 @@
 #define cpu_has_mips_r2_exec_hazard 0
 #define cpu_has_dsp		0
 #define cpu_has_mipsmt		0
+<<<<<<< HEAD
+=======
+#define cpu_has_userlocal	0
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define cpu_has_vint		0
 #define cpu_has_veic		0
 #define cpu_hwrena_impl_bits	0xc0000000

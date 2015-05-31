@@ -2,7 +2,11 @@
 #define _ASM_GENERIC_BITOPS_ATOMIC_H_
 
 #include <asm/types.h>
+<<<<<<< HEAD
 #include <linux/irqflags.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_SMP
 #include <asm/spinlock.h>

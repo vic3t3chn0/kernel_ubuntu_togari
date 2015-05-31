@@ -13,9 +13,15 @@
 #include <linux/interrupt.h>
 #include <linux/mtd/physmap.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/sh_eth.h>
 #include <asm/machvec.h>
 #include <asm/sizes.h>
+=======
+#include <asm/machvec.h>
+#include <asm/sizes.h>
+#include <asm/sh_eth.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* NOR Flash */
 static struct mtd_partition espt_nor_flash_partitions[] = {

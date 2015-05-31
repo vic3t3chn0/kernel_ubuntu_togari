@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 ashldi3.S
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 font.c
 lib1funcs.S
 piggy.gzip
 piggy.lzo
 piggy.lzma
+<<<<<<< HEAD
 piggy.xzkern
 vmlinux
 vmlinux.lds
@@ -16,3 +20,8 @@ fdt_rw.c
 fdt_wip.c
 libfdt.h
 libfdt_internal.h
+=======
+piggy.lz4
+vmlinux
+vmlinux.lds
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -27,7 +27,10 @@
 #include <linux/io.h>
 
 #include <asm/mach/time.h>
+<<<<<<< HEAD
 #include <asm/system_misc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <mach/regs-timer.h>
 #include <mach/regs-irq.h>
@@ -110,6 +113,7 @@ struct sys_timer ks8695_timer = {
 	.offset		= ks8695_gettimeoffset,
 	.resume		= ks8695_timer_setup,
 };
+<<<<<<< HEAD
 
 void ks8695_restart(char mode, const char *cmd)
 {
@@ -128,3 +132,5 @@ void ks8695_restart(char mode, const char *cmd)
 	/* re-enable timer0 */
 	__raw_writel(reg | TMCON_T0EN, KS8695_TMR_VA + KS8695_TMCON);
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

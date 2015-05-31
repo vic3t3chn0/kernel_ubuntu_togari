@@ -19,7 +19,10 @@
 #include <asm/bootx.h>
 #include <asm/btext.h>
 #include <asm/io.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #undef DEBUG
 #define SET_BOOT_BAT

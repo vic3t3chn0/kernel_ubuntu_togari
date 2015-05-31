@@ -14,14 +14,26 @@
 
 #include <linux/kernel.h>
 #include <linux/spinlock.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/stringify.h>
 #include <linux/smp.h>
 
 /* waiting for a spinlock... */
+<<<<<<< HEAD
 #if defined(CONFIG_PPC_SPLPAR)
 #include <asm/hvcall.h>
 #include <asm/smp.h>
+=======
+#if defined(CONFIG_PPC_SPLPAR) || defined(CONFIG_PPC_ISERIES)
+#include <asm/hvcall.h>
+#include <asm/iseries/hv_call.h>
+#include <asm/smp.h>
+#include <asm/firmware.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 void __spin_yield(arch_spinlock_t *lock)
 {
@@ -38,8 +50,19 @@ void __spin_yield(arch_spinlock_t *lock)
 	rmb();
 	if (lock->slock != lock_value)
 		return;		/* something has changed */
+<<<<<<< HEAD
 	plpar_hcall_norets(H_CONFER,
 		get_hard_smp_processor_id(holder_cpu), yield_count);
+=======
+	if (firmware_has_feature(FW_FEATURE_ISERIES))
+		HvCall2(HvCallBaseYieldProcessor, HvCall_YieldToProc,
+			((u64)holder_cpu << 32) | yield_count);
+#ifdef CONFIG_PPC_SPLPAR
+	else
+		plpar_hcall_norets(H_CONFER,
+			get_hard_smp_processor_id(holder_cpu), yield_count);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -63,8 +86,19 @@ void __rw_yield(arch_rwlock_t *rw)
 	rmb();
 	if (rw->lock != lock_value)
 		return;		/* something has changed */
+<<<<<<< HEAD
 	plpar_hcall_norets(H_CONFER,
 		get_hard_smp_processor_id(holder_cpu), yield_count);
+=======
+	if (firmware_has_feature(FW_FEATURE_ISERIES))
+		HvCall2(HvCallBaseYieldProcessor, HvCall_YieldToProc,
+			((u64)holder_cpu << 32) | yield_count);
+#ifdef CONFIG_PPC_SPLPAR
+	else
+		plpar_hcall_norets(H_CONFER,
+			get_hard_smp_processor_id(holder_cpu), yield_count);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 #endif
 

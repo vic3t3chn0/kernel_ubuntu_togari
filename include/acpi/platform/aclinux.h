@@ -55,9 +55,17 @@
 
 #include <linux/string.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/ctype.h>
 #include <linux/sched.h>
 #include <linux/atomic.h>
+=======
+#include <linux/module.h>
+#include <linux/ctype.h>
+#include <linux/sched.h>
+#include <asm/system.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/div64.h>
 #include <asm/acpi.h>
 #include <linux/slab.h>

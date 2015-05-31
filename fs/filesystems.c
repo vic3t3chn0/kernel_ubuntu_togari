@@ -74,6 +74,10 @@ int register_filesystem(struct file_system_type * fs)
 	BUG_ON(strchr(fs->name, '.'));
 	if (fs->next)
 		return -EBUSY;
+<<<<<<< HEAD
+=======
+	INIT_LIST_HEAD(&fs->fs_supers);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	write_lock(&file_systems_lock);
 	p = find_filesystem(fs->name, strlen(fs->name));
 	if (*p)

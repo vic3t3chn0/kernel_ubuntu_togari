@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* arch/arm/mach-exynos4/include/mach/regs-mct.h
+=======
+/* arch/arm/mach-exynos/include/mach/regs-mct.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com

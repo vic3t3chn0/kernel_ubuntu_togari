@@ -18,6 +18,10 @@
 #include <linux/bitops.h>
 
 #include <asm/ptrace.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/dma.h>
 #include <asm/irq.h>
 #include <asm/mmu_context.h>
@@ -143,7 +147,11 @@ eiger_init_irq(void)
 }
 
 static int __init
+<<<<<<< HEAD
 eiger_map_irq(const struct pci_dev *dev, u8 slot, u8 pin)
+=======
+eiger_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	u8 irq_orig;
 

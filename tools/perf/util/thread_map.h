@@ -2,7 +2,10 @@
 #define __PERF_THREAD_MAP_H
 
 #include <sys/types.h>
+<<<<<<< HEAD
 #include <stdio.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct thread_map {
 	int nr;
@@ -11,6 +14,7 @@ struct thread_map {
 
 struct thread_map *thread_map__new_by_pid(pid_t pid);
 struct thread_map *thread_map__new_by_tid(pid_t tid);
+<<<<<<< HEAD
 struct thread_map *thread_map__new_by_uid(uid_t uid);
 struct thread_map *thread_map__new(pid_t pid, pid_t tid, uid_t uid);
 
@@ -21,4 +25,8 @@ void thread_map__delete(struct thread_map *threads);
 
 size_t thread_map__fprintf(struct thread_map *threads, FILE *fp);
 
+=======
+struct thread_map *thread_map__new(pid_t pid, pid_t tid);
+void thread_map__delete(struct thread_map *threads);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* __PERF_THREAD_MAP_H */

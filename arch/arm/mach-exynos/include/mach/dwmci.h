@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* linux/arch/arm/mach-exynos4/include/mach/dwmci.h
+=======
+/* linux/arch/arm/mach-exynos/include/mach/dwmci.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Copyright (c) 2011 Samsung Electronics Co., Ltd.
  *		http://www.samsung.com/
@@ -15,6 +19,10 @@
 
 #include <linux/mmc/dw_mmc.h>
 
+<<<<<<< HEAD
 extern void exynos4_dwmci_set_platdata(struct dw_mci_board *pd);
+=======
+extern void exynos_dwmci_set_platdata(struct dw_mci_board *pd, u32 slot_id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __ASM_ARM_ARCH_DWMCI_H */

@@ -18,8 +18,12 @@ static int irqmap_personal_server[] __initdata = {
 	IRQ_DOORBELLHOST, IRQ_DMA1, IRQ_DMA2, IRQ_PCI
 };
 
+<<<<<<< HEAD
 static int __init personal_server_map_irq(const struct pci_dev *dev, u8 slot,
 	u8 pin)
+=======
+static int __init personal_server_map_irq(struct pci_dev *dev, u8 slot, u8 pin)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	unsigned char line;
 

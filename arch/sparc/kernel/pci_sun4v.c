@@ -12,7 +12,10 @@
 #include <linux/percpu.h>
 #include <linux/irq.h>
 #include <linux/msi.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/log2.h>
 #include <linux/of_device.h>
 
@@ -128,8 +131,12 @@ static inline long iommu_batch_end(void)
 }
 
 static void *dma_4v_alloc_coherent(struct device *dev, size_t size,
+<<<<<<< HEAD
 				   dma_addr_t *dma_addrp, gfp_t gfp,
 				   struct dma_attrs *attrs)
+=======
+				   dma_addr_t *dma_addrp, gfp_t gfp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	unsigned long flags, order, first_page, npages, n;
 	struct iommu *iommu;
@@ -199,7 +206,11 @@ range_alloc_fail:
 }
 
 static void dma_4v_free_coherent(struct device *dev, size_t size, void *cpu,
+<<<<<<< HEAD
 				 dma_addr_t dvma, struct dma_attrs *attrs)
+=======
+				 dma_addr_t dvma)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct pci_pbm_info *pbm;
 	struct iommu *iommu;
@@ -528,8 +539,13 @@ static void dma_4v_unmap_sg(struct device *dev, struct scatterlist *sglist,
 }
 
 static struct dma_map_ops sun4v_dma_ops = {
+<<<<<<< HEAD
 	.alloc				= dma_4v_alloc_coherent,
 	.free				= dma_4v_free_coherent,
+=======
+	.alloc_coherent			= dma_4v_alloc_coherent,
+	.free_coherent			= dma_4v_free_coherent,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_page			= dma_4v_map_page,
 	.unmap_page			= dma_4v_unmap_page,
 	.map_sg				= dma_4v_map_sg,

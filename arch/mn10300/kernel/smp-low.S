@@ -13,9 +13,15 @@
 #include <linux/sys.h>
 #include <linux/linkage.h>
 #include <asm/smp.h>
+<<<<<<< HEAD
 #include <asm/thread_info.h>
 #include <asm/cpu-regs.h>
 #include <asm/intctl-regs.h>
+=======
+#include <asm/system.h>
+#include <asm/thread_info.h>
+#include <asm/cpu-regs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <proc/smp-regs.h>
 #include <asm/asm-offsets.h>
 #include <asm/frame.inc>

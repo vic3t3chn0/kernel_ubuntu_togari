@@ -429,7 +429,11 @@ found:
 	return group;
 }
 
+<<<<<<< HEAD
 struct inode *ext2_new_inode(struct inode *dir, umode_t mode,
+=======
+struct inode *ext2_new_inode(struct inode *dir, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			     const struct qstr *qstr)
 {
 	struct super_block *sb;
@@ -573,11 +577,16 @@ got:
 	inode->i_generation = sbi->s_next_generation++;
 	spin_unlock(&sbi->s_next_gen_lock);
 	if (insert_inode_locked(inode) < 0) {
+<<<<<<< HEAD
 		ext2_error(sb, "ext2_new_inode",
 			   "inode number already in use - inode=%lu",
 			   (unsigned long) ino);
 		err = -EIO;
 		goto fail;
+=======
+		err = -EINVAL;
+		goto fail_drop;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	dquot_initialize(inode);
@@ -604,7 +613,11 @@ fail_free_drop:
 fail_drop:
 	dquot_drop(inode);
 	inode->i_flags |= S_NOQUOTA;
+<<<<<<< HEAD
 	clear_nlink(inode);
+=======
+	inode->i_nlink = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unlock_new_inode(inode);
 	iput(inode);
 	return ERR_PTR(err);

@@ -618,24 +618,38 @@ void qdisc_class_hash_remove(struct Qdisc_class_hash *clhash,
 }
 EXPORT_SYMBOL(qdisc_class_hash_remove);
 
+<<<<<<< HEAD
 /* Allocate an unique handle from space managed by kernel
  * Possible range is [8000-FFFF]:0000 (0x8000 values)
  */
 static u32 qdisc_alloc_handle(struct net_device *dev)
 {
 	int i = 0x8000;
+=======
+/* Allocate an unique handle from space managed by kernel */
+
+static u32 qdisc_alloc_handle(struct net_device *dev)
+{
+	int i = 0x10000;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	static u32 autohandle = TC_H_MAKE(0x80000000U, 0);
 
 	do {
 		autohandle += TC_H_MAKE(0x10000U, 0);
 		if (autohandle == TC_H_MAKE(TC_H_ROOT, 0))
 			autohandle = TC_H_MAKE(0x80000000U, 0);
+<<<<<<< HEAD
 		if (!qdisc_lookup(dev, autohandle))
 			return autohandle;
 		cond_resched();
 	} while	(--i > 0);
 
 	return 0;
+=======
+	} while	(qdisc_lookup(dev, autohandle) && --i > 0);
+
+	return i > 0 ? autohandle : 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void qdisc_tree_decrease_qlen(struct Qdisc *sch, unsigned int n)
@@ -1030,6 +1044,7 @@ static int tc_get_qdisc(struct sk_buff *skb, struct nlmsghdr *n, void *arg)
 }
 
 /*
+<<<<<<< HEAD
  * enable/disable flow on qdisc.
  */
 void
@@ -1059,6 +1074,8 @@ tc_qdisc_flow_control(struct net_device *dev, u32 tcm_handle, int enable_flow)
 EXPORT_SYMBOL(tc_qdisc_flow_control);
 
 /*
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * Create/change qdisc.
  */
 
@@ -1677,7 +1694,11 @@ done:
  * to this qdisc, (optionally) tests for protocol and asks
  * specific classifiers.
  */
+<<<<<<< HEAD
 int tc_classify_compat(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+int tc_classify_compat(struct sk_buff *skb, struct tcf_proto *tp,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       struct tcf_result *res)
 {
 	__be16 protocol = skb->protocol;
@@ -1701,12 +1722,20 @@ int tc_classify_compat(struct sk_buff *skb, const struct tcf_proto *tp,
 }
 EXPORT_SYMBOL(tc_classify_compat);
 
+<<<<<<< HEAD
 int tc_classify(struct sk_buff *skb, const struct tcf_proto *tp,
+=======
+int tc_classify(struct sk_buff *skb, struct tcf_proto *tp,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		struct tcf_result *res)
 {
 	int err = 0;
 #ifdef CONFIG_NET_CLS_ACT
+<<<<<<< HEAD
 	const struct tcf_proto *otp = tp;
+=======
+	struct tcf_proto *otp = tp;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 reclassify:
 #endif
 

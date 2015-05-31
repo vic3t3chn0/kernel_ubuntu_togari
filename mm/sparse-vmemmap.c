@@ -21,6 +21,10 @@
 #include <linux/mmzone.h>
 #include <linux/bootmem.h>
 #include <linux/highmem.h>
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/vmalloc.h>

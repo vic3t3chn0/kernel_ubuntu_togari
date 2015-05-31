@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  *  linux/arch/m68k/kernel/time.c
  *
@@ -109,3 +110,10 @@ static int __init rtc_init(void)
 module_init(rtc_init);
 
 #endif /* CONFIG_M68KCLASSIC */
+=======
+#ifdef CONFIG_MMU
+#include "time_mm.c"
+#else
+#include "time_no.c"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

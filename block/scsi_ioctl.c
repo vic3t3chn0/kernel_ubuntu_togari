@@ -566,7 +566,11 @@ int scsi_cmd_ioctl(struct request_queue *q, struct gendisk *bd_disk, fmode_t mod
 {
 	int err;
 
+<<<<<<< HEAD
 	if (!q)
+=======
+	if (!q || blk_get_queue(q))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -ENXIO;
 
 	switch (cmd) {
@@ -687,6 +691,10 @@ int scsi_cmd_ioctl(struct request_queue *q, struct gendisk *bd_disk, fmode_t mod
 			err = -ENOTTY;
 	}
 
+<<<<<<< HEAD
+=======
+	blk_put_queue(q);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return err;
 }
 EXPORT_SYMBOL(scsi_cmd_ioctl);
@@ -716,16 +724,30 @@ int scsi_verify_blk_ioctl(struct block_device *bd, unsigned int cmd)
 		 * and we do not want to spam dmesg about it.   CD-ROMs do
 		 * not have partitions, so we get here only for disks.
 		 */
+<<<<<<< HEAD
 		return -ENOIOCTLCMD;
+=======
+		return -ENOTTY;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	default:
 		break;
 	}
 
+<<<<<<< HEAD
+=======
+	if (capable(CAP_SYS_RAWIO))
+		return 0;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* In particular, rule out all resets and host-specific ioctls.  */
 	printk_ratelimited(KERN_WARNING
 			   "%s: sending ioctl %x to a partition!\n", current->comm, cmd);
 
+<<<<<<< HEAD
 	return capable(CAP_SYS_RAWIO) ? 0 : -ENOIOCTLCMD;
+=======
+	return -ENOTTY;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(scsi_verify_blk_ioctl);
 

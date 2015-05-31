@@ -102,7 +102,10 @@
 #define MPP11_SATA0_ACTn	MPP( 11, 0x5, 0, 0, 0,   1,   1,   1,   1 )
 
 #define MPP12_GPO		MPP( 12, 0x0, 0, 1, 1,   1,   1,   1,   1 )
+<<<<<<< HEAD
 #define MPP12_GPIO		MPP( 12, 0x0, 1, 1, 0,   0,   0,   1,   0 )
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define MPP12_SD_CLK		MPP( 12, 0x1, 0, 0, 1,   1,   1,   1,   1 )
 #define MPP12_AU_SPDIF0		MPP( 12, 0xa, 0, 0, 0,   0,   0,   0,   1 )
 #define MPP12_SPI_MOSI		MPP( 12, 0xb, 0, 0, 0,   0,   0,   0,   1 )

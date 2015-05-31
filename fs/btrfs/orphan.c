@@ -58,7 +58,11 @@ int btrfs_del_orphan_item(struct btrfs_trans_handle *trans,
 	ret = btrfs_search_slot(trans, root, &key, path, -1, 1);
 	if (ret < 0)
 		goto out;
+<<<<<<< HEAD
 	if (ret) { /* JDM: Really? */
+=======
+	if (ret) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = -ENOENT;
 		goto out;
 	}

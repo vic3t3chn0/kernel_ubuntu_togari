@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/netfilter/ipset/pfxlen.h>
 
 /*
@@ -149,7 +152,11 @@ const union nf_inet_addr ip_set_netmask_map[] = {
 EXPORT_SYMBOL_GPL(ip_set_netmask_map);
 
 #undef  E
+<<<<<<< HEAD
 #define E(a, b, c, d)						\
+=======
+#define E(a, b, c, d) 						\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{.ip6 = { (__force __be32) a, (__force __be32) b,	\
 		  (__force __be32) c, (__force __be32) d,	\
 	} }
@@ -290,6 +297,7 @@ const union nf_inet_addr ip_set_hostmask_map[] = {
 	E(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF),
 };
 EXPORT_SYMBOL_GPL(ip_set_hostmask_map);
+<<<<<<< HEAD
 
 /* Find the largest network which matches the range from left, in host order. */
 u32
@@ -311,3 +319,5 @@ ip_set_range_to_cidr(u32 from, u32 to, u8 *cidr)
 	return from;
 }
 EXPORT_SYMBOL_GPL(ip_set_range_to_cidr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

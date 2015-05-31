@@ -3,10 +3,21 @@
 
 #include <linux/compiler.h>
 
+<<<<<<< HEAD
 #ifdef __KERNEL__
 
 #undef NULL
 #define NULL ((void *)0)
+=======
+#undef NULL
+#if defined(__cplusplus)
+#define NULL 0
+#else
+#define NULL ((void *)0)
+#endif
+
+#ifdef __KERNEL__
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 enum {
 	false	= 0,

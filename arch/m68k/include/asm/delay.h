@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ifndef _M68K_DELAY_H
 #define _M68K_DELAY_H
 
@@ -94,3 +95,10 @@ static inline void __udelay(unsigned long usecs)
 
 
 #endif /* defined(_M68K_DELAY_H) */
+=======
+#ifdef __uClinux__
+#include "delay_no.h"
+#else
+#include "delay_mm.h"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

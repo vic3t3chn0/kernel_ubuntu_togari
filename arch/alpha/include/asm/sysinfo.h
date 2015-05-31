@@ -27,4 +27,16 @@
 #define UAC_NOFIX			2
 #define UAC_SIGBUS			4
 
+<<<<<<< HEAD
+=======
+
+#ifdef __KERNEL__
+
+/* This is the shift that is applied to the UAC bits as stored in the
+   per-thread flags.  See thread_info.h.  */
+#define UAC_SHIFT			6
+
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASM_ALPHA_SYSINFO_H */

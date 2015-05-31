@@ -11,7 +11,11 @@
  *
 */
 
+<<<<<<< HEAD
 		.macro	addruart, rp, rv, tmp
+=======
+		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		mov	\rp,      #0x001F0000
 		orr	\rp, \rp, #0x00001000
 		orr	\rv, \rp, #0xf1000000	@ virtual base

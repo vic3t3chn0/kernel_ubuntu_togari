@@ -56,11 +56,15 @@ void fat_msg(struct super_block *sb, const char *level, const char *fmt, ...)
 	va_start(args, fmt);
 	vaf.fmt = fmt;
 	vaf.va = &args;
+<<<<<<< HEAD
 	if (!strncmp(level, KERN_ERR, sizeof(KERN_ERR)))
 		printk_ratelimited("%sFAT-fs (%s): %pV\n", level,
 				   sb->s_id, &vaf);
 	else
 		printk("%sFAT-fs (%s): %pV\n", level, sb->s_id, &vaf);
+=======
+	printk("%sFAT-fs (%s): %pV\n", level, sb->s_id, &vaf);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	va_end(args);
 }
 
@@ -271,7 +275,11 @@ int fat_sync_bhs(struct buffer_head **bhs, int nr_bhs)
 	int i, err = 0;
 
 	for (i = 0; i < nr_bhs; i++)
+<<<<<<< HEAD
 		write_dirty_buffer(bhs[i], WRITE_SYNC);
+=======
+		write_dirty_buffer(bhs[i], WRITE);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	for (i = 0; i < nr_bhs; i++) {
 		wait_on_buffer(bhs[i]);

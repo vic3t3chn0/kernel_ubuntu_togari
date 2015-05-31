@@ -54,7 +54,10 @@ extern struct platform_device tnetv107x_serial_device;
 extern void __init tnetv107x_init(void);
 extern void __init tnetv107x_devices_init(struct tnetv107x_device_info *);
 extern void __init tnetv107x_irq_init(void);
+<<<<<<< HEAD
 void tnetv107x_restart(char mode, const char *cmd);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif
 

@@ -612,6 +612,10 @@ static size_t __logfs_write_je(struct super_block *sb, void *buf, u16 type,
 	if (len == 0)
 		return logfs_write_header(super, header, 0, type);
 
+<<<<<<< HEAD
+=======
+	BUG_ON(len > sb->s_blocksize);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	compr_len = logfs_compress(buf, data, len, sb->s_blocksize);
 	if (compr_len < 0 || type == JE_ANCHOR) {
 		memcpy(data, buf, len);

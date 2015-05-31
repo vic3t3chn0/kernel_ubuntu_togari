@@ -27,7 +27,11 @@
 
 extern char snd_opl3_regmap[MAX_OPL2_VOICES][4];
 
+<<<<<<< HEAD
 extern bool use_internal_drums;
+=======
+extern int use_internal_drums;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void snd_opl3_note_off_unsafe(void *p, int note, int vel,
 				     struct snd_midi_channel *chan);

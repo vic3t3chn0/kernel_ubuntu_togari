@@ -185,7 +185,11 @@ void kmemcheck_error_save(enum kmemcheck_shadow state,
 	e->trace.entries = e->trace_entries;
 	e->trace.max_entries = ARRAY_SIZE(e->trace_entries);
 	e->trace.skip = 0;
+<<<<<<< HEAD
 	save_stack_trace_regs(regs, &e->trace);
+=======
+	save_stack_trace_regs(&e->trace, regs);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Round address down to nearest 16 bytes */
 	shadow_copy = kmemcheck_shadow_lookup(address

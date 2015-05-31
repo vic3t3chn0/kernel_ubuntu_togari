@@ -119,6 +119,10 @@ struct sigaction {
 	__sigrestore_t sa_restorer;
 	sigset_t sa_mask;		/* mask last for extensibility */
 };
+<<<<<<< HEAD
+=======
+#define __ARCH_HAS_SA_RESTORER
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct k_sigaction {
 	struct sigaction sa;
@@ -150,13 +154,21 @@ typedef struct sigaltstack {
 #ifdef __KERNEL__
 #include <asm/sigcontext.h>
 
+<<<<<<< HEAD
 #ifndef CONFIG_CPU_HAS_NO_BITFIELDS
+=======
+#ifndef __uClinux__
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define __HAVE_ARCH_SIG_BITOPS
 
 static inline void sigaddset(sigset_t *set, int _sig)
 {
 	asm ("bfset %0{%1,#1}"
+<<<<<<< HEAD
 		: "+od" (*set)
+=======
+		: "+o" (*set)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		: "id" ((_sig - 1) ^ 31)
 		: "cc");
 }
@@ -164,7 +176,11 @@ static inline void sigaddset(sigset_t *set, int _sig)
 static inline void sigdelset(sigset_t *set, int _sig)
 {
 	asm ("bfclr %0{%1,#1}"
+<<<<<<< HEAD
 		: "+od" (*set)
+=======
+		: "+o" (*set)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		: "id" ((_sig - 1) ^ 31)
 		: "cc");
 }
@@ -180,7 +196,11 @@ static inline int __gen_sigismember(sigset_t *set, int _sig)
 	int ret;
 	asm ("bfextu %1{%2,#1},%0"
 		: "=d" (ret)
+<<<<<<< HEAD
 		: "od" (*set), "id" ((_sig-1) ^ 31)
+=======
+		: "o" (*set), "id" ((_sig-1) ^ 31)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		: "cc");
 	return ret;
 }
@@ -199,6 +219,7 @@ static inline int sigfindinword(unsigned long word)
 	return word ^ 31;
 }
 
+<<<<<<< HEAD
 #endif /* !CONFIG_CPU_HAS_NO_BITFIELDS */
 
 #ifdef __uClinux__
@@ -209,4 +230,17 @@ extern void ptrace_signal_deliver(struct pt_regs *regs, void *cookie);
 #endif /* __uClinux__ */
 
 #endif /* __KERNEL__ */
+=======
+struct pt_regs;
+extern void ptrace_signal_deliver(struct pt_regs *regs, void *cookie);
+
+#else
+
+#undef __HAVE_ARCH_SIG_BITOPS
+#define ptrace_signal_deliver(regs, cookie) do { } while (0)
+
+#endif /* __uClinux__ */
+#endif /* __KERNEL__ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _M68K_SIGNAL_H */

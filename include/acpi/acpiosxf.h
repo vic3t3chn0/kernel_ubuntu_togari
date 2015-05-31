@@ -95,11 +95,14 @@ acpi_status
 acpi_os_table_override(struct acpi_table_header *existing_table,
 		       struct acpi_table_header **new_table);
 
+<<<<<<< HEAD
 acpi_status
 acpi_os_physical_table_override(struct acpi_table_header *existing_table,
 				acpi_physical_address * new_address,
 				u32 *new_table_length);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Spinlock primitives
  */
@@ -194,8 +197,11 @@ void acpi_os_fixed_event_count(u32 fixed_event_number);
 /*
  * Threads and Scheduling
  */
+<<<<<<< HEAD
 extern struct workqueue_struct *kacpi_hotplug_wq;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 acpi_thread_id acpi_os_get_thread_id(void);
 
 acpi_status
@@ -222,10 +228,17 @@ acpi_status acpi_os_write_port(acpi_io_address address, u32 value, u32 width);
  * Platform and hardware-independent physical memory interfaces
  */
 acpi_status
+<<<<<<< HEAD
 acpi_os_read_memory(acpi_physical_address address, u64 *value, u32 width);
 
 acpi_status
 acpi_os_write_memory(acpi_physical_address address, u64 value, u32 width);
+=======
+acpi_os_read_memory(acpi_physical_address address, u32 * value, u32 width);
+
+acpi_status
+acpi_os_write_memory(acpi_physical_address address, u32 value, u32 width);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Platform and hardware-independent PCI configuration space access
@@ -243,6 +256,16 @@ acpi_os_write_pci_configuration(struct acpi_pci_id *pci_id,
 /*
  * Miscellaneous
  */
+<<<<<<< HEAD
+=======
+acpi_status
+acpi_os_validate_address(u8 space_id, acpi_physical_address address,
+			 acpi_size length, char *name);
+acpi_status
+acpi_os_invalidate_address(u8 space_id, acpi_physical_address address,
+			 acpi_size length);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 u64 acpi_os_get_timer(void);
 
 acpi_status acpi_os_signal(u32 function, void *info);

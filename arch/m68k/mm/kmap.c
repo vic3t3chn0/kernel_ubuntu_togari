@@ -20,6 +20,10 @@
 #include <asm/page.h>
 #include <asm/pgalloc.h>
 #include <asm/io.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #undef DEBUG
 
@@ -170,8 +174,12 @@ void __iomem *__ioremap(unsigned long physaddr, unsigned long size, int cachefla
 			break;
 		}
 	} else {
+<<<<<<< HEAD
 		physaddr |= (_PAGE_PRESENT | _PAGE_ACCESSED |
 			     _PAGE_DIRTY | _PAGE_READWRITE);
+=======
+		physaddr |= (_PAGE_PRESENT | _PAGE_ACCESSED | _PAGE_DIRTY);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		switch (cacheflag) {
 		case IOMAP_NOCACHE_SER:
 		case IOMAP_NOCACHE_NONSER:

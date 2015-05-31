@@ -21,6 +21,11 @@
 #ifndef _ASM_GT64120_H
 #define _ASM_GT64120_H
 
+<<<<<<< HEAD
+=======
+#include <linux/clocksource.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/addrspace.h>
 #include <asm/byteorder.h>
 

@@ -118,7 +118,11 @@ hash_refile(struct svc_cacherep *rp)
  * Note that no operation within the loop may sleep.
  */
 int
+<<<<<<< HEAD
 nfsd_cache_lookup(struct svc_rqst *rqstp)
+=======
+nfsd_cache_lookup(struct svc_rqst *rqstp, int type)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct hlist_node	*hn;
 	struct hlist_head 	*rh;
@@ -128,7 +132,10 @@ nfsd_cache_lookup(struct svc_rqst *rqstp)
 				vers = rqstp->rq_vers,
 				proc = rqstp->rq_proc;
 	unsigned long		age;
+<<<<<<< HEAD
 	int type = rqstp->rq_cachetype;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int rtn;
 
 	rqstp->rq_cacherep = NULL;

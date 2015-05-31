@@ -7,7 +7,10 @@
  * Copyright (C) 1994 - 2001, 2003, 07 Ralf Baechle
  */
 #include <linux/clockchips.h>
+<<<<<<< HEAD
 #include <linux/i8253.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
@@ -16,11 +19,18 @@
 #include <linux/irq.h>
 
 #include <asm/irq_cpu.h>
+<<<<<<< HEAD
+=======
+#include <asm/i8253.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/i8259.h>
 #include <asm/io.h>
 #include <asm/jazz.h>
 #include <asm/pgtable.h>
+<<<<<<< HEAD
 #include <asm/tlbmisc.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static DEFINE_RAW_SPINLOCK(r4030_lock);
 
@@ -134,7 +144,11 @@ static irqreturn_t r4030_timer_interrupt(int irq, void *dev_id)
 
 static struct irqaction r4030_timer_irqaction = {
 	.handler	= r4030_timer_interrupt,
+<<<<<<< HEAD
 	.flags		= IRQF_TIMER,
+=======
+	.flags		= IRQF_DISABLED | IRQF_TIMER,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.name		= "R4030 timer",
 };
 

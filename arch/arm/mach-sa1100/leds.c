@@ -42,6 +42,11 @@ sa1100_leds_init(void)
 		leds_event = adsbitsy_leds_event;
 	if (machine_is_pt_system3())
 		leds_event = system3_leds_event;
+<<<<<<< HEAD
+=======
+	if (machine_is_simpad())
+		leds_event = simpad_leds_event; /* what about machine registry? including led, apm... -zecke */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	leds_event(led_start);
 	return 0;

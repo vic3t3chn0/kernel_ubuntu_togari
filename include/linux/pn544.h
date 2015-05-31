@@ -1,6 +1,9 @@
 /*
  * Copyright (C) 2010 Trusted Logic S.A.
+<<<<<<< HEAD
  * Copyright (C) 2012 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,10 +20,14 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+<<<<<<< HEAD
 #ifndef _PN544_H_
 #define _PN544_H_
 
 #define PN544_MAGIC 0xE9
+=======
+#define PN544_MAGIC	0xE9
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * PN544 power control via ioctl
@@ -28,6 +35,7 @@
  * PN544_SET_PWR(1): power on
  * PN544_SET_PWR(>1): power on with firmware download enabled
  */
+<<<<<<< HEAD
 #define PN544_SET_PWR _IOW(PN544_MAGIC, 0x01, unsigned int)
 
 /*
@@ -66,3 +74,12 @@ struct pn544_i2c_platform_data {
 
 #endif
 
+=======
+#define PN544_SET_PWR	_IOW(PN544_MAGIC, 0x01, unsigned int)
+
+struct pn544_i2c_platform_data {
+	unsigned int irq_gpio;
+	unsigned int ven_gpio;
+	unsigned int firm_gpio;
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

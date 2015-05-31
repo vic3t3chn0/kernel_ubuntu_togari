@@ -161,6 +161,10 @@ struct expansion_card {
 
 	/* Private internal data */
 	const char		*card_desc;	/* Card description		*/
+<<<<<<< HEAD
+=======
+	CONST unsigned int	podaddr;	/* Base Linux address for card	*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	CONST loader_t		loader;		/* loader program */
 	u64			dma_mask;
 };

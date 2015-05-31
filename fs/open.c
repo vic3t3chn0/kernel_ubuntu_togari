@@ -396,10 +396,17 @@ SYSCALL_DEFINE1(fchdir, unsigned int, fd)
 {
 	struct file *file;
 	struct inode *inode;
+<<<<<<< HEAD
 	int error;
 
 	error = -EBADF;
 	file = fget(fd);
+=======
+	int error, fput_needed;
+
+	error = -EBADF;
+	file = fget_raw_light(fd, &fput_needed);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!file)
 		goto out;
 
@@ -413,7 +420,11 @@ SYSCALL_DEFINE1(fchdir, unsigned int, fd)
 	if (!error)
 		set_fs_pwd(current->fs, &file->f_path);
 out_putf:
+<<<<<<< HEAD
 	fput(file);
+=======
+	fput_light(file, fput_needed);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out:
 	return error;
 }
@@ -446,6 +457,7 @@ out:
 	return error;
 }
 
+<<<<<<< HEAD
 static int chmod_common(struct path *path, umode_t mode)
 {
 	struct inode *inode = path->dentry->d_inode;
@@ -496,6 +508,80 @@ SYSCALL_DEFINE3(fchmodat, int, dfd, const char __user *, filename, umode_t, mode
 }
 
 SYSCALL_DEFINE2(chmod, const char __user *, filename, umode_t, mode)
+=======
+SYSCALL_DEFINE2(fchmod, unsigned int, fd, mode_t, mode)
+{
+	struct inode * inode;
+	struct dentry * dentry;
+	struct file * file;
+	int err = -EBADF;
+	struct iattr newattrs;
+
+	file = fget(fd);
+	if (!file)
+		goto out;
+
+	dentry = file->f_path.dentry;
+	inode = dentry->d_inode;
+
+	audit_inode(NULL, dentry);
+
+	err = mnt_want_write_file(file);
+	if (err)
+		goto out_putf;
+	mutex_lock(&inode->i_mutex);
+	err = security_path_chmod(dentry, file->f_vfsmnt, mode);
+	if (err)
+		goto out_unlock;
+	if (mode == (mode_t) -1)
+		mode = inode->i_mode;
+	newattrs.ia_mode = (mode & S_IALLUGO) | (inode->i_mode & ~S_IALLUGO);
+	newattrs.ia_valid = ATTR_MODE | ATTR_CTIME;
+	err = notify_change(dentry, &newattrs);
+out_unlock:
+	mutex_unlock(&inode->i_mutex);
+	mnt_drop_write(file->f_path.mnt);
+out_putf:
+	fput(file);
+out:
+	return err;
+}
+
+SYSCALL_DEFINE3(fchmodat, int, dfd, const char __user *, filename, mode_t, mode)
+{
+	struct path path;
+	struct inode *inode;
+	int error;
+	struct iattr newattrs;
+
+	error = user_path_at(dfd, filename, LOOKUP_FOLLOW, &path);
+	if (error)
+		goto out;
+	inode = path.dentry->d_inode;
+
+	error = mnt_want_write(path.mnt);
+	if (error)
+		goto dput_and_out;
+	mutex_lock(&inode->i_mutex);
+	error = security_path_chmod(path.dentry, path.mnt, mode);
+	if (error)
+		goto out_unlock;
+	if (mode == (mode_t) -1)
+		mode = inode->i_mode;
+	newattrs.ia_mode = (mode & S_IALLUGO) | (inode->i_mode & ~S_IALLUGO);
+	newattrs.ia_valid = ATTR_MODE | ATTR_CTIME;
+	error = notify_change(path.dentry, &newattrs);
+out_unlock:
+	mutex_unlock(&inode->i_mutex);
+	mnt_drop_write(path.mnt);
+dput_and_out:
+	path_put(&path);
+out:
+	return error;
+}
+
+SYSCALL_DEFINE2(chmod, const char __user *, filename, mode_t, mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return sys_fchmodat(AT_FDCWD, filename, mode);
 }
@@ -608,7 +694,11 @@ SYSCALL_DEFINE3(fchown, unsigned int, fd, uid_t, user, gid_t, group)
 	dentry = file->f_path.dentry;
 	audit_inode(NULL, dentry);
 	error = chown_common(&file->f_path, user, group);
+<<<<<<< HEAD
 	mnt_drop_write_file(file);
+=======
+	mnt_drop_write(file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out_fput:
 	fput(file);
 out:
@@ -685,10 +775,13 @@ static struct file *__dentry_open(struct dentry *dentry, struct vfsmount *mnt,
 	if (error)
 		goto cleanup_all;
 
+<<<<<<< HEAD
 	error = break_lease(inode, f->f_flags);
 	if (error)
 		goto cleanup_all;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!open && f->f_op)
 		open = f->f_op->open;
 	if (open) {
@@ -775,7 +868,11 @@ out:
 	return nd->intent.open.file;
 out_err:
 	release_open_intent(nd);
+<<<<<<< HEAD
 	nd->intent.open.file = ERR_CAST(dentry);
+=======
+	nd->intent.open.file = (struct file *)dentry;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	goto out;
 }
 EXPORT_SYMBOL_GPL(lookup_instantiate_filp);
@@ -877,14 +974,25 @@ void fd_install(unsigned int fd, struct file *file)
 
 EXPORT_SYMBOL(fd_install);
 
+<<<<<<< HEAD
 static inline int build_open_flags(int flags, umode_t mode, struct open_flags *op)
+=======
+static inline int build_open_flags(int flags, int mode, struct open_flags *op)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	int lookup_flags = 0;
 	int acc_mode;
 
+<<<<<<< HEAD
 	if (!(flags & O_CREAT))
 		mode = 0;
 	op->mode = mode;
+=======
+	if (flags & O_CREAT)
+		op->mode = (mode & S_IALLUGO) | S_IFREG;
+	else
+		op->mode = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Must never be set by userspace */
 	flags &= ~FMODE_NONOTIFY;
@@ -948,7 +1056,11 @@ static inline int build_open_flags(int flags, umode_t mode, struct open_flags *o
  * have to.  But in generally you should not do this, so please move
  * along, nothing to see here..
  */
+<<<<<<< HEAD
 struct file *filp_open(const char *filename, int flags, umode_t mode)
+=======
+struct file *filp_open(const char *filename, int flags, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct open_flags op;
 	int lookup = build_open_flags(flags, mode, &op);
@@ -970,7 +1082,11 @@ struct file *file_open_root(struct dentry *dentry, struct vfsmount *mnt,
 }
 EXPORT_SYMBOL(file_open_root);
 
+<<<<<<< HEAD
 long do_sys_open(int dfd, const char __user *filename, int flags, umode_t mode)
+=======
+long do_sys_open(int dfd, const char __user *filename, int flags, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct open_flags op;
 	int lookup = build_open_flags(flags, mode, &op);
@@ -994,7 +1110,11 @@ long do_sys_open(int dfd, const char __user *filename, int flags, umode_t mode)
 	return fd;
 }
 
+<<<<<<< HEAD
 SYSCALL_DEFINE3(open, const char __user *, filename, int, flags, umode_t, mode)
+=======
+SYSCALL_DEFINE3(open, const char __user *, filename, int, flags, int, mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	long ret;
 
@@ -1008,7 +1128,11 @@ SYSCALL_DEFINE3(open, const char __user *, filename, int, flags, umode_t, mode)
 }
 
 SYSCALL_DEFINE4(openat, int, dfd, const char __user *, filename, int, flags,
+<<<<<<< HEAD
 		umode_t, mode)
+=======
+		int, mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	long ret;
 
@@ -1027,7 +1151,11 @@ SYSCALL_DEFINE4(openat, int, dfd, const char __user *, filename, int, flags,
  * For backward compatibility?  Maybe this should be moved
  * into arch/i386 instead?
  */
+<<<<<<< HEAD
 SYSCALL_DEFINE2(creat, const char __user *, pathname, umode_t, mode)
+=======
+SYSCALL_DEFINE2(creat, const char __user *, pathname, int, mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return sys_open(pathname, O_CREAT | O_WRONLY | O_TRUNC, mode);
 }

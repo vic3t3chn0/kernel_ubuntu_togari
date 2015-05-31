@@ -129,6 +129,10 @@ typedef s390_fp_regs compat_elf_fpregset_t;
 typedef s390_compat_regs compat_elf_gregset_t;
 
 #include <linux/sched.h>	/* for task_struct */
+<<<<<<< HEAD
+=======
+#include <asm/system.h>		/* for save_access_regs */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mmu_context.h>
 
 #include <asm/vdso.h>
@@ -187,8 +191,12 @@ extern char elf_platform[];
 #define SET_PERSONALITY(ex)					\
 do {								\
 	if (personality(current->personality) != PER_LINUX32)	\
+<<<<<<< HEAD
 		set_personality(PER_LINUX |			\
 			(current->personality & ~PER_MASK));	\
+=======
+		set_personality(PER_LINUX);			\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if ((ex).e_ident[EI_CLASS] == ELFCLASS32)		\
 		set_thread_flag(TIF_31BIT);			\
 	else							\

@@ -37,6 +37,7 @@ struct new_utsname {
 #include <linux/nsproxy.h>
 #include <linux/err.h>
 
+<<<<<<< HEAD
 enum uts_proc {
 	UTS_PROC_OSTYPE,
 	UTS_PROC_OSRELEASE,
@@ -45,6 +46,8 @@ enum uts_proc {
 	UTS_PROC_DOMAINNAME,
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct user_namespace;
 extern struct user_namespace init_user_ns;
 
@@ -88,6 +91,7 @@ static inline struct uts_namespace *copy_utsname(unsigned long flags,
 }
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_PROC_SYSCTL
 extern void uts_proc_notify(enum uts_proc proc);
 #else
@@ -96,6 +100,8 @@ static inline void uts_proc_notify(enum uts_proc proc)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline struct new_utsname *utsname(void)
 {
 	return &current->nsproxy->uts_ns->name;

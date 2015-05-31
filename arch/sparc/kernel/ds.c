@@ -1181,11 +1181,21 @@ static int __devinit ds_probe(struct vio_dev *vdev,
 
 	dp->rcv_buf_len = 4096;
 
+<<<<<<< HEAD
 	dp->ds_states = kmemdup(ds_states_template,
 				sizeof(ds_states_template), GFP_KERNEL);
 	if (!dp->ds_states)
 		goto out_free_rcv_buf;
 
+=======
+	dp->ds_states = kzalloc(sizeof(ds_states_template),
+				GFP_KERNEL);
+	if (!dp->ds_states)
+		goto out_free_rcv_buf;
+
+	memcpy(dp->ds_states, ds_states_template,
+	       sizeof(ds_states_template));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	dp->num_ds_states = ARRAY_SIZE(ds_states_template);
 
 	for (i = 0; i < dp->num_ds_states; i++)
@@ -1244,7 +1254,14 @@ static struct vio_driver ds_driver = {
 	.id_table	= ds_match,
 	.probe		= ds_probe,
 	.remove		= ds_remove,
+<<<<<<< HEAD
 	.name		= "ds",
+=======
+	.driver		= {
+		.name	= "ds",
+		.owner	= THIS_MODULE,
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static int __init ds_init(void)

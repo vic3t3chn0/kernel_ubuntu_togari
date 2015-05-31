@@ -19,8 +19,13 @@ void (*mce_threshold_vector)(void) = default_threshold_interrupt;
 
 asmlinkage void smp_threshold_interrupt(void)
 {
+<<<<<<< HEAD
 	irq_enter();
 	exit_idle();
+=======
+	exit_idle();
+	irq_enter();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	inc_irq_stat(irq_threshold_count);
 	mce_threshold_vector();
 	irq_exit();

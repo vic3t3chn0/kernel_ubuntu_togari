@@ -19,7 +19,10 @@
 #include <linux/platform_device.h>
 #include <linux/clkdev.h>
 
+<<<<<<< HEAD
 #include <asm/system_info.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -44,18 +47,26 @@ static struct platform_device *devices[] __initdata = {
 
 extern struct sys_timer msm_timer;
 
+<<<<<<< HEAD
 static void __init trout_init_early(void)
 {
 	arch_ioremap_caller = __msm_ioremap_caller;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void __init trout_init_irq(void)
 {
 	msm_init_irq();
 }
 
+<<<<<<< HEAD
 static void __init trout_fixup(struct tag *tags, char **cmdline,
 			       struct meminfo *mi)
+=======
+static void __init trout_fixup(struct machine_desc *desc, struct tag *tags,
+				char **cmdline, struct meminfo *mi)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	mi->nr_banks = 1;
 	mi->bank[0].start = PHYS_OFFSET;
@@ -99,10 +110,16 @@ static void __init trout_map_io(void)
 }
 
 MACHINE_START(TROUT, "HTC Dream")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.fixup		= trout_fixup,
 	.map_io		= trout_map_io,
 	.init_early	= trout_init_early,
+=======
+	.boot_params	= 0x10000100,
+	.fixup		= trout_fixup,
+	.map_io		= trout_map_io,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_irq	= trout_init_irq,
 	.init_machine	= trout_init,
 	.timer		= &msm_timer,

@@ -179,8 +179,13 @@ char *pp_iface_stat(struct iface_stat *is)
 	char *res;
 	if (!is) {
 		res = kasprintf(GFP_ATOMIC, "iface_stat@null{}");
+<<<<<<< HEAD
 	} else {
 		struct data_counters *cnts = &is->totals_via_skb;
+=======
+  } else {
+    struct data_counters *cnts = &is->totals_via_skb;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		res = kasprintf(GFP_ATOMIC, "iface_stat@%p{"
 				"list=list_head{...}, "
 				"ifname=%s, "
@@ -219,7 +224,11 @@ char *pp_iface_stat(struct iface_stat *is)
 				is->active,
 				is->net_dev,
 				is->proc_ptr);
+<<<<<<< HEAD
 	}
+=======
+		}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	_bug_on_err_or_null(res);
 	return res;
 }

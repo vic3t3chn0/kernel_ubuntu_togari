@@ -60,6 +60,10 @@ struct pt_regs {
 #define user_mode(regs) (!((regs)->ccr & PS_S))
 #define instruction_pointer(regs) ((regs)->pc)
 #define profile_pc(regs) instruction_pointer(regs)
+<<<<<<< HEAD
+=======
+extern void show_regs(struct pt_regs *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __KERNEL__ */
 #endif /* __ASSEMBLY__ */
 #endif /* _H8300_PTRACE_H */

@@ -69,6 +69,7 @@ extern int nf_conntrack_broadcast_help(struct sk_buff *skb,
 				       enum ip_conntrack_info ctinfo,
 				       unsigned int timeout);
 
+<<<<<<< HEAD
 struct nf_ct_helper_expectfn {
 	struct list_head head;
 	const char *name;
@@ -82,4 +83,6 @@ nf_ct_helper_expectfn_find_by_name(const char *name);
 struct nf_ct_helper_expectfn *
 nf_ct_helper_expectfn_find_by_symbol(const void *symbol);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /*_NF_CONNTRACK_HELPER_H*/

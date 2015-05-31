@@ -16,11 +16,16 @@
 #include <linux/compiler.h>
 #include <linux/const.h>
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <asm/sizes.h>
 
 #ifdef CONFIG_NEED_MACH_MEMORY_H
 #include <mach/memory.h>
 #endif
+=======
+#include <mach/memory.h>
+#include <asm/sizes.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Allow for constants defined here to be used from assembly code
@@ -80,7 +85,20 @@
  */
 #define IOREMAP_MAX_ORDER	24
 
+<<<<<<< HEAD
 #define CONSISTENT_END		(0xffe00000UL)
+=======
+/*
+ * Size of DMA-consistent memory region.  Must be multiple of 2M,
+ * between 2MB and 14MB inclusive.
+ */
+#ifndef CONSISTENT_DMA_SIZE
+#define CONSISTENT_DMA_SIZE 	SZ_2M
+#endif
+
+#define CONSISTENT_END		(0xffe00000UL)
+#define CONSISTENT_BASE		(CONSISTENT_END - CONSISTENT_DMA_SIZE)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else /* CONFIG_MMU */
 
@@ -116,8 +134,11 @@
 #define MODULES_END		(END_MEM)
 #define MODULES_VADDR		(PHYS_OFFSET)
 
+<<<<<<< HEAD
 #define XIP_VIRT_ADDR(physaddr)  (physaddr)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* !CONFIG_MMU */
 
 /*
@@ -156,6 +177,10 @@
  * so that all we need to do is modify the 8-bit constant field.
  */
 #define __PV_BITS_31_24	0x81000000
+<<<<<<< HEAD
+=======
+#define __PV_BITS_23_16	0x00810000
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern unsigned long __pv_phys_offset;
 #define PHYS_OFFSET __pv_phys_offset
@@ -173,6 +198,12 @@ static inline unsigned long __virt_to_phys(unsigned long x)
 {
 	unsigned long t;
 	__pv_stub(x, t, "add", __PV_BITS_31_24);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_ARM_PATCH_PHYS_VIRT_16BIT
+	__pv_stub(t, t, "add", __PV_BITS_23_16);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return t;
 }
 
@@ -180,6 +211,12 @@ static inline unsigned long __phys_to_virt(unsigned long x)
 {
 	unsigned long t;
 	__pv_stub(x, t, "sub", __PV_BITS_31_24);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_ARM_PATCH_PHYS_VIRT_16BIT
+	__pv_stub(t, t, "sub", __PV_BITS_23_16);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return t;
 }
 #else
@@ -189,11 +226,27 @@ static inline unsigned long __phys_to_virt(unsigned long x)
 #endif
 
 #ifndef PHYS_OFFSET
+<<<<<<< HEAD
 #ifdef PLAT_PHYS_OFFSET
 #define PHYS_OFFSET	PLAT_PHYS_OFFSET
 #else
 #define PHYS_OFFSET	UL(CONFIG_PHYS_OFFSET)
 #endif
+=======
+#define PHYS_OFFSET	PLAT_PHYS_OFFSET
+#endif
+
+/*
+ * The DMA mask corresponding to the maximum bus address allocatable
+ * using GFP_DMA.  The default here places no restriction on DMA
+ * allocations.  This must be the smallest DMA mask in the system,
+ * so a successful GFP_DMA allocation will always satisfy this.
+ */
+#ifndef ARM_DMA_ZONE_SIZE
+#define ISA_DMA_THRESHOLD	(0xffffffffULL)
+#else
+#define ISA_DMA_THRESHOLD	(PHYS_OFFSET + ARM_DMA_ZONE_SIZE - 1)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 /*
@@ -227,6 +280,10 @@ static inline void *phys_to_virt(phys_addr_t x)
  */
 #define __pa(x)			__virt_to_phys((unsigned long)(x))
 #define __va(x)			((void *)__phys_to_virt((unsigned long)(x)))
+<<<<<<< HEAD
+=======
+#define __pa_symbol(x)		__pa(RELOC_HIDE((unsigned long)(x), 0))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define pfn_to_kaddr(pfn)	__va((pfn) << PAGE_SHIFT)
 
 /*
@@ -280,6 +337,7 @@ static inline __deprecated void *bus_to_virt(unsigned long x)
 #define arch_is_coherent()		0
 #endif
 
+<<<<<<< HEAD
 /*
  * Set if the architecture speculatively fetches data into cache.
  */
@@ -287,6 +345,8 @@ static inline __deprecated void *bus_to_virt(unsigned long x)
 #define arch_has_speculative_dfetch()	0
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #include <asm-generic/memory_model.h>

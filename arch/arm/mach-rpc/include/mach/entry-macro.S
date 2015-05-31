@@ -10,3 +10,10 @@
 	orr	\base, \base, #ioc_base_low
 	.endif
 	.endm
+<<<<<<< HEAD
+=======
+
+	.macro  arch_ret_to_user, tmp1, tmp2
+	.endm
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

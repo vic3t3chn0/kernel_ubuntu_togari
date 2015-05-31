@@ -18,7 +18,11 @@
  */
 #include <linux/init.h>
 #include <linux/highmem.h>
+<<<<<<< HEAD
 #include <asm/cp15.h>
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/cputype.h>
 #include <asm/cacheflush.h>
 

@@ -37,9 +37,16 @@ static void __init nuc950evb_init(void)
 
 MACHINE_START(W90P950EVB, "W90P950EVB")
 	/* Maintainer: Wan ZongShun */
+<<<<<<< HEAD
+=======
+	.boot_params	= 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.map_io		= nuc950evb_map_io,
 	.init_irq	= nuc900_init_irq,
 	.init_machine	= nuc950evb_init,
 	.timer		= &nuc900_timer,
+<<<<<<< HEAD
 	.restart	= nuc9xx_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

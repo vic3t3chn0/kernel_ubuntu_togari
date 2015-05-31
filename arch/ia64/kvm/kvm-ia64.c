@@ -33,7 +33,10 @@
 #include <linux/uaccess.h>
 #include <linux/iommu.h>
 #include <linux/intel-iommu.h>
+<<<<<<< HEAD
 #include <linux/pci.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/pgtable.h>
 #include <asm/gcc_intrin.h>
@@ -205,7 +208,11 @@ int kvm_dev_ioctl_check_extension(long ext)
 		r = KVM_COALESCED_MMIO_PAGE_OFFSET;
 		break;
 	case KVM_CAP_IOMMU:
+<<<<<<< HEAD
 		r = iommu_present(&pci_bus_type);
+=======
+		r = iommu_found();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		break;
 	default:
 		r = 0;
@@ -774,13 +781,21 @@ struct kvm *kvm_arch_alloc_vm(void)
 	return kvm;
 }
 
+<<<<<<< HEAD
 struct kvm_ia64_io_range {
+=======
+struct kvm_io_range {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long start;
 	unsigned long size;
 	unsigned long type;
 };
 
+<<<<<<< HEAD
 static const struct kvm_ia64_io_range io_ranges[] = {
+=======
+static const struct kvm_io_range io_ranges[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{VGA_IO_START, VGA_IO_SIZE, GPFN_FRAME_BUFFER},
 	{MMIO_START, MMIO_SIZE, GPFN_LOW_MMIO},
 	{LEGACY_IO_START, LEGACY_IO_SIZE, GPFN_LEGACY_IO},
@@ -809,6 +824,7 @@ static void kvm_build_io_pmt(struct kvm *kvm)
 #define GUEST_PHYSICAL_RR4	0x2739
 #define VMM_INIT_RR		0x1660
 
+<<<<<<< HEAD
 int kvm_arch_init_vm(struct kvm *kvm, unsigned long type)
 {
 	BUG_ON(!kvm);
@@ -816,6 +832,12 @@ int kvm_arch_init_vm(struct kvm *kvm, unsigned long type)
 	if (type)
 		return -EINVAL;
 
+=======
+int kvm_arch_init_vm(struct kvm *kvm)
+{
+	BUG_ON(!kvm);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kvm->arch.is_sn2 = ia64_platform_is("sn2");
 
 	kvm->arch.metaphysical_rr0 = GUEST_PHYSICAL_RR0;
@@ -1174,7 +1196,11 @@ out:
 
 bool kvm_vcpu_compatible(struct kvm_vcpu *vcpu)
 {
+<<<<<<< HEAD
 	return irqchip_in_kernel(vcpu->kvm) == (vcpu->arch.apic != NULL);
+=======
+	return irqchip_in_kernel(vcpu->kcm) == (vcpu->arch.apic != NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 int kvm_arch_vcpu_init(struct kvm_vcpu *vcpu)
@@ -1374,12 +1400,23 @@ static void kvm_release_vm_pages(struct kvm *kvm)
 {
 	struct kvm_memslots *slots;
 	struct kvm_memory_slot *memslot;
+<<<<<<< HEAD
 	int j;
 	unsigned long base_gfn;
 
 	slots = kvm_memslots(kvm);
 	kvm_for_each_memslot(memslot, slots) {
 		base_gfn = memslot->base_gfn;
+=======
+	int i, j;
+	unsigned long base_gfn;
+
+	slots = kvm_memslots(kvm);
+	for (i = 0; i < slots->nmemslots; i++) {
+		memslot = &slots->memslots[i];
+		base_gfn = memslot->base_gfn;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		for (j = 0; j < memslot->npages; j++) {
 			if (memslot->rmap[j])
 				put_page((struct page *)memslot->rmap[j]);
@@ -1571,6 +1608,7 @@ out:
 	return r;
 }
 
+<<<<<<< HEAD
 int kvm_arch_vcpu_fault(struct kvm_vcpu *vcpu, struct vm_fault *vmf)
 {
 	return VM_FAULT_SIGBUS;
@@ -1586,6 +1624,8 @@ int kvm_arch_create_memslot(struct kvm_memory_slot *slot, unsigned long npages)
 	return 0;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int kvm_arch_prepare_memory_region(struct kvm *kvm,
 		struct kvm_memory_slot *memslot,
 		struct kvm_memory_slot old,
@@ -1841,7 +1881,11 @@ int kvm_vm_ioctl_get_dirty_log(struct kvm *kvm,
 	if (log->slot >= KVM_MEMORY_SLOTS)
 		goto out;
 
+<<<<<<< HEAD
 	memslot = id_to_memslot(kvm->memslots, log->slot);
+=======
+	memslot = &kvm->memslots->memslots[log->slot];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	r = -ENOENT;
 	if (!memslot->dirty_bitmap)
 		goto out;

@@ -180,6 +180,7 @@ static const int sh7750_cache_events
 			[ C(RESULT_MISS)   ] = -1,
 		},
 	},
+<<<<<<< HEAD
 
 	[ C(NODE) ] = {
 		[ C(OP_READ) ] = {
@@ -195,6 +196,8 @@ static const int sh7750_cache_events
 			[ C(RESULT_MISS)   ] = -1,
 		},
 	},
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static int sh7750_event_map(int event)

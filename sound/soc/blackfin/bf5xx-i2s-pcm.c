@@ -168,7 +168,11 @@ static int bf5xx_pcm_open(struct snd_pcm_substream *substream)
 
 	snd_soc_set_runtime_hwparams(substream, &bf5xx_pcm_hardware);
 
+<<<<<<< HEAD
 	ret = snd_pcm_hw_constraint_integer(runtime,
+=======
+	ret = snd_pcm_hw_constraint_integer(runtime, \
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			SNDRV_PCM_HW_PARAM_PERIODS);
 	if (ret < 0)
 		goto out;
@@ -257,10 +261,16 @@ static void bf5xx_pcm_free_dma_buffers(struct snd_pcm *pcm)
 
 static u64 bf5xx_pcm_dmamask = DMA_BIT_MASK(32);
 
+<<<<<<< HEAD
 static int bf5xx_pcm_i2s_new(struct snd_soc_pcm_runtime *rtd)
 {
 	struct snd_card *card = rtd->card->snd_card;
 	struct snd_pcm *pcm = rtd->pcm;
+=======
+int bf5xx_pcm_i2s_new(struct snd_card *card, struct snd_soc_dai *dai,
+	struct snd_pcm *pcm)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int ret = 0;
 
 	pr_debug("%s enter\n", __func__);
@@ -269,14 +279,22 @@ static int bf5xx_pcm_i2s_new(struct snd_soc_pcm_runtime *rtd)
 	if (!card->dev->coherent_dma_mask)
 		card->dev->coherent_dma_mask = DMA_BIT_MASK(32);
 
+<<<<<<< HEAD
 	if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream) {
+=======
+	if (dai->driver->playback.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = bf5xx_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_PLAYBACK);
 		if (ret)
 			goto out;
 	}
 
+<<<<<<< HEAD
 	if (pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream) {
+=======
+	if (dai->driver->capture.channels_min) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		ret = bf5xx_pcm_preallocate_dma_buffer(pcm,
 			SNDRV_PCM_STREAM_CAPTURE);
 		if (ret)
@@ -305,15 +323,34 @@ static int __devexit bfin_i2s_soc_platform_remove(struct platform_device *pdev)
 
 static struct platform_driver bfin_i2s_pcm_driver = {
 	.driver = {
+<<<<<<< HEAD
 		.name = "bfin-i2s-pcm-audio",
 		.owner = THIS_MODULE,
+=======
+			.name = "bfin-i2s-pcm-audio",
+			.owner = THIS_MODULE,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 
 	.probe = bfin_i2s_soc_platform_probe,
 	.remove = __devexit_p(bfin_i2s_soc_platform_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(bfin_i2s_pcm_driver);
+=======
+static int __init snd_bfin_i2s_pcm_init(void)
+{
+	return platform_driver_register(&bfin_i2s_pcm_driver);
+}
+module_init(snd_bfin_i2s_pcm_init);
+
+static void __exit snd_bfin_i2s_pcm_exit(void)
+{
+	platform_driver_unregister(&bfin_i2s_pcm_driver);
+}
+module_exit(snd_bfin_i2s_pcm_exit);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_AUTHOR("Cliff Cai");
 MODULE_DESCRIPTION("ADI Blackfin I2S PCM DMA module");

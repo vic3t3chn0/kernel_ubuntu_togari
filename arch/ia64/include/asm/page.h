@@ -221,6 +221,7 @@ get_order (unsigned long size)
 					 (((current->personality & READ_IMPLIES_EXEC) != 0)	\
 					  ? VM_EXEC : 0))
 
+<<<<<<< HEAD
 #define GATE_ADDR		RGN_BASE(RGN_GATE)
 
 /*
@@ -231,4 +232,6 @@ get_order (unsigned long size)
 #define PERCPU_ADDR		(-PERCPU_PAGE_SIZE)
 #define LOAD_OFFSET		(KERNEL_START - KERNEL_TR_PAGE_SIZE)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _ASM_IA64_PAGE_H */

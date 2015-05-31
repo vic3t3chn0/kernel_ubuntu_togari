@@ -25,13 +25,21 @@ enum jz_gpio_function {
     JZ_GPIO_FUNC3,
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  Usually a driver for a SoC component has to request several gpio pins and
  configure them as funcion pins.
  jz_gpio_bulk_request can be used to ease this process.
  Usually one would do something like:
 
+<<<<<<< HEAD
  static const struct jz_gpio_bulk_request i2c_pins[] = {
+=======
+ const static struct jz_gpio_bulk_request i2c_pins[] = {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	JZ_GPIO_BULK_PIN(I2C_SDA),
 	JZ_GPIO_BULK_PIN(I2C_SCK),
  };
@@ -46,8 +54,13 @@ enum jz_gpio_function {
 
     jz_gpio_bulk_free(i2c_pins, ARRAY_SIZE(i2c_pins));
 
+<<<<<<< HEAD
 */
 
+=======
+
+*/
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct jz_gpio_bulk_request {
 	int gpio;
 	const char *name;

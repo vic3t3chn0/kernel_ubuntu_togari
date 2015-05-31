@@ -26,7 +26,10 @@
 #include <sound/opl3.h>
 #include <asm/io.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/ioport.h>

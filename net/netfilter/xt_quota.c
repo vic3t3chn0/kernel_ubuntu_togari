@@ -9,7 +9,10 @@
 
 #include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_quota.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct xt_quota_priv {
 	spinlock_t	lock;

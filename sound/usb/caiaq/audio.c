@@ -311,10 +311,15 @@ snd_usb_caiaq_pcm_pointer(struct snd_pcm_substream *sub)
 
 	spin_lock(&dev->spinlock);
 
+<<<<<<< HEAD
 	if (dev->input_panic || dev->output_panic) {
 		ptr = SNDRV_PCM_POS_XRUN;
 		goto unlock;
 	}
+=======
+	if (dev->input_panic || dev->output_panic)
+		ptr = SNDRV_PCM_POS_XRUN;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (sub->stream == SNDRV_PCM_STREAM_PLAYBACK)
 		ptr = bytes_to_frames(sub->runtime,
@@ -323,7 +328,10 @@ snd_usb_caiaq_pcm_pointer(struct snd_pcm_substream *sub)
 		ptr = bytes_to_frames(sub->runtime,
 					dev->audio_in_buf_pos[index]);
 
+<<<<<<< HEAD
 unlock:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	spin_unlock(&dev->spinlock);
 	return ptr;
 }

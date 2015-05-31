@@ -4,7 +4,10 @@
  *  Copyright © 2007  Anton Vorontsov <cbou@mail.ru>
  *  Copyright © 2004  Szabolcs Gyurko
  *  Copyright © 2003  Ian Molton <spyro@f2s.com>
+<<<<<<< HEAD
  *  Copyright (C) 2013-2014 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  *  Modified: 2004, Oct     Szabolcs Gyurko
  *
@@ -14,12 +17,19 @@
 #ifndef __LINUX_POWER_SUPPLY_H__
 #define __LINUX_POWER_SUPPLY_H__
 
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/wakelock.h>
 #include <linux/workqueue.h>
 #include <linux/leds.h>
 
+<<<<<<< HEAD
 struct device;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * All voltages, currents, charges, energies, time and temperatures in uV,
  * µA, µAh, µWh, seconds and tenths of degree Celsius unless otherwise
@@ -52,12 +62,19 @@ enum {
 	POWER_SUPPLY_HEALTH_UNKNOWN = 0,
 	POWER_SUPPLY_HEALTH_GOOD,
 	POWER_SUPPLY_HEALTH_OVERHEAT,
+<<<<<<< HEAD
 	POWER_SUPPLY_HEALTH_WARM,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_HEALTH_DEAD,
 	POWER_SUPPLY_HEALTH_OVERVOLTAGE,
 	POWER_SUPPLY_HEALTH_UNSPEC_FAILURE,
 	POWER_SUPPLY_HEALTH_COLD,
+<<<<<<< HEAD
 	POWER_SUPPLY_HEALTH_COOL,
+=======
+	POWER_SUPPLY_HEALTH_UNDERVOLTAGE,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 enum {
@@ -79,12 +96,15 @@ enum {
 	POWER_SUPPLY_CAPACITY_LEVEL_FULL,
 };
 
+<<<<<<< HEAD
 enum {
 	POWER_SUPPLY_SCOPE_UNKNOWN = 0,
 	POWER_SUPPLY_SCOPE_SYSTEM,
 	POWER_SUPPLY_SCOPE_DEVICE,
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum power_supply_property {
 	/* Properties of type `int' */
 	POWER_SUPPLY_PROP_STATUS = 0,
@@ -92,7 +112,10 @@ enum power_supply_property {
 	POWER_SUPPLY_PROP_HEALTH,
 	POWER_SUPPLY_PROP_PRESENT,
 	POWER_SUPPLY_PROP_ONLINE,
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_CHARGING_ENABLED,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_PROP_TECHNOLOGY,
 	POWER_SUPPLY_PROP_CYCLE_COUNT,
 	POWER_SUPPLY_PROP_VOLTAGE_MAX,
@@ -101,6 +124,7 @@ enum power_supply_property {
 	POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN,
 	POWER_SUPPLY_PROP_VOLTAGE_NOW,
 	POWER_SUPPLY_PROP_VOLTAGE_AVG,
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_INPUT_VOLTAGE_REGULATION,
 	POWER_SUPPLY_PROP_VOLTAGE_OCV,
 	POWER_SUPPLY_PROP_CURRENT_MAX,
@@ -110,6 +134,11 @@ enum power_supply_property {
 	POWER_SUPPLY_PROP_CURRENT_NOW,
 	POWER_SUPPLY_PROP_CURRENT_AVG,
 	POWER_SUPPLY_PROP_CURRENT_SYSTEM_MAX,
+=======
+	POWER_SUPPLY_PROP_CURRENT_MAX,
+	POWER_SUPPLY_PROP_CURRENT_NOW,
+	POWER_SUPPLY_PROP_CURRENT_AVG,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_PROP_POWER_NOW,
 	POWER_SUPPLY_PROP_POWER_AVG,
 	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
@@ -119,7 +148,10 @@ enum power_supply_property {
 	POWER_SUPPLY_PROP_CHARGE_NOW,
 	POWER_SUPPLY_PROP_CHARGE_AVG,
 	POWER_SUPPLY_PROP_CHARGE_COUNTER,
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_CHARGE_COUNTER_SHADOW,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_PROP_ENERGY_FULL_DESIGN,
 	POWER_SUPPLY_PROP_ENERGY_EMPTY_DESIGN,
 	POWER_SUPPLY_PROP_ENERGY_FULL,
@@ -127,21 +159,32 @@ enum power_supply_property {
 	POWER_SUPPLY_PROP_ENERGY_NOW,
 	POWER_SUPPLY_PROP_ENERGY_AVG,
 	POWER_SUPPLY_PROP_CAPACITY, /* in percents! */
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_CAPACITY_LEVEL,
 	POWER_SUPPLY_PROP_TEMP,
 	POWER_SUPPLY_PROP_COOL_TEMP,
 	POWER_SUPPLY_PROP_WARM_TEMP,
+=======
+#ifdef CONFIG_SLP
+	POWER_SUPPLY_PROP_CAPACITY_RAW,
+#endif
+	POWER_SUPPLY_PROP_CAPACITY_LEVEL,
+	POWER_SUPPLY_PROP_TEMP,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_PROP_TEMP_AMBIENT,
 	POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
 	POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG,
 	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
 	POWER_SUPPLY_PROP_TIME_TO_FULL_AVG,
 	POWER_SUPPLY_PROP_TYPE, /* use power_supply.type instead */
+<<<<<<< HEAD
 	POWER_SUPPLY_PROP_SCOPE,
 	POWER_SUPPLY_PROP_SYSTEM_TEMP_LEVEL,
 	POWER_SUPPLY_PROP_RESISTANCE,
 	POWER_SUPPLY_PROP_ENABLE_STOP_CHARGING_AT_LOW_BATTERY,
 	POWER_SUPPLY_PROP_SOC_UPDATE_REQUEST,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Properties of type `const char *' */
 	POWER_SUPPLY_PROP_MODEL_NAME,
 	POWER_SUPPLY_PROP_MANUFACTURER,
@@ -149,16 +192,71 @@ enum power_supply_property {
 };
 
 enum power_supply_type {
+<<<<<<< HEAD
 	POWER_SUPPLY_TYPE_UNKNOWN = 0,
 	POWER_SUPPLY_TYPE_BATTERY,
+=======
+	POWER_SUPPLY_TYPE_BATTERY = 0,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	POWER_SUPPLY_TYPE_UPS,
 	POWER_SUPPLY_TYPE_MAINS,
 	POWER_SUPPLY_TYPE_USB,		/* Standard Downstream Port */
 	POWER_SUPPLY_TYPE_USB_DCP,	/* Dedicated Charging Port */
 	POWER_SUPPLY_TYPE_USB_CDP,	/* Charging Downstream Port */
 	POWER_SUPPLY_TYPE_USB_ACA,	/* Accessory Charger Adapters */
+<<<<<<< HEAD
 	POWER_SUPPLY_TYPE_BMS,		/* Battery Monitor System */
 };
+=======
+	POWER_SUPPLY_TYPE_OTG,
+	POWER_SUPPLY_TYPE_DOCK,
+	POWER_SUPPLY_TYPE_MISC,
+	POWER_SUPPLY_TYPE_WIRELESS,
+};
+
+enum {
+	POWER_SUPPLY_VBUS_UNKNOWN = 0,
+	POWER_SUPPLY_VBUS_UVLO,
+	POWER_SUPPLY_VBUS_WEAK,
+	POWER_SUPPLY_VBUS_OVLO,
+	POWER_SUPPLY_VBUS_GOOD,
+};
+
+/*
+ * EXTENDED_ONLINE_TYPE
+ * - support various charger cable type
+ * - set type from each accessory driver(muic, host, mhl, etc,,,)
+ *
+ * - type format
+ * | 31-24: RSVD | 23-16: MAIN TYPE | 15-8: SUB TYPE | 7-0: POWER TYPE |
+ */
+#define ONLINE_TYPE_RSVD_SHIFT	24
+#define ONLINE_TYPE_RSVD_MASK	(0xF << ONLINE_TYPE_RSVD_SHIFT)
+#define ONLINE_TYPE_MAIN_SHIFT	16
+#define ONLINE_TYPE_MAIN_MASK	(0xF << ONLINE_TYPE_MAIN_SHIFT)
+#define ONLINE_TYPE_SUB_SHIFT	8
+#define ONLINE_TYPE_SUB_MASK	(0xF << ONLINE_TYPE_SUB_SHIFT)
+#define ONLINE_TYPE_PWR_SHIFT	0
+#define ONLINE_TYPE_PWR_MASK	(0xF << ONLINE_TYPE_PWR_SHIFT)
+
+enum online_sub_type {
+	ONLINE_SUB_TYPE_UNKNOWN	= 0,
+	ONLINE_SUB_TYPE_MHL,
+	ONLINE_SUB_TYPE_AUDIO,
+	ONLINE_SUB_TYPE_DESK,
+	ONLINE_SUB_TYPE_SMART_NOTG,
+	ONLINE_SUB_TYPE_SMART_OTG,
+	ONLINE_SUB_TYPE_KBD,
+};
+
+enum online_power_type {
+	ONLINE_POWER_TYPE_UNKNOWN = 0,
+	ONLINE_POWER_TYPE_BATTERY,
+	ONLINE_POWER_TYPE_TA,
+	ONLINE_POWER_TYPE_USB,
+};
+/* EXTENDED_ONLINE_TYPE */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 union power_supply_propval {
 	int intval;
@@ -228,11 +326,15 @@ struct power_supply_info {
 	int use_for_apm;
 };
 
+<<<<<<< HEAD
 #if defined(CONFIG_POWER_SUPPLY) || defined(CONFIG_POWER_SUPPLY_MODULE)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern struct power_supply *power_supply_get_by_name(char *name);
 extern void power_supply_changed(struct power_supply *psy);
 extern int power_supply_am_i_supplied(struct power_supply *psy);
 extern int power_supply_set_battery_charged(struct power_supply *psy);
+<<<<<<< HEAD
 extern int power_supply_set_current_limit(struct power_supply *psy, int limit);
 extern int power_supply_set_online(struct power_supply *psy, bool enable);
 extern int power_supply_set_health_state(struct power_supply *psy, int health);
@@ -285,6 +387,19 @@ static inline int power_supply_powers(struct power_supply *psy,
 							{ return -ENOSYS; }
 #endif
 
+=======
+
+#if defined(CONFIG_POWER_SUPPLY) || defined(CONFIG_POWER_SUPPLY_MODULE)
+extern int power_supply_is_system_supplied(void);
+#else
+static inline int power_supply_is_system_supplied(void) { return -ENOSYS; }
+#endif
+
+extern int power_supply_register(struct device *parent,
+				 struct power_supply *psy);
+extern void power_supply_unregister(struct power_supply *psy);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* For APM emulation, think legacy userspace. */
 extern struct class *power_supply_class;
 
@@ -298,9 +413,13 @@ static inline bool power_supply_is_amp_property(enum power_supply_property psp)
 	case POWER_SUPPLY_PROP_CHARGE_NOW:
 	case POWER_SUPPLY_PROP_CHARGE_AVG:
 	case POWER_SUPPLY_PROP_CHARGE_COUNTER:
+<<<<<<< HEAD
 	case POWER_SUPPLY_PROP_CHARGE_COUNTER_SHADOW:
 	case POWER_SUPPLY_PROP_CURRENT_MAX:
 	case POWER_SUPPLY_PROP_INPUT_CURRENT_MAX:
+=======
+	case POWER_SUPPLY_PROP_CURRENT_MAX:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case POWER_SUPPLY_PROP_CURRENT_NOW:
 	case POWER_SUPPLY_PROP_CURRENT_AVG:
 		return 1;
@@ -326,7 +445,10 @@ static inline bool power_supply_is_watt_property(enum power_supply_property psp)
 	case POWER_SUPPLY_PROP_VOLTAGE_MIN_DESIGN:
 	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
 	case POWER_SUPPLY_PROP_VOLTAGE_AVG:
+<<<<<<< HEAD
 	case POWER_SUPPLY_PROP_VOLTAGE_OCV:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	case POWER_SUPPLY_PROP_POWER_NOW:
 		return 1;
 	default:

@@ -98,7 +98,11 @@ next:
 
 	*bh = sb_bread(sb, phys);
 	if (*bh == NULL) {
+<<<<<<< HEAD
 		fat_msg(sb, KERN_ERR, "Directory bread(block %llu) failed",
+=======
+		fat_msg(sb, KERN_INFO, "Directory bread(block %llu) failed",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		       (llu)phys);
 		/* skip this block */
 		*pos = (iblock + 1) << sb->s_blocksize_bits;
@@ -156,8 +160,13 @@ static int uni16_to_x8(struct super_block *sb, unsigned char *ascii,
 		} else {
 			if (uni_xlate == 1) {
 				*op++ = ':';
+<<<<<<< HEAD
 				op = hex_byte_pack(op, ec >> 8);
 				op = hex_byte_pack(op, ec);
+=======
+				op = pack_hex_byte(op, ec >> 8);
+				op = pack_hex_byte(op, ec);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				len -= 5;
 			} else {
 				*op++ = '?';
@@ -380,6 +389,7 @@ parse_record:
 				goto end_of_dir;
 		}
 
+<<<<<<< HEAD
 		/*
 		 * The FAT_NO_83NAME flag is used to mark files
 		 * created with no 8.3 short name
@@ -387,6 +397,8 @@ parse_record:
 		if (de->lcase & FAT_NO_83NAME)
 			goto compare_longname;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		memcpy(work, de->name, sizeof(de->name));
 		/* see namei.c, msdos_format_name */
 		if (work[0] == 0x05)
@@ -431,7 +443,10 @@ parse_record:
 		if (fat_name_match(sbi, name, name_len, bufname, len))
 			goto found;
 
+<<<<<<< HEAD
 compare_longname:
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (nr_slots) {
 			void *longname = unicode + FAT_MAX_UNI_CHARS;
 			int size = PATH_MAX - FAT_MAX_UNI_SIZE;
@@ -533,8 +548,11 @@ parse_record:
 		if (de->attr != ATTR_EXT && IS_FREE(de->name))
 			goto record_end;
 	} else {
+<<<<<<< HEAD
 		if (de->lcase & FAT_NO_83NAME)
 			goto record_end;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if ((de->attr & ATTR_VOLUME) || IS_FREE(de->name))
 			goto record_end;
 	}
@@ -950,10 +968,13 @@ int fat_scan(struct inode *dir, const unsigned char *name,
 	sinfo->bh = NULL;
 	while (fat_get_short_entry(dir, &sinfo->slot_off, &sinfo->bh,
 				   &sinfo->de) >= 0) {
+<<<<<<< HEAD
 		/* skip files marked as having no 8.3 short name  */
 		if (sinfo->de->lcase & FAT_NO_83NAME)
 			continue;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!strncmp(sinfo->de->name, name, MSDOS_NAME)) {
 			sinfo->slot_off -= sizeof(*sinfo->de);
 			sinfo->nr_slots = 1;
@@ -1254,7 +1275,11 @@ int fat_add_entries(struct inode *dir, void *slots, int nr_slots,
 	struct super_block *sb = dir->i_sb;
 	struct msdos_sb_info *sbi = MSDOS_SB(sb);
 	struct buffer_head *bh, *prev, *bhs[3]; /* 32*slots (672bytes) */
+<<<<<<< HEAD
 	struct msdos_dir_entry *uninitialized_var(de);
+=======
+	struct msdos_dir_entry *de = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err, free_slots, i, nr_bhs;
 	loff_t pos, i_pos;
 

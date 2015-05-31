@@ -61,6 +61,7 @@ extern void synchronize_rcu_bh(void);
 extern void synchronize_sched_expedited(void);
 extern void synchronize_rcu_expedited(void);
 
+<<<<<<< HEAD
 void kfree_call_rcu(struct rcu_head *head, void (*func)(struct rcu_head *rcu));
 
 /**
@@ -79,14 +80,19 @@ void kfree_call_rcu(struct rcu_head *head, void (*func)(struct rcu_head *rcu));
  * to call this function from a CPU-hotplug notifier.  Failing to observe
  * these restriction will result in deadlock.
  */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void synchronize_rcu_bh_expedited(void)
 {
 	synchronize_sched_expedited();
 }
 
 extern void rcu_barrier(void);
+<<<<<<< HEAD
 extern void rcu_barrier_bh(void);
 extern void rcu_barrier_sched(void);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern unsigned long rcutorture_testseq;
 extern unsigned long rcutorture_vernum;
@@ -101,7 +107,10 @@ extern void rcu_sched_force_quiescent_state(void);
 /* A context switch is a grace period for RCU-sched and RCU-bh. */
 static inline int rcu_blocking_is_gp(void)
 {
+<<<<<<< HEAD
 	might_sleep();  /* Check for RCU read-side critical section. */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return num_online_cpus() == 1;
 }
 

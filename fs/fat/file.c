@@ -17,6 +17,10 @@
 #include <linux/blkdev.h>
 #include <linux/fsnotify.h>
 #include <linux/security.h>
+<<<<<<< HEAD
+=======
+#include <linux/namei.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "fat.h"
 
 static int fat_ioctl_get_attributes(struct inode *inode, u32 __user *user_attr)
@@ -44,7 +48,11 @@ static int fat_ioctl_set_attributes(struct file *file, u32 __user *user_attr)
 		goto out;
 
 	mutex_lock(&inode->i_mutex);
+<<<<<<< HEAD
 	err = mnt_want_write_file(file);
+=======
+	err = mnt_want_write(file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (err)
 		goto out_unlock_inode;
 
@@ -108,13 +116,76 @@ static int fat_ioctl_set_attributes(struct file *file, u32 __user *user_attr)
 	fat_save_attrs(inode, attr);
 	mark_inode_dirty(inode);
 out_drop_write:
+<<<<<<< HEAD
 	mnt_drop_write_file(file);
+=======
+	mnt_drop_write(file->f_path.mnt);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 out_unlock_inode:
 	mutex_unlock(&inode->i_mutex);
 out:
 	return err;
 }
 
+<<<<<<< HEAD
+=======
+extern int _fat_fallocate(struct inode *inode, loff_t len);
+
+static long fat_vmw_extend(struct file *filp, unsigned long len)
+{
+	struct inode *inode = filp->f_path.dentry->d_inode;
+	loff_t off = len;
+	const char mvpEnabledPath[] = "/data/data/com.vmware.mvp.enabled";
+	struct path path;
+	struct kstat stat;
+	int err;
+
+	/*
+	 * Perform some sanity checks (from do_fallocate)
+	 */
+
+	if (len <= 0) {
+		return -EINVAL;
+	}
+
+	if (!(filp->f_mode & FMODE_WRITE)) {
+		return -EBADF;
+	}
+
+	/*
+	 * Revalidate the write permissions, in case security policy has
+	 * changed since the files were opened.
+	 */
+	err = security_file_permission(filp, MAY_WRITE);
+	if (err) {
+		return err;
+	}
+
+	/*
+	 * Verify caller process belongs to mvp.
+	 */
+
+	err = kern_path(mvpEnabledPath, 0, &path);
+	if (err) {
+		return err;
+	}
+
+	err = vfs_getattr(path.mnt, path.dentry, &stat);
+	if (err) {
+		return err;
+	}
+
+	if (current_euid() != stat.uid && current_euid() != 0) {
+		return -EPERM;
+	}
+
+	/*
+	 * Every thing is clear, let's allocate space.
+	 */
+	return _fat_fallocate(inode, off);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 long fat_generic_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 	struct inode *inode = filp->f_path.dentry->d_inode;
@@ -125,6 +196,11 @@ long fat_generic_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 		return fat_ioctl_get_attributes(inode, user_attr);
 	case FAT_IOCTL_SET_ATTRIBUTES:
 		return fat_ioctl_set_attributes(filp, user_attr);
+<<<<<<< HEAD
+=======
+	case FAT_IOCTL_VMW_EXTEND:
+		return fat_vmw_extend(filp, arg);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	default:
 		return -ENOTTY;	/* Inappropriate ioctl for device */
 	}
@@ -149,12 +225,20 @@ static int fat_file_release(struct inode *inode, struct file *filp)
 	return 0;
 }
 
+<<<<<<< HEAD
 int fat_file_fsync(struct file *filp, loff_t start, loff_t end, int datasync)
+=======
+int fat_file_fsync(struct file *filp, int datasync)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inode *inode = filp->f_mapping->host;
 	int res, err;
 
+<<<<<<< HEAD
 	res = generic_file_fsync(filp, start, end, datasync);
+=======
+	res = generic_file_fsync(filp, datasync);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	err = sync_mapping_buffers(MSDOS_SB(inode->i_sb)->fat_inode->i_mapping);
 
 	return res ? res : err;
@@ -314,7 +398,11 @@ EXPORT_SYMBOL_GPL(fat_getattr);
 static int fat_sanitize_mode(const struct msdos_sb_info *sbi,
 			     struct inode *inode, umode_t *mode_ptr)
 {
+<<<<<<< HEAD
 	umode_t mask, perm;
+=======
+	mode_t mask, perm;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/*
 	 * Note, the basic check is already done by a caller of
@@ -351,7 +439,11 @@ static int fat_sanitize_mode(const struct msdos_sb_info *sbi,
 
 static int fat_allow_set_time(struct msdos_sb_info *sbi, struct inode *inode)
 {
+<<<<<<< HEAD
 	umode_t allow_utime = sbi->options.allow_utime;
+=======
+	mode_t allow_utime = sbi->options.allow_utime;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (current_fsuid() != inode->i_uid) {
 		if (in_group_p(inode->i_gid))
@@ -397,8 +489,11 @@ int fat_setattr(struct dentry *dentry, struct iattr *attr)
 	 * sequence.
 	 */
 	if (attr->ia_valid & ATTR_SIZE) {
+<<<<<<< HEAD
 		inode_dio_wait(inode);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (attr->ia_size > inode->i_size) {
 			error = fat_cont_expand(inode, attr->ia_size);
 			if (error || attr->ia_valid == ATTR_SIZE)
@@ -431,10 +526,15 @@ int fat_setattr(struct dentry *dentry, struct iattr *attr)
 	}
 
 	if (attr->ia_valid & ATTR_SIZE) {
+<<<<<<< HEAD
 		down_write(&MSDOS_I(inode)->truncate_lock);
 		truncate_setsize(inode, attr->ia_size);
 		fat_truncate_blocks(inode, attr->ia_size);
 		up_write(&MSDOS_I(inode)->truncate_lock);
+=======
+		truncate_setsize(inode, attr->ia_size);
+		fat_truncate_blocks(inode, attr->ia_size);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	setattr_copy(inode, attr);

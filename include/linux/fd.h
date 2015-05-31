@@ -377,6 +377,7 @@ struct floppy_raw_cmd {
 #define FDEJECT _IO(2, 0x5a)
 /* eject the disk */
 
+<<<<<<< HEAD
 
 #ifdef __KERNEL__
 #ifdef CONFIG_COMPAT
@@ -399,4 +400,6 @@ struct compat_floppy_struct {
 #endif
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

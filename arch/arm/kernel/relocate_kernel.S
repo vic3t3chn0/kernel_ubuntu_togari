@@ -4,6 +4,7 @@
 
 #include <asm/kexec.h>
 
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC_HARDBOOT
 #include <asm/memory.h>
 #if defined(CONFIG_ARCH_TEGRA_2x_SOC) || defined(CONFIG_ARCH_TEGRA_3x_SOC)
@@ -13,6 +14,8 @@
 #endif
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.globl relocate_new_kernel
 relocate_new_kernel:
 
@@ -61,17 +64,21 @@ relocate_new_kernel:
 	b 0b
 
 2:
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC_HARDBOOT
 	ldr	r0, kexec_hardboot
 	teq	r0, #0
 	bne	hardboot
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Jump to relocated kernel */
 	mov lr,r1
 	mov r0,#0
 	ldr r1,kexec_mach_type
 	ldr r2,kexec_boot_atags
+<<<<<<< HEAD
  ARM(	mov pc, lr	)
  THUMB(	bx lr		)
 
@@ -121,6 +128,10 @@ loop:	b	loop
 
 	.ltorg
 #endif
+=======
+	mov pc,lr
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.align
 
 	.globl kexec_start_address
@@ -140,6 +151,7 @@ kexec_mach_type:
 kexec_boot_atags:
 	.long	0x0
 
+<<<<<<< HEAD
 #ifdef CONFIG_KEXEC_HARDBOOT
 	.globl kexec_boot_atags_len
 kexec_boot_atags_len:
@@ -154,6 +166,8 @@ kexec_hardboot:
 	.long	0x0
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 relocate_new_kernel_end:
 
 	.globl relocate_new_kernel_size

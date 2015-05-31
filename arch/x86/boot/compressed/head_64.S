@@ -199,6 +199,7 @@ ENTRY(startup_64)
 	 * an identity mapped page table being provied that maps our
 	 * entire text+data+bss and hopefully all of memory.
 	 */
+<<<<<<< HEAD
 #ifdef CONFIG_EFI_STUB
 	/*
 	 * The entry point for the PE/COFF executable is 0x210, so only
@@ -229,6 +230,8 @@ ENTRY(startup_64)
 
 preferred_addr:
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* Setup data segments. */
 	xorl	%eax, %eax

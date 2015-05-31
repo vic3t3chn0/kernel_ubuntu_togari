@@ -5,6 +5,10 @@ config SND_TIMER
 config SND_PCM
 	tristate
 	select SND_TIMER
+<<<<<<< HEAD
+=======
+	select GCD
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config SND_HWDEP
 	tristate
@@ -12,9 +16,12 @@ config SND_HWDEP
 config SND_RAWMIDI
 	tristate
 
+<<<<<<< HEAD
 config SND_COMPRESS_OFFLOAD
 	tristate
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 # To be effective this also requires INPUT - users should say:
 #    select SND_JACK if INPUT=y || INPUT=SND
 # to avoid having to force INPUT on.
@@ -149,7 +156,10 @@ config SND_SEQ_RTCTIMER_DEFAULT
 
 config SND_DYNAMIC_MINORS
 	bool "Dynamic device file minor numbers"
+<<<<<<< HEAD
 	default y if SND_OMAP_SOC_ABE_DSP
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	help
 	  If you say Y here, the minor numbers of ALSA device files in
 	  /dev/snd/ are allocated dynamically.  This allows you to have
@@ -210,9 +220,12 @@ config SND_PCM_XRUN_DEBUG
 config SND_VMASTER
 	bool
 
+<<<<<<< HEAD
 config SND_KCTL_JACK
 	bool
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config SND_DMA_SGBUF
 	def_bool y
 	depends on X86

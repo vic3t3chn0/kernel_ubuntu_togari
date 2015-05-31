@@ -102,7 +102,11 @@ static int mdsc_show(struct seq_file *s, void *p)
 				path = NULL;
 			spin_lock(&req->r_old_dentry->d_lock);
 			seq_printf(s, " #%llx/%.*s (%s)",
+<<<<<<< HEAD
 			   ceph_ino(req->r_old_dentry_dir),
+=======
+			   ceph_ino(req->r_old_dentry->d_parent->d_inode),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				   req->r_old_dentry->d_name.len,
 				   req->r_old_dentry->d_name.name,
 				   path ? path : "");

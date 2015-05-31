@@ -34,4 +34,9 @@
 #define AK4535_VOL		0xe
 #define AK4535_STATUS		0xf
 
+<<<<<<< HEAD
+=======
+#define AK4535_CACHEREGNUM 	0x10
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

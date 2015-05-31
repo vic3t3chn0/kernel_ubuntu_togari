@@ -2,10 +2,16 @@
 #include <linux/netdevice.h>
 #include <linux/if_vlan.h>
 #include <linux/netpoll.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include "vlan.h"
 
 bool vlan_do_receive(struct sk_buff **skbp, bool last_handler)
+=======
+#include "vlan.h"
+
+bool vlan_do_receive(struct sk_buff **skbp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct sk_buff *skb = *skbp;
 	u16 vlan_id = skb->vlan_tci & VLAN_VID_MASK;
@@ -14,10 +20,14 @@ bool vlan_do_receive(struct sk_buff **skbp, bool last_handler)
 
 	vlan_dev = vlan_find_dev(skb->dev, vlan_id);
 	if (!vlan_dev) {
+<<<<<<< HEAD
 		/* Only the last call to vlan_do_receive() should change
 		 * pkt_type to PACKET_OTHERHOST
 		 */
 		if (vlan_id && last_handler)
+=======
+		if (vlan_id)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			skb->pkt_type = PACKET_OTHERHOST;
 		return false;
 	}
@@ -36,7 +46,11 @@ bool vlan_do_receive(struct sk_buff **skbp, bool last_handler)
 			skb->pkt_type = PACKET_HOST;
 	}
 
+<<<<<<< HEAD
 	if (!(vlan_dev_priv(vlan_dev)->flags & VLAN_FLAG_REORDER_HDR)) {
+=======
+	if (!(vlan_dev_info(vlan_dev)->flags & VLAN_FLAG_REORDER_HDR)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		unsigned int offset = skb->data - skb_mac_header(skb);
 
 		/*
@@ -55,7 +69,11 @@ bool vlan_do_receive(struct sk_buff **skbp, bool last_handler)
 	skb->priority = vlan_get_ingress_priority(vlan_dev, skb->vlan_tci);
 	skb->vlan_tci = 0;
 
+<<<<<<< HEAD
 	rx_stats = this_cpu_ptr(vlan_dev_priv(vlan_dev)->vlan_pcpu_stats);
+=======
+	rx_stats = this_cpu_ptr(vlan_dev_info(vlan_dev)->vlan_pcpu_stats);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	u64_stats_update_begin(&rx_stats->syncp);
 	rx_stats->rx_packets++;
@@ -67,6 +85,7 @@ bool vlan_do_receive(struct sk_buff **skbp, bool last_handler)
 	return true;
 }
 
+<<<<<<< HEAD
 /* Must be invoked with rcu_read_lock or with RTNL. */
 struct net_device *__vlan_find_dev_deep(struct net_device *real_dev,
 					u16 vlan_id)
@@ -99,6 +118,44 @@ u16 vlan_dev_vlan_id(const struct net_device *dev)
 	return vlan_dev_priv(dev)->vlan_id;
 }
 EXPORT_SYMBOL(vlan_dev_vlan_id);
+=======
+struct net_device *vlan_dev_real_dev(const struct net_device *dev)
+{
+	return vlan_dev_info(dev)->real_dev;
+}
+EXPORT_SYMBOL(vlan_dev_real_dev);
+
+u16 vlan_dev_vlan_id(const struct net_device *dev)
+{
+	return vlan_dev_info(dev)->vlan_id;
+}
+EXPORT_SYMBOL(vlan_dev_vlan_id);
+
+/* VLAN rx hw acceleration helper.  This acts like netif_{rx,receive_skb}(). */
+int __vlan_hwaccel_rx(struct sk_buff *skb, struct vlan_group *grp,
+		      u16 vlan_tci, int polling)
+{
+	__vlan_hwaccel_put_tag(skb, vlan_tci);
+	return polling ? netif_receive_skb(skb) : netif_rx(skb);
+}
+EXPORT_SYMBOL(__vlan_hwaccel_rx);
+
+gro_result_t vlan_gro_receive(struct napi_struct *napi, struct vlan_group *grp,
+			      unsigned int vlan_tci, struct sk_buff *skb)
+{
+	__vlan_hwaccel_put_tag(skb, vlan_tci);
+	return napi_gro_receive(napi, skb);
+}
+EXPORT_SYMBOL(vlan_gro_receive);
+
+gro_result_t vlan_gro_frags(struct napi_struct *napi, struct vlan_group *grp,
+			    unsigned int vlan_tci)
+{
+	__vlan_hwaccel_put_tag(napi->skb, vlan_tci);
+	return napi_gro_frags(napi);
+}
+EXPORT_SYMBOL(vlan_gro_frags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static struct sk_buff *vlan_reorder_header(struct sk_buff *skb)
 {
@@ -106,10 +163,49 @@ static struct sk_buff *vlan_reorder_header(struct sk_buff *skb)
 		return NULL;
 	memmove(skb->data - ETH_HLEN, skb->data - VLAN_ETH_HLEN, 2 * ETH_ALEN);
 	skb->mac_header += VLAN_HLEN;
+<<<<<<< HEAD
 	skb_reset_mac_len(skb);
 	return skb;
 }
 
+=======
+	return skb;
+}
+
+static void vlan_set_encap_proto(struct sk_buff *skb, struct vlan_hdr *vhdr)
+{
+	__be16 proto;
+	unsigned char *rawp;
+
+	/*
+	 * Was a VLAN packet, grab the encapsulated protocol, which the layer
+	 * three protocols care about.
+	 */
+
+	proto = vhdr->h_vlan_encapsulated_proto;
+	if (ntohs(proto) >= 1536) {
+		skb->protocol = proto;
+		return;
+	}
+
+	rawp = skb->data;
+	if (*(unsigned short *) rawp == 0xFFFF)
+		/*
+		 * This is a magic hack to spot IPX packets. Older Novell
+		 * breaks the protocol design and runs IPX over 802.3 without
+		 * an 802.2 LLC layer. We look for FFFF which isn't a used
+		 * 802.2 SSAP/DSAP. This won't work for fault tolerant netware
+		 * but does for the rest.
+		 */
+		skb->protocol = htons(ETH_P_802_3);
+	else
+		/*
+		 * Real 802.2 LLC
+		 */
+		skb->protocol = htons(ETH_P_802_2);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct sk_buff *vlan_untag(struct sk_buff *skb)
 {
 	struct vlan_hdr *vhdr;
@@ -140,12 +236,18 @@ struct sk_buff *vlan_untag(struct sk_buff *skb)
 
 	skb_reset_network_header(skb);
 	skb_reset_transport_header(skb);
+<<<<<<< HEAD
+=======
+	skb_reset_mac_len(skb);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return skb;
 
 err_free:
 	kfree_skb(skb);
 	return NULL;
 }
+<<<<<<< HEAD
 
 
 /*
@@ -369,3 +471,5 @@ void vlan_vids_del_by_dev(struct net_device *dev,
 		vlan_vid_del(dev, vid_info->vid);
 }
 EXPORT_SYMBOL(vlan_vids_del_by_dev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

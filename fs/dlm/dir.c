@@ -290,6 +290,10 @@ int dlm_recover_directory(struct dlm_ls *ls)
 
  out_status:
 	error = 0;
+<<<<<<< HEAD
+=======
+	dlm_set_recover_status(ls, DLM_RS_DIR);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	log_debug(ls, "dlm_recover_directory %d entries", count);
  out_free:
 	kfree(last_name);
@@ -351,6 +355,7 @@ int dlm_dir_lookup(struct dlm_ls *ls, int nodeid, char *name, int namelen,
 static struct dlm_rsb *find_rsb_root(struct dlm_ls *ls, char *name, int len)
 {
 	struct dlm_rsb *r;
+<<<<<<< HEAD
 	uint32_t hash, bucket;
 	int rv;
 
@@ -366,13 +371,18 @@ static struct dlm_rsb *find_rsb_root(struct dlm_ls *ls, char *name, int len)
 
 	if (!rv)
 		return r;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	down_read(&ls->ls_root_sem);
 	list_for_each_entry(r, &ls->ls_root_list, res_root_list) {
 		if (len == r->res_length && !memcmp(name, r->res_name, len)) {
 			up_read(&ls->ls_root_sem);
+<<<<<<< HEAD
 			log_error(ls, "find_rsb_root revert to root_list %s",
 				  r->res_name);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			return r;
 		}
 	}

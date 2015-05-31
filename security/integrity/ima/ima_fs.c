@@ -287,7 +287,11 @@ static atomic_t policy_opencount = ATOMIC_INIT(1);
 /*
  * ima_open_policy: sequentialize access to the policy file
  */
+<<<<<<< HEAD
 static int ima_open_policy(struct inode * inode, struct file * filp)
+=======
+int ima_open_policy(struct inode * inode, struct file * filp)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	/* No point in being allowed to open it if you aren't going to write */
 	if (!(filp->f_flags & O_WRONLY))

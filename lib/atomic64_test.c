@@ -9,9 +9,14 @@
  * (at your option) any later version.
  */
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
 #include <linux/kernel.h>
 #include <linux/atomic.h>
+=======
+#include <linux/kernel.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define INIT(c) do { atomic64_set(&v, c); r = c; } while (0)
 static __init int test_atomic64(void)

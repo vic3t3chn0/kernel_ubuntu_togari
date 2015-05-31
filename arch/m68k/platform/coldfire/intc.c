@@ -139,6 +139,10 @@ void __init init_IRQ(void)
 {
 	int irq;
 
+<<<<<<< HEAD
+=======
+	init_vectors();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	mcf_maskimr(0xffffffff);
 
 	for (irq = 0; (irq < NR_IRQS); irq++) {

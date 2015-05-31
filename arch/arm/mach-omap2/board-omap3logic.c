@@ -23,7 +23,10 @@
 #include <linux/io.h>
 #include <linux/gpio.h>
 
+<<<<<<< HEAD
 #include <linux/regulator/fixed.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/regulator/machine.h>
 
 #include <linux/i2c/twl.h>
@@ -36,12 +39,20 @@
 
 #include "mux.h"
 #include "hsmmc.h"
+<<<<<<< HEAD
+=======
+#include "timer-gp.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "control.h"
 #include "common-board-devices.h"
 
 #include <plat/mux.h>
 #include <plat/board.h>
+<<<<<<< HEAD
 #include "common.h"
+=======
+#include <plat/common.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <plat/gpmc-smsc911x.h>
 #include <plat/gpmc.h>
 #include <plat/sdrc.h>
@@ -55,8 +66,13 @@
 #define OMAP3_TORPEDO_MMC_GPIO_CD		127
 #define OMAP3_TORPEDO_SMSC911X_GPIO_IRQ		129
 
+<<<<<<< HEAD
 static struct regulator_consumer_supply omap3logic_vmmc1_supply[] = {
 	REGULATOR_SUPPLY("vmmc", "omap_hsmmc.0"),
+=======
+static struct regulator_consumer_supply omap3logic_vmmc1_supply = {
+	.supply			= "vmmc",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* VMMC1 for MMC1 pins CMD, CLK, DAT0..DAT3 (20 mA, plus card == max 220 mA) */
@@ -71,8 +87,13 @@ static struct regulator_init_data omap3logic_vmmc1 = {
 					| REGULATOR_CHANGE_MODE
 					| REGULATOR_CHANGE_STATUS,
 	},
+<<<<<<< HEAD
 	.num_consumer_supplies  = ARRAY_SIZE(omap3logic_vmmc1_supply),
 	.consumer_supplies      = omap3logic_vmmc1_supply,
+=======
+	.num_consumer_supplies  = 1,
+	.consumer_supplies      = &omap3logic_vmmc1_supply,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct twl4030_gpio_platform_data omap3logic_gpio_data = {
@@ -129,7 +150,13 @@ static void __init board_mmc_init(void)
 		return;
 	}
 
+<<<<<<< HEAD
 	omap_hsmmc_init(board_mmc_info);
+=======
+	omap2_hsmmc_init(board_mmc_info);
+	/* link regulators to MMC adapters */
+	omap3logic_vmmc1_supply.dev = board_mmc_info[0].dev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static struct omap_smsc911x_platform_data __initdata board_smsc911x_data = {
@@ -183,12 +210,22 @@ static inline void __init board_smsc911x_init(void)
 	gpmc_smsc911x_init(&board_smsc911x_data);
 }
 
+<<<<<<< HEAD
+=======
+static void __init omap3logic_init_early(void)
+{
+	omap2_init_common_infrastructure();
+	omap2_init_common_devices(NULL, NULL);
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_OMAP_MUX
 static struct omap_board_mux board_mux[] __initdata = {
 	{ .reg_offset = OMAP_MUX_TERMINATOR },
 };
 #endif
 
+<<<<<<< HEAD
 static struct regulator_consumer_supply dummy_supplies[] = {
 	REGULATOR_SUPPLY("vddvario", "smsc911x.0"),
 	REGULATOR_SUPPLY("vdd33a", "smsc911x.0"),
@@ -197,11 +234,18 @@ static struct regulator_consumer_supply dummy_supplies[] = {
 static void __init omap3logic_init(void)
 {
 	regulator_register_fixed(0, dummy_supplies, ARRAY_SIZE(dummy_supplies));
+=======
+static void __init omap3logic_init(void)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	omap3_mux_init(board_mux, OMAP_PACKAGE_CBB);
 	omap3torpedo_fix_pbias_voltage();
 	omap3logic_i2c_init();
 	omap_serial_init();
+<<<<<<< HEAD
 	omap_sdrc_init(NULL, NULL);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	board_mmc_init();
 	board_smsc911x_init();
 
@@ -211,6 +255,7 @@ static void __init omap3logic_init(void)
 }
 
 MACHINE_START(OMAP3_TORPEDO, "Logic OMAP3 Torpedo board")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
 	.reserve	= omap_reserve,
 	.map_io		= omap3_map_io,
@@ -232,4 +277,21 @@ MACHINE_START(OMAP3530_LV_SOM, "OMAP Logic 3530 LV SOM board")
 	.init_machine	= omap3logic_init,
 	.timer		= &omap3_timer,
 	.restart	= omap_prcm_restart,
+=======
+	.boot_params	= 0x80000100,
+	.map_io		= omap3_map_io,
+	.init_early	= omap3logic_init_early,
+	.init_irq	= omap_init_irq,
+	.init_machine	= omap3logic_init,
+	.timer		= &omap_timer,
+MACHINE_END
+
+MACHINE_START(OMAP3530_LV_SOM, "OMAP Logic 3530 LV SOM board")
+	.boot_params	= 0x80000100,
+	.map_io		= omap3_map_io,
+	.init_early	= omap3logic_init_early,
+	.init_irq	= omap_init_irq,
+	.init_machine	= omap3logic_init,
+	.timer		= &omap_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

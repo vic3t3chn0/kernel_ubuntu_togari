@@ -16,10 +16,16 @@
 #endif
 
 #include <linux/compiler.h>
+<<<<<<< HEAD
 #include <linux/irqflags.h>
 #include <asm/assembler.h>
 #include <asm/byteorder.h>
 #include <asm/dcache_clear.h>
+=======
+#include <asm/assembler.h>
+#include <asm/system.h>
+#include <asm/byteorder.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/types.h>
 
 /*

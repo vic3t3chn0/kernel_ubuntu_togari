@@ -5,7 +5,16 @@
  * Copyright (C) 2003 by Andreas Gruenbacher, <a.gruenbacher@computer.org>
  */
 
+<<<<<<< HEAD
 #include "ext3.h"
+=======
+#include <linux/module.h>
+#include <linux/string.h>
+#include <linux/capability.h>
+#include <linux/fs.h>
+#include <linux/ext3_jbd.h>
+#include <linux/ext3_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "xattr.h"
 
 static size_t

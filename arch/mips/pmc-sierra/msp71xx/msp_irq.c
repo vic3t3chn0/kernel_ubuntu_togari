@@ -108,14 +108,22 @@ asmlinkage void plat_irq_dispatch(struct pt_regs *regs)
 
 static struct irqaction cic_cascade_msp = {
 	.handler = no_action,
+<<<<<<< HEAD
 	.name	 = "MSP CIC cascade",
 	.flags	 = IRQF_NO_THREAD,
+=======
+	.name	 = "MSP CIC cascade"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 static struct irqaction per_cascade_msp = {
 	.handler = no_action,
+<<<<<<< HEAD
 	.name	 = "MSP PER cascade",
 	.flags	 = IRQF_NO_THREAD,
+=======
+	.name	 = "MSP PER cascade"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 void __init arch_init_irq(void)

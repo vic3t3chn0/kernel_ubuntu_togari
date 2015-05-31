@@ -38,7 +38,11 @@
  */
 
 #include <linux/types.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/byteorder.h>
 #include <asm/current.h>
 #include <asm/uaccess.h>
@@ -48,7 +52,10 @@
 #include <linux/errno.h>
 #include <linux/aio.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/spinlock.h>
 #include <linux/sockios.h>
 #include <linux/socket.h>
@@ -131,6 +138,7 @@ found:
  *	0 - deliver
  *	1 - block
  */
+<<<<<<< HEAD
 static __inline__ int icmp_filter(struct sock *sk, struct sk_buff *skb)
 {
 	int type;
@@ -143,6 +151,22 @@ static __inline__ int icmp_filter(struct sock *sk, struct sk_buff *skb)
 		__u32 data = raw_sk(sk)->filter.data;
 
 		return ((1 << type) & data) != 0;
+=======
+static int icmp_filter(const struct sock *sk, const struct sk_buff *skb)
+{
+	struct icmphdr _hdr;
+	const struct icmphdr *hdr;
+
+	hdr = skb_header_pointer(skb, skb_transport_offset(skb),
+				 sizeof(_hdr), &_hdr);
+	if (!hdr)
+		return 1;
+
+	if (hdr->type < 32) {
+		__u32 data = raw_sk(sk)->filter.data;
+
+		return ((1U << hdr->type) & data) != 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	/* Do not block unknown ICMP types */
@@ -292,8 +316,12 @@ static int raw_rcv_skb(struct sock * sk, struct sk_buff * skb)
 {
 	/* Charge it to the socket. */
 
+<<<<<<< HEAD
 	ipv4_pktinfo_prepare(skb);
 	if (sock_queue_rcv_skb(sk, skb) < 0) {
+=======
+	if (ip_queue_rcv_skb(sk, skb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		kfree_skb(skb);
 		return NET_RX_DROP;
 	}
@@ -328,7 +356,10 @@ static int raw_send_hdrinc(struct sock *sk, struct flowi4 *fl4,
 	unsigned int iphlen;
 	int err;
 	struct rtable *rt = *rtp;
+<<<<<<< HEAD
 	int hlen, tlen;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (length > rt->dst.dev->mtu) {
 		ip_local_error(sk, EMSGSIZE, fl4->daddr, inet->inet_dport,
@@ -338,6 +369,7 @@ static int raw_send_hdrinc(struct sock *sk, struct flowi4 *fl4,
 	if (flags&MSG_PROBE)
 		goto out;
 
+<<<<<<< HEAD
 	hlen = LL_RESERVED_SPACE(rt->dst.dev);
 	tlen = rt->dst.dev->needed_tailroom;
 	skb = sock_alloc_send_skb(sk,
@@ -346,6 +378,14 @@ static int raw_send_hdrinc(struct sock *sk, struct flowi4 *fl4,
 	if (skb == NULL)
 		goto error;
 	skb_reserve(skb, hlen);
+=======
+	skb = sock_alloc_send_skb(sk,
+				  length + LL_ALLOCATED_SPACE(rt->dst.dev) + 15,
+				  flags & MSG_DONTWAIT, &err);
+	if (skb == NULL)
+		goto error;
+	skb_reserve(skb, LL_RESERVED_SPACE(rt->dst.dev));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	skb->priority = sk->sk_priority;
 	skb->mark = sk->sk_mark;
@@ -382,7 +422,11 @@ static int raw_send_hdrinc(struct sock *sk, struct flowi4 *fl4,
 		iph->check   = 0;
 		iph->tot_len = htons(length);
 		if (!iph->id)
+<<<<<<< HEAD
 			ip_select_ident(iph, &rt->dst, NULL);
+=======
+			ip_select_ident(skb, &rt->dst, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		iph->check = ip_fast_csum((unsigned char *)iph, iph->ihl);
 	}
@@ -491,8 +535,16 @@ static int raw_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 		if (msg->msg_namelen < sizeof(*usin))
 			goto out;
 		if (usin->sin_family != AF_INET) {
+<<<<<<< HEAD
 			pr_info_once("%s: %s forgot to set AF_INET. Fix it!\n",
 				     __func__, current->comm);
+=======
+			static int complained;
+			if (!complained++)
+				printk(KERN_INFO "%s forgot to set AF_INET in "
+						 "raw sendmsg. Fix it!\n",
+						 current->comm);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			err = -EAFNOSUPPORT;
 			if (usin->sin_family)
 				goto out;
@@ -560,14 +612,22 @@ static int raw_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 			ipc.oif = inet->mc_index;
 		if (!saddr)
 			saddr = inet->mc_addr;
+<<<<<<< HEAD
 	} else if (!ipc.oif)
 		ipc.oif = inet->uc_index;
+=======
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	flowi4_init_output(&fl4, ipc.oif, sk->sk_mark, tos,
 			   RT_SCOPE_UNIVERSE,
 			   inet->hdrincl ? IPPROTO_RAW : sk->sk_protocol,
+<<<<<<< HEAD
 			   inet_sk_flowi_flags(sk) | FLOWI_FLAG_CAN_SLEEP,
 			   daddr, saddr, 0, 0);
+=======
+			   FLOWI_FLAG_CAN_SLEEP, daddr, saddr, 0, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (!inet->hdrincl) {
 		err = raw_probe_proto_opt(&fl4, msg);
@@ -829,6 +889,7 @@ static int compat_raw_getsockopt(struct sock *sk, int level, int optname,
 static int raw_ioctl(struct sock *sk, int cmd, unsigned long arg)
 {
 	switch (cmd) {
+<<<<<<< HEAD
 	case SIOCOUTQ: {
 		int amount = sk_wmem_alloc_get(sk);
 
@@ -851,6 +912,30 @@ static int raw_ioctl(struct sock *sk, int cmd, unsigned long arg)
 		return ipmr_ioctl(sk, cmd, (void __user *)arg);
 #else
 		return -ENOIOCTLCMD;
+=======
+		case SIOCOUTQ: {
+			int amount = sk_wmem_alloc_get(sk);
+
+			return put_user(amount, (int __user *)arg);
+		}
+		case SIOCINQ: {
+			struct sk_buff *skb;
+			int amount = 0;
+
+			spin_lock_bh(&sk->sk_receive_queue.lock);
+			skb = skb_peek(&sk->sk_receive_queue);
+			if (skb != NULL)
+				amount = skb->len;
+			spin_unlock_bh(&sk->sk_receive_queue.lock);
+			return put_user(amount, (int __user *)arg);
+		}
+
+		default:
+#ifdef CONFIG_IP_MROUTE
+			return ipmr_ioctl(sk, cmd, (void __user *)arg);
+#else
+			return -ENOIOCTLCMD;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	}
 }

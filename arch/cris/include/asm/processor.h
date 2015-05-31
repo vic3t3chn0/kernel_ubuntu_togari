@@ -10,10 +10,17 @@
 #ifndef __ASM_CRIS_PROCESSOR_H
 #define __ASM_CRIS_PROCESSOR_H
 
+<<<<<<< HEAD
 #include <asm/page.h>
 #include <asm/ptrace.h>
 #include <arch/processor.h>
 #include <arch/system.h>
+=======
+#include <asm/system.h>
+#include <asm/page.h>
+#include <asm/ptrace.h>
+#include <arch/processor.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct task_struct;
 
@@ -72,6 +79,7 @@ static inline void release_thread(struct task_struct *dead_task)
 
 #define cpu_relax()     barrier()
 
+<<<<<<< HEAD
 /*
  * disable hlt during certain critical i/o operations
  */
@@ -81,4 +89,6 @@ void enable_hlt(void);
 
 void default_idle(void);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ASM_CRIS_PROCESSOR_H */

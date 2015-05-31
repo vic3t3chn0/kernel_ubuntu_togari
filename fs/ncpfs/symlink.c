@@ -108,7 +108,11 @@ int ncp_symlink(struct inode *dir, struct dentry *dentry, const char *symname) {
 	char *rawlink;
 	int length, err, i, outlen;
 	int kludge;
+<<<<<<< HEAD
 	umode_t mode;
+=======
+	int mode;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	__le32 attr;
 	unsigned int hdr;
 

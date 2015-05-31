@@ -327,7 +327,11 @@ void nfs_fscache_reset_inode_cookie(struct inode *inode)
 {
 	struct nfs_inode *nfsi = NFS_I(inode);
 	struct nfs_server *nfss = NFS_SERVER(inode);
+<<<<<<< HEAD
 	NFS_IFDEBUG(struct fscache_cookie *old = nfsi->fscache);
+=======
+	struct fscache_cookie *old = nfsi->fscache;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	nfs_fscache_inode_lock(inode);
 	if (nfsi->fscache) {

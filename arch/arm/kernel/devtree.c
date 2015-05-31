@@ -9,7 +9,11 @@
  */
 
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/errno.h>
 #include <linux/types.h>
 #include <linux/bootmem.h>
@@ -26,6 +30,7 @@
 
 void __init early_init_dt_add_memory_arch(u64 base, u64 size)
 {
+<<<<<<< HEAD
 #ifndef CONFIG_ARM_LPAE
 	if (base > ((phys_addr_t)~0)) {
 		pr_crit("Ignoring memory at 0x%08llx due to lack of LPAE support\n",
@@ -38,6 +43,8 @@ void __init early_init_dt_add_memory_arch(u64 base, u64 size)
 
 	/* arm_add_memory() already checks for the case of base + size > 4GB */
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	arm_add_memory(base, size);
 }
 
@@ -144,3 +151,20 @@ struct machine_desc * __init setup_machine_fdt(unsigned int dt_phys)
 
 	return mdesc_best;
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * irq_create_of_mapping - Hook to resolve OF irq specifier into a Linux irq#
+ *
+ * Currently the mapping mechanism is trivial; simple flat hwirq numbers are
+ * mapped 1:1 onto Linux irq numbers.  Cascaded irq controllers are not
+ * supported.
+ */
+unsigned int irq_create_of_mapping(struct device_node *controller,
+				   const u32 *intspec, unsigned int intsize)
+{
+	return intspec[0];
+}
+EXPORT_SYMBOL_GPL(irq_create_of_mapping);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

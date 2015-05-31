@@ -87,8 +87,12 @@ do {									\
 	: "=r" (tmp));							\
 } while (0)
 
+<<<<<<< HEAD
 #elif (defined(CONFIG_CPU_MIPSR1) && !defined(CONFIG_MIPS_ALCHEMY)) || \
 	defined(CONFIG_CPU_BMIPS)
+=======
+#elif defined(CONFIG_CPU_MIPSR1) && !defined(CONFIG_MIPS_ALCHEMY)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * These are slightly complicated by the fact that we guarantee R1 kernels to
@@ -140,8 +144,13 @@ do {									\
 } while (0)
 
 #elif defined(CONFIG_MIPS_ALCHEMY) || defined(CONFIG_CPU_CAVIUM_OCTEON) || \
+<<<<<<< HEAD
 	defined(CONFIG_CPU_LOONGSON2) || defined(CONFIG_CPU_R10000) || \
 	defined(CONFIG_CPU_R5500)
+=======
+      defined(CONFIG_CPU_LOONGSON2) || defined(CONFIG_CPU_R10000) || \
+      defined(CONFIG_CPU_R5500)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * R10000 rocks - all hazards handled in hardware, so this becomes a nobrainer.

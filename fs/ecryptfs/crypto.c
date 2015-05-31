@@ -927,7 +927,11 @@ static void ecryptfs_set_default_crypt_stat_vals(
 
 /**
  * ecryptfs_new_file_context
+<<<<<<< HEAD
  * @ecryptfs_inode: The eCryptfs inode
+=======
+ * @ecryptfs_dentry: The eCryptfs dentry
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * If the crypto context for the file has not yet been established,
  * this is where we do that.  Establishing a new crypto context
@@ -944,6 +948,7 @@ static void ecryptfs_set_default_crypt_stat_vals(
  *
  * Returns zero on success; non-zero otherwise
  */
+<<<<<<< HEAD
 int ecryptfs_new_file_context(struct inode *ecryptfs_inode)
 {
 	struct ecryptfs_crypt_stat *crypt_stat =
@@ -951,6 +956,15 @@ int ecryptfs_new_file_context(struct inode *ecryptfs_inode)
 	struct ecryptfs_mount_crypt_stat *mount_crypt_stat =
 	    &ecryptfs_superblock_to_private(
 		    ecryptfs_inode->i_sb)->mount_crypt_stat;
+=======
+int ecryptfs_new_file_context(struct dentry *ecryptfs_dentry)
+{
+	struct ecryptfs_crypt_stat *crypt_stat =
+	    &ecryptfs_inode_to_private(ecryptfs_dentry->d_inode)->crypt_stat;
+	struct ecryptfs_mount_crypt_stat *mount_crypt_stat =
+	    &ecryptfs_superblock_to_private(
+		    ecryptfs_dentry->d_sb)->mount_crypt_stat;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int cipher_name_len;
 	int rc = 0;
 
@@ -1259,12 +1273,20 @@ static int ecryptfs_write_headers_virt(char *page_virt, size_t max,
 }
 
 static int
+<<<<<<< HEAD
 ecryptfs_write_metadata_to_contents(struct inode *ecryptfs_inode,
+=======
+ecryptfs_write_metadata_to_contents(struct dentry *ecryptfs_dentry,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				    char *virt, size_t virt_len)
 {
 	int rc;
 
+<<<<<<< HEAD
 	rc = ecryptfs_write_lower(ecryptfs_inode, virt,
+=======
+	rc = ecryptfs_write_lower(ecryptfs_dentry->d_inode, virt,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				  0, virt_len);
 	if (rc < 0)
 		printk(KERN_ERR "%s: Error attempting to write header "
@@ -1298,8 +1320,12 @@ static unsigned long ecryptfs_get_zeroed_pages(gfp_t gfp_mask,
 
 /**
  * ecryptfs_write_metadata
+<<<<<<< HEAD
  * @ecryptfs_dentry: The eCryptfs dentry, which should be negative
  * @ecryptfs_inode: The newly created eCryptfs inode
+=======
+ * @ecryptfs_dentry: The eCryptfs dentry
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Write the file headers out.  This will likely involve a userspace
  * callout, in which the session key is encrypted with one or more
@@ -1309,11 +1335,18 @@ static unsigned long ecryptfs_get_zeroed_pages(gfp_t gfp_mask,
  *
  * Returns zero on success; non-zero on error
  */
+<<<<<<< HEAD
 int ecryptfs_write_metadata(struct dentry *ecryptfs_dentry,
 			    struct inode *ecryptfs_inode)
 {
 	struct ecryptfs_crypt_stat *crypt_stat =
 		&ecryptfs_inode_to_private(ecryptfs_inode)->crypt_stat;
+=======
+int ecryptfs_write_metadata(struct dentry *ecryptfs_dentry)
+{
+	struct ecryptfs_crypt_stat *crypt_stat =
+		&ecryptfs_inode_to_private(ecryptfs_dentry->d_inode)->crypt_stat;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int order;
 	char *virt;
 	size_t virt_len;
@@ -1353,7 +1386,11 @@ int ecryptfs_write_metadata(struct dentry *ecryptfs_dentry,
 		rc = ecryptfs_write_metadata_to_xattr(ecryptfs_dentry, virt,
 						      size);
 	else
+<<<<<<< HEAD
 		rc = ecryptfs_write_metadata_to_contents(ecryptfs_inode, virt,
+=======
+		rc = ecryptfs_write_metadata_to_contents(ecryptfs_dentry, virt,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 							 virt_len);
 	if (rc) {
 		printk(KERN_ERR "%s: Error writing metadata out to lower file; "
@@ -1550,8 +1587,13 @@ int ecryptfs_read_and_validate_xattr_region(struct dentry *dentry,
  */
 int ecryptfs_read_metadata(struct dentry *ecryptfs_dentry)
 {
+<<<<<<< HEAD
 	int rc;
 	char *page_virt;
+=======
+	int rc = 0;
+	char *page_virt = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct inode *ecryptfs_inode = ecryptfs_dentry->d_inode;
 	struct ecryptfs_crypt_stat *crypt_stat =
 	    &ecryptfs_inode_to_private(ecryptfs_inode)->crypt_stat;
@@ -1576,7 +1618,10 @@ int ecryptfs_read_metadata(struct dentry *ecryptfs_dentry)
 						ecryptfs_dentry,
 						ECRYPTFS_VALIDATE_HEADER_SIZE);
 	if (rc) {
+<<<<<<< HEAD
 		/* metadata is not in the file header, so try xattrs */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		memset(page_virt, 0, PAGE_CACHE_SIZE);
 		rc = ecryptfs_read_xattr_region(page_virt, ecryptfs_inode);
 		if (rc) {
@@ -1990,6 +2035,7 @@ out:
 	return;
 }
 
+<<<<<<< HEAD
 static size_t ecryptfs_max_decoded_size(size_t encoded_size)
 {
 	/* Not exact; conservatively long. Every block of 4
@@ -2001,6 +2047,8 @@ static size_t ecryptfs_max_decoded_size(size_t encoded_size)
 	return ((encoded_size + 1) * 3) / 4;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * ecryptfs_decode_from_filename
  * @dst: If NULL, this function only sets @dst_size and returns. If
@@ -2019,7 +2067,17 @@ ecryptfs_decode_from_filename(unsigned char *dst, size_t *dst_size,
 	size_t dst_byte_offset = 0;
 
 	if (dst == NULL) {
+<<<<<<< HEAD
 		(*dst_size) = ecryptfs_max_decoded_size(src_size);
+=======
+		/* Not exact; conservatively long. Every block of 4
+		 * encoded characters decodes into a block of 3
+		 * decoded characters. This segment of code provides
+		 * the caller with the maximum amount of allocated
+		 * space that @dst will need to point to in a
+		 * subsequent call. */
+		(*dst_size) = (((src_size + 1) * 3) / 4);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		goto out;
 	}
 	while (src_byte_offset < src_size) {
@@ -2244,6 +2302,7 @@ out_free:
 out:
 	return rc;
 }
+<<<<<<< HEAD
 
 #define ENC_NAME_MAX_BLOCKLEN_8_OR_16	143
 
@@ -2293,3 +2352,5 @@ int ecryptfs_set_f_namelen(long *namelen, long lower_namelen,
 
 	return 0;
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

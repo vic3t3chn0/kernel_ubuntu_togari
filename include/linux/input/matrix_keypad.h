@@ -3,6 +3,7 @@
 
 #include <linux/types.h>
 #include <linux/input.h>
+<<<<<<< HEAD
 #include <linux/of.h>
 
 #define MATRIX_MAX_ROWS		18
@@ -11,6 +12,15 @@
 #define KEY(row, col, val)	((((row) % (MATRIX_MAX_ROWS)) << 24) |\
 				 (((col) % (MATRIX_MAX_COLS)) << 16) |\
 				 (val & 0xffff))
+=======
+
+#define MATRIX_MAX_ROWS		32
+#define MATRIX_MAX_COLS		32
+
+#define KEY(row, col, val)	((((row) & (MATRIX_MAX_ROWS - 1)) << 24) |\
+				 (((col) & (MATRIX_MAX_COLS - 1)) << 16) |\
+				 ((val) & 0xffff))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define KEY_ROW(k)		(((k) >> 24) & 0xff)
 #define KEY_COL(k)		(((k) >> 16) & 0xff)
@@ -107,6 +117,7 @@ matrix_keypad_build_keymap(const struct matrix_keymap_data *keymap_data,
 	__clear_bit(KEY_RESERVED, keybit);
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_INPUT_OF_MATRIX_KEYMAP
 struct matrix_keymap_data *
 matrix_keyboard_of_fill_keymap(struct device_node *np, const char *propname);
@@ -125,4 +136,6 @@ matrix_keyboard_of_free_keymap(const struct matrix_keymap_data *kd)
 }
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* _MATRIX_KEYPAD_H */

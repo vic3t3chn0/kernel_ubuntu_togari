@@ -1,8 +1,11 @@
 /*
  *  linux/include/linux/mmc/card.h
  *
+<<<<<<< HEAD
  * Copyright (c) 2014 Sony Mobile Communications AB.
  *
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
@@ -12,14 +15,23 @@
 #ifndef LINUX_MMC_CARD_H
 #define LINUX_MMC_CARD_H
 
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/mmc/core.h>
 #include <linux/mod_devicetable.h>
 #include <linux/notifier.h>
+=======
+#include <linux/mmc/core.h>
+#include <linux/mod_devicetable.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct mmc_cid {
 	unsigned int		manfid;
 	char			prod_name[8];
+<<<<<<< HEAD
+=======
+	unsigned short		prod_rev;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int		serial;
 	unsigned short		oemid;
 	unsigned short		year;
@@ -54,8 +66,14 @@ struct mmc_ext_csd {
 	u8			rel_sectors;
 	u8			rel_param;
 	u8			part_config;
+<<<<<<< HEAD
 	u8			cache_ctrl;
 	u8			rst_n_function;
+=======
+	u8			boot_part_prot;
+	u8			rst_n_function;
+	u8			cache_ctrl;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u8			max_packed_writes;
 	u8			max_packed_reads;
 	u8			packed_event_en;
@@ -63,6 +81,7 @@ struct mmc_ext_csd {
 	unsigned int		sa_timeout;		/* Units: 100ns */
 	unsigned int		generic_cmd6_time;	/* Units: 10ms */
 	unsigned int            power_off_longtime;     /* Units: ms */
+<<<<<<< HEAD
 	u8			power_off_notification;	/* state */
 	unsigned int		hs_max_dtr;
 #define MMC_HIGH_26_MAX_DTR	26000000
@@ -70,6 +89,9 @@ struct mmc_ext_csd {
 #define MMC_HIGH_DDR_MAX_DTR	52000000
 #define MMC_HS200_MAX_DTR	200000000
 #define MMC_HS400_MAX_DTR	200000000
+=======
+	unsigned int		hs_max_dtr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int		sectors;
 	unsigned int		card_type;
 	unsigned int		hc_erase_size;		/* In sectors */
@@ -80,10 +102,15 @@ struct mmc_ext_csd {
 	bool			enhanced_area_en;	/* enable bit */
 	unsigned long long	enhanced_area_offset;	/* Units: Byte */
 	unsigned int		enhanced_area_size;	/* Units: KB */
+<<<<<<< HEAD
+=======
+	unsigned int		boot_size;		/* in bytes */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int		cache_size;		/* Units: KB */
 	bool			hpi_en;			/* HPI enablebit */
 	bool			hpi;			/* HPI support bit */
 	unsigned int		hpi_cmd;		/* cmd used as HPI */
+<<<<<<< HEAD
 	bool			bkops;		/* background support bit */
 	bool			bkops_en;	/* background enable bit */
 	unsigned int            data_sector_size;       /* 512 bytes or 4KB */
@@ -93,6 +120,9 @@ struct mmc_ext_csd {
 	u8			raw_exception_status;	/* 53 */
 	u8			raw_partition_support;	/* 160 */
 	u8			raw_rpmb_size_mult;	/* 168 */
+=======
+	u8			raw_partition_support;	/* 160 */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u8			raw_erased_mem_count;	/* 181 */
 	u8			raw_ext_csd_structure;	/* 194 */
 	u8			raw_card_type;		/* 196 */
@@ -105,11 +135,18 @@ struct mmc_ext_csd {
 	u8			raw_sec_erase_mult;	/* 230 */
 	u8			raw_sec_feature_support;/* 231 */
 	u8			raw_trim_mult;		/* 232 */
+<<<<<<< HEAD
 	u8			raw_bkops_status;	/* 246 */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	u8			raw_sectors[4];		/* 212 - 4 bytes */
 
 	unsigned int            feature_support;
 #define MMC_DISCARD_FEATURE	BIT(0)                  /* CMD38 feature */
+<<<<<<< HEAD
+=======
+#define MMC_POWEROFF_NOTIFY_FEATURE	BIT(1)		/* PON feature */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct sd_scr {
@@ -132,7 +169,10 @@ struct sd_ssr {
 struct sd_switch_caps {
 	unsigned int		hs_max_dtr;
 	unsigned int		uhs_max_dtr;
+<<<<<<< HEAD
 #define HIGH_SPEED_MAX_DTR	50000000
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define UHS_SDR104_MAX_DTR	208000000
 #define UHS_SDR50_MAX_DTR	100000000
 #define UHS_DDR50_MAX_DTR	50000000
@@ -140,13 +180,19 @@ struct sd_switch_caps {
 #define UHS_SDR12_MAX_DTR	25000000
 	unsigned int		sd3_bus_mode;
 #define UHS_SDR12_BUS_SPEED	0
+<<<<<<< HEAD
 #define HIGH_SPEED_BUS_SPEED	1
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define UHS_SDR25_BUS_SPEED	1
 #define UHS_SDR50_BUS_SPEED	2
 #define UHS_SDR104_BUS_SPEED	3
 #define UHS_DDR50_BUS_SPEED	4
 
+<<<<<<< HEAD
 #define SD_MODE_HIGH_SPEED	(1 << HIGH_SPEED_BUS_SPEED)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define SD_MODE_UHS_SDR12	(1 << UHS_SDR12_BUS_SPEED)
 #define SD_MODE_UHS_SDR25	(1 << UHS_SDR25_BUS_SPEED)
 #define SD_MODE_UHS_SDR50	(1 << UHS_SDR50_BUS_SPEED)
@@ -177,8 +223,12 @@ struct sdio_cccr {
 				wide_bus:1,
 				high_power:1,
 				high_speed:1,
+<<<<<<< HEAD
 				disable_cd:1,
 				async_intr_sup:1;
+=======
+				disable_cd:1;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 struct sdio_cis {
@@ -191,6 +241,7 @@ struct sdio_cis {
 struct mmc_host;
 struct sdio_func;
 struct sdio_func_tuple;
+<<<<<<< HEAD
 struct mmc_queue;
 
 #define SDIO_MAX_FUNCS		7
@@ -312,6 +363,11 @@ struct mmc_bkops_info {
 #define BKOPS_SIZE_PERCENTAGE_TO_QUEUE_DELAYED_WORK 1 /* 1% */
 };
 
+=======
+
+#define SDIO_MAX_FUNCS		7
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * MMC device
  */
@@ -334,10 +390,13 @@ struct mmc_card {
 #define MMC_CARD_SDXC		(1<<6)		/* card is SDXC */
 #define MMC_CARD_REMOVED	(1<<7)		/* card has been removed */
 #define MMC_STATE_HIGHSPEED_200	(1<<8)		/* card is in HS200 mode */
+<<<<<<< HEAD
 #define MMC_STATE_HIGHSPEED_400	(1<<9)		/* card is in HS400 mode */
 #define MMC_STATE_DOING_BKOPS	(1<<10)		/* card is doing BKOPS */
 #define MMC_STATE_NEED_BKOPS	(1<<11)		/* card needs to do BKOPS */
 #define MMC_STATE_SLEEP		(1<<12)		/* card is in sleep state */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned int		quirks; 	/* card quirks */
 #define MMC_QUIRK_LENIENT_FN0	(1<<0)		/* allow SDIO FN0 writes outside of the VS CCCR range */
 #define MMC_QUIRK_BLKSZ_FOR_BYTE_MODE (1<<1)	/* use func->cur_blksize */
@@ -349,6 +408,7 @@ struct mmc_card {
 #define MMC_QUIRK_DISABLE_CD	(1<<5)		/* disconnect CD/DAT[3] resistor */
 #define MMC_QUIRK_INAND_CMD38	(1<<6)		/* iNAND devices have broken CMD38 */
 #define MMC_QUIRK_BLK_NO_CMD23	(1<<7)		/* Avoid CMD23 for regular multiblock */
+<<<<<<< HEAD
 #define MMC_QUIRK_BROKEN_BYTE_MODE_512 (1<<8)	/* Avoid sending 512 bytes in */
 #define MMC_QUIRK_LONG_READ_TIME (1<<9)		/* Data read time > CSD says */
 #define MMC_QUIRK_SEC_ERASE_TRIM_BROKEN (1<<10)	/* Skip secure for erase/trim */
@@ -360,6 +420,16 @@ struct mmc_card {
 #define MMC_QUIRK_BROKEN_DATA_TIMEOUT	(1<<12)
 
 #define MMC_QUIRK_CACHE_DISABLE (1 << 14)       /* prevent cache enable */
+=======
+/* MoviNAND secure issue */
+#define MMC_QUIRK_MOVINAND_SECURE (1<<8)
+
+	unsigned int    poweroff_notify_state;	/* eMMC4.5 notify feature */
+#define MMC_NO_POWER_NOTIFICATION	0
+#define MMC_POWERED_ON			1
+#define MMC_POWEROFF_SHORT		2
+#define MMC_POWEROFF_LONG		3
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	unsigned int		erase_size;	/* erase size in sectors */
  	unsigned int		erase_shift;	/* if erase unit is power 2 */
@@ -388,6 +458,7 @@ struct mmc_card {
 	unsigned int		sd_bus_speed;	/* Bus Speed Mode set for the card */
 
 	struct dentry		*debugfs_root;
+<<<<<<< HEAD
 	struct mmc_part	part[MMC_NUM_PHY_PARTITION]; /* physical partitions */
 	unsigned int    nr_parts;
 	unsigned int	part_curr;
@@ -423,6 +494,15 @@ static inline bool mmc_large_sec(struct mmc_card *card)
 	return card->ext_csd.data_sector_size == 4096;
 }
 
+=======
+	unsigned int		movi_ops;
+	unsigned int		movi_fwver;
+	unsigned int		movi_fwdate;
+};
+
+#define MMC_MOVI_VER_VHX0	(1<<4)
+#define MMC_MOVI_VER_VMX0	(1<<5)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  *  The world is not perfect and supplies us with broken mmc/sdio devices.
  *  For at least some of these bugs we need a work-around.
@@ -440,8 +520,11 @@ struct mmc_fixup {
 
 	/* SDIO-specfic fields. You can use SDIO_ANY_ID here of course */
 	u16 cis_vendor, cis_device;
+<<<<<<< HEAD
 	/* for MMC cards */
 	unsigned int ext_csd_rev;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	void (*vendor_fixup)(struct mmc_card *card, int data);
 	int data;
@@ -451,6 +534,7 @@ struct mmc_fixup {
 #define CID_OEMID_ANY ((unsigned short) -1)
 #define CID_NAME_ANY (NULL)
 
+<<<<<<< HEAD
 #define EXT_CSD_REV_ANY (-1u)
 
 #define CID_MANFID_SANDISK	0x2
@@ -459,11 +543,17 @@ struct mmc_fixup {
 #define CID_MANFID_SAMSUNG	0x15
 #define CID_MANFID_HYNIX	0x90
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define END_FIXUP { 0 }
 
 #define _FIXUP_EXT(_name, _manfid, _oemid, _rev_start, _rev_end,	\
 		   _cis_vendor, _cis_device,				\
+<<<<<<< HEAD
 		   _fixup, _data, _ext_csd_rev)				\
+=======
+		   _fixup, _data)					\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{						   \
 		.name = (_name),			   \
 		.manfid = (_manfid),			   \
@@ -474,6 +564,7 @@ struct mmc_fixup {
 		.cis_device = (_cis_device),		   \
 		.vendor_fixup = (_fixup),		   \
 		.data = (_data),			   \
+<<<<<<< HEAD
 		.ext_csd_rev = (_ext_csd_rev),		   \
 	 }
 
@@ -492,12 +583,29 @@ struct mmc_fixup {
 			      _ext_csd_rev)				\
 	MMC_FIXUP_REV(_name, _manfid, _oemid, 0, -1ull, _fixup, _data,	\
 		      _ext_csd_rev)
+=======
+	 }
+
+#define MMC_FIXUP_REV(_name, _manfid, _oemid, _rev_start, _rev_end,	\
+		      _fixup, _data)					\
+	_FIXUP_EXT(_name, _manfid,					\
+		   _oemid, _rev_start, _rev_end,			\
+		   SDIO_ANY_ID, SDIO_ANY_ID,				\
+		   _fixup, _data)					\
+
+#define MMC_FIXUP(_name, _manfid, _oemid, _fixup, _data) \
+	MMC_FIXUP_REV(_name, _manfid, _oemid, 0, -1ull, _fixup, _data)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define SDIO_FIXUP(_vendor, _device, _fixup, _data)			\
 	_FIXUP_EXT(CID_NAME_ANY, CID_MANFID_ANY,			\
 		    CID_OEMID_ANY, 0, -1ull,				\
 		   _vendor, _device,					\
+<<<<<<< HEAD
 		   _fixup, _data, EXT_CSD_REV_ANY)			\
+=======
+		   _fixup, _data)					\
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define cid_rev(hwrev, fwrev, year, month)	\
 	(((u64) hwrev) << 40 |                  \
@@ -533,20 +641,27 @@ static inline void __maybe_unused remove_quirk(struct mmc_card *card, int data)
 #define mmc_card_readonly(c)	((c)->state & MMC_STATE_READONLY)
 #define mmc_card_highspeed(c)	((c)->state & MMC_STATE_HIGHSPEED)
 #define mmc_card_hs200(c)	((c)->state & MMC_STATE_HIGHSPEED_200)
+<<<<<<< HEAD
 #define mmc_card_hs400(c)	((c)->state & MMC_STATE_HIGHSPEED_400)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define mmc_card_blockaddr(c)	((c)->state & MMC_STATE_BLOCKADDR)
 #define mmc_card_ddr_mode(c)	((c)->state & MMC_STATE_HIGHSPEED_DDR)
 #define mmc_card_uhs(c)		((c)->state & MMC_STATE_ULTRAHIGHSPEED)
 #define mmc_sd_card_uhs(c)	((c)->state & MMC_STATE_ULTRAHIGHSPEED)
 #define mmc_card_ext_capacity(c) ((c)->state & MMC_CARD_SDXC)
 #define mmc_card_removed(c)	((c) && ((c)->state & MMC_CARD_REMOVED))
+<<<<<<< HEAD
 #define mmc_card_is_sleep(c)	((c)->state & MMC_STATE_SLEEP)
 #define mmc_card_doing_bkops(c)	((c)->state & MMC_STATE_DOING_BKOPS)
 #define mmc_card_need_bkops(c)	((c)->state & MMC_STATE_NEED_BKOPS)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define mmc_card_set_present(c)	((c)->state |= MMC_STATE_PRESENT)
 #define mmc_card_set_readonly(c) ((c)->state |= MMC_STATE_READONLY)
 #define mmc_card_set_highspeed(c) ((c)->state |= MMC_STATE_HIGHSPEED)
+<<<<<<< HEAD
 #define mmc_card_clr_highspeed(c) ((c)->state &= ~MMC_STATE_HIGHSPEED)
 #define mmc_card_set_hs200(c)	((c)->state |= MMC_STATE_HIGHSPEED_200)
 #define mmc_card_clr_hs200(c)	((c)->state &= ~MMC_STATE_HIGHSPEED_200)
@@ -555,16 +670,25 @@ static inline void __maybe_unused remove_quirk(struct mmc_card *card, int data)
 #define mmc_card_set_blockaddr(c) ((c)->state |= MMC_STATE_BLOCKADDR)
 #define mmc_card_set_ddr_mode(c) ((c)->state |= MMC_STATE_HIGHSPEED_DDR)
 #define mmc_card_clr_ddr_mode(c) ((c)->state &= ~MMC_STATE_HIGHSPEED_DDR)
+=======
+#define mmc_card_set_hs200(c)	((c)->state |= MMC_STATE_HIGHSPEED_200)
+#define mmc_card_set_blockaddr(c) ((c)->state |= MMC_STATE_BLOCKADDR)
+#define mmc_card_set_ddr_mode(c) ((c)->state |= MMC_STATE_HIGHSPEED_DDR)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define mmc_card_set_uhs(c) ((c)->state |= MMC_STATE_ULTRAHIGHSPEED)
 #define mmc_sd_card_set_uhs(c) ((c)->state |= MMC_STATE_ULTRAHIGHSPEED)
 #define mmc_card_set_ext_capacity(c) ((c)->state |= MMC_CARD_SDXC)
 #define mmc_card_set_removed(c) ((c)->state |= MMC_CARD_REMOVED)
+<<<<<<< HEAD
 #define mmc_card_set_sleep(c) ((c)->state |= MMC_STATE_SLEEP)
 #define mmc_card_set_doing_bkops(c)	((c)->state |= MMC_STATE_DOING_BKOPS)
 #define mmc_card_clr_doing_bkops(c)	((c)->state &= ~MMC_STATE_DOING_BKOPS)
 #define mmc_card_set_need_bkops(c)	((c)->state |= MMC_STATE_NEED_BKOPS)
 #define mmc_card_clr_need_bkops(c)	((c)->state &= ~MMC_STATE_NEED_BKOPS)
 #define mmc_card_clr_sleep(c)		((c)->state &= ~MMC_STATE_SLEEP)
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Quirk add/remove for MMC products.
  */
@@ -619,6 +743,7 @@ static inline int mmc_card_nonstd_func_interface(const struct mmc_card *c)
 	return c->quirks & MMC_QUIRK_NONSTD_FUNC_IF;
 }
 
+<<<<<<< HEAD
 static inline int mmc_card_broken_byte_mode_512(const struct mmc_card *c)
 {
 	return c->quirks & MMC_QUIRK_BROKEN_BYTE_MODE_512;
@@ -629,6 +754,8 @@ static inline int mmc_card_long_read_time(const struct mmc_card *c)
 	return c->quirks & MMC_QUIRK_LONG_READ_TIME;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define mmc_card_name(c)	((c)->cid.prod_name)
 #define mmc_card_id(c)		(dev_name(&(c)->dev))
 
@@ -645,9 +772,14 @@ struct mmc_driver {
 	struct device_driver drv;
 	int (*probe)(struct mmc_card *);
 	void (*remove)(struct mmc_card *);
+<<<<<<< HEAD
 	int (*suspend)(struct mmc_card *);
 	int (*resume)(struct mmc_card *);
 	void (*shutdown)(struct mmc_card *);
+=======
+	int (*suspend)(struct mmc_card *, pm_message_t);
+	int (*resume)(struct mmc_card *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 extern int mmc_register_driver(struct mmc_driver *);
@@ -655,9 +787,14 @@ extern void mmc_unregister_driver(struct mmc_driver *);
 
 extern void mmc_fixup_device(struct mmc_card *card,
 			     const struct mmc_fixup *table);
+<<<<<<< HEAD
 extern struct mmc_wr_pack_stats *mmc_blk_get_packed_statistics(
 			struct mmc_card *card);
 extern void mmc_blk_init_packed_statistics(struct mmc_card *card);
 extern void mmc_blk_disable_wr_packing(struct mmc_queue *mq);
 extern int mmc_send_long_pon(struct mmc_card *card);
 #endif /* LINUX_MMC_CARD_H */
+=======
+
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

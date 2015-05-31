@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file COPYING in the main directory of this archive
@@ -127,3 +128,10 @@ void module_fixup(struct module *mod, struct m68k_fixup_info *start,
 	}
 #endif
 }
+=======
+#ifdef CONFIG_MMU
+#include "module_mm.c"
+#else
+#include "module_no.c"
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

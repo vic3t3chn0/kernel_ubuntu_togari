@@ -6,7 +6,11 @@
 #include <linux/mm.h>
 #include <linux/mmzone.h>
 #include <linux/vm_event_item.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern int sysctl_stat_interval;
 
@@ -140,6 +144,10 @@ static inline unsigned long zone_page_state_snapshot(struct zone *zone,
 }
 
 extern unsigned long global_reclaimable_pages(void);
+<<<<<<< HEAD
+=======
+extern unsigned long zone_reclaimable_pages(struct zone *zone);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_NUMA
 /*
@@ -257,6 +265,7 @@ static inline void refresh_zone_stat_thresholds(void) { }
 
 #endif		/* CONFIG_SMP */
 
+<<<<<<< HEAD
 static inline void __mod_zone_freepage_state(struct zone *zone, int nr_pages,
 					     int migratetype)
 {
@@ -264,6 +273,8 @@ static inline void __mod_zone_freepage_state(struct zone *zone, int nr_pages,
 	if (is_migrate_cma(migratetype))
 		__mod_zone_page_state(zone, NR_FREE_CMA_PAGES, nr_pages);
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern const char * const vmstat_text[];
 
 #endif /* _LINUX_VMSTAT_H */

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -8,6 +12,14 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+<<<<<<< HEAD
+=======
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #include <linux/slab.h>
@@ -16,11 +28,21 @@
 #include <linux/mutex.h>
 #include <linux/errno.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/init.h>
 
 #include <asm/cacheflush.h>
 
 #include <mach/scm.h>
+=======
+
+#include <asm/cacheflush.h>
+
+#include "scm.h"
+
+/* Cache line size for msm8x60 */
+#define CACHELINESIZE 32
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define SCM_ENOMEM		-5
 #define SCM_EOPNOTSUPP		-4
@@ -31,9 +53,12 @@
 
 static DEFINE_MUTEX(scm_lock);
 
+<<<<<<< HEAD
 #define SCM_BUF_LEN(__cmd_size, __resp_size)	\
 	(sizeof(struct scm_command) + sizeof(struct scm_response) + \
 		__cmd_size + __resp_size)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * struct scm_command - one SCM command buffer
  * @len: total available memory for command and response
@@ -79,6 +104,45 @@ struct scm_response {
 };
 
 /**
+<<<<<<< HEAD
+=======
+ * alloc_scm_command() - Allocate an SCM command
+ * @cmd_size: size of the command buffer
+ * @resp_size: size of the response buffer
+ *
+ * Allocate an SCM command, including enough room for the command
+ * and response headers as well as the command and response buffers.
+ *
+ * Returns a valid &scm_command on success or %NULL if the allocation fails.
+ */
+static struct scm_command *alloc_scm_command(size_t cmd_size, size_t resp_size)
+{
+	struct scm_command *cmd;
+	size_t len = sizeof(*cmd) + sizeof(struct scm_response) + cmd_size +
+		resp_size;
+
+	cmd = kzalloc(PAGE_ALIGN(len), GFP_KERNEL);
+	if (cmd) {
+		cmd->len = len;
+		cmd->buf_offset = offsetof(struct scm_command, buf);
+		cmd->resp_hdr_offset = cmd->buf_offset + cmd_size;
+	}
+	return cmd;
+}
+
+/**
+ * free_scm_command() - Free an SCM command
+ * @cmd: command to free
+ *
+ * Free an SCM command.
+ */
+static inline void free_scm_command(struct scm_command *cmd)
+{
+	kfree(cmd);
+}
+
+/**
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * scm_command_to_response() - Get a pointer to a scm_response
  * @cmd: command
  *
@@ -114,7 +178,10 @@ static inline void *scm_get_response_buffer(const struct scm_response *rsp)
 
 static int scm_remap_error(int err)
 {
+<<<<<<< HEAD
 	pr_err("scm_call failed with error code %d\n", err);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	switch (err) {
 	case SCM_ERROR:
 		return -EIO;
@@ -141,9 +208,12 @@ static u32 smc(u32 cmd_addr)
 			__asmeq("%1", "r0")
 			__asmeq("%2", "r1")
 			__asmeq("%3", "r2")
+<<<<<<< HEAD
 #ifdef REQUIRES_SEC
 			".arch_extension sec\n"
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			"smc	#0	@ switch to secure world\n"
 			: "=r" (r0)
 			: "r" (r0), "r" (r1), "r" (r2)
@@ -159,12 +229,20 @@ static int __scm_call(const struct scm_command *cmd)
 	u32 cmd_addr = virt_to_phys(cmd);
 
 	/*
+<<<<<<< HEAD
 	 * Flush the command buffer so that the secure world sees
 	 * the correct data.
 	 */
 	__cpuc_flush_dcache_area((void *)cmd, cmd->len);
 	outer_flush_range(cmd_addr, cmd_addr + cmd->len);
 
+=======
+	 * Flush the entire cache here so callers don't have to remember
+	 * to flush the cache when passing physical addresses to the secure
+	 * side in the buffer.
+	 */
+	flush_cache_all();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ret = smc(cmd_addr);
 	if (ret < 0)
 		ret = scm_remap_error(ret);
@@ -172,6 +250,7 @@ static int __scm_call(const struct scm_command *cmd)
 	return ret;
 }
 
+<<<<<<< HEAD
 static void scm_inv_range(unsigned long start, unsigned long end)
 {
 	u32 cacheline_size, ctr;
@@ -193,12 +272,17 @@ static void scm_inv_range(unsigned long start, unsigned long end)
 
 /**
  * scm_call_common() - Send an SCM command
+=======
+/**
+ * scm_call() - Send an SCM command
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @svc_id: service identifier
  * @cmd_id: command identifier
  * @cmd_buf: command buffer
  * @cmd_len: length of the command buffer
  * @resp_buf: response buffer
  * @resp_len: length of the response buffer
+<<<<<<< HEAD
  * @scm_buf: internal scm structure used for passing data
  * @scm_buf_len: length of the internal scm structure
  *
@@ -312,10 +396,53 @@ int scm_call(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
 	ret = scm_call_common(svc_id, cmd_id, cmd_buf, cmd_len, resp_buf,
 				resp_len, cmd, len);
 	kfree(cmd);
+=======
+ *
+ * Sends a command to the SCM and waits for the command to finish processing.
+ */
+int scm_call(u32 svc_id, u32 cmd_id, const void *cmd_buf, size_t cmd_len,
+		void *resp_buf, size_t resp_len)
+{
+	int ret;
+	struct scm_command *cmd;
+	struct scm_response *rsp;
+
+	cmd = alloc_scm_command(cmd_len, resp_len);
+	if (!cmd)
+		return -ENOMEM;
+
+	cmd->id = (svc_id << 10) | cmd_id;
+	if (cmd_buf)
+		memcpy(scm_get_command_buffer(cmd), cmd_buf, cmd_len);
+
+	mutex_lock(&scm_lock);
+	ret = __scm_call(cmd);
+	mutex_unlock(&scm_lock);
+	if (ret)
+		goto out;
+
+	rsp = scm_command_to_response(cmd);
+	do {
+		u32 start = (u32)rsp;
+		u32 end = (u32)scm_get_response_buffer(rsp) + resp_len;
+		start &= ~(CACHELINESIZE - 1);
+		while (start < end) {
+			asm ("mcr p15, 0, %0, c7, c6, 1" : : "r" (start)
+			     : "memory");
+			start += CACHELINESIZE;
+		}
+	} while (!rsp->is_complete);
+
+	if (resp_buf)
+		memcpy(resp_buf, scm_get_response_buffer(rsp), resp_len);
+out:
+	free_scm_command(cmd);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 EXPORT_SYMBOL(scm_call);
 
+<<<<<<< HEAD
 #define SCM_CLASS_REGISTER	(0x2 << 8)
 #define SCM_MASK_IRQS		BIT(5)
 #define SCM_ATOMIC(svc, cmd, n) (((((svc) << 10)|((cmd) & 0x3ff)) << 12) | \
@@ -461,6 +588,8 @@ s32 scm_call_atomic4_3(u32 svc, u32 cmd, u32 arg1, u32 arg2,
 }
 EXPORT_SYMBOL(scm_call_atomic4_3);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 u32 scm_get_version(void)
 {
 	int context_id;
@@ -481,9 +610,12 @@ u32 scm_get_version(void)
 			__asmeq("%1", "r1")
 			__asmeq("%2", "r0")
 			__asmeq("%3", "r1")
+<<<<<<< HEAD
 #ifdef REQUIRES_SEC
 			".arch_extension sec\n"
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			"smc	#0	@ switch to secure world\n"
 			: "=r" (r0), "=r" (r1)
 			: "r" (r0), "r" (r1)
@@ -496,6 +628,7 @@ u32 scm_get_version(void)
 	return version;
 }
 EXPORT_SYMBOL(scm_get_version);
+<<<<<<< HEAD
 
 #define IS_CALL_AVAIL_CMD	1
 int scm_is_call_available(u32 svc_id, u32 cmd_id)
@@ -526,3 +659,5 @@ int scm_get_feat_version(u32 feat)
 }
 EXPORT_SYMBOL(scm_get_feat_version);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

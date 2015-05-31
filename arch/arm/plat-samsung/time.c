@@ -28,6 +28,10 @@
 #include <linux/io.h>
 #include <linux/platform_device.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/leds.h>
 #include <asm/mach-types.h>
 
@@ -258,8 +262,11 @@ static void __init s3c2410_timer_resources(void)
 	clk_enable(timerclk);
 
 	if (!use_tclk1_12()) {
+<<<<<<< HEAD
 		tmpdev.id = 4;
 		tmpdev.dev.init_name = "s3c24xx-pwm.4";
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		tin = clk_get(&tmpdev.dev, "pwm-tin");
 		if (IS_ERR(tin))
 			panic("failed to get pwm-tin clock for system timer");

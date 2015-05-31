@@ -63,6 +63,14 @@ enum s5m87xx_rtc_reg {
 /* RTC Update Register1 */
 #define RTC_UDR_SHIFT		0
 #define RTC_UDR_MASK		(1 << RTC_UDR_SHIFT)
+<<<<<<< HEAD
+=======
+#define RTC_TCON_SHIFT		1
+#define RTC_TCON_MASK		(1 << RTC_TCON_SHIFT)
+#define RTC_TIME_EN_SHIFT	3
+#define RTC_TIME_EN_MASK	(1 << RTC_TIME_EN_SHIFT)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* RTC Hour register */
 #define HOUR_PM_SHIFT		6
 #define HOUR_PM_MASK		(1 << HOUR_PM_SHIFT)
@@ -70,6 +78,15 @@ enum s5m87xx_rtc_reg {
 #define ALARM_ENABLE_SHIFT	7
 #define ALARM_ENABLE_MASK	(1 << ALARM_ENABLE_SHIFT)
 
+<<<<<<< HEAD
+=======
+#define SMPL_ENABLE_SHIFT	7
+#define SMPL_ENABLE_MASK	(1 << SMPL_ENABLE_SHIFT)
+
+#define WTSR_ENABLE_SHIFT	6
+#define WTSR_ENABLE_MASK	(1 << WTSR_ENABLE_SHIFT)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum {
 	RTC_SEC = 0,
 	RTC_MIN,

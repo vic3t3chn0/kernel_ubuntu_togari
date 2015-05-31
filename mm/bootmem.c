@@ -12,7 +12,11 @@
 #include <linux/pfn.h>
 #include <linux/slab.h>
 #include <linux/bootmem.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kmemleak.h>
 #include <linux/range.h>
 #include <linux/memblock.h>
@@ -56,7 +60,11 @@ early_param("bootmem_debug", bootmem_debug_setup);
 
 static unsigned long __init bootmap_bytes(unsigned long pages)
 {
+<<<<<<< HEAD
 	unsigned long bytes = DIV_ROUND_UP(pages, 8);
+=======
+	unsigned long bytes = (pages + 7) / 8;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return ALIGN(bytes, sizeof(long));
 }
@@ -154,7 +162,11 @@ unsigned long __init init_bootmem(unsigned long start, unsigned long pages)
  * down, but we are still initializing the system.  Pages are given directly
  * to the page allocator, no bootmem metadata is updated because it is gone.
  */
+<<<<<<< HEAD
 void free_bootmem_late(unsigned long addr, unsigned long size)
+=======
+void __init free_bootmem_late(unsigned long addr, unsigned long size)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	unsigned long cursor, end;
 
@@ -171,6 +183,10 @@ void free_bootmem_late(unsigned long addr, unsigned long size)
 
 static unsigned long __init free_all_bootmem_core(bootmem_data_t *bdata)
 {
+<<<<<<< HEAD
+=======
+	int aligned;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct page *page;
 	unsigned long start, end, pages, count = 0;
 
@@ -180,8 +196,19 @@ static unsigned long __init free_all_bootmem_core(bootmem_data_t *bdata)
 	start = bdata->node_min_pfn;
 	end = bdata->node_low_pfn;
 
+<<<<<<< HEAD
 	bdebug("nid=%td start=%lx end=%lx\n",
 		bdata - bootmem_node_data, start, end);
+=======
+	/*
+	 * If the start is aligned to the machines wordsize, we might
+	 * be able to free pages in bulks of that order.
+	 */
+	aligned = !(start & (BITS_PER_LONG - 1));
+
+	bdebug("nid=%td start=%lx end=%lx aligned=%d\n",
+		bdata - bootmem_node_data, start, end, aligned);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	while (start < end) {
 		unsigned long *map, idx, vec;
@@ -189,17 +216,25 @@ static unsigned long __init free_all_bootmem_core(bootmem_data_t *bdata)
 		map = bdata->node_bootmem_map;
 		idx = start - bdata->node_min_pfn;
 		vec = ~map[idx / BITS_PER_LONG];
+<<<<<<< HEAD
 		/*
 		 * If we have a properly aligned and fully unreserved
 		 * BITS_PER_LONG block of pages in front of us, free
 		 * it in one go.
 		 */
 		if (IS_ALIGNED(start, BITS_PER_LONG) && vec == ~0UL) {
+=======
+
+		if (aligned && vec == ~0UL && start + BITS_PER_LONG < end) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			int order = ilog2(BITS_PER_LONG);
 
 			__free_pages_bootmem(pfn_to_page(start), order);
 			count += BITS_PER_LONG;
+<<<<<<< HEAD
 			start += BITS_PER_LONG;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} else {
 			unsigned long off = 0;
 
@@ -212,8 +247,13 @@ static unsigned long __init free_all_bootmem_core(bootmem_data_t *bdata)
 				vec >>= 1;
 				off++;
 			}
+<<<<<<< HEAD
 			start = ALIGN(start + 1, BITS_PER_LONG);
 		}
+=======
+		}
+		start += BITS_PER_LONG;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	page = virt_to_page(bdata->node_bootmem_map);

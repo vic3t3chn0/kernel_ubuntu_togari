@@ -28,8 +28,11 @@
  *     http://repository.maemo.org/pool/diablo/free/k/kernel-source-diablo/
  */
 
+<<<<<<< HEAD
 #include <plat/hardware.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "opp2xxx.h"
 #include "sdrc.h"
 #include "clock.h"

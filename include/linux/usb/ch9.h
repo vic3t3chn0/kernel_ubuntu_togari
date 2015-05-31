@@ -34,7 +34,10 @@
 #define __LINUX_USB_CH9_H
 
 #include <linux/types.h>	/* __u8 etc */
+<<<<<<< HEAD
 #include <asm/byteorder.h>	/* le16_to_cpu */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*-------------------------------------------------------------------------*/
 
@@ -136,12 +139,15 @@
 #define	TEST_PACKET	4
 #define	TEST_FORCE_EN	5
 
+<<<<<<< HEAD
 /* OTG test mode feature bits
  * See ECN OTG2.0 spec Table 6-8
  */
 #define TEST_OTG_SRP_REQD	6
 #define TEST_OTG_HNP_REQD	7
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * New Feature Selectors as added by USB 3.0
  * See USB 3.0 spec Table 9-6
@@ -152,6 +158,7 @@
 #define USB_INTRF_FUNC_SUSPEND	0	/* function suspend */
 
 #define USB_INTR_FUNC_SUSPEND_OPT_MASK	0xFF00
+<<<<<<< HEAD
 /*
  * Suspend Options, Table 9-7 USB 3.0 spec
  */
@@ -167,6 +174,11 @@
 
 #define OTG_TTST_VBUS_OFF               1
 
+=======
+
+#define USB_ENDPOINT_HALT		0	/* IN/OUT will STALL */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Bit array elements as returned by the USB_REQ_GET_STATUS request. */
 #define USB_DEV_STAT_U1_ENABLED		2	/* transition into U1 state */
 #define USB_DEV_STAT_U2_ENABLED		3	/* transition into U2 state */
@@ -398,6 +410,7 @@ struct usb_endpoint_descriptor {
 #define USB_ENDPOINT_NUMBER_MASK	0x0f	/* in bEndpointAddress */
 #define USB_ENDPOINT_DIR_MASK		0x80
 
+<<<<<<< HEAD
 #define USB_ENDPOINT_XFERTYPE_MASK	0x03	/* in bmAttributes */
 #define USB_ENDPOINT_XFER_CONTROL	0
 #define USB_ENDPOINT_XFER_ISOC		1
@@ -405,16 +418,27 @@ struct usb_endpoint_descriptor {
 #define USB_ENDPOINT_XFER_INT		3
 #define USB_ENDPOINT_MAX_ADJUSTABLE	0x80
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define USB_ENDPOINT_SYNCTYPE		0x0c
 #define USB_ENDPOINT_SYNC_NONE		(0 << 2)
 #define USB_ENDPOINT_SYNC_ASYNC		(1 << 2)
 #define USB_ENDPOINT_SYNC_ADAPTIVE	(2 << 2)
 #define USB_ENDPOINT_SYNC_SYNC		(3 << 2)
 
+<<<<<<< HEAD
 #define USB_ENDPOINT_USAGE_MASK		0x30
 #define USB_ENDPOINT_USAGE_DATA		0x00
 #define USB_ENDPOINT_USAGE_FEEDBACK	0x10
 #define USB_ENDPOINT_USAGE_IMPLICIT_FB	0x20	/* Implicit feedback Data endpoint */
+=======
+#define USB_ENDPOINT_XFERTYPE_MASK	0x03	/* in bmAttributes */
+#define USB_ENDPOINT_XFER_CONTROL	0
+#define USB_ENDPOINT_XFER_ISOC		1
+#define USB_ENDPOINT_XFER_BULK		2
+#define USB_ENDPOINT_XFER_INT		3
+#define USB_ENDPOINT_MAX_ADJUSTABLE	0x80
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*-------------------------------------------------------------------------*/
 
@@ -596,6 +620,7 @@ static inline int usb_endpoint_is_isoc_out(
 	return usb_endpoint_xfer_isoc(epd) && usb_endpoint_dir_out(epd);
 }
 
+<<<<<<< HEAD
 /**
  * usb_endpoint_maxp - get endpoint's max packet size
  * @epd: endpoint to be checked
@@ -607,6 +632,8 @@ static inline int usb_endpoint_maxp(const struct usb_endpoint_descriptor *epd)
 	return __le16_to_cpu(epd->wMaxPacketSize);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*-------------------------------------------------------------------------*/
 
 /* USB_DT_SS_ENDPOINT_COMP: SuperSpeed Endpoint Companion descriptor */
@@ -668,10 +695,15 @@ struct usb_otg_descriptor {
 	__u8  bDescriptorType;
 
 	__u8  bmAttributes;	/* support for HNP, SRP, etc */
+<<<<<<< HEAD
 	__le16 bcdOTG;
 } __attribute__ ((packed));
 
 #define USB_DT_OTG_SIZE		5
+=======
+} __attribute__ ((packed));
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* from usb_otg_descriptor.bmAttributes */
 #define USB_OTG_SRP		(1 << 0)
 #define USB_OTG_HNP		(1 << 1)	/* swap host/device roles */
@@ -806,11 +838,14 @@ struct usb_ext_cap_descriptor {		/* Link Power Management */
 	__u8  bDevCapabilityType;
 	__le32 bmAttributes;
 #define USB_LPM_SUPPORT			(1 << 1)	/* supports LPM */
+<<<<<<< HEAD
 #define USB_BESL_SUPPORT		(1 << 2)	/* supports BESL */
 #define USB_BESL_BASELINE_VALID		(1 << 3)	/* Baseline BESL valid*/
 #define USB_BESL_DEEP_VALID		(1 << 4)	/* Deep BESL valid */
 #define USB_GET_BESL_BASELINE(p)	(((p) & (0xf << 8)) >> 8)
 #define USB_GET_BESL_DEEP(p)		(((p) & (0xf << 12)) >> 12)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 } __attribute__((packed));
 
 #define USB_DT_USB_EXT_CAP_SIZE	7
@@ -913,6 +948,7 @@ enum usb_device_speed {
 	USB_SPEED_SUPER,			/* usb 3.0 */
 };
 
+<<<<<<< HEAD
 #ifdef __KERNEL__
 
 /**
@@ -925,6 +961,8 @@ extern const char *usb_speed_string(enum usb_device_speed speed);
 
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum usb_device_state {
 	/* NOTATTACHED isn't in the USB spec, and this state acts
 	 * the same as ATTACHED ... but it's clearer this way.

@@ -25,7 +25,11 @@
 #include <linux/init.h>
 #include <linux/pci.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/mutex.h>
 #include <sound/core.h>
 #include <sound/pcm.h>
@@ -51,7 +55,11 @@ module_param(ac97_clock, int, 0444);
 MODULE_PARM_DESC(ac97_clock, "AC'97 codec clock (default 48000Hz).");
 
 /* just for backward compatibility */
+<<<<<<< HEAD
 static bool enable;
+=======
+static int enable;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 module_param(enable, bool, 0444);
 
 
@@ -1260,7 +1268,11 @@ static int __devinit snd_atiixp_create(struct snd_card *card,
 	}
 
 	if (request_irq(pci->irq, snd_atiixp_interrupt, IRQF_SHARED,
+<<<<<<< HEAD
 			KBUILD_MODNAME, chip)) {
+=======
+			card->shortname, chip)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		snd_printk(KERN_ERR "unable to grab IRQ %d\n", pci->irq);
 		snd_atiixp_free(chip);
 		return -EBUSY;
@@ -1332,7 +1344,11 @@ static void __devexit snd_atiixp_remove(struct pci_dev *pci)
 }
 
 static struct pci_driver driver = {
+<<<<<<< HEAD
 	.name = KBUILD_MODNAME,
+=======
+	.name = "ATI IXP MC97 controller",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.id_table = snd_atiixp_ids,
 	.probe = snd_atiixp_probe,
 	.remove = __devexit_p(snd_atiixp_remove),

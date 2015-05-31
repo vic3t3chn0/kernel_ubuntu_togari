@@ -32,6 +32,39 @@
 #define DEBUGP(fmt, ...)
 #endif
 
+<<<<<<< HEAD
+=======
+/*
+ * allocate storage for a module
+ */
+void *module_alloc(unsigned long size)
+{
+	if (size == 0)
+		return NULL;
+	return vmalloc_exec(size);
+}
+
+/*
+ * free memory returned from module_alloc()
+ */
+void module_free(struct module *mod, void *module_region)
+{
+	vfree(module_region);
+}
+
+/*
+ * allow the arch to fix up the section table
+ * - we don't need anything special
+ */
+int module_frob_arch_sections(Elf_Ehdr *hdr,
+			      Elf_Shdr *sechdrs,
+			      char *secstrings,
+			      struct module *mod)
+{
+	return 0;
+}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void reloc_put16(uint8_t *p, uint32_t val)
 {
 	p[0] = val & 0xff;
@@ -51,6 +84,23 @@ static void reloc_put32(uint8_t *p, uint32_t val)
 }
 
 /*
+<<<<<<< HEAD
+=======
+ * apply a REL relocation
+ */
+int apply_relocate(Elf32_Shdr *sechdrs,
+		   const char *strtab,
+		   unsigned int symindex,
+		   unsigned int relsec,
+		   struct module *me)
+{
+	printk(KERN_ERR "module %s: RELOCATION unsupported\n",
+	       me->name);
+	return -ENOEXEC;
+}
+
+/*
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * apply a RELA relocation
  */
 int apply_relocate_add(Elf32_Shdr *sechdrs,
@@ -154,3 +204,23 @@ int apply_relocate_add(Elf32_Shdr *sechdrs,
 	}
 	return 0;
 }
+<<<<<<< HEAD
+=======
+
+/*
+ * finish loading the module
+ */
+int module_finalize(const Elf_Ehdr *hdr,
+		    const Elf_Shdr *sechdrs,
+		    struct module *me)
+{
+	return 0;
+}
+
+/*
+ * finish clearing the module
+ */
+void module_arch_cleanup(struct module *mod)
+{
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

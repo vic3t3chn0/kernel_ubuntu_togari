@@ -159,7 +159,11 @@ gss_get_mic_v1(struct krb5_ctx *ctx, struct xdr_buf *text,
 	return (ctx->endtime < now) ? GSS_S_CONTEXT_EXPIRED : GSS_S_COMPLETE;
 }
 
+<<<<<<< HEAD
 static u32
+=======
+u32
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 gss_get_mic_v2(struct krb5_ctx *ctx, struct xdr_buf *text,
 		struct xdr_netobj *token)
 {

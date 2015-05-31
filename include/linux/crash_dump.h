@@ -3,14 +3,22 @@
 
 #ifdef CONFIG_CRASH_DUMP
 #include <linux/kexec.h>
+<<<<<<< HEAD
 #include <linux/proc_fs.h>
 #include <linux/elf.h>
+=======
+#include <linux/device.h>
+#include <linux/proc_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define ELFCORE_ADDR_MAX	(-1ULL)
 #define ELFCORE_ADDR_ERR	(-2ULL)
 
 extern unsigned long long elfcorehdr_addr;
+<<<<<<< HEAD
 extern unsigned long long elfcorehdr_size;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern ssize_t copy_oldmem_page(unsigned long, char *, size_t,
 						unsigned long, int);

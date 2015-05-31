@@ -3,7 +3,12 @@
 
 #include <linux/percpu.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/system.h>
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/asm.h>
 
 typedef struct {

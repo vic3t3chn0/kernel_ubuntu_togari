@@ -43,9 +43,15 @@ endif
 
 OBJCOPYFLAGS += -R .empty_zero_page
 
+<<<<<<< HEAD
 suffix_$(CONFIG_KERNEL_GZIP)	= gz
 suffix_$(CONFIG_KERNEL_BZIP2)	= bz2
 suffix_$(CONFIG_KERNEL_LZMA)	= lzma
+=======
+suffix-$(CONFIG_KERNEL_GZIP)	= gz
+suffix-$(CONFIG_KERNEL_BZIP2)	= bz2
+suffix-$(CONFIG_KERNEL_LZMA)	= lzma
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 $(obj)/piggy.o: $(obj)/vmlinux.scr $(obj)/vmlinux.bin.$(suffix-y) FORCE
 	$(call if_changed,ld)

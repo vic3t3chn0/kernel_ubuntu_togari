@@ -27,7 +27,10 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <sound/core.h>
 #include <sound/pcm.h>

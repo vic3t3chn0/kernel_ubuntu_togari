@@ -27,6 +27,7 @@ config CEPH_LIB_PRETTYDEBUG
 
 	  If unsure, say N.
 
+<<<<<<< HEAD
 config CEPH_LIB_USE_DNS_RESOLVER
 	bool "Use in-kernel support for DNS lookup"
 	depends on CEPH_LIB
@@ -41,3 +42,5 @@ config CEPH_LIB_USE_DNS_RESOLVER
 
 	  If unsure, say N.
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

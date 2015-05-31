@@ -13,8 +13,11 @@
 #ifndef ASM_ARCH_MAINSTONE_H
 #define ASM_ARCH_MAINSTONE_H
 
+<<<<<<< HEAD
 #include <mach/irqs.h>
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define MST_ETH_PHYS		PXA_CS4_PHYS
 
 #define MST_FPGA_PHYS		PXA_CS2_PHYS

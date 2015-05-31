@@ -9,8 +9,11 @@
  *
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/sched.h>
 #include <linux/slab.h>
@@ -64,6 +67,7 @@ static int check_node_data(struct jffs2_sb_info *c, struct jffs2_tmp_dnode_info 
 #ifndef __ECOS
 	/* TODO: instead, incapsulate point() stuff to jffs2_flash_read(),
 	 * adding and jffs2_flash_read_end() interface. */
+<<<<<<< HEAD
 	err = mtd_point(c->mtd, ofs, len, &retlen, (void **)&buffer, NULL);
 	if (!err && retlen < len) {
 		JFFS2_WARNING("MTD point returned len too short: %zu instead of %u.\n", retlen, tn->csize);
@@ -73,6 +77,19 @@ static int check_node_data(struct jffs2_sb_info *c, struct jffs2_tmp_dnode_info 
 			JFFS2_WARNING("MTD point failed: error code %d.\n", err);
 	} else
 		pointed = 1; /* succefully pointed to device */
+=======
+	if (c->mtd->point) {
+		err = c->mtd->point(c->mtd, ofs, len, &retlen,
+				    (void **)&buffer, NULL);
+		if (!err && retlen < len) {
+			JFFS2_WARNING("MTD point returned len too short: %zu instead of %u.\n", retlen, tn->csize);
+			c->mtd->unpoint(c->mtd, ofs, retlen);
+		} else if (err)
+			JFFS2_WARNING("MTD point failed: error code %d.\n", err);
+		else
+			pointed = 1; /* succefully pointed to device */
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	if (!pointed) {
@@ -101,7 +118,11 @@ static int check_node_data(struct jffs2_sb_info *c, struct jffs2_tmp_dnode_info 
 		kfree(buffer);
 #ifndef __ECOS
 	else
+<<<<<<< HEAD
 		mtd_unpoint(c->mtd, ofs, len);
+=======
+		c->mtd->unpoint(c->mtd, ofs, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	if (crc != tn->data_crc) {
@@ -137,7 +158,11 @@ free_out:
 		kfree(buffer);
 #ifndef __ECOS
 	else
+<<<<<<< HEAD
 		mtd_unpoint(c->mtd, ofs, len);
+=======
+		c->mtd->unpoint(c->mtd, ofs, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	return err;
 }
@@ -1041,7 +1066,11 @@ static int jffs2_get_inode_nodes(struct jffs2_sb_info *c, struct jffs2_inode_inf
 		/* FIXME: point() */
 		err = jffs2_flash_read(c, ref_offset(ref), len, &retlen, buf);
 		if (err) {
+<<<<<<< HEAD
 			JFFS2_ERROR("can not read %d bytes from 0x%08x, error code: %d.\n", len, ref_offset(ref), err);
+=======
+			JFFS2_ERROR("can not read %d bytes from 0x%08x, " "error code: %d.\n", len, ref_offset(ref), err);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			goto free_out;
 		}
 

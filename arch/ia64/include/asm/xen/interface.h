@@ -71,13 +71,20 @@
 __DEFINE_GUEST_HANDLE(uchar, unsigned char);
 __DEFINE_GUEST_HANDLE(uint, unsigned int);
 __DEFINE_GUEST_HANDLE(ulong, unsigned long);
+<<<<<<< HEAD
 
+=======
+__DEFINE_GUEST_HANDLE(u64, unsigned long);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 DEFINE_GUEST_HANDLE(char);
 DEFINE_GUEST_HANDLE(int);
 DEFINE_GUEST_HANDLE(long);
 DEFINE_GUEST_HANDLE(void);
+<<<<<<< HEAD
 DEFINE_GUEST_HANDLE(uint64_t);
 DEFINE_GUEST_HANDLE(uint32_t);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 typedef unsigned long xen_pfn_t;
 DEFINE_GUEST_HANDLE(xen_pfn_t);

@@ -16,7 +16,11 @@
 #include <linux/nodemask.h>
 #include <linux/pageblock-flags.h>
 #include <generated/bounds.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/page.h>
 
 /* Free memory management - zoned buddy allocator.  */
@@ -35,13 +39,32 @@
  */
 #define PAGE_ALLOC_COSTLY_ORDER 3
 
+<<<<<<< HEAD
+=======
+#ifndef CONFIG_DMA_CMA
+
+#define MIGRATE_UNMOVABLE     0
+#define MIGRATE_RECLAIMABLE   1
+#define MIGRATE_MOVABLE       2
+#define MIGRATE_PCPTYPES      3 /* the number of types on the pcp lists */
+#define MIGRATE_RESERVE       3
+#define MIGRATE_ISOLATE       4 /* can't allocate from here */
+#define MIGRATE_TYPES         5
+
+#else
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 enum {
 	MIGRATE_UNMOVABLE,
 	MIGRATE_RECLAIMABLE,
 	MIGRATE_MOVABLE,
+<<<<<<< HEAD
 	MIGRATE_PCPTYPES,	/* the number of types on the pcp lists */
 	MIGRATE_RESERVE = MIGRATE_PCPTYPES,
 #ifdef CONFIG_CMA
+=======
+	MIGRATE_PCPTYPES,   /* the number of types on the pcp lists */
+	MIGRATE_RESERVE = MIGRATE_PCPTYPES,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/*
 	 * MIGRATE_CMA migration type is designed to mimic the way
 	 * ZONE_MOVABLE works.  Only movable pages can be allocated
@@ -56,6 +79,7 @@ enum {
 	 * a single pageblock.
 	 */
 	MIGRATE_CMA,
+<<<<<<< HEAD
 #endif
 	MIGRATE_ISOLATE,	/* can't allocate from here */
 	MIGRATE_TYPES
@@ -75,6 +99,16 @@ bool is_cma_pageblock(struct page *page);
 #else
 #  define is_cma_pageblock(page) false
 #  define is_migrate_cma(migratetype) false
+=======
+	MIGRATE_ISOLATE,    /* can't allocate from here */
+	MIGRATE_TYPES
+};
+
+bool is_cma_pageblock(struct page *page);
+#define is_migrate_cma(migratetype) unlikely((migratetype) == MIGRATE_CMA)
+#define cma_wmark_pages(zone) (zone->min_cma_pages)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #define for_each_migratetype_order(order, type) \
@@ -134,7 +168,10 @@ enum zone_stat_item {
 	NR_UNSTABLE_NFS,	/* NFS unstable pages */
 	NR_BOUNCE,
 	NR_VMSCAN_WRITE,
+<<<<<<< HEAD
 	NR_VMSCAN_IMMEDIATE,	/* Prioritise for reclaim when writeback ends */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	NR_WRITEBACK_TEMP,	/* Writeback using temporary buffers */
 	NR_ISOLATED_ANON,	/* Temporary isolated pages from anon lru */
 	NR_ISOLATED_FILE,	/* Temporary isolated pages from file lru */
@@ -150,7 +187,18 @@ enum zone_stat_item {
 	NUMA_OTHER,		/* allocation from other node */
 #endif
 	NR_ANON_TRANSPARENT_HUGEPAGES,
+<<<<<<< HEAD
 	NR_FREE_CMA_PAGES,
+=======
+#ifdef CONFIG_DMA_CMA
+	NR_FREE_CMA_PAGES,
+#endif
+
+#ifdef CONFIG_UKSM
+  NR_UKSM_ZERO_PAGES,
+#endif
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	NR_VM_ZONE_STAT_ITEMS };
 
 /*
@@ -175,6 +223,7 @@ enum lru_list {
 	NR_LRU_LISTS
 };
 
+<<<<<<< HEAD
 #define for_each_lru(lru) for (lru = 0; lru < NR_LRU_LISTS; lru++)
 
 #define for_each_evictable_lru(lru) for (lru = 0; lru <= LRU_ACTIVE_FILE; lru++)
@@ -212,6 +261,37 @@ struct lruvec {
 #define ISOLATE_ASYNC_MIGRATE	((__force isolate_mode_t)0x4)
 /* Isolate unevictable pages */
 #define ISOLATE_UNEVICTABLE	((__force isolate_mode_t)0x8)
+=======
+#define for_each_lru(l) for (l = 0; l < NR_LRU_LISTS; l++)
+
+#define for_each_evictable_lru(l) for (l = 0; l <= LRU_ACTIVE_FILE; l++)
+
+static inline int is_file_lru(enum lru_list l)
+{
+	return (l == LRU_INACTIVE_FILE || l == LRU_ACTIVE_FILE);
+}
+
+static inline int is_active_lru(enum lru_list l)
+{
+	return (l == LRU_ACTIVE_ANON || l == LRU_ACTIVE_FILE);
+}
+
+static inline int is_unevictable_lru(enum lru_list l)
+{
+	return (l == LRU_UNEVICTABLE);
+}
+
+/* Isolate inactive pages */
+#define ISOLATE_INACTIVE	((__force isolate_mode_t)0x1)
+/* Isolate active pages */
+#define ISOLATE_ACTIVE		((__force isolate_mode_t)0x2)
+/* Isolate clean file */
+#define ISOLATE_CLEAN		((__force isolate_mode_t)0x4)
+/* Isolate unmapped file */
+#define ISOLATE_UNMAPPED	((__force isolate_mode_t)0x8)
+/* Isolate for asynchronous migration */
+#define ISOLATE_ASYNC_MIGRATE	((__force isolate_mode_t)0x10)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* LRU Isolation modes. */
 typedef unsigned __bitwise__ isolate_mode_t;
@@ -356,12 +436,15 @@ struct zone {
 	 */
 	unsigned long		lowmem_reserve[MAX_NR_ZONES];
 
+<<<<<<< HEAD
 	/*
 	 * This is a per-zone reserve of pages that should not be
 	 * considered dirtyable memory.
 	 */
 	unsigned long		dirty_balance_reserve;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_NUMA
 	int node;
 	/*
@@ -375,6 +458,7 @@ struct zone {
 	 * free areas of different sizes
 	 */
 	spinlock_t		lock;
+<<<<<<< HEAD
 #if defined CONFIG_COMPACTION || defined CONFIG_CMA
 	/* Set to true when the PG_migrate_skip bits should be cleared */
 	bool			compact_blockskip_flush;
@@ -383,12 +467,25 @@ struct zone {
 	unsigned long		compact_cached_free_pfn;
 	unsigned long		compact_cached_migrate_pfn;
 #endif
+=======
+	int                     all_unreclaimable; /* All pages pinned */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_MEMORY_HOTPLUG
 	/* see spanned/present_pages for more description */
 	seqlock_t		span_seqlock;
 #endif
+<<<<<<< HEAD
 #ifdef CONFIG_CMA
 	bool			cma_alloc;
+=======
+#ifdef CONFIG_DMA_CMA
+	/*
+	 * CMA needs to increase watermark levels during the allocation
+	 * process to make sure that the system is not starved.
+	 */
+	unsigned long       min_cma_pages;
+	bool                cma_alloc;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	struct free_area	free_area[MAX_ORDER];
 
@@ -408,14 +505,24 @@ struct zone {
 	 */
 	unsigned int		compact_considered;
 	unsigned int		compact_defer_shift;
+<<<<<<< HEAD
 	int			compact_order_failed;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 	ZONE_PADDING(_pad1_)
 
 	/* Fields commonly accessed by the page reclaim scanner */
+<<<<<<< HEAD
 	spinlock_t		lru_lock;
 	struct lruvec		lruvec;
+=======
+	spinlock_t		lru_lock;	
+	struct zone_lru {
+		struct list_head list;
+	} lru[NR_LRU_LISTS];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	struct zone_reclaim_stat reclaim_stat;
 
@@ -652,13 +759,21 @@ struct zonelist {
 #endif
 };
 
+<<<<<<< HEAD
 #ifdef CONFIG_HAVE_MEMBLOCK_NODE_MAP
+=======
+#ifdef CONFIG_ARCH_POPULATES_NODE_MAP
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct node_active_region {
 	unsigned long start_pfn;
 	unsigned long end_pfn;
 	int nid;
 };
+<<<<<<< HEAD
 #endif /* CONFIG_HAVE_MEMBLOCK_NODE_MAP */
+=======
+#endif /* CONFIG_ARCH_POPULATES_NODE_MAP */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef CONFIG_DISCONTIGMEM
 /* The array of struct pages - for discontigmem use pgdat->lmem_map */
@@ -706,7 +821,11 @@ typedef struct pglist_data {
 					     range, including holes */
 	int node_id;
 	wait_queue_head_t kswapd_wait;
+<<<<<<< HEAD
 	struct task_struct *kswapd;
+=======
+	struct task_struct *kswapd;	/* Protected by lock_memory_hotplug() */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int kswapd_max_order;
 	enum zone_type classzone_idx;
 } pg_data_t;
@@ -774,7 +893,11 @@ extern int movable_zone;
 
 static inline int zone_movable_is_highmem(void)
 {
+<<<<<<< HEAD
 #if defined(CONFIG_HIGHMEM) && defined(CONFIG_HAVE_MEMBLOCK_NODE)
+=======
+#if defined(CONFIG_HIGHMEM) && defined(CONFIG_ARCH_POPULATES_NODE_MAP)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return movable_zone == ZONE_HIGHMEM;
 #else
 	return 0;
@@ -992,7 +1115,11 @@ static inline struct zoneref *first_zones_zonelist(struct zonelist *zonelist,
 #endif
 
 #if !defined(CONFIG_HAVE_ARCH_EARLY_PFN_TO_NID) && \
+<<<<<<< HEAD
 	!defined(CONFIG_HAVE_MEMBLOCK_NODE_MAP)
+=======
+	!defined(CONFIG_ARCH_POPULATES_NODE_MAP)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline unsigned long early_pfn_to_nid(unsigned long pfn)
 {
 	return 0;
@@ -1162,10 +1289,14 @@ static inline int pfn_present(unsigned long pfn)
 #define pfn_to_nid(pfn)		(0)
 #endif
 
+<<<<<<< HEAD
 #ifndef early_pfn_valid
 #define early_pfn_valid(pfn)	pfn_valid(pfn)
 #endif
 
+=======
+#define early_pfn_valid(pfn)	pfn_valid(pfn)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 void sparse_init(void);
 #else
 #define sparse_init()	do {} while (0)

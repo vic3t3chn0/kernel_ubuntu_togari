@@ -12,7 +12,10 @@
 #include <linux/netdevice.h>
 #include <linux/rtnetlink.h>
 #include <linux/rcupdate.h>
+<<<<<<< HEAD
 #include <linux/bug.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/jiffies.h>
 #include <net/neighbour.h>
 #include <asm/processor.h>
@@ -36,6 +39,7 @@ struct dst_entry {
 	struct net_device       *dev;
 	struct  dst_ops	        *ops;
 	unsigned long		_metrics;
+<<<<<<< HEAD
 	union {
 		unsigned long           expires;
 		/* point to where the dst_entry copied from */
@@ -43,6 +47,12 @@ struct dst_entry {
 	};
 	struct dst_entry	*path;
 	struct neighbour __rcu	*_neighbour;
+=======
+	unsigned long		expires;
+	struct dst_entry	*path;
+	struct neighbour __rcu	*_neighbour;
+	struct hh_cache		*hh;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_XFRM
 	struct xfrm_state	*xfrm;
 #else
@@ -51,6 +61,7 @@ struct dst_entry {
 	int			(*input)(struct sk_buff*);
 	int			(*output)(struct sk_buff*);
 
+<<<<<<< HEAD
 	int			flags;
 #define DST_HOST		0x0001
 #define DST_NOXFRM		0x0002
@@ -61,6 +72,8 @@ struct dst_entry {
 #define DST_NOPEER		0x0040
 #define DST_FAKE_RTABLE		0x0080
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	short			error;
 	short			obsolete;
 	unsigned short		header_len;	/* more space at head required */
@@ -76,7 +89,11 @@ struct dst_entry {
 	 * (L1_CACHE_SIZE would be too much)
 	 */
 #ifdef CONFIG_64BIT
+<<<<<<< HEAD
 	long			__pad_to_align_refcnt[2];
+=======
+	long			__pad_to_align_refcnt[1];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 	/*
 	 * __refcnt wants to be on a different cache line from
@@ -85,6 +102,17 @@ struct dst_entry {
 	atomic_t		__refcnt;	/* client references	*/
 	int			__use;
 	unsigned long		lastuse;
+<<<<<<< HEAD
+=======
+	int			flags;
+#define DST_HOST		0x0001
+#define DST_NOXFRM		0x0002
+#define DST_NOPOLICY		0x0004
+#define DST_NOHASH		0x0008
+#define DST_NOCACHE		0x0010
+#define DST_NOCOUNT		0x0020
+#define DST_XFRM_TUNNEL		0x0100
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	union {
 		struct dst_entry	*next;
 		struct rtable __rcu	*rt_next;
@@ -93,12 +121,20 @@ struct dst_entry {
 	};
 };
 
+<<<<<<< HEAD
 static inline struct neighbour *dst_get_neighbour_noref(struct dst_entry *dst)
+=======
+static inline struct neighbour *dst_get_neighbour(struct dst_entry *dst)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return rcu_dereference(dst->_neighbour);
 }
 
+<<<<<<< HEAD
 static inline struct neighbour *dst_get_neighbour_noref_raw(struct dst_entry *dst)
+=======
+static inline struct neighbour *dst_get_neighbour_raw(struct dst_entry *dst)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return rcu_dereference_raw(dst->_neighbour);
 }
@@ -212,7 +248,16 @@ dst_feature(const struct dst_entry *dst, u32 feature)
 
 static inline u32 dst_mtu(const struct dst_entry *dst)
 {
+<<<<<<< HEAD
 	return dst->ops->mtu(dst);
+=======
+	u32 mtu = dst_metric_raw(dst, RTAX_MTU);
+
+	if (!mtu)
+		mtu = dst->ops->default_mtu(dst);
+
+	return mtu;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /* RTT metrics are stored in milliseconds for user ABI, but used as jiffies */
@@ -327,6 +372,7 @@ static inline void skb_dst_force(struct sk_buff *skb)
 static inline void __skb_tunnel_rx(struct sk_buff *skb, struct net_device *dev)
 {
 	skb->dev = dev;
+<<<<<<< HEAD
 
 	/*
 	 * Clear rxhash so that we can recalulate the hash for the
@@ -335,6 +381,9 @@ static inline void __skb_tunnel_rx(struct sk_buff *skb, struct net_device *dev)
 	 */
 	if (!skb->l4_rxhash)
 		skb->rxhash = 0;
+=======
+	skb->rxhash = 0;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	skb_set_queue_mapping(skb, 0);
 	skb_dst_drop(skb);
 	nf_reset(skb);
@@ -399,17 +448,24 @@ static inline void dst_confirm(struct dst_entry *dst)
 		struct neighbour *n;
 
 		rcu_read_lock();
+<<<<<<< HEAD
 		n = dst_get_neighbour_noref(dst);
+=======
+		n = dst_get_neighbour(dst);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		neigh_confirm(n);
 		rcu_read_unlock();
 	}
 }
 
+<<<<<<< HEAD
 static inline struct neighbour *dst_neigh_lookup(const struct dst_entry *dst, const void *daddr)
 {
 	return dst->ops->neigh_lookup(dst, daddr);
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline void dst_link_failure(struct sk_buff *skb)
 {
 	struct dst_entry *dst = skb_dst(skb);

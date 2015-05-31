@@ -1,6 +1,10 @@
 /* linux/arch/arm/plat-s5p/dev-mfc.c
  *
+<<<<<<< HEAD
  * Copyright (C) 2010-2011 Samsung Electronics Co.Ltd
+=======
+ * Copyright (c) 2011 Samsung Electronics
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * Base S5P MFC resource and device definitions
  *
@@ -9,6 +13,7 @@
  * published by the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 
 #include <linux/kernel.h>
 #include <linux/interrupt.h>
@@ -71,3 +76,42 @@ static int __init s5p_mfc_memory_init(void)
 	return 0;
 }
 device_initcall(s5p_mfc_memory_init);
+=======
+#include <linux/kernel.h>
+#include <linux/dma-mapping.h>
+#include <linux/platform_device.h>
+#include <linux/interrupt.h>
+#include <linux/ioport.h>
+#include <mach/map.h>
+
+static struct resource s5p_mfc_resource[] = {
+	[0] = {
+		.start	= S5P_PA_MFC,
+		.end	= S5P_PA_MFC + SZ_64K - 1,
+		.flags	= IORESOURCE_MEM,
+	},
+	[1] = {
+		.start	= IRQ_MFC,
+		.end	= IRQ_MFC,
+		.flags	= IORESOURCE_IRQ,
+	},
+};
+
+#if defined(CONFIG_DMA_CMA) && defined(CONFIG_USE_MFC_CMA)
+static u64 s5p_mfc_dma_mask = DMA_BIT_MASK(32);
+#endif
+
+struct platform_device s5p_device_mfc = {
+	.name		= "s3c-mfc",
+	.id		= -1,
+	.num_resources	= ARRAY_SIZE(s5p_mfc_resource),
+	.resource	= s5p_mfc_resource,
+#if defined(CONFIG_DMA_CMA) && defined(CONFIG_USE_MFC_CMA)
+	.dev		= {
+		.dma_mask	= &s5p_mfc_dma_mask,
+		.coherent_dma_mask = DMA_BIT_MASK(32),
+	},
+#endif
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

@@ -58,12 +58,20 @@ nilfs_mdt_insert_new_block(struct inode *inode, unsigned long block,
 
 	set_buffer_mapped(bh);
 
+<<<<<<< HEAD
 	kaddr = kmap_atomic(bh->b_page);
+=======
+	kaddr = kmap_atomic(bh->b_page, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	memset(kaddr + bh_offset(bh), 0, 1 << inode->i_blkbits);
 	if (init_block)
 		init_block(inode, bh, kaddr);
 	flush_dcache_page(bh->b_page);
+<<<<<<< HEAD
 	kunmap_atomic(kaddr);
+=======
+	kunmap_atomic(kaddr, KM_USER0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	set_buffer_uptodate(bh);
 	mark_buffer_dirty(bh);

@@ -86,6 +86,13 @@ config ARCH_SPARSEMEM_ENABLE
 	def_bool y
 	select SPARSEMEM_STATIC
 
+<<<<<<< HEAD
+=======
+config CAVIUM_OCTEON_HELPER
+	def_bool y
+	depends on OCTEON_ETHERNET || PCI
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config IOMMU_HELPER
 	bool
 

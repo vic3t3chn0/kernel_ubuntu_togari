@@ -7,8 +7,12 @@
  */
 
 #include <linux/rational.h>
+<<<<<<< HEAD
 #include <linux/compiler.h>
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * calculate best rational approximation for a given fraction

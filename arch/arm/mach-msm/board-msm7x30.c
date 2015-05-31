@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -9,14 +13,24 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+<<<<<<< HEAD
  */
 
 #include <linux/err.h>
+=======
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/kernel.h>
 #include <linux/irq.h>
 #include <linux/gpio.h>
 #include <linux/platform_device.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/bootmem.h>
 #include <linux/io.h>
 #ifdef CONFIG_SPI_QSD
@@ -7264,10 +7278,90 @@ static void __init msm7x30_allocate_memory_regions(void)
 	pr_debug("allocating %lu bytes at %p (%lx physical) for v4l2\n",
 		size, addr, __pa(addr));
 #endif
+=======
+#include <linux/io.h>
+#include <linux/smsc911x.h>
+#include <linux/usb/msm_hsusb.h>
+#include <linux/clkdev.h>
+
+#include <asm/mach-types.h>
+#include <asm/mach/arch.h>
+#include <asm/memory.h>
+#include <asm/setup.h>
+
+#include <mach/gpio.h>
+#include <mach/board.h>
+#include <mach/msm_iomap.h>
+#include <mach/dma.h>
+
+#include <mach/vreg.h>
+#include "devices.h"
+#include "gpiomux.h"
+#include "proc_comm.h"
+
+extern struct sys_timer msm_timer;
+
+static int hsusb_phy_init_seq[] = {
+	0x30, 0x32,	/* Enable and set Pre-Emphasis Depth to 20% */
+	0x02, 0x36,	/* Disable CDR Auto Reset feature */
+	-1
+};
+
+static struct msm_otg_platform_data msm_otg_pdata = {
+	.phy_init_seq		= hsusb_phy_init_seq,
+	.mode                   = USB_PERIPHERAL,
+	.otg_control		= OTG_PHY_CONTROL,
+};
+
+struct msm_gpiomux_config msm_gpiomux_configs[GPIOMUX_NGPIOS] = {
+#ifdef CONFIG_SERIAL_MSM_CONSOLE
+	[49] = { /* UART2 RFR */
+		.suspended = GPIOMUX_DRV_2MA | GPIOMUX_PULL_DOWN |
+			     GPIOMUX_FUNC_2 | GPIOMUX_VALID,
+	},
+	[50] = { /* UART2 CTS */
+		.suspended = GPIOMUX_DRV_2MA | GPIOMUX_PULL_DOWN |
+			     GPIOMUX_FUNC_2 | GPIOMUX_VALID,
+	},
+	[51] = { /* UART2 RX */
+		.suspended = GPIOMUX_DRV_2MA | GPIOMUX_PULL_DOWN |
+			     GPIOMUX_FUNC_2 | GPIOMUX_VALID,
+	},
+	[52] = { /* UART2 TX */
+		.suspended = GPIOMUX_DRV_2MA | GPIOMUX_PULL_DOWN |
+			     GPIOMUX_FUNC_2 | GPIOMUX_VALID,
+	},
+#endif
+};
+
+static struct platform_device *devices[] __initdata = {
+#if defined(CONFIG_SERIAL_MSM) || defined(CONFIG_MSM_SERIAL_DEBUGGER)
+        &msm_device_uart2,
+#endif
+	&msm_device_smd,
+	&msm_device_otg,
+	&msm_device_hsusb,
+	&msm_device_hsusb_host,
+};
+
+static void __init msm7x30_init_irq(void)
+{
+	msm_init_irq();
+}
+
+static void __init msm7x30_init(void)
+{
+	msm_device_otg.dev.platform_data = &msm_otg_pdata;
+	msm_device_hsusb.dev.parent = &msm_device_otg.dev;
+	msm_device_hsusb_host.dev.parent = &msm_device_otg.dev;
+
+	platform_add_devices(devices, ARRAY_SIZE(devices));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static void __init msm7x30_map_io(void)
 {
+<<<<<<< HEAD
 	msm_shared_ram_phys = 0x00100000;
 	msm_map_msm7x30_io();
 	if (socinfo_init() < 0)
@@ -7372,4 +7466,32 @@ MACHINE_START(MSM8X55_SVLTE_FFA, "QCT MSM8X55 SVLTE FFA")
 	.init_early = msm7x30_init_early,
 	.handle_irq = vic_handle_irq,
 	.fixup = msm7x30_fixup,
+=======
+	msm_map_msm7x30_io();
+	msm_clock_init(msm_clocks_7x30, msm_num_clocks_7x30);
+}
+
+MACHINE_START(MSM7X30_SURF, "QCT MSM7X30 SURF")
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
+	.map_io = msm7x30_map_io,
+	.init_irq = msm7x30_init_irq,
+	.init_machine = msm7x30_init,
+	.timer = &msm_timer,
+MACHINE_END
+
+MACHINE_START(MSM7X30_FFA, "QCT MSM7X30 FFA")
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
+	.map_io = msm7x30_map_io,
+	.init_irq = msm7x30_init_irq,
+	.init_machine = msm7x30_init,
+	.timer = &msm_timer,
+MACHINE_END
+
+MACHINE_START(MSM7X30_FLUID, "QCT MSM7X30 FLUID")
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
+	.map_io = msm7x30_map_io,
+	.init_irq = msm7x30_init_irq,
+	.init_machine = msm7x30_init,
+	.timer = &msm_timer,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

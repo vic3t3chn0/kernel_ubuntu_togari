@@ -138,6 +138,7 @@
 				clock-frequency = <0>; /* Filled in by zImage */
 				interrupts = <0x5 0x1>;
 				interrupt-parent = <&UIC1>;
+<<<<<<< HEAD
 
 				nor_flash@0,0 {
 					compatible = "amd,s29gl256n", "cfi-flash";
@@ -174,6 +175,8 @@
 						reg = <0x03f80000 0x00080000>;
 					};
 				};
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			};
 
 			UART0: serial@ef600300 {

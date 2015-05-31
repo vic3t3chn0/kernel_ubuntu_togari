@@ -10,8 +10,11 @@
  *
  */
 
+<<<<<<< HEAD
 #ifndef _LINUX_ISDN_DIVERTIF_H
 #define _LINUX_ISDN_DIVERTIF_H
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /***********************************************************/
 /* magic value is also used to control version information */
@@ -47,5 +50,8 @@ typedef struct
 /*********************/
 extern int DIVERT_REG_NAME(isdn_divert_if *);
 #endif
+<<<<<<< HEAD
 
 #endif /* _LINUX_ISDN_DIVERTIF_H */
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

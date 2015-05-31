@@ -13,6 +13,11 @@
 
 #ifndef __ASSEMBLY__
 
+<<<<<<< HEAD
+=======
+typedef unsigned short umode_t;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* A address type so that arithmetic can be done on it & it can be upgraded to
    64 bit when necessary 
 */

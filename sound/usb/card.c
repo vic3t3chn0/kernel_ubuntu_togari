@@ -47,8 +47,11 @@
 #include <linux/mutex.h>
 #include <linux/usb/audio.h>
 #include <linux/usb/audio-v2.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/switch.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <sound/control.h>
 #include <sound/core.h>
@@ -67,9 +70,15 @@
 #include "helper.h"
 #include "debug.h"
 #include "pcm.h"
+<<<<<<< HEAD
 #include "format.h"
 #include "power.h"
 #include "stream.h"
+=======
+#include "urb.h"
+#include "format.h"
+#include "power.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 MODULE_AUTHOR("Takashi Iwai <tiwai@suse.de>");
 MODULE_DESCRIPTION("USB Audio");
@@ -79,15 +88,25 @@ MODULE_SUPPORTED_DEVICE("{{Generic,USB Audio}}");
 
 static int index[SNDRV_CARDS] = SNDRV_DEFAULT_IDX;	/* Index 0-MAX */
 static char *id[SNDRV_CARDS] = SNDRV_DEFAULT_STR;	/* ID for this card */
+<<<<<<< HEAD
 static bool enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;/* Enable this card */
+=======
+static int enable[SNDRV_CARDS] = SNDRV_DEFAULT_ENABLE_PNP;/* Enable this card */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Vendor/product IDs for this card */
 static int vid[SNDRV_CARDS] = { [0 ... (SNDRV_CARDS-1)] = -1 };
 static int pid[SNDRV_CARDS] = { [0 ... (SNDRV_CARDS-1)] = -1 };
 static int nrpacks = 8;		/* max. number of packets per urb */
+<<<<<<< HEAD
 static bool async_unlink = 1;
 static int device_setup[SNDRV_CARDS]; /* device parameter for this card */
 static bool ignore_ctl_error;
 struct switch_dev *usbaudiosdev;
+=======
+static int async_unlink = 1;
+static int device_setup[SNDRV_CARDS]; /* device parameter for this card */
+static int ignore_ctl_error;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 module_param_array(index, int, NULL, 0444);
 MODULE_PARM_DESC(index, "Index value for the USB audio adapter.");
@@ -188,7 +207,11 @@ static int snd_usb_create_stream(struct snd_usb_audio *chip, int ctrlif, int int
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (! snd_usb_parse_audio_interface(chip, interface)) {
+=======
+	if (! snd_usb_parse_audio_endpoints(chip, interface)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		usb_set_interface(dev, interface, 0); /* reset the current interface */
 		usb_driver_claim_interface(&usb_audio_driver, iface, (void *)-1L);
 		return -EINVAL;
@@ -205,6 +228,7 @@ static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
 	struct usb_device *dev = chip->dev;
 	struct usb_host_interface *host_iface;
 	struct usb_interface_descriptor *altsd;
+<<<<<<< HEAD
 	struct usb_interface *usb_iface;
 	void *control_header;
 	int i, protocol;
@@ -223,6 +247,13 @@ static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
 		return -EINVAL;
 	}
 
+=======
+	void *control_header;
+	int i, protocol;
+
+	/* find audiocontrol interface */
+	host_iface = &usb_ifnum_to_if(dev, ctrlif)->altsetting[0];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	control_header = snd_usb_find_csint_desc(host_iface->extra,
 						 host_iface->extralen,
 						 NULL, UAC_HEADER);
@@ -261,7 +292,12 @@ static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
 
 	case UAC_VERSION_2: {
 		struct usb_interface_assoc_descriptor *assoc =
+<<<<<<< HEAD
 						usb_iface->intf_assoc;
+=======
+			usb_ifnum_to_if(dev, ctrlif)->intf_assoc;
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!assoc) {
 			snd_printk(KERN_ERR "Audio class v2 interfaces need an interface association\n");
 			return -EINVAL;
@@ -277,7 +313,11 @@ static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
 		break;
 	}
 	}
+<<<<<<< HEAD
 	switch_set_state(usbaudiosdev, 1);
+=======
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return 0;
 }
 
@@ -350,7 +390,11 @@ static int snd_usb_audio_create(struct usb_device *dev, int idx,
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 	mutex_init(&chip->shutdown_mutex);
+=======
+	init_rwsem(&chip->shutdown_rwsem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	chip->index = idx;
 	chip->dev = dev;
 	chip->card = card;
@@ -448,10 +492,16 @@ static int snd_usb_audio_create(struct usb_device *dev, int idx,
  * only at the first time.  the successive calls of this function will
  * append the pcm interface to the corresponding card.
  */
+<<<<<<< HEAD
 static struct snd_usb_audio *
 snd_usb_audio_probe(struct usb_device *dev,
 		    struct usb_interface *intf,
 		    const struct usb_device_id *usb_id)
+=======
+static void *snd_usb_audio_probe(struct usb_device *dev,
+				 struct usb_interface *intf,
+				 const struct usb_device_id *usb_id)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	const struct snd_usb_audio_quirk *quirk = (const struct snd_usb_audio_quirk *)usb_id->driver_info;
 	int i, err;
@@ -559,6 +609,7 @@ snd_usb_audio_probe(struct usb_device *dev,
  * we need to take care of counter, since disconnection can be called also
  * many times as well as usb_audio_probe().
  */
+<<<<<<< HEAD
 static void snd_usb_audio_disconnect(struct usb_device *dev,
 				     struct snd_usb_audio *chip)
 {
@@ -572,6 +623,24 @@ static void snd_usb_audio_disconnect(struct usb_device *dev,
 	mutex_lock(&register_mutex);
 	mutex_lock(&chip->shutdown_mutex);
 	chip->shutdown = 1;
+=======
+static void snd_usb_audio_disconnect(struct usb_device *dev, void *ptr)
+{
+	struct snd_usb_audio *chip;
+	struct snd_card *card;
+	struct list_head *p;
+
+	if (ptr == (void *)-1L)
+		return;
+
+	chip = ptr;
+	card = chip->card;
+	down_write(&chip->shutdown_rwsem);
+	chip->shutdown = 1;
+	up_write(&chip->shutdown_rwsem);
+
+	mutex_lock(&register_mutex);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	chip->num_interfaces--;
 	if (chip->num_interfaces <= 0) {
 		snd_card_disconnect(card);
@@ -588,6 +657,7 @@ static void snd_usb_audio_disconnect(struct usb_device *dev,
 			snd_usb_mixer_disconnect(p);
 		}
 		usb_chip[chip->index] = NULL;
+<<<<<<< HEAD
 		mutex_unlock(&chip->shutdown_mutex);
 		mutex_unlock(&register_mutex);
 		snd_card_free_when_closed(card);
@@ -596,6 +666,13 @@ static void snd_usb_audio_disconnect(struct usb_device *dev,
 		mutex_unlock(&register_mutex);
 	}
 	switch_set_state(usbaudiosdev, 0);
+=======
+		mutex_unlock(&register_mutex);
+		snd_card_free_when_closed(card);
+	} else {
+		mutex_unlock(&register_mutex);
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 /*
@@ -604,7 +681,11 @@ static void snd_usb_audio_disconnect(struct usb_device *dev,
 static int usb_audio_probe(struct usb_interface *intf,
 			   const struct usb_device_id *id)
 {
+<<<<<<< HEAD
 	struct snd_usb_audio *chip;
+=======
+	void *chip;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	chip = snd_usb_audio_probe(interface_to_usbdev(intf), intf, id);
 	if (chip) {
 		usb_set_intfdata(intf, chip);
@@ -625,16 +706,30 @@ int snd_usb_autoresume(struct snd_usb_audio *chip)
 {
 	int err = -ENODEV;
 
+<<<<<<< HEAD
 	if (!chip->shutdown && !chip->probing)
 		err = usb_autopm_get_interface(chip->pm_intf);
+=======
+	down_read(&chip->shutdown_rwsem);
+	if (!chip->shutdown && !chip->probing)
+		err = usb_autopm_get_interface(chip->pm_intf);
+	up_read(&chip->shutdown_rwsem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return err;
 }
 
 void snd_usb_autosuspend(struct snd_usb_audio *chip)
 {
+<<<<<<< HEAD
 	if (!chip->shutdown && !chip->probing)
 		usb_autopm_put_interface(chip->pm_intf);
+=======
+	down_read(&chip->shutdown_rwsem);
+	if (!chip->shutdown && !chip->probing)
+		usb_autopm_put_interface(chip->pm_intf);
+	up_read(&chip->shutdown_rwsem);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static int usb_audio_suspend(struct usb_interface *intf, pm_message_t message)
@@ -647,7 +742,11 @@ static int usb_audio_suspend(struct usb_interface *intf, pm_message_t message)
 	if (chip == (void *)-1L)
 		return 0;
 
+<<<<<<< HEAD
 	if (!PMSG_IS_AUTO(message)) {
+=======
+	if (!(message.event & PM_EVENT_AUTO)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		snd_power_change_state(chip->card, SNDRV_CTL_POWER_D3hot);
 		if (!chip->num_suspended_intf++) {
 			list_for_each(p, &chip->pcm_list) {
@@ -728,11 +827,15 @@ static struct usb_driver usb_audio_driver = {
 
 static int __init snd_usb_audio_init(void)
 {
+<<<<<<< HEAD
 	int err;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (nrpacks < 1 || nrpacks > MAX_PACKS) {
 		printk(KERN_WARNING "invalid nrpacks value.\n");
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 
 	usbaudiosdev = kzalloc(sizeof(*usbaudiosdev), GFP_KERNEL);
 	if (!usbaudiosdev) {
@@ -747,13 +850,18 @@ static int __init snd_usb_audio_init(void)
 		pr_err("Usb-audio switch registration failed\n");
 	else
 		pr_debug("usb hs_detected\n");
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return usb_register(&usb_audio_driver);
 }
 
 static void __exit snd_usb_audio_cleanup(void)
 {
 	usb_deregister(&usb_audio_driver);
+<<<<<<< HEAD
 	kfree(usbaudiosdev);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 module_init(snd_usb_audio_init);

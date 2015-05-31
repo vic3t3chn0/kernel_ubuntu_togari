@@ -15,6 +15,10 @@ struct mv643xx_eth_platform_data;
 struct mv_sata_platform_data;
 
 extern struct sys_timer dove_timer;
+<<<<<<< HEAD
+=======
+extern struct mbus_dram_target_info dove_mbus_dram_info;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * Basic Dove init functions used early by machine-setup.
@@ -38,6 +42,9 @@ void dove_spi1_init(void);
 void dove_i2c_init(void);
 void dove_sdio0_init(void);
 void dove_sdio1_init(void);
+<<<<<<< HEAD
 void dove_restart(char, const char *);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

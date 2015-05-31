@@ -4,7 +4,11 @@
 
 # Object file lists.
 
+<<<<<<< HEAD
 obj-y			:= common.o
+=======
+obj-y			:= irq.o mm.o time.o
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 obj-m			:=
 obj-n			:=
 obj-			:=

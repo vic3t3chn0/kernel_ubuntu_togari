@@ -1,7 +1,10 @@
 /*
   FUSE: Filesystem in Userspace
   Copyright (C) 2001-2008  Miklos Szeredi <miklos@szeredi.hu>
+<<<<<<< HEAD
   Copyright (C) 2013 Sony Mobile Communications AB.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
   This program can be distributed under the terms of the GNU GPL.
   See the file COPYING.
@@ -45,10 +48,17 @@
     doing the mount will be allowed to access the filesystem */
 #define FUSE_ALLOW_OTHER         (1 << 1)
 
+<<<<<<< HEAD
 /** If the FUSE_ALLOW_UTIME_GRP flag is given, then call to utime() is
     allowed for the current process if it's in the same group as the
     file and if the file's group is writeable */
 #define FUSE_ALLOW_UTIME_GRP     (1 << 2)
+=======
+/** If the FUSE_HANDLE_RT_CLASS flag is given,
+    then fuse handle RT class I/O in different request queue  */
+#define FUSE_HANDLE_RT_CLASS   (1 << 2)
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /** List of active connections */
 extern struct list_head fuse_conn_list;
@@ -86,7 +96,14 @@ struct fuse_inode {
 
 	/** The sticky bit in inode->i_mode may have been removed, so
 	    preserve the original mode */
+<<<<<<< HEAD
 	umode_t orig_i_mode;
+=======
+	mode_t orig_i_mode;
+
+	/** 64 bit inode number */
+	u64 orig_ino;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/** Version of last attribute change */
 	u64 attr_version;
@@ -141,9 +158,12 @@ struct fuse_file {
 
 	/** Wait queue head for poll */
 	wait_queue_head_t poll_wait;
+<<<<<<< HEAD
 
 	/** Has flock been performed on this file? */
 	bool flock:1;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /** One input argument of a request */
@@ -351,10 +371,17 @@ struct fuse_conn {
 	unsigned max_write;
 
 	/** Readers of the connection are waiting on this */
+<<<<<<< HEAD
 	wait_queue_head_t waitq;
 
 	/** The list of pending requests */
 	struct list_head pending;
+=======
+	wait_queue_head_t waitq[2];
+
+	/** The list of pending requests */
+	struct list_head pending[2];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/** The list of requests being processed */
 	struct list_head processing;
@@ -384,7 +411,11 @@ struct fuse_conn {
 	struct list_head bg_queue;
 
 	/** Pending interrupts */
+<<<<<<< HEAD
 	struct list_head interrupts;
+=======
+	struct list_head interrupts[2];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/** Queue of pending forgets */
 	struct fuse_forget_link forget_list_head;
@@ -457,7 +488,11 @@ struct fuse_conn {
 	/** Is removexattr not implemented by fs? */
 	unsigned no_removexattr:1;
 
+<<<<<<< HEAD
 	/** Are posix file locking primitives not implemented by fs? */
+=======
+	/** Are file locking primitives not implemented by fs? */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned no_lock:1;
 
 	/** Is access not implemented by fs? */
@@ -481,9 +516,12 @@ struct fuse_conn {
 	/** Don't apply umask to creation modes */
 	unsigned dont_mask:1;
 
+<<<<<<< HEAD
 	/** Are BSD file locking primitives not implemented by fs? */
 	unsigned no_flock:1;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/** The number of requests waiting for completion */
 	atomic_t num_waiting;
 
@@ -601,8 +639,12 @@ void fuse_release_common(struct file *file, int opcode);
 /**
  * Send FSYNC or FSYNCDIR request
  */
+<<<<<<< HEAD
 int fuse_fsync_common(struct file *file, loff_t start, loff_t end,
 		      int datasync, int isdir);
+=======
+int fuse_fsync_common(struct file *file, int datasync, int isdir);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * Notify poll wakeup
@@ -761,6 +803,7 @@ int fuse_reverse_inval_inode(struct super_block *sb, u64 nodeid,
 /**
  * File-system tells the kernel to invalidate parent attributes and
  * the dentry matching parent/name.
+<<<<<<< HEAD
  *
  * If the child_nodeid is non-zero and:
  *    - matches the inode number for the dentry matching parent/name,
@@ -770,6 +813,11 @@ int fuse_reverse_inval_inode(struct super_block *sb, u64 nodeid,
  */
 int fuse_reverse_inval_entry(struct super_block *sb, u64 parent_nodeid,
 			     u64 child_nodeid, struct qstr *name);
+=======
+ */
+int fuse_reverse_inval_entry(struct super_block *sb, u64 parent_nodeid,
+			     struct qstr *name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 int fuse_do_open(struct fuse_conn *fc, u64 nodeid, struct file *file,
 		 bool isdir);
@@ -777,8 +825,11 @@ ssize_t fuse_direct_io(struct file *file, const char __user *buf,
 		       size_t count, loff_t *ppos, int write);
 long fuse_do_ioctl(struct file *file, unsigned int cmd, unsigned long arg,
 		   unsigned int flags);
+<<<<<<< HEAD
 long fuse_ioctl_common(struct file *file, unsigned int cmd,
 		       unsigned long arg, unsigned int flags);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned fuse_file_poll(struct file *file, poll_table *wait);
 int fuse_dev_release(struct inode *inode, struct file *file);
 

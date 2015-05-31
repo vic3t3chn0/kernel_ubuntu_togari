@@ -18,4 +18,9 @@ extern struct amba_device ux500_pl031_device;
 extern struct platform_device u8500_dma40_device;
 extern struct platform_device ux500_ske_keypad_device;
 
+<<<<<<< HEAD
+=======
+void dma40_u8500ed_fixup(void);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

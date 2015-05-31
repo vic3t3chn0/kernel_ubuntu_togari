@@ -31,7 +31,11 @@
 
 #include <asm/hwrpb.h>
 #include <asm/ptrace.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/io.h>
 #include <asm/irq.h>
@@ -450,7 +454,11 @@ setup_smp(void)
 		smp_num_probed = 1;
 	}
 
+<<<<<<< HEAD
 	printk(KERN_INFO "SMP: %d CPUs probed -- cpu_present_mask = %lx\n",
+=======
+	printk(KERN_INFO "SMP: %d CPUs probed -- cpu_present_map = %lx\n",
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	       smp_num_probed, cpumask_bits(cpu_present_mask)[0]);
 }
 

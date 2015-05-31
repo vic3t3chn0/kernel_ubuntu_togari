@@ -93,7 +93,11 @@ struct kern_ipc_perm
 	gid_t		gid;
 	uid_t		cuid;
 	gid_t		cgid;
+<<<<<<< HEAD
 	umode_t		mode; 
+=======
+	mode_t		mode; 
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	unsigned long	seq;
 	void		*security;
 };

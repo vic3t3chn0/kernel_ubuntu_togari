@@ -19,8 +19,21 @@
 #ifndef __ASM_ARCH_HARDWARE_H__
 #define __ASM_ARCH_HARDWARE_H__
 
+<<<<<<< HEAD
 #include "ixp2000-regs.h"	/* Chipset Registers */
 
+=======
+/*
+ * This needs to be platform-specific?
+ */
+#define PCIBIOS_MIN_IO          0x00000000
+#define PCIBIOS_MIN_MEM         0x00000000
+
+#include "ixp2000-regs.h"	/* Chipset Registers */
+
+#define pcibios_assign_all_busses() 0
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Platform helper functions
  */

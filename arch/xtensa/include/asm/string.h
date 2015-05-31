@@ -118,4 +118,10 @@ extern void *memmove(void *__dest, __const__ void *__src, size_t __n);
 /* Don't build bcopy at all ...  */
 #define __HAVE_ARCH_BCOPY
 
+<<<<<<< HEAD
+=======
+#define __HAVE_ARCH_MEMSCAN
+#define memscan memchr
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif	/* _XTENSA_STRING_H */

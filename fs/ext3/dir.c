@@ -21,7 +21,16 @@
  *
  */
 
+<<<<<<< HEAD
 #include "ext3.h"
+=======
+#include <linux/fs.h>
+#include <linux/jbd.h>
+#include <linux/ext3_fs.h>
+#include <linux/buffer_head.h>
+#include <linux/slab.h>
+#include <linux/rbtree.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static unsigned char ext3_filetype_table[] = {
 	DT_UNKNOWN, DT_REG, DT_DIR, DT_CHR, DT_BLK, DT_FIFO, DT_SOCK, DT_LNK

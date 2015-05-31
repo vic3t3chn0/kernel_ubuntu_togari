@@ -32,7 +32,10 @@ static struct snd_soc_dai_link nuc900evb_ac97_dai = {
 
 static struct snd_soc_card nuc900evb_audio_machine = {
 	.name		= "NUC900EVB_AC97",
+<<<<<<< HEAD
 	.owner		= THIS_MODULE,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.dai_link	= &nuc900evb_ac97_dai,
 	.num_links	= 1,
 };

@@ -24,6 +24,15 @@ struct device;
 
 enum led_brightness {
 	LED_OFF		= 0,
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_MACH_Q1_BD)   || defined(CONFIG_MACH_U1_NA_USCC)
+	LED_BRIGHTNESS_LEVEL1	= 1,
+	LED_BRIGHTNESS_LEVEL2	= 2,
+	LED_BRIGHTNESS_LEVEL3	= 3,
+	LED_BRIGHTNESS_MAX_LEVEL	= LED_BRIGHTNESS_LEVEL3,
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	LED_HALF	= 127,
 	LED_FULL	= 255,
 };

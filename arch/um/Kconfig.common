@@ -8,8 +8,11 @@ config UML
 	default y
 	select HAVE_GENERIC_HARDIRQS
 	select GENERIC_IRQ_SHOW
+<<<<<<< HEAD
 	select GENERIC_CPU_DEVICES
 	select GENERIC_IO
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config MMU
 	bool

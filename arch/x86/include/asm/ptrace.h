@@ -131,9 +131,12 @@ struct pt_regs {
 #ifdef __KERNEL__
 
 #include <linux/init.h>
+<<<<<<< HEAD
 #ifdef CONFIG_PARAVIRT
 #include <asm/paravirt_types.h>
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct cpuinfo_x86;
 struct task_struct;
@@ -145,6 +148,10 @@ extern unsigned long
 convert_ip_to_linear(struct task_struct *child, struct pt_regs *regs);
 extern void send_sigtrap(struct task_struct *tsk, struct pt_regs *regs,
 			 int error_code, int si_code);
+<<<<<<< HEAD
+=======
+void signal_fault(struct pt_regs *regs, void __user *frame, char *where);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 extern long syscall_trace_enter(struct pt_regs *);
 extern void syscall_trace_leave(struct pt_regs *);
@@ -189,6 +196,7 @@ static inline int v8086_mode(struct pt_regs *regs)
 #endif
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_X86_64
 static inline bool user_64bit_mode(struct pt_regs *regs)
 {
@@ -220,6 +228,16 @@ static inline unsigned long kernel_stack_pointer(struct pt_regs *regs)
 	return regs->sp;
 #endif
 }
+=======
+#ifdef CONFIG_X86_32
+extern unsigned long kernel_stack_pointer(struct pt_regs *regs);
+#else
+static inline unsigned long kernel_stack_pointer(struct pt_regs *regs)
+{
+	return regs->sp;
+}
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define GET_IP(regs) ((regs)->ip)
 #define GET_FP(regs) ((regs)->bp)

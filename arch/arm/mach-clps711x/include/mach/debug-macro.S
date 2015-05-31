@@ -14,7 +14,11 @@
 #include <mach/hardware.h>
 #include <asm/hardware/clps7111.h>
 
+<<<<<<< HEAD
 		.macro	addruart, rp, rv, tmp
+=======
+		.macro	addruart, rp, rv
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifndef CONFIG_DEBUG_CLPS711X_UART2
 		mov	\rp, #0x0000	@ UART1
 #else

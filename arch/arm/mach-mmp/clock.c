@@ -88,6 +88,7 @@ unsigned long clk_get_rate(struct clk *clk)
 	return rate;
 }
 EXPORT_SYMBOL(clk_get_rate);
+<<<<<<< HEAD
 
 int clk_set_rate(struct clk *clk, unsigned long rate)
 {
@@ -103,3 +104,5 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
 	return ret;
 }
 EXPORT_SYMBOL(clk_set_rate);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

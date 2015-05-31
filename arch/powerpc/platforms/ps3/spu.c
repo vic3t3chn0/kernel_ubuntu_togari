@@ -22,7 +22,10 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/mmzone.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/io.h>
 #include <linux/mm.h>
 
@@ -154,7 +157,11 @@ static unsigned long get_vas_id(void)
 	u64 id;
 
 	lv1_get_logical_ppe_id(&id);
+<<<<<<< HEAD
 	lv1_get_virtual_address_space_id_of_ppe(&id);
+=======
+	lv1_get_virtual_address_space_id_of_ppe(id, &id);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	return id;
 }

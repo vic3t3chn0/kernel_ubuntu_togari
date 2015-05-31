@@ -12,6 +12,10 @@
 struct file;
 
 extern void fput(struct file *);
+<<<<<<< HEAD
+=======
+extern void drop_file_write_access(struct file *file);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct file_operations;
 struct vfsmount;

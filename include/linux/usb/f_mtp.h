@@ -39,7 +39,11 @@ struct mtp_file_range {
 	/* file descriptor for file to transfer */
 	int			fd;
 	/* offset in file for start of transfer */
+<<<<<<< HEAD
 	loff_t		offset;
+=======
+	loff_t  	offset;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* number of bytes to transfer */
 	int64_t		length;
 	/* MTP command ID for data header,
@@ -56,7 +60,11 @@ struct mtp_event {
 	/* size of the event */
 	size_t		length;
 	/* event data to send */
+<<<<<<< HEAD
 	void		*data;
+=======
+	void  		*data;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* Sends the specified file range to the host */

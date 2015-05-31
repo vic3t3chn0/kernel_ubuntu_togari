@@ -36,7 +36,13 @@
 
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
+<<<<<<< HEAD
 
+=======
+#ifdef CONFIG_USB_ANDROID
+#include <linux/switch.h>
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * USB function drivers should return USB_GADGET_DELAYED_STATUS if they
  * wish to delay the data/status stages of the control transfer till they
@@ -46,6 +52,12 @@
  */
 #define USB_GADGET_DELAYED_STATUS       0x7fff	/* Impossibly large value */
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_ANDROID
+struct usb_composite_dev;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct usb_configuration;
 
 /**
@@ -118,6 +130,18 @@ struct usb_function {
 
 	struct usb_configuration	*config;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
+	int	(*set_intf_num)(struct usb_function *f,
+			int intf_num, int index_num);
+	int	(*set_config_desc)(int conf_num);
+#endif
+#ifdef CONFIG_USB_ANDROID
+	/* disabled is zero if the function is enabled */
+	int				disabled;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* REVISIT:  bind() functions can be marked __init, which
 	 * makes trouble for section mismatch analysis.  See if
 	 * we can't restructure things to avoid mismatching.
@@ -141,14 +165,27 @@ struct usb_function {
 	void			(*suspend)(struct usb_function *);
 	void			(*resume)(struct usb_function *);
 
+<<<<<<< HEAD
 	/* USB 3.0 additions */
 	int			(*get_status)(struct usb_function *);
 	int			(*func_suspend)(struct usb_function *,
 						u8 suspend_opt);
+=======
+	int			(*get_status)(struct usb_function *);
+	int			(*func_suspend)(struct usb_function *,
+						u8 suspend_opt);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* private: */
 	/* internals */
 	struct list_head		list;
 	DECLARE_BITMAP(endpoints, 32);
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_ANDROID
+	struct device			*dev;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 int usb_add_function(struct usb_configuration *, struct usb_function *);
@@ -158,8 +195,29 @@ int usb_function_activate(struct usb_function *);
 
 int usb_interface_id(struct usb_configuration *, struct usb_function *);
 
+<<<<<<< HEAD
 int config_ep_by_speed(struct usb_gadget *g, struct usb_function *f,
 			struct usb_ep *_ep);
+=======
+#ifdef CONFIG_USB_ANDROID
+void usb_function_set_enabled(struct usb_function *, int);
+void usb_composite_force_reset(struct usb_composite_dev *);
+#endif
+/**
+ * ep_choose - select descriptor endpoint at current device speed
+ * @g: gadget, connected and running at some speed
+ * @hs: descriptor to use for high speed operation
+ * @fs: descriptor to use for full or low speed operation
+ */
+static inline struct usb_endpoint_descriptor *
+ep_choose(struct usb_gadget *g, struct usb_endpoint_descriptor *hs,
+		struct usb_endpoint_descriptor *fs)
+{
+	if (gadget_is_dualspeed(g) && g->speed == USB_SPEED_HIGH)
+		return hs;
+	return fs;
+}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define	MAX_CONFIG_INTERFACES		16	/* arbitrary; max 255 */
 
@@ -257,7 +315,10 @@ int usb_remove_config(struct usb_composite_dev *,
  *	identifiers.
  * @strings: tables of strings, keyed by identifiers assigned during bind()
  *	and language IDs provided in control requests
+<<<<<<< HEAD
  * @max_speed: Highest speed the driver supports.
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  * @needs_serial: set to 1 if the gadget needs userspace to provide
  * 	a serial number.  If one is not provided, warning will be printed.
  * @unbind: Reverses bind; called as a side effect of unregistering
@@ -285,9 +346,18 @@ struct usb_composite_driver {
 	const char				*iManufacturer;
 	const struct usb_device_descriptor	*dev;
 	struct usb_gadget_strings		**strings;
+<<<<<<< HEAD
 	enum usb_device_speed			max_speed;
 	unsigned		needs_serial:1;
 
+=======
+	unsigned		needs_serial:1;
+
+#ifdef CONFIG_USB_ANDROID
+	struct class		*class;
+	atomic_t		function_count;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int			(*unbind)(struct usb_composite_dev *);
 
 	void			(*disconnect)(struct usb_composite_dev *);
@@ -295,6 +365,13 @@ struct usb_composite_driver {
 	/* global suspend hooks */
 	void			(*suspend)(struct usb_composite_dev *);
 	void			(*resume)(struct usb_composite_dev *);
+<<<<<<< HEAD
+=======
+
+#ifdef CONFIG_USB_ANDROID
+	void			(*enable_function)(struct usb_function *f, int enable);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 extern int usb_composite_probe(struct usb_composite_driver *driver,
@@ -366,12 +443,33 @@ struct usb_composite_dev {
 	/* protects deactivations and delayed_status counts*/
 	spinlock_t			lock;
 
+<<<<<<< HEAD
 	/*
 	 * specify the mA units for the bMaxPower field in
 	 * the configuration descriptor. Should be 2mA for HS
 	 * and 8mA for SS.
 	 */
 	int vbus_draw_units;
+=======
+#ifdef CONFIG_USB_ANDROID
+	/* switch indicating connected/disconnected state */
+	struct switch_dev		sw_connected;
+	/* switch indicating current configuration */
+	struct switch_dev		sw_config;
+	/* current connected state for sw_connected */
+	bool				connected;
+
+	struct work_struct switch_work;
+#endif
+
+#ifdef CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE
+	/* used by enable_store function of android.c
+	 * to avoid signalling switch changes
+	 */
+	bool                            mute_switch;
+	bool                            force_disconnect;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 extern int usb_string_id(struct usb_composite_dev *c);

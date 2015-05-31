@@ -38,9 +38,12 @@ jiffies = jiffies_64 + 4;
 #endif
 SECTIONS
 {
+<<<<<<< HEAD
 	. = 0;
 	reloc_start = .;
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	. = KERNELBASE;
 
 /*
@@ -109,6 +112,14 @@ SECTIONS
 		__ptov_table_begin = .;
 		*(.ptov_fixup);
 		__ptov_table_end = .;
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_PPC_ISERIES
+		__dt_strings_start = .;
+		*(.dt_strings);
+		__dt_strings_end = .;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	.init.setup : AT(ADDR(.init.setup) - LOAD_OFFSET) {
@@ -165,6 +176,7 @@ SECTIONS
 	}
 #ifdef CONFIG_RELOCATABLE
 	. = ALIGN(8);
+<<<<<<< HEAD
 	.dynsym : AT(ADDR(.dynsym) - LOAD_OFFSET)
 	{
 #ifdef CONFIG_RELOCATABLE_PPC32
@@ -172,6 +184,9 @@ SECTIONS
 #endif
 		*(.dynsym)
 	}
+=======
+	.dynsym : AT(ADDR(.dynsym) - LOAD_OFFSET) { *(.dynsym) }
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.dynstr : AT(ADDR(.dynstr) - LOAD_OFFSET) { *(.dynstr) }
 	.dynamic : AT(ADDR(.dynamic) - LOAD_OFFSET)
 	{

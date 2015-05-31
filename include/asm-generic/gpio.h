@@ -4,8 +4,11 @@
 #include <linux/kernel.h>
 #include <linux/types.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
 #include <linux/of.h>
 #include <linux/pinctrl/pinctrl.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_GPIOLIB
 
@@ -43,11 +46,15 @@ static inline bool gpio_is_valid(int number)
 }
 
 struct device;
+<<<<<<< HEAD
 struct gpio;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct seq_file;
 struct module;
 struct device_node;
 
+<<<<<<< HEAD
 #ifdef CONFIG_PINCTRL
 /**
  * struct gpio_pin_range - pin range controlled by a gpio chip
@@ -68,6 +75,8 @@ void gpiochip_remove_pin_ranges(struct gpio_chip *chip);
 
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * struct gpio_chip - abstract a GPIO controller
  * @label: for diagnostics
@@ -150,6 +159,7 @@ struct gpio_chip {
 	 */
 	struct device_node *of_node;
 	int of_gpio_n_cells;
+<<<<<<< HEAD
 	int (*of_xlate)(struct gpio_chip *gc,
 		        const struct of_phandle_args *gpiospec, u32 *flags);
 #endif
@@ -161,20 +171,33 @@ struct gpio_chip {
 	 * corresponding pins for gpio usage.
 	 */
 	struct list_head pin_ranges;
+=======
+	int (*of_xlate)(struct gpio_chip *gc, struct device_node *np,
+		        const void *gpio_spec, u32 *flags);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 };
 
 extern const char *gpiochip_is_requested(struct gpio_chip *chip,
 			unsigned offset);
+<<<<<<< HEAD
 extern struct gpio_chip *gpio_to_chip(unsigned gpio);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int __must_check gpiochip_reserve(int start, int ngpio);
 
 /* add/remove chips */
 extern int gpiochip_add(struct gpio_chip *chip);
 extern int __must_check gpiochip_remove(struct gpio_chip *chip);
+<<<<<<< HEAD
 extern struct gpio_chip *gpiochip_find(const void *data,
 					int (*match)(struct gpio_chip *chip,
 						     const void *data));
+=======
+extern struct gpio_chip *gpiochip_find(void *data,
+					int (*match)(struct gpio_chip *chip,
+						     void *data));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 /* Always use the library code for GPIO management calls,
@@ -203,14 +226,32 @@ extern int __gpio_cansleep(unsigned gpio);
 
 extern int __gpio_to_irq(unsigned gpio);
 
+<<<<<<< HEAD
+=======
+/**
+ * struct gpio - a structure describing a GPIO with configuration
+ * @gpio:	the GPIO number
+ * @flags:	GPIO configuration as specified by GPIOF_*
+ * @label:	a literal description string of this GPIO
+ */
+struct gpio {
+	unsigned	gpio;
+	unsigned long	flags;
+	const char	*label;
+};
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern int gpio_request_one(unsigned gpio, unsigned long flags, const char *label);
 extern int gpio_request_array(const struct gpio *array, size_t num);
 extern void gpio_free_array(const struct gpio *array, size_t num);
 
+<<<<<<< HEAD
 /* bindings for managed devices that want to request gpios */
 int devm_gpio_request(struct device *dev, unsigned gpio, const char *label);
 void devm_gpio_free(struct device *dev, unsigned int gpio);
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #ifdef CONFIG_GPIO_SYSFS
 
 /*
@@ -245,13 +286,21 @@ static inline int gpio_cansleep(unsigned gpio)
 static inline int gpio_get_value_cansleep(unsigned gpio)
 {
 	might_sleep();
+<<<<<<< HEAD
 	return __gpio_get_value(gpio);
+=======
+	return gpio_get_value(gpio);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 static inline void gpio_set_value_cansleep(unsigned gpio, int value)
 {
 	might_sleep();
+<<<<<<< HEAD
 	__gpio_set_value(gpio, value);
+=======
+	gpio_set_value(gpio, value);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 #endif /* !CONFIG_GPIOLIB */

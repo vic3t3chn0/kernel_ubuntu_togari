@@ -23,6 +23,10 @@
 #include <asm/apic.h>
 #include <asm/cpufeature.h>
 #include <asm/desc.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <asm/cacheflush.h>
 #include <asm/debugreg.h>
 

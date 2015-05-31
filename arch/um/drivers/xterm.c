@@ -11,8 +11,15 @@
 #include <string.h>
 #include <termios.h>
 #include "chan_user.h"
+<<<<<<< HEAD
 #include "os.h"
 #include "um_malloc.h"
+=======
+#include "kern_constants.h"
+#include "os.h"
+#include "um_malloc.h"
+#include "user.h"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "xterm.h"
 
 struct xterm_chan {
@@ -121,7 +128,10 @@ static int xterm_open(int input, int output, int primary, void *d,
 		err = -errno;
 		printk(UM_KERN_ERR "xterm_open : unlink failed, errno = %d\n",
 		       errno);
+<<<<<<< HEAD
 		close(fd);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return err;
 	}
 	close(fd);

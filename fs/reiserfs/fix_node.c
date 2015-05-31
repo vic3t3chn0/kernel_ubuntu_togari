@@ -37,7 +37,11 @@
 #include <linux/time.h>
 #include <linux/slab.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include "reiserfs.h"
+=======
+#include <linux/reiserfs_fs.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/buffer_head.h>
 
 /* To make any changes in the tree we find a node, that contains item

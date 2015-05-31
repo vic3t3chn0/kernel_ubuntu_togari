@@ -229,7 +229,10 @@ source "net/sched/Kconfig"
 source "net/dcb/Kconfig"
 source "net/dns_resolver/Kconfig"
 source "net/batman-adv/Kconfig"
+<<<<<<< HEAD
 source "net/openvswitch/Kconfig"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 config RPS
 	boolean "RPS"
@@ -247,6 +250,7 @@ config XPS
 	depends on SMP && SYSFS && USE_GENERIC_SMP_HELPERS
 	default y
 
+<<<<<<< HEAD
 config NETPRIO_CGROUP
 	tristate "Network priority cgroup"
 	depends on CGROUPS
@@ -260,6 +264,8 @@ config BQL
 	select DQL
 	default y
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 config HAVE_BPF_JIT
 	bool
 
@@ -327,6 +333,11 @@ source "net/ax25/Kconfig"
 source "net/can/Kconfig"
 source "net/irda/Kconfig"
 source "net/bluetooth/Kconfig"
+<<<<<<< HEAD
+=======
+source "net/bluetooth_mgmt/Kconfig"
+source "net/bluetooth_tizen/Kconfig"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 source "net/rxrpc/Kconfig"
 
 config FIB_RULES
@@ -350,7 +361,10 @@ source "net/rfkill/Kconfig"
 source "net/9p/Kconfig"
 source "net/caif/Kconfig"
 source "net/ceph/Kconfig"
+<<<<<<< HEAD
 source "net/nfc/Kconfig"
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 
 endif   # if NET

@@ -10,10 +10,13 @@
 #ifndef __ASM_PROC_DOMAIN_H
 #define __ASM_PROC_DOMAIN_H
 
+<<<<<<< HEAD
 #ifndef __ASSEMBLY__
 #include <asm/barrier.h>
 #endif
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /*
  * Domain numbers
  *
@@ -31,6 +34,7 @@
  *
  * 36-bit addressing and supersections are only available on
  * CPUs based on ARMv6+ or the Intel XSC3 core.
+<<<<<<< HEAD
  *
  * We cannot use domain 0 for the kernel on QSD8x50 since the kernel domain
  * is set to manager mode when set_fs(KERNEL_DS) is called. Setting domain 0
@@ -38,6 +42,10 @@
  * invalid fault status and/or tlb corruption (CONFIG_VERIFY_PERMISSION_FAULT).
  */
 #if !defined(CONFIG_IO_36) && !defined(CONFIG_VERIFY_PERMISSION_FAULT)
+=======
+ */
+#ifndef CONFIG_IO_36
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define DOMAIN_KERNEL	0
 #define DOMAIN_TABLE	0
 #define DOMAIN_USER	1
@@ -92,9 +100,15 @@
  * instructions (inline assembly)
  */
 #ifdef CONFIG_CPU_USE_DOMAINS
+<<<<<<< HEAD
 #define TUSER(instr)	#instr "t"
 #else
 #define TUSER(instr)	#instr
+=======
+#define T(instr)	#instr "t"
+#else
+#define T(instr)	#instr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #else /* __ASSEMBLY__ */
@@ -104,9 +118,15 @@
  * instructions
  */
 #ifdef CONFIG_CPU_USE_DOMAINS
+<<<<<<< HEAD
 #define TUSER(instr)	instr ## t
 #else
 #define TUSER(instr)	instr
+=======
+#define T(instr)	instr ## t
+#else
+#define T(instr)	instr
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif
 
 #endif /* __ASSEMBLY__ */

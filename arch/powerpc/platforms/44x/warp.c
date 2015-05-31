@@ -18,7 +18,10 @@
 #include <linux/of_gpio.h>
 #include <linux/of_i2c.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #include <asm/machdep.h>
 #include <asm/prom.h>

@@ -102,11 +102,18 @@ static void __init dockstar_init(void)
 }
 
 MACHINE_START(DOCKSTAR, "Seagate FreeAgent DockStar")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+	.boot_params	= 0x00000100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.init_machine	= dockstar_init,
 	.map_io		= kirkwood_map_io,
 	.init_early	= kirkwood_init_early,
 	.init_irq	= kirkwood_init_irq,
 	.timer		= &kirkwood_timer,
+<<<<<<< HEAD
 	.restart	= kirkwood_restart,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 MACHINE_END

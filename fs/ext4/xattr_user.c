@@ -5,6 +5,10 @@
  * Copyright (C) 2001 by Andreas Gruenbacher, <a.gruenbacher@computer.org>
  */
 
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/string.h>
 #include <linux/fs.h>
 #include "ext4_jbd2.h"

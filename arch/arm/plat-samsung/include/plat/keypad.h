@@ -13,7 +13,40 @@
 #ifndef __PLAT_SAMSUNG_KEYPAD_H
 #define __PLAT_SAMSUNG_KEYPAD_H
 
+<<<<<<< HEAD
 #include <linux/input/samsung-keypad.h>
+=======
+#include <linux/input/matrix_keypad.h>
+#if defined(CONFIG_MACH_M0_GRANDECTC) || defined(CONFIG_MACH_IRON)
+#define SAMSUNG_MAX_ROWS	14
+#define SAMSUNG_MAX_COLS	  8
+#else
+#define SAMSUNG_MAX_ROWS	8
+#define SAMSUNG_MAX_COLS	8
+#endif
+
+/**
+ * struct samsung_keypad_platdata - Platform device data for Samsung Keypad.
+ * @keymap_data: pointer to &matrix_keymap_data.
+ * @rows: number of keypad row supported.
+ * @cols: number of keypad col supported.
+ * @no_autorepeat: disable key autorepeat.
+ * @wakeup: controls whether the device should be set up as wakeup source.
+ * @cfg_gpio: configure the GPIO.
+ *
+ * Initialisation data specific to either the machine or the platform
+ * for the device driver to use or call-back when configuring gpio.
+ */
+struct samsung_keypad_platdata {
+	const struct matrix_keymap_data	*keymap_data;
+	unsigned int rows;
+	unsigned int cols;
+	bool no_autorepeat;
+	bool wakeup;
+
+	void (*cfg_gpio)(unsigned int rows, unsigned int cols);
+};
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * samsung_keypad_set_platdata - Set platform data for Samsung Keypad device.

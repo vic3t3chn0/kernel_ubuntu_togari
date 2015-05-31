@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  *  linux/arch/m68k/kernel/traps.c
  *
@@ -1205,4 +1206,10 @@ asmlinkage void fpemu_signal(int signal, int code, void *addr)
 	info.si_addr = addr;
 	force_sig_info(signal, &info, current);
 }
+=======
+#ifdef CONFIG_MMU
+#include "traps_mm.c"
+#else
+#include "traps_no.c"
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif

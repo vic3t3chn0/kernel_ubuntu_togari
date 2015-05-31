@@ -213,6 +213,14 @@ static inline unsigned long __must_check copy_from_user(void *to,
 	return n;
 }
 
+<<<<<<< HEAD
+=======
+long __must_check strncpy_from_user(char *dst, const char __user *src,
+				    long count);
+long __must_check __strncpy_from_user(char *dst,
+				      const char __user *src, long count);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /**
  * strlen_user: - Get the size of a string in user space.
  * @str: The string to measure.

@@ -15,7 +15,10 @@
 #include <linux/serial_sci.h>
 #include <linux/io.h>
 #include <linux/mm.h>
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sh_timer.h>
 #include <linux/sh_dma.h>
 
@@ -133,7 +136,11 @@ static struct resource spi0_resources[] = {
 	[0] = {
 		.start	= 0xfe002000,
 		.end	= 0xfe0020ff,
+<<<<<<< HEAD
 		.flags	= IORESOURCE_MEM | IORESOURCE_MEM_32BIT,
+=======
+		.flags	= IORESOURCE_MEM,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	},
 	[1] = {
 		.start	= 86,
@@ -465,7 +472,10 @@ static struct resource sh7757_dmae0_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
 		.name	= "error_irq",
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.start	= 34,
 		.end	= 34,
 		.flags	= IORESOURCE_IRQ | IORESOURCE_IRQ_SHAREABLE,
@@ -487,7 +497,11 @@ static struct resource sh7757_dmae1_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
 		.name	= "error_irq",
+=======
+		/* DMA error */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.start	= 34,
 		.end	= 34,
 		.flags	= IORESOURCE_IRQ | IORESOURCE_IRQ_SHAREABLE,
@@ -557,7 +571,11 @@ static struct resource sh7757_dmae2_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
 		.name	= "error_irq",
+=======
+		/* DMA error */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.start	= 323,
 		.end	= 323,
 		.flags	= IORESOURCE_IRQ,
@@ -591,7 +609,11 @@ static struct resource sh7757_dmae3_resources[] = {
 		.flags	= IORESOURCE_MEM,
 	},
 	{
+<<<<<<< HEAD
 		.name	= "error_irq",
+=======
+		/* DMA error */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		.start	= 324,
 		.end	= 324,
 		.flags	= IORESOURCE_IRQ,
@@ -661,6 +683,7 @@ static struct platform_device spi0_device = {
 	.resource	= spi0_resources,
 };
 
+<<<<<<< HEAD
 static struct resource spi1_resources[] = {
 	{
 		.start	= 0xffd8ee70,
@@ -699,6 +722,8 @@ static struct platform_device rspi_device = {
 	.resource	= rspi_resources,
 };
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static struct resource usb_ehci_resources[] = {
 	[0] = {
 		.start	= 0xfe4f1000,
@@ -758,8 +783,11 @@ static struct platform_device *sh7757_devices[] __initdata = {
 	&dma2_device,
 	&dma3_device,
 	&spi0_device,
+<<<<<<< HEAD
 	&spi1_device,
 	&rspi_device,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	&usb_ehci_device,
 	&usb_ohci_device,
 };

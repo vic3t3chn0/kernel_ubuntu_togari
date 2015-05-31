@@ -22,10 +22,18 @@
  *
  */
 
+<<<<<<< HEAD
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/sched.h>		/* wake_up() */
 #include <linux/mutex.h>		/* struct mutex */
 #include <linux/rwsem.h>		/* struct rw_semaphore */
 #include <linux/pm.h>			/* pm_message_t */
+<<<<<<< HEAD
+=======
+#include <linux/device.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/stringify.h>
 
 /* number of supported soundcards */
@@ -38,10 +46,16 @@
 #define CONFIG_SND_MAJOR	116	/* standard configuration */
 
 /* forward declarations */
+<<<<<<< HEAD
 struct pci_dev;
 struct module;
 struct device;
 struct device_attribute;
+=======
+#ifdef CONFIG_PCI
+struct pci_dev;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* device allocation stuff */
 
@@ -61,7 +75,10 @@ typedef int __bitwise snd_device_type_t;
 #define	SNDRV_DEV_BUS		((__force snd_device_type_t) 0x1007)
 #define	SNDRV_DEV_CODEC		((__force snd_device_type_t) 0x1008)
 #define	SNDRV_DEV_JACK          ((__force snd_device_type_t) 0x1009)
+<<<<<<< HEAD
 #define	SNDRV_DEV_COMPRESS	((__force snd_device_type_t) 0x100A)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define	SNDRV_DEV_LOWLEVEL	((__force snd_device_type_t) 0x2000)
 
 typedef int __bitwise snd_device_state_t;
@@ -132,11 +149,17 @@ struct snd_card {
 	int shutdown;			/* this card is going down */
 	int free_on_last_close;		/* free in context of file_release */
 	wait_queue_head_t shutdown_sleep;
+<<<<<<< HEAD
 	struct device *dev;		/* device assigned to this card */
 	struct device *card_dev;	/* cardX object for sysfs */
 	int offline;			/* if this sound card is offline */
 	unsigned long offline_change;
 	wait_queue_head_t offline_poll_wait;
+=======
+	atomic_t refcount;		/* refcount for disconnection */
+	struct device *dev;		/* device assigned to this card */
+	struct device *card_dev;	/* cardX object for sysfs */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifdef CONFIG_PM
 	unsigned int power_state;	/* power state */
@@ -192,6 +215,10 @@ struct snd_minor {
 	const struct file_operations *f_ops;	/* file operations */
 	void *private_data;		/* private data for f_ops->open */
 	struct device *dev;		/* device for sysfs */
+<<<<<<< HEAD
+=======
+	struct snd_card *card_ptr;	/* assigned card instance */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 /* return a device pointer linked to each sound device as a parent */
@@ -298,8 +325,12 @@ int snd_card_info_done(void);
 int snd_component_add(struct snd_card *card, const char *component);
 int snd_card_file_add(struct snd_card *card, struct file *file);
 int snd_card_file_remove(struct snd_card *card, struct file *file);
+<<<<<<< HEAD
 void snd_card_change_online_state(struct snd_card *card, int online);
 bool snd_card_is_online_state(struct snd_card *card);
+=======
+void snd_card_unref(struct snd_card *card);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define snd_card_set_dev(card, devptr) ((card)->dev = (devptr))
 
@@ -330,6 +361,7 @@ void release_and_free_resource(struct resource *res);
 
 /* --- */
 
+<<<<<<< HEAD
 /* sound printk debug levels */
 enum {
 	SND_PR_ALWAYS,
@@ -341,6 +373,12 @@ enum {
 __printf(4, 5)
 void __snd_printk(unsigned int level, const char *file, int line,
 		  const char *format, ...);
+=======
+#if defined(CONFIG_SND_DEBUG) || defined(CONFIG_SND_VERBOSE_PRINTK)
+void __snd_printk(unsigned int level, const char *file, int line,
+		  const char *format, ...)
+     __attribute__ ((format (printf, 4, 5)));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #else
 #define __snd_printk(level, file, line, format, args...) \
 	printk(format, ##args)
@@ -366,8 +404,11 @@ void __snd_printk(unsigned int level, const char *file, int line,
  */
 #define snd_printd(fmt, args...) \
 	__snd_printk(1, __FILE__, __LINE__, fmt, ##args)
+<<<<<<< HEAD
 #define _snd_printd(level, fmt, args...) \
 	__snd_printk(level, __FILE__, __LINE__, fmt, ##args)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * snd_BUG - give a BUG warning message and stack trace
@@ -397,7 +438,10 @@ void __snd_printk(unsigned int level, const char *file, int line,
 #else /* !CONFIG_SND_DEBUG */
 
 #define snd_printd(fmt, args...)	do { } while (0)
+<<<<<<< HEAD
 #define _snd_printd(level, fmt, args...) do { } while (0)
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define snd_BUG()			do { } while (0)
 static inline int __snd_bug_on(int cond)
 {
@@ -431,7 +475,10 @@ static inline int __snd_bug_on(int cond)
 #define gameport_get_port_data(gp) (gp)->port_data
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_PCI
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* PCI quirk list helper */
 struct snd_pci_quirk {
 	unsigned short subvendor;	/* PCI subvendor ID */
@@ -471,6 +518,9 @@ snd_pci_quirk_lookup(struct pci_dev *pci, const struct snd_pci_quirk *list);
 const struct snd_pci_quirk *
 snd_pci_quirk_lookup_id(u16 vendor, u16 device,
 			const struct snd_pci_quirk *list);
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif /* __SOUND_CORE_H */

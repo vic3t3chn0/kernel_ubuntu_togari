@@ -18,6 +18,7 @@
 #define TWD_TIMER_CONTROL_PERIODIC	(1 << 1)
 #define TWD_TIMER_CONTROL_IT_ENABLE	(1 << 2)
 
+<<<<<<< HEAD
 #include <linux/ioport.h>
 
 struct twd_local_timer {
@@ -41,5 +42,13 @@ static inline void twd_local_timer_of_register(void)
 {
 }
 #endif
+=======
+struct clock_event_device;
+
+extern void __iomem *twd_base;
+
+int twd_timer_ack(void);
+void twd_timer_setup(struct clock_event_device *);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif

@@ -21,14 +21,20 @@
  * Maxim Gorbachyov <maxim.gorbachev@siemens.com>
  * Maxim Osipov <maxim.osipov@siemens.com>
  * Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+<<<<<<< HEAD
  * Alexander Smirnov <alex.bluesman.smirnov@gmail.com>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
  */
 
 #ifndef NET_IEEE802154_H
 #define NET_IEEE802154_H
 
+<<<<<<< HEAD
 #define IEEE802154_MTU			127
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IEEE802154_FC_TYPE_BEACON	0x0	/* Frame is beacon */
 #define	IEEE802154_FC_TYPE_DATA		0x1	/* Frame is data */
 #define IEEE802154_FC_TYPE_ACK		0x2	/* Frame is acknowledgment */
@@ -59,9 +65,12 @@
 	(((x) & IEEE802154_FC_DAMODE_MASK) >> IEEE802154_FC_DAMODE_SHIFT)
 
 
+<<<<<<< HEAD
 /* MAC footer size */
 #define IEEE802154_MFR_SIZE	2 /* 2 octets */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* MAC's Command Frames Identifiers */
 #define IEEE802154_CMD_ASSOCIATION_REQ		0x01
 #define IEEE802154_CMD_ASSOCIATION_RESP		0x02

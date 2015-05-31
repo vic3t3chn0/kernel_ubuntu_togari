@@ -26,7 +26,10 @@
 #include <linux/init.h>
 #include <linux/device.h>
 #include <linux/firmware.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <sound/core.h>
 #include <sound/pcm.h>
 #include <sound/asoundef.h>

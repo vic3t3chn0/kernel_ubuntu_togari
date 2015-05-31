@@ -16,7 +16,10 @@ struct scsi_driver {
 
 	void (*rescan)(struct device *);
 	int (*done)(struct scsi_cmnd *);
+<<<<<<< HEAD
 	int (*eh_action)(struct scsi_cmnd *, unsigned char *, int, int);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 #define to_scsi_driver(drv) \
 	container_of((drv), struct scsi_driver, gendrv)

@@ -43,6 +43,10 @@
  */
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/module.h>
 #include <linux/types.h>
 #include <linux/kernel.h>
@@ -121,7 +125,10 @@ static int ip_dev_loopback_xmit(struct sk_buff *newskb)
 	newskb->pkt_type = PACKET_LOOPBACK;
 	newskb->ip_summed = CHECKSUM_UNNECESSARY;
 	WARN_ON(!skb_dst(newskb));
+<<<<<<< HEAD
 	skb_dst_force(newskb);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	netif_rx_ni(newskb);
 	return 0;
 }
@@ -161,7 +168,11 @@ int ip_build_and_send_pkt(struct sk_buff *skb, struct sock *sk,
 	iph->daddr    = (opt && opt->opt.srr ? opt->opt.faddr : daddr);
 	iph->saddr    = saddr;
 	iph->protocol = sk->sk_protocol;
+<<<<<<< HEAD
 	ip_select_ident(iph, &rt->dst, sk);
+=======
+	ip_select_ident(skb, &rt->dst, sk);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (opt && opt->opt.optlen) {
 		iph->ihl += opt->opt.optlen>>2;
@@ -183,6 +194,10 @@ static inline int ip_finish_output2(struct sk_buff *skb)
 	struct net_device *dev = dst->dev;
 	unsigned int hh_len = LL_RESERVED_SPACE(dev);
 	struct neighbour *neigh;
+<<<<<<< HEAD
+=======
+	int res;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (rt->rt_type == RTN_MULTICAST) {
 		IP_UPD_PO_STATS(dev_net(dev), IPSTATS_MIB_OUTMCAST, skb->len);
@@ -205,6 +220,7 @@ static inline int ip_finish_output2(struct sk_buff *skb)
 	}
 
 	rcu_read_lock();
+<<<<<<< HEAD
 	neigh = dst_get_neighbour_noref(dst);
 	if (neigh) {
 		int res = neigh_output(neigh, skb);
@@ -213,6 +229,23 @@ static inline int ip_finish_output2(struct sk_buff *skb)
 		return res;
 	}
 	rcu_read_unlock();
+=======
+	if (dst->hh) {
+		int res = neigh_hh_output(dst->hh, skb);
+
+		rcu_read_unlock();
+		return res;
+	} else {
+		neigh = dst_get_neighbour(dst);
+		if (neigh) {
+			res = neigh->output(skb);
+
+			rcu_read_unlock();
+			return res;
+		}
+		rcu_read_unlock();
+	}
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (net_ratelimit())
 		printk(KERN_DEBUG "ip_finish_output2: No header cache and no neighbour!\n");
@@ -318,6 +351,7 @@ int ip_output(struct sk_buff *skb)
 			    !(IPCB(skb)->flags & IPSKB_REROUTED));
 }
 
+<<<<<<< HEAD
 /*
  * copy saddr and daddr, possibly using 64bit load/stores
  * Equivalent to :
@@ -332,6 +366,8 @@ static void ip_copy_addrs(struct iphdr *iph, const struct flowi4 *fl4)
 	       sizeof(fl4->saddr) + sizeof(fl4->daddr));
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 int ip_queue_xmit(struct sk_buff *skb, struct flowi *fl)
 {
 	struct sock *sk = skb->sk;
@@ -394,8 +430,13 @@ packet_routed:
 		iph->frag_off = 0;
 	iph->ttl      = ip_select_ttl(inet, &rt->dst);
 	iph->protocol = sk->sk_protocol;
+<<<<<<< HEAD
 	ip_copy_addrs(iph, fl4);
 
+=======
+	iph->saddr    = fl4->saddr;
+	iph->daddr    = fl4->daddr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* Transport layer set skb->h.foo itself. */
 
 	if (inet_opt && inet_opt->opt.optlen) {
@@ -403,7 +444,11 @@ packet_routed:
 		ip_options_build(skb, &inet_opt->opt, inet->inet_daddr, rt, 0);
 	}
 
+<<<<<<< HEAD
 	ip_select_ident_more(iph, &rt->dst, sk,
+=======
+	ip_select_ident_more(skb, &rt->dst, sk,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			     (skb_shinfo(skb)->gso_segs ?: 1) - 1);
 
 	skb->priority = sk->sk_priority;
@@ -509,7 +554,11 @@ int ip_fragment(struct sk_buff *skb, int (*output)(struct sk_buff *))
 
 		if (first_len - hlen > mtu ||
 		    ((first_len - hlen) & 7) ||
+<<<<<<< HEAD
 		    ip_is_fragment(iph) ||
+=======
+		    (iph->frag_off & htons(IP_MF|IP_OFFSET)) ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		    skb_cloned(skb))
 			goto slow_path;
 
@@ -1002,13 +1051,22 @@ alloc_new_skb:
 			if (page && (left = PAGE_SIZE - off) > 0) {
 				if (copy >= left)
 					copy = left;
+<<<<<<< HEAD
 				if (page != skb_frag_page(frag)) {
+=======
+				if (page != frag->page) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					if (i == MAX_SKB_FRAGS) {
 						err = -EMSGSIZE;
 						goto error;
 					}
+<<<<<<< HEAD
 					skb_fill_page_desc(skb, i, page, off, 0);
 					skb_frag_ref(skb, i);
+=======
+					get_page(page);
+					skb_fill_page_desc(skb, i, page, off, 0);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					frag = &skb_shinfo(skb)->frags[i];
 				}
 			} else if (i < MAX_SKB_FRAGS) {
@@ -1028,13 +1086,21 @@ alloc_new_skb:
 				err = -EMSGSIZE;
 				goto error;
 			}
+<<<<<<< HEAD
 			if (getfrag(from, skb_frag_address(frag)+skb_frag_size(frag),
 				    offset, copy, skb->len, skb) < 0) {
+=======
+			if (getfrag(from, page_address(frag->page)+frag->page_offset+frag->size, offset, copy, skb->len, skb) < 0) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				err = -EFAULT;
 				goto error;
 			}
 			cork->off += copy;
+<<<<<<< HEAD
 			skb_frag_size_add(frag, copy);
+=======
+			frag->size += copy;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			skb->len += copy;
 			skb->data_len += copy;
 			skb->truesize += copy;
@@ -1243,7 +1309,11 @@ ssize_t	ip_append_page(struct sock *sk, struct flowi4 *fl4, struct page *page,
 		if (len > size)
 			len = size;
 		if (skb_can_coalesce(skb, i, page, offset)) {
+<<<<<<< HEAD
 			skb_frag_size_add(&skb_shinfo(skb)->frags[i-1], len);
+=======
+			skb_shinfo(skb)->frags[i-1].size += len;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		} else if (i < MAX_SKB_FRAGS) {
 			get_page(page);
 			skb_fill_page_desc(skb, i, page, offset, len);
@@ -1347,10 +1417,18 @@ struct sk_buff *__ip_make_skb(struct sock *sk,
 	iph->ihl = 5;
 	iph->tos = inet->tos;
 	iph->frag_off = df;
+<<<<<<< HEAD
 	ip_select_ident(iph, &rt->dst, sk);
 	iph->ttl = ttl;
 	iph->protocol = sk->sk_protocol;
 	ip_copy_addrs(iph, fl4);
+=======
+	ip_select_ident(skb, &rt->dst, sk);
+	iph->ttl = ttl;
+	iph->protocol = sk->sk_protocol;
+	iph->saddr = fl4->saddr;
+	iph->daddr = fl4->daddr;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (opt) {
 		iph->ihl += opt->optlen>>2;
@@ -1478,7 +1556,11 @@ static int ip_reply_glue_bits(void *dptr, char *to, int offset,
  *     	structure to pass arguments.
  */
 void ip_send_reply(struct sock *sk, struct sk_buff *skb, __be32 daddr,
+<<<<<<< HEAD
 		   const struct ip_reply_arg *arg, unsigned int len)
+=======
+		   struct ip_reply_arg *arg, unsigned int len)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct inet_sock *inet = inet_sk(sk);
 	struct ip_options_data replyopts;
@@ -1501,7 +1583,11 @@ void ip_send_reply(struct sock *sk, struct sk_buff *skb, __be32 daddr,
 	}
 
 	flowi4_init_output(&fl4, arg->bound_dev_if, 0,
+<<<<<<< HEAD
 			   RT_TOS(arg->tos),
+=======
+			   RT_TOS(ip_hdr(skb)->tos),
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			   RT_SCOPE_UNIVERSE, sk->sk_protocol,
 			   ip_reply_arg_flowi_flags(arg),
 			   daddr, rt->rt_spec_dst,
@@ -1518,7 +1604,11 @@ void ip_send_reply(struct sock *sk, struct sk_buff *skb, __be32 daddr,
 	   with locally disabled BH and that sk cannot be already spinlocked.
 	 */
 	bh_lock_sock(sk);
+<<<<<<< HEAD
 	inet->tos = arg->tos;
+=======
+	inet->tos = ip_hdr(skb)->tos;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	sk->sk_priority = skb->priority;
 	sk->sk_protocol = ip_hdr(skb)->protocol;
 	sk->sk_bound_dev_if = arg->bound_dev_if;

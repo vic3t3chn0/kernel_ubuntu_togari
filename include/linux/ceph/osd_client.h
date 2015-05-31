@@ -10,12 +10,15 @@
 #include "osdmap.h"
 #include "messenger.h"
 
+<<<<<<< HEAD
 /* 
  * Maximum object name size 
  * (must be at least as big as RBD_MAX_MD_NAME_LEN -- currently 100) 
  */
 #define MAX_OBJ_NAME_SIZE 100
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct ceph_msg;
 struct ceph_snap_context;
 struct ceph_osd_request;
@@ -81,7 +84,11 @@ struct ceph_osd_request {
 	struct inode *r_inode;         	      /* for use by callbacks */
 	void *r_priv;			      /* ditto */
 
+<<<<<<< HEAD
 	char              r_oid[MAX_OBJ_NAME_SIZE];          /* object name */
+=======
+	char              r_oid[40];          /* object name */
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int               r_oid_len;
 	unsigned long     r_stamp;            /* send OR check time */
 

@@ -1,5 +1,8 @@
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/pci.h>
 #include <asm/mach-powertv/interrupts.h>
 #include "powertv-pci.h"

@@ -31,7 +31,11 @@
 
 static int mpu;
 
+<<<<<<< HEAD
 static bool joystick;
+=======
+static int joystick;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static unsigned char trix_read(int addr)
 {

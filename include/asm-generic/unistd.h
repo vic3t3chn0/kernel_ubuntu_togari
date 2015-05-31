@@ -143,7 +143,11 @@ __SYSCALL(__NR_pivot_root, sys_pivot_root)
 
 /* fs/nfsctl.c */
 #define __NR_nfsservctl 42
+<<<<<<< HEAD
 __SYSCALL(__NR_nfsservctl, sys_ni_syscall)
+=======
+__SC_COMP(__NR_nfsservctl, sys_nfsservctl, compat_sys_nfsservctl)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /* fs/open.c */
 #define __NR3264_statfs 43
@@ -685,6 +689,7 @@ __SYSCALL(__NR_syncfs, sys_syncfs)
 __SYSCALL(__NR_setns, sys_setns)
 #define __NR_sendmmsg 269
 __SC_COMP(__NR_sendmmsg, sys_sendmmsg, compat_sys_sendmmsg)
+<<<<<<< HEAD
 #define __NR_process_vm_readv 270
 __SC_COMP(__NR_process_vm_readv, sys_process_vm_readv, \
           compat_sys_process_vm_readv)
@@ -694,6 +699,11 @@ __SC_COMP(__NR_process_vm_writev, sys_process_vm_writev, \
 
 #undef __NR_syscalls
 #define __NR_syscalls 272
+=======
+
+#undef __NR_syscalls
+#define __NR_syscalls 270
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /*
  * All syscalls below here should go away really,

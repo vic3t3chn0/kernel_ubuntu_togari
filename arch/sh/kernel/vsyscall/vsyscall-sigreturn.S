@@ -34,6 +34,7 @@ __kernel_rt_sigreturn:
 1:	.short	__NR_rt_sigreturn
 .LEND_rt_sigreturn:
 	.size __kernel_rt_sigreturn,.-.LSTART_rt_sigreturn
+<<<<<<< HEAD
 	.previous
 
 	.section .eh_frame,"a",@progbits
@@ -71,4 +72,8 @@ __kernel_rt_sigreturn:
 	.align 2
 .LFDE1_end:
 
+=======
+
+	.section .eh_frame,"a",@progbits
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	.previous

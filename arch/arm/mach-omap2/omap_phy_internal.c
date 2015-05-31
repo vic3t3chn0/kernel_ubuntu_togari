@@ -260,6 +260,7 @@ void am35x_set_mode(u8 musb_mode)
 
 	omap_ctrl_writel(devconf2, AM35XX_CONTROL_DEVCONF2);
 }
+<<<<<<< HEAD
 
 void ti81xx_musb_phy_power(u8 on)
 {
@@ -295,3 +296,5 @@ void ti81xx_musb_phy_power(u8 on)
 
 	iounmap(scm_base);
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9

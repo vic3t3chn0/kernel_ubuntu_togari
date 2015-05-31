@@ -14,7 +14,11 @@
 
 #include <linux/kobject.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/stat.h>
 #include <linux/slab.h>
 
@@ -192,6 +196,7 @@ static int kobject_add_internal(struct kobject *kobj)
 
 		/* be noisy on error issues */
 		if (error == -EEXIST)
+<<<<<<< HEAD
 			WARN(1, "%s failed for %s with "
 			     "-EEXIST, don't try to register things with "
 			     "the same name in the same directory.\n",
@@ -200,6 +205,16 @@ static int kobject_add_internal(struct kobject *kobj)
 			WARN(1, "%s failed for %s (error: %d parent: %s)\n",
 			     __func__, kobject_name(kobj), error,
 			     parent ? kobject_name(parent) : "'none'");
+=======
+			printk(KERN_ERR "%s failed for %s with "
+			       "-EEXIST, don't try to register things with "
+			       "the same name in the same directory.\n",
+			       __func__, kobject_name(kobj));
+		else
+			printk(KERN_ERR "%s failed for %s (%d)\n",
+			       __func__, kobject_name(kobj), error);
+		dump_stack();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	} else
 		kobj->state_in_sysfs = 1;
 
@@ -746,11 +761,49 @@ void kset_unregister(struct kset *k)
  */
 struct kobject *kset_find_obj(struct kset *kset, const char *name)
 {
+<<<<<<< HEAD
+=======
+	return kset_find_obj_hinted(kset, name, NULL);
+}
+
+/**
+ * kset_find_obj_hinted - search for object in kset given a predecessor hint.
+ * @kset: kset we're looking in.
+ * @name: object's name.
+ * @hint: hint to possible object's predecessor.
+ *
+ * Check the hint's next object and if it is a match return it directly,
+ * otherwise, fall back to the behavior of kset_find_obj().  Either way
+ * a reference for the returned object is held and the reference on the
+ * hinted object is released.
+ */
+struct kobject *kset_find_obj_hinted(struct kset *kset, const char *name,
+				     struct kobject *hint)
+{
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct kobject *k;
 	struct kobject *ret = NULL;
 
 	spin_lock(&kset->list_lock);
 
+<<<<<<< HEAD
+=======
+	if (!hint)
+		goto slow_search;
+
+	/* end of list detection */
+	if (hint->entry.next == kset->list.next)
+		goto slow_search;
+
+	k = container_of(hint->entry.next, struct kobject, entry);
+	if (!kobject_name(k) || strcmp(kobject_name(k), name))
+		goto slow_search;
+
+	ret = kobject_get(k);
+	goto unlock_exit;
+
+slow_search:
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	list_for_each_entry(k, &kset->list, entry) {
 		if (kobject_name(k) && !strcmp(kobject_name(k), name)) {
 			ret = kobject_get(k);
@@ -758,7 +811,16 @@ struct kobject *kset_find_obj(struct kset *kset, const char *name)
 		}
 	}
 
+<<<<<<< HEAD
 	spin_unlock(&kset->list_lock);
+=======
+unlock_exit:
+	spin_unlock(&kset->list_lock);
+
+	if (hint)
+		kobject_put(hint);
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return ret;
 }
 

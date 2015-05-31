@@ -126,6 +126,7 @@ void x25_write_internal(struct sock *sk, int frametype)
 	 *	Adjust frame size.
 	 */
 	switch (frametype) {
+<<<<<<< HEAD
 	case X25_CALL_REQUEST:
 		len += 1 + X25_ADDR_LEN + X25_MAX_FAC_LEN + X25_MAX_CUD_LEN;
 		break;
@@ -150,6 +151,34 @@ void x25_write_internal(struct sock *sk, int frametype)
 	default:
 		printk(KERN_ERR "X.25: invalid frame type %02X\n", frametype);
 		return;
+=======
+		case X25_CALL_REQUEST:
+			len += 1 + X25_ADDR_LEN + X25_MAX_FAC_LEN +
+			       X25_MAX_CUD_LEN;
+			break;
+		case X25_CALL_ACCEPTED: /* fast sel with no restr on resp */
+			if(x25->facilities.reverse & 0x80) {
+				len += 1 + X25_MAX_FAC_LEN + X25_MAX_CUD_LEN;
+			} else {
+				len += 1 + X25_MAX_FAC_LEN;
+			}
+			break;
+		case X25_CLEAR_REQUEST:
+		case X25_RESET_REQUEST:
+			len += 2;
+			break;
+		case X25_RR:
+		case X25_RNR:
+		case X25_REJ:
+		case X25_CLEAR_CONFIRMATION:
+		case X25_INTERRUPT_CONFIRMATION:
+		case X25_RESET_CONFIRMATION:
+			break;
+		default:
+			printk(KERN_ERR "X.25: invalid frame type %02X\n",
+			       frametype);
+			return;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	if ((skb = alloc_skb(len, GFP_ATOMIC)) == NULL)
@@ -278,6 +307,7 @@ int x25_decode(struct sock *sk, struct sk_buff *skb, int *ns, int *nr, int *q,
 	*ns = *nr = *q = *d = *m = 0;
 
 	switch (frame[2]) {
+<<<<<<< HEAD
 	case X25_CALL_REQUEST:
 	case X25_CALL_ACCEPTED:
 	case X25_CLEAR_REQUEST:
@@ -292,6 +322,22 @@ int x25_decode(struct sock *sk, struct sk_buff *skb, int *ns, int *nr, int *q,
 	case X25_REGISTRATION_CONFIRMATION:
 	case X25_DIAGNOSTIC:
 		return frame[2];
+=======
+		case X25_CALL_REQUEST:
+		case X25_CALL_ACCEPTED:
+		case X25_CLEAR_REQUEST:
+		case X25_CLEAR_CONFIRMATION:
+		case X25_INTERRUPT:
+		case X25_INTERRUPT_CONFIRMATION:
+		case X25_RESET_REQUEST:
+		case X25_RESET_CONFIRMATION:
+		case X25_RESTART_REQUEST:
+		case X25_RESTART_CONFIRMATION:
+		case X25_REGISTRATION_REQUEST:
+		case X25_REGISTRATION_CONFIRMATION:
+		case X25_DIAGNOSTIC:
+			return frame[2];
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	if (x25->neighbour->extended) {

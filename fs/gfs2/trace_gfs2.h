@@ -11,7 +11,10 @@
 #include <linux/dlmconstants.h>
 #include <linux/gfs2_ondisk.h>
 #include <linux/writeback.h>
+<<<<<<< HEAD
 #include <linux/ktime.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include "incore.h"
 #include "glock.h"
 
@@ -44,8 +47,12 @@
 	{(1UL << GLF_FROZEN),			"F" },		\
 	{(1UL << GLF_QUEUED),			"q" },		\
 	{(1UL << GLF_LRU),			"L" },		\
+<<<<<<< HEAD
 	{(1UL << GLF_OBJECT),			"o" },		\
 	{(1UL << GLF_BLOCKING),			"b" })
+=======
+	{(1UL << GLF_OBJECT),			"o" })
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #ifndef NUMPTY
 #define NUMPTY
@@ -238,6 +245,7 @@ TRACE_EVENT(gfs2_glock_queue,
 		  glock_trace_name(__entry->state))
 );
 
+<<<<<<< HEAD
 /* DLM sends a reply to GFS2 */
 TRACE_EVENT(gfs2_glock_lock_time,
 
@@ -294,6 +302,8 @@ TRACE_EVENT(gfs2_glock_lock_time,
 		  (long long)__entry->qcount)
 );
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 /* Section 2 - Log/journal
  *
  * Objectives:

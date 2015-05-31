@@ -20,10 +20,16 @@
 #define __VLYNQ_H__
 
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/types.h>
 
 struct module;
 
+=======
+#include <linux/module.h>
+#include <linux/types.h>
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define VLYNQ_NUM_IRQS 32
 
 struct vlynq_mapping {

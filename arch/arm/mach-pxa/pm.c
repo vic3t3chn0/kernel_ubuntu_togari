@@ -42,6 +42,10 @@ int pxa_pm_enter(suspend_state_t state)
 
 	/* *** go zzz *** */
 	pxa_cpu_pm_fns->enter(state);
+<<<<<<< HEAD
+=======
+	cpu_init();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	if (state != PM_SUSPEND_STANDBY && pxa_cpu_pm_fns->restore) {
 		/* after sleeping, validate the checksum */

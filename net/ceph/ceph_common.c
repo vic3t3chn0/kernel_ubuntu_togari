@@ -85,6 +85,11 @@ int ceph_check_fsid(struct ceph_client *client, struct ceph_fsid *fsid)
 	} else {
 		pr_info("client%lld fsid %pU\n", ceph_client_id(client), fsid);
 		memcpy(&client->fsid, fsid, sizeof(*fsid));
+<<<<<<< HEAD
+=======
+		ceph_debugfs_client_init(client);
+		client->have_fsid = true;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 	return 0;
 }
@@ -201,9 +206,13 @@ enum {
 	Opt_ip,
 	Opt_last_string,
 	/* string args above */
+<<<<<<< HEAD
 	Opt_share,
 	Opt_noshare,
 	Opt_crc,
+=======
+	Opt_noshare,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	Opt_nocrc,
 };
 
@@ -219,9 +228,13 @@ static match_table_t opt_tokens = {
 	{Opt_key, "key=%s"},
 	{Opt_ip, "ip=%s"},
 	/* string args above */
+<<<<<<< HEAD
 	{Opt_share, "share"},
 	{Opt_noshare, "noshare"},
 	{Opt_crc, "crc"},
+=======
+	{Opt_noshare, "noshare"},
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	{Opt_nocrc, "nocrc"},
 	{-1, NULL}
 };
@@ -234,7 +247,10 @@ void ceph_destroy_options(struct ceph_options *opt)
 		ceph_crypto_key_destroy(opt->key);
 		kfree(opt->key);
 	}
+<<<<<<< HEAD
 	kfree(opt->mon_addr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	kfree(opt);
 }
 EXPORT_SYMBOL(ceph_destroy_options);
@@ -281,11 +297,18 @@ out:
 	return err;
 }
 
+<<<<<<< HEAD
 struct ceph_options *
 ceph_parse_options(char *options, const char *dev_name,
 			const char *dev_name_end,
 			int (*parse_extra_token)(char *c, void *private),
 			void *private)
+=======
+int ceph_parse_options(struct ceph_options **popt, char *options,
+		       const char *dev_name, const char *dev_name_end,
+		       int (*parse_extra_token)(char *c, void *private),
+		       void *private)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	struct ceph_options *opt;
 	const char *c;
@@ -294,7 +317,11 @@ ceph_parse_options(char *options, const char *dev_name,
 
 	opt = kzalloc(sizeof(*opt), GFP_KERNEL);
 	if (!opt)
+<<<<<<< HEAD
 		return ERR_PTR(-ENOMEM);
+=======
+		return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	opt->mon_addr = kcalloc(CEPH_MAX_MON, sizeof(*opt->mon_addr),
 				GFP_KERNEL);
 	if (!opt->mon_addr)
@@ -403,16 +430,22 @@ ceph_parse_options(char *options, const char *dev_name,
 			opt->mount_timeout = intval;
 			break;
 
+<<<<<<< HEAD
 		case Opt_share:
 			opt->flags &= ~CEPH_OPT_NOSHARE;
 			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case Opt_noshare:
 			opt->flags |= CEPH_OPT_NOSHARE;
 			break;
 
+<<<<<<< HEAD
 		case Opt_crc:
 			opt->flags &= ~CEPH_OPT_NOCRC;
 			break;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		case Opt_nocrc:
 			opt->flags |= CEPH_OPT_NOCRC;
 			break;
@@ -423,11 +456,20 @@ ceph_parse_options(char *options, const char *dev_name,
 	}
 
 	/* success */
+<<<<<<< HEAD
 	return opt;
 
 out:
 	ceph_destroy_options(opt);
 	return ERR_PTR(err);
+=======
+	*popt = opt;
+	return 0;
+
+out:
+	ceph_destroy_options(opt);
+	return err;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(ceph_parse_options);
 
@@ -440,12 +482,18 @@ EXPORT_SYMBOL(ceph_client_id);
 /*
  * create a fresh client instance
  */
+<<<<<<< HEAD
 struct ceph_client *ceph_create_client(struct ceph_options *opt, void *private,
 				       unsigned supported_features,
 				       unsigned required_features)
 {
 	struct ceph_client *client;
 	struct ceph_entity_addr *myaddr = NULL;
+=======
+struct ceph_client *ceph_create_client(struct ceph_options *opt, void *private)
+{
+	struct ceph_client *client;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int err = -ENOMEM;
 
 	client = kzalloc(sizeof(*client), GFP_KERNEL);
@@ -460,6 +508,7 @@ struct ceph_client *ceph_create_client(struct ceph_options *opt, void *private,
 	client->auth_err = 0;
 
 	client->extra_mon_dispatch = NULL;
+<<<<<<< HEAD
 	client->supported_features = CEPH_FEATURE_SUPPORTED_DEFAULT |
 		supported_features;
 	client->required_features = CEPH_FEATURE_REQUIRED_DEFAULT |
@@ -476,11 +525,21 @@ struct ceph_client *ceph_create_client(struct ceph_options *opt, void *private,
 		goto fail;
 	}
 	client->msgr->nocrc = ceph_test_opt(client, NOCRC);
+=======
+	client->supported_features = CEPH_FEATURE_SUPPORTED_DEFAULT;
+	client->required_features = CEPH_FEATURE_REQUIRED_DEFAULT;
+
+	client->msgr = NULL;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	/* subsystems */
 	err = ceph_monc_init(&client->monc, client);
 	if (err < 0)
+<<<<<<< HEAD
 		goto fail_msgr;
+=======
+		goto fail;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	err = ceph_osdc_init(&client->osdc, client);
 	if (err < 0)
 		goto fail_monc;
@@ -489,8 +548,11 @@ struct ceph_client *ceph_create_client(struct ceph_options *opt, void *private,
 
 fail_monc:
 	ceph_monc_stop(&client->monc);
+<<<<<<< HEAD
 fail_msgr:
 	ceph_messenger_destroy(client->msgr);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 fail:
 	kfree(client);
 	return ERR_PTR(err);
@@ -515,7 +577,12 @@ void ceph_destroy_client(struct ceph_client *client)
 
 	ceph_debugfs_client_cleanup(client);
 
+<<<<<<< HEAD
 	ceph_messenger_destroy(client->msgr);
+=======
+	if (client->msgr)
+		ceph_messenger_destroy(client->msgr);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	ceph_destroy_options(client->options);
 
@@ -538,9 +605,30 @@ static int have_mon_and_osd_map(struct ceph_client *client)
  */
 int __ceph_open_session(struct ceph_client *client, unsigned long started)
 {
+<<<<<<< HEAD
 	int err;
 	unsigned long timeout = client->options->mount_timeout * HZ;
 
+=======
+	struct ceph_entity_addr *myaddr = NULL;
+	int err;
+	unsigned long timeout = client->options->mount_timeout * HZ;
+
+	/* initialize the messenger */
+	if (client->msgr == NULL) {
+		if (ceph_test_opt(client, MYIP))
+			myaddr = &client->options->my_addr;
+		client->msgr = ceph_messenger_create(myaddr,
+					client->supported_features,
+					client->required_features);
+		if (IS_ERR(client->msgr)) {
+			client->msgr = NULL;
+			return PTR_ERR(client->msgr);
+		}
+		client->msgr->nocrc = ceph_test_opt(client, NOCRC);
+	}
+
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	/* open session, and wait for mon and osd maps */
 	err = ceph_monc_open_session(&client->monc);
 	if (err < 0)

@@ -9,8 +9,11 @@
  * Copyright (C) 2002  Red Hat, Inc.
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <linux/moduleparam.h>
 #include <linux/netdevice.h>
 #include <linux/etherdevice.h>
@@ -25,7 +28,10 @@
 #include <linux/rcupdate.h>
 #include <linux/workqueue.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #include <net/tcp.h>
 #include <net/udp.h>
 #include <asm/unaligned.h>
@@ -47,11 +53,17 @@ static atomic_t trapped;
 #define NETPOLL_RX_ENABLED  1
 #define NETPOLL_RX_DROP     2
 
+<<<<<<< HEAD
 #define MAX_SKB_SIZE							\
 	(sizeof(struct ethhdr) +					\
 	 sizeof(struct iphdr) +						\
 	 sizeof(struct udphdr) +					\
 	 MAX_UDP_CHUNK)
+=======
+#define MAX_SKB_SIZE \
+		(MAX_UDP_CHUNK + sizeof(struct udphdr) + \
+				sizeof(struct iphdr) + sizeof(struct ethhdr))
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void zap_completion_queue(void);
 static void arp_reply(struct sk_buff *skb);
@@ -59,6 +71,7 @@ static void arp_reply(struct sk_buff *skb);
 static unsigned int carrier_timeout = 4;
 module_param(carrier_timeout, uint, 0644);
 
+<<<<<<< HEAD
 #define np_info(np, fmt, ...)				\
 	pr_info("%s: " fmt, np->name, ##__VA_ARGS__)
 #define np_err(np, fmt, ...)				\
@@ -66,6 +79,8 @@ module_param(carrier_timeout, uint, 0644);
 #define np_notice(np, fmt, ...)				\
 	pr_notice("%s: " fmt, np->name, ##__VA_ARGS__)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static void queue_process(struct work_struct *work)
 {
 	struct netpoll_info *npinfo =
@@ -87,7 +102,11 @@ static void queue_process(struct work_struct *work)
 
 		local_irq_save(flags);
 		__netif_tx_lock(txq, smp_processor_id());
+<<<<<<< HEAD
 		if (netif_xmit_frozen_or_stopped(txq) ||
+=======
+		if (netif_tx_queue_frozen_or_stopped(txq) ||
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		    ops->ndo_start_xmit(skb, dev) != NETDEV_TX_OK) {
 			skb_queue_head(&npinfo->txq, skb);
 			__netif_tx_unlock(txq);
@@ -189,7 +208,11 @@ static void service_arp_queue(struct netpoll_info *npi)
 	}
 }
 
+<<<<<<< HEAD
 static void netpoll_poll_dev(struct net_device *dev)
+=======
+void netpoll_poll_dev(struct net_device *dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	const struct net_device_ops *ops;
 
@@ -220,6 +243,16 @@ static void netpoll_poll_dev(struct net_device *dev)
 
 	zap_completion_queue();
 }
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(netpoll_poll_dev);
+
+void netpoll_poll(struct netpoll *np)
+{
+	netpoll_poll_dev(np->dev);
+}
+EXPORT_SYMBOL(netpoll_poll);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static void refill_skbs(void)
 {
@@ -280,7 +313,11 @@ repeat:
 
 	if (!skb) {
 		if (++count < 10) {
+<<<<<<< HEAD
 			netpoll_poll_dev(np->dev);
+=======
+			netpoll_poll(np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			goto repeat;
 		}
 		return NULL;
@@ -328,7 +365,11 @@ void netpoll_send_skb_on_dev(struct netpoll *np, struct sk_buff *skb,
 		for (tries = jiffies_to_usecs(1)/USEC_PER_POLL;
 		     tries > 0; --tries) {
 			if (__netif_tx_trylock(txq)) {
+<<<<<<< HEAD
 				if (!netif_xmit_stopped(txq)) {
+=======
+				if (!netif_tx_queue_stopped(txq)) {
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 					status = ops->ndo_start_xmit(skb, dev);
 					if (status == NETDEV_TX_OK)
 						txq_trans_update(txq);
@@ -341,7 +382,11 @@ void netpoll_send_skb_on_dev(struct netpoll *np, struct sk_buff *skb,
 			}
 
 			/* tickle device maybe there is some cleanup */
+<<<<<<< HEAD
 			netpoll_poll_dev(np->dev);
+=======
+			netpoll_poll(np);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 			udelay(USEC_PER_POLL);
 		}
@@ -362,22 +407,38 @@ EXPORT_SYMBOL(netpoll_send_skb_on_dev);
 
 void netpoll_send_udp(struct netpoll *np, const char *msg, int len)
 {
+<<<<<<< HEAD
 	int total_len, eth_len, ip_len, udp_len;
+=======
+	int total_len, ip_len, udp_len;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	struct sk_buff *skb;
 	struct udphdr *udph;
 	struct iphdr *iph;
 	struct ethhdr *eth;
 
 	udp_len = len + sizeof(*udph);
+<<<<<<< HEAD
 	ip_len = eth_len = udp_len + sizeof(*iph);
 	total_len = eth_len + ETH_HLEN + NET_IP_ALIGN;
 
 	skb = find_skb(np, total_len, total_len - len);
+=======
+	ip_len = udp_len + sizeof(*iph);
+	total_len = ip_len + LL_RESERVED_SPACE(np->dev);
+
+	skb = find_skb(np, total_len + np->dev->needed_tailroom,
+		       total_len - len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (!skb)
 		return;
 
 	skb_copy_to_linear_data(skb, msg, len);
+<<<<<<< HEAD
 	skb->len += len;
+=======
+	skb_put(skb, len);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	skb_push(skb, sizeof(*udph));
 	skb_reset_transport_header(skb);
@@ -433,7 +494,10 @@ static void arp_reply(struct sk_buff *skb)
 	struct sk_buff *send_skb;
 	struct netpoll *np, *tmp;
 	unsigned long flags;
+<<<<<<< HEAD
 	int hlen, tlen;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	int hits = 0;
 
 	if (list_empty(&npinfo->rx_np))
@@ -491,9 +555,14 @@ static void arp_reply(struct sk_buff *skb)
 		if (tip != np->local_ip)
 			continue;
 
+<<<<<<< HEAD
 		hlen = LL_RESERVED_SPACE(np->dev);
 		tlen = np->dev->needed_tailroom;
 		send_skb = find_skb(np, size + hlen + tlen, hlen);
+=======
+		send_skb = find_skb(np, size + LL_ALLOCATED_SPACE(np->dev),
+				    LL_RESERVED_SPACE(np->dev));
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		if (!send_skb)
 			continue;
 
@@ -572,14 +641,23 @@ int __netpoll_rx(struct sk_buff *skb)
 	if (skb_shared(skb))
 		goto out;
 
+<<<<<<< HEAD
 	if (!pskb_may_pull(skb, sizeof(struct iphdr)))
 		goto out;
 	iph = (struct iphdr *)skb->data;
+=======
+	iph = (struct iphdr *)skb->data;
+	if (!pskb_may_pull(skb, sizeof(struct iphdr)))
+		goto out;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (iph->ihl < 5 || iph->version != 4)
 		goto out;
 	if (!pskb_may_pull(skb, iph->ihl*4))
 		goto out;
+<<<<<<< HEAD
 	iph = (struct iphdr *)skb->data;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (ip_fast_csum((u8 *)iph, iph->ihl) != 0)
 		goto out;
 
@@ -594,7 +672,10 @@ int __netpoll_rx(struct sk_buff *skb)
 	if (pskb_trim_rcsum(skb, len))
 		goto out;
 
+<<<<<<< HEAD
 	iph = (struct iphdr *)skb->data;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	if (iph->protocol != IPPROTO_UDP)
 		goto out;
 
@@ -638,12 +719,27 @@ out:
 
 void netpoll_print_options(struct netpoll *np)
 {
+<<<<<<< HEAD
 	np_info(np, "local port %d\n", np->local_port);
 	np_info(np, "local IP %pI4\n", &np->local_ip);
 	np_info(np, "interface '%s'\n", np->dev_name);
 	np_info(np, "remote port %d\n", np->remote_port);
 	np_info(np, "remote IP %pI4\n", &np->remote_ip);
 	np_info(np, "remote ethernet address %pM\n", np->remote_mac);
+=======
+	printk(KERN_INFO "%s: local port %d\n",
+			 np->name, np->local_port);
+	printk(KERN_INFO "%s: local IP %pI4\n",
+			 np->name, &np->local_ip);
+	printk(KERN_INFO "%s: interface '%s'\n",
+			 np->name, np->dev_name);
+	printk(KERN_INFO "%s: remote port %d\n",
+			 np->name, np->remote_port);
+	printk(KERN_INFO "%s: remote IP %pI4\n",
+			 np->name, &np->remote_ip);
+	printk(KERN_INFO "%s: remote ethernet address %pM\n",
+	                 np->name, np->remote_mac);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(netpoll_print_options);
 
@@ -685,7 +781,12 @@ int netpoll_parse_options(struct netpoll *np, char *opt)
 			goto parse_failed;
 		*delim = 0;
 		if (*cur == ' ' || *cur == '\t')
+<<<<<<< HEAD
 			np_info(np, "warning: whitespace is not allowed\n");
+=======
+			printk(KERN_INFO "%s: warning: whitespace"
+					"is not allowed\n", np->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		np->remote_port = simple_strtol(cur, NULL, 10);
 		cur = delim;
 	}
@@ -709,7 +810,12 @@ int netpoll_parse_options(struct netpoll *np, char *opt)
 	return 0;
 
  parse_failed:
+<<<<<<< HEAD
 	np_info(np, "couldn't parse config at '%s'!\n", cur);
+=======
+	printk(KERN_INFO "%s: couldn't parse config at '%s'!\n",
+	       np->name, cur);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	return -1;
 }
 EXPORT_SYMBOL(netpoll_parse_options);
@@ -724,8 +830,13 @@ int __netpoll_setup(struct netpoll *np)
 
 	if ((ndev->priv_flags & IFF_DISABLE_NETPOLL) ||
 	    !ndev->netdev_ops->ndo_poll_controller) {
+<<<<<<< HEAD
 		np_err(np, "%s doesn't support polling, aborting\n",
 		       np->dev_name);
+=======
+		printk(KERN_ERR "%s: %s doesn't support polling, aborting.\n",
+		       np->name, np->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = -ENOTSUPP;
 		goto out;
 	}
@@ -788,12 +899,22 @@ int netpoll_setup(struct netpoll *np)
 	if (np->dev_name)
 		ndev = dev_get_by_name(&init_net, np->dev_name);
 	if (!ndev) {
+<<<<<<< HEAD
 		np_err(np, "%s doesn't exist, aborting\n", np->dev_name);
+=======
+		printk(KERN_ERR "%s: %s doesn't exist, aborting.\n",
+		       np->name, np->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		return -ENODEV;
 	}
 
 	if (ndev->master) {
+<<<<<<< HEAD
 		np_err(np, "%s is a slave device, aborting\n", np->dev_name);
+=======
+		printk(KERN_ERR "%s: %s is a slave device, aborting.\n",
+		       np->name, np->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 		err = -EBUSY;
 		goto put;
 	}
@@ -801,14 +922,24 @@ int netpoll_setup(struct netpoll *np)
 	if (!netif_running(ndev)) {
 		unsigned long atmost, atleast;
 
+<<<<<<< HEAD
 		np_info(np, "device %s not up yet, forcing it\n", np->dev_name);
+=======
+		printk(KERN_INFO "%s: device %s not up yet, forcing it\n",
+		       np->name, np->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		rtnl_lock();
 		err = dev_open(ndev);
 		rtnl_unlock();
 
 		if (err) {
+<<<<<<< HEAD
 			np_err(np, "failed to open %s\n", ndev->name);
+=======
+			printk(KERN_ERR "%s: failed to open %s\n",
+			       np->name, ndev->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			goto put;
 		}
 
@@ -816,7 +947,13 @@ int netpoll_setup(struct netpoll *np)
 		atmost = jiffies + carrier_timeout * HZ;
 		while (!netif_carrier_ok(ndev)) {
 			if (time_after(jiffies, atmost)) {
+<<<<<<< HEAD
 				np_notice(np, "timeout waiting for carrier\n");
+=======
+				printk(KERN_NOTICE
+				       "%s: timeout waiting for carrier\n",
+				       np->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 				break;
 			}
 			msleep(1);
@@ -828,7 +965,13 @@ int netpoll_setup(struct netpoll *np)
 		 */
 
 		if (time_before(jiffies, atleast)) {
+<<<<<<< HEAD
 			np_notice(np, "carrier detect appears untrustworthy, waiting 4 seconds\n");
+=======
+			printk(KERN_NOTICE "%s: carrier detect appears"
+			       " untrustworthy, waiting 4 seconds\n",
+			       np->name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			msleep(4000);
 		}
 	}
@@ -839,15 +982,24 @@ int netpoll_setup(struct netpoll *np)
 
 		if (!in_dev || !in_dev->ifa_list) {
 			rcu_read_unlock();
+<<<<<<< HEAD
 			np_err(np, "no IP address for %s, aborting\n",
 			       np->dev_name);
+=======
+			printk(KERN_ERR "%s: no IP address for %s, aborting\n",
+			       np->name, np->dev_name);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			err = -EDESTADDRREQ;
 			goto put;
 		}
 
 		np->local_ip = in_dev->ifa_list->ifa_local;
 		rcu_read_unlock();
+<<<<<<< HEAD
 		np_info(np, "local IP %pI4\n", &np->local_ip);
+=======
+		printk(KERN_INFO "%s: local IP %pI4\n", np->name, &np->local_ip);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	}
 
 	np->dev = ndev;
@@ -901,7 +1053,11 @@ void __netpoll_cleanup(struct netpoll *np)
 		if (ops->ndo_netpoll_cleanup)
 			ops->ndo_netpoll_cleanup(np->dev);
 
+<<<<<<< HEAD
 		RCU_INIT_POINTER(np->dev->npinfo, NULL);
+=======
+		rcu_assign_pointer(np->dev->npinfo, NULL);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 		/* avoid racing with NAPI reading npinfo */
 		synchronize_rcu_bh();
@@ -919,6 +1075,7 @@ EXPORT_SYMBOL_GPL(__netpoll_cleanup);
 
 void netpoll_cleanup(struct netpoll *np)
 {
+<<<<<<< HEAD
 	if (!np->dev)
 		return;
 
@@ -928,6 +1085,16 @@ void netpoll_cleanup(struct netpoll *np)
 
 	dev_put(np->dev);
 	np->dev = NULL;
+=======
+	rtnl_lock();
+	if (!np->dev)
+		goto out;
+	__netpoll_cleanup(np);
+	dev_put(np->dev);
+	np->dev = NULL;
+out:
+	rtnl_unlock();
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 EXPORT_SYMBOL(netpoll_cleanup);
 

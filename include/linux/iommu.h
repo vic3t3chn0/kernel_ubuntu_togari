@@ -19,17 +19,24 @@
 #ifndef __LINUX_IOMMU_H
 #define __LINUX_IOMMU_H
 
+<<<<<<< HEAD
 #include <linux/types.h>
 #include <linux/errno.h>
 #include <linux/scatterlist.h>
 #include <linux/err.h>
+=======
+#include <linux/errno.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define IOMMU_READ	(1)
 #define IOMMU_WRITE	(2)
 #define IOMMU_CACHE	(4) /* DMA cache coherency */
 
 struct iommu_ops;
+<<<<<<< HEAD
 struct iommu_group;
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 struct bus_type;
 struct device;
 struct iommu_domain;
@@ -39,6 +46,7 @@ struct iommu_domain;
 #define IOMMU_FAULT_WRITE	0x1
 
 typedef int (*iommu_fault_handler_t)(struct iommu_domain *,
+<<<<<<< HEAD
 			struct device *, unsigned long, int, void *);
 
 struct iommu_domain {
@@ -46,6 +54,16 @@ struct iommu_domain {
 	void *priv;
 	iommu_fault_handler_t handler;
 	void *handler_token;
+=======
+				struct device *, unsigned long, int);
+
+struct iommu_domain {
+	void *priv;
+#if defined(CONFIG_ARCH_EXYNOS5)
+	struct iommu_ops *ops;
+	iommu_fault_handler_t handler;
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 };
 
 #define IOMMU_CAP_CACHE_COHERENCY	0x1
@@ -64,12 +82,19 @@ struct iommu_domain {
  * @iova_to_phys: translate iova to physical address
  * @domain_has_cap: domain capabilities query
  * @commit: commit iommu domain
+<<<<<<< HEAD
  * @add_device: add device to iommu grouping
  * @remove_device: remove device from iommu grouping
  * @pgsize_bitmap: bitmap of supported page sizes
  */
 struct iommu_ops {
 	int (*domain_init)(struct iommu_domain *domain, int flags);
+=======
+ * @pgsize_bitmap: bitmap of supported page sizes
+ */
+struct iommu_ops {
+	int (*domain_init)(struct iommu_domain *domain);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	void (*domain_destroy)(struct iommu_domain *domain);
 	int (*attach_dev)(struct iommu_domain *domain, struct device *dev);
 	void (*detach_dev)(struct iommu_domain *domain, struct device *dev);
@@ -77,14 +102,18 @@ struct iommu_ops {
 		   phys_addr_t paddr, size_t size, int prot);
 	size_t (*unmap)(struct iommu_domain *domain, unsigned long iova,
 		     size_t size);
+<<<<<<< HEAD
 	int (*map_range)(struct iommu_domain *domain, unsigned int iova,
 		    struct scatterlist *sg, unsigned int len, int prot);
 	int (*unmap_range)(struct iommu_domain *domain, unsigned int iova,
 		      unsigned int len);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	phys_addr_t (*iova_to_phys)(struct iommu_domain *domain,
 				    unsigned long iova);
 	int (*domain_has_cap)(struct iommu_domain *domain,
 			      unsigned long cap);
+<<<<<<< HEAD
 	phys_addr_t (*get_pt_base_addr)(struct iommu_domain *domain);
 	int (*add_device)(struct device *dev);
 	void (*remove_device)(struct device *dev);
@@ -101,6 +130,15 @@ struct iommu_ops {
 extern int bus_set_iommu(struct bus_type *bus, struct iommu_ops *ops);
 extern bool iommu_present(struct bus_type *bus);
 extern struct iommu_domain *iommu_domain_alloc(struct bus_type *bus, int flags);
+=======
+	int (*device_group)(struct device *dev, unsigned int *groupid);
+	unsigned long pgsize_bitmap;
+};
+
+extern int bus_set_iommu(struct bus_type *bus, struct iommu_ops *ops);
+extern bool iommu_present(struct bus_type *bus);
+extern struct iommu_domain *iommu_domain_alloc(struct bus_type *bus);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern void iommu_domain_free(struct iommu_domain *domain);
 extern int iommu_attach_device(struct iommu_domain *domain,
 			       struct device *dev);
@@ -110,14 +148,18 @@ extern int iommu_map(struct iommu_domain *domain, unsigned long iova,
 		     phys_addr_t paddr, size_t size, int prot);
 extern size_t iommu_unmap(struct iommu_domain *domain, unsigned long iova,
 		       size_t size);
+<<<<<<< HEAD
 extern int iommu_map_range(struct iommu_domain *domain, unsigned int iova,
 		    struct scatterlist *sg, unsigned int len, int prot);
 extern int iommu_unmap_range(struct iommu_domain *domain, unsigned int iova,
 		      unsigned int len);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 extern phys_addr_t iommu_iova_to_phys(struct iommu_domain *domain,
 				      unsigned long iova);
 extern int iommu_domain_has_cap(struct iommu_domain *domain,
 				unsigned long cap);
+<<<<<<< HEAD
 extern phys_addr_t iommu_get_pt_base_addr(struct iommu_domain *domain);
 extern void iommu_set_fault_handler(struct iommu_domain *domain,
 			iommu_fault_handler_t handler, void *token);
@@ -145,6 +187,11 @@ extern int iommu_group_register_notifier(struct iommu_group *group,
 extern int iommu_group_unregister_notifier(struct iommu_group *group,
 					   struct notifier_block *nb);
 extern int iommu_group_id(struct iommu_group *group);
+=======
+extern void iommu_set_fault_handler(struct iommu_domain *domain,
+					iommu_fault_handler_t handler);
+extern int iommu_device_group(struct device *dev, unsigned int *groupid);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 /**
  * report_iommu_fault() - report about an IOMMU fault to the IOMMU framework
@@ -180,23 +227,82 @@ static inline int report_iommu_fault(struct iommu_domain *domain,
 	 * invoke it.
 	 */
 	if (domain->handler)
+<<<<<<< HEAD
 		ret = domain->handler(domain, dev, iova, flags,
 						domain->handler_token);
 
 	return ret;
 }
+=======
+		ret = domain->handler(domain, dev, iova, flags);
+
+	return ret;
+}
+#elif defined(CONFIG_IOMMU_EXYNOS4_API)
+/**
+ * struct iommu_ops - iommu ops and capabilities
+ * @domain_init: init iommu domain
+ * @domain_destroy: destroy iommu domain
+ * @attach_dev: attach device to an iommu domain
+ * @detach_dev: detach device from an iommu domain
+ * @map: map a physically contiguous memory region to an iommu domain
+ * @unmap: unmap a physically contiguous memory region from an iommu domain
+ * @iova_to_phys: translate iova to physical address
+ * @domain_has_cap: domain capabilities query
+ * @commit: commit iommu domain
+ * @pgsize_bitmap: bitmap of supported page sizes
+ */
+struct iommu_ops {
+	int (*domain_init)(struct iommu_domain *domain);
+	void (*domain_destroy)(struct iommu_domain *domain);
+	int (*attach_dev)(struct iommu_domain *domain, struct device *dev);
+	void (*detach_dev)(struct iommu_domain *domain, struct device *dev);
+	int (*map)(struct iommu_domain *domain, unsigned long iova,
+		   phys_addr_t paddr, int gfp_order, int prot);
+	int (*unmap)(struct iommu_domain *domain, unsigned long iova,
+		    int gfp_order);
+	phys_addr_t (*iova_to_phys)(struct iommu_domain *domain,
+				    unsigned long iova);
+	int (*domain_has_cap)(struct iommu_domain *domain,
+			      unsigned long cap);
+};
+
+extern void register_iommu(struct iommu_ops *ops);
+extern bool iommu_found(void);
+extern struct iommu_domain *iommu_domain_alloc(void);
+extern void iommu_domain_free(struct iommu_domain *domain);
+extern int iommu_attach_device(struct iommu_domain *domain,
+			       struct device *dev);
+extern void iommu_detach_device(struct iommu_domain *domain,
+				struct device *dev);
+extern int iommu_map(struct iommu_domain *domain, unsigned long iova,
+		     phys_addr_t paddr, int gfp_order, int prot);
+extern int iommu_unmap(struct iommu_domain *domain, unsigned long iova,
+		       int gfp_order);
+extern phys_addr_t iommu_iova_to_phys(struct iommu_domain *domain,
+				      unsigned long iova);
+extern int iommu_domain_has_cap(struct iommu_domain *domain,
+				unsigned long cap);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #else /* CONFIG_IOMMU_API */
 
 struct iommu_ops {};
+<<<<<<< HEAD
 struct iommu_group {};
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 static inline bool iommu_present(struct bus_type *bus)
 {
 	return false;
 }
 
+<<<<<<< HEAD
 static inline struct iommu_domain *iommu_domain_alloc(struct bus_type *bus, int flags)
+=======
+static inline struct iommu_domain *iommu_domain_alloc(struct bus_type *bus)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return NULL;
 }
@@ -228,6 +334,7 @@ static inline int iommu_unmap(struct iommu_domain *domain, unsigned long iova,
 	return -ENODEV;
 }
 
+<<<<<<< HEAD
 static inline int iommu_map_range(struct iommu_domain *domain,
 				  unsigned int iova, struct scatterlist *sg,
 				  unsigned int len, int prot)
@@ -241,6 +348,8 @@ static inline int iommu_unmap_range(struct iommu_domain *domain,
 	return -ENODEV;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static inline phys_addr_t iommu_iova_to_phys(struct iommu_domain *domain,
 					     unsigned long iova)
 {
@@ -253,6 +362,7 @@ static inline int domain_has_cap(struct iommu_domain *domain,
 	return 0;
 }
 
+<<<<<<< HEAD
 static inline phys_addr_t iommu_get_pt_base_addr(struct iommu_domain *domain)
 {
 	return 0;
@@ -265,10 +375,19 @@ static inline void iommu_set_fault_handler(struct iommu_domain *domain,
 
 static inline int iommu_attach_group(struct iommu_domain *domain,
 				     struct iommu_group *group)
+=======
+static inline void iommu_set_fault_handler(struct iommu_domain *domain,
+					iommu_fault_handler_t handler)
+{
+}
+
+static inline int iommu_device_group(struct device *dev, unsigned int *groupid)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return -ENODEV;
 }
 
+<<<<<<< HEAD
 static inline void iommu_detach_group(struct iommu_domain *domain,
 				      struct iommu_group *group)
 {
@@ -343,6 +462,8 @@ static inline int iommu_group_id(struct iommu_group *group)
 {
 	return -ENODEV;
 }
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* CONFIG_IOMMU_API */
 
 #endif /* __LINUX_IOMMU_H */

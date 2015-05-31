@@ -16,6 +16,10 @@
 #include <linux/errno.h>
 
 #include <asm/memory.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #define __copy_from_user	__copy_from_user
 #define __copy_to_user		__copy_to_user

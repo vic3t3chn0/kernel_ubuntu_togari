@@ -56,7 +56,11 @@
 #define IRQ_SPI2		S5P_IRQ_VIC1(17)
 #define IRQ_IRDA		S5P_IRQ_VIC1(18)
 #define IRQ_IIC2		S5P_IRQ_VIC1(19)
+<<<<<<< HEAD
 #define IRQ_IIC_HDMIPHY		S5P_IRQ_VIC1(20)
+=======
+#define IRQ_IIC3		S5P_IRQ_VIC1(20)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IRQ_HSIRX		S5P_IRQ_VIC1(21)
 #define IRQ_HSITX		S5P_IRQ_VIC1(22)
 #define IRQ_UHOST		S5P_IRQ_VIC1(23)
@@ -86,7 +90,11 @@
 #define IRQ_HDMI		S5P_IRQ_VIC2(12)
 #define IRQ_IIC1		S5P_IRQ_VIC2(13)
 #define IRQ_MFC			S5P_IRQ_VIC2(14)
+<<<<<<< HEAD
 #define IRQ_SDO			S5P_IRQ_VIC2(15)
+=======
+#define IRQ_TVENC		S5P_IRQ_VIC2(15)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IRQ_I2S0		S5P_IRQ_VIC2(16)
 #define IRQ_I2S1		S5P_IRQ_VIC2(17)
 #define IRQ_I2S2		S5P_IRQ_VIC2(18)
@@ -99,8 +107,13 @@
 #define IRQ_TC			IRQ_PENDN
 #define IRQ_KEYPAD		S5P_IRQ_VIC2(25)
 #define IRQ_CG			S5P_IRQ_VIC2(26)
+<<<<<<< HEAD
 #define IRQ_SSS_INT		S5P_IRQ_VIC2(27)
 #define IRQ_SSS_HASH		S5P_IRQ_VIC2(28)
+=======
+#define IRQ_SSS_HASH		S5P_IRQ_VIC2(27)
+#define IRQ_SSS_INT		S5P_IRQ_VIC2(28)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define IRQ_PCM2		S5P_IRQ_VIC2(29)
 #define IRQ_SDMIRQ		S5P_IRQ_VIC2(30)
 #define IRQ_SDMFIQ		S5P_IRQ_VIC2(31)
@@ -118,8 +131,11 @@
 #define IRQ_MDNIE3		S5P_IRQ_VIC3(8)
 #define IRQ_VIC_END		S5P_IRQ_VIC3(31)
 
+<<<<<<< HEAD
 #define IRQ_TIMER_BASE		(11)
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define S5P_EINT_BASE1		(S5P_IRQ_VIC0(0))
 #define S5P_EINT_BASE2		(IRQ_VIC_END + 1)
 

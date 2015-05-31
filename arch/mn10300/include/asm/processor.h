@@ -127,6 +127,10 @@ static inline void start_thread(struct pt_regs *regs,
 {
 	struct thread_info *ti = current_thread_info();
 	struct pt_regs *frame0;
+<<<<<<< HEAD
+=======
+	set_fs(USER_DS);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 	frame0 = thread_info_to_uregs(ti);
 	frame0->epsw = EPSW_nSL | EPSW_IE | EPSW_IM;

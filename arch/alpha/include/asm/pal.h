@@ -48,6 +48,7 @@
 #define PAL_retsys	61
 #define PAL_rti		63
 
+<<<<<<< HEAD
 #ifdef __KERNEL__
 #ifndef __ASSEMBLY__
 
@@ -160,4 +161,6 @@ __CALL_PAL_W1(wrvptptr, unsigned long);
 #endif /* !__ASSEMBLY__ */
 #endif /* __KERNEL__ */
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #endif /* __ALPHA_PAL_H */

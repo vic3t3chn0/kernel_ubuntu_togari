@@ -16,7 +16,10 @@
 
 #include <linux/netfilter/xt_statistic.h>
 #include <linux/netfilter/x_tables.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 struct xt_statistic_priv {
 	atomic_t count;

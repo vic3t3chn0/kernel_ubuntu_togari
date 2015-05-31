@@ -41,7 +41,10 @@ asmlinkage void *sys_dma_memcpy(void *dest, const void *src, size_t len)
 
 #if defined(CONFIG_FB) || defined(CONFIG_FB_MODULE)
 #include <linux/fb.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 unsigned long get_fb_unmapped_area(struct file *filp, unsigned long orig_addr,
 	unsigned long len, unsigned long pgoff, unsigned long flags)
 {

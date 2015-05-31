@@ -162,7 +162,11 @@ ready:
 		printk(KERN_INFO "swprobe: padde %x\n", paddr_calc);
 	if (paddr)
 		*paddr = paddr_calc;
+<<<<<<< HEAD
 	return pte;
+=======
+	return paddrbase;
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 }
 
 void leon_flush_icache_all(void)

@@ -25,7 +25,10 @@ enum android_alarm_type {
 	ANDROID_ALARM_RTC,
 	ANDROID_ALARM_ELAPSED_REALTIME_WAKEUP,
 	ANDROID_ALARM_ELAPSED_REALTIME,
+<<<<<<< HEAD
 	ANDROID_ALARM_RTC_POWEROFF_WAKEUP,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ANDROID_ALARM_SYSTEMTIME,
 
 	ANDROID_ALARM_TYPE_COUNT,
@@ -71,12 +74,23 @@ void alarm_init(struct alarm *alarm,
 void alarm_start_range(struct alarm *alarm, ktime_t start, ktime_t end);
 int alarm_try_to_cancel(struct alarm *alarm);
 int alarm_cancel(struct alarm *alarm);
+<<<<<<< HEAD
 void set_power_on_alarm(long secs);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 ktime_t alarm_get_elapsed_realtime(void);
 
 /* set rtc while preserving elapsed realtime */
 int alarm_set_rtc(const struct timespec ts);
+<<<<<<< HEAD
 void alarm_update_timedelta(struct timespec tv, struct timespec ts);
+=======
+#if defined(CONFIG_RTC_ALARM_BOOT)
+int alarm_set_alarm_boot(char *alarm_data);
+#elif defined(CONFIG_RTC_POWER_OFF)
+int alarm_set_alarm_poweroff(char *alarm_data);
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 
 #endif
 
@@ -87,7 +101,10 @@ enum android_alarm_return_flags {
 				1U << ANDROID_ALARM_ELAPSED_REALTIME_WAKEUP,
 	ANDROID_ALARM_ELAPSED_REALTIME_MASK =
 				1U << ANDROID_ALARM_ELAPSED_REALTIME,
+<<<<<<< HEAD
 	ANDROID_ALARM_RTC_POWEROFF_WAKEUP_MASK = 1U << ANDROID_ALARM_RTC_POWEROFF_WAKEUP,
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	ANDROID_ALARM_SYSTEMTIME_MASK = 1U << ANDROID_ALARM_SYSTEMTIME,
 	ANDROID_ALARM_TIME_CHANGE_MASK = 1U << 16
 };
@@ -103,7 +120,16 @@ enum android_alarm_return_flags {
 #define ANDROID_ALARM_SET(type)             ALARM_IOW(2, type, struct timespec)
 #define ANDROID_ALARM_SET_AND_WAIT(type)    ALARM_IOW(3, type, struct timespec)
 #define ANDROID_ALARM_GET_TIME(type)        ALARM_IOW(4, type, struct timespec)
+<<<<<<< HEAD
 #define ANDROID_ALARM_SET_RTC               _IOW('a', 5, struct timespec)
+=======
+#define ANDROID_ALARM_SET_RTC			_IOW('a', 5, struct timespec)
+#if defined(CONFIG_RTC_ALARM_BOOT)
+#define ANDROID_ALARM_SET_ALARM_BOOT		_IOW('a', 7, struct timespec)
+#elif defined(CONFIG_RTC_POWER_OFF)
+#define ANDROID_ALARM_SET_ALARM_POWEROFF	_IOW('a', 8, struct timespec)
+#endif
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 #define ANDROID_ALARM_BASE_CMD(cmd)         (cmd & ~(_IOC(0, 0, 0xf0, 0)))
 #define ANDROID_ALARM_IOCTL_TO_TYPE(cmd)    (_IOC_NR(cmd) >> 4)
 

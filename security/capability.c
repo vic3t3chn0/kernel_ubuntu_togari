@@ -12,6 +12,7 @@
 
 #include <linux/security.h>
 
+<<<<<<< HEAD
 static int cap_binder_set_context_mgr(struct task_struct *mgr)
 {
 	return 0;
@@ -32,6 +33,8 @@ static int cap_binder_transfer_file(struct task_struct *from, struct task_struct
 	return 0;
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int cap_syslog(int type)
 {
 	return 0;
@@ -145,7 +148,11 @@ static int cap_inode_init_security(struct inode *inode, struct inode *dir,
 }
 
 static int cap_inode_create(struct inode *inode, struct dentry *dentry,
+<<<<<<< HEAD
 			    umode_t mask)
+=======
+			    int mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -168,7 +175,11 @@ static int cap_inode_symlink(struct inode *inode, struct dentry *dentry,
 }
 
 static int cap_inode_mkdir(struct inode *inode, struct dentry *dentry,
+<<<<<<< HEAD
 			   umode_t mask)
+=======
+			   int mask)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -179,7 +190,11 @@ static int cap_inode_rmdir(struct inode *inode, struct dentry *dentry)
 }
 
 static int cap_inode_mknod(struct inode *inode, struct dentry *dentry,
+<<<<<<< HEAD
 			   umode_t mode, dev_t dev)
+=======
+			   int mode, dev_t dev)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -201,7 +216,11 @@ static int cap_inode_follow_link(struct dentry *dentry,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int cap_inode_permission(struct inode *inode, int mask)
+=======
+static int cap_inode_permission(struct inode *inode, int mask, unsigned flags)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -255,13 +274,21 @@ static void cap_inode_getsecid(const struct inode *inode, u32 *secid)
 }
 
 #ifdef CONFIG_SECURITY_PATH
+<<<<<<< HEAD
 static int cap_path_mknod(struct path *dir, struct dentry *dentry, umode_t mode,
+=======
+static int cap_path_mknod(struct path *dir, struct dentry *dentry, int mode,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 			  unsigned int dev)
 {
 	return 0;
 }
 
+<<<<<<< HEAD
 static int cap_path_mkdir(struct path *dir, struct dentry *dentry, umode_t mode)
+=======
+static int cap_path_mkdir(struct path *dir, struct dentry *dentry, int mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -299,7 +326,12 @@ static int cap_path_truncate(struct path *path)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int cap_path_chmod(struct path *path, umode_t mode)
+=======
+static int cap_path_chmod(struct dentry *dentry, struct vfsmount *mnt,
+			  mode_t mode)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 {
 	return 0;
 }
@@ -378,10 +410,13 @@ static int cap_task_create(unsigned long clone_flags)
 	return 0;
 }
 
+<<<<<<< HEAD
 static void cap_task_free(struct task_struct *task)
 {
 }
 
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 static int cap_cred_alloc_blank(struct cred *cred, gfp_t gfp)
 {
 	return 0;
@@ -897,10 +932,13 @@ static void cap_audit_rule_free(void *lsmrule)
 
 void __init security_fixup_ops(struct security_operations *ops)
 {
+<<<<<<< HEAD
 	set_to_cap_if_null(ops, binder_set_context_mgr);
 	set_to_cap_if_null(ops, binder_transaction);
 	set_to_cap_if_null(ops, binder_transfer_binder);
 	set_to_cap_if_null(ops, binder_transfer_file);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	set_to_cap_if_null(ops, ptrace_access_check);
 	set_to_cap_if_null(ops, ptrace_traceme);
 	set_to_cap_if_null(ops, capget);
@@ -982,7 +1020,10 @@ void __init security_fixup_ops(struct security_operations *ops)
 	set_to_cap_if_null(ops, file_receive);
 	set_to_cap_if_null(ops, dentry_open);
 	set_to_cap_if_null(ops, task_create);
+<<<<<<< HEAD
 	set_to_cap_if_null(ops, task_free);
+=======
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	set_to_cap_if_null(ops, cred_alloc_blank);
 	set_to_cap_if_null(ops, cred_free);
 	set_to_cap_if_null(ops, cred_prepare);
@@ -1027,6 +1068,10 @@ void __init security_fixup_ops(struct security_operations *ops)
 	set_to_cap_if_null(ops, sem_semctl);
 	set_to_cap_if_null(ops, sem_semop);
 	set_to_cap_if_null(ops, netlink_send);
+<<<<<<< HEAD
+=======
+	set_to_cap_if_null(ops, netlink_recv);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 	set_to_cap_if_null(ops, d_instantiate);
 	set_to_cap_if_null(ops, getprocattr);
 	set_to_cap_if_null(ops, setprocattr);

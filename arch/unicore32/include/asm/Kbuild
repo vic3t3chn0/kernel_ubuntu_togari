@@ -3,6 +3,10 @@ include include/asm-generic/Kbuild.asm
 generic-y += atomic.h
 generic-y += auxvec.h
 generic-y += bitsperlong.h
+<<<<<<< HEAD
+=======
+generic-y += bug.h
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
 generic-y += bugs.h
 generic-y += cputime.h
 generic-y += current.h
